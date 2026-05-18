@@ -10,6 +10,22 @@ in the repository root so VS Code, local runs, and CI use the same rules.
 npm install --prefix .devops/js-tools
 ```
 
+## Lint Markdown
+
+Run markdownlint with the repository configuration:
+
+```bash
+npm run lint --prefix .devops/js-tools
+```
+
+Fix supported markdownlint findings:
+
+```bash
+npm run lint:fix --prefix .devops/js-tools
+```
+
+Review the diff after `lint:fix`; not every rule is safely fixable.
+
 ## Count Tokens
 
 The token tally helper writes reports to `dist/TOKEN_TALLY.md` and
@@ -23,22 +39,16 @@ Generate the reports:
 npm run token-tally --prefix .devops/js-tools
 ```
 
-## Auto-Fix
-
-Some markdownlint findings can be fixed automatically:
-
-```bash
-.devops/js-tools/node_modules/.bin/markdownlint-cli2 \
-  --config .markdownlint.yaml \
-  --fix \
-  "**/*.md"
-```
-
-Review the diff after `--fix`; not every rule is safely fixable.
-
 ## CI Helper
 
-The release workflow runs the token tally helper:
+The markdown formatting workflow runs:
+
+```bash
+npm ci --prefix .devops/js-tools
+npm run lint --prefix .devops/js-tools
+```
+
+The release workflow runs:
 
 ```bash
 npm run token-tally --prefix .devops/js-tools -- --output-dir dist
