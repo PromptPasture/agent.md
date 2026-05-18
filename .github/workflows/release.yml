@@ -44,7 +44,7 @@ jobs:
 
       - name: Generate token tally
         shell: bash
-        run: npm run token-tally --prefix .devops/js-tools -- --output-dir dist
+        run: npm run token-count --prefix .devops/js-tools -- --output-dir dist
 
       - name: Build library archive
         shell: bash

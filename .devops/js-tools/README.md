@@ -36,7 +36,7 @@ The token tally helper writes reports to `dist/TOKEN_TALLY.md` and
 Generate the reports:
 
 ```bash
-npm run token-tally --prefix .devops/js-tools
+npm run token-count --prefix .devops/js-tools
 ```
 
 ## CI Helper
@@ -51,5 +51,5 @@ npm run lint --prefix .devops/js-tools
 The release workflow runs:
 
 ```bash
-npm run token-tally --prefix .devops/js-tools -- --output-dir dist
+npm run token-count --prefix .devops/js-tools -- --output-dir dist
 ```

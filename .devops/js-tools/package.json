@@ -4,7 +4,7 @@
     "lint": "markdownlint-cli2 --config ../../.markdownlint.yaml \"../../**/*.md\" \"#../../**/node_modules\" \"#../../dist\" \"#../../**/dist\"",
     "lint:fix": "markdownlint-cli2 --config ../../.markdownlint.yaml --fix \"../../**/*.md\" \"#../../**/node_modules\" \"#../../dist\" \"#../../**/dist\"",
     "token-diff:library": "node scripts/comment-library-token-diff.mjs",
-    "token-tally": "node scripts/count-tokens.mjs"
+    "token-count": "node scripts/count-tokens.mjs"
   },
   "devDependencies": {
     "markdownlint-cli2": "^0.22.1",
