@@ -1,6 +1,7 @@
 title: Agent Playbook
 description: A portable, tool-agnostic file structure playbook for LLM agents in software projects.
 theme: jekyll-theme-primer
+favicon: "🤖"
 
 url: "https://olegshulyakov.github.io"
 baseurl: "/agent.md"
