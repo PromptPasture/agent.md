@@ -60,10 +60,10 @@ Currently, LLM agents lack a standardized, tool-agnostic way to maintain context
 
 ## Assumptions & Dependencies
 
-| Item              | Type       | Detail                                                                                                |
+| Item | Type | Detail |
 | ----------------- | ---------- | ----------------------------------------------------------------------------------------------------- |
-| LLM tool support  | Dependency | LLM IDEs and runtimes will adopt or allow custom configuration reading to support this specification. |
-| Markdown adoption | Assumption | Markdown remains the standard format for LLM instructions.                                            |
+| LLM tool support | Dependency | LLM IDEs and runtimes will adopt or allow custom configuration reading to support this specification. |
+| Markdown adoption | Assumption | Markdown remains the standard format for LLM instructions. |
 
 ## Open Questions
 

@@ -99,20 +99,20 @@ _[Version: X.X.X | Released: Date | Platform: iOS/Android/Web/All]_
 
 ## Tone guide
 
-| Product type           | Tone                            | Opening style                                                        |
+| Product type | Tone | Opening style |
 | ---------------------- | ------------------------------- | -------------------------------------------------------------------- |
-| Consumer mobile app    | Friendly, emoji, "you" language | "We've been busy! Here's what's new..."                              |
-| SaaS productivity tool | Professional but warm           | "This release focuses on speed and reliability..."                   |
-| Developer tool / CLI   | Technical-friendly, concise     | "v2.1.0 includes three new commands and performance improvements..." |
-| Enterprise software    | Formal, precise                 | "Version 4.2 introduces the following capabilities..."               |
+| Consumer mobile app | Friendly, emoji, "you" language | "We've been busy! Here's what's new..." |
+| SaaS productivity tool | Professional but warm | "This release focuses on speed and reliability..." |
+| Developer tool / CLI | Technical-friendly, concise | "v2.1.0 includes three new commands and performance improvements..." |
+| Enterprise software | Formal, precise | "Version 4.2 introduces the following capabilities..." |
 
 ## Transforming technical changes
 
-| Technical description                                    | User-facing version                                         |
+| Technical description | User-facing version |
 | -------------------------------------------------------- | ----------------------------------------------------------- |
-| "Reduced API latency by 40% via connection pooling"      | "Pages load up to 40% faster"                               |
+| "Reduced API latency by 40% via connection pooling" | "Pages load up to 40% faster" |
 | "Fixed NPE in OrderService when order contains no items" | "Fixed a crash that occurred when submitting an empty cart" |
-| "Added index to user_email column"                       | "Search is now 10× faster when looking up users by email"   |
+| "Added index to user_email column" | "Search is now 10× faster when looking up users by email" |
 
 ## App Store format
 

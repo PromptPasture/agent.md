@@ -115,15 +115,15 @@ This is a major release. See the [migration guide](./docs/migration/v1-to-v2.md)
 
 ## Commit → changelog mapping
 
-| Commit type        | Changelog section              | Notes                                |
+| Commit type | Changelog section | Notes |
 | ------------------ | ------------------------------ | ------------------------------------ |
-| `feat:`            | Added                          |                                      |
-| `fix:`             | Fixed                          |                                      |
-| `chore:`           | Omit or batch                  | Unless it's a security fix           |
-| `refactor:`        | Omit                           | Internal; no user-visible change     |
-| `docs:`            | Changed                        | Only if docs are the product         |
+| `feat:` | Added | |
+| `fix:` | Fixed | |
+| `chore:` | Omit or batch | Unless it's a security fix |
+| `refactor:` | Omit | Internal; no user-visible change |
+| `docs:` | Changed | Only if docs are the product |
 | `BREAKING CHANGE:` | Removed/Changed + `[BREAKING]` | Lead with a breaking changes section |
-| `perf:`            | Changed                        | Only if perf is meaningful to users  |
+| `perf:` | Changed | Only if perf is meaningful to users |
 
 ## Calibration
 

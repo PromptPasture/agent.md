@@ -8,11 +8,11 @@ Produce clear, consistent, and informative Git branch names that follow team bes
 <type>/<ticket-id>-<short-description>
 ```
 
-| Part                | Required     | Notes                                         |
+| Part | Required | Notes |
 | ------------------- | ------------ | --------------------------------------------- |
-| `type`              | Yes          | Category prefix (see below)                   |
-| `ticket-id`         | If available | Issue/ticket number, e.g. `PROJ-123` or `#42` |
-| `short-description` | Yes          | kebab-case summary of the work                |
+| `type` | Yes | Category prefix (see below) |
+| `ticket-id` | If available | Issue/ticket number, e.g. `PROJ-123` or `#42` |
+| `short-description` | Yes | kebab-case summary of the work |
 
 **Examples:**
 
@@ -26,28 +26,28 @@ Produce clear, consistent, and informative Git branch names that follow team bes
 
 ## Type Prefixes
 
-| Prefix        | When to Use                                                |
+| Prefix | When to Use |
 | ------------- | ---------------------------------------------------------- |
-| `feature/`    | New functionality or user-facing capability                |
-| `bugfix/`     | Non-urgent bug fixes going through normal workflow         |
-| `hotfix/`     | Urgent fixes that go directly to production/main           |
-| `release/`    | Release preparation branches (`release/v1.2.0`)            |
-| `chore/`      | Maintenance, dependency updates, config changes, refactors |
-| `docs/`       | Documentation-only changes                                 |
-| `test/`       | Adding or fixing tests with no production code change      |
-| `experiment/` | Exploratory work, spikes, or proof-of-concepts             |
+| `feature/` | New functionality or user-facing capability |
+| `bugfix/` | Non-urgent bug fixes going through normal workflow |
+| `hotfix/` | Urgent fixes that go directly to production/main |
+| `release/` | Release preparation branches (`release/v1.2.0`) |
+| `chore/` | Maintenance, dependency updates, config changes, refactors |
+| `docs/` | Documentation-only changes |
+| `test/` | Adding or fixing tests with no production code change |
+| `experiment/` | Exploratory work, spikes, or proof-of-concepts |
 
 ## Action Words
 
 Treat these user words as branch action intent:
 
-| User wording                 | Git behavior                                      |
+| User wording | Git behavior |
 | ---------------------------- | ------------------------------------------------- |
-| `create a branch`            | Create a new branch from the current `HEAD`       |
-| `start a branch`             | Create and switch to a new branch                 |
-| `checkout a branch`          | Create/switch if clearly requested by the user    |
-| `switch to a branch`         | Switch to an existing branch, or create if asked  |
-| `rename this branch`         | Rename the current branch after checking context  |
+| `create a branch` | Create a new branch from the current `HEAD` |
+| `start a branch` | Create and switch to a new branch |
+| `checkout a branch` | Create/switch if clearly requested by the user |
+| `switch to a branch` | Switch to an existing branch, or create if asked |
+| `rename this branch` | Rename the current branch after checking context |
 
 Prefer `git switch -c <branch>` for creating and switching to a new branch. Prefer `git switch <branch>` for switching to an existing branch.
 

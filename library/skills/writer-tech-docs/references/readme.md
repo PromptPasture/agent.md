@@ -4,13 +4,13 @@ Produce a **complete, professional README.md** that gives any reader everything 
 
 ## Understand the audience
 
-| Signal               | Audience                            | Tone                            |
+| Signal | Audience | Tone |
 | -------------------- | ----------------------------------- | ------------------------------- |
-| Library / package    | Developers using it as a dependency | Technical, API-forward          |
-| CLI tool             | Developers and power users          | Command-focused, example-heavy  |
-| Web service / API    | Developers integrating              | Endpoint-forward, auth-focused  |
-| Internal tool / repo | Team members                        | More casual, context-assumed    |
-| Open source project  | Community contributors              | Welcoming, contribution-focused |
+| Library / package | Developers using it as a dependency | Technical, API-forward |
+| CLI tool | Developers and power users | Command-focused, example-heavy |
+| Web service / API | Developers integrating | Endpoint-forward, auth-focused |
+| Internal tool / repo | Team members | More casual, context-assumed |
+| Open source project | Community contributors | Welcoming, contribution-focused |
 
 ## Information gathering
 

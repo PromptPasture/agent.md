@@ -107,9 +107,11 @@ A runbook should be executable by someone unfamiliar with the system. Assume not
 **Rollback steps:**
 
 1. [Rollback step 1]
+
    ```bash
    [rollback command]
    ```
+
 2. [Rollback step 2]
 
 **After rollback:** Notify [#channel]. Create a ticket to investigate.
@@ -118,9 +120,9 @@ A runbook should be executable by someone unfamiliar with the system. Assume not
 
 ## Troubleshooting
 
-| Symptom           | Likely cause | Resolution |
+| Symptom | Likely cause | Resolution |
 | ----------------- | ------------ | ---------- |
-| `[Error message]` | [Cause]      | [Fix]      |
+| `[Error message]` | [Cause] | [Fix] |
 
 ---
 

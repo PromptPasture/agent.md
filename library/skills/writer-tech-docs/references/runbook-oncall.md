@@ -55,11 +55,11 @@ kubectl exec -n prod deploy/[service] -- curl -s localhost:8080/metrics | grep h
 - Is this isolated to one instance or all instances?
 - Is this correlated with a recent deploy?
 
-| Condition                            | Action                                  |
+| Condition | Action |
 | ------------------------------------ | --------------------------------------- |
 | > 50% error rate, all users affected | Escalate immediately; consider rollback |
-| > 10% error rate, partial impact     | Investigate + prepare rollback          |
-| < 5% error rate, no SLO breach       | Investigate; monitor                    |
+| > 10% error rate, partial impact | Investigate + prepare rollback |
+| < 5% error rate, no SLO breach | Investigate; monitor |
 
 ---
 
@@ -161,12 +161,12 @@ curl -X POST https://launchdarkly.internal/flag/[flag-name]/disable -H "Authoriz
 
 ## 6. Escalation
 
-| Who                     | When                             | How                           |
+| Who | When | How |
 | ----------------------- | -------------------------------- | ----------------------------- |
-| [Service team engineer] | Can't diagnose in 15 min         | Slack DM + PagerDuty escalate |
-| [DB team]               | Database issues                  | Slack [#db-oncall]            |
-| [Platform/Infra team]   | Network or Kubernetes issues     | PagerDuty: platform-oncall    |
-| [Leadership/product]    | Customer-visible outage > 30 min | Slack [#leadership-incidents] |
+| [Service team engineer] | Can't diagnose in 15 min | Slack DM + PagerDuty escalate |
+| [DB team] | Database issues | Slack [#db-oncall] |
+| [Platform/Infra team] | Network or Kubernetes issues | PagerDuty: platform-oncall |
+| [Leadership/product] | Customer-visible outage > 30 min | Slack [#leadership-incidents] |
 
 ---
 

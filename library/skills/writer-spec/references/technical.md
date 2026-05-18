@@ -66,12 +66,12 @@
 
 ## 3. Non-Functional Requirements
 
-| Category     | Requirement             | Target          | Priority |
+| Category | Requirement | Target | Priority |
 | ------------ | ----------------------- | --------------- | -------- |
-| Performance  | API response time (p95) | < 200ms         | High     |
-| Availability | Uptime SLA              | 99.9%           | High     |
-| Scalability  | Concurrent users        | 10,000          | Medium   |
-| Security     | Auth mechanism          | JWT, 15-min TTL | High     |
+| Performance | API response time (p95) | < 200ms | High |
+| Availability | Uptime SLA | 99.9% | High |
+| Scalability | Concurrent users | 10,000 | Medium |
+| Security | Auth mechanism | JWT, 15-min TTL | High |
 
 ---
 
@@ -170,22 +170,22 @@ CREATE TABLE [table_name] (
 
 ## 8. Observability
 
-| Signal  | What to instrument                  | Tooling |
+| Signal | What to instrument | Tooling |
 | ------- | ----------------------------------- | ------- |
-| Metrics | [request rate, error rate, latency] |         |
-| Logs    | [request, errors, audit events]     |         |
-| Traces  | [which services]                    |         |
-| Alerts  | [key conditions]                    |         |
+| Metrics | [request rate, error rate, latency] | |
+| Logs | [request, errors, audit events] | |
+| Traces | [which services] | |
+| Alerts | [key conditions] | |
 
 ---
 
 ## 9. Testing Strategy
 
-| Level       | Scope               | Tools | Coverage Target          |
+| Level | Scope | Tools | Coverage Target |
 | ----------- | ------------------- | ----- | ------------------------ |
-| Unit        | Business logic      |       | ≥ 85%                    |
-| Integration | Service + DB        |       | Key flows                |
-| E2E         | Critical user paths |       | Happy path + main errors |
+| Unit | Business logic | | ≥ 85% |
+| Integration | Service + DB | | Key flows |
+| E2E | Critical user paths | | Happy path + main errors |
 
 ---
 
@@ -204,7 +204,7 @@ CREATE TABLE [table_name] (
 
 ## 11. Open Questions
 
-| #   | Question | Owner | Due | Status |
+| # | Question | Owner | Due | Status |
 | --- | -------- | ----- | --- | ------ |
 
 ---

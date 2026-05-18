@@ -16,13 +16,13 @@ A **router** skill to generate specific document types. Identify user intent, se
 
 **Choose the most specific spec reference for the requested document type.**
 
-| Request Type                                       | Reference                      |
+| Request Type | Reference |
 | :------------------------------------------------- | :----------------------------- |
-| Tech spec, design doc, TDD, end-to-end spec        | `references/technical.md`      |
-| Functional requirements, use cases, business rules | `references/functional.md`     |
-| Non-functional requirements, SLAs, performance     | `references/non-functional.md` |
-| Data contract, event schema, data SLA              | `references/data-contract.md`  |
-| UI/UX spec, design handoff, component states       | `references/design-ui.md`      |
+| Tech spec, design doc, TDD, end-to-end spec | `references/technical.md` |
+| Functional requirements, use cases, business rules | `references/functional.md` |
+| Non-functional requirements, SLAs, performance | `references/non-functional.md` |
+| Data contract, event schema, data SLA | `references/data-contract.md` |
+| UI/UX spec, design handoff, component states | `references/design-ui.md` |
 
 ## Writing Rules (All Specs)
 

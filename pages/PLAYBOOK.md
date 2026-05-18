@@ -338,9 +338,9 @@ Persistent storage of facts, decisions, entities, and context that should surviv
 
 #### Recommended Files
 
-| File            | Purpose                                                      |
+| File | Purpose |
 | --------------- | ------------------------------------------------------------ |
-| `MEMORY.md`     | Long-term memory. Durable facts, preferences, and decisions  |
+| `MEMORY.md` | Long-term memory. Durable facts, preferences, and decisions |
 | `YYYY-MM-DD.md` | Daily notes (UTC timezone). Running context and observations |
 
 #### `MEMORY.md` Schema

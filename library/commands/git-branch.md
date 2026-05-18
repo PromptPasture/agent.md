@@ -5,6 +5,7 @@ license: MIT
 version: 1.2.0
 ---
 
+<!-- markdownlint-disable-next-line MD041 -->
 Create a Git branch for the currently staged changes.
 
 Workflow:

@@ -1,5 +1,20 @@
+# Reference: https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.yaml
+
 # Default state for all rules
 default: true
 
 # MD013/line-length : Line length : https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md013.md
 MD013: false
+
+# MD024/no-duplicate-heading : Multiple headings with the same content : https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md024.md
+MD024:
+  # Only check sibling headings
+  siblings_only: true
+
+# MD040/fenced-code-language : Fenced code blocks should have a language specified : https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md040.md
+MD040: false
+
+# MD060/table-column-style : Table column style : https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md060.md
+MD060:
+  # Table column style
+  style: "compact"

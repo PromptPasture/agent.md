@@ -33,14 +33,14 @@ Check in this order:
 
 **Each variant has one audience and one expected documentation shape.**
 
-| Variant           | Output                                                | When to use                                 |
+| Variant | Output | When to use |
 | ----------------- | ----------------------------------------------------- | ------------------------------------------- |
-| `readme`          | Full README.md: install, usage, API, contributing     | Project/repo documentation, library docs    |
-| `api-docs`        | Endpoint reference: params, schemas, errors, examples | Documenting existing endpoints              |
-| `runbook-routine` | Step-by-step operational procedures                   | Routine maintenance, deploy, rotate secrets |
-| `runbook-oncall`  | Alert response runbook with diagnosis/mitigation      | On-call alerts, incident response           |
-| `changelog`       | Developer changelog (Keep a Changelog format)         | Changes between versions, developer-facing  |
-| `release-notes`   | User-facing release notes                             | Product updates, version announcements      |
+| `readme` | Full README.md: install, usage, API, contributing | Project/repo documentation, library docs |
+| `api-docs` | Endpoint reference: params, schemas, errors, examples | Documenting existing endpoints |
+| `runbook-routine` | Step-by-step operational procedures | Routine maintenance, deploy, rotate secrets |
+| `runbook-oncall` | Alert response runbook with diagnosis/mitigation | On-call alerts, incident response |
+| `changelog` | Developer changelog (Keep a Changelog format) | Changes between versions, developer-facing |
+| `release-notes` | User-facing release notes | Product updates, version announcements |
 
 ## Loading References
 

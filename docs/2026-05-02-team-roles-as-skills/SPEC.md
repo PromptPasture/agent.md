@@ -126,14 +126,14 @@ description: >
 
 ### 📋 Requirements (6)
 
-| Skill                 | Roles             | Output Artifact                                                           |
+| Skill | Roles | Output Artifact |
 | --------------------- | ----------------- | ------------------------------------------------------------------------- |
-| `writer-prd`          | PM, PO            | Product Requirements Document with goals, personas, scope, metrics        |
-| `writer-spec`         | SA, Architect, UX | Specification doc (functional, technical, NFR, design, data-contract)     |
-| `writer-use-case`     | System Analyst    | Use case document with actors, preconditions, main/alt flows              |
-| `diagram-dfd`         | System Analyst    | Data flow diagram (Mermaid or structured text)                            |
-| `audit-gap`           | System Analyst    | Gap analysis report: current state vs target state, with remediation list |
-| `diagram-integration` | System Analyst    | Integration map: systems, APIs, data flows, ownership                     |
+| `writer-prd` | PM, PO | Product Requirements Document with goals, personas, scope, metrics |
+| `writer-spec` | SA, Architect, UX | Specification doc (functional, technical, NFR, design, data-contract) |
+| `writer-use-case` | System Analyst | Use case document with actors, preconditions, main/alt flows |
+| `diagram-dfd` | System Analyst | Data flow diagram (Mermaid or structured text) |
+| `audit-gap` | System Analyst | Gap analysis report: current state vs target state, with remediation list |
+| `diagram-integration` | System Analyst | Integration map: systems, APIs, data flows, ownership |
 
 **Trigger disambiguation:**
 
@@ -157,17 +157,17 @@ writer-spec/
 
 ### 🔄 Planning & Agile (8)
 
-| Skill                   | Roles         | Output Artifact                                                             |
+| Skill | Roles | Output Artifact |
 | ----------------------- | ------------- | --------------------------------------------------------------------------- |
-| `writer-prd`            | PM, PO        | (see Requirements)                                                          |
-| `writer-epic`           | PO            | Epic: goal, value, child story list, definition of done                     |
-| `writer-user-story`     | PO, Team Lead | Hierarchical: story with AC → developer tasks with file hints and estimates |
-| `writer-backlog`        | PO            | Groomed backlog: prioritized, sized, dependency-flagged                     |
-| `writer-stakeholder`    | PM, PO        | Stakeholder update: progress, risks, decisions needed                       |
-| `planner-sprint`        | Scrum Master  | Sprint plan: goal, stories, capacity, impediment section                    |
-| `template-retro`        | Scrum Master  | Retrospective template: went well / improve / actions                       |
-| `tracker-velocity`      | Scrum Master  | Sprint metrics report: velocity, completion rate, trend                     |
-| `writer-team-agreement` | Scrum Master  | Working agreements: DoD, DoR, communication norms                           |
+| `writer-prd` | PM, PO | (see Requirements) |
+| `writer-epic` | PO | Epic: goal, value, child story list, definition of done |
+| `writer-user-story` | PO, Team Lead | Hierarchical: story with AC → developer tasks with file hints and estimates |
+| `writer-backlog` | PO | Groomed backlog: prioritized, sized, dependency-flagged |
+| `writer-stakeholder` | PM, PO | Stakeholder update: progress, risks, decisions needed |
+| `planner-sprint` | Scrum Master | Sprint plan: goal, stories, capacity, impediment section |
+| `template-retro` | Scrum Master | Retrospective template: went well / improve / actions |
+| `tracker-velocity` | Scrum Master | Sprint metrics report: velocity, completion rate, trend |
+| `writer-team-agreement` | Scrum Master | Working agreements: DoD, DoR, communication norms |
 
 **Trigger disambiguation:**
 
@@ -179,12 +179,12 @@ writer-spec/
 
 ### 🏛️ Architecture (4)
 
-| Skill               | Roles                | Output Artifact                                                        |
+| Skill | Roles | Output Artifact |
 | ------------------- | -------------------- | ---------------------------------------------------------------------- |
-| `design-arch`       | Architect            | System design document: components, interactions, trade-offs           |
-| `writer-adr`        | Architect, Team Lead | Architecture Decision Record: context, options, decision, consequences |
-| `diagram-c4`        | Architect            | C4 diagram: Context / Container / Component / Code levels              |
-| `writer-tech-radar` | Architect            | Tech radar: adopt / trial / assess / hold, with rationale              |
+| `design-arch` | Architect | System design document: components, interactions, trade-offs |
+| `writer-adr` | Architect, Team Lead | Architecture Decision Record: context, options, decision, consequences |
+| `diagram-c4` | Architect | C4 diagram: Context / Container / Component / Code levels |
+| `writer-tech-radar` | Architect | Tech radar: adopt / trial / assess / hold, with rationale |
 
 **Trigger disambiguation:**
 
@@ -196,13 +196,13 @@ writer-spec/
 
 ### 🗄️ Database (5)
 
-| Skill                  | Roles         | Output Artifact                                                           |
+| Skill | Roles | Output Artifact |
 | ---------------------- | ------------- | ------------------------------------------------------------------------- |
-| `writer-sql`           | DBA, Backend  | Schema design plus SQL queries/DDL for OLTP dialects: Postgres, MySQL, MSSQL, SQLite, Oracle |
-| `writer-sql-analytics` | DBA, Data Eng | SQL for analytics dialects: Snowflake, BigQuery, ClickHouse, CockroachDB  |
-| `writer-migration`     | DBA           | Migration scripts: up/down, safe for production, idempotent               |
-| `report-db-health`     | DBA           | DB health report: slow queries, bloat, index usage, replication lag       |
-| `strategy-backup`      | DBA           | Backup strategy: schedule, retention, restore SLAs, tooling               |
+| `writer-sql` | DBA, Backend | Schema design plus SQL queries/DDL for OLTP dialects: Postgres, MySQL, MSSQL, SQLite, Oracle |
+| `writer-sql-analytics` | DBA, Data Eng | SQL for analytics dialects: Snowflake, BigQuery, ClickHouse, CockroachDB |
+| `writer-migration` | DBA | Migration scripts: up/down, safe for production, idempotent |
+| `report-db-health` | DBA | DB health report: slow queries, bloat, index usage, replication lag |
+| `strategy-backup` | DBA | Backup strategy: schedule, retention, restore SLAs, tooling |
 
 **Trigger disambiguation:**
 
@@ -240,17 +240,17 @@ writer-sql-analytics/
 
 ### 💻 Code Generation (9)
 
-| Skill                     | Roles                  | Output Artifact                                                  |
+| Skill | Roles | Output Artifact |
 | ------------------------- | ---------------------- | ---------------------------------------------------------------- |
-| `codegen-frontend`        | Frontend Dev           | Frontend code: components, pages, state management               |
-| `codegen-backend`         | Backend Dev            | Backend code: routes, services, middleware, tests                |
-| `codegen-mobile`          | Mobile Dev             | Mobile code: screens, navigation, platform-specific patterns     |
-| `design-api`              | Backend Dev            | API contract: OpenAPI/AsyncAPI spec, endpoints, schemas          |
-| `strategy-api-versioning` | Backend Dev, Architect | API versioning strategy + deprecation guide + migration notes    |
-| `patterns-auth`           | Backend Dev            | Auth implementation: JWT, OAuth2, session, RBAC patterns         |
-| `patterns-graphql`        | Backend Dev            | GraphQL: schema, resolvers, N+1 prevention, pagination           |
-| `patterns-realtime`       | Backend Dev            | Real-time: WebSocket, SSE, polling strategy selection            |
-| `strategy-feature-flag`   | Team Lead, Backend     | Feature flag strategy: rollout plan, flag lifecycle, kill switch |
+| `codegen-frontend` | Frontend Dev | Frontend code: components, pages, state management |
+| `codegen-backend` | Backend Dev | Backend code: routes, services, middleware, tests |
+| `codegen-mobile` | Mobile Dev | Mobile code: screens, navigation, platform-specific patterns |
+| `design-api` | Backend Dev | API contract: OpenAPI/AsyncAPI spec, endpoints, schemas |
+| `strategy-api-versioning` | Backend Dev, Architect | API versioning strategy + deprecation guide + migration notes |
+| `patterns-auth` | Backend Dev | Auth implementation: JWT, OAuth2, session, RBAC patterns |
+| `patterns-graphql` | Backend Dev | GraphQL: schema, resolvers, N+1 prevention, pagination |
+| `patterns-realtime` | Backend Dev | Real-time: WebSocket, SSE, polling strategy selection |
+| `strategy-feature-flag` | Team Lead, Backend | Feature flag strategy: rollout plan, flag lifecycle, kill switch |
 
 **Trigger disambiguation:**
 
@@ -333,21 +333,21 @@ codegen-mobile/
 
 ### 🎨 UI/UX (2)
 
-| Skill             | Roles            | Output Artifact                                                     |
+| Skill | Roles | Output Artifact |
 | ----------------- | ---------------- | ------------------------------------------------------------------- |
-| `diagram-ux-flow` | UX Designer      | User flow / journey map in structured Mermaid or text format        |
-| `audit-a11y`      | Frontend Dev, UX | Accessibility audit: WCAG violations, severity, fix recommendations |
+| `diagram-ux-flow` | UX Designer | User flow / journey map in structured Mermaid or text format |
+| `audit-a11y` | Frontend Dev, UX | Accessibility audit: WCAG violations, severity, fix recommendations |
 
 ---
 
 ### 🧪 Testing (4)
 
-| Skill                  | Roles   | Output Artifact                                                  |
+| Skill | Roles | Output Artifact |
 | ---------------------- | ------- | ---------------------------------------------------------------- |
-| `codegen-test`         | AQA     | Test suite (E2E, API, Performance, AI evals) with fixtures, scripts, and benchmark harnesses |
-| `strategy-test`        | AQA, QA | Test strategy: scope, types, coverage targets, tooling decisions |
-| `setup-test-framework` | AQA     | Test framework setup: config, folder structure, CI integration   |
-| `audit-test-flaky`     | AQA     | Flaky test report: root cause analysis, fix recommendations      |
+| `codegen-test` | AQA | Test suite (E2E, API, Performance, AI evals) with fixtures, scripts, and benchmark harnesses |
+| `strategy-test` | AQA, QA | Test strategy: scope, types, coverage targets, tooling decisions |
+| `setup-test-framework` | AQA | Test framework setup: config, folder structure, CI integration |
+| `audit-test-flaky` | AQA | Flaky test report: root cause analysis, fix recommendations |
 
 #### Multi-variant: `codegen-test`
 
@@ -379,14 +379,14 @@ codegen-test/
 
 ### 🚀 DevOps / SRE (6)
 
-| Skill                 | Roles       | Output Artifact                                              |
+| Skill | Roles | Output Artifact |
 | --------------------- | ----------- | ------------------------------------------------------------ |
-| `setup-pipeline`      | DevOps      | Pipeline config (CI/CD, ETL) with logging and error handling |
-| `setup-infra`         | DevOps      | IaC: Terraform/Pulumi modules for target cloud               |
-| `planner-capacity`    | DevOps, SRE | Capacity plan: traffic and storage projections, sizing       |
-| `setup-observability` | DevOps, SRE | Observability setup: metrics, logs, traces, dashboards       |
-| `writer-slo`          | SRE         | SLO definition: SLI, target, error budget, alerting policy   |
-| `writer-alert-rules`  | SRE         | Alert rules: conditions, severity, routing, runbook links    |
+| `setup-pipeline` | DevOps | Pipeline config (CI/CD, ETL) with logging and error handling |
+| `setup-infra` | DevOps | IaC: Terraform/Pulumi modules for target cloud |
+| `planner-capacity` | DevOps, SRE | Capacity plan: traffic and storage projections, sizing |
+| `setup-observability` | DevOps, SRE | Observability setup: metrics, logs, traces, dashboards |
+| `writer-slo` | SRE | SLO definition: SLI, target, error budget, alerting policy |
+| `writer-alert-rules` | SRE | Alert rules: conditions, severity, routing, runbook links |
 
 #### Multi-variant: `setup-pipeline`
 
@@ -412,41 +412,41 @@ planner-capacity/
 
 ### 🏗️ Platform (2)
 
-| Skill                    | Roles        | Output Artifact                                                        |
+| Skill | Roles | Output Artifact |
 | ------------------------ | ------------ | ---------------------------------------------------------------------- |
-| `setup-monorepo`         | Platform Eng | Monorepo setup: tooling config (Nx/Turborepo), workspace structure     |
+| `setup-monorepo` | Platform Eng | Monorepo setup: tooling config (Nx/Turborepo), workspace structure |
 | `setup-developer-portal` | Platform Eng | Developer portal: service catalog, internal docs structure, onboarding |
 
 ---
 
 ### 🔐 Security (5)
 
-| Skill               | Roles           | Output Artifact                                                          |
+| Skill | Roles | Output Artifact |
 | ------------------- | --------------- | ------------------------------------------------------------------------ |
-| `model-threat`      | Security Eng    | Threat model: STRIDE analysis, attack surface, mitigations               |
-| `audit-security`    | Security Eng    | Security audit: OWASP checklist, findings, severity, remediation         |
-| `audit-secrets`     | Security Eng    | Secrets audit: exposed credentials, rotation plan, vault migration       |
-| `writer-compliance` | Security, Legal | Compliance doc: GDPR/SOC2/HIPAA controls, evidence checklist             |
-| `report-cve`        | Security Eng    | CVE triage report: affected versions, severity (CVSS), remediation steps |
+| `model-threat` | Security Eng | Threat model: STRIDE analysis, attack surface, mitigations |
+| `audit-security` | Security Eng | Security audit: OWASP checklist, findings, severity, remediation |
+| `audit-secrets` | Security Eng | Secrets audit: exposed credentials, rotation plan, vault migration |
+| `writer-compliance` | Security, Legal | Compliance doc: GDPR/SOC2/HIPAA controls, evidence checklist |
+| `report-cve` | Security Eng | CVE triage report: affected versions, severity (CVSS), remediation steps |
 
 ---
 
 ### 📊 Data & ML (6)
 
-| Skill                  | Roles      | Output Artifact                                                        |
+| Skill | Roles | Output Artifact |
 | ---------------------- | ---------- | ---------------------------------------------------------------------- |
-| `model-dbt`            | Data Eng   | dbt model: SQL + schema.yml + tests + documentation                    |
-| `writer-lineage`       | Data Eng   | Data lineage doc: source → transformation → consumer map               |
-| `writer-ml-experiment` | ML Eng     | ML experiment: hypothesis, setup, metrics, results, model card section |
-| `writer-prompt`        | ML, AI Eng | Prompt engineering: system prompt, few-shot examples, eval criteria    |
-| `setup-rag`            | AI Eng     | RAG pipeline: chunking strategy, embedding, retrieval, reranking       |
-| `setup-eval-harness`   | ML Eng     | Eval harness: metrics, dataset, scoring rubric, benchmark runner       |
+| `model-dbt` | Data Eng | dbt model: SQL + schema.yml + tests + documentation |
+| `writer-lineage` | Data Eng | Data lineage doc: source → transformation → consumer map |
+| `writer-ml-experiment` | ML Eng | ML experiment: hypothesis, setup, metrics, results, model card section |
+| `writer-prompt` | ML, AI Eng | Prompt engineering: system prompt, few-shot examples, eval criteria |
+| `setup-rag` | AI Eng | RAG pipeline: chunking strategy, embedding, retrieval, reranking |
+| `setup-eval-harness` | ML Eng | Eval harness: metrics, dataset, scoring rubric, benchmark runner |
 
 ---
 
 ### 📝 Documentation (1)
 
-| Skill              | Roles                                  | Output Artifact                                                                                  |
+| Skill | Roles | Output Artifact |
 | ------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | `writer-tech-docs` | Tech Writer, Backend, SRE, Release Mgr | Technical documentation: README, API docs, runbooks, changelog, release notes, scoped by variant |
 
@@ -473,21 +473,21 @@ writer-tech-docs/
 
 ### 👥 Team & Leadership (5)
 
-| Skill                   | Roles          | Output Artifact                                                         |
+| Skill | Roles | Output Artifact |
 | ----------------------- | -------------- | ----------------------------------------------------------------------- |
-| `checklist-code-review` | Team Lead      | Code review checklist: correctness, style, security, performance        |
-| `writer-postmortem`     | Team Lead, SRE | Postmortem: timeline, root cause, impact, action items                  |
-| `template-pr`           | Team Lead      | PR template: description, checklist, test plan, screenshots             |
-| `report-team-health`    | Team Lead      | Team health report: delivery metrics, morale signals, risks             |
-| `writer-mentorship`     | Team Lead      | Mentorship guide: growth areas, resources, milestones, feedback cadence |
+| `checklist-code-review` | Team Lead | Code review checklist: correctness, style, security, performance |
+| `writer-postmortem` | Team Lead, SRE | Postmortem: timeline, root cause, impact, action items |
+| `template-pr` | Team Lead | PR template: description, checklist, test plan, screenshots |
+| `report-team-health` | Team Lead | Team health report: delivery metrics, morale signals, risks |
+| `writer-mentorship` | Team Lead | Mentorship guide: growth areas, resources, milestones, feedback cadence |
 
 ---
 
 ### 📦 Release Management (2)
 
-| Skill                         | Roles                   | Output Artifact                                                         |
+| Skill | Roles | Output Artifact |
 | ----------------------------- | ----------------------- | ----------------------------------------------------------------------- |
-| `checklist-release`           | Release Manager         | Release checklist: pre/during/post deployment steps, rollback criteria  |
+| `checklist-release` | Release Manager | Release checklist: pre/during/post deployment steps, rollback criteria |
 | `strategy-dependency-upgrade` | Release Manager, DevOps | Dependency upgrade strategy: audit, upgrade path, PR checklist, testing |
 
 ---
@@ -530,19 +530,19 @@ Check in this order:
 
 Skills with overlapping domains must have explicit disambiguation in their descriptions. High-risk pairs and their resolution:
 
-| Pair                                          | Disambiguation Rule                                                                         |
+| Pair | Disambiguation Rule |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `writer-prd` vs `writer-spec`                 | PRD = business goals; spec = system behavior or technical detail                            |
+| `writer-prd` vs `writer-spec` | PRD = business goals; spec = system behavior or technical detail |
 | `design-api` vs `writer-tech-docs` (api-docs) | design-api = contract first (no code yet); writer-tech-docs api-docs variant = existing API |
-| `design-arch` vs `diagram-c4`                 | design-arch = prose document; diagram-c4 = diagram output                                   |
-| `writer-sql` vs `writer-sql-analytics`        | writer-sql = OLTP schema/query work; writer-sql-analytics = warehouse/analytical SQL        |
-| `writer-user-story` vs `writer-epic`          | user-story = single story → tasks; epic = feature grouping                                  |
+| `design-arch` vs `diagram-c4` | design-arch = prose document; diagram-c4 = diagram output |
+| `writer-sql` vs `writer-sql-analytics` | writer-sql = OLTP schema/query work; writer-sql-analytics = warehouse/analytical SQL |
+| `writer-user-story` vs `writer-epic` | user-story = single story → tasks; epic = feature grouping |
 
 ## Totals
 
-| Category                                    | Count |
+| Category | Count |
 | ------------------------------------------- | ----- |
-| Total skills                                | 66    |
-| Multi-variant router skills                 | 10    |
-| Total framework/language/dialect references | 50+   |
-| Prefix types                                | 14    |
+| Total skills | 66 |
+| Multi-variant router skills | 10 |
+| Total framework/language/dialect references | 50+ |
+| Prefix types | 14 |
