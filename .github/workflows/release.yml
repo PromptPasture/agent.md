@@ -31,6 +31,21 @@ jobs:
           GITHUB_REPO: ${{ github.repository }}
           GITHUB_TOKEN: ${{ github.token }}
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: .devops/js-tools/package-lock.json
+
+      - name: Install release tooling dependencies
+        shell: bash
+        run: npm ci --prefix .devops/js-tools
+
+      - name: Generate token tally
+        shell: bash
+        run: npm run token-tally --prefix .devops/js-tools -- --output-dir dist
+
       - name: Build library archive
         shell: bash
         run: |
@@ -49,5 +64,7 @@ jobs:
           gh release create "$TAG_NAME" \
             dist/agent-md-library.zip \
             dist/PLAYBOOK.md \
+            dist/TOKEN_TALLY.md \
+            dist/TOKEN_TALLY.json \
             --title "$TAG_NAME" \
             --notes-file dist/RELEASE_NOTES.md

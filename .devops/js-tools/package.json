@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "token-tally": "node scripts/count-tokens.mjs"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.22.1",
+    "tokentally": "^0.1.1"
+  }
+}

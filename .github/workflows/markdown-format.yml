@@ -33,16 +33,16 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: .devops/markdown-format/package.json
+          cache-dependency-path: .devops/js-tools/package-lock.json
 
       - name: Install Markdown lint dependencies
         shell: bash
-        run: npm install --prefix .devops/markdown-format
+        run: npm ci --prefix .devops/js-tools
 
       - name: Lint Markdown files
         shell: bash
         run: |
-          .devops/markdown-format/node_modules/.bin/markdownlint-cli2 \
+          .devops/js-tools/node_modules/.bin/markdownlint-cli2 \
             --config .markdownlint.yaml \
             "**/*.md" \
             "#./**/node_modules"
