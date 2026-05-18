@@ -41,8 +41,4 @@ jobs:
 
       - name: Lint Markdown files
         shell: bash
-        run: |
-          .devops/js-tools/node_modules/.bin/markdownlint-cli2 \
-            --config .markdownlint.yaml \
-            "**/*.md" \
-            "#./**/node_modules"
+        run: npm run lint --prefix .devops/js-tools

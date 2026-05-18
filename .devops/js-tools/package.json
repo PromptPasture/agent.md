@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
+    "lint": "markdownlint-cli2 --config ../../.markdownlint.yaml \"../../**/*.md\" \"#../../**/node_modules\" \"#../../dist\" \"#../../**/dist\"",
+    "lint:fix": "markdownlint-cli2 --config ../../.markdownlint.yaml --fix \"../../**/*.md\" \"#../../**/node_modules\" \"#../../dist\" \"#../../**/dist\"",
     "token-tally": "node scripts/count-tokens.mjs"
   },
   "devDependencies": {
