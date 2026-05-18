@@ -482,6 +482,15 @@ writer-tech-docs/
 | `report-team-health` | Team Lead | Team health report: delivery metrics, morale signals, risks |
 | `writer-mentorship` | Team Lead | Mentorship guide: growth areas, resources, milestones, feedback cadence |
 
+#### Multi-variant: `review-code`
+
+```text
+review-code/
+├── SKILL.md
+└── references/
+    └── checklist.md # Code review checklist by concern area: correctness, tests, security, performance, maintainability
+```
+
 #### Multi-variant: `template-creator`
 
 ```text

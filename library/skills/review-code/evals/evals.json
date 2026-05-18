@@ -1,0 +1,125 @@
+{
+  "skill_name": "review-code",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review the staged changes before I open a PR.",
+      "expected_output": "A code review with findings first, grounded in the staged diff, or a clear no-findings result with test gaps.",
+      "files": [],
+      "expectations": [
+        "Inspects the concrete staged changes before judging.",
+        "Leads with actionable findings ordered by severity.",
+        "Includes file and line references for each finding.",
+        "Mentions test gaps or residual risk when no findings are found."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Can you review this pull request for correctness and regression risk?",
+      "expected_output": "Structured review findings focused on correctness and regressions in the PR diff.",
+      "files": [],
+      "expectations": [
+        "Treats this as a change review, not a whole-codebase audit.",
+        "Prioritizes correctness and user-visible regression risks.",
+        "Avoids style-only comments unless they create concrete risk.",
+        "Includes impact and a fix direction for each finding."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Look over my auth middleware patch and tell me if anything is risky.",
+      "expected_output": "A review focused on changed auth behavior, security-sensitive correctness, and missing coverage.",
+      "files": [],
+      "expectations": [
+        "Reviews the patch as concrete code changes.",
+        "Checks authorization, validation, error paths, and compatibility.",
+        "Distinguishes security-sensitive review findings from a full security audit.",
+        "Grounds any risk in a specific failure mode."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review this diff and suggest a cleaner architecture.",
+      "expected_output": "Findings only for concrete risks, with broader architecture suggestions separated from blocking review issues.",
+      "files": [],
+      "expectations": [
+        "Does not turn architecture preference into a defect without impact.",
+        "Reports actionable findings before optional design notes.",
+        "Uses severity labels only for concrete review issues.",
+        "Keeps refactor suggestions secondary to correctness review."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Please do a code review of the new React checkout flow.",
+      "expected_output": "Frontend-focused review findings covering state, accessibility, responsive behavior, data loading, and tests where relevant.",
+      "files": [],
+      "expectations": [
+        "Checks user-visible behavior and state transitions.",
+        "Considers accessibility and responsive regressions when applicable.",
+        "Checks loading, error, and empty states.",
+        "Calls out missing tests as test gaps unless tied to a concrete bug."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Review the migration and service changes in this branch.",
+      "expected_output": "Review findings covering schema compatibility, data integrity, transactions, rollback risk, and affected service behavior.",
+      "files": [],
+      "expectations": [
+        "Inspects both migration and service behavior together.",
+        "Checks compatibility and data integrity risks.",
+        "Looks for transaction, rollback, and deployment-order issues.",
+        "Includes concrete file and line evidence."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "No need to fix it, just review my tests for the retry worker.",
+      "expected_output": "Review findings focused on whether the tests reliably prove retry behavior.",
+      "files": [],
+      "expectations": [
+        "Does not edit code because the user asked only for review.",
+        "Checks for false positives, timing dependence, leaked state, and weak assertions.",
+        "Explains the behavioral risk of each test issue.",
+        "Suggests minimal test improvements as fix direction."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Audit this app for OWASP issues and produce a threat model.",
+      "expected_output": "A routing decision away from review-code toward audit-security.",
+      "files": [],
+      "expectations": [
+        "Recognizes this is a dedicated security audit or threat model request.",
+        "Does not frame the task as a normal code review.",
+        "Routes to audit-security or states that audit-security is the appropriate skill.",
+        "Avoids requiring a diff or PR when the user asked for an audit."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Review commit abc123 for performance regressions.",
+      "expected_output": "A commit-targeted review focused on concrete performance regressions and supporting evidence.",
+      "files": [],
+      "expectations": [
+        "Identifies the review target as a commit.",
+        "Focuses on changed behavior that can affect performance.",
+        "Uses nearby code, callers, or tests to validate assumptions.",
+        "Avoids speculative performance claims without a plausible failure mode."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "How does the billing reconciliation job work?",
+      "expected_output": "A routing decision toward explanation rather than review unless the user asks for critique.",
+      "files": [],
+      "expectations": [
+        "Recognizes this is an explanation request, not a code review.",
+        "Does not produce severity-ranked findings by default.",
+        "Routes to an explanatory workflow.",
+        "Mentions review only if the user asks for problems or critique."
+      ]
+    }
+  ]
+}
