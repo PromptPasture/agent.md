@@ -75,7 +75,7 @@ Add `skills/`, `commands/`, `agents/`, and `docs/` as the project matures.
 
 This repository maintains its primary reusable agent assets in [`library/`](./library):
 
-- **Rules** — `library/rules/token-efficiency.md`
+- **Rules** — `library/rules/formatting-markdown.md`
 - **Skills** — `library/skills/on-new-example/SKILL.md`
 - **Commands** — `library/commands/validate.md`
 - **Agents** — `library/agents/spec-reviewer.md`

@@ -13,25 +13,25 @@ Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej 
 
 Tradeoff: These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
-## 1. Think Before Coding
+## Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
 Silent guesses are expensive. Before implementing: state your assumptions explicitly, name competing interpretations rather than picking one silently, and ask one focused question if something is unclear. If a simpler approach exists than what was asked, say so.
 
-## 2. Simplicity First
+## Simplicity First
 
 **Minimum code that solves the problem. Nothing speculative.**
 
 Write the least code that fully solves the stated problem — no speculative features, single-use abstractions, or error handling for impossible scenarios. If the solution is 200 lines and 50 would do, write 50.
 
-## 3. Surgical Changes
+## Surgical Changes
 
 **Touch only what you must. Clean up only your own mess.**
 
 Touch only what the task requires. Don't reformat, refactor, or rename things outside your change. Match existing style. Clean up only what _your_ edits orphaned (unused imports, dead variables). If you notice something broken nearby, mention it — don't silently fix it.
 
-## 4. Goal-Driven Execution
+## Goal-Driven Execution
 
 **Define success criteria. Loop until verified.**
 
