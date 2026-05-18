@@ -7,7 +7,7 @@ SQLite has **type affinity** — not strict types. Declared types are suggestion
 ### Type affinity rules
 
 | Declared type contains | Affinity |
-|----------------------|---------|
+| -------------------- | -------- |
 | INT | INTEGER |
 | CHAR, CLOB, TEXT | TEXT |
 | BLOB or nothing | BLOB |

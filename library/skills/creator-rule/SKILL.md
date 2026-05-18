@@ -15,7 +15,7 @@ Write agent rules like project config: concise, scoped, and specific enough to a
 ## Output Locations
 
 | Runtime | Location |
-|---|---|
+| --- | --- |
 | Agent Playbook *(default)* | `.agents/rules/<name>.md` |
 | Codex / multi-agent | `AGENTS.md` (shared); rule files for scoped concerns |
 | Claude Code | `CLAUDE.md` or `.claude/rules/*.md` |
@@ -58,11 +58,13 @@ Use `applies_to: ["**/*"]` or omit for global scope. Reserve `critical` for secu
 ## Good vs. Bad
 
 **Write this:**
+
 - `pnpm test -- --runInBand` for integration tests (shared DB fixture).
 - Never edit `src/generated/**`; update the schema and run `pnpm generate`.
 - When changing `db/migrations/**`, include a rollback note in the response.
 
 **Not this:**
+
 - "Write clean code" or "be careful."
 - Long README sections or style guides copied verbatim.
 - Tone/personality mixed with build, test, or security rules (unless writing a top-level instruction file).
@@ -71,6 +73,7 @@ Use `applies_to: ["**/*"]` or omit for global scope. Reserve `critical` for secu
 ## Quality Checklist
 
 Before finishing, verify the rule:
+
 - One concern; descriptive `lowercase-hyphenated` filename
 - Front matter present when runtime supports filtering or priority
 - Concrete commands, paths, globs, or examples where they reduce ambiguity
