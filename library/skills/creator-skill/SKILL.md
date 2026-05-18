@@ -57,4 +57,4 @@ If the request spans multiple phases, read the references in workflow order: aut
 - `scripts/aggregate_benchmark.py` summarizes iteration results.
 - `scripts/package_skill.py` packages a completed skill folder.
 - `eval-viewer/generate_review.py` creates the human review UI for eval outputs and benchmark results.
-- `agents/grader.md`, `agents/comparator.md`, and `agents/analyzer.md` support grading, blind comparison, and benchmark analysis.
+- `agents/grader.md`, `agents/comparator.md`, `agents/analyzer.md`, and `agents/benchmark-analyzer.md` support grading, blind comparison, post-hoc analysis, and benchmark analysis.

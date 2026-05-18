@@ -5,6 +5,7 @@ license: MIT
 version: 1.1.0
 ---
 
+<!-- markdownlint-disable-next-line MD041 -->
 Commit the currently staged changes using a Conventional Commits message, refined to match the repository's local commit-message style.
 
 Workflow:

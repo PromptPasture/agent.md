@@ -205,19 +205,19 @@ For output-quality evals, compare runs with the skill against a baseline. The `c
 3. Grade expectations into `grading.json`.
 4. Aggregate results:
 
-```bash
-cd library/skills/creator-skill
-python3 -m scripts.aggregate_benchmark /path/to/workspace/iteration-1 --skill-name my-skill
-```
+   ```bash
+   cd library/skills/creator-skill
+   python3 -m scripts.aggregate_benchmark /path/to/workspace/iteration-1 --skill-name my-skill
+   ```
 
 5. Generate the review UI:
 
-```bash
-python3 eval-viewer/generate_review.py \
-  /path/to/workspace/iteration-1 \
-  --skill-name my-skill \
-  --benchmark /path/to/workspace/iteration-1/benchmark.json
-```
+   ```bash
+   python3 eval-viewer/generate_review.py \
+     /path/to/workspace/iteration-1 \
+     --skill-name my-skill \
+     --benchmark /path/to/workspace/iteration-1/benchmark.json
+   ```
 
 Use the viewer before revising the skill. Human review catches issues that pass/fail metrics often miss.
 
