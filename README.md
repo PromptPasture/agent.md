@@ -1,7 +1,7 @@
-# Agent Playbook
+<!-- markdownlint-disable-next-line MD041 -->
+![A small home where an AI agent lives](./pages/assets/landing.jpeg)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-0.0.5-blue.svg)](./pages/PLAYBOOK.md)
+# Agent Playbook
 
 > A portable, tool-agnostic file structure playbook for LLM agents in software projects.
 
