@@ -121,7 +121,7 @@ Ordered alphabetically by name (matches filesystem order).
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ------------- | -------- | ---------- | ------------ | --------------------------------------------------------------------- |
-| - [ ] | `review-code` | 🟠 P2 | Leadership | Team Lead | Structured code review findings with severity, file refs, and test gaps |
+| - [x] | `review-code` | 🟠 P2 | Leadership | Team Lead | Structured code review findings plus a reusable review checklist reference |
 
 ### `setup-`
 
