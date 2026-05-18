@@ -68,7 +68,7 @@ The agent's system prompt and manifest. Every runtime loads this first. Contains
 
 ### `.agents/rules/` — Instructions
 
-Composable, single-concern instruction files. Each rule file targets a specific area: code style, testing conventions, security policy, git workflow.
+Composable, single-concern instruction files for scoped or conditional guidance. Each rule file targets a specific area: code style, testing conventions, security policy, git workflow. If a rule should run for every task, move it into `AGENTS.md` instead.
 
 - `rules/code-style.md`
 - `rules/security.md`

@@ -97,6 +97,8 @@ The agent's entry point. Every runtime MUST load this file first. It serves two 
 
 Granular, composable instruction files. Each file governs a single concern. Rules are injected into the context window based on relevance or the `Auto-load` setting in `AGENTS.md`.
 
+Use `rules/` for scoped or conditional guidance. If a rule should run for every task, keep it in `AGENTS.md` instead.
+
 #### Naming Convention
 
 ```text
