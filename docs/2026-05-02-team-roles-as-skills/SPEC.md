@@ -20,7 +20,7 @@ This groups related skills together on the filesystem automatically. The type is
 **Valid types:**
 `audit` · `checklist` · `codegen` · `design` · `diagram` · `model` · `patterns` · `planner` · `report` · `setup` · `strategy` · `template` · `tracker` · `writer`
 
-**Multi-variant skills** append a variant suffix only when domains are significantly distinct (e.g., `writer-sql-analytics`). For most domains, variants are handled dynamically by the router skill.
+**Multi-variant skills** use references and detection logic inside one router skill whenever related artifacts share the same role context.
 
 ---
 
@@ -30,23 +30,21 @@ This groups related skills together on the filesystem automatically. The type is
 skills/
 ├── audit-a11y/
 ├── audit-gap/
-├── audit-secrets/
 ├── audit-security/
 ├── audit-test-flaky/
 ├── checklist-code-review/
 ├── checklist-release/
 ├── codegen-backend/
+├── codegen-database/
 ├── codegen-frontend/
 ├── codegen-mobile/
 ├── codegen-test/
 ├── design-api/
 ├── design-arch/
-├── diagram-c4/
 ├── diagram-dfd/
 ├── diagram-integration/
 ├── diagram-ux-flow/
 ├── model-dbt/
-├── model-threat/
 ├── patterns-auth/
 ├── patterns-graphql/
 ├── patterns-realtime/
@@ -59,37 +57,30 @@ skills/
 ├── setup-eval-harness/
 ├── setup-infra/
 ├── setup-monorepo/
-├── setup-observability/
-├── setup-pipeline/
 ├── setup-rag/
-├── setup-test-framework/
 ├── strategy-api-versioning/
 ├── strategy-backup/
 ├── strategy-dependency-upgrade/
 ├── strategy-feature-flag/
-├── strategy-test/
 ├── template-pr/
 ├── template-retro/
 ├── tracker-velocity/
-├── writer-adr/
 ├── writer-alert-rules/
 ├── writer-backlog/
 ├── writer-compliance/
 ├── writer-epic/
 ├── writer-lineage/
 ├── writer-mentorship/
-├── writer-migration/
 ├── writer-ml-experiment/
 ├── writer-postmortem/
 ├── writer-prd/
 ├── writer-prompt/
 ├── writer-slo/
 ├── writer-spec/
-├── writer-sql/
-├── writer-sql-analytics/
 ├── writer-stakeholder/
 ├── writer-tech-docs/
 ├── writer-team-agreement/
+├── writer-test-strategy/
 ├── writer-tech-radar/
 ├── writer-use-case/
 └── writer-user-story/
@@ -122,7 +113,7 @@ description: >
 
 ---
 
-## Full Skill Catalog (71 skills)
+## Full Skill Catalog (56 skills)
 
 ### 📋 Requirements (6)
 
@@ -177,59 +168,59 @@ writer-spec/
 
 ---
 
-### 🏛️ Architecture (4)
+### 🏛️ Architecture (2)
 
 | Skill | Roles | Output Artifact |
 | ------------------- | -------------------- | ---------------------------------------------------------------------- |
-| `design-arch` | Architect | System design document: components, interactions, trade-offs |
-| `writer-adr` | Architect, Team Lead | Architecture Decision Record: context, options, decision, consequences |
-| `diagram-c4` | Architect | C4 diagram: Context / Container / Component / Code levels |
+| `design-arch` | Architect | Architecture router: system design document, ADR, or C4 diagram |
 | `writer-tech-radar` | Architect | Tech radar: adopt / trial / assess / hold, with rationale |
 
 **Trigger disambiguation:**
 
-- `design-arch` → high-level design document with prose and trade-offs
-- `diagram-c4` → user explicitly wants a diagram, C4 levels, visual output
-- `writer-adr` → recording a specific decision already made or being made
+- `design-arch` → triggered by architecture design, ADR, trade-off analysis, or C4 diagram requests
+- `writer-tech-radar` → triggered by portfolio-level technology assessment, not a single system design decision
+
+#### Multi-variant: `design-arch`
+
+```text
+design-arch/
+├── SKILL.md
+└── references/
+    ├── system-design.md # Components, interactions, constraints, trade-offs
+    ├── adr.md           # Context, options, decision, consequences
+    └── c4.md            # Context, Container, Component, and Code diagrams
+```
 
 ---
 
-### 🗄️ Database (5)
+### 🗄️ Database (4)
 
 | Skill | Roles | Output Artifact |
 | ---------------------- | ------------- | ------------------------------------------------------------------------- |
-| `writer-sql` | DBA, Backend | Schema design plus SQL queries/DDL for OLTP dialects: Postgres, MySQL, MSSQL, SQLite, Oracle |
-| `writer-sql-analytics` | DBA, Data Eng | SQL for analytics dialects: Snowflake, BigQuery, ClickHouse, CockroachDB |
-| `writer-migration` | DBA | Migration scripts: up/down, safe for production, idempotent |
+| `codegen-database` | DBA, Backend, Data Eng | Database code router: schema, OLTP SQL, analytics SQL, and migration scripts |
 | `report-db-health` | DBA | DB health report: slow queries, bloat, index usage, replication lag |
 | `strategy-backup` | DBA | Backup strategy: schedule, retention, restore SLAs, tooling |
 
 **Trigger disambiguation:**
 
-- `writer-sql` → OLTP: schema design, transactional queries, stored procedures, standard DDL
-- `writer-sql-analytics` → analytical: window functions, partitioning, warehouse-specific syntax
+- `codegen-database` → produces executable SQL, DDL, schema definitions, migration scripts, or dialect-specific database code
+- `report-db-health` → analyzes an existing database state and produces findings
+- `strategy-backup` → defines backup/recovery policy, not SQL code
 
-#### Multi-variant: `writer-sql`
-
-```text
-writer-sql/
-├── SKILL.md          # Detects dialect from context or asks once
-└── references/
-    ├── design.md     # Normalized schema design, relationships, constraints, indexes
-    ├── common.md     # Dialect-neutral query and DDL patterns
-    ├── postgres.md   # JSONB, CTEs, EXPLAIN ANALYZE, pg-specific types
-    ├── mysql.md      # Engine differences, EXPLAIN, charset considerations
-    ├── mssql.md      # T-SQL, execution plans, TempDB patterns
-    ├── sqlite.md     # Type affinity, limitations, WITHOUT ROWID
-    └── oracle.md     # PL/SQL, hints, dual table, sequences
-```
-
-#### Multi-variant: `writer-sql-analytics`
+#### Multi-variant: `codegen-database`
 
 ```text
-writer-sql-analytics/
-├── SKILL.md
+codegen-database/
+├── SKILL.md          # Detects artifact type and dialect from context or asks once
 └── references/
+    ├── schema-design.md  # Normalized schema design, relationships, constraints, indexes
+    ├── migration.md      # Up/down migrations, idempotency, validation, rollback safety
+    ├── common.md         # Dialect-neutral query and DDL patterns
+    ├── postgres.md       # JSONB, CTEs, EXPLAIN ANALYZE, pg-specific types
+    ├── mysql.md          # Engine differences, EXPLAIN, charset considerations
+    ├── mssql.md          # T-SQL, execution plans, TempDB patterns
+    ├── sqlite.md         # Type affinity, limitations, WITHOUT ROWID
+    ├── oracle.md         # PL/SQL, hints, dual table, sequences
     ├── bigquery.md       # ARRAY/STRUCT, partitioning, INFORMATION_SCHEMA
     ├── snowflake.md      # Variant type, clustering, time travel
     ├── clickhouse.md     # MergeTree, materialized views, sparse indexes
@@ -238,12 +229,13 @@ writer-sql-analytics/
 
 ---
 
-### 💻 Code Generation (9)
+### 💻 Code Generation (10)
 
 | Skill | Roles | Output Artifact |
 | ------------------------- | ---------------------- | ---------------------------------------------------------------- |
 | `codegen-frontend` | Frontend Dev | Frontend code: components, pages, state management |
 | `codegen-backend` | Backend Dev | Backend code: routes, services, middleware, tests |
+| `codegen-database` | DBA, Backend, Data Eng | Database code: schema, queries, DDL, migrations, analytics SQL |
 | `codegen-mobile` | Mobile Dev | Mobile code: screens, navigation, platform-specific patterns |
 | `design-api` | Backend Dev | API contract: OpenAPI/AsyncAPI spec, endpoints, schemas |
 | `strategy-api-versioning` | Backend Dev, Architect | API versioning strategy + deprecation guide + migration notes |
@@ -340,13 +332,12 @@ codegen-mobile/
 
 ---
 
-### 🧪 Testing (4)
+### 🧪 Testing (3)
 
 | Skill | Roles | Output Artifact |
 | ---------------------- | ------- | ---------------------------------------------------------------- |
-| `codegen-test` | AQA | Test suite (E2E, API, Performance, AI evals) with fixtures, scripts, and benchmark harnesses |
-| `strategy-test` | AQA, QA | Test strategy: scope, types, coverage targets, tooling decisions |
-| `setup-test-framework` | AQA | Test framework setup: config, folder structure, CI integration |
+| `codegen-test` | AQA | Test suites and test framework setup with fixtures, scripts, benchmark harnesses, config, and CI integration |
+| `writer-test-strategy` | AQA, QA | Test strategy: scope, types, coverage targets, tooling decisions |
 | `audit-test-flaky` | AQA | Flaky test report: root cause analysis, fix recommendations |
 
 #### Multi-variant: `codegen-test`
@@ -362,6 +353,7 @@ codegen-test/
     ├── e2e.md    # Playwright, Cypress, Selenium patterns
     ├── api.md    # Supertest, Jest-extended, Postman/Newman
     ├── perf.md   # k6, JMeter, Locust scripts
+    ├── framework-setup.md # Test runner config, folder structure, fixtures, CI wiring
     ├── ai-output.md   # LLM output quality, RAG, structured output, prompt regression evals
     ├── ai-tool-use.md # Agent tool-call trace, argument, sequencing, and recovery evals
     └── ai-perf.md     # AI latency, token, cost, throughput, and quality-per-dollar benchmarks
@@ -374,28 +366,29 @@ codegen-test/
 - `ai-perf.md` → latency, first-token time, token usage, cost per successful task, retry rate, throughput, quality-per-dollar
 - `audit-security` → AI safety, prompt injection, jailbreak, data exfiltration, malicious tool-use, or policy-boundary testing
 - `perf.md` → non-AI application load, stress, soak, spike, and throughput scripts
+- `writer-test-strategy` → planning document for test scope, risk, levels, tools, and coverage targets
 
 ---
 
-### 🚀 DevOps / SRE (6)
+### 🚀 DevOps / SRE (4)
 
 | Skill | Roles | Output Artifact |
 | --------------------- | ----------- | ------------------------------------------------------------ |
-| `setup-pipeline` | DevOps | Pipeline config (CI/CD, ETL) with logging and error handling |
-| `setup-infra` | DevOps | IaC: Terraform/Pulumi modules for target cloud |
+| `setup-infra` | DevOps, Data Eng | Ops setup router: IaC, CI/CD, ETL, observability config |
 | `planner-capacity` | DevOps, SRE | Capacity plan: traffic and storage projections, sizing |
-| `setup-observability` | DevOps, SRE | Observability setup: metrics, logs, traces, dashboards |
 | `writer-slo` | SRE | SLO definition: SLI, target, error budget, alerting policy |
 | `writer-alert-rules` | SRE | Alert rules: conditions, severity, routing, runbook links |
 
-#### Multi-variant: `setup-pipeline`
+#### Multi-variant: `setup-infra`
 
 ```text
-setup-pipeline/
+setup-infra/
 ├── SKILL.md
 └── references/
-    ├── cicd.md    # GitHub Actions, GitLab CI, Jenkins
-    └── etl.md     # dbt, Airflow, Glue patterns
+    ├── iac.md            # Terraform/Pulumi modules for target cloud
+    ├── cicd.md           # GitHub Actions, GitLab CI, Jenkins
+    ├── etl.md            # dbt, Airflow, Glue patterns
+    └── observability.md  # Metrics, logs, traces, dashboards
 ```
 
 #### Multi-variant: `planner-capacity`
@@ -419,15 +412,24 @@ planner-capacity/
 
 ---
 
-### 🔐 Security (5)
+### 🔐 Security (4)
 
 | Skill | Roles | Output Artifact |
 | ------------------- | --------------- | ------------------------------------------------------------------------ |
-| `model-threat` | Security Eng | Threat model: STRIDE analysis, attack surface, mitigations |
-| `audit-security` | Security Eng | Security audit: OWASP checklist, findings, severity, remediation |
-| `audit-secrets` | Security Eng | Secrets audit: exposed credentials, rotation plan, vault migration |
+| `audit-security` | Security Eng | Security router: OWASP review, secrets exposure audit, or STRIDE threat model |
 | `writer-compliance` | Security, Legal | Compliance doc: GDPR/SOC2/HIPAA controls, evidence checklist |
 | `report-cve` | Security Eng | CVE triage report: affected versions, severity (CVSS), remediation steps |
+
+#### Multi-variant: `audit-security`
+
+```text
+audit-security/
+├── SKILL.md
+└── references/
+    ├── owasp.md       # OWASP-aligned application security review
+    ├── secrets.md     # Exposed credentials, rotation plan, vault migration
+    └── threat-model.md# STRIDE analysis, attack surface, mitigations
+```
 
 ---
 
@@ -506,7 +508,7 @@ Each skill is built using the `skill-creator` skill in this sequence:
 
 ## Multi-Variant Router Pattern
 
-For `codegen-frontend`, `codegen-backend`, `codegen-mobile`, `codegen-test`, `writer-sql`, `writer-sql-analytics`, `writer-spec`, `setup-pipeline`, `writer-tech-docs`, `planner-capacity`:
+For `audit-security`, `codegen-frontend`, `codegen-backend`, `codegen-database`, `codegen-mobile`, `codegen-test`, `design-arch`, `writer-spec`, `setup-infra`, `writer-tech-docs`, `planner-capacity`:
 
 The `SKILL.md` must:
 
@@ -534,15 +536,16 @@ Skills with overlapping domains must have explicit disambiguation in their descr
 | --------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `writer-prd` vs `writer-spec` | PRD = business goals; spec = system behavior or technical detail |
 | `design-api` vs `writer-tech-docs` (api-docs) | design-api = contract first (no code yet); writer-tech-docs api-docs variant = existing API |
-| `design-arch` vs `diagram-c4` | design-arch = prose document; diagram-c4 = diagram output |
-| `writer-sql` vs `writer-sql-analytics` | writer-sql = OLTP schema/query work; writer-sql-analytics = warehouse/analytical SQL |
+| `design-arch` variants | system-design = broad prose design; adr = one decision; c4 = diagram output |
+| `codegen-database` variants | OLTP dialect refs for app databases; analytics refs for warehouse/distributed SQL; migration ref for schema change scripts |
 | `writer-user-story` vs `writer-epic` | user-story = single story → tasks; epic = feature grouping |
+| `codegen-test` vs `writer-test-strategy` | codegen-test = test code/config; writer-test-strategy = planning document |
 
 ## Totals
 
 | Category | Count |
 | ------------------------------------------- | ----- |
-| Total skills | 66 |
-| Multi-variant router skills | 10 |
+| Total skills | 56 |
+| Multi-variant router skills | 11 |
 | Total framework/language/dialect references | 50+ |
 | Prefix types | 14 |
