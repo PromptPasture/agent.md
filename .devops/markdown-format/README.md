@@ -17,7 +17,8 @@ Run markdownlint with the same config used by CI:
 ```bash
 .devops/markdown-format/node_modules/.bin/markdownlint-cli2 \
   --config .markdownlint.yaml \
-  "**/*.md"
+  "**/*.md" \
+  "#./**/node_modules"
 ```
 
 Lint selected files by replacing the glob with file paths:
@@ -43,11 +44,11 @@ Review the diff after `--fix`; not every rule is safely fixable.
 
 ## CI Helper
 
-The CI workflow writes changed Markdown paths to `changed-markdown-files.txt`,
-then runs:
+The CI workflow runs markdownlint against every Markdown file in the repository:
 
 ```bash
-bash .devops/markdown-format/lint-changed-markdown.sh
+.devops/markdown-format/node_modules/.bin/markdownlint-cli2 \
+  --config .markdownlint.yaml \
+  "**/*.md" \
+  "#./**/node_modules"
 ```
-
-That script expects `changed-markdown-files.txt` to exist in the repository root.
