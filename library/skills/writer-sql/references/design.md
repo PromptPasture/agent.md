@@ -10,14 +10,14 @@ A good schema encodes business rules structurally so they can't be violated at t
 
 Identify the target database from context:
 
-| Signal                                                       | Dialect                                    |
+| Signal | Dialect |
 | ------------------------------------------------------------ | ------------------------------------------ |
-| "postgres", `.sql` with Postgres types, `JSONB`, `uuid-ossp` | PostgreSQL                                 |
-| "mysql", "mariadb", `AUTO_INCREMENT`                         | MySQL / MariaDB                            |
-| "sqlite", mobile app, embedded                               | SQLite                                     |
-| "mssql", "sql server", T-SQL                                 | MSSQL                                      |
-| "oracle"                                                     | Oracle                                     |
-| Ambiguous / not mentioned                                    | Default to PostgreSQL; note the assumption |
+| "postgres", `.sql` with Postgres types, `JSONB`, `uuid-ossp` | PostgreSQL |
+| "mysql", "mariadb", `AUTO_INCREMENT` | MySQL / MariaDB |
+| "sqlite", mobile app, embedded | SQLite |
+| "mssql", "sql server", T-SQL | MSSQL |
+| "oracle" | Oracle |
+| Ambiguous / not mentioned | Default to PostgreSQL; note the assumption |
 
 ## Information gathering
 
@@ -102,13 +102,13 @@ CREATE TABLE [junction_table] (
 
 ### Part 3: Relationship Matrix
 
-| Table   | Column           | References     | On Delete                     | Notes              |
+| Table | Column | References | On Delete | Notes |
 | ------- | ---------------- | -------------- | ----------------------------- | ------------------ |
 | [child] | `fk_[parent]_id` | `[parent](id)` | CASCADE / SET NULL / RESTRICT | [when to use each] |
 
 ### Part 4: Index Rationale
 
-| Index               | Columns   | Purpose                     |
+| Index | Columns | Purpose |
 | ------------------- | --------- | --------------------------- |
 | `[table]_[col]_idx` | `([col])` | [Which query this supports] |
 

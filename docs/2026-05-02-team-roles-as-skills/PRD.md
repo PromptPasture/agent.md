@@ -19,18 +19,18 @@ Build a skill library that:
 
 ## Target Users
 
-| User                  | How They Benefit                                                        |
+| User | How They Benefit |
 | --------------------- | ----------------------------------------------------------------------- |
 | Individual developers | Role-specific codegen, spec writing, SQL authoring without re-prompting |
-| Team leads            | Consistent PR templates, postmortems, code review checklists            |
-| Product owners / BAs  | Structured PRDs, epics, stories with acceptance criteria                |
-| DBAs                  | Schema design, migrations, query optimization per dialect               |
-| AQA engineers         | E2E, API, performance, and AI eval test generation per framework        |
-| DevOps / SRE          | CI/CD pipeline YAML, IaC, SLOs, runbooks                                |
-| Architects            | ADRs, C4 diagrams, system design docs                                   |
-| Scrum Masters         | Sprint plans, retro templates, velocity reports                         |
-| Security engineers    | Threat models, security audits, CVE triage reports                      |
-| Data / ML engineers   | ETL pipelines, dbt models, AI output and performance eval harnesses     |
+| Team leads | Consistent PR templates, postmortems, code review checklists |
+| Product owners / BAs | Structured PRDs, epics, stories with acceptance criteria |
+| DBAs | Schema design, migrations, query optimization per dialect |
+| AQA engineers | E2E, API, performance, and AI eval test generation per framework |
+| DevOps / SRE | CI/CD pipeline YAML, IaC, SLOs, runbooks |
+| Architects | ADRs, C4 diagrams, system design docs |
+| Scrum Masters | Sprint plans, retro templates, velocity reports |
+| Security engineers | Threat models, security audits, CVE triage reports |
+| Data / ML engineers | ETL pipelines, dbt models, AI output and performance eval harnesses |
 
 ## Roles Covered
 

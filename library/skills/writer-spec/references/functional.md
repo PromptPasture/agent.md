@@ -10,7 +10,7 @@
 
 ## 2. Actors
 
-| Actor  | Type                         | Description                 |
+| Actor | Type | Description |
 | ------ | ---------------------------- | --------------------------- |
 | [Name] | [Human / System / Scheduled] | [Role and key interactions] |
 
@@ -57,7 +57,7 @@
 
 ## 10. Assumptions & Constraints
 
-| #   | Type       | Detail    |
+| # | Type | Detail |
 | --- | ---------- | --------- |
 | A-1 | Assumption | [assumed] |
 

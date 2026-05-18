@@ -14,6 +14,6 @@ priority: medium
 - Use fenced code blocks with language identifiers when the language or format is known.
 - Surround lists, tables, and fenced code blocks with blank lines.
 - Keep list indentation consistent. Use `1.` for every ordered-list item unless the document requires visible numbering.
-- Format tables with consistent pipe spacing.
+- Format tables in compact style: trim each cell and keep exactly one padding space around `|` separators, for example `| Name | Purpose |`.
 - End each file with exactly one trailing newline.
 - Preserve semantic line breaks, quoted text, and generated text only when reflowing would reduce clarity or change meaning.

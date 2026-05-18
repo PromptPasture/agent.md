@@ -39,19 +39,19 @@ Do not imitate obvious historical mistakes such as misspelled types, malformed h
 
 ### Types
 
-| Type       | When to use                               |
+| Type | When to use |
 | ---------- | ----------------------------------------- |
-| `feat`     | A new feature                             |
-| `fix`      | A bug fix                                 |
-| `docs`     | Documentation changes only                |
-| `style`    | Formatting, whitespace — no logic change  |
-| `refactor` | Code restructure with no feature/fix      |
-| `perf`     | Performance improvement                   |
-| `test`     | Adding or updating tests                  |
-| `build`    | Build system or dependency changes        |
-| `ci`       | CI/CD configuration changes               |
-| `chore`    | Maintenance tasks (e.g. updating scripts) |
-| `revert`   | Reverts a previous commit                 |
+| `feat` | A new feature |
+| `fix` | A bug fix |
+| `docs` | Documentation changes only |
+| `style` | Formatting, whitespace — no logic change |
+| `refactor` | Code restructure with no feature/fix |
+| `perf` | Performance improvement |
+| `test` | Adding or updating tests |
+| `build` | Build system or dependency changes |
+| `ci` | CI/CD configuration changes |
+| `chore` | Maintenance tasks (e.g. updating scripts) |
+| `revert` | Reverts a previous commit |
 
 Use only these type names. Convert `feature` to `feat`, and fix obvious type typos.
 
@@ -59,13 +59,13 @@ Use only these type names. Convert `feature` to `feat`, and fix obvious type typ
 
 Treat these user words as commit action intent:
 
-| User wording                         | Git behavior                                      |
+| User wording | Git behavior |
 | ------------------------------------ | ------------------------------------------------- |
-| `commit this`                        | Commit staged changes only                        |
-| `commit the staged changes`          | Commit staged changes only                        |
-| `create a commit`                    | Commit staged changes only                        |
-| `create a commit message and commit` | Generate the message, then commit staged changes  |
-| `write a commit message`             | Output a message only, unless commit is requested |
+| `commit this` | Commit staged changes only |
+| `commit the staged changes` | Commit staged changes only |
+| `create a commit` | Commit staged changes only |
+| `create a commit message and commit` | Generate the message, then commit staged changes |
+| `write a commit message` | Output a message only, unless commit is requested |
 
 Before committing, inspect staged changes. If nothing is staged, ask whether to stage files or only provide a message. Do not stage files by default.
 

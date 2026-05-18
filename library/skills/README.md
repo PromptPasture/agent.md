@@ -105,12 +105,12 @@ Write the `description` as trigger guidance. It should include the user intents 
 
 Use bundled resources when they reduce context:
 
-| Folder        | Use it for                                                                |
+| Folder | Use it for |
 | ------------- | ------------------------------------------------------------------------- |
 | `references/` | Longer docs loaded only when needed, such as dialect guides or templates. |
-| `scripts/`    | Deterministic helpers, validators, converters, or generators.             |
-| `assets/`     | Templates, images, fonts, example files, or other reusable artifacts.     |
-| `evals/`      | Development-time test prompts and fixtures.                               |
+| `scripts/` | Deterministic helpers, validators, converters, or generators. |
+| `assets/` | Templates, images, fonts, example files, or other reusable artifacts. |
+| `evals/` | Development-time test prompts and fixtures. |
 
 Prefer references over a huge `SKILL.md`. A skill body should be easy for an agent to scan; move long variants into focused files like `references/postgres.md` or `references/api-docs.md`.
 
@@ -250,21 +250,21 @@ Packaging runs validation first. If validation fails, fix the frontmatter or fol
 
 Required:
 
-| Field         | Notes                                                         |
+| Field | Notes |
 | ------------- | ------------------------------------------------------------- |
-| `name`        | Kebab-case identifier, matching the folder when possible.     |
+| `name` | Kebab-case identifier, matching the folder when possible. |
 | `description` | Trigger guidance. Keep it specific and under 1024 characters. |
 
 Common optional fields:
 
-| Field           | Notes                                                    |
+| Field | Notes |
 | --------------- | -------------------------------------------------------- |
-| `author`        | Person or organization maintaining the skill.            |
-| `license`       | License for the skill content.                           |
-| `version`       | Skill version. Use semantic versioning when practical.   |
-| `compatibility` | Short note about required tools or runtime assumptions.  |
+| `author` | Person or organization maintaining the skill. |
+| `license` | License for the skill content. |
+| `version` | Skill version. Use semantic versioning when practical. |
+| `compatibility` | Short note about required tools or runtime assumptions. |
 | `allowed-tools` | Tool restrictions, if your target runtime supports them. |
-| `metadata`      | Extra structured data for runtimes that consume it.      |
+| `metadata` | Extra structured data for runtimes that consume it. |
 
 ## Troubleshooting
 

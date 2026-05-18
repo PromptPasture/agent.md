@@ -38,13 +38,13 @@ For branch actions, create or switch to the branch using the selected branch con
 
 ## Routing Table
 
-| Request Type                            | Workflow Type      | Reference                      |
+| Request Type | Workflow Type | Reference |
 | :-------------------------------------- | :----------------- | :----------------------------- |
-| Branch name generation                  | Output             | `references/branch-naming.md`  |
-| Branch name review                      | Output             | `references/branch-naming.md`  |
-| Branch creation, checkout, switch/start | Action             | `references/branch-naming.md`  |
-| Commit message generation/improvement   | Output             | `references/commit-message.md` |
-| Commit staged changes                   | Action             | `references/commit-message.md` |
+| Branch name generation | Output | `references/branch-naming.md` |
+| Branch name review | Output | `references/branch-naming.md` |
+| Branch creation, checkout, switch/start | Action | `references/branch-naming.md` |
+| Commit message generation/improvement | Output | `references/commit-message.md` |
+| Commit staged changes | Action | `references/commit-message.md` |
 
 ## Repository Safety
 

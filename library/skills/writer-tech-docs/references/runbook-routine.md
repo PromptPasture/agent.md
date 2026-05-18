@@ -120,9 +120,9 @@ A runbook should be executable by someone unfamiliar with the system. Assume not
 
 ## Troubleshooting
 
-| Symptom           | Likely cause | Resolution |
+| Symptom | Likely cause | Resolution |
 | ----------------- | ------------ | ---------- |
-| `[Error message]` | [Cause]      | [Fix]      |
+| `[Error message]` | [Cause] | [Fix] |
 
 ---
 
