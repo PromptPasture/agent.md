@@ -5,6 +5,7 @@ mapfile -t files < changed-markdown-files.txt
 
 set +e
 .devops/markdown-format/node_modules/.bin/markdownlint-cli2 \
+  --config .markdownlint.yaml \
   --json \
   "${files[@]}" > markdownlint-results.json
 status=$?
