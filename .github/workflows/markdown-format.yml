@@ -1,6 +1,11 @@
 name: Markdown formatting
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.md"
   pull_request:
     types:
       - opened
