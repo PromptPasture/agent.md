@@ -18,7 +18,7 @@ This groups related skills together on the filesystem automatically. The type is
 ```
 
 **Valid types:**
-`audit` · `checklist` · `codegen` · `design` · `diagram` · `model` · `patterns` · `planner` · `report` · `setup` · `strategy` · `template` · `tracker` · `writer`
+`audit` · `checklist` · `codegen` · `design` · `diagram` · `model` · `patterns` · `planner` · `report` · `review` · `setup` · `strategy` · `template` · `tracker` · `writer`
 
 **Multi-variant skills** use references and detection logic inside one router skill whenever related artifacts share the same role context.
 
@@ -32,7 +32,6 @@ skills/
 ├── audit-gap/
 ├── audit-security/
 ├── audit-test-flaky/
-├── checklist-code-review/
 ├── checklist-release/
 ├── codegen-backend/
 ├── codegen-database/
@@ -53,6 +52,7 @@ skills/
 ├── report-cve/
 ├── report-db-health/
 ├── report-team-health/
+├── review-code/
 ├── setup-developer-portal/
 ├── setup-eval-harness/
 ├── setup-infra/
@@ -477,7 +477,7 @@ writer-tech-docs/
 
 | Skill | Roles | Output Artifact |
 | ----------------------- | -------------- | ----------------------------------------------------------------------- |
-| `checklist-code-review` | Team Lead | Code review checklist: correctness, style, security, performance |
+| `review-code` | Team Lead | Code review findings: correctness, regression, security, performance, test gaps |
 | `writer-postmortem` | Team Lead, SRE | Postmortem: timeline, root cause, impact, action items |
 | `template-pr` | Team Lead | PR template: description, checklist, test plan, screenshots |
 | `report-team-health` | Team Lead | Team health report: delivery metrics, morale signals, risks |
@@ -540,6 +540,7 @@ Skills with overlapping domains must have explicit disambiguation in their descr
 | `codegen-database` variants | OLTP dialect refs for app databases; analytics refs for warehouse/distributed SQL; migration ref for schema change scripts |
 | `writer-user-story` vs `writer-epic` | user-story = single story → tasks; epic = feature grouping |
 | `codegen-test` vs `writer-test-strategy` | codegen-test = test code/config; writer-test-strategy = planning document |
+| `review-code` vs `audit-security` | review-code = change/diff review; audit-security = dedicated security audit/model |
 
 ## Totals
 
@@ -548,4 +549,4 @@ Skills with overlapping domains must have explicit disambiguation in their descr
 | Total skills | 56 |
 | Multi-variant router skills | 11 |
 | Total framework/language/dialect references | 50+ |
-| Prefix types | 14 |
+| Prefix types | 15 |

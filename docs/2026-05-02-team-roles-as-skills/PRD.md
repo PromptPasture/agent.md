@@ -22,7 +22,7 @@ Build a skill library that:
 | User | How They Benefit |
 | --------------------- | ----------------------------------------------------------------------- |
 | Individual developers | Role-specific codegen, spec writing, SQL authoring without re-prompting |
-| Team leads | Consistent PR templates, postmortems, code review checklists |
+| Team leads | Consistent PR templates, postmortems, and code review findings |
 | Product owners / BAs | Structured PRDs, epics, stories with acceptance criteria |
 | DBAs | Schema design, migrations, query optimization per dialect |
 | AQA engineers | E2E, API, performance, and AI eval test generation per framework |

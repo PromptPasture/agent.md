@@ -24,6 +24,7 @@ The **type prefix** comes first so skills sort naturally on the filesystem and v
 | `patterns-` | Pattern catalogue with examples |
 | `planner-` | Planning document with estimates |
 | `report-` | Status or analysis report |
+| `review-` | Review findings against a concrete code or artifact change |
 | `setup-` | Configuration files and scaffolding |
 | `strategy-` | Decision framework and approach |
 | `template-` | Reusable blank template |
@@ -60,7 +61,6 @@ Ordered alphabetically by name (matches filesystem order).
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ----------------------- | -------- | ---------- | --------------- | ------------------------------------------------- |
-| - [ ] | `checklist-code-review` | 🟠 P2 | Leadership | Team Lead | Structured PR review checklist by concern area |
 | - [ ] | `checklist-release` | 🟡 P3 | Release | Release Manager | Go/no-go release checklist with sign-off sections |
 
 ### `codegen-`
@@ -116,6 +116,12 @@ Ordered alphabetically by name (matches filesystem order).
 | - [ ] | `report-cve` | 🟡 P3 | Security | Security Engineer | CVE triage report with severity, impact, and remediation |
 | - [ ] | `report-db-health` | 🟡 P3 | Database | DBA | Database health report (indexes, bloat, slow queries) |
 | - [ ] | `report-team-health` | ⚪ P4 | Leadership | Team Lead | Team health report (velocity, satisfaction, blockers) |
+
+### `review-`
+
+| Done | Skill | Priority | Domain | Primary Role | Produces |
+| ----- | ------------- | -------- | ---------- | ------------ | --------------------------------------------------------------------- |
+| - [ ] | `review-code` | 🟠 P2 | Leadership | Team Lead | Structured code review findings with severity, file refs, and test gaps |
 
 ### `setup-`
 
