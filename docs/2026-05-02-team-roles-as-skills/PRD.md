@@ -2,7 +2,7 @@
 
 ## Overview
 
-A comprehensive library of 56 skills for CLI Agent (and compatible CLI agents) that gives every software team role a dedicated, well-scoped AI capability. Instead of relying on generic prompting, each skill encodes the conventions, output formats, and domain knowledge specific to a role and artifact type.
+A comprehensive library of 55 skills for CLI Agent (and compatible CLI agents) that gives every software team role a dedicated, well-scoped AI capability. Instead of relying on generic prompting, each skill encodes the conventions, output formats, and domain knowledge specific to a role and artifact type.
 
 ## Problem
 
@@ -40,7 +40,7 @@ System Analyst, Product Owner, Product Manager, DBA, AQA, Team Lead, Scrum Maste
 
 ### In Scope
 
-- 56 skills across 14 prefix groups (see SPEC.md for full list)
+- 55 skills across 15 prefix groups (see SPEC.md for full list)
 - Multi-variant router skills for frontend frameworks, backend languages, mobile platforms, DBA code, architecture artifacts, security audits/models, infrastructure setup, and test/eval categories
 - Each skill built and tested via `skill-creator`
 - Each skill packaged as a `.skill` file for distribution

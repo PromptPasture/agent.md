@@ -62,8 +62,7 @@ skills/
 ├── strategy-backup/
 ├── strategy-dependency-upgrade/
 ├── strategy-feature-flag/
-├── template-pr/
-├── template-retro/
+├── template-creator/
 ├── tracker-velocity/
 ├── writer-alert-rules/
 ├── writer-backlog/
@@ -113,7 +112,7 @@ description: >
 
 ---
 
-## Full Skill Catalog (56 skills)
+## Full Skill Catalog (55 skills)
 
 ### 📋 Requirements (6)
 
@@ -156,7 +155,7 @@ writer-spec/
 | `writer-backlog` | PO | Groomed backlog: prioritized, sized, dependency-flagged |
 | `writer-stakeholder` | PM, PO | Stakeholder update: progress, risks, decisions needed |
 | `planner-sprint` | Scrum Master | Sprint plan: goal, stories, capacity, impediment section |
-| `template-retro` | Scrum Master | Retrospective template: went well / improve / actions |
+| `template-creator` | Team Lead, Scrum Master, PM, PO | Reusable team templates for PRs, retros, issues, meetings, decisions, incidents, and releases |
 | `tracker-velocity` | Scrum Master | Sprint metrics report: velocity, completion rate, trend |
 | `writer-team-agreement` | Scrum Master | Working agreements: DoD, DoR, communication norms |
 
@@ -479,9 +478,24 @@ writer-tech-docs/
 | ----------------------- | -------------- | ----------------------------------------------------------------------- |
 | `review-code` | Team Lead | Code review findings: correctness, regression, security, performance, test gaps |
 | `writer-postmortem` | Team Lead, SRE | Postmortem: timeline, root cause, impact, action items |
-| `template-pr` | Team Lead | PR template: description, checklist, test plan, screenshots |
+| `template-creator` | Team Lead | Reusable team templates, including PR templates with context, testing, risk, and screenshot sections |
 | `report-team-health` | Team Lead | Team health report: delivery metrics, morale signals, risks |
 | `writer-mentorship` | Team Lead | Mentorship guide: growth areas, resources, milestones, feedback cadence |
+
+#### Multi-variant: `template-creator`
+
+```text
+template-creator/
+├── SKILL.md
+└── references/
+    ├── pr.md       # Pull/merge request templates
+    ├── retro.md    # Retrospective templates
+    ├── issue.md    # Issue/ticket templates
+    ├── meeting.md  # Meeting agenda and notes templates
+    ├── decision.md # Decision log / lightweight ADR templates
+    ├── incident.md # Incident response and postmortem intake templates
+    └── release.md  # Release checklist and notes templates
+```
 
 ---
 
@@ -508,7 +522,7 @@ Each skill is built using the `skill-creator` skill in this sequence:
 
 ## Multi-Variant Router Pattern
 
-For `audit-security`, `codegen-frontend`, `codegen-backend`, `codegen-database`, `codegen-mobile`, `codegen-test`, `design-arch`, `writer-spec`, `setup-infra`, `writer-tech-docs`, `planner-capacity`:
+For `audit-security`, `codegen-frontend`, `codegen-backend`, `codegen-database`, `codegen-mobile`, `codegen-test`, `design-arch`, `writer-spec`, `setup-infra`, `template-creator`, `writer-tech-docs`, `planner-capacity`:
 
 The `SKILL.md` must:
 
@@ -541,12 +555,13 @@ Skills with overlapping domains must have explicit disambiguation in their descr
 | `writer-user-story` vs `writer-epic` | user-story = single story → tasks; epic = feature grouping |
 | `codegen-test` vs `writer-test-strategy` | codegen-test = test code/config; writer-test-strategy = planning document |
 | `review-code` vs `audit-security` | review-code = change/diff review; audit-security = dedicated security audit/model |
+| `template-creator` vs `writer-*` | template-creator = reusable blank template; writer-* = filled-in artifact |
 
 ## Totals
 
 | Category | Count |
 | ------------------------------------------- | ----- |
-| Total skills | 56 |
-| Multi-variant router skills | 11 |
+| Total skills | 55 |
+| Multi-variant router skills | 12 |
 | Total framework/language/dialect references | 50+ |
 | Prefix types | 15 |

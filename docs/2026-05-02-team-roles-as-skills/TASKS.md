@@ -146,8 +146,7 @@ Ordered alphabetically by name (matches filesystem order).
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ---------------- | -------- | ---------- | ------------ | --------------------------------------------------------------- |
-| - [ ] | `template-pr` | 🟡 P3 | Leadership | Team Lead | Pull request template with sections for context, testing, risks |
-| - [ ] | `template-retro` | 🟡 P3 | Agile | Scrum Master | Retrospective template (what went well, delta, actions) |
+| - [ ] | `template-creator` | 🟡 P3 | Leadership / Agile | Team Lead / Scrum Master | Reusable team templates for PRs, retros, issues, meetings, decisions, incidents, and releases |
 
 ### `tracker-`
 
