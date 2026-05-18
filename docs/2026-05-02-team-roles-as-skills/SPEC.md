@@ -488,7 +488,11 @@ writer-tech-docs/
 review-code/
 ├── SKILL.md
 └── references/
-    └── checklist.md # Code review checklist by concern area: correctness, tests, security, performance, maintainability
+    ├── checklist.md    # Code review concern index and routing guidance
+    ├── regressions.md  # Compatibility, rollout, persistence, and integration risk
+    ├── security.md     # Security-sensitive review, OWASP concerns, and threat-model checks
+    ├── performance.md  # Hot paths, data access, rendering, and resource-use risk
+    └── test-gaps.md    # Missing, weak, flaky, or misleading tests
 ```
 
 #### Multi-variant: `template-creator`
@@ -563,7 +567,7 @@ Skills with overlapping domains must have explicit disambiguation in their descr
 | `codegen-database` variants | OLTP dialect refs for app databases; analytics refs for warehouse/distributed SQL; migration ref for schema change scripts |
 | `writer-user-story` vs `writer-epic` | user-story = single story → tasks; epic = feature grouping |
 | `codegen-test` vs `writer-test-strategy` | codegen-test = test code/config; writer-test-strategy = planning document |
-| `review-code` vs `audit-security` | review-code = change/diff review; audit-security = dedicated security audit/model |
+| `review-code` vs `audit-security` | review-code = code review, including security concerns in reviewed code; audit-security = standalone security skill |
 | `template-creator` vs `writer-*` | template-creator = reusable blank template; writer-* = filled-in artifact |
 
 ## Totals

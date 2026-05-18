@@ -2,6 +2,13 @@
 
 Use this checklist to guide code reviews. It is coverage guidance, not a requirement to produce a finding in every category. Report only concrete risks tied to the reviewed change.
 
+Load a focused reference when the diff needs deeper review:
+
+- `references/regressions.md` for compatibility, rollout, persistence, or integration risk.
+- `references/security.md` for changed authentication, authorization, input handling, secrets, privacy, or abuse surfaces.
+- `references/performance.md` for hot paths, data access, rendering, payload size, concurrency, or resource-use changes.
+- `references/test-gaps.md` for missing, weak, flaky, or misleading tests.
+
 ## Correctness
 
 Check whether the change preserves the intended behavior under normal and edge-case inputs.
@@ -15,37 +22,25 @@ Check whether the change preserves the intended behavior under normal and edge-c
 
 Check whether the change breaks existing users, integrations, data, or deployment flows.
 
-- Compare old and new behavior for public APIs, CLI flags, configuration, schemas, environment variables, and feature flags.
-- Check backwards compatibility for persisted data, migrations, message formats, cache keys, URLs, and external integrations.
-- Verify rollout and rollback behavior when new and old code may run together.
-- Watch for dependency updates that change transitive behavior, runtime requirements, or lockfile consistency.
+Use `references/regressions.md` for deeper guidance.
 
 ## Tests
 
 Check whether tests prove the changed behavior and can fail for the right reason.
 
-- Prefer tests that exercise observable behavior through stable public interfaces.
-- Look for missing negative cases, permission failures, validation errors, migration cases, concurrency cases, and frontend loading or error states.
-- Flag weak assertions, excessive mocking, order dependence, shared mutable state, hidden network calls, sleeps, random data without seeds, and tests that only verify implementation details.
-- Put missing coverage under `Test gaps` unless the missing test hides a concrete bug or high-risk behavior.
+Use `references/test-gaps.md` for deeper guidance.
 
 ## Security
 
-Check security-sensitive changes for concrete exposure. Route broad audits, OWASP reviews, and threat models to `audit-security`.
+Check security-sensitive changes for concrete exposure. Use `references/security.md` for broader security review concerns when the user asks for OWASP-style review, threat modeling, secrets exposure, abuse resistance, or privacy risk in the reviewed code.
 
-- Review authorization, authentication, tenant boundaries, role checks, object-level access, and privilege escalation paths.
-- Check input validation, output encoding, path handling, SQL or command construction, SSRF surfaces, file uploads, redirects, and deserialization.
-- Confirm secrets, tokens, credentials, PII, logs, telemetry, and error messages are not exposed.
-- Verify cryptography, session, cookie, CORS, CSRF, rate-limit, and webhook signature changes against established project patterns.
+Use `references/security.md` for deeper guidance.
 
 ## Performance
 
 Check whether the change creates avoidable work or changes scaling behavior.
 
-- Look for new N+1 queries, unbounded loops, repeated network calls, inefficient selectors, large payloads, blocking I/O, and unnecessary serialization.
-- Check indexes, query plans, pagination, streaming, batching, caching, and invalidation when data access changes.
-- For frontend changes, check bundle growth, render loops, expensive derived state, unnecessary re-renders, layout shifts, and image or asset loading.
-- Avoid speculative performance comments unless the input size, call frequency, or runtime path makes the risk plausible.
+Use `references/performance.md` for deeper guidance.
 
 ## Maintainability
 

@@ -16,7 +16,7 @@ Review concrete code changes. Prioritize defects that could ship, regressions th
 
 **Review the change, not the whole universe.**
 
-Use this skill when the user asks to review a diff, pull request, branch, commit, patch, or recently changed files. If the user asks for a dedicated application security audit or threat model, route to `audit-security`. If they ask how code works before judging it, use the explanatory workflow first and then review only if requested.
+Use this skill when the user asks to review a diff, pull request, branch, commit, patch, or recently changed files, including security-sensitive review of those changes. If they ask how code works before judging it, use the explanatory workflow first and then review only if requested.
 
 Do not rewrite code during a review unless the user explicitly asks for fixes. Do not produce a praise sandwich. The useful artifact is a findings list grounded in file and line evidence.
 
@@ -28,7 +28,7 @@ Do not rewrite code during a review unless the user explicitly asks for fixes. D
 2. Read `references/checklist.md` before reviewing so the concern areas match the expected code review checklist.
 3. Inspect the changed files and nearby code that defines contracts, callers, tests, migrations, configuration, or runtime behavior affected by the change.
 4. Check behavior in this order: correctness, regressions and compatibility, security, data integrity, concurrency or async behavior, performance, observability, and tests.
-5. Use the checklist as coverage guidance, not as a template that must produce one comment per category.
+5. Load one focused reference when the diff needs deeper review: `references/regressions.md`, `references/security.md`, `references/performance.md`, or `references/test-gaps.md`.
 6. Validate assumptions against existing tests, fixtures, type definitions, API contracts, docs, and dependency manifests when available.
 7. Report only actionable findings. Skip style preferences, broad refactors, and speculative issues without a concrete failure mode.
 8. If no issues are found, say so directly and name any residual risk or test coverage gap.

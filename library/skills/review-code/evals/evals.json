@@ -33,7 +33,7 @@
       "expectations": [
         "Reviews the patch as concrete code changes.",
         "Checks authorization, validation, error paths, and compatibility.",
-        "Distinguishes security-sensitive review findings from a full security audit.",
+        "Loads or follows references/security.md for security-sensitive review concerns.",
         "Grounds any risk in a specific failure mode."
       ]
     },
@@ -88,13 +88,13 @@
     {
       "id": 8,
       "prompt": "Audit this app for OWASP issues and produce a threat model.",
-      "expected_output": "A routing decision away from review-code toward audit-security.",
+      "expected_output": "A security-focused code review using the security reference, with concrete findings or clear assumptions about the reviewed surface.",
       "files": [],
       "expectations": [
-        "Recognizes this is a dedicated security audit or threat model request.",
-        "Does not frame the task as a normal code review.",
-        "Routes to audit-security or states that audit-security is the appropriate skill.",
-        "Avoids requiring a diff or PR when the user asked for an audit."
+        "Keeps the request inside review-code.",
+        "Loads or follows references/security.md for OWASP-style and threat-model concerns.",
+        "Identifies trust boundaries and reviewed surfaces before making claims.",
+        "Keeps output in code-review form with actionable findings, severity, file references, impact, and fix direction."
       ]
     },
     {
@@ -119,6 +119,54 @@
         "Does not produce severity-ranked findings by default.",
         "Routes to an explanatory workflow.",
         "Mentions review only if the user asks for problems or critique."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Review this API change for backwards compatibility. The diff renames response field user_id to id, changes the default page size, and updates the generated client.",
+      "expected_output": "A regression-focused review using the regressions reference, with findings tied to API compatibility and rollout risk.",
+      "files": [],
+      "expectations": [
+        "Loads or follows references/regressions.md.",
+        "Compares old and new public API behavior.",
+        "Checks generated clients, pagination defaults, and integration compatibility.",
+        "Includes impact and fix direction for any regression finding."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Review this dashboard PR for performance. It adds a polling query, renders 5,000 table rows, and recalculates chart series in the component body.",
+      "expected_output": "A performance-focused review using the performance reference, with concrete runtime paths and scaling variables.",
+      "files": [],
+      "expectations": [
+        "Loads or follows references/performance.md.",
+        "Identifies frontend runtime paths and scaling variables.",
+        "Checks polling frequency, rendering cost, derived state, and large-list behavior.",
+        "Avoids speculative performance claims without a plausible size or frequency."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Review the tests added for the payment retry worker. They use sleep(5000), mock the queue client, and only assert that retry() was called.",
+      "expected_output": "A test-gap review using the test-gaps reference, focused on weak assertions and flaky async patterns.",
+      "files": [],
+      "expectations": [
+        "Loads or follows references/test-gaps.md.",
+        "Checks whether tests prove observable retry behavior.",
+        "Flags sleeps, excessive mocking, weak assertions, and async flakiness.",
+        "Keeps missing or weak coverage under Test gaps unless tied to a concrete bug."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Review this PR broadly. It changes checkout authorization, adds a database migration, updates React checkout state, and includes new Playwright tests.",
+      "expected_output": "A broad code review that starts from the checklist and loads focused references only for the highest-risk areas.",
+      "files": [],
+      "expectations": [
+        "Loads or follows references/checklist.md before deeper review.",
+        "Uses focused references for security, regressions, performance, or test gaps only when relevant.",
+        "Does not produce one forced comment per checklist category.",
+        "Prioritizes actionable findings with severity, file references, impact, and fix direction."
       ]
     }
   ]
