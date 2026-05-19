@@ -1,6 +1,6 @@
 ---
 name: creator-skill
-description: Use when creating, editing, evaluating, packaging, optimizing or improving skills.
+description: Use when creating, editing, reviewing, evaluating, packaging, optimizing or improving skills.
 author: Anthropic
 license: Apache-2.0
 version: 1.1.3
@@ -8,7 +8,7 @@ version: 1.1.3
 
 # creator-skill
 
-Create new skills, improve existing skills, evaluate outputs, optimize trigger descriptions, and package final skill folders.
+Create new skills, review and improve existing skills, evaluate outputs, optimize trigger descriptions, and package final skill folders.
 
 ## Route the Work
 
@@ -17,12 +17,13 @@ Create new skills, improve existing skills, evaluate outputs, optimize trigger d
 | User intent | Read |
 | --- | --- |
 | Create a new skill or revise skill instructions | `references/authoring.md` |
+| Review a created or revised skill | `references/review.md` |
 | Build eval cases, run iterations, benchmark outputs, or collect human feedback | `references/evaluation.md` |
 | Optimize a skill description for trigger accuracy | `references/description-optimization.md` |
 | Adapt the workflow for agents without subagents, Claude Code, generic CLIs, or Cowork | `references/agent-compatibility.md` |
 | Validate eval, grading, benchmark, or feedback JSON structures | `references/schemas.md` |
 
-If the request spans multiple phases, read the references in workflow order: authoring, evaluation, description optimization, then agent compatibility only when platform details matter.
+If the request spans multiple phases, read the references in workflow order: authoring, review, evaluation, description optimization, then agent compatibility only when platform details matter.
 
 ## Core Workflow
 
