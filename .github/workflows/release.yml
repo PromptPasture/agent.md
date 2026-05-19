@@ -49,7 +49,7 @@ jobs:
       - name: Build library archive
         shell: bash
         run: |
-          (cd library && zip -r ../dist/agent-md-library.zip . -x "*.DS_Store")
+          (cd .agents && zip -r ../dist/agent-md-library.zip . -x "*.DS_Store")
 
       - name: Prepare release assets
         shell: bash

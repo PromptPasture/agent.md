@@ -496,5 +496,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,macos,dotenv,python,windows,intellij+all,visualstudiocode,node
 
 # Evaluation output quality files
-library/**/evals/*
-!library/**/evals/evals.json
+.agents/**/evals/*
+!.agents/**/evals/evals.json

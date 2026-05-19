@@ -470,11 +470,11 @@ A compliant runtime SHOULD:
 
 ## Reference Implementation
 
-This repository uses itself as the reference implementation. The `library/` folder at the root of this repo is the maintained set of playbook-conformant assets used for its own development — governing how agents should assist with writing, reviewing, and evolving the spec itself.
+This repository uses itself as the reference implementation. The `.agents/` folder at the root of this repo is the maintained set of playbook-conformant assets used for its own development — governing how agents should assist with writing, reviewing, and evolving the spec itself.
 
 ```text
 agent.md/ ← this repo
-├── library/ ← maintained agent asset library
+├── .agents/ ← maintained agent asset library
 │   ├── README.md
 │   ├── rules/
 │   │ ├── writing-style.md
@@ -495,7 +495,7 @@ agent.md/ ← this repo
     └── PLAYBOOK.md
 ```
 
-Browse the [`library/`](../library) folder directly to see maintained playbook-conformant assets.
+Browse the [`.agents/`](.agents/) folder directly to see maintained playbook-conformant assets.
 
 See [`AGENT_PDLC.md`](./AGENT_PDLC.md) for the lifecycle diagram used when humans and agents collaborate on product development work.
 
