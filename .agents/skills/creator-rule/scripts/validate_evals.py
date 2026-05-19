@@ -86,8 +86,14 @@ def validate_trigger_evals(path: Path) -> list[str]:
         else:
             negatives += 1
 
+        split = item.get("split")
+        if split is not None and split not in {"train", "validation"}:
+            errors.append(f"{prefix}.split must be train or validation")
+
     if positives == 0 or negatives == 0:
         errors.append("trigger-evals.json must include both positive and negative cases")
+    if len(data) < 20:
+        errors.append("trigger-evals.json should include at least 20 cases")
 
     return errors
 
@@ -113,4 +119,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
