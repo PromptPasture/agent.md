@@ -68,7 +68,7 @@
     },
     {
       "id": 6,
-      "prompt": "Review the new agent skill I created in library/skills/data-cleanup before I publish it.",
+      "prompt": "Review the new agent skill I created in .agents/skills/data-cleanup before I publish it.",
       "expected_output": "A skill-focused review that inspects the skill folder and reports actionable findings about trigger precision, scope, instructions, progressive disclosure, validation, and eval coverage.",
       "files": [],
       "expectations": [

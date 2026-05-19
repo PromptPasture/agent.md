@@ -29,9 +29,9 @@ Review the diff after `lint:fix`; not every rule is safely fixable.
 ## Count Tokens
 
 The token tally helper writes reports to `dist/TOKEN_TALLY.md` and
-`dist/TOKEN_TALLY.json`. It tracks `library/rules/*.md`,
-`library/commands/*.md`, `library/skills/*/SKILL.md`, and
-`library/skills/*/agents/*.md`.
+`dist/TOKEN_TALLY.json`. It tracks `.agents/rules/*.md`,
+`.agents/commands/*.md`, `.agents/skills/*/SKILL.md`, and
+`.agents/skills/*/agents/*.md`.
 
 Generate the reports:
 

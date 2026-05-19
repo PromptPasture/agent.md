@@ -80,8 +80,8 @@ async function buildTokenReport() {
 
 async function trackedFiles() {
   return [
-    ...(await markdownEntries("command", "library/commands")),
-    ...(await markdownEntries("rule", "library/rules")),
+    ...(await markdownEntries("command", ".agents/commands")),
+    ...(await markdownEntries("rule", ".agents/rules")),
     ...(await skillEntries()),
     ...(await agentEntries()),
   ];
@@ -103,20 +103,20 @@ async function markdownEntries(kind, directory) {
 }
 
 async function skillEntries() {
-  const skillsDirectory = join(repoRoot, "library/skills");
+  const skillsDirectory = join(repoRoot, ".agents/skills");
   const skills = await readdir(skillsDirectory, { withFileTypes: true });
   return skills
     .filter((skill) => skill.isDirectory())
     .map((skill) => ({
       kind: "skill",
       name: skill.name,
-      path: `library/skills/${skill.name}/SKILL.md`,
+      path: `.agents/skills/${skill.name}/SKILL.md`,
     }));
 }
 
 async function agentEntries() {
   const agents = [];
-  const skillsDirectory = join(repoRoot, "library/skills");
+  const skillsDirectory = join(repoRoot, ".agents/skills");
   const skills = await readdir(skillsDirectory, { withFileTypes: true });
 
   for (const skill of skills.filter((entry) => entry.isDirectory())) {
@@ -133,7 +133,7 @@ async function agentEntries() {
       agents.push({
         kind: "agent",
         name: `${skill.name}/${name}`,
-        path: `library/skills/${skill.name}/agents/${file.name}`,
+        path: `.agents/skills/${skill.name}/agents/${file.name}`,
       });
     }
   }

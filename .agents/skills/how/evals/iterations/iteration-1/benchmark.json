@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "skill_name": "how",
+    "type": "routing",
+    "agent": "codex",
+    "method": "agent_routing_judgment",
+    "timestamp": "2026-05-18T15:04:51Z",
+    "runs_per_query": 1
+  },
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "pass_rate": 1.0,
+    "positive_cases": 8,
+    "negative_cases": 2
+  },
+  "results": [
+    {
+      "query": "/how user signup",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 1,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "How does authentication work in this codebase?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 1,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "How does the payment webhook flow work, including validation and idempotency?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 1,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "Walk me through how background jobs are scheduled and executed here.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 1,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "How does configuration get loaded and passed into services?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 1,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "Explain the architecture of the search subsystem.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 1,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "Can you critique the architecture of the billing module?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 1,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "What is wrong with the way this app handles authorization?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 1,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "Summarize the README.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 1,
+      "pass": true
+    },
+    {
+      "query": "Implement a new endpoint for exporting audit logs.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 1,
+      "pass": true
+    }
+  ]
+}

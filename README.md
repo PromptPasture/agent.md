@@ -17,11 +17,11 @@ This playbook gives agents — and the humans working alongside them — a consi
 
 - **`AGENTS.md`** — Primary instruction file and manifest. Every runtime loads this first.
 - **`docs/`** — Task-scoped documentation with standardized layout (PRD, SPEC, ARCHITECTURE, TASKS).
-- **`library/rules/`** — Modular, composable instruction files.
-- **`library/skills/`** — Auto-invoking workflows triggered by events or file patterns.
-- **`library/commands/`** — Explicit slash commands.
-- **`library/agents/`** — Subagent personas invoked by `@mention`.
-- **`library/memory/`** — Persistent, append-only memory across sessions.
+- **`.agents/rules/`** — Modular, composable instruction files.
+- **`.agents/skills/`** — Auto-invoking workflows triggered by events or file patterns.
+- **`.agents/commands/`** — Explicit slash commands.
+- **`.agents/agents/`** — Subagent personas invoked by `@mention`.
+- **`.agents/memory/`** — Persistent, append-only memory across sessions.
 
 ## Core Principles
 
@@ -36,7 +36,7 @@ This playbook gives agents — and the humans working alongside them — a consi
 ```text
 agent.md/              # ← this repository
 ├── docs/              # Task-scoped documentation
-├── library/           # Maintained agent asset library
+├── .agents/           # Maintained agent asset library
 ├── pages/             # GitHub Pages source
 │   ├── _config.yml    # GitHub Pages configuration
 │   ├── index.md       # GitHub Pages entry point
@@ -73,13 +73,13 @@ Add `skills/`, `commands/`, `agents/`, and `docs/` as the project matures.
 
 ### Library
 
-This repository maintains its primary reusable agent assets in [`library/`](./library):
+This repository maintains its primary reusable agent assets in [`.agents/`](./.agents):
 
-- **Rules** — `library/rules/formatting-markdown.md`
-- **Skills** — `library/skills/on-new-example/SKILL.md`
-- **Commands** — `library/commands/validate.md`
-- **Agents** — `library/agents/spec-reviewer.md`
-- **Memory** — `library/memory/MEMORY.md`
+- **Rules** — `.agents/rules/formatting-markdown.md`
+- **Skills** — `.agents/skills/on-new-example/SKILL.md`
+- **Commands** — `.agents/commands/validate.md`
+- **Agents** — `.agents/agents/spec-reviewer.md`
+- **Memory** — `.agents/memory/MEMORY.md`
 
 ### Real project layout
 
@@ -121,7 +121,7 @@ project-root/
 
 ## Development
 
-This repo uses itself to govern its own development — the `library/` folder is the maintained set of playbook-conformant assets used for that work.
+This repo uses itself to govern its own development — the `.agents/` folder is the maintained set of playbook-conformant assets used for that work.
 
 ```bash
 # No build step required. All content is plain Markdown.
@@ -142,7 +142,7 @@ Before writing code, create a task folder: `mkdir docs/$(date +%Y-%m-%d)-my-feat
 - **[Docs site](https://olegshulyakov.github.io/agent.md)** — GitHub Pages documentation
 - **[PLAYBOOK.md](./pages/PLAYBOOK.md)** — Full playbook specification
 - **[Agent PDLC](./pages/AGENT_PDLC.md)** — Lifecycle diagram for working with an agent
-- **[Library](./library)** — Maintained playbook-conformant assets
+- **[Library](./.agents)** — Maintained playbook-conformant assets
 
 ## License
 
