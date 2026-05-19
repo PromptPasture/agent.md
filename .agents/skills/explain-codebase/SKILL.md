@@ -1,6 +1,6 @@
 ---
 name: explain-codebase
-description: Explain how something works in this codebase by exploring code and producing a clear architectural explanation. Optionally critique the architecture for issues.
+description: Explain how something works in this codebase by tracing code and producing a clear architectural explanation. Use critique mode only when the user asks for architectural risks, design feedback, or "what is wrong with this?"
 author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
