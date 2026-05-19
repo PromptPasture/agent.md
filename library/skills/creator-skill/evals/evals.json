@@ -65,6 +65,30 @@
         "Does not package stale iteration output unnecessarily",
         "Reports the resulting artifact path or blocker"
       ]
+    },
+    {
+      "id": 6,
+      "prompt": "Review the new agent skill I created in library/skills/data-cleanup before I publish it.",
+      "expected_output": "A skill-focused review that inspects the skill folder and reports actionable findings about trigger precision, scope, instructions, progressive disclosure, validation, and eval coverage.",
+      "files": [],
+      "expectations": [
+        "Treats the request as a review, not as a request to rewrite the skill",
+        "Inspects the full skill folder, including SKILL.md, references, scripts, assets, and evals when present",
+        "Loads or follows references/review.md",
+        "Leads with actionable findings grounded in specific skill files and line references"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Review this skill description: `description: Process files.` It should trigger for CSV cleanup, normalization, and deduplication tasks but not for generic file conversion.",
+      "expected_output": "A trigger-description review that identifies overbroad or underspecified triggering risk and suggests a precise fix direction.",
+      "files": [],
+      "expectations": [
+        "Recognizes the target as an agent skill trigger-description review",
+        "Loads or follows references/review.md for trigger-description criteria",
+        "Checks should-trigger and should-not-trigger boundaries instead of keyword stuffing",
+        "Explains the likely false-negative or false-positive behavior and a concise fix direction"
+      ]
     }
   ]
 }

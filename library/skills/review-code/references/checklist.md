@@ -8,7 +8,6 @@ Load a focused reference when the diff needs deeper review:
 - `references/security.md` for changed authentication, authorization, input handling, secrets, privacy, or abuse surfaces.
 - `references/performance.md` for hot paths, data access, rendering, payload size, concurrency, or resource-use changes.
 - `references/test-gaps.md` for missing, weak, flaky, or misleading tests.
-- `references/agent-skill.md` for created or revised agent skills, including trigger descriptions, scope, progressive disclosure, and eval coverage.
 
 ## Correctness
 
@@ -51,10 +50,6 @@ Check maintainability only where it affects change safety.
 - Check whether naming, ownership boundaries, or abstractions make the changed contract hard to use correctly.
 - Prefer local fixes that match repository patterns over broad refactors.
 - Do not elevate style preferences to review findings without a concrete defect or future-risk path.
-
-## Skill Design
-
-Check created or revised skills for agent usability. Use `references/agent-skill.md` for deeper guidance.
 
 ## Operations And Observability
 
