@@ -1,9 +1,9 @@
 ---
 name: creator-skill
-description: Create, edit, evaluate, package, and optimize skills. Use for skill authoring, iterative improvement, eval runs, benchmarks, trigger tuning, and skill packaging.
+description: Use when creating, editing, evaluating, packaging, optimizing or improving skills.
 author: Anthropic
 license: Apache-2.0
-version: 1.1.2
+version: 1.1.3
 ---
 
 # creator-skill

@@ -12,6 +12,8 @@ Ask at most one focused question when a missing answer would materially change t
 
 Ask about edge cases, input formats, output formats, success criteria, dependencies, and example files. For existing skills, inspect the current folder before editing. Check bundled scripts, references, assets, and evals so you preserve local conventions.
 
+Ground the draft in real source material when available: prior task traces, existing docs, runbooks, review comments, issue history, example files, or failed eval outputs. Prefer concrete project facts and corrections over generic best practices. Fall back to general domain knowledge only when no better source exists.
+
 ## Write `SKILL.md`
 
 Required frontmatter fields are `name` and `description`. Keep the complete frontmatter under 100 tokens. The description is the primary trigger signal, so include the core task and strongest trigger contexts, but avoid long keyword inventories.
