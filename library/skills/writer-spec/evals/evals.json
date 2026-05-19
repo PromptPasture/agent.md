@@ -4,11 +4,12 @@
     {
       "id": 1,
       "prompt": "Write a technical spec for adding OAuth login to our web app. Include architecture, data model changes, rollout plan, error handling, and test strategy.",
-      "expected_output": "Routes to technical spec guidance and produces a testable technical spec with architecture, data, rollout, errors, and verification.",
+      "expected_output": "Routes to technical spec guidance and produces a testable product specification with purpose, roles, architecture, data, rollout, errors, and verification.",
       "files": [],
       "expectations": [
         "Output is a technical spec or design doc",
         "Architecture or component changes are described",
+        "Roles, reviewers, or decision owners are included or marked as assumptions",
         "Data model or persistence impact is covered",
         "Error paths and security considerations are included",
         "Rollout or migration plan is included",
@@ -18,14 +19,15 @@
     {
       "id": 2,
       "prompt": "Document functional requirements for a subscription billing cancellation flow. Users can cancel immediately or at period end, and admins can reverse a pending cancellation.",
-      "expected_output": "Routes to functional requirements guidance and documents user-visible behavior, business rules, edge cases, and out-of-scope items.",
+      "expected_output": "Routes to functional requirements guidance and documents purpose, user-visible behavior, business rules, edge cases, out-of-scope items, and release/support readiness.",
       "files": [],
       "expectations": [
         "Output focuses on functional behavior, not implementation",
         "Requirements cover immediate cancellation and period-end cancellation",
         "Admin reversal behavior is documented",
         "Business rules and edge cases are explicit",
-        "Out-of-scope or assumptions are included"
+        "Out-of-scope or assumptions are included",
+        "Test plan or release/support readiness is included"
       ]
     },
     {
