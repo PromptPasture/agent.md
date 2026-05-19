@@ -1,67 +1,102 @@
 [
   {
     "query": "Write a `.agents/rules/testing.md` file for our Python project using pytest and ruff.",
-    "should_trigger": true
+    "should_trigger": true,
+    "split": "train"
   },
   {
     "query": "Create a CLI-agent rule that tells agents never to edit generated protobuf files.",
-    "should_trigger": true
+    "should_trigger": true,
+    "split": "train"
   },
   {
     "query": "Improve this AGENTS.md instruction: 'test stuff before done.'",
-    "should_trigger": true
+    "should_trigger": true,
+    "split": "train"
   },
   {
     "query": "Draft a Claude Code rule for files under `services/billing/**`.",
-    "should_trigger": true
+    "should_trigger": true,
+    "split": "train"
   },
   {
     "query": "Make a Cursor rule for React components in `apps/web/src/components/**`.",
-    "should_trigger": true
+    "should_trigger": true,
+    "split": "train"
   },
   {
     "query": "Write GitHub Copilot custom instructions for a Go monorepo.",
-    "should_trigger": true
+    "should_trigger": true,
+    "split": "validation"
   },
   {
     "query": "Turn our security policy into concise agent instructions for handling secrets.",
-    "should_trigger": true
+    "should_trigger": true,
+    "split": "validation"
   },
   {
     "query": "Create a path-scoped rule for Terraform under `infra/**`.",
-    "should_trigger": true
+    "should_trigger": true,
+    "split": "validation"
+  },
+  {
+    "query": "Convert our README's generated-code policy into an agent rule for `clients/**`.",
+    "should_trigger": true,
+    "split": "validation"
+  },
+  {
+    "query": "Add repo instructions for agents so frontend changes use design tokens and include screenshot notes.",
+    "should_trigger": true,
+    "split": "validation"
   },
   {
     "query": "Review this pull request for bugs and regressions.",
-    "should_trigger": false
+    "should_trigger": false,
+    "split": "train"
   },
   {
     "query": "Write a technical spec for OAuth login.",
-    "should_trigger": false
+    "should_trigger": false,
+    "split": "train"
   },
   {
     "query": "Create a user story with acceptance criteria for password reset.",
-    "should_trigger": false
+    "should_trigger": false,
+    "split": "train"
   },
   {
     "query": "Generate SQL to find inactive customers.",
-    "should_trigger": false
+    "should_trigger": false,
+    "split": "train"
   },
   {
     "query": "Explain what AGENTS.md is and how it loads in Codex.",
-    "should_trigger": false
+    "should_trigger": false,
+    "split": "train"
   },
   {
     "query": "Summarize the coding standards in this README.",
-    "should_trigger": false
+    "should_trigger": false,
+    "split": "validation"
   },
   {
     "query": "Fix the failing TypeScript tests.",
-    "should_trigger": false
+    "should_trigger": false,
+    "split": "validation"
   },
   {
     "query": "Write release notes for version 1.4.0.",
-    "should_trigger": false
+    "should_trigger": false,
+    "split": "validation"
+  },
+  {
+    "query": "Make the code follow our existing style guide.",
+    "should_trigger": false,
+    "split": "validation"
+  },
+  {
+    "query": "Add a README section explaining our package boundaries to new developers.",
+    "should_trigger": false,
+    "split": "validation"
   }
 ]
-

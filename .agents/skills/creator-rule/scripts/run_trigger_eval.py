@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -20,6 +21,8 @@ from pathlib import Path
 
 POSITIVE_PATTERNS = [
     r"\b(write|create|draft|make|improve|rewrite|turn).{0,60}\b(rule|rules|instruction|instructions)\b",
+    r"\b(convert|add).{0,80}\b(agent|agents).{0,30}\b(rule|rules|instruction|instructions)\b",
+    r"\b(convert|add).{0,80}\b(rule|rules|instruction|instructions).{0,30}\b(agent|agents)\b",
     r"\b(AGENTS\.md|CLAUDE\.md|copilot-instructions\.md|Cursor rule|\.agents/rules|\.claude/rules)\b",
     r"\bpath-scoped rule\b",
     r"\bCLI-agent rule\b",
@@ -86,18 +89,24 @@ Respond with JSON only: {{"should_trigger": true}} or {{"should_trigger": false}
         prompt_file.write(judge_prompt)
         prompt_path = prompt_file.name
 
+    if "{prompt}" in command_template:
+        raise ValueError("Use stdin or {prompt_file}; {prompt} shell interpolation is unsafe")
+
     command = command_template.format(
-        prompt=judge_prompt,
         prompt_file=prompt_path,
         skill_name=skill_name,
         description=description,
     )
+    argv = shlex.split(command)
 
     try:
-        if "{prompt" in command_template:
-            completed = subprocess.run(command, shell=True, text=True, capture_output=True, timeout=timeout)
-        else:
-            completed = subprocess.run(command, shell=True, input=judge_prompt, text=True, capture_output=True, timeout=timeout)
+        completed = subprocess.run(
+            argv,
+            input=None if "{prompt_file}" in command_template else judge_prompt,
+            text=True,
+            capture_output=True,
+            timeout=timeout,
+        )
     finally:
         Path(prompt_path).unlink(missing_ok=True)
 
@@ -116,6 +125,7 @@ def main() -> int:
     parser.add_argument("--skill-path", default=None, help="Path to creator-rule skill root")
     parser.add_argument("--agent-command", default=None, help="Optional CLI command template for real routing judgment")
     parser.add_argument("--timeout", type=int, default=30)
+    parser.add_argument("--trials", type=int, default=1, help="Number of repeated runs per query")
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON")
     args = parser.parse_args()
 
@@ -129,24 +139,32 @@ def main() -> int:
     for item in evals:
         query = item["query"]
         expected = item["should_trigger"]
-        try:
-            actual = (
-                agent_router(args.agent_command, query, skill_name, description, args.timeout)
-                if args.agent_command
-                else lexical_router(query)
-            )
-            error = None
-        except Exception as exc:
-            actual = False
-            error = str(exc)
+        split = item.get("split")
+        trial_results = []
+        errors = []
+        for _ in range(max(args.trials, 1)):
+            try:
+                trial_results.append(
+                    agent_router(args.agent_command, query, skill_name, description, args.timeout)
+                    if args.agent_command
+                    else lexical_router(query)
+                )
+            except Exception as exc:
+                trial_results.append(False)
+                errors.append(str(exc))
+
+        trigger_rate = sum(1 for result in trial_results if result) / len(trial_results)
+        actual = trigger_rate >= 0.5
 
         results.append(
             {
                 "query": query,
                 "should_trigger": expected,
+                "split": split,
                 "triggered": actual,
+                "trigger_rate": round(trigger_rate, 3),
                 "pass": actual == expected,
-                "error": error,
+                "error": errors[0] if errors else None,
             }
         )
 
@@ -176,4 +194,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
