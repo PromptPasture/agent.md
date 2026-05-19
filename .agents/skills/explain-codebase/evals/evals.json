@@ -1,5 +1,5 @@
 {
-  "skill_name": "how",
+  "skill_name": "explain-codebase",
   "evals": [
     {
       "id": 1,
@@ -18,13 +18,13 @@
     },
     {
       "id": 2,
-      "query": "/how user signup",
-      "prompt": "/how user signup",
+      "query": "/explain-codebase user signup",
+      "prompt": "/explain-codebase user signup",
       "should_trigger": true,
-      "expected_output": "Treats /how as a request for an architectural walkthrough, traces the signup path, and explains how data moves through the system.",
+      "expected_output": "Treats /explain-codebase as a request for an architectural walkthrough, traces the signup path, and explains how data moves through the system.",
       "files": [],
       "expectations": [
-        "Triggers the how skill from the /how phrasing",
+        "Triggers the explain-codebase skill from the /explain-codebase phrasing",
         "Starts from likely signup entry points",
         "Explains data flow from input through persistence or side effects",
         "Mentions tests or fixtures when found",
@@ -140,10 +140,10 @@
       "query": "Implement a new endpoint for exporting audit logs.",
       "prompt": "Implement a new endpoint for exporting audit logs.",
       "should_trigger": false,
-      "expected_output": "Does not route to how; treats the request as implementation work rather than an explanation or architecture critique.",
+      "expected_output": "Does not route to explain-codebase; treats the request as implementation work rather than an explanation or architecture critique.",
       "files": [],
       "expectations": [
-        "Does not produce a how-style architecture walkthrough as the main output",
+        "Does not produce an explain-codebase-style architecture walkthrough as the main output",
         "Inspects implementation conventions before editing",
         "Routes to a code generation skill or normal implementation workflow",
         "Adds or updates code and tests when appropriate"

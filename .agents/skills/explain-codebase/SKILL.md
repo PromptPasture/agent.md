@@ -1,12 +1,12 @@
 ---
-name: how
+name: explain-codebase
 description: Explain how something works in this codebase by exploring code and producing a clear architectural explanation. Optionally critique the architecture for issues.
 author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
 ---
 
-# how
+# explain-codebase
 
 Explore the codebase to answer "how does X work?" questions. Produce clear architectural explanations at the level of a senior engineer onboarding onto a subsystem: enough to build a working mental model, not so much that it reads like annotated source code.
 
