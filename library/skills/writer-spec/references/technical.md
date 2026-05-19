@@ -21,12 +21,21 @@
 
 [2–4 paragraphs: the problem, why now, what's been tried before. Link to relevant PRD or research.]
 
-### 1.3 Goals
+### 1.3 Roles & Responsibilities
+
+| Role / Team | Responsibility | Decision Area |
+| ----------- | -------------- | ------------- |
+
+### 1.4 Customer & Business Context
+
+[Summarize the customer need, business case, personas, and success definition. Link to PRD when available; mark inferred context with `[assumed]`.]
+
+### 1.5 Goals
 
 | Goal | Success Metric | Target |
 | ---- | -------------- | ------ |
 
-### 1.4 Non-Goals
+### 1.6 Non-Goals
 
 - [Explicitly out of scope]
 
@@ -187,6 +196,10 @@ CREATE TABLE [table_name] (
 | Integration | Service + DB | | Key flows |
 | E2E | Critical user paths | | Happy path + main errors |
 
+### 9.1 Data, Privacy, and Compliance Verification
+
+[How personal information, auditability, retention, permissions, and compliance-sensitive behavior will be tested.]
+
 ---
 
 ## 10. Implementation Plan
@@ -200,15 +213,25 @@ CREATE TABLE [table_name] (
 | Dependency | Team / System | Needed by |
 | ---------- | ------------- | --------- |
 
+## 11. Release & Operational Readiness
+
+| Activity | Owner | Required Before Launch |
+| -------- | ----- | ---------------------- |
+| Rollout / feature flag plan | | |
+| Support training | | |
+| User documentation | | |
+| Monitoring and alerts | | |
+| Feedback collection | | |
+
 ---
 
-## 11. Open Questions
+## 12. Open Questions
 
 | # | Question | Owner | Due | Status |
 | --- | -------- | ----- | --- | ------ |
 
 ---
 
-## 12. Appendix
+## 13. Appendix
 
 - [Glossary, links to related specs, ADRs, designs]
