@@ -1,35 +1,58 @@
 ---
 name: karpathy-guidelines
 description: >
-  Behavioral guidelines to avoid common LLM coding mistakes. Use when writing, reviewing, or refactoring code — especially when scope is ambiguous or the request could be solved multiple ways.
+  Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.
 author: Multica AI
 license: MIT
-version: 1.1.0
+version: 1.0.0
 ---
 
 # Karpathy Guidelines
 
 Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej Karpathy's observations on LLM coding pitfalls.
 
-Tradeoff: These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
 ## Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
-Silent guesses are expensive. Before implementing: state your assumptions explicitly, name competing interpretations rather than picking one silently, and ask one focused question if something is unclear. If a simpler approach exists than what was asked, say so.
+Before implementing:
+
+- State your assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them - don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
 
 ## Simplicity First
 
 **Minimum code that solves the problem. Nothing speculative.**
 
-Write the least code that fully solves the stated problem — no speculative features, single-use abstractions, or error handling for impossible scenarios. If the solution is 200 lines and 50 would do, write 50.
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
 ## Surgical Changes
 
 **Touch only what you must. Clean up only your own mess.**
 
-Touch only what the task requires. Don't reformat, refactor, or rename things outside your change. Match existing style. Clean up only what _your_ edits orphaned (unused imports, dead variables). If you notice something broken nearby, mention it — don't silently fix it.
+When editing existing code:
+
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it - don't delete it.
+
+When your changes create orphans:
+
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless asked.
+
+The test: Every changed line should trace directly to the user's request.
 
 ## Goal-Driven Execution
 
@@ -37,8 +60,16 @@ Touch only what the task requires. Don't reformat, refactor, or rename things ou
 
 Transform tasks into verifiable goals:
 
-- "Add validation" → write tests for invalid inputs, then make them pass
-- "Fix the bug" → write a test that reproduces it, then make it pass
-- "Refactor X" → ensure tests pass before and after
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
 
-For multi-step tasks, state a brief plan: `[step] → verify: [check]` per line. Weak criteria require constant clarification; strong criteria let you loop to done independently.
+For multi-step tasks, state a brief plan:
+
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
