@@ -9,6 +9,55 @@ import re
 import yaml
 from pathlib import Path
 
+
+def iter_markdown_lines(path):
+    """Yield non-code-fence Markdown lines with 1-based line numbers."""
+    in_fence = False
+    for line_number, line in enumerate(path.read_text().splitlines(), start=1):
+        if line.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if not in_fence:
+            yield line_number, line
+
+
+def validate_markdown_style(skill_path):
+    """Validate the preferred skill Markdown scan-anchor style."""
+    markdown_files = [skill_path / 'SKILL.md']
+    references_dir = skill_path / 'references'
+    if references_dir.exists():
+        markdown_files.extend(
+            path for path in sorted(references_dir.glob('*.md'))
+            if path.name != 'schemas.md'
+        )
+
+    for path in markdown_files:
+        lines = path.read_text().splitlines()
+        in_fence = False
+        for index, line in enumerate(lines):
+            if line.startswith("```"):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
+
+            if line.startswith("## "):
+                line_number = index + 1
+                if index + 2 >= len(lines):
+                    return False, f"{path}:{line_number}: missing bold principle after heading"
+                if lines[index + 1] != "":
+                    return False, f"{path}:{line_number}: expected blank line after heading"
+                principle = lines[index + 2]
+                if not re.match(r'^\*\*.+\*\*$', principle):
+                    return False, f"{path}:{line_number}: expected bold principle sentence after heading"
+
+        for line_number, line in iter_markdown_lines(path):
+            if line.startswith("- ") and not line.startswith("- **") and not line.startswith("- [ ]"):
+                return False, f"{path}:{line_number}: expected bold label for rule bullet"
+
+    return True, None
+
+
 def validate_skill(skill_path):
     """Basic validation of a skill"""
     skill_path = Path(skill_path)
@@ -99,6 +148,10 @@ def validate_skill(skill_path):
             return False, f"Compatibility must be a string, got {type(compatibility).__name__}"
         if len(compatibility) > 500:
             return False, f"Compatibility is too long ({len(compatibility)} characters). Maximum is 500 characters."
+
+    valid_style, style_message = validate_markdown_style(skill_path)
+    if not valid_style:
+        return False, style_message
 
     return True, "Skill is valid!"
 

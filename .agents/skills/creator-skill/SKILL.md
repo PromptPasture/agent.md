@@ -29,33 +29,35 @@ If the request spans multiple phases, read the references in workflow order: aut
 
 **Clarify, write, test, show, iterate, and package — in that order.**
 
-1. Clarify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
-2. Write or revise `SKILL.md` with concise metadata, focused instructions, and references for details that would bloat the main file.
-3. For objectively testable skills, create realistic eval prompts and run skill-enabled outputs against a meaningful baseline.
-4. Show outputs and benchmark results to the user before making another revision.
-5. Iterate until feedback is resolved or further changes stop improving results.
-6. Package the final skill only after the user is satisfied with behavior and trigger accuracy.
+1. **Clarify scope**: identify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
+2. **Write the skill**: revise `SKILL.md` with concise metadata, focused instructions, bold scan anchors, and references for details that would bloat the main file.
+3. **Test behavior**: run this skill's `scripts/quick_validate.py` against the target skill; for objectively testable skills, create realistic eval prompts and run skill-enabled outputs against a meaningful baseline.
+4. **Show evidence**: share outputs and benchmark results with the user before making another revision.
+5. **Iterate deliberately**: continue until feedback is resolved or further changes stop improving results.
+6. **Package last**: package the final skill only after the user is satisfied with behavior and trigger accuracy.
 
 ## Skill Authoring Rules
 
 **One skill, one workflow, one clear trigger — no more.**
 
-- Open each `##` section with a single bold sentence that states the section's core principle.
-- Keep metadata under 100 tokens and the main instruction body under 500 lines; use references for anything that would push past that.
-- Write descriptions that are slightly "pushy" — explicitly name the user phrases and contexts that should trigger the skill, not just what it does. Claude tends to undertrigger, so err toward specificity.
-- Put all "when to use" information in the frontmatter `description`; put routing, exclusions, examples, and detailed procedures in the body or references.
-- Do not create placeholder directories. Add `scripts/`, `references/`, `assets/`, or `evals/` only when the skill actually uses them.
-- Prefer deterministic scripts for repetitive validation, grading, packaging, and report generation.
-- Use STAR for examples and eval prompts so reviewers can see the situation, task, expected action, and result criteria.
-- Use SOLID for code-generation skills and bundled helper scripts: keep responsibilities clear, interfaces small, and dependencies explicit without adding unnecessary layers.
-- Keep skills portable across agents unless the user asks for one specific runtime. Isolate platform-specific behavior in a compatibility section or reference.
+- **Section principles**: open each `##` section with a single bold sentence that states the section's core principle.
+- **Scan anchors**: use bold labels for distinct rule bullets in prose skill docs unless the section is a schema, command example, or literal output template.
+- **Size discipline**: keep metadata under 100 tokens and the main instruction body under 500 lines; use references for anything that would push past that.
+- **Pushy descriptions**: explicitly name the user phrases and contexts that should trigger the skill, not just what it does. Claude tends to undertrigger, so err toward specificity.
+- **Trigger placement**: put all "when to use" information in the frontmatter `description`; put routing, exclusions, examples, and detailed procedures in the body or references.
+- **No placeholders**: add `scripts/`, `references/`, `assets/`, or `evals/` only when the skill actually uses them.
+- **Deterministic helpers**: prefer scripts for repetitive validation, grading, packaging, and report generation.
+- **STAR examples**: write examples and eval prompts so reviewers can see the situation, task, expected action, and result criteria.
+- **SOLID code**: keep responsibilities clear, interfaces small, and dependencies explicit without adding unnecessary layers in code-generation skills and bundled helper scripts.
+- **Portability**: keep skills portable across agents unless the user asks for one specific runtime. Isolate platform-specific behavior in a compatibility section or reference.
 
 ## Bundled Resources
 
 **Scripts and agents cover the full eval, grading, and packaging loop.**
 
-- `scripts/run_eval.py`, `scripts/run_loop.py`, and `scripts/improve_description.py` support trigger-description optimization.
-- `scripts/aggregate_benchmark.py` summarizes iteration results.
-- `scripts/package_skill.py` packages a completed skill folder.
-- `eval-viewer/generate_review.py` creates the human review UI for eval outputs and benchmark results.
-- `agents/grader.md`, `agents/comparator.md`, `agents/analyzer.md`, and `agents/benchmark-analyzer.md` support grading, blind comparison, post-hoc analysis, and benchmark analysis.
+- **Trigger optimization**: `scripts/run_eval.py`, `scripts/run_loop.py`, and `scripts/improve_description.py`
+- **Validation**: `scripts/quick_validate.py`
+- **Benchmark summaries**: `scripts/aggregate_benchmark.py`
+- **Packaging**: `scripts/package_skill.py`
+- **Human review UI**: `eval-viewer/generate_review.py`
+- **Review agents**: `agents/grader.md`, `agents/comparator.md`, `agents/analyzer.md`, and `agents/benchmark-analyzer.md`
