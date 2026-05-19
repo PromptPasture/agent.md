@@ -4,13 +4,13 @@
     {
       "id": 1,
       "prompt": "Write a PRD for workspace-level audit logs in our B2B SaaS admin console. Enterprise admins need to see who changed settings, exports must be available for compliance, and the goal is to reduce support tickets about unexplained changes.",
-      "expected_output": "A structured PRD with problem, goals, target users, scope, functional requirements, NFR summary, assumptions, open questions, and clearly marked inferred details.",
+      "expected_output": "A structured Markdown PRD with product overview, objective, goals and success metrics, target users, user stories, scope, requirements, NFR summary, assumptions, open questions, and clearly marked inferred details.",
       "files": [],
       "expectations": [
         "Output uses the PRD template with a level-1 PRD title",
-        "Problem statement explains the admin/compliance pain",
+        "Objective explains the admin/compliance pain",
         "Target users include enterprise admins or compliance users",
-        "Functional requirements cover viewing, filtering, and exporting audit logs",
+        "Requirements cover viewing, filtering, and exporting audit logs",
         "Success metrics or goals mention support-ticket reduction or audit/compliance outcomes",
         "Assumptions or inferred details are marked with [assumed]",
         "Out-of-scope items are included or explicitly omitted with rationale"
@@ -23,7 +23,7 @@
       "files": [],
       "expectations": [
         "Output is concise and calibrated for sprint planning",
-        "Problem statement focuses on seller response time",
+        "Objective focuses on seller response time",
         "Personas include marketplace sellers and buyers or buyer impact",
         "Requirements cover notification trigger, delivery preferences, and deep-link behavior",
         "Metrics include seller response time or related engagement metric",
@@ -52,7 +52,7 @@
       "expectations": [
         "Scope distinguishes replacement wizard work from legacy deprecation work",
         "Out-of-scope section is present and concrete",
-        "Functional requirements cover upload, mapping, validation, error handling, and completion",
+        "Requirements cover upload, mapping, validation, error handling, and completion",
         "Risks or dependencies mention migration, user education, or data compatibility",
         "Success criteria include import completion or error-rate metrics",
         "Open questions identify unresolved rollout or compatibility details"
