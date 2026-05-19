@@ -55,6 +55,7 @@ Ordered alphabetically by name (matches filesystem order).
 | - [ ] | `audit-a11y` | 🟠 P2 | UI/UX | Frontend / UX | Accessibility checklist with annotated findings and fix recommendations |
 | - [ ] | `audit-gap` | 🟡 P3 | Requirements | System Analyst | Gap analysis report between current and target state |
 | - [ ] | `audit-security` | 🟠 P2 | Security | Security Engineer | Security router for OWASP review, secrets exposure, and threat modeling |
+| - [x] | `audit-skill-security` | 🟠 P2 | Security | Security Engineer | Pre-install skill security audit with findings, risks, and install recommendation |
 | - [ ] | `audit-test-flaky` | 🟡 P3 | Testing | AQA | Root cause report for flaky tests with fix recommendations |
 
 ### `checklist-`
