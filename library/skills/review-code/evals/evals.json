@@ -168,6 +168,42 @@
         "Does not produce one forced comment per checklist category.",
         "Prioritizes actionable findings with severity, file references, impact, and fix direction."
       ]
+    },
+    {
+      "id": 15,
+      "prompt": "Review the new agent skill I created in library/skills/data-cleanup before I publish it.",
+      "expected_output": "A skill-focused review that inspects the skill folder and reports actionable findings about trigger precision, scope, instructions, progressive disclosure, validation, and eval coverage.",
+      "files": [],
+      "expectations": [
+        "Treats the request as a review, not as a request to rewrite the skill.",
+        "Inspects the full skill folder, including SKILL.md, references, scripts, assets, and evals when present.",
+        "Loads or follows references/agent-skill.md.",
+        "Leads with actionable findings grounded in specific skill files and line references."
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Review this skill description: `description: Process files.` It should trigger for CSV cleanup, normalization, and deduplication tasks but not for generic file conversion.",
+      "expected_output": "A trigger-description review that identifies overbroad or underspecified triggering risk and suggests a precise fix direction.",
+      "files": [],
+      "expectations": [
+        "Recognizes the target as an agent skill trigger-description review.",
+        "Loads or follows references/agent-skill.md for trigger-description criteria.",
+        "Checks should-trigger and should-not-trigger boundaries instead of keyword stuffing.",
+        "Explains the likely false-negative or false-positive behavior and a concise fix direction."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Create a new skill for reviewing SQL migrations and add trigger evals for it.",
+      "expected_output": "A routing decision toward skill creation rather than review-code because the user wants a new skill authored, not reviewed.",
+      "files": [],
+      "expectations": [
+        "Recognizes this is a skill-authoring request, not a review request.",
+        "Does not produce severity-ranked review findings by default.",
+        "Routes to the skill-creation workflow.",
+        "Mentions review-code only if the user later asks to review the created skill."
+      ]
     }
   ]
 }

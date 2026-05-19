@@ -1,8 +1,9 @@
 ---
 name: review-code
 description: >
-  Review code changes, diffs, pull requests, or branches. Use for code
-  review findings covering correctness, regressions, security, performance, and test gaps.
+  Review code changes, diffs, pull requests, branches, or newly created agent
+  skills. Use for review findings covering correctness, regressions, security,
+  performance, test gaps, skill scope, skill instructions, and trigger descriptions.
 author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
@@ -10,13 +11,13 @@ version: 1.0.0
 
 # review-code
 
-Review concrete code changes. Prioritize defects that could ship, regressions that change behavior, security or performance risks, and missing tests that make the change hard to trust.
+Review concrete code or skill changes. Prioritize defects that could ship, regressions that change behavior, security or performance risks, missing tests that make the change hard to trust, and skill design problems that would make an agent trigger incorrectly or follow weak instructions.
 
 ## Scope
 
 **Review the change, not the whole universe.**
 
-Use this skill when the user asks to review a diff, pull request, branch, commit, patch, or recently changed files, including security-sensitive review of those changes. If they ask how code works before judging it, use the explanatory workflow first and then review only if requested.
+Use this skill when the user asks to review a diff, pull request, branch, commit, patch, recently changed files, or a created skill folder, including security-sensitive review of those changes. If they ask how code works before judging it, use the explanatory workflow first and then review only if requested.
 
 Do not rewrite code during a review unless the user explicitly asks for fixes. Do not produce a praise sandwich. The useful artifact is a findings list grounded in file and line evidence.
 
@@ -28,10 +29,12 @@ Do not rewrite code during a review unless the user explicitly asks for fixes. D
 2. Read `references/checklist.md` before reviewing so the concern areas match the expected code review checklist.
 3. Inspect the changed files and nearby code that defines contracts, callers, tests, migrations, configuration, or runtime behavior affected by the change.
 4. Check behavior in this order: correctness, regressions and compatibility, security, data integrity, concurrency or async behavior, performance, observability, and tests.
-5. Load one focused reference when the diff needs deeper review: `references/regressions.md`, `references/security.md`, `references/performance.md`, or `references/test-gaps.md`.
+5. Load one focused reference when the diff needs deeper review: `references/regressions.md`, `references/security.md`, `references/performance.md`, `references/test-gaps.md`, or `references/agent-skill.md`.
 6. Validate assumptions against existing tests, fixtures, type definitions, API contracts, docs, and dependency manifests when available.
 7. Report only actionable findings. Skip style preferences, broad refactors, and speculative issues without a concrete failure mode.
 8. If no issues are found, say so directly and name any residual risk or test coverage gap.
+
+For skill reviews, inspect the full skill folder first: `SKILL.md`, references, scripts, assets, and evals. Then read `references/agent-skill.md` and judge whether the skill is scoped, triggered, structured, and validated well enough for real agent use.
 
 ## Finding Standard
 
@@ -93,3 +96,4 @@ When the runtime supports inline code comments, use them only for actionable fin
 - Check frontend changes for user-visible state, accessibility regressions, responsive behavior, and data loading errors when relevant.
 - Check backend changes for validation, authorization, idempotency, transaction boundaries, error handling, and observability when relevant.
 - Check test-only changes for false positives, order dependence, leaked state, sleeps, network dependence, and assertions that do not prove behavior.
+- Check skill changes for trigger precision, coherent scope, progressive disclosure, actionable instructions, hidden or surprising behavior, and realistic eval coverage when relevant.
