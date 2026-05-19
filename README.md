@@ -16,12 +16,12 @@ This playbook gives agents — and the humans working alongside them — a consi
 ## Features
 
 - **`AGENTS.md`** — Primary instruction file and manifest. Every runtime loads this first.
-- **`docs/`** — Task-scoped documentation with standardized layout (PRD, SPEC, ARCHITECTURE, TASKS).
 - **`.agents/rules/`** — Modular, composable instruction files.
 - **`.agents/skills/`** — Auto-invoking workflows triggered by events or file patterns.
 - **`.agents/commands/`** — Explicit slash commands.
 - **`.agents/agents/`** — Subagent personas invoked by `@mention`.
 - **`.agents/memory/`** — Persistent, append-only memory across sessions.
+- **`docs/`** — Task-scoped documentation with standardized layout (PRD, SPEC, ARCHITECTURE, TASKS).
 
 ## Core Principles
 
@@ -35,8 +35,8 @@ This playbook gives agents — and the humans working alongside them — a consi
 
 ```text
 agent.md/              # ← this repository
-├── docs/              # Task-scoped documentation
 ├── .agents/           # Maintained agent asset library
+├── docs/              # Task-scoped documentation
 ├── pages/             # GitHub Pages source
 │   ├── _config.yml    # GitHub Pages configuration
 │   ├── index.md       # GitHub Pages entry point
