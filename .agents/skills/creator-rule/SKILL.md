@@ -19,12 +19,12 @@ Write agent rules like executable project configuration: concise, scoped, and sp
 
 | Runtime | Location |
 | --- | --- |
-| Agent Playbook *(default)* | `.agents/rules/<name>.md` |
+| `.agents/` *(default)* | `.agents/rules/<name>.md` |
 | Codex / multi-agent | `AGENTS.md` for shared global rules; `.agents/rules/*.md` for scoped concerns |
 | Claude Code | `CLAUDE.md` or `.claude/rules/*.md` |
 | GitHub Copilot / VS Code | `.github/copilot-instructions.md` (repo-wide); `.github/instructions/*.instructions.md` (scoped) |
 
-Default to Agent Playbook format when runtime is unspecified.
+Default to `.agents/rules/<name>.md` when runtime is unspecified.
 
 ## Workflow
 

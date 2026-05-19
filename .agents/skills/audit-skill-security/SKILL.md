@@ -4,17 +4,6 @@ description: Use before installing, updating, or trusting a skill from any sourc
 author: UseAI-pro
 license: MIT
 version: 2.0.0
-metadata:
-  short-description: Vet any skill before install with a structured security review.
-  audit:
-    kind: auditor
-    category: Security
-    trust-score: 97
-    permissions:
-      file-read: true
-      file-write: false
-      network: false
-      shell: false
 ---
 
 # Audit Skill Security

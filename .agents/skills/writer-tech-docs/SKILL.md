@@ -2,7 +2,8 @@
 name: writer-tech-docs
 description: >
   Write technical docs. Use for READMEs, API docs, endpoint references, routine or on-call
-  runbooks, operational procedures, changelogs, and release notes.
+  runbooks, operational procedures, changelogs, and release notes. Use for operational,
+  reference, and release communication docs rather than product or specification docs.
 author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
