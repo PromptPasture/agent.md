@@ -37,6 +37,7 @@ Check whether the body teaches a reusable procedure rather than a one-off answer
 - **Right-sized detail**: watch for overcomprehensiveness. When in doubt, cut and let the agent use its own judgment.
 - **Ordered workflow**: make workflows stepwise, ordered, and validation-aware when the task has dependencies or failure modes.
 - **Templates**: provide output templates when format consistency matters. Short templates can live inline; longer or conditional ones belong in `assets/`.
+- **Section boundaries**: require standalone `---` delimiters between `##` sections in `SKILL.md`, without changing YAML frontmatter delimiters or adding an extra delimiter before the `#` title.
 - **Scan anchors**: require a bold principle sentence after each `##` section heading and bold labels for distinct rule bullets in prose skill docs, unless the section is a schema, command example, or literal output template.
 - **Gotchas**: capture non-obvious mistakes an agent is likely to make, not generic advice like "handle errors appropriately."
 - **Sensitive behavior**: make security-sensitive or destructive behavior explicit, expected by the user, and bounded by the skill description.
