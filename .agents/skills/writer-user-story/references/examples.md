@@ -4,6 +4,8 @@ Use these examples to calibrate story granularity, acceptance criteria, and deve
 
 ## Password Reset
 
+**Use this example to calibrate a small, independently valuable story.**
+
 **Input:** "Users should be able to reset their password via email."
 
 ```markdown
