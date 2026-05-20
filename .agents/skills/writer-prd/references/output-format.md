@@ -9,90 +9,139 @@ Always produce a Markdown file. Use this structure exactly unless the user provi
 ```md
 # PRD: [Product / Feature Name]
 
-## Product Overview
+---
+
+## 🔭 Product Overview
 
 | Field | Value |
 | --- | --- |
-| Document status | Draft / In Review / Approved |
-| Target date | [date or TBD] |
-| Owner | [if known, else TBD] |
-| Team members | [names or teams, else TBD] |
-| Stakeholders | [list if mentioned, else TBD] |
-| Designs | [links or TBD] |
-| Demo | [links or TBD] |
-| Work tracker | [Jira/GitHub/Linear links or TBD] |
-| Last updated | [date] |
+| 🟡 Document Status | [DRAFT / IN_REVIEW / APPROVED] |
+| 📅 Target Date | [YYYY-MM-DD or TBD] |
+| 👤 Owner | [Name or TBD] |
+| 🎽 Team Members | [Names/Teams or TBD] |
+| 💬 Stakeholders | [Names or TBD] |
+| 🎨 Designs Link | [URL or TBD] |
+| 🎥 Demo Link | [URL or TBD] |
+| 🗂️ Work Tracker Link | [URL or TBD] |
+| ✏️ Last Updated | [YYYY-MM-DD] |
 
-## Objective
+---
 
-[1–3 paragraphs. What pain exists? Who feels it? Why now? What's the cost of inaction?]
+## 🎯 Objective
 
-## Goals
+[1–3 paragraphs defining: User Pain, Target Persona, Market Timing, and Cost of Inaction. Keep technical solution details out of this section.]
 
-| Goal | Success Metric |
-| --- | --- |
-| [Outcome] | [Measurable indicator, target, or proxy] |
+---
 
-## Target Users / Personas
+## 📊 Goals
 
-[For each persona: role, context, key jobs-to-be-done, frustrations]
-
-## User Stories
-
-| User Story | Priority | Success / Acceptance Signal |
+| Goal ID | Target Outcome | Success Metric |
 | --- | --- | --- |
-| As a [persona], I want [capability], so that [outcome]. | High / Medium / Low | [metric, behavior, or validation] |
+| G-1 | [Outcome] | [Measurable indicator, target, or proxy] |
 
-## Scope
+---
 
-### In Scope
+## 👥 Target Audience Focus
+
+[For each persona: role, context, key jobs-to-be-done]
+
+- **Persona ID: P-1** [Name / Role]: Context, frustrations, and key jobs-to-be-done.
+- **Persona ID: P-2** [Name / Role]: Context, frustrations, and key jobs-to-be-done.
+
+---
+
+## 📐 Scope
+
+### ✅ In Scope
 
 - [Concrete capability or deliverable]
 
-### Out of Scope [optional]
+### 🚫 Out of Scope
 
 - [Explicit exclusions to prevent scope creep]
-- [Items that may be considered later should be marked as Later, not silently implied]
 
-## Requirements
+### ⏳ Later [optional]
 
-| Requirement | User Story / Need | Importance | Tracker | Notes |
+- [Items deliberately deferred to a future phase]
+
+---
+
+## 📋 Functional Requirements
+
+| Requirement ID | Capability / Feature | Priority | Acceptance Criteria | Tracker |
 | --- | --- | --- | --- | --- |
-| [Outcome-focused requirement] | [Related story or need] | High / Medium / Low | [issue/link or TBD] | [constraints, acceptance notes, or evidence] |
+| FR-1 | [Outcome-focused requirement] | [MUST / SHOULD / COULD] | - Criteria 1<br>- Criteria 2 | [URL or TBD] |
 
-## Non-Functional Requirements
+---
+
+## ⚡ Non-Functional Requirements [optional]
 
 [Performance, availability, security, compliance, accessibility, data, operational, or localization requirements. Keep this summary-level unless the user asks for a technical spec.]
 
-## Milestones [optional]
+| NFR ID | Category | Target Specification |
+| --- | --- | --- |
+| NFR-1 | [Performance / Security / Accessibility] | [Quantifiable engineering constraint] |
+
+---
+
+## 🌟 Milestones [optional]
 
 | Milestone | Target Date | Exit Criteria | Owner |
 | --- | --- | --- | --- |
-| ... | ... | ... | ... |
+| M-1 | [YYYY-MM-DD] | [Quantifiable milestone gate] | [Name] |
 
-## User Interaction & Design [optional]
+---
 
-[Links to wireframes, prototypes, design explorations, screenshots, demos, or UX notes. Summarize only the decisions that affect requirements.]
+## 👤 User Interaction [optional]
 
-## User Journeys / Key Flows [optional]
+[Key interaction patterns, input methods, feedback mechanisms, error states, or UX notes that directly affect implementation.]
 
-[1–3 critical flows described as numbered steps. Diagrams optional but welcome.]
+---
 
-## Assumptions & Dependencies
+## 🎨 Design [optional]
 
-| Item | Type | Detail | Validation / Owner |
+[Links to wireframes, prototypes, design system component references, or screenshots.]
+
+---
+
+## 🗺️ User Journeys / Key Flows [optional]
+
+[Describe 1–3 critical user flows as explicit, chronological numbered steps.]
+
+---
+
+## 🤔 Risks, Assumptions, & Mitigations
+
+| Risk ID | Assumption / Risk Description | Impact (H/M/L) | Mitigation Strategy | Status |
+| --- | --- | --- | --- | --- |
+| R-1 | [Risk description or dependency assumption] | [HIGH / MEDIUM / LOW] | [Engineering or product workaround] | [OPEN / CLOSED] |
+
+---
+
+## 🔗 External Dependencies [optional]
+
+[External items or deliverables that must be true or completed before this work can proceed or be verified.]
+
+| Dependency ID | Item | Impacted Requirements | Validation Owner |
 | --- | --- | --- | --- |
-| ... | Assumption / Dependency | ... | ... |
+| D-1 | [System, API, or team dependency] | [e.g., FR-1, FR-2] | [Name] |
 
-## Open Questions
+---
 
-| Question | Answer / Decision | Owner | Date Answered |
-| --- | --- | --- | --- |
-| [Question that must be resolved before or during implementation] | TBD | ... | ... |
+## ❓ Open Questions [optional]
 
-## Reference Links [optional]
+| Question ID | Question | Answer / Decision | Owner | Resolution Date |
+| --- | --- | --- | --- | --- |
+| Q-1 | [Question to resolve before or during implementation] | [TBD / Decision text] | [Name] | [YYYY-MM-DD or TBD] |
+
+---
+
+## 📚 Reference Links [optional]
 
 [Customer interviews, research, analytics, related docs, prior discussions, technical docs, demos, or glossary entries.]
+
+- **Ref-1**: [Description of link, e.g., Customer Interview Notes] - [URL]
+- **Ref-2**: [Description of link, e.g., Technical API Documentation] - [URL]
 ```
 
 ## Section Rules
