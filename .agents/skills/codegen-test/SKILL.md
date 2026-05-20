@@ -1,8 +1,9 @@
 ---
 name: codegen-test
 description: >
-  Generate production-ready automated tests and evals. Use for E2E, API, integration,
-  performance, load, AI output, tool-use, RAG, prompt regression, and CI-ready test suites.
+  Generate or revise automated tests and evals. Use for E2E/browser, API/contract,
+  integration, load/performance, LLM output, RAG, prompt regression, AI tool-use,
+  and AI cost/latency benchmark requests.
 author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
@@ -10,43 +11,56 @@ version: 1.0.0
 
 # codegen-test
 
-Router skill for generating test code. Detect the test variant from the user's request and repository context, then read exactly one variant reference before implementing or drafting the test suite.
+Generate production-ready test code and evaluation suites. Classify the request, read the matching reference, inspect the repository, then implement runnable tests or provide complete files when direct edits are not safe.
 
 ## Variant Detection
 
-Check signals in this order:
+**Route by explicit intent first, then repo evidence, then the system surface under test.**
 
-1. Explicit user intent: "E2E", "browser", "API", "contract", "load", "performance", "AI eval", "LLM eval", "tool use", "RAG", "prompt regression", "cost", "latency", "k6", "Playwright", and similar.
-2. Existing files and dependencies: `playwright.config.*`, `cypress.config.*`, `selenium`, `supertest`, `newman`, `k6`, `locust`, `jmeter`, `evals/`, `promptfoo`, `deepeval`, `ragas`, `openevals`, model SDK usage, test directories, package scripts, CI jobs.
-3. Target surface: UI workflows route to `references/e2e.md`; HTTP endpoints and service contracts route to `references/api.md`; non-AI throughput, latency, soak, spike, and capacity scenarios route to `references/perf.md`; AI answer quality routes to `references/ai-output.md`; AI tool orchestration routes to `references/ai-tool-use.md`; AI cost, latency, token, and throughput benchmarks route to `references/ai-perf.md`.
-4. Security and abuse-resistance requests route away from this skill to `audit-security`.
-5. If still ambiguous, ask one short clarifying question naming the likely variants.
+- **User phrases:** Treat "E2E", "browser", "Playwright", "Cypress", "API", "contract", "integration", "load", "performance", "k6", "Locust", "AI eval", "LLM eval", "RAG", "prompt regression", "tool use", "agent eval", "latency", "tokens", and "cost" as strong routing signals.
+- **Repository signals:** Check configs, dependencies, test folders, package scripts, CI jobs, eval folders, and framework imports before choosing patterns. Common signals include `playwright.config.*`, `cypress.config.*`, `supertest`, `newman`, `pytest`, `k6`, `locust`, `jmeter`, `promptfoo`, `deepeval`, `ragas`, `openevals`, and model SDK usage.
+- **Surface signals:** Route browser user journeys to E2E, HTTP endpoints and service contracts to API, non-AI throughput or latency scenarios to performance, AI answer quality and RAG grounding to AI output, agent tool traces to AI tool-use, and AI latency/cost/token benchmarks to AI performance.
+- **Security boundary:** Do not use this skill for security, abuse-resistance, jailbreak, privacy, or adversarial audit work unless the user is asking only for ordinary regression tests around already-defined behavior.
+- **Ambiguity:** If two variants are plausible and the wrong one would change the files or framework, ask one short question naming the likely choices.
 
 ## Routing Table
 
+**Read exactly one reference unless the user explicitly asks for a mixed suite.**
+
 | Request | Reference |
 | --- | --- |
-| Browser flows, smoke tests, page objects, visual user journeys, login/checkout/onboarding paths | `references/e2e.md` |
-| Endpoint tests, controller tests, service integration tests, OpenAPI examples, Postman/Newman collections, Supertest suites | `references/api.md` |
-| Load, stress, soak, spike, latency budgets, throughput checks, k6/Locust/JMeter scripts | `references/perf.md` |
-| LLM output quality, prompt regression, grading rubrics, structured output checks, RAG answer quality | `references/ai-output.md` |
-| Agent tool choice, tool arguments, recovery from tool errors, multi-step tool workflows | `references/ai-tool-use.md` |
+| Browser flows, smoke tests, page objects, login, checkout, onboarding, UI validation, visual user journeys | `references/e2e.md` |
+| HTTP endpoints, controllers, service integration tests, OpenAPI examples, Postman/Newman collections, Supertest suites | `references/api.md` |
+| Load, stress, soak, spike, capacity, p95/p99 latency, throughput, k6, Locust, JMeter | `references/perf.md` |
+| LLM answer quality, prompt regression, grading rubrics, structured output checks, RAG answer grounding, citation checks | `references/ai-output.md` |
+| Agent tool choice, tool arguments, mocked tool failures, recovery behavior, multi-step tool workflows | `references/ai-tool-use.md` |
 | AI latency, token usage, cost per task, model-call count, retry rate, throughput, quality-per-dollar | `references/ai-perf.md` |
+
+## Repository Workflow
+
+**Fit the suite into the project instead of inventing a parallel test universe.**
+
+- **Inspect first:** Identify the runner, language, fixture style, factories, auth helpers, test data setup, naming conventions, and CI commands before editing.
+- **Reuse local patterns:** Prefer existing helpers, clients, fixtures, page objects, factories, config loaders, and environment handling. Add new helpers only when they remove repeated setup in the tests being added.
+- **Write runnable code:** Implement tests in the repository when enough context exists. If direct edits are unsafe or the user asks for a draft, provide complete file contents with paths, assumptions, and run commands.
+- **Keep scope tight:** Cover the highest-value happy path plus meaningful failure, edge, or regression cases. Avoid broad tests that only assert existence or duplicate lower-level coverage.
+- **Design for determinism:** Prefer stable selectors, public API contracts, deterministic fixtures, isolated data, explicit assertions, and existing test doubles. Avoid sleeps, hidden network dependencies, shared mutable state, and order-dependent tests.
+- **Protect secrets:** Keep credentials, tokens, base URLs, and environment-specific values behind existing config helpers or environment variables.
 
 ## Working Rules
 
-- Inspect the repository before writing tests. Reuse its test runner, fixtures, factories, naming conventions, package scripts, and CI patterns.
-- Use bundled scripts when they fit: `scripts/validate_evals.py` validates this skill's eval suite, `scripts/run_eval.py` runs trigger/routing evals, `scripts/run_loop.py` runs eval/improvement loops, `scripts/aggregate_benchmark.py` summarizes iteration results, `scripts/scaffold_ai_eval.py` creates starter AI eval folders, and `scripts/summarize_ai_perf.py` summarizes AI benchmark `results.jsonl` files.
-- Generate runnable test code, not only prose. If context is insufficient to edit files safely, provide complete file contents and state the assumptions.
-- Prefer stable selectors, public API contracts, and deterministic fixtures. Avoid sleeps, hidden network dependencies, shared mutable test data, and order-dependent tests.
-- Cover the highest-value happy path plus meaningful negative or edge cases. Do not create broad low-signal tests that only assert that something exists.
-- Keep credentials, tokens, and environment-specific values behind environment variables or existing config helpers.
-- When adding files, include the minimal command needed to run the tests and any required environment variables.
-- For AI evals, measure quality and operational metrics together when possible. Latency and cost without pass/fail quality mostly prove how quickly the system can be wrong.
+**Use the bundled helpers for skill maintenance and generated eval scaffolding.**
+
+- **Skill validation:** Run `scripts/validate_evals.py` after editing this skill's eval cases, `scripts/run_eval.py` for trigger/routing checks, `scripts/run_loop.py` for eval/improvement loops, and `scripts/aggregate_benchmark.py` to summarize iterations.
+- **AI eval scaffolding:** Use `scripts/scaffold_ai_eval.py` when creating a starter AI eval folder and `scripts/summarize_ai_perf.py` when summarizing AI benchmark `results.jsonl` files.
+- **Quality pairing:** For AI evals and benchmarks, measure quality with operational metrics when possible. Latency, tokens, and cost without pass/fail quality mostly show how efficiently the system can be wrong. Annoyingly common, still not useful.
+- **Verification:** Run the narrowest relevant test command when feasible. If verification cannot run, state the blocker and provide the exact command the user should run.
 
 ## Output Format
 
-When editing a repository, finish with changed files, run command, and verification status.
+**End with the information needed to review and rerun the work.**
+
+When editing a repository, finish with changed files, the test command used, and verification status.
 
 When only drafting code, use this structure:
 

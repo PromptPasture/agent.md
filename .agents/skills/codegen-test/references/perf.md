@@ -4,6 +4,8 @@ Use this reference for load, stress, spike, soak, capacity, and latency-budget t
 
 ## Tool Selection
 
+**Use the existing performance tool, or default to the simplest CI-friendly fit.**
+
 Prefer the existing tool. If no tool exists:
 
 | Need | Tool |
@@ -16,24 +18,30 @@ Default to k6 for new HTTP performance scripts because it is scriptable, CI-frie
 
 ## Implementation Pattern
 
-- Define the objective first: smoke performance, load, stress, spike, soak, or regression budget.
-- Model realistic traffic with setup data, weighted scenarios, think time, and representative payloads.
-- Keep target URLs, credentials, and thresholds configurable through environment variables.
-- Add thresholds for the user-visible budget, not only generic averages. Prefer percentile checks such as `p95`.
-- Validate responses inside the script so performance failures are not masked by fast error pages.
-- Avoid destructive writes against production-like systems unless the user explicitly requested that and cleanup is defined.
+**Model realistic traffic and validate that responses are actually correct.**
+
+- **Objective:** Define smoke performance, load, stress, spike, soak, or regression budget first.
+- **Traffic model:** Use setup data, weighted scenarios, think time, and representative payloads.
+- **Configuration:** Keep target URLs, credentials, and thresholds configurable through environment variables.
+- **Thresholds:** Add checks for the user-visible budget, not only generic averages. Prefer percentile checks such as `p95`.
+- **Response validation:** Validate responses inside the script so performance failures are not masked by fast error pages.
+- **Destructive writes:** Avoid them against production-like systems unless the user explicitly requested that and cleanup is defined.
 
 ## Scenario Defaults
 
+**Include configurable targets, meaningful thresholds, and response checks.**
+
 For k6, include:
 
-- `BASE_URL` environment variable.
-- `options.thresholds` for `http_req_failed` and `http_req_duration`.
-- A smoke or ramping scenario appropriate to the request.
-- `check` calls for status and important response content.
-- Short setup comments explaining how to run locally and in CI.
+- **Base URL:** `BASE_URL` environment variable.
+- **Thresholds:** `options.thresholds` for `http_req_failed` and `http_req_duration`.
+- **Scenario:** A smoke or ramping scenario appropriate to the request.
+- **Checks:** `check` calls for status and important response content.
+- **Run notes:** Short setup comments explaining how to run locally and in CI.
 
 ## k6 Example
+
+**Use a minimal script that can run locally and in CI.**
 
 ```js
 import http from 'k6/http';
@@ -71,8 +79,12 @@ export default function () {
 
 ## Locust Pattern
 
+**Represent actor behavior with weighted tasks and configurable settings.**
+
 Use one `HttpUser` per actor type, tasks weighted by expected traffic, and environment variables for host and credentials. Keep setup and teardown idempotent.
 
 ## JMeter Pattern
+
+**Only generate JMeter artifacts when they match the repository's existing practice.**
 
 When asked for JMeter, generate a `.jmx` plan or a clear XML snippet only if the project already stores JMeter files. Otherwise provide the test plan structure plus CLI invocation.
