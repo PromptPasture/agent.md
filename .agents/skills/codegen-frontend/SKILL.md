@@ -1,31 +1,30 @@
 ---
 name: codegen-frontend
-description: >
-  Generate production-ready frontend code. Use for components, pages, routes,
-  client state, forms, styling, accessibility, performance, PWA behavior, and
-  data visualization in modern web frameworks.
+description: Generate production-ready frontend code. Use for components, pages, routes, client state, forms, styling, accessibility, performance, PWA behavior, and data visualization.
 author: Oleg Shulyakov
 license: MIT
-version: 1.0.0
+version: 1.1.0
 ---
 
 # codegen-frontend
 
-Router skill for implementing frontend code. Detect the target language/runtime, framework, styling system, and user-facing capability from the user's request and repository context. Read the smallest useful set of references before editing or drafting code.
+Implement production frontend work by routing to the smallest relevant reference set, matching the repository's existing architecture, and verifying the user-facing behavior.
 
 ## Variant Detection
 
-Check signals in this order:
+**Classify the work from explicit user intent first, then confirm it against the repository.**
 
-1. Explicit user intent: framework names, route/page names, component libraries, state libraries, CSS systems, test tools, file paths, or extensions.
-2. Existing files and dependencies: `package.json`, lockfiles, `vite.config.*`, `next.config.*`, `remix.config.*`, `nuxt.config.*`, `angular.json`, `svelte.config.*`, `astro.config.*`, `tsconfig.json`, source folders, imports, design tokens, Storybook, and CI jobs.
-3. Target surface: components, pages, layouts, routes, loaders/actions, forms, stores, queries, charts, responsive styling, accessibility fixes, PWA behavior, and performance work route to this skill.
-4. Test-only requests route to `codegen-test`. API contract design routes to `design-api`. Backend implementation routes to `codegen-backend`. UI/UX design-only specs route to `writer-spec` or a design skill when no code is requested.
-5. If still ambiguous, ask one short clarifying question naming the likely framework or styling options.
+- **User signals:** Look for framework names, route or page names, component libraries, state libraries, CSS systems, test tools, file paths, file extensions, and requested user-facing behavior.
+- **Repository signals:** Inspect `package.json`, lockfiles, framework configs, `tsconfig.json`, source folders, imports, routing structure, design tokens, Storybook, test setup, and CI jobs before choosing an implementation path.
+- **Frontend scope:** Use this skill for components, pages, layouts, routes, loaders/actions, forms, stores, queries, charts, responsive styling, accessibility fixes, PWA behavior, and frontend performance work.
+- **Route away:** Use `codegen-test` for test-only work, `design-api` for API contract design, `codegen-backend` for backend implementation, and `writer-spec` or a design skill for UI/UX specification when no code is requested.
+- **Clarify rarely:** If the framework, styling system, or target surface remains genuinely ambiguous after inspection, ask one short question naming the likely options.
 
 ## Reference Routing
 
-Read one language or markup reference first:
+**Read only the references needed for the current implementation.**
+
+Start with one language or markup reference:
 
 | Signal | Reference |
 | --- | --- |
@@ -33,7 +32,7 @@ Read one language or markup reference first:
 | TypeScript, `.ts`, `.tsx`, strict typing, typed components, `tsconfig.json` | `references/typescript.md` |
 | JavaScript, `.js`, `.jsx`, no TypeScript configuration | `references/javascript.md` |
 
-Read one framework reference when detected:
+Then read one framework reference when detected:
 
 | Signal | Reference |
 | --- | --- |
@@ -48,7 +47,7 @@ Read one framework reference when detected:
 | Astro, islands, content collections | `references/javascript-astro.md` |
 | SolidJS, signals, SolidStart | `references/javascript-solidjs.md` |
 
-Read styling references only when relevant:
+Add capability references only when the task needs them:
 
 | Signal | Reference |
 | --- | --- |
@@ -56,11 +55,6 @@ Read styling references only when relevant:
 | Tailwind, utility classes, variants, `tailwind.config.*` | `references/css-tailwind.md` |
 | Bootstrap, React-Bootstrap, Bootstrap grid/utilities | `references/css-bootstrap.md` |
 | MUI, Chakra, Mantine, Ant Design, Radix, shadcn/ui, Headless UI, design-system component APIs | `references/css-component-libraries.md` |
-
-Read capability references when the work touches that concern:
-
-| Request | Reference |
-| --- | --- |
 | WCAG, keyboard UX, focus, semantics, screen readers | `references/accessibility.md` |
 | Locales, ICU messages, formatting, RTL, locale routing | `references/internationalization.md` |
 | Validation, complex inputs, dirty state, error display | `references/forms.md` |
@@ -69,23 +63,34 @@ Read capability references when the work touches that concern:
 | Service workers, manifest, offline mode, installability | `references/pwa.md` |
 | Charts, dashboards, dense tables, interactive data | `references/visualization.md` |
 
+## Implementation Workflow
+
+**Build the real workflow in the local style before polishing edge cases.**
+
+- **Inspect first:** Identify the existing component boundaries, route conventions, data-fetching layer, state model, styling approach, design tokens, lint rules, and accessibility patterns before editing.
+- **Keep scope tight:** Make the smallest change that completes the requested behavior. Avoid new providers, stores, component layers, UI kits, icon sets, chart libraries, or form libraries unless the request or repository already points there.
+- **Place code deliberately:** Put reusable primitives near the existing design system, route-specific composition near routes or pages, and side effects in the established data, loader, action, hook, service, or store layer.
+- **Model states explicitly:** Implement applicable loading, empty, error, success, disabled, optimistic, validation, permission, and offline states. Do not ship decorative placeholders for requested product behavior.
+- **Preserve visual language:** Match existing typography, spacing, color tokens, icon conventions, motion, density, and component APIs. Prefer project-owned abstractions when they already fit.
+- **Design for change:** Keep components cohesive, props explicit, dependencies local or injected through existing mechanisms, and shared logic extracted only when it removes meaningful duplication.
+
 ## Working Rules
 
-- Inspect the repository before writing code. Reuse its component boundaries, routing conventions, data-fetching layer, styling system, design tokens, test setup, lint rules, and accessibility patterns.
-- Keep the implementation as simple as the workflow allows. Do not introduce new component layers, state stores, providers, or utility abstractions unless they remove real duplication or match established project patterns.
-- Build the actual user-facing workflow, not a decorative placeholder. Prefer complete states: loading, empty, error, success, disabled, optimistic, validation, and permission states when they apply.
-- Keep components cohesive. Put reusable primitives near the existing design system, route-specific composition near routes/pages, and side effects in the project's established data or state layer.
-- Apply SOLID as frontend design guidance, not vocabulary theater: components should have clear responsibilities, props should stay small and explicit, and dependencies should flow through the project's existing hooks, context, loaders, or services.
-- Preserve existing visual language. Do not add a new UI kit, styling library, icon set, state manager, chart library, or form library unless the request or repository already points there.
-- Treat accessibility as implementation work, not a final checklist. Use semantic elements, labels, keyboard navigation, visible focus, reduced-motion behavior, useful alt text, and status announcements where needed.
-- Keep responsive behavior explicit with stable layout constraints. Avoid text overlap, layout shift, viewport-scaled typography, and controls whose size changes when labels or icons appear.
-- Validate user input at the UI boundary and keep client-side validation consistent with server constraints. Never rely on frontend checks as the only enforcement for authorization or sensitive rules.
-- Add or update focused tests when the repository has a frontend test setup. Prefer component, interaction, or route tests that cover behavior over shallow render-only tests.
-- Run the narrowest relevant formatter, linter, typecheck, build, and tests available. If a command cannot be run, state why and include the command the user should run.
+**Treat frontend quality as behavior, accessibility, resilience, and maintainability together.**
+
+- **Accessibility:** Use semantic elements, labels, keyboard navigation, visible focus, reduced-motion behavior, useful alt text, and status announcements where needed. Accessibility is implementation work, not a final checklist.
+- **Responsive layout:** Use stable constraints such as grid tracks, flex rules, aspect ratios, min/max sizes, and explicit wrapping. Avoid text overlap, layout shift, viewport-scaled typography, and controls that resize unpredictably.
+- **Forms:** Validate at the UI boundary, expose errors accessibly, preserve dirty and pending state, and keep client-side validation consistent with server constraints. Never rely on frontend checks as the only enforcement for authorization or sensitive rules.
+- **State:** Keep local state local. Use existing query, cache, store, loader, action, or context patterns for shared state, server state, optimistic updates, and invalidation.
+- **Performance:** Avoid unnecessary client JavaScript, repeated expensive renders, unbounded lists, layout thrashing, oversized assets, and avoidable bundle growth. Defer deeper optimization until measurement or risk justifies it.
+- **Tests:** Add or update focused tests when the repository has a frontend test setup. Prefer component, interaction, route, accessibility, or visual-regression coverage that exercises behavior over shallow render-only tests.
+- **Verification:** Run the narrowest relevant formatter, linter, typecheck, build, and tests available. For browser-visible changes, inspect the running UI when practical and check responsive breakpoints that matter.
 
 ## Output Format
 
-When editing a repository, finish with changed files, run commands, and verification status.
+**Report what changed, how it was checked, and any remaining risk.**
+
+When editing a repository, finish with changed files, commands run, and verification status. Mention commands that could not be run and why.
 
 When only drafting code, use this structure:
 
