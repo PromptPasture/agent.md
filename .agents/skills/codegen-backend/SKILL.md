@@ -1,30 +1,28 @@
 ---
 name: codegen-backend
-description: >
-  Generate production-ready backend code. Use for API routes, services, middleware,
-  workers, persistence, validation, auth integration, and backend tests across common
-  backend languages, including TIOBE top-language ecosystems.
+description: Build or modify backend implementation. Use for API routes, services, middleware, workers, persistence, validation, authorization, configuration, observability, and backend behavior tests.
 author: Oleg Shulyakov
 license: MIT
-version: 1.0.0
+version: 1.1.0
 ---
 
 # codegen-backend
 
-Router skill for implementing backend code. Detect the target language and framework from the user's request and repository context, then read exactly one language reference before editing or drafting code. If one framework is clearly identified, also read the matching flat framework reference from `references/`.
+Implement backend code for APIs, services, workers, persistence, middleware, validation, authorization, configuration, observability, and behavior tests. Use this as a router: identify the backend language from the request and repository, read exactly one language reference, and read at most one framework reference when the framework signal is explicit or unambiguous.
 
 ## Variant Detection
 
-Check signals in this order:
+**Route from concrete evidence before writing code.**
 
-1. Explicit user intent: language names, framework names, package managers, runtime names, file paths, or extensions.
-2. Existing files and dependencies: `pyproject.toml`, `requirements.txt`, `package.json`, `go.mod`, `pom.xml`, `build.gradle`, `Gemfile`, `Cargo.toml`, `.csproj`, `composer.json`, `mix.exs`, source folders, imports, test directories, and CI jobs.
-3. Target surface: HTTP routes, controllers, services, repositories, jobs, workers, middleware, validators, persistence, configuration, observability, and tests route to the language owning the existing backend surface.
-4. Contract-first API requests route away to `design-api` unless the user explicitly asks to implement from an existing contract.
-5. Specialized auth, GraphQL, real-time, database-only SQL, and test-only requests should use `patterns-auth`, `patterns-graphql`, `patterns-realtime`, `writer-sql`, or `codegen-test` when those are the primary artifact.
-6. If still ambiguous, ask one short clarifying question naming the likely languages.
+- **User intent:** Prefer explicit language, framework, runtime, package manager, file path, extension, or named backend surface from the prompt.
+- **Repository evidence:** Inspect dependency manifests, source layout, imports, test folders, and CI jobs before choosing a variant. Common signals include `pyproject.toml`, `requirements.txt`, `package.json`, `go.mod`, `pom.xml`, `build.gradle`, `Gemfile`, `Cargo.toml`, `.csproj`, `composer.json`, and `mix.exs`.
+- **Owned surface:** Routes, controllers, services, repositories, jobs, workers, middleware, validators, persistence, configuration, observability, and backend tests route to the language that already owns that surface.
+- **Adjacent skills:** Use `design-api` for contract-first API design unless the user asks to implement an existing contract. Use specialized auth, GraphQL, real-time, SQL, or test skills when those are the primary artifact rather than backend implementation.
+- **Ambiguity:** If multiple backend stacks remain plausible after inspection, ask one short question naming the likely choices.
 
 ## Language Routing Table
+
+**Read exactly one language reference for the selected backend stack.**
 
 | Signal | Reference |
 | --- | --- |
@@ -45,15 +43,17 @@ Check signals in this order:
 | Delphi/Object Pascal services, RAD Server, DataSnap, Horse, Lazarus, `.pas`, `.dpr` | `references/delphi.md` |
 | Fortran numerical services, ISO_C_BINDING, fpm, CMake, batch compute jobs, `.f90`, `.f` | `references/fortran.md` |
 | Perl web services, Mojolicious, Dancer2, Catalyst, DBI, CPAN, `cpanfile`, `.pl`, `.pm` | `references/perl.md` |
-| Swift server code, Vapor, Hummingbird, SwiftNIO, Package.swift, `.swift` | `references/swift.md` |
+| Swift server code, Vapor, Hummingbird, SwiftNIO, `Package.swift`, `.swift` | `references/swift.md` |
 | Ada services, GNAT, Alire, SPARK, AWS Ada Web Server, `.adb`, `.ads` | `references/ada.md` |
 | MATLAB production server code, batch workers, toolboxes, `.m`, `.mlx`, `startup.m` | `references/matlab.md` |
 
 ## Framework References
 
-After reading the language reference, read at most one framework reference when the signal is explicit or unambiguous from repository dependencies and file layout. Keep framework files flat in `references/`.
+**Add one framework reference only when it materially narrows implementation rules.**
 
-| Signal | Framework reference |
+After reading the language reference, read at most one framework reference when the signal is explicit from the prompt or unambiguous from dependencies, imports, and file layout. Keep framework files flat in `references/`.
+
+| Signal | Reference |
 | --- | --- |
 | FastAPI, Starlette route dependencies | `references/python-fastapi.md` |
 | Django, Django REST Framework, `manage.py` | `references/python-django.md` |
@@ -83,20 +83,35 @@ After reading the language reference, read at most one framework reference when 
 
 ## Working Rules
 
-- Inspect the repository before writing code. Reuse its architecture, naming, dependency injection, error handling, validation, logging, tests, factories, and migration conventions.
-- Keep the change as simple as the request allows. Prefer the smallest complete route, service, persistence, and test updates over speculative framework work or unused extension points.
-- Prefer small, cohesive changes across route/controller, service/domain logic, persistence, validation, and tests. Do not hide business rules in transport handlers when the existing project has a service layer.
-- Apply SOLID pragmatically: keep handlers thin, give services and domain objects clear responsibilities, keep interfaces narrow, and depend on abstractions only when the project already uses them or the boundary improves testing or integration safety.
-- Treat public API behavior as a contract. Preserve backward compatibility unless the user explicitly asks for a breaking change, and update docs or generated specs when the repo already keeps them in sync.
-- Validate input at the boundary, enforce authorization before side effects, and keep secrets in existing configuration mechanisms or environment variables.
-- Use transactions around multi-write operations. Make idempotency, retries, and concurrency behavior explicit for jobs, webhooks, payments, and external integrations.
-- Return consistent errors using the project's existing envelope or framework conventions. Avoid leaking stack traces, raw SQL errors, tokens, or internal IDs in user-facing responses.
-- Add or update focused tests for the changed behavior. Use the repository's test runner and fixtures instead of inventing parallel test infrastructure.
-- Run the narrowest relevant formatter, linter, typecheck, and tests available. If a command cannot be run, state why and include the command the user should run.
+**Make the smallest complete backend change that fits the existing system.**
+
+- **Inspect first:** Read the nearby route/controller, service, persistence, validation, error handling, dependency injection, logging, migration, factory, fixture, and test conventions before editing.
+- **Follow the local shape:** Put code where the repository already puts similar behavior. Prefer existing helpers, envelopes, domain errors, configuration loaders, database clients, queue abstractions, and test utilities over new patterns.
+- **Keep boundaries clear:** Keep transport handlers thin when a service or domain layer exists. Put business rules in the layer that already owns them, and keep persistence details behind the existing repository or ORM boundary.
+- **Apply SOLID pragmatically:** Give new functions, services, and domain objects one clear responsibility; keep interfaces narrow; depend on abstractions only when the project already does or when the boundary reduces real coupling or test risk.
+- **Preserve contracts:** Treat public API behavior, response shapes, status codes, event payloads, and job side effects as contracts. Avoid breaking changes unless the user asks for them, and update docs, generated specs, or fixtures when the repo keeps them in sync.
+- **Secure boundaries:** Validate input at the boundary, enforce authorization before side effects, avoid logging secrets, and store credentials only through existing configuration or secret mechanisms.
+- **Handle data safely:** Use transactions for multi-write operations. Make idempotency, retry classification, cancellation, timeouts, pagination stability, and concurrency behavior explicit for jobs, webhooks, payments, imports, and external integrations.
+- **Return consistent errors:** Use the project's existing error envelope or framework conventions. Do not expose stack traces, raw SQL errors, tokens, secret material, or sensitive internal IDs in user-facing responses.
+- **Test behavior:** Add or update focused tests for the requested behavior, including success, validation failure, authorization failure when relevant, and persistence or transaction edge cases for write flows.
+- **Verify locally:** Run the narrowest relevant formatter, linter, typecheck, migration check, and tests available. If a command cannot run, report the failure reason and the exact command.
+
+## Implementation Flow
+
+**Move from evidence to code to verification without inventing parallel architecture.**
+
+1. Identify the language and optional framework, then read the selected reference files.
+2. Inspect the closest existing implementation and tests for the same kind of backend surface.
+3. Plan the minimal file set across transport, service/domain, persistence, validation, configuration, and tests.
+4. Edit code using project conventions, keeping public behavior compatible unless instructed otherwise.
+5. Add or update tests that prove the behavior and likely failure paths.
+6. Run focused verification commands and fix regressions within the requested scope.
 
 ## Output Format
 
-When editing a repository, finish with changed files, run commands, and verification status.
+**Report what changed and how it was checked.**
+
+When editing a repository, finish with changed files, commands run, and verification status. Mention unresolved risks only when they affect handoff.
 
 When only drafting code, use this structure:
 
