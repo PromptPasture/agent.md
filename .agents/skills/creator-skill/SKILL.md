@@ -10,6 +10,8 @@ version: 1.1.3
 
 Create new skills, review and improve existing skills, evaluate outputs, optimize trigger descriptions, and package final skill folders.
 
+---
+
 ## Route the Work
 
 **Read only the reference that matches the user's current task.**
@@ -25,6 +27,8 @@ Create new skills, review and improve existing skills, evaluate outputs, optimiz
 
 If the request spans multiple phases, read the references in workflow order: authoring, review, evaluation, description optimization, then agent compatibility only when platform details matter.
 
+---
+
 ## Core Workflow
 
 **Clarify, write, test, show, iterate, and package — in that order.**
@@ -36,10 +40,13 @@ If the request spans multiple phases, read the references in workflow order: aut
 5. **Iterate deliberately**: continue until feedback is resolved or further changes stop improving results.
 6. **Package last**: package the final skill only after the user is satisfied with behavior and trigger accuracy.
 
+---
+
 ## Skill Authoring Rules
 
 **One skill, one workflow, one clear trigger — no more.**
 
+- **Section delimiters**: place a standalone `---` between `##` sections in authored `SKILL.md` files so models see strong structural boundaries.
 - **Section principles**: open each `##` section with a single bold sentence that states the section's core principle.
 - **Scan anchors**: use bold labels for distinct rule bullets in prose skill docs unless the section is a schema, command example, or literal output template.
 - **Size discipline**: keep metadata under 100 tokens and the main instruction body under 500 lines; use references for anything that would push past that.
@@ -50,6 +57,8 @@ If the request spans multiple phases, read the references in workflow order: aut
 - **STAR examples**: write examples and eval prompts so reviewers can see the situation, task, expected action, and result criteria.
 - **SOLID code**: keep responsibilities clear, interfaces small, and dependencies explicit without adding unnecessary layers in code-generation skills and bundled helper scripts.
 - **Portability**: keep skills portable across agents unless the user asks for one specific runtime. Isolate platform-specific behavior in a compatibility section or reference.
+
+---
 
 ## Bundled Resources
 

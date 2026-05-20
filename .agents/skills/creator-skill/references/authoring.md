@@ -28,6 +28,7 @@ Keep the Markdown body under 500 lines. The body should explain workflow, routin
 
 Apply the house Markdown style while writing, not as a later cleanup pass:
 
+- **Section delimiters**: place a standalone `---` between `##` sections in `SKILL.md`. Keep the YAML frontmatter delimiters unchanged, and do not add an extra delimiter immediately after the frontmatter or before the `#` title.
 - **Section principles**: open each `##` section with a single bold sentence that states the section's core principle.
 - **Rule bullets**: use bold labels as scan anchors when each bullet is a distinct rule.
 - **Template exceptions**: do not force bold labels into schemas, command examples, literal output templates, or checklist items where they would make the example less accurate.
@@ -81,5 +82,7 @@ Avoid relying on one agent's tool names, slash commands, event stream, or UI unl
 Use imperative instructions. Explain why constraints matter instead of stacking brittle all-caps rules. Include examples when they prevent ambiguity, but keep examples short and move large examples into references.
 
 Use bold scan anchors consistently so another agent can skim section principles and rule labels before reading details.
+
+Use standalone `---` delimiters between `##` sections so long skill files segment cleanly in model context.
 
 Skills must not contain malware, hidden exfiltration behavior, credential capture, or instructions that would surprise the user relative to the skill description.
