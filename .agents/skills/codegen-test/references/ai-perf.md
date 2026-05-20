@@ -6,18 +6,22 @@ This is different from classic HTTP load testing. An AI endpoint can be fast whi
 
 ## What To Measure
 
-- End-to-end latency: user request to final answer.
-- First-token latency: useful for streaming UX.
-- Model latency by call: each model invocation, not only total request time.
-- Tool latency: retrieval, browser, database, code execution, or API calls.
-- Input/output tokens by call and total tokens by task.
-- Estimated cost by provider/model pricing, recorded as a derived metric.
-- Model-call count, tool-call count, retry count, and error rate.
-- Cache hit rate for prompt, retrieval, embedding, or response caches.
-- Throughput under concurrency: successful tasks per minute at target quality.
-- Quality-per-dollar: pass rate divided by cost, or cost per passing case.
+**Measure operational cost and speed with enough detail to explain regressions.**
+
+- **End-to-end latency:** User request to final answer.
+- **First-token latency:** Useful for streaming UX.
+- **Model latency:** Each model invocation, not only total request time.
+- **Tool latency:** Retrieval, browser, database, code execution, or API calls.
+- **Token usage:** Input/output tokens by call and total tokens by task.
+- **Estimated cost:** Provider/model pricing recorded as a derived metric.
+- **Call counts:** Model-call count, tool-call count, retry count, and error rate.
+- **Cache hit rate:** Prompt, retrieval, embedding, or response caches.
+- **Throughput:** Successful tasks per minute at target quality.
+- **Quality-per-dollar:** Pass rate divided by cost, or cost per passing case.
 
 ## How To Do It
+
+**Benchmark representative tasks repeatedly and compare them to a baseline.**
 
 1. Pick representative tasks, not only tiny prompts. Include easy, normal, and worst-case scenarios.
 2. Add instrumentation around the application entry point and every model/tool call.
@@ -28,6 +32,8 @@ This is different from classic HTTP load testing. An AI endpoint can be fast whi
 7. Compare against a baseline file when prompts, models, retrieval, or agent logic changes.
 
 ## Minimal Metrics Schema
+
+**Record one row per case run with quality and operational fields together.**
 
 ```json
 {
@@ -50,33 +56,39 @@ This is different from classic HTTP load testing. An AI endpoint can be fast whi
 
 ## Benchmark Thresholds
 
+**Gate on product-relevant percentiles, pass rates, and cost limits.**
+
 Use thresholds that match the product experience:
 
-- Interactive chat: p95 end-to-end latency and first-token latency.
-- Background agent: success rate, max wall-clock time, cost per passing task, and retry rate.
-- RAG answer: retrieval latency, generation latency, grounded-answer pass rate, and cost per grounded answer.
-- Tool-using agent: max model calls, max tool calls, task completion rate, and cost per completed task.
+- **Interactive chat:** p95 end-to-end latency and first-token latency.
+- **Background agent:** Success rate, max wall-clock time, cost per passing task, and retry rate.
+- **RAG answer:** Retrieval latency, generation latency, grounded-answer pass rate, and cost per grounded answer.
+- **Tool-using agent:** Max model calls, max tool calls, task completion rate, and cost per completed task.
 
 Avoid average-only gates. Averages hide the one slow path that users remember with surprising emotional clarity.
 
 ## Runner Pattern
 
+**Generate a harness that emits raw results and a baseline comparison.**
+
 Generate or extend a runner that:
 
-- Reads benchmark cases from JSONL/YAML.
-- Executes each case `N` times with fixed model settings.
-- Captures provider usage metadata when available.
-- Estimates cost from a checked-in pricing table or configurable environment values.
-- Emits `results.jsonl` with one row per case run.
-- Emits a summary report comparing current results to baseline.
-- Fails only on agreed gates such as p95 latency, cost per passing case, or quality pass rate.
+- **Case loading:** Reads benchmark cases from JSONL/YAML.
+- **Repeated runs:** Executes each case `N` times with fixed model settings.
+- **Usage capture:** Captures provider usage metadata when available.
+- **Cost estimation:** Estimates cost from a checked-in pricing table or configurable environment values.
+- **Raw results:** Emits `results.jsonl` with one row per case run.
+- **Summary:** Emits a summary report comparing current results to baseline.
+- **Gates:** Fails only on agreed gates such as p95 latency, cost per passing case, or quality pass rate.
 
 ## Output Files
 
+**Keep benchmark cases, pricing, baselines, results, and summaries in predictable paths.**
+
 Common outputs:
 
-- `evals/ai-perf/cases.jsonl` for representative tasks.
-- `evals/ai-perf/run.*` for the benchmark harness.
-- `evals/ai-perf/pricing.json` for provider/model prices when not supplied by telemetry.
-- `evals/ai-perf/baseline.json` for comparison.
-- `evals/ai-perf/results.jsonl` and `summary.md` for run artifacts.
+- **Cases:** `evals/ai-perf/cases.jsonl` for representative tasks.
+- **Harness:** `evals/ai-perf/run.*`.
+- **Pricing:** `evals/ai-perf/pricing.json` for provider/model prices when not supplied by telemetry.
+- **Baseline:** `evals/ai-perf/baseline.json` for comparison.
+- **Artifacts:** `evals/ai-perf/results.jsonl` and `summary.md`.
