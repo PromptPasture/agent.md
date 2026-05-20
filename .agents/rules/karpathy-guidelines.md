@@ -3,9 +3,12 @@ name: karpathy-guidelines
 description: Keep coding work simple, surgical, explicit, and verifiable.
 applies_to: ["**/*"]
 priority: high
+license: MIT
+author: multica-ai
+version: 1.0.0
 ---
 
-# Karpathy Guidelines Rules
+# Karpathy Guidelines
 
 ## Before Coding
 
