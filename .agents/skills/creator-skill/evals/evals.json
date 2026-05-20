@@ -89,6 +89,19 @@
         "Checks should-trigger and should-not-trigger boundaries instead of keyword stuffing",
         "Explains the likely false-negative or false-positive behavior and a concise fix direction"
       ]
+    },
+    {
+      "id": 8,
+      "prompt": "Update an existing skill to match our preferred Markdown style: every `##` section should open with a bold principle sentence, and rule lists should use bold labels as scan anchors when each item is a distinct rule.",
+      "expected_output": "A focused style update that applies bold principle sentences and bold-labeled rule bullets without changing the skill's behavior, schemas, command examples, or helper-agent contracts unnecessarily.",
+      "files": [],
+      "expectations": [
+        "Every edited `##` section opens with a single bold principle sentence",
+        "Distinct rule bullets use bold labels as scan anchors",
+        "Schemas, command examples, and literal output templates are not restyled unnecessarily",
+        "The update preserves the skill's behavior and routing semantics",
+        "The result is checked with a deterministic Markdown validator or diff review"
+      ]
     }
   ]
 }

@@ -4,6 +4,8 @@ Use this reference when adapting skill creation or evaluation to a specific runt
 
 ## Agents Without Subagents
 
+**Use the same loop, but treat results as qualitative unless isolation is available.**
+
 Follow the same draft, test, review, and improve loop, but run test cases serially yourself. Skip baseline comparisons unless another local mechanism can produce them fairly.
 
 Present outputs directly in the conversation or save files for the user to inspect. If a browser is unavailable, skip the live review server and use a static HTML review file or concise inline review prompts.
@@ -11,6 +13,8 @@ Present outputs directly in the conversation or save files for the user to inspe
 Quantitative benchmarking is less meaningful without isolated baseline runs. Prioritize qualitative feedback unless deterministic assertions can be checked locally.
 
 ## Claude Code
+
+**Use native trigger detection when Claude Code is the target runtime.**
 
 Claude Code can use native trigger detection through the optimization scripts:
 
@@ -25,6 +29,8 @@ python -m scripts.run_loop \
 Use the user's normal Claude Code configuration.
 
 ## Generic CLI Agents
+
+**Use the generic adapter unless the CLI exposes better trigger telemetry.**
 
 Use the generic command adapter unless the agent exposes better trigger telemetry:
 
@@ -49,6 +55,8 @@ python -m scripts.run_loop \
 
 ## Cowork
 
+**Use parallel runs and static review output when the environment supports them.**
+
 Cowork has subagents, so parallel skill and baseline runs can work. If timeouts become a problem, run prompts in smaller batches.
 
 Cowork may not have a display. Generate a static review file with `eval-viewer/generate_review.py --static <output_path>` and share that path. Use the generated review UI before revising from test outputs.
@@ -56,6 +64,8 @@ Cowork may not have a display. Generate a static review file with `eval-viewer/g
 When feedback is downloaded as `feedback.json`, copy it into the current iteration directory before continuing.
 
 ## Updating Installed Skills
+
+**Preserve identity and package from a writable copy when needed.**
 
 Preserve the original skill directory name and `name` frontmatter. If an installed skill path is read-only, copy it to a writable location, edit the copy, and package from there.
 

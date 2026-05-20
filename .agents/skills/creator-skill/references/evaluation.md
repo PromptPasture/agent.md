@@ -4,6 +4,8 @@ Use this reference when creating eval cases, running skill iterations, benchmark
 
 ## Test Cases
 
+**Create prompts that exercise the skill's real decision points.**
+
 Create 8-10 realistic prompts for a focused skill. For router skills, create 8-10 prompts per route and include near-miss prompts that could be confused with another route.
 
 Save test cases to `<skill-path>/evals/evals.json`. Keep evals inside the skill folder so prompts, fixtures, outputs, and benchmark history travel with the skill.
@@ -11,6 +13,8 @@ Save test cases to `<skill-path>/evals/evals.json`. Keep evals inside the skill 
 Start with prompt-level expectations. Add objective assertions after the test set is agreed or while runs are in progress.
 
 ## Run Iterations
+
+**Keep every run reproducible enough to compare later.**
 
 Put run results in `<skill-path>/evals/iterations/iteration-N/`. Each test case gets its own directory. For each case, save the prompt, generated outputs, timing when available, and grading results.
 
@@ -20,6 +24,8 @@ When subagents are available, launch skill-enabled and baseline runs in the same
 
 ## Assertions and Grading
 
+**Prefer objective checks, but do not fake objectivity where judgment is required.**
+
 Good assertions are objective, specific, and named clearly enough to make benchmark output readable. Do not force quantitative assertions onto outputs that require human judgment.
 
 Grade each run using `agents/grader.md` or a deterministic script. Save `grading.json` with expectation objects that use exactly `text`, `passed`, and `evidence`.
@@ -27,6 +33,8 @@ Grade each run using `agents/grader.md` or a deterministic script. Save `grading
 Use scripts for checks that can be automated. They are usually faster, less fragile, and reusable in later iterations.
 
 ## Benchmark and Review
+
+**Summarize results with the bundled tools before asking the user to inspect outputs.**
 
 Run:
 
@@ -48,6 +56,8 @@ python <skill-creator-path>/eval-viewer/generate_review.py \
 For headless environments, use `--static <output_path>` and share the generated HTML. Do not hand-roll a separate review UI.
 
 ## Improve from Feedback
+
+**Revise from repeated evidence, not one-off prompt quirks.**
 
 Read `feedback.json` after the user finishes reviewing. Empty feedback means the output was acceptable. Focus revisions on specific complaints, repeated misses, and benchmark patterns.
 

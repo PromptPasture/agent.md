@@ -6,6 +6,8 @@ The `description` field is the main signal native skill runtimes use to decide w
 
 ## Choose the Agent Adapter
 
+**Match the optimization harness to the agent that will actually use the skill.**
+
 Infer the calling agent from the current session or CLI. Use native trigger detection when the agent exposes it. Otherwise, use routing-judgment evals.
 
 Examples:
@@ -26,6 +28,8 @@ For CLIs with unusual invocation shapes, pass `--agent-command` with `{prompt}` 
 
 ## Create Trigger Evals
 
+**Build near-miss evals that expose false positives and false negatives.**
+
 Create about 20 realistic queries, split between should-trigger and should-not-trigger cases. Use concrete prompts that resemble real user requests, including file paths, domain details, typos, abbreviations, and ambiguous phrasing.
 
 Positive cases should cover varied ways users ask for the skill's core capability. Negative cases should be near misses, not obviously irrelevant prompts.
@@ -41,15 +45,19 @@ Save them as:
 
 ## Review the Eval Set
 
+**Let the user correct the eval set before optimizing against it.**
+
 When possible, present the eval set to the user before running optimization. Use `assets/eval_review.html` by replacing:
 
-- `__EVAL_DATA_PLACEHOLDER__` with the JSON array
-- `__SKILL_NAME_PLACEHOLDER__` with the skill name
-- `__SKILL_DESCRIPTION_PLACEHOLDER__` with the current description
+- **Eval data**: replace `__EVAL_DATA_PLACEHOLDER__` with the JSON array
+- **Skill name**: replace `__SKILL_NAME_PLACEHOLDER__` with the skill name
+- **Current description**: replace `__SKILL_DESCRIPTION_PLACEHOLDER__` with the current description
 
 The user can edit queries and export the final eval set.
 
 ## Run the Optimization Loop
+
+**Optimize on held-out performance, not just the prompts that exposed the issue.**
 
 Run:
 
@@ -68,5 +76,7 @@ The loop splits train and held-out test data, evaluates the current description,
 Apply the best description to `SKILL.md`, then report the before/after and scores. Keep the updated metadata under 100 tokens.
 
 ## Triggering Notes
+
+**Trigger tests should resemble tasks where the skill materially helps.**
 
 Agents may skip a skill for simple tasks they can handle directly. Trigger eval prompts should be substantive enough that a specialized skill would help. Tiny prompts like "read this file" are poor trigger tests even if the skill technically could help.
