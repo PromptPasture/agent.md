@@ -1,63 +1,74 @@
 ---
 name: explain-codebase
-description: Explain how something works in this codebase by tracing code and producing a clear architectural explanation. Use critique mode only when the user asks for architectural risks, design feedback, or "what is wrong with this?"
+description: Explain how code works by tracing repository evidence. Use for "how does X work?", subsystem walkthroughs, data/control flow questions, and critique only when asked for risks, design feedback, or "what is wrong with X?"
 author: Oleg Shulyakov
 license: MIT
-version: 1.0.0
+version: 1.1.0
 ---
 
 # explain-codebase
 
-Explore the codebase to answer "how does X work?" questions. Produce clear architectural explanations at the level of a senior engineer onboarding onto a subsystem: enough to build a working mental model, not so much that it reads like annotated source code.
+Answer codebase understanding questions by tracing real repository evidence first, then explaining the system at the level a senior engineer needs to navigate or change it safely.
 
 ## Mode Selection
 
-**Choose the smallest mode that answers the user.**
+**Match the mode to the user's intent before opening the map.**
 
-Use **Explain** by default. Use **Critique** only when the user asks for problems, risks, design review, architecture feedback, "what is wrong with this?", or similar evaluation after understanding the system.
+- **Explain by default**: use this mode for "how does X work?", subsystem walkthroughs, data flow, control flow, configuration flow, entry points, runtime behavior, and onboarding questions.
+- **Critique only on request**: switch to Critique when the user asks for problems, risks, design review, architecture feedback, "what is wrong with X?", or whether an approach is good.
+- **Do not over-trigger**: do not use this workflow for plain README summaries, implementation requests, refactors, debugging fixes, or code review unless the user asks for an explanation or architecture critique first.
 
-## Explain Mode
+## Evidence First
 
-**Trace the code before explaining it.**
+**Build the explanation from code paths, tests, and configuration instead of memory.**
 
-Start from the user's named concept, endpoint, command, module, behavior, or error path. Search for exact names first, then expand to related routes, handlers, services, types, tests, docs, configuration, and generated code. Prefer `rg`, file tree inspection, dependency manifests, route registries, test names, and call sites over guesses.
+- **Start exact**: search for the user's named endpoint, command, module, feature flag, table, event, type, function, error text, or UI label before broadening.
+- **Expand deliberately**: follow routes, handlers, services, stores, schemas, workers, tests, fixtures, dependency manifests, generated files, and configuration only as needed to answer the question.
+- **Prefer call paths**: use call sites, route registries, public exports, tests, and runtime wiring to distinguish live behavior from unused helpers.
+- **Verify vocabulary**: reuse the repository's own names for concepts. If you add a simplifying label, say that it is your label.
+- **Mark uncertainty**: separate what you found from what you infer. Say when a path appears unused, generated, deprecated, ambiguous, or absent.
 
-Follow this workflow:
+## Trace Workflow
 
-1. Identify the entry points: UI actions, CLI commands, HTTP routes, jobs, event consumers, public APIs, or exported modules.
-2. Trace the main path through orchestration, domain logic, persistence, external integrations, and output boundaries.
-3. Trace important side paths: validation, authorization, caching, retries, async work, error handling, feature flags, configuration, and observability.
-4. Read representative tests or fixtures when available; use them to confirm behavior and terminology.
-5. Distinguish verified facts from inferences. Say when a path appears unused, generated, deprecated, or ambiguous.
-6. Stop when the explanation can name the owner files, the runtime flow, the key data structures, and the main failure modes.
+**Trace enough of the runtime path to make the answer operationally useful.**
+
+1. Identify entry points such as UI actions, CLI commands, HTTP routes, jobs, event consumers, public APIs, scheduled tasks, or exported modules.
+2. Follow the main control flow through orchestration, domain logic, persistence, external integrations, and response or output boundaries.
+3. Follow the data shape from input to transformation, storage, side effects, and returned output.
+4. Check important side paths, including validation, authorization, idempotency, caching, retries, async work, feature flags, configuration, errors, logging, metrics, and tracing.
+5. Read representative tests, fixtures, docs, or examples when available, using them to confirm behavior and user-facing terminology.
+6. Stop when you can name the entry points, owner files, runtime sequence, key data structures, external dependencies, and main failure modes.
 
 ## Critique Mode
 
-**Explain first, then evaluate design risks.**
+**Explain the current design before judging it.**
 
-In Critique mode, produce the normal explanation before listing issues. Judge architecture against the repository's own patterns before applying generic preferences. Focus on risks that affect correctness, operability, maintainability, security, performance, or change safety.
-
-When the runtime and user request allow independent review, use parallel reviewers for substantial critiques and give each one a narrow concern such as data flow, boundaries, tests, or operational risks. Otherwise, perform the critique directly. Integrate findings yourself and discard weak or unsupported claims.
+- **Ground every finding**: tie each risk to concrete files, flows, tests, configuration, or missing evidence.
+- **Use local standards first**: compare the design to patterns already used in the repository before applying generic architecture preferences.
+- **Prioritize impact**: focus on correctness, security, operability, performance, maintainability, testability, and change safety.
+- **Avoid drive-by advice**: discard critiques that are stylistic, unsupported, or unrelated to the user's question.
+- **Include tradeoffs**: note where the current design is reasonable despite drawbacks.
 
 ## Explanation Rules
 
-**Make the system legible without pretending the code is simpler than it is.**
+**Make the system legible without flattening important complexity.**
 
-- Lead with the answer: one short paragraph describing what the subsystem does and where it starts.
-- Name concrete files, functions, types, routes, commands, tables, and events. Use clickable file references when possible.
-- Explain control flow in execution order. Explain data flow by naming the shape that enters, how it is transformed, where it is stored or sent, and what comes back.
-- Include only code snippets that clarify a contract or surprising behavior. Do not paste long source excerpts.
-- Prefer project vocabulary over invented labels. If you introduce a label for clarity, say it is your label.
-- Surface uncertainty directly. Use phrases like "I found", "this appears to", or "I did not find" when evidence is incomplete.
-- Avoid prescribing changes in Explain mode unless the user asked for critique or a serious risk is visible.
+- **Lead with the answer**: open with one short paragraph explaining what the subsystem does and where the behavior starts.
+- **Name concrete evidence**: reference files, functions, types, routes, commands, tables, events, tests, and configuration by name. Use clickable file references when possible.
+- **Explain in execution order**: describe control flow in the order it runs and data flow by naming what enters, how it changes, where it is stored or sent, and what comes back.
+- **Keep snippets scarce**: include code only when it clarifies a contract, branching rule, data shape, or surprising behavior.
+- **Stay in explanation mode**: do not prescribe changes unless the user asked for critique or the trace exposes a serious risk worth naming.
+- **Respect scope**: answer the user's question, not every file opened along the way.
 
 ## Output Format
 
-**Structure the answer around the user's question, not around every file you opened.**
+**Choose the lightest structure that still makes the path easy to follow.**
 
-For short explanations, use concise prose with file references inline.
+- **Short answers**: use concise prose with inline file references.
+- **Walkthroughs**: use the template below when the behavior spans multiple files, runtime boundaries, or side paths.
+- **Critiques**: append the critique sections only after the explanation.
 
-For broader walkthroughs, use this shape:
+Walkthrough template:
 
 ```text
 Short answer:
@@ -76,7 +87,7 @@ Edge cases:
 [Validation, authorization, errors, async behavior, configuration, or missing evidence.]
 ```
 
-For Critique mode, append:
+Critique add-on:
 
 ```text
 Architecture risks:
@@ -88,6 +99,8 @@ Tradeoffs:
 
 ## Verification
 
-**Show enough evidence for the user to trust the map.**
+**Leave the user with a trail they can verify.**
 
-End with the main files inspected when the answer is non-trivial. If the repository could not be inspected, say so and answer only from provided context. If tests, docs, or runtime checks were used to confirm behavior, mention them briefly.
+- **List inspected evidence**: for non-trivial answers, end with the main files, tests, docs, commands, or runtime checks used.
+- **Report limits**: if the repository could not be inspected, or if the trace depends on missing generated files, inaccessible services, or incomplete tests, say so plainly.
+- **Do not fake certainty**: when evidence is incomplete, give the best-supported explanation and name what would confirm it.
