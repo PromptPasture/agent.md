@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -eu
+
+repo_root="$(git rev-parse --show-toplevel)"
+
+cd "$repo_root"
+
+echo "Running markdown lint before commit..."
+npm run lint:fix --prefix .devops/js-tools
