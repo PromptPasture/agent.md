@@ -128,6 +128,14 @@ This repo uses itself to govern its own development — the `.agents/` folder is
 # Fork, edit, and open a pull request.
 ```
 
+Enable repository-managed Git hooks once per checkout:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+The pre-commit hook runs Markdown lint fixes before each commit.
+
 ## Contributing
 
 1. Fork the repository.
