@@ -2,6 +2,8 @@
 
 ## Key concepts
 
+**Account for SQLite behavior before writing portable-looking SQL.**
+
 SQLite has **type affinity** — not strict types. Declared types are suggestions, not enforcements (unless STRICT mode is used).
 
 ### Type affinity rules
@@ -28,6 +30,8 @@ Use STRICT for new tables to get actual type enforcement.
 
 ## Primary keys and ROWID
 
+**Choose SQLite primary keys with ROWID behavior in mind.**
+
 ```sql
 -- INTEGER PRIMARY KEY is an alias for ROWID (fast)
 CREATE TABLE items (
@@ -44,6 +48,8 @@ CREATE TABLE kv_store (
 ```
 
 ## UUID simulation
+
+**Represent UUIDs explicitly because SQLite has no native UUID type.**
 
 SQLite has no native UUID type. Use TEXT:
 
@@ -63,6 +69,8 @@ Or generate UUIDs in application code and insert as TEXT.
 
 ## JSON (SQLite 3.38+)
 
+**Use SQLite JSON functions only when the runtime version supports them.**
+
 ```sql
 -- JSON functions
 SELECT json_extract(payload, '$.userId') AS user_id FROM events;
@@ -73,6 +81,8 @@ SELECT * FROM events WHERE json_extract(payload, '$.type') = 'login';
 ```
 
 ## Full-text search (FTS5)
+
+**Use this section to apply the relevant database rule precisely.**
 
 ```sql
 -- Create virtual FTS table
@@ -92,12 +102,16 @@ ORDER BY rank;
 
 ## Limitations to be aware of
 
+**Surface SQLite limits before proposing migration or constraint patterns.**
+
 - **No ALTER TABLE ADD COLUMN with constraints**: only bare ADD COLUMN is supported (no NOT NULL with no default, no UNIQUE)
 - **No DROP COLUMN** (before 3.35): must recreate the table
 - **No RIGHT JOIN or FULL OUTER JOIN** (before 3.39)
 - **Single writer**: SQLite uses file-level locking. WAL mode helps for concurrent readers
 
 ## WAL mode (recommended for most apps)
+
+**Use WAL mode when concurrency and durability tradeoffs fit the app.**
 
 ```sql
 PRAGMA journal_mode=WAL;
@@ -110,6 +124,8 @@ Always enable `foreign_keys=ON` at connection open — SQLite ignores FK constra
 
 ## Upsert
 
+**Use the dialect-native upsert form and state the required uniqueness constraint.**
+
 ```sql
 INSERT INTO users (email, name, updated_at)
 VALUES (?, ?, datetime('now'))
@@ -120,6 +136,8 @@ DO UPDATE SET
 ```
 
 ## Date/time
+
+**Store dates consistently because SQLite has no dedicated datetime type.**
 
 SQLite stores dates as TEXT (ISO 8601), REAL (Julian day), or INTEGER (Unix timestamp).
 

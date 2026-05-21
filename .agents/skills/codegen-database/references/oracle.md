@@ -2,16 +2,20 @@
 
 ## Key types
 
-- `NUMBER(p,s)` — exact numeric (both integers and decimals)
-- `VARCHAR2(n CHAR)` — variable-length string (prefer CHAR semantics over BYTE)
-- `NVARCHAR2(n)` — Unicode strings
-- `DATE` — stores date and time (not just date!)
-- `TIMESTAMP WITH TIME ZONE` — timezone-aware timestamps (prefer over DATE)
-- `CLOB` / `NCLOB` — large text
-- `BLOB` — binary data
-- `RAW(16)` — UUIDs (or use `VARCHAR2(36)` with string format)
+**Use dialect-native types and call out portability tradeoffs.**
+
+- **Rule:** `NUMBER(p,s)` — exact numeric (both integers and decimals)
+- **Rule:** `VARCHAR2(n CHAR)` — variable-length string (prefer CHAR semantics over BYTE)
+- **Rule:** `NVARCHAR2(n)` — Unicode strings
+- **Rule:** `DATE` — stores date and time (not just date!)
+- **Rule:** `TIMESTAMP WITH TIME ZONE` — timezone-aware timestamps (prefer over DATE)
+- **Rule:** `CLOB` / `NCLOB` — large text
+- **Rule:** `BLOB` — binary data
+- **Rule:** `RAW(16)` — UUIDs (or use `VARCHAR2(36)` with string format)
 
 ## Sequences and identity
+
+**Use the dialect identity mechanism that fits insert and migration behavior.**
 
 ```sql
 -- Traditional sequence
@@ -31,6 +35,8 @@ CREATE TABLE users (
 ```
 
 ## PL/SQL procedures
+
+**Keep procedural database code focused, parameterized, and testable.**
 
 ```sql
 CREATE OR REPLACE PROCEDURE create_user(
@@ -55,6 +61,8 @@ END create_user;
 
 ## Dual table
 
+**Use Oracle DUAL only for expression queries that need it.**
+
 Used for expressions without a real table:
 
 ```sql
@@ -64,6 +72,8 @@ SELECT UPPER('hello') FROM DUAL;
 ```
 
 ## Upsert (MERGE)
+
+**Use MERGE carefully and state match conditions explicitly.**
 
 ```sql
 MERGE INTO users tgt
@@ -77,6 +87,8 @@ WHEN NOT MATCHED THEN
 ```
 
 ## Pagination (12c+)
+
+**Use modern row limiting syntax for Oracle 12c and newer.**
 
 ```sql
 -- Row limiting clause (Oracle 12c+)
@@ -95,6 +107,8 @@ SELECT * FROM (
 
 ## CTEs
 
+**Use CTEs for readable intermediate result sets.**
+
 ```sql
 WITH active_users AS (
     SELECT id, email FROM users WHERE deleted_at IS NULL
@@ -109,6 +123,8 @@ LEFT JOIN order_stats o ON o.user_id = u.id;
 
 ## Hints
 
+**Use optimizer hints sparingly and explain why statistics or indexes are insufficient.**
+
 Use hints sparingly — prefer fixing statistics or indexes first:
 
 ```sql
@@ -120,6 +136,8 @@ SELECT /*+ PARALLEL(o, 4) */ * FROM orders o;
 
 ## EXPLAIN PLAN
 
+**Inspect Oracle execution plans before asserting performance improvements.**
+
 ```sql
 EXPLAIN PLAN FOR
 SELECT * FROM orders WHERE user_id = :uid;
@@ -128,6 +146,8 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 ```
 
 ## Partitioning
+
+**Partition only when pruning, maintenance, or lifecycle management benefits are clear.**
 
 ```sql
 CREATE TABLE orders (
@@ -142,8 +162,10 @@ INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))
 
 ## Common gotchas
 
-- Empty string `''` equals NULL in Oracle — there is no distinction
-- `VARCHAR2` max is 32767 bytes in PL/SQL, 4000 bytes in SQL (use CLOB beyond that)
-- Date arithmetic: `SYSDATE + 1` adds 1 day; `SYSDATE + 1/24` adds 1 hour
-- NVL vs COALESCE: both work; COALESCE is ANSI-standard
-- String concatenation: use `||` operator
+**Call out dialect behavior that commonly changes query results or safety.**
+
+- **Rule:** Empty string `''` equals NULL in Oracle — there is no distinction
+- **Rule:** `VARCHAR2` max is 32767 bytes in PL/SQL, 4000 bytes in SQL (use CLOB beyond that)
+- **Rule:** Date arithmetic: `SYSDATE + 1` adds 1 day; `SYSDATE + 1/24` adds 1 hour
+- **Rule:** NVL vs COALESCE: both work; COALESCE is ANSI-standard
+- **Rule:** String concatenation: use `||` operator

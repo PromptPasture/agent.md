@@ -2,15 +2,19 @@
 
 ## Key types
 
-- `UUID` — primary/foreign keys (use `uuid_generate_v4()` or `gen_random_uuid()` in PG 13+)
-- `TEXT` — variable-length strings (no arbitrary VARCHAR limits)
-- `NUMERIC(p,s)` — exact decimal (money, quantities)
-- `TIMESTAMPTZ` — always use timezone-aware timestamps
-- `JSONB` — structured JSON data with indexing support
-- `BOOLEAN` — true/false (not 0/1)
-- `BIGINT` — for counts and large IDs when UUID overhead matters
+**Use dialect-native types and call out portability tradeoffs.**
+
+- **Rule:** `UUID` — primary/foreign keys (use `uuid_generate_v4()` or `gen_random_uuid()` in PG 13+)
+- **Rule:** `TEXT` — variable-length strings (no arbitrary VARCHAR limits)
+- **Rule:** `NUMERIC(p,s)` — exact decimal (money, quantities)
+- **Rule:** `TIMESTAMPTZ` — always use timezone-aware timestamps
+- **Rule:** `JSONB` — structured JSON data with indexing support
+- **Rule:** `BOOLEAN` — true/false (not 0/1)
+- **Rule:** `BIGINT` — for counts and large IDs when UUID overhead matters
 
 ## Upsert
+
+**Use the dialect-native upsert form and state the required uniqueness constraint.**
 
 ```sql
 INSERT INTO users (email, name)
@@ -23,6 +27,8 @@ RETURNING *;
 ```
 
 ## CTEs with modification
+
+**Use writable CTEs only when they clarify transactional data flow.**
 
 ```sql
 WITH inserted AS (
@@ -37,6 +43,8 @@ WHERE u.id = $1;
 ```
 
 ## JSONB queries
+
+**Use JSONB operators with indexes that match the access pattern.**
 
 ```sql
 -- Index JSONB key
@@ -55,6 +63,8 @@ WHERE id = $1;
 
 ## Full-text search
 
+**Use built-in full-text search syntax and indexes for search workloads.**
+
 ```sql
 -- Index
 CREATE INDEX idx_articles_search ON articles
@@ -69,6 +79,8 @@ ORDER BY rank DESC;
 
 ## Pagination
 
+**Prefer keyset pagination for large or user-facing result sets.**
+
 ```sql
 -- Offset (simple, degrades on large tables)
 SELECT * FROM orders ORDER BY created_at DESC LIMIT $1 OFFSET $2;
@@ -82,12 +94,16 @@ LIMIT $2;
 
 ## EXPLAIN ANALYZE
 
+**Validate performance claims with the dialect execution-plan tool.**
+
 ```sql
 EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)
 SELECT * FROM orders WHERE user_id = $1;
 ```
 
 ## Window functions
+
+**Use window functions for row-relative calculations without collapsing result grain.**
 
 ```sql
 SELECT
@@ -101,6 +117,8 @@ FROM orders;
 
 ## Array operations
 
+**Use arrays for bounded multi-value attributes, not hidden relationships.**
+
 ```sql
 -- Array column
 CREATE TABLE tags (id UUID PRIMARY KEY, post_id UUID, names TEXT[]);
@@ -110,6 +128,8 @@ SELECT * FROM tags WHERE names @> ARRAY['postgresql', 'sql'];
 ```
 
 ## Constraint naming convention
+
+**Name constraints consistently so errors and migrations stay readable.**
 
 ```sql
 CONSTRAINT [table]_[col]_[type]

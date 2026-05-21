@@ -2,16 +2,20 @@
 
 ## Key types
 
-- `UNIQUEIDENTIFIER` — UUID/GUID (`NEWID()` or `NEWSEQUENTIALID()`)
-- `BIGINT IDENTITY(1,1)` — auto-increment integer PK
-- `NVARCHAR(n)` / `NVARCHAR(MAX)` — Unicode strings (use N prefix for literals)
-- `DECIMAL(p,s)` — exact decimals
-- `DATETIME2` — preferred over `DATETIME` (higher precision, wider range)
-- `DATETIMEOFFSET` — timezone-aware timestamps
-- `BIT` — boolean (0/1)
-- `VARBINARY(MAX)` — binary data
+**Use dialect-native types and call out portability tradeoffs.**
+
+- **Rule:** `UNIQUEIDENTIFIER` — UUID/GUID (`NEWID()` or `NEWSEQUENTIALID()`)
+- **Rule:** `BIGINT IDENTITY(1,1)` — auto-increment integer PK
+- **Rule:** `NVARCHAR(n)` / `NVARCHAR(MAX)` — Unicode strings (use N prefix for literals)
+- **Rule:** `DECIMAL(p,s)` — exact decimals
+- **Rule:** `DATETIME2` — preferred over `DATETIME` (higher precision, wider range)
+- **Rule:** `DATETIMEOFFSET` — timezone-aware timestamps
+- **Rule:** `BIT` — boolean (0/1)
+- **Rule:** `VARBINARY(MAX)` — binary data
 
 ## T-SQL specific syntax
+
+**Use T-SQL constructs intentionally and keep SQL Server behavior explicit.**
 
 ### Variables and blocks
 
@@ -89,6 +93,8 @@ SET SHOWPLAN_XML OFF;
 
 ## TempDB patterns
 
+**Use temporary objects when they reduce complexity or repeated work.**
+
 ```sql
 -- Temp table (session-scoped)
 CREATE TABLE #TempResults (
@@ -103,6 +109,8 @@ DECLARE @Results TABLE (id UNIQUEIDENTIFIER, name NVARCHAR(255));
 
 ## String functions
 
+**Use SQL Server string functions with collation and null behavior in mind.**
+
 ```sql
 -- Concatenation
 SELECT CONCAT(first_name, N' ', last_name) AS full_name FROM users;
@@ -113,6 +121,8 @@ SELECT value FROM STRING_SPLIT(@csv, ',');
 ```
 
 ## JSON support (SQL Server 2016+)
+
+**Use SQL Server JSON functions while remembering JSON is stored as text.**
 
 ```sql
 -- Parse JSON
@@ -128,8 +138,10 @@ SELECT * FROM events WHERE ISJSON(payload) = 1;
 
 ## Common naming conventions
 
-- Schema-qualify all objects: `dbo.users`, `dbo.orders`
-- Stored procedures: `usp_[Description]`
-- Views: `vw_[Description]`
-- Triggers: `trg_[Table]_[Action]`
-- Indexes: `IX_[Table]_[Columns]`, `UX_[Table]_[Columns]` (unique)
+**Keep object names schema-qualified and predictable.**
+
+- **Rule:** Schema-qualify all objects: `dbo.users`, `dbo.orders`
+- **Rule:** Stored procedures: `usp_[Description]`
+- **Rule:** Views: `vw_[Description]`
+- **Rule:** Triggers: `trg_[Table]_[Action]`
+- **Rule:** Indexes: `IX_[Table]_[Columns]`, `UX_[Table]_[Columns]` (unique)
