@@ -6,6 +6,7 @@ Quick validation script for skills - minimal version
 import sys
 import os
 import re
+import json
 import yaml
 from pathlib import Path
 
@@ -54,6 +55,86 @@ def validate_markdown_style(skill_path):
         for line_number, line in iter_markdown_lines(path):
             if line.startswith("- ") and not line.startswith("- **") and not line.startswith("- [ ]"):
                 return False, f"{path}:{line_number}: expected bold label for rule bullet"
+
+    return True, None
+
+
+def validate_eval_coverage(skill_path):
+    """Validate eval coverage for focused and router skills."""
+    evals_path = skill_path / 'evals' / 'evals.json'
+    references_dir = skill_path / 'references'
+
+    if not evals_path.exists():
+        if references_dir.exists() and any(references_dir.glob('*.md')):
+            return False, "Router skills with references must include evals/evals.json"
+        return True, None
+
+    try:
+        data = json.loads(evals_path.read_text())
+    except json.JSONDecodeError as e:
+        return False, f"Invalid JSON in {evals_path}: {e}"
+
+    evals = data.get('evals')
+    if not isinstance(evals, list):
+        return False, f"{evals_path}: missing list field 'evals'"
+
+    if len(evals) < 2:
+        return False, f"{evals_path}: expected at least 2 evals, found {len(evals)}"
+
+    if not references_dir.exists():
+        return True, None
+
+    reference_files = [
+        f"references/{path.name}"
+        for path in sorted(references_dir.glob('*.md'))
+        if path.name != 'schemas.md'
+    ]
+    if not reference_files:
+        return True, None
+
+    counts = {reference: 0 for reference in reference_files}
+    missing_reference = []
+    unknown_references = {}
+
+    for index, item in enumerate(evals, start=1):
+        if not isinstance(item, dict):
+            return False, f"{evals_path}: eval {index} must be an object"
+        reference = item.get('reference')
+        if not reference:
+            missing_reference.append(str(item.get('id', index)))
+            continue
+        if reference not in counts:
+            unknown_references[str(item.get('id', index))] = reference
+            continue
+        counts[reference] += 1
+
+    if missing_reference:
+        return False, (
+            f"{evals_path}: router evals must include a 'reference' field; "
+            f"missing on eval id(s): {', '.join(missing_reference[:10])}"
+        )
+
+    if unknown_references:
+        examples = ', '.join(
+            f"{eval_id} -> {reference}"
+            for eval_id, reference in list(unknown_references.items())[:5]
+        )
+        return False, f"{evals_path}: evals reference unknown files: {examples}"
+
+    bad_counts = {
+        reference: count
+        for reference, count in counts.items()
+        if count < 8 or count > 10
+    }
+    if bad_counts:
+        summary = ', '.join(
+            f"{reference}={count}"
+            for reference, count in bad_counts.items()
+        )
+        return False, (
+            f"{evals_path}: router references must each have 8-10 evals; "
+            f"found {summary}"
+        )
 
     return True, None
 
@@ -152,6 +233,10 @@ def validate_skill(skill_path):
     valid_style, style_message = validate_markdown_style(skill_path)
     if not valid_style:
         return False, style_message
+
+    valid_evals, eval_message = validate_eval_coverage(skill_path)
+    if not valid_evals:
+        return False, eval_message
 
     return True, "Skill is valid!"
 

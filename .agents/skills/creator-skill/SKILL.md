@@ -35,7 +35,7 @@ If the request spans multiple phases, read the references in workflow order: aut
 
 1. **Clarify scope**: identify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
 2. **Write the skill**: revise `SKILL.md` with concise metadata, focused instructions, bold scan anchors, and references for details that would bloat the main file.
-3. **Test behavior**: run this skill's `scripts/quick_validate.py` against the target skill; for objectively testable skills, create realistic eval prompts and run skill-enabled outputs against a meaningful baseline.
+3. **Test behavior**: run this skill's `scripts/quick_validate.py` against the target skill; for router skills, confirm every `references/*.md` file has 8-10 evals mapped by `reference`; for objectively testable skills, run skill-enabled outputs against a meaningful baseline.
 4. **Show evidence**: share outputs and benchmark results with the user before making another revision.
 5. **Iterate deliberately**: continue until feedback is resolved or further changes stop improving results.
 6. **Package last**: package the final skill only after the user is satisfied with behavior and trigger accuracy.

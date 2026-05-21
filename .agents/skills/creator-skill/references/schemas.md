@@ -14,6 +14,7 @@ Defines the evals for a skill. Located at `<skill-path>/evals/evals.json` within
   "evals": [
     {
       "id": 1,
+      "reference": "references/example-route.md",
       "prompt": "User's example prompt",
       "expected_output": "Description of expected result",
       "files": ["evals/files/sample1.pdf"],
@@ -27,6 +28,7 @@ Defines the evals for a skill. Located at `<skill-path>/evals/evals.json` within
 
 - `skill_name`: Name matching the skill's frontmatter
 - `evals[].id`: Unique integer identifier
+- `evals[].reference`: Required for router skills; exact relative path to the routed reference, such as `references/postgres.md`
 - `evals[].prompt`: The task to execute
 - `evals[].expected_output`: Human-readable description of success
 - `evals[].files`: Optional list of input file paths (relative to skill root)
