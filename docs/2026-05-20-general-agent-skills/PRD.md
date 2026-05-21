@@ -6,7 +6,7 @@
 
 | Field | Value |
 | --- | --- |
-| Document Status | DRAFT |
+| Document Status | APPROVED |
 | Target Date | TBD |
 | Owner | Oleg Shulyakov |
 | Team Members | TBD |
@@ -20,9 +20,9 @@
 
 ## Objective
 
-Create a small set of general-purpose agent skills that cover recurring thinking modes across all projects: asking, explaining, reasoning, classifying, planning, exploring or researching, deciding, coordinating, and remembering. Each skill must be useful as a standalone installable unit, without assuming any other skill is present.
+Create a small set of general-purpose agent skills that cover recurring thinking modes across all projects: asking, explaining, reasoning, classifying, planning, exploring local context, deciding, coordinating, and remembering. Each skill must be useful as a standalone installable unit at runtime, without assuming any other skill is present.
 
-The remaining gap is a set of project-agnostic skills for common collaboration modes: when the user wants to ask better questions, understand something, reason through an ambiguous problem, organize messy material, frame work, inspect local or external context, choose a direction, coordinate execution, or persist useful project memory.
+The remaining gap is a set of project-agnostic skills for common collaboration modes: when the user wants to ask better questions, understand something, reason through an ambiguous problem, organize messy material, frame work, inspect local project context, choose a direction, coordinate execution, or persist useful project memory.
 
 Without these skills, the agent has to infer these broad behaviors from generic instructions each time. That increases trigger ambiguity and makes common collaboration modes less consistent.
 
@@ -33,8 +33,8 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | Goal ID | Target Outcome | Success Metric |
 | --- | --- | --- |
 | G-1 | Provide a minimal general skill set for common agent collaboration modes. | Nine skills exist: `ask`, `explain`, `reason`, `classify`, `plan`, `explore`, `decide`, `coordinate`, and `remember`. |
-| G-2 | Keep every skill independently installable. | Each skill works without requiring, naming, or delegating to another skill. |
-| G-3 | Make trigger behavior predictable. | Each skill has explicit trigger phrases, exclusions, and at least 5 representative eval prompts [assumed]. |
+| G-2 | Keep every skill independently installable. | Each skill works at runtime without requiring, naming, or delegating to another skill. |
+| G-3 | Make trigger behavior predictable. | Each skill has explicit trigger phrases, exclusions, and at least 7 representative eval prompts: 3 true-positive, 2 false-positive, and 2 non-trigger prompts. |
 | G-4 | Keep each skill lightweight and reusable across repositories. | Each `SKILL.md` stays under 500 lines and uses references only when needed. |
 
 ---
@@ -56,7 +56,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 - `reason`: Work through ambiguous problems by clarifying terms, surfacing assumptions, generating hypotheses, testing arguments, and shaping a clearer framing.
 - `classify`: Organize items, ideas, observations, requirements, examples, files, risks, or options into meaningful categories by similarity, difference, type, abstraction level, priority, dependency, or other explicit criteria.
 - `plan`: Turn a goal into a scoped plan, milestones, risks, sequencing, and next actions.
-- `explore`: Investigate local code, project docs, attached artifacts, or external/current information when research is needed.
+- `explore`: Investigate local code, project docs, attached artifacts, and repository context when local research is needed.
 - `decide`: Compare options and recommend a course of action with tradeoffs, assumptions, and decision criteria.
 - `coordinate`: Manage multi-step or multi-agent work by tracking goals, owners, dependencies, status, blockers, handoffs, and next actions.
 - `remember`: Capture durable project facts, decisions, and useful observations in `.agents/memory/`.
@@ -67,6 +67,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 ### Out of Scope
 
 - Live integrations with Jira, Linear, Confluence, GitHub Issues, or external memory stores.
+- Web search, web browsing, or external/current-information research inside `explore`.
 - Automatic memory writes without user intent or clearly durable project value.
 - Replacing project instructions in `AGENTS.md`.
 
@@ -86,12 +87,12 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | FR-3 | Define `reason` as the skill for working through ambiguous problems. | MUST | Triggers on “reason through”, “think through”, “brainstorm”, “tackle this problem”, “help me frame this”, “let’s work through this”, and messy problem statements where the desired output is not yet clear. Clarifies terms, assumptions, constraints, possible explanations, and candidate directions without forcing a premature decision or plan. | TBD |
 | FR-4 | Define `classify` as the skill for organizing material into meaningful groups. | MUST | Triggers on “classify”, “categorize”, “group”, “cluster”, “sort”, “taxonomy”, “organize these”, and requests to group items by similarity, difference, category, priority, dependency, abstraction level, or other explicit criteria. Produces labeled groups, grouping criteria, notable edge cases, and items that do not clearly fit. | TBD |
 | FR-5 | Define `plan` as the skill for sequencing work before execution. | MUST | Triggers on “plan”, “break this down”, “roadmap”, “approach”, “milestones”, and “how should we proceed”. Produces scoped steps, risks, assumptions, and verification strategy when relevant. | TBD |
-| FR-6 | Define `explore` as the skill for investigation and research. | MUST | Triggers on “explore”, “investigate”, “find where”, “research”, “look up”, “understand this repo”, and “trace”. Covers both local context gathering and external/current research when needed. Produces findings with sources, file references, or uncertainty clearly marked. | TBD |
+| FR-6 | Define `explore` as the skill for local investigation and repository research. | MUST | Triggers on “explore”, “investigate”, “find where”, “understand this repo”, “trace”, and local-context research requests. Covers local code, project docs, attached artifacts, and repository context only. Produces findings with file references, artifact references, or uncertainty clearly marked. | TBD |
 | FR-7 | Define `decide` as the skill for choosing among options. | MUST | Triggers on “decide”, “choose”, “which option”, “tradeoffs”, “recommend”, and “should we”. States decision criteria, compares viable options, recommends one, and identifies reversibility or risk. | TBD |
 | FR-8 | Define `coordinate` as the skill for managing active work across people, agents, tasks, and dependencies. | MUST | Triggers on “coordinate”, “manage this work”, “team lead”, “lead this”, “assign”, “delegate”, “track blockers”, “status”, “handoff”, and multi-agent or multi-workstream requests. Maintains an execution view with goals, owners, dependencies, current status, blockers, and next actions. | TBD |
-| FR-9 | Define `remember` as the skill for durable project memory. | MUST | Triggers when the user asks to remember, save context, record a decision, update memory, or preserve a project fact. Writes only durable facts, decisions, and observations to `.agents/memory/` according to project conventions. Avoids storing transient task chatter or unverifiable assumptions as fact. | TBD |
-| FR-10 | Document standalone boundaries. | MUST | Each skill defines its own purpose, trigger phrases, non-trigger cases, expected behavior, and output shape without referencing other skills. | TBD |
-| FR-11 | Add behavior evals. | SHOULD | Each skill has representative prompts for true positives, false positives, and non-trigger cases [assumed]. | TBD |
+| FR-9 | Define `remember` as the skill for durable project memory. | MUST | Triggers when the user asks to remember, save context, record a decision, update memory, or preserve a project fact. When the user explicitly asks to remember something, the memory write is auto-approved and should proceed without asking again. Writes only durable facts, decisions, and observations to `.agents/memory/` according to project conventions. Avoids storing transient task chatter or unverifiable assumptions as fact. | TBD |
+| FR-10 | Document standalone runtime boundaries. | MUST | Each skill defines its own purpose, trigger phrases, non-trigger cases, expected behavior, and output shape without requiring, naming, or delegating to another skill at runtime. | TBD |
+| FR-11 | Add behavior evals. | SHOULD | Each skill has at least 7 representative prompts: 3 true-positive prompts, 2 false-positive prompts, and 2 non-trigger prompts. | TBD |
 
 ---
 
@@ -100,12 +101,12 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | NFR ID | Category | Target Specification |
 | --- | --- | --- |
 | NFR-1 | Maintainability | Each skill has one clear workflow and avoids becoming a dumping ground for generic agent behavior. |
-| NFR-2 | Portability | Skills work across repositories and do not assume this repository layout except where `remember` explicitly uses `.agents/memory/`. |
+| NFR-2 | Portability | Skills work across repositories and do not assume this repository layout except where `remember` explicitly uses `.agents/memory/`. Runtime behavior must not depend on any other skill being installed. |
 | NFR-3 | Token Efficiency | Main `SKILL.md` files stay concise; long examples or eval details move to references only when they reduce ambiguity. |
 | NFR-4 | Question Quality | `ask` must prefer the fewest high-leverage questions over exhaustive questionnaires. |
 | NFR-5 | Reasoning Quality | `reason` must expose assumptions, uncertainty, and competing interpretations instead of presenting guesses as settled conclusions. |
 | NFR-6 | Classification Quality | `classify` must state the grouping criteria and preserve ambiguous or multi-fit items instead of forcing every item into a clean bucket. |
-| NFR-7 | Safety | `explore` must cite current external sources when browsing is required and distinguish verified facts from inference. |
+| NFR-7 | Source Discipline | `explore` must cite local files, project docs, or attached artifacts and distinguish verified repository facts from inference. It must not perform web search or browsing. |
 | NFR-8 | Memory Hygiene | `remember` must preserve useful context without duplicating docs or storing sensitive/transient information. |
 | NFR-9 | Coordination Clarity | `coordinate` must keep status, owners, blockers, and next actions explicit enough that another agent or human can continue the work. |
 
@@ -129,7 +130,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 3. A user asks, “Let’s think through why this workflow feels fragile.” The agent uses `reason` to clarify the problem, surface assumptions, generate hypotheses, and identify what would make the situation clearer.
 4. A user asks, “Classify these feature requests by underlying user need.” The agent uses `classify` to define grouping criteria, label groups, place items, and flag ambiguous cases.
 5. A user asks, “Let’s plan the migration.” The agent uses `plan` to identify phases, risks, verification, assumptions, and next actions.
-6. A user asks, “Explore whether we already support this.” The agent uses `explore`, searches local files and docs, optionally researches current external context, then reports findings and gaps.
+6. A user asks, “Explore whether we already support this.” The agent uses `explore`, searches local files, project docs, and attached artifacts, then reports findings and gaps.
 7. A user asks, “Should we build this as a plugin or a skill?” The agent uses `decide`, compares options against explicit criteria, and recommends one.
 8. A user asks, “Lead this migration across frontend, backend, and tests.” The agent uses `coordinate` to track workstreams, owners, dependencies, blockers, status, and handoffs.
 9. A user asks, “Remember that we chose skills over plugins for this.” The agent uses `remember`, records the durable decision in the appropriate memory file, and keeps the note concise.
@@ -141,7 +142,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | Risk ID | Assumption / Risk Description | Impact | Mitigation Strategy | Status |
 | --- | --- | --- | --- | --- |
 | R-1 | General skills could become too broad and behave inconsistently. | HIGH | Define clear trigger phrases, non-trigger cases, and output expectations in every skill. | OPEN |
-| R-2 | `explore` could blur local investigation and web research. | MEDIUM | Require source discipline: file references for local findings, links for external/current research, and explicit uncertainty. | OPEN |
+| R-2 | `explore` could be mistaken for web research. | MEDIUM | Define `explore` as local and artifact investigation only; external/current research remains out of scope for this skill. | OPEN |
 | R-3 | `remember` could accumulate low-value notes. | MEDIUM | Require durability criteria before writing memory. | OPEN |
 | R-4 | `decide` recommendations may hide subjective criteria. | MEDIUM | Require explicit criteria, assumptions, and reversibility notes. | OPEN |
 | R-5 | Eval coverage may be too small to catch trigger conflicts. | MEDIUM | Include false-positive and non-trigger prompts, not only happy-path prompts. | OPEN |
@@ -157,21 +158,21 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | Dependency ID | Item | Impacted Requirements | Validation Owner |
 | --- | --- | --- | --- |
 | D-1 | Existing `.agents/memory/` conventions | FR-9, NFR-8 | Oleg Shulyakov |
-| D-2 | `creator-skill` validation workflow | FR-11 | TBD |
+| D-2 | `creator-skill` validation workflow for development-time checks only | FR-11 | TBD |
 
 ---
 
-## Open Questions
+## Resolved Questions
 
 | Question ID | Question | Answer / Decision | Owner | Resolution Date |
 | --- | --- | --- | --- | --- |
-| Q-1 | Should `explore` include web research by default, or only when the user asks or current information matters? | Proposed: include it, with source discipline and browsing only when needed. | Oleg Shulyakov | TBD |
-| Q-2 | Should `remember` ask before writing memory, or write automatically when the user explicitly says “remember”? | TBD | Oleg Shulyakov | TBD |
-| Q-3 | Should these skills use neutral names (`plan`) or prefix-first names (`planner-general`, `research-general`)? | Proposed: keep the simple names because they are standalone cognitive modes. | Oleg Shulyakov | TBD |
-| Q-4 | Should `plan` create task files, or only produce conversational plans unless paired with another writing skill? | Proposed: conversational by default; durable task files require explicit user request or substantial work. | Oleg Shulyakov | TBD |
-| Q-5 | Should the coordination skill be named `coordinate`, `lead`, or `manage`? | Proposed: `coordinate`, because it is plain, action-oriented, and covers team-leading, delegation, status, and multi-agent coordination without implying people-management authority. | Oleg Shulyakov | TBD |
-| Q-6 | Should the ambiguous-problem skill be named `reason`, `think`, or `brainstorm`? | Proposed: `reason`, because it covers brainstorming, framing, assumptions, and argument-testing without being limited to idea generation. | Oleg Shulyakov | TBD |
-| Q-7 | Should question generation be its own skill or part of `reason`? | Proposed: keep `ask` separate because identifying the right questions is a distinct output and often useful before any reasoning path is chosen. | Oleg Shulyakov | TBD |
-| Q-8 | Should grouping be named `classify`, `sort`, or `categorize`? | Proposed: `classify`, because it covers category assignment, similarity/difference grouping, taxonomies, and edge cases more precisely than `sort`. | Oleg Shulyakov | TBD |
+| Q-1 | Should `explore` include web research by default, or only when the user asks or current information matters? | Decided: no. `explore` covers local code, project docs, attached artifacts, and repository context only. Web search and browsing are out of scope. | Oleg Shulyakov | 2026-05-21 |
+| Q-2 | Should `remember` ask before writing memory, or write automatically when the user explicitly says “remember”? | Decided: explicit user requests to remember are auto-approved. The skill should write without asking again, while still filtering for durable project value and avoiding sensitive, transient, or unverifiable notes. | Oleg Shulyakov | 2026-05-21 |
+| Q-3 | Should these skills use neutral names (`plan`) or prefix-first names (`planner-general`, `research-general`)? | Decided: keep simple names because they are standalone cognitive modes. | Oleg Shulyakov | 2026-05-21 |
+| Q-4 | Should `plan` create task files, or only produce conversational plans unless paired with another writing skill? | Decided: conversational by default; durable task files require explicit user request or substantial work. | Oleg Shulyakov | 2026-05-21 |
+| Q-5 | Should the coordination skill be named `coordinate`, `lead`, or `manage`? | Decided: `coordinate`, because it is plain, action-oriented, and covers team-leading, delegation, status, and multi-agent coordination without implying people-management authority. | Oleg Shulyakov | 2026-05-21 |
+| Q-6 | Should the ambiguous-problem skill be named `reason`, `think`, or `brainstorm`? | Decided: `reason`, because it covers brainstorming, framing, assumptions, and argument-testing without being limited to idea generation. | Oleg Shulyakov | 2026-05-21 |
+| Q-7 | Should question generation be its own skill or part of `reason`? | Decided: keep `ask` separate because identifying the right questions is a distinct output and often useful before any reasoning path is chosen. | Oleg Shulyakov | 2026-05-21 |
+| Q-8 | Should grouping be named `classify`, `sort`, or `categorize`? | Decided: `classify`, because it covers category assignment, similarity/difference grouping, taxonomies, and edge cases more precisely than `sort`. | Oleg Shulyakov | 2026-05-21 |
 
 ---
