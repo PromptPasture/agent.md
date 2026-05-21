@@ -35,6 +35,8 @@ Apply the house Markdown style while writing, not as a later cleanup pass:
 
 After editing, run `creator-skill/scripts/quick_validate.py <target-skill-directory>` when this skill's scripts are available. Treat style failures as authoring bugs, not optional polish.
 
+For router skills with `references/*.md`, create `evals/evals.json` before validation is considered complete. Each eval must include a `reference` field that points to the routed reference, and every non-schema reference must have 8-10 evals. This keeps the router honest instead of giving it one polite smoke test and hoping for the best.
+
 ## Length Budgets
 
 **Respect the runtime context budget before adding detail.**

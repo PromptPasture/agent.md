@@ -10,6 +10,8 @@ Create 8-10 realistic prompts for a focused skill. For router skills, create 8-1
 
 Save test cases to `<skill-path>/evals/evals.json`. Keep evals inside the skill folder so prompts, fixtures, outputs, and benchmark history travel with the skill.
 
+For router skills, add a `reference` field to every eval using the exact relative path, such as `references/postgres.md`. Every reference file that the router can load must have 8-10 evals. Near-miss prompts still count toward the route they are intended to test.
+
 Start with prompt-level expectations. Add objective assertions after the test set is agreed or while runs are in progress.
 
 ## Run Iterations
