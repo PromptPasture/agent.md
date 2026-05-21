@@ -1,12 +1,16 @@
-# Design Database Reference
+# Schema Design Reference
 
 Produce a **normalized relational database schema** with DDL, relationship documentation, and design rationale.
 
 ## What makes a great schema
 
+**Encode business rules in the schema without overcomplicating common queries.**
+
 A good schema encodes business rules structurally so they can't be violated at the application layer. It anticipates common query patterns and pre-optimizes with the right indexes. It's normalized enough to avoid update anomalies, but not over-normalized to the point of making every query a 6-way join.
 
 ## Detect the SQL dialect
+
+**Choose schema syntax from the target engine before writing DDL.**
 
 Identify the target database from context:
 
@@ -17,9 +21,13 @@ Identify the target database from context:
 | "sqlite", mobile app, embedded | SQLite |
 | "mssql", "sql server", T-SQL | MSSQL |
 | "oracle" | Oracle |
-| Ambiguous / not mentioned | Default to PostgreSQL; note the assumption |
+| "bigquery", "snowflake", "clickhouse", warehouse terminology | Warehouse / analytics dialect |
+| "cockroachdb", distributed SQL, regional tables | CockroachDB |
+| Ambiguous / not mentioned | Default to PostgreSQL for OLTP schemas; note the assumption |
 
 ## Information gathering
+
+**Extract the domain facts that affect tables, relationships, constraints, and indexes.**
 
 Extract:
 
@@ -32,10 +40,14 @@ Extract:
 
 ## Output format
 
+**Produce schema output in a reviewable order from overview to executable DDL.**
+
 ### Part 1: Entity-Relationship Summary
 
 ```
 ## Entity-Relationship Overview
+
+**Summarize entities and relationships before showing DDL.**
 
 ### Entities
 - **[Entity]** — [1-line description]
@@ -47,7 +59,7 @@ Extract:
 
 ### Part 2: DDL
 
-Produce `CREATE TABLE` statements in dependency order (referenced tables first).
+Produce `CREATE TABLE` statements in dependency order (referenced tables first). For warehouse schemas, define grain, partitioning, clustering or sort keys, and load/update assumptions instead of forcing OLTP normalization.
 
 **PostgreSQL template:**
 
@@ -124,42 +136,44 @@ Document key choices:
 
 **Naming:**
 
-- Table names: `snake_case`, plural (`orders`, `order_items`)
-- Column names: `snake_case`, singular
-- FK columns: `[referenced_table_singular]_id` (e.g., `user_id`, `order_id`)
-- Constraint names: `[table]_[description]_[type]` (e.g., `orders_status_chk`, `users_email_uq`)
-- Index names: `[table]_[col(s)]_idx`
+- **Rule:** Table names: `snake_case`, plural (`orders`, `order_items`)
+- **Rule:** Column names: `snake_case`, singular
+- **Rule:** FK columns: `[referenced_table_singular]_id` (e.g., `user_id`, `order_id`)
+- **Rule:** Constraint names: `[table]_[description]_[type]` (e.g., `orders_status_chk`, `users_email_uq`)
+- **Rule:** Index names: `[table]_[col(s)]_idx`
 
 **Type selection:**
 
-- IDs: `UUID` (with `uuid_generate_v4()` default) unless high-volume serial is needed
-- Text: `TEXT` for variable length (no magic VARCHAR lengths unless there's a business rule)
-- Money: `NUMERIC(15,4)` — never `FLOAT`
-- Status/enum: `TEXT` with a CHECK constraint or a proper `ENUM` type, noted
-- Timestamps: `TIMESTAMPTZ` (always timezone-aware)
+- **Rule:** IDs: `UUID` (with `uuid_generate_v4()` default) unless high-volume serial is needed
+- **Rule:** Text: `TEXT` for variable length (no magic VARCHAR lengths unless there's a business rule)
+- **Rule:** Money: `NUMERIC(15,4)` — never `FLOAT`
+- **Rule:** Status/enum: `TEXT` with a CHECK constraint or a proper `ENUM` type, noted
+- **Rule:** Timestamps: `TIMESTAMPTZ` (always timezone-aware)
 
 **Standard columns on every table:**
 
-- `id UUID PRIMARY KEY`
-- `created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
-- `updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
-- `deleted_at TIMESTAMPTZ` — only if soft delete is appropriate
+- **Rule:** `id UUID PRIMARY KEY`
+- **Rule:** `created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
+- **Rule:** `updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
+- **Rule:** `deleted_at TIMESTAMPTZ` — only if soft delete is appropriate
 
 **Referential integrity:**
 
-- All FKs should be explicit with ON DELETE behavior stated
-- CASCADE: child rows are meaningless without the parent
-- SET NULL: child rows can exist without the parent (nullable FK)
-- RESTRICT: prevent deletion if children exist (default safe choice)
+- **Rule:** All FKs should be explicit with ON DELETE behavior stated
+- **Rule:** CASCADE: child rows are meaningless without the parent
+- **Rule:** SET NULL: child rows can exist without the parent (nullable FK)
+- **Rule:** RESTRICT: prevent deletion if children exist (default safe choice)
 
 **Indexing strategy:**
 
-- Index every FK column (Postgres doesn't do this automatically)
-- Index columns that appear frequently in WHERE clauses on large tables
-- Partial indexes for soft-delete patterns: `WHERE deleted_at IS NULL`
-- Avoid over-indexing write-heavy tables
+- **Rule:** Index every FK column (Postgres doesn't do this automatically)
+- **Rule:** Index columns that appear frequently in WHERE clauses on large tables
+- **Rule:** Partial indexes for soft-delete patterns: `WHERE deleted_at IS NULL`
+- **Rule:** Avoid over-indexing write-heavy tables
 
 ## Scale / special patterns
+
+**Add scale patterns only when the requirements justify them.**
 
 Add these sections only if relevant:
 
