@@ -8,10 +8,12 @@ Each skill is a `SKILL.md` that teaches the agent how to produce a specific arti
 ## Naming Convention
 
 ```text
-<type>-<subject>
+<type>-<subject>[-<variant>]
 ```
 
 The **type prefix** comes first so skills sort naturally on the filesystem and visually cluster by what they _do_, not what they’re about.
+
+Use `[-<variant>]` only when the variant needs its own trigger, eval set, and lifecycle. Otherwise, keep variants as router references under one skill.
 
 | Prefix | Produces |
 | ------------ | ------------------------------------------------ |
