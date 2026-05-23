@@ -93,7 +93,7 @@ skills/
 <skill-name>/
 ├── SKILL.md              # Required. YAML frontmatter + instructions. Max 500 lines.
 ├── evals/
-│   └── evals.json        # Min 10 test cases
+│   └── evals.json        # 8-10 test cases for focused skills; 8-10 per route for router skills
 └── references/           # Optional. Large reference files, loaded on demand.
     ├── <variant-a>.md
     └── <variant-b>.md
@@ -525,13 +525,16 @@ template-creator/
 
 Each skill is built using the `skill-creator` skill in this sequence:
 
-1. **Draft** `SKILL.md` with frontmatter, instructions, output template
-2. **Write** `evals/evals.json` with ≥2 test cases
-3. **Run** test cases via `skill-creator` eval loop
-4. **Review** outputs qualitatively; grade assertions quantitatively
-5. **Iterate** until >80% assertion pass rate and user satisfied
-6. **Optimize** description for triggering accuracy
-7. **Package** via `scripts/package_skill` → `.skill` file
+1. **Clarify** trigger scope, expected outputs, routing needs, and whether objective evals are useful.
+2. **Draft** `SKILL.md` with concise frontmatter, focused workflow instructions, section delimiters between `##` sections, and bold scan anchors.
+3. **Move detail** into `references/` only when it would bloat `SKILL.md`; do not create placeholder resource folders.
+4. **Write** `evals/evals.json` with 8-10 realistic prompts for focused skills or 8-10 prompts per routed reference for router skills.
+5. **Validate** with `python3 .agents/skills/creator-skill/scripts/quick_validate.py .agents/skills/<skill-name>`.
+6. **Run** test iterations through the `creator-skill` eval loop when behavior or trigger accuracy needs evidence.
+7. **Review** outputs qualitatively and grade assertions quantitatively where objective checks make sense.
+8. **Iterate** until feedback is resolved, results stop improving, or the user accepts the behavior.
+9. **Optimize** description for triggering accuracy after behavior is stable.
+10. **Package** from `.agents/skills/creator-skill` with `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`.
 
 ## Multi-Variant Router Pattern
 
