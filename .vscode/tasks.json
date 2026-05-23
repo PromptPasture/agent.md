@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "markdownlint: Lint all Markdown files in the workspace with markdownlint",
+      "type": "shell",
+      "command": "npm run lint:fix --prefix .devops/js-tools",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
