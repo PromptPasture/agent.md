@@ -2,7 +2,7 @@
 
 ## Document Info
 
-**Status:** Draft  
+**Status:** Approved  
 **Version:** 1.0  
 **Date:** 2026-05-21  
 **Author:** Oleg Shulyakov  
@@ -49,7 +49,7 @@ Success means a user can install any one of the nine skills independently and ge
 | --- | --- | --- |
 | Minimal general skill set | Nine skills exist with approved names | `ask`, `explain`, `reason`, `classify`, `plan`, `explore`, `decide`, `coordinate`, `remember` |
 | Standalone runtime behavior | No skill requires another skill to be installed, named, or delegated to | 100% of skills |
-| Predictable triggers | Each skill documents triggers, exclusions, expected behavior, and eval prompts | At least 7 eval prompts per skill |
+| Predictable triggers | Each skill documents triggers, exclusions, expected behavior, and eval prompts | 8-10 eval prompts where possible, never fewer than 7 |
 | Lightweight packaging | Main `SKILL.md` files remain concise | Under 500 lines each |
 
 ### 1.6 Non-Goals
@@ -79,10 +79,10 @@ Each skill folder shall include:
 .agents/skills/<skill-name>/
 ├── SKILL.md
 └── evals/
-    └── trigger-prompts.md
+    └── evals.json
 ```
 
-References may be added only when examples, eval details, or compatibility notes would make `SKILL.md` too long or less readable.
+Evaluation run results, when generated, shall be stored under `evals/iterations/iteration-N/` according to the `creator-skill` workflow. A `references/` folder may be added only when it contains useful supporting files, such as examples, detailed procedures, or compatibility notes that would make `SKILL.md` too long or less readable. Do not create placeholder `references/` folders.
 
 ### 2.3 Skill Metadata Contract
 
@@ -229,9 +229,11 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 **Acceptance criteria:**
 
-- [ ] Each skill has at least 3 true-positive prompts.
-- [ ] Each skill has at least 2 false-positive prompts where nearby language should route elsewhere or not trigger.
-- [ ] Each skill has at least 2 non-trigger prompts.
+- [ ] Each skill has `evals/evals.json` generated through `.agents/skills/creator-skill/`.
+- [ ] Each skill has 8-10 realistic eval prompts where possible, and never fewer than the PRD minimum of 7.
+- [ ] Each eval set includes at least 3 true-positive prompts.
+- [ ] Each eval set includes at least 2 false-positive prompts where nearby language should route elsewhere or not trigger.
+- [ ] Each eval set includes at least 2 non-trigger prompts.
 - [ ] Each eval prompt states expected trigger behavior and expected output behavior.
 
 ### 2.5 Business Rules
@@ -283,7 +285,8 @@ flowchart TD
 | Component | Responsibility |
 | --- | --- |
 | `.agents/skills/<skill>/SKILL.md` | Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations |
-| `.agents/skills/<skill>/evals/trigger-prompts.md` | Representative trigger and non-trigger prompts for review |
+| `.agents/skills/<skill>/evals/evals.json` | Representative trigger and non-trigger prompts generated through `creator-skill` |
+| `.agents/skills/<skill>/evals/iterations/iteration-N/` | Reproducible eval run outputs, grading, and benchmark artifacts when generated |
 | `.agents/memory/` | Target memory location for `remember` behavior |
 | `.agents/skills/creator-skill/` | Development-time eval generation, validation, and packaging support |
 
@@ -345,7 +348,7 @@ Review every `SKILL.md` for frontmatter completeness, trigger specificity, exclu
 
 ### 8.2 Trigger Eval Review
 
-For each skill, review at least 7 prompts:
+For each skill, generate and review `evals/evals.json` through `.agents/skills/creator-skill/`. Use 8-10 realistic prompts where possible, and never fewer than the PRD minimum of 7:
 
 ```text
 3 true-positive prompts
@@ -353,7 +356,7 @@ For each skill, review at least 7 prompts:
 2 non-trigger prompts
 ```
 
-Each prompt shall include the expected trigger result and the expected behavior shape.
+Each prompt shall include the expected trigger result and the expected behavior shape. Eval run outputs, grading, and benchmark summaries shall be stored under `evals/iterations/iteration-N/` when execution runs are performed.
 
 ### 8.3 Boundary Testing
 
