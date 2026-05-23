@@ -243,16 +243,36 @@ The type identifies the artifact or action family. The subject identifies the do
 
 Only `SKILL.md` is required while drafting. Release-ready skills require eval coverage. `references/`, `scripts/`, and `assets/` are optional and should exist only when they are used.
 
-### 4.3 Required Frontmatter
+### 4.3 Frontmatter Metadata
 
 ```yaml
 ---
 name: <skill-name>
 description: Use when <trigger conditions>. Produces <specific output artifact>.
+license: Apache-2.0
+version: 1.2.0
+tags:
+  - docs
+  - planning
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 ```
 
 Descriptions are routing metadata. They must name likely user wording, related contexts, and the artifact produced.
+
+Allowed frontmatter fields are:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `name` | Yes | A unique identifier for the skill. |
+| `description` | Yes | A concise explanation of the skill's purpose and when to use it. |
+| `license` | No | The name of the license, such as `MIT` or `Apache-2.0`. |
+| `version` | No | Semantic versioning string, such as `1.2.0`. |
+| `tags` | No | A list of categories for easier discovery and filtering. |
+| `author` | No | The creator's name or GitHub profile URL. |
+| `metadata` | No | A nested mapping for arbitrary key-value pairs. |
 
 ### 4.4 Router Pattern
 

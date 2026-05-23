@@ -3,9 +3,15 @@ name: writer-user-story
 description: >
   Write user stories with acceptance criteria and developer tasks. Use for story writing,
   Jira/Linear/GitHub tickets, task breakdowns, story points, and story-level sprint planning.
-author: Oleg Shulyakov
 license: MIT
 version: 1.1.0
+tags:
+  - writer
+  - agile
+  - user-stories
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # writer-user-story

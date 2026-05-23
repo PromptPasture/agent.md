@@ -1,9 +1,15 @@
 ---
 name: explain
 description: Explain any knowledge topic simply and accurately. Use for "explain X", "why/how/what is X?", concepts, science, definitions, code, design, architecture, and walkthroughs.
-author: Oleg Shulyakov
 license: MIT
 version: 2.1.0
+tags:
+  - explain
+  - education
+  - reference
+author: Oleg Shulyakov
+metadata:
+  catalog: utility
 ---
 
 # explain

@@ -4,9 +4,15 @@ description: >
   Write product specifications and requirements documents. Use for tech specs, design docs,
   TDDs, functional or non-functional requirements, data contracts, UI specs, release specs,
   handoff docs, and system behavior.
-author: Oleg Shulyakov
 license: MIT
 version: 1.3.0
+tags:
+  - writer
+  - specification
+  - requirements
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # writer-spec

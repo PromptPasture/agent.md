@@ -1,9 +1,15 @@
 ---
 name: codegen-backend
 description: Build or modify backend implementation. Use for API routes, services, middleware, workers, persistence, validation, authorization, configuration, observability, and backend behavior tests.
-author: Oleg Shulyakov
 license: MIT
 version: 1.1.0
+tags:
+  - codegen
+  - backend
+  - engineering
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # codegen-backend

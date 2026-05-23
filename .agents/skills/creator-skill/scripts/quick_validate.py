@@ -172,12 +172,11 @@ def validate_skill(skill_path):
     ALLOWED_PROPERTIES = {
         'name',
         'description',
-        'author',
         'license',
         'version',
-        'allowed-tools',
+        'tags',
+        'author',
         'metadata',
-        'compatibility',
     }
 
     # Check for unexpected properties (excluding nested keys under metadata)
@@ -222,13 +221,37 @@ def validate_skill(skill_path):
         if len(description) > 1024:
             return False, f"Description is too long ({len(description)} characters). Maximum is 1024 characters."
 
-    # Validate compatibility field if present (optional)
-    compatibility = frontmatter.get('compatibility', '')
-    if compatibility:
-        if not isinstance(compatibility, str):
-            return False, f"Compatibility must be a string, got {type(compatibility).__name__}"
-        if len(compatibility) > 500:
-            return False, f"Compatibility is too long ({len(compatibility)} characters). Maximum is 500 characters."
+    # Validate license field if present (optional)
+    license_name = frontmatter.get('license')
+    if license_name is not None and not isinstance(license_name, str):
+        return False, f"License must be a string, got {type(license_name).__name__}"
+
+    # Validate version field if present (optional)
+    version = frontmatter.get('version')
+    if version is not None:
+        if not isinstance(version, str):
+            return False, f"Version must be a string, got {type(version).__name__}"
+        if not re.match(r'^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$', version):
+            return False, f"Version '{version}' must be a semantic versioning string like 1.2.0"
+
+    # Validate tags field if present (optional)
+    tags = frontmatter.get('tags')
+    if tags is not None:
+        if not isinstance(tags, list):
+            return False, f"Tags must be a list, got {type(tags).__name__}"
+        for tag in tags:
+            if not isinstance(tag, str):
+                return False, f"Tags must contain only strings, got {type(tag).__name__}"
+
+    # Validate author field if present (optional)
+    author = frontmatter.get('author')
+    if author is not None and not isinstance(author, str):
+        return False, f"Author must be a string, got {type(author).__name__}"
+
+    # Validate metadata field if present (optional)
+    metadata = frontmatter.get('metadata')
+    if metadata is not None and not isinstance(metadata, dict):
+        return False, f"Metadata must be a mapping, got {type(metadata).__name__}"
 
     valid_style, style_message = validate_markdown_style(skill_path)
     if not valid_style:

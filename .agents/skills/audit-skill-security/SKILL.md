@@ -1,9 +1,15 @@
 ---
 name: audit-skill-security
 description: Use before installing, updating, or trusting a skill from any source. Audits SKILL.md, permissions, dependencies, prompt-injection patterns, network behavior, exfiltration risk, and bundled resources, then returns a severity-based install verdict.
-author: UseAI-pro
 license: MIT
 version: 2.0.0
+tags:
+  - audit
+  - security
+  - skills
+author: UseAI-pro
+metadata:
+  catalog: utility
 ---
 
 # Audit Skill Security

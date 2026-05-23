@@ -1,9 +1,15 @@
 ---
 name: codegen-frontend
 description: Generate production-ready frontend code. Use for components, pages, routes, client state, forms, styling, accessibility, performance, PWA behavior, and data visualization.
-author: Oleg Shulyakov
 license: MIT
 version: 1.1.0
+tags:
+  - codegen
+  - frontend
+  - ui
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # codegen-frontend

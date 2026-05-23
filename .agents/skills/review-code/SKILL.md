@@ -4,9 +4,15 @@ description: >
   Review code changes, diffs, pull requests, branches, or patches. Use for
   review findings covering correctness, regressions, security, performance, and
   test gaps.
-author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
+tags:
+  - review
+  - code
+  - quality
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # review-code

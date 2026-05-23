@@ -1,9 +1,15 @@
 ---
 name: writer-prd
 description: Use whenever the user asks to write or revise a PRD, product requirements, product brief, feature requirements, product scope, launch requirements.
-author: Oleg Shulyakov
 license: MIT
 version: 1.1.0
+tags:
+  - writer
+  - product
+  - requirements
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # writer-prd

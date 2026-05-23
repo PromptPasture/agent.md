@@ -1,9 +1,15 @@
 ---
 name: creator-rule
 description: Use when writing or improving CLI-agent rules, custom instruction files, AGENTS.md, CLAUDE.md, Cursor rules, Copilot instructions, or modular `.agents/rules/*.md` files.
-author: Oleg Shulyakov
 license: MIT
 version: 1.2.0
+tags:
+  - creator
+  - rules
+  - agents
+author: Oleg Shulyakov
+metadata:
+  catalog: utility
 ---
 
 # creator-rule

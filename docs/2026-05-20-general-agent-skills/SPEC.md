@@ -86,9 +86,21 @@ Evaluation run results, when generated, shall be stored under `evals/iterations/
 
 ### 2.3 Skill Metadata Contract
 
-Each `SKILL.md` shall include frontmatter with `name`, `description`, `author`, `license`, and `version`.
+Each `SKILL.md` shall include frontmatter with `name`, `description`, `license`, `version`, `tags`, `author`, and `metadata`.
 
 The `description` shall explicitly include the strongest trigger phrases and contexts for that skill. It shall not rely on body text alone for runtime discoverability.
+
+Allowed frontmatter fields are:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `name` | Yes | A unique identifier for the skill. |
+| `description` | Yes | A concise explanation of the skill's purpose and when to use it. |
+| `license` | No | The name of the license, such as `MIT` or `Apache-2.0`. |
+| `version` | No | Semantic versioning string, such as `1.2.0`. |
+| `tags` | No | A list of categories for easier discovery and filtering. |
+| `author` | No | The creator's name or GitHub profile URL. |
+| `metadata` | No | A nested mapping for arbitrary key-value pairs. |
 
 Each skill body shall define purpose, scope, trigger cases, non-trigger cases, workflow, output expectations, error paths, and verification guidance where relevant.
 

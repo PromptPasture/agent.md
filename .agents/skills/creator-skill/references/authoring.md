@@ -22,7 +22,19 @@ Ground the draft in real source material when available: prior task traces, exis
 
 **Keep the top-level skill file focused on trigger, routing, and shared workflow.**
 
-Required frontmatter fields are `name` and `description`. Keep the complete frontmatter under 100 tokens. The description is the primary trigger signal, so include the core task and strongest trigger contexts, but avoid long keyword inventories.
+Required frontmatter fields are `name` and `description`. Optional fields are `license`, `version`, `tags`, `author`, and `metadata`. Keep the complete frontmatter under 100 tokens. The description is the primary trigger signal, so include the core task and strongest trigger contexts, but avoid long keyword inventories.
+
+Use these metadata fields:
+
+| Field | Meaning |
+| --- | --- |
+| `name` | A unique identifier for the skill. |
+| `description` | A concise explanation of the skill's purpose and when to use it. |
+| `license` | The name of the license, such as `MIT` or `Apache-2.0`. |
+| `version` | Semantic versioning string, such as `1.2.0`. |
+| `tags` | A list of categories for easier discovery and filtering. |
+| `author` | The creator's name or GitHub profile URL. |
+| `metadata` | A nested mapping for arbitrary key-value pairs. |
 
 Keep the Markdown body under 500 lines. The body should explain workflow, routing decisions, critical rules, and output format. Move deep detail into `references/` and point to it clearly.
 

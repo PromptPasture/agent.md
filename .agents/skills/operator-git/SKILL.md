@@ -3,9 +3,15 @@ name: operator-git
 description: >
   Handle Git branch naming, branch actions, commit-message drafting, and committing staged changes.
   Use for Git workflow tasks, branch review, commit requests, and diffs needing commit messages.
-author: Oleg Shulyakov
 license: MIT
 version: 1.1.0
+tags:
+  - operator
+  - git
+  - workflow
+author: Oleg Shulyakov
+metadata:
+  catalog: utility
 ---
 
 # operator-git

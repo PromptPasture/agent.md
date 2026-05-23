@@ -4,9 +4,15 @@ description: >
   Generate or revise automated tests and evals. Use for E2E/browser, API/contract,
   integration, load/performance, LLM output, RAG, prompt regression, AI tool-use,
   and AI cost/latency benchmark requests.
-author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
+tags:
+  - codegen
+  - testing
+  - evals
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # codegen-test

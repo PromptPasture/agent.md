@@ -4,9 +4,15 @@ description: >
   Write technical docs. Use for READMEs, API docs, endpoint references, routine or on-call
   runbooks, operational procedures, changelogs, and release notes. Use for operational,
   reference, and release communication docs rather than product or specification docs.
-author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
+tags:
+  - writer
+  - docs
+  - technical-writing
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # writer-tech-docs

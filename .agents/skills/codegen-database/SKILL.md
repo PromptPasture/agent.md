@@ -3,9 +3,15 @@ name: codegen-database
 description: >
   Generate or modify database code: schemas, DDL, SQL queries, migrations, analytics SQL,
   indexes, stored procedures, and dialect-specific database scripts.
-author: Oleg Shulyakov
 license: MIT
 version: 1.0.0
+tags:
+  - codegen
+  - database
+  - data
+author: Oleg Shulyakov
+metadata:
+  catalog: software-team-roles
 ---
 
 # codegen-database

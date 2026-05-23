@@ -52,7 +52,7 @@ Scenario: Create standalone skill instructions
   Given the approved SPEC defines eight new general skills
   When the agent creates the new skill folders and SKILL.md files
   Then each new skill folder exists under .agents/skills/
-  And each SKILL.md includes name, description, author, license, and version frontmatter
+  And each SKILL.md includes name, description, license, version, tags, author, and metadata frontmatter
   And each new skill uses version 1.0.0
 
 Scenario: Preserve standalone runtime boundaries
