@@ -5,12 +5,16 @@
 
 ## 1. Performance & Responsiveness
 
+**Define latency and responsiveness targets that can be measured.**
+
 | Requirement ID | Description | Target | Measure |
 | -------------- | -------------------- | ----------- | ----------------------------------------- |
 | NFR-PERF-01 | API Response Time | p95 < 200ms | Measured at API gateway under normal load |
 | NFR-PERF-02 | Page Load Time (TTI) | < 2.0s | Measured on 3G / Mobile |
 
 ## 2. Scalability & Throughput
+
+**Specify capacity, growth, and elasticity expectations.**
 
 | Requirement ID | Description | Target | Measure |
 | -------------- | ------------------ | ----------- | -------------------------------- |
@@ -21,6 +25,8 @@
 
 ## 3. Availability & Reliability
 
+**Set uptime, recovery, and fault tolerance commitments.**
+
 | Requirement ID | Description | Target | Measure |
 | -------------- | ------------------- | --------- | ------------------------------- |
 | NFR-AVAIL-01 | Uptime (SLO) | 99.9% | 43.8 min downtime allowed/month |
@@ -29,6 +35,8 @@
 | NFR-AVAIL-04 | Fault Tolerance | Yes | Operational if one AZ fails |
 
 ## 4. Security & Privacy
+
+**Capture protection requirements for access, data, and privacy.**
 
 | Requirement ID | Description | Target |
 | -------------- | --------------------- | --------------------------------------- |
@@ -39,6 +47,8 @@
 
 ## 5. Usability & Accessibility
 
+**Define quality targets for user experience and supported environments.**
+
 | Requirement ID | Description | Target |
 | -------------- | -------------- | --------------------------------------------- |
 | NFR-UX-01 | Accessibility | WCAG 2.1 Level AA |
@@ -46,6 +56,8 @@
 | NFR-UX-03 | Localization | English, Spanish, French |
 
 ## 6. Maintainability & Operability
+
+**Set expectations for deployment, testing, and operations.**
 
 | Requirement ID | Description | Target |
 | -------------- | ------------- | ---------------------------------------- |

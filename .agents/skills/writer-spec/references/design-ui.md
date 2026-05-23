@@ -1,6 +1,6 @@
 # Design Specification: [Component / Feature Name]
 
-**Status:** [Draft / Final / Ready for Dev]
+**Status:** [DRAFT / FINAL / READY FOR DEV]
 **Designer:** [name]
 **Figma Link:** [url]
 
@@ -8,11 +8,15 @@
 
 ## 1. Overview & Purpose
 
+**Explain the UI element's role and usage context.**
+
 [Brief description of what this UI element does and when it should be used.]
 
 ---
 
 ## 2. Visual Attributes & Tokens
+
+**Map visible styling decisions to implementation-ready tokens.**
 
 | Element | Property | Token / Value | Notes |
 | ---------- | ---------- | ------------------------------- | ------------- |
@@ -24,6 +28,8 @@
 ---
 
 ## 3. States
+
+**Document every user-visible component state and its behavior.**
 
 - **Default:** [Description of the standard state]
 - **Hover:** [e.g., "Cursor → pointer. Background → `--color-surface-hover`. Shadow → `--shadow-md`."]
@@ -37,17 +43,21 @@
 
 ## 4. Interaction & Motion
 
+**Specify triggers, responses, and motion details that affect implementation.**
+
 **Trigger:** [e.g., "Clicking 'Submit'"]
 **Action:** [e.g., "Transitions to Loading state immediately."]
 **Animation:**
 
-- Property: [e.g., `background-color`, `transform`]
-- Duration: [e.g., 200ms]
-- Easing: [e.g., `ease-in-out`]
+- **Property:** [e.g., `background-color`, `transform`]
+- **Duration:** [e.g., 200ms]
+- **Easing:** [e.g., `ease-in-out`]
 
 ---
 
 ## 5. Responsive Behavior
+
+**Define how the UI adapts across supported viewport ranges.**
 
 | Breakpoint | Behavior |
 | ----------------------- | ------------------------------------------- |
@@ -58,6 +68,8 @@
 ---
 
 ## 6. Edge Cases & Content Scaling
+
+**Capture content and data variations that can break layout or usability.**
 
 - **Long text:** [e.g., "Truncate with ellipsis on a single line."]
 - **Missing data:** [e.g., "Avatar fails → colored circle with initials."]

@@ -2,7 +2,9 @@
 
 ## Document Info
 
-**Status:** [Draft | In Review | Approved]
+**Record ownership, review state, and release targeting.**
+
+**Status:** [DRAFT | IN REVIEW | APPROVED]
 **Version:** 1.0
 **Date:** [YYYY-MM-DD]
 **Author(s):** [name(s) or team]
@@ -12,6 +14,8 @@
 ---
 
 ## 1. Overview
+
+**Explain what is being built, why it matters, and what is out of scope.**
 
 ### 1.1 Purpose
 
@@ -37,11 +41,13 @@
 
 ### 1.6 Non-Goals
 
-- [Explicitly out of scope]
+- **Excluded:** [Explicitly out of scope]
 
 ---
 
 ## 2. Functional Requirements
+
+**Describe user-facing and system behavior in testable terms.**
 
 ### 2.1 Actors
 
@@ -65,7 +71,7 @@
 **Description:** [Precise, testable statement — "The system shall…"]
 **Acceptance criteria:**
 
-- [ ] [Testable criterion]
+- [ ] **Criterion:** [Testable criterion]
 
 ### 2.4 Business Rules
 
@@ -74,6 +80,8 @@
 ---
 
 ## 3. Non-Functional Requirements
+
+**Set measurable quality targets for the system.**
 
 | Category | Requirement | Target | Priority |
 | ------------ | ----------------------- | --------------- | -------- |
@@ -85,6 +93,8 @@
 ---
 
 ## 4. System Architecture
+
+**Describe the high-level design and responsibilities.**
 
 ### 4.1 Architecture Overview
 
@@ -106,13 +116,15 @@ flowchart LR
 
 **Decision: [Title]**
 
-- Chosen: [What]
-- Rationale: [Why]
-- Trade-off: [What was sacrificed]
+- **Chosen:** [What]
+- **Rationale:** [Why]
+- **Trade-off:** [What was sacrificed]
 
 ---
 
 ## 5. API Design
+
+**Define new or changed service contracts.**
 
 ### 5.1 New Endpoints
 
@@ -146,6 +158,8 @@ flowchart LR
 
 ## 6. Data Model
 
+**Specify persistence changes and migration needs.**
+
 ### 6.1 New Tables / Collections
 
 ```sql
@@ -169,6 +183,8 @@ CREATE TABLE [table_name] (
 
 ## 7. Security Considerations
 
+**Document authentication, authorization, and protection requirements.**
+
 - **Authentication:** [Mechanism]
 - **Authorization:** [RBAC rules]
 - **Data protection:** [Encryption, PII handling]
@@ -178,6 +194,8 @@ CREATE TABLE [table_name] (
 ---
 
 ## 8. Observability
+
+**Define signals needed to operate and debug the system.**
 
 | Signal | What to instrument | Tooling |
 | ------- | ----------------------------------- | ------- |
@@ -189,6 +207,8 @@ CREATE TABLE [table_name] (
 ---
 
 ## 9. Testing Strategy
+
+**Map implementation risk to verification coverage.**
 
 | Level | Scope | Tools | Coverage Target |
 | ----------- | ------------------- | ----- | ------------------------ |
@@ -204,9 +224,11 @@ CREATE TABLE [table_name] (
 
 ## 10. Implementation Plan
 
+**Break delivery into phases and dependencies.**
+
 ### Phase 1: [Name] (Est: [N] days)
 
-- [ ] [Task]
+- [ ] **Task:** [Task]
 
 ### Dependencies
 
@@ -214,6 +236,8 @@ CREATE TABLE [table_name] (
 | ---------- | ------------- | --------- |
 
 ## 11. Release & Operational Readiness
+
+**List launch prerequisites and ownership.**
 
 | Activity | Owner | Required Before Launch |
 | -------- | ----- | ---------------------- |
@@ -227,6 +251,8 @@ CREATE TABLE [table_name] (
 
 ## 12. Open Questions
 
+**Track unresolved decisions before handoff.**
+
 | # | Question | Owner | Due | Status |
 | --- | -------- | ----- | --- | ------ |
 
@@ -234,4 +260,6 @@ CREATE TABLE [table_name] (
 
 ## 13. Appendix
 
-- [Glossary, links to related specs, ADRs, designs]
+**Collect supporting links and definitions.**
+
+- **Supporting material:** [Glossary, links to related specs, ADRs, designs]
