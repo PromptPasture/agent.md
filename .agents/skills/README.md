@@ -8,16 +8,24 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 
 | Skill | Use it for | Notable resources |
 | --- | --- | --- |
+| [`ask`](ask/SKILL.md) | Generating high-leverage questions, clarifying missing context, and surfacing assumptions. | [`evals/`](ask/evals/) |
 | [`audit-skill-security`](audit-skill-security/SKILL.md) | Auditing third-party or local skills before installing, updating, or trusting them. | [`references/audit-protocol.md`](audit-skill-security/references/audit-protocol.md) |
+| [`classify`](classify/SKILL.md) | Organizing material into meaningful groups by criteria, similarity, priority, dependency, or abstraction level. | [`evals/`](classify/evals/) |
 | [`codegen-backend`](codegen-backend/SKILL.md) | Production backend code: APIs, services, middleware, workers, persistence, validation, auth, and backend tests. | [`references/`](codegen-backend/references/), [`evals/`](codegen-backend/evals/) |
 | [`codegen-database`](codegen-database/SKILL.md) | Database code: schemas, DDL, OLTP SQL, analytics SQL, migrations, indexes, stored procedures, and dialect-specific scripts. | [`references/`](codegen-database/references/), [`evals/`](codegen-database/evals/) |
 | [`codegen-frontend`](codegen-frontend/SKILL.md) | Production frontend code: components, routes, client state, forms, styling, accessibility, performance, PWA behavior, and visualization. | [`references/`](codegen-frontend/references/), [`evals/`](codegen-frontend/evals/) |
 | [`codegen-test`](codegen-test/SKILL.md) | Automated tests and evals, including E2E, API, integration, performance, AI output, tool-use, RAG, and prompt regression suites. | [`references/`](codegen-test/references/), [`scripts/`](codegen-test/scripts/), [`evals/`](codegen-test/evals/) |
+| [`coordinate`](coordinate/SKILL.md) | Managing active work across people, agents, tasks, dependencies, blockers, status, and handoffs. | [`evals/`](coordinate/evals/) |
 | [`creator-rule`](creator-rule/SKILL.md) | Writing or improving agent rules, instruction files, `AGENTS.md`, `CLAUDE.md`, Cursor rules, Copilot instructions, and `.agents/rules/*.md`. | [`scripts/`](creator-rule/scripts/), [`evals/`](creator-rule/evals/) |
 | [`creator-skill`](creator-skill/SKILL.md) | Creating, editing, reviewing, evaluating, packaging, optimizing, or improving skills. Start here for skill authoring. | [`references/`](creator-skill/references/), [`scripts/`](creator-skill/scripts/), [`eval-viewer/`](creator-skill/eval-viewer/), [`agents/`](creator-skill/agents/), [`assets/`](creator-skill/assets/), [`evals/`](creator-skill/evals/) |
+| [`decide`](decide/SKILL.md) | Comparing options, weighing tradeoffs, and recommending a direction using explicit criteria. | [`evals/`](decide/evals/) |
 | [`design-api`](design-api/SKILL.md) | Contract-first API design for OpenAPI, AsyncAPI, GraphQL, endpoints, schemas, and request/response shapes. | [`references/`](design-api/references/), [`evals/`](design-api/evals/) |
 | [`explain`](explain/SKILL.md) | Explaining general knowledge, concepts, code, behavior, design, architecture, APIs, data flow, and tradeoffs in simple terms. | [`evals/`](explain/evals/) |
+| [`explore`](explore/SKILL.md) | Investigating local repository, project document, and attached-artifact context with evidence. | [`evals/`](explore/evals/) |
 | [`operator-git`](operator-git/SKILL.md) | Git branch naming, branch actions, commit-message drafting, and committing staged changes. | [`references/`](operator-git/references/), [`evals/`](operator-git/evals/) |
+| [`plan`](plan/SKILL.md) | Sequencing work before execution with phases, dependencies, risks, validation, and next actions. | [`evals/`](plan/evals/) |
+| [`reason`](reason/SKILL.md) | Working through ambiguous problems, assumptions, hypotheses, and problem framing before deciding or planning. | [`evals/`](reason/evals/) |
+| [`remember`](remember/SKILL.md) | Preserving durable project facts, decisions, conventions, and useful observations in `.agents/memory/`. | [`evals/`](remember/evals/) |
 | [`review-code`](review-code/SKILL.md) | Reviewing code changes, diffs, pull requests, branches, or patches for correctness, regressions, security, performance, and test gaps. | [`references/`](review-code/references/), [`evals/`](review-code/evals/) |
 | [`writer-prd`](writer-prd/SKILL.md) | Product requirements, product briefs, feature requirements, product scope, and launch requirements. | [`references/`](writer-prd/references/), [`evals/`](writer-prd/evals/) |
 | [`writer-spec`](writer-spec/SKILL.md) | Technical specs, design docs, functional and non-functional requirements, data contracts, UI specs, release specs, and handoff docs. | [`references/`](writer-spec/references/), [`evals/`](writer-spec/evals/) |

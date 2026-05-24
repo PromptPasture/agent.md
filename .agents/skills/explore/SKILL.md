@@ -1,0 +1,70 @@
+---
+name: explore
+description: Investigate local repository, document, and attached-artifact context. Use for "explore", "investigate", "find where", "understand this repo", "trace", and local-context research; do not use for web search.
+license: MIT
+version: 1.0.0
+tags:
+  - explore
+  - investigation
+  - local-context
+author: Oleg Shulyakov
+metadata:
+  catalog: utility
+---
+
+# explore
+
+Investigate local context and report evidence-backed findings.
+
+## Scope
+
+**Use this skill for local repository, project document, and attached-artifact investigation.**
+
+- **Trigger on local research**: use for "explore", "investigate", "find where", "understand this repo", "trace", and requests to inspect local project context.
+- **Stay local**: search local files, project docs, attached artifacts, repository history, and available workspace context only.
+- **Exclude web research**: do not perform web search, browsing, or current-information research as part of this skill.
+- **Report evidence**: ground findings in file references, artifact references, command output, or clearly marked inference.
+
+---
+
+## Workflow
+
+**Start broad enough to find entry points, then narrow to evidence.**
+
+1. Identify the target concept, behavior, file, command, error, or workflow.
+2. Search names, strings, docs, tests, configuration, and related symbols.
+3. Follow call paths, imports, references, generated sources, and tests only as needed.
+4. Distinguish live behavior from dead code, examples, fixtures, or stale docs.
+5. Summarize findings, gaps, and confidence with references.
+
+---
+
+## Output
+
+**Make findings traceable and useful for the next action.**
+
+- **Lead with the answer**: state what was found or not found.
+- **Cite local evidence**: include file paths, line references when available, and relevant commands.
+- **Separate inference**: label deductions that are not directly stated in files.
+- **Name gaps**: call out missing files, inaccessible artifacts, ambiguous ownership, or unverified runtime behavior.
+- **Keep scope tight**: do not explain unrelated systems discovered during the search.
+
+---
+
+## Error Paths
+
+**When evidence is incomplete, report the limits rather than filling gaps with guesses.**
+
+- **No matches**: say what was searched and suggest the next local search path.
+- **Conflicting sources**: prefer runtime wiring and tests over stale docs, and state the conflict.
+- **Generated or external code missing**: identify the missing source and how it affects confidence.
+
+---
+
+## Verification
+
+**Check that every conclusion has local support.**
+
+- **Reproduce key searches**: use fast local search before relying on memory.
+- **Prefer primary files**: cite implementation, tests, configs, or authoritative docs over secondary mentions.
+- **No external claims**: leave web or current-information research to an explicit user request outside this skill.
