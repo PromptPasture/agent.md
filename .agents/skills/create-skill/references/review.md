@@ -15,7 +15,7 @@ Check whether the frontmatter `description` is a useful trigger signal.
 - **Skill value**: remember that agents tend to reach for skills only when a task requires knowledge or capabilities beyond what they can handle alone. Weight eval queries toward specialized knowledge, unfamiliar APIs, or domain-specific workflows.
 - **Trigger evals**: check for realistic should-trigger and should-not-trigger prompts. Strong should-trigger cases are ones where the skill would help but the connection is not obvious; strong should-not-trigger cases are near misses. Vary phrasing, explicitness, detail level, and complexity.
 
-## Scope And Coherence
+## Coherence And Boundaries
 
 **One skill should cover one coherent unit of work.**
 
@@ -23,7 +23,8 @@ Check whether the skill covers a coherent unit of work and adds genuine value.
 
 - **Added value**: ask whether the skill adds what the agent *lacks*, such as project-specific conventions, domain procedures, non-obvious edge cases, or particular tools and APIs.
 - **Mixed jobs**: flag skills that combine unrelated work, because they become hard to trigger precisely and can load conflicting instructions.
-- **Over-narrow scope**: flag skills that are so narrow they force several skills to activate for one normal user task.
+- **Over-narrow boundaries**: flag skills that are so narrow they force several skills to activate for one normal user task.
+- **Body scope sections**: flag `## Scope` sections that describe activation criteria. Skill-call scope belongs in the frontmatter `description`; body sections should cover workflow, boundaries, routing, and output rules.
 - **Defaults first**: prefer defaults over menus when the skill names tools, formats, or procedures. Alternatives should be escape hatches, not equal-choice catalogs.
 
 ## Instruction Quality
@@ -38,6 +39,7 @@ Check whether the body teaches a reusable procedure rather than a one-off answer
 - **Ordered workflow**: make workflows stepwise, ordered, and validation-aware when the task has dependencies or failure modes.
 - **Templates**: provide output templates when format consistency matters. Short templates can live inline; longer or conditional ones belong in `assets/`.
 - **Section boundaries**: require standalone `---` delimiters between `##` sections in `SKILL.md`, without changing YAML frontmatter delimiters or adding an extra delimiter before the `#` title.
+- **Execution-first order**: the first body section should usually be `## Workflow`, `## Source Handling`, or `## Route the Work`, not `## Boundaries`. Boundary-first order needs a concrete safety or destructive-action reason.
 - **Scan anchors**: require a bold principle sentence after each `##` section heading and bold labels for distinct rule bullets in prose skill docs, unless the section is a schema, command example, or literal output template.
 - **Gotchas**: capture non-obvious mistakes an agent is likely to make, not generic advice like "handle errors appropriately."
 - **Sensitive behavior**: make security-sensitive or destructive behavior explicit, expected by the user, and bounded by the skill description.

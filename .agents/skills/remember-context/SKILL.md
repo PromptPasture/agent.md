@@ -8,7 +8,7 @@ tags:
   - project-context
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -17,17 +17,6 @@ metadata:
 # remember-context
 
 Write durable project memory only when it will help future work.
-
-## Scope
-
-**Use this skill when the user explicitly asks to preserve project context.**
-
-- **Trigger on memory requests**: use for "remember", "save context", "record this decision", "update memory", "preserve this", and similar requests.
-- **Auto-approve explicit memory**: when the user clearly asks to remember something, write the memory without asking for separate confirmation.
-- **Store durable value**: record project facts, decisions, conventions, recurring constraints, implementation observations, and useful handoff facts.
-- **Reject low-value memory**: do not store transient chatter, todo noise, sensitive information, unverifiable assumptions as fact, or details already captured better in durable docs.
-
----
 
 ## Workflow
 
@@ -50,6 +39,16 @@ Write durable project memory only when it will help future work.
 - **Mark uncertainty**: record assumptions as assumptions, not facts.
 - **Avoid secrets**: do not store credentials, private tokens, personal sensitive data, or material the user did not intend to persist.
 - **Avoid duplication**: link or summarize existing docs rather than copying large content.
+
+---
+
+## Boundaries
+
+**Preserve only project context that will help future work.**
+
+- **Auto-approve explicit memory**: when the user clearly asks to remember something, write the memory without asking for separate confirmation.
+- **Store durable value**: record project facts, decisions, conventions, recurring constraints, implementation observations, and useful handoff facts.
+- **Reject low-value memory**: do not store transient chatter, todo noise, sensitive information, unverifiable assumptions as fact, or details already captured better in durable docs.
 
 ---
 

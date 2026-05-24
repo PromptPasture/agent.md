@@ -8,7 +8,7 @@ tags:
   - reference
 metadata:
   author: Oleg Shulyakov
-  version: "2.1.0"
+  version: "2.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: education
@@ -17,16 +17,6 @@ metadata:
 # explain-topic
 
 Explain knowledge questions clearly, accurately, and at the right depth. Use simple language first, then add precision only where it helps the user understand.
-
-## Scope
-
-**Use this skill for explanations of general knowledge, concepts, systems, and code.**
-
-- **Explain broadly**: use this for "why birds fly", "why the sky is blue", "what is the speed of light", "what is a planet", "how does X work", "explain X like I am new to it", and similar knowledge questions.
-- **Include code**: also use this for questions about how code works, why software is designed a certain way, how modules interact, what an API does, how data moves, or how an implementation compares to a pattern.
-- **Do not over-trigger**: do not use this for requests to write documents, create content, implement changes, debug failures, review code, run commands, or make plans unless the user asks for an explanation first.
-- **Do not implement by default**: if the user asks to build, refactor, debug, or review code, route to the appropriate workflow unless they first ask for an explanation.
-- **Critique only on request**: switch to Critique when the user asks for risks, design feedback, architecture review, "what is wrong with X?", or whether an approach is good.
 
 ## Source Handling
 
@@ -72,6 +62,16 @@ Explain knowledge questions clearly, accurately, and at the right depth. Use sim
 - **Keep snippets scarce**: include code only when it clarifies a contract, branching rule, data shape, or surprising behavior.
 - **Stay in explanation mode**: do not prescribe changes unless the user asked for critique, advice, or a serious risk is worth naming.
 - **Respect scope**: answer the user's question, not every file opened along the way.
+
+## Boundaries
+
+**Explain the requested topic without drifting into implementation, planning, or review.**
+
+- **Cover the topic**: handle general knowledge, concepts, systems, and code behavior at the depth the user needs.
+- **Include code when asked**: explain how code works, why software is designed a certain way, how modules interact, what an API does, how data moves, or how an implementation compares to a pattern.
+- **Do not over-trigger**: do not use this for requests to write documents, create content, implement changes, debug failures, review code, run commands, or make plans unless the user asks for an explanation first.
+- **Do not implement by default**: if the user asks to build, refactor, debug, or review code, route to the appropriate workflow unless they first ask for an explanation.
+- **Critique only on request**: switch to Critique when the user asks for risks, design feedback, architecture review, "what is wrong with X?", or whether an approach is good.
 
 ## Output Format
 

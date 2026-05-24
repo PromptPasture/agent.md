@@ -8,7 +8,7 @@ tags:
   - organization
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: data
@@ -17,17 +17,6 @@ metadata:
 # classify-content
 
 Group material by explicit criteria while preserving edge cases.
-
-## Scope
-
-**Use this skill when the primary task is assigning items to meaningful groups.**
-
-- **Trigger on grouping**: use for classification requests like "categorize", "group", "cluster", "sort", "taxonomy", "organize these", and requests to group items by explicit criteria.
-- **Support many criteria**: group by similarity, difference, category, priority, dependency, abstraction level, user need, risk, ownership, or another stated lens.
-- **Respect ambiguity**: keep multi-fit, unclear, or unclassified items visible instead of forcing false precision.
-- **Do not decide by default**: classification may inform a decision, but the primary output is labeled organization.
-
----
 
 ## Workflow
 
@@ -50,6 +39,16 @@ Group material by explicit criteria while preserving edge cases.
 - **Preserve source text**: keep item names recognizable unless normalization is requested.
 - **Explain edge cases**: briefly note why ambiguous items are multi-fit or unresolved.
 - **Offer refinements**: suggest a better lens only when the requested criteria produce weak groups.
+
+---
+
+## Boundaries
+
+**Keep the primary output as labeled organization.**
+
+- **Support many criteria**: group by similarity, difference, category, priority, dependency, abstraction level, user need, risk, ownership, or another stated lens.
+- **Respect ambiguity**: keep multi-fit, unclear, or unclassified items visible instead of forcing false precision.
+- **Do not decide by default**: classification may inform a decision, but the primary output is labeled organization.
 
 ---
 

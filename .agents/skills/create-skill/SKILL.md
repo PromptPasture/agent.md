@@ -8,7 +8,7 @@ tags:
   - authoring
 metadata:
   author: Anthropic
-  version: "1.4.0"
+  version: "1.5.0"
   source: github.com/anthropics/skills
   catalog: utility
   category: meta
@@ -41,7 +41,7 @@ If the request spans multiple phases, read the references in workflow order: aut
 
 **Clarify, write, test, show, iterate, and package — in that order.**
 
-1. **Clarify scope**: identify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
+1. **Clarify activation and behavior**: identify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
 2. **Write the skill**: revise `SKILL.md` with concise metadata, focused instructions, bold scan anchors, and references for details that would bloat the main file.
 3. **Test behavior**: run this skill's `scripts/quick_validate.py` against the target skill; for router skills, confirm every `references/*.md` file has 8-10 evals mapped by `reference`; for objectively testable skills, run skill-enabled outputs against a meaningful baseline.
 4. **Show evidence**: share outputs and benchmark results with the user before making another revision.
@@ -56,12 +56,13 @@ If the request spans multiple phases, read the references in workflow order: aut
 
 - **Section delimiters**: place a standalone `---` between `##` sections in authored `SKILL.md` files so models see strong structural boundaries.
 - **Section principles**: open each `##` section with a single bold sentence that states the section's core principle.
+- **Execution-first bodies**: start the body with the section that tells the agent what to do, usually `## Workflow`, `## Source Handling`, or `## Route the Work`; put `## Boundaries` after the main workflow or output guidance unless safety requires earlier placement.
 - **Scan anchors**: use bold labels for distinct rule bullets in prose skill docs unless the section is a schema, command example, or literal output template.
 - **Size discipline**: keep metadata under 100 tokens and the main instruction body under 500 lines; use references for anything that would push past that.
 - **Metadata fields**: use only `name`, `description`, `license`, `tags`, and `metadata` at the top level; put `author`, `version`, `source`, `catalog`, `category`, and `references` under `metadata`.
 - **Reference metadata**: use `metadata.references` only for local skills or rules the skill uses as part of its workflow; do not list route-away, adjacent-skill, near-miss, or boundary mentions.
 - **Pushy descriptions**: explicitly name the user phrases and contexts that should trigger the skill, not just what it does. Claude tends to undertrigger, so err toward specificity.
-- **Trigger placement**: put all "when to use" information in the frontmatter `description`; put routing, exclusions, examples, and detailed procedures in the body or references.
+- **Trigger placement**: put all "when to use" and skill-call scope information in the frontmatter `description`; do not add a body `Scope` section for activation criteria. Put routing, exclusions, boundaries, examples, and detailed procedures in the body or references.
 - **No placeholders**: add `scripts/`, `references/`, `assets/`, or `evals/` only when the skill actually uses them.
 - **Deterministic helpers**: prefer scripts for repetitive validation, grading, packaging, and report generation.
 - **STAR examples**: write examples and eval prompts so reviewers can see the situation, task, expected action, and result criteria.

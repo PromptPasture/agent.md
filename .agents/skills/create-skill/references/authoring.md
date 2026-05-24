@@ -6,7 +6,7 @@ Use this reference when creating a new skill or revising an existing `SKILL.md`.
 
 **Start from what the user already gave you before asking for more.**
 
-Extract what the user already provided before asking questions. Identify what the skill enables the calling agent to do, when it should trigger, what output it should produce, and whether test cases should be created.
+Extract what the user already provided before asking questions. Identify what the skill enables the calling agent to do, when it should trigger, what output it should produce, and whether test cases should be created. Put the trigger scope in frontmatter `description`, not in a body `Scope` section.
 
 Ask at most one focused question when a missing answer would materially change the skill.
 
@@ -47,7 +47,9 @@ Common nested metadata fields:
 
 Use `metadata.references` only when this skill actually uses another local skill or rule as part of its workflow. Include a referenced item when the body tells the agent to use, apply, delegate to, or run that skill/rule before or during this skill's work. Do not include skills that appear only as route-away guidance, adjacent alternatives, near misses, exclusions, or examples of work this skill should not handle.
 
-Keep the Markdown body under 500 lines. The body should explain workflow, routing decisions, critical rules, and output format. Move deep detail into `references/` and point to it clearly.
+Keep the Markdown body under 500 lines. The body should explain workflow, routing decisions, boundaries, critical rules, and output format. Move deep detail into `references/` and point to it clearly. Do not use a body `Scope` section to describe when the skill should be called; that belongs in `description` per the Agent Skills spec.
+
+Start the body with the section that helps the activated agent act: usually `## Workflow`, `## Source Handling`, or `## Route the Work`. Put `## Boundaries` after the main workflow or output guidance so the file opens with execution, not limits. Place boundaries first only when safety or destructive behavior must be checked before any action.
 
 Apply the house Markdown style while writing, not as a later cleanup pass:
 

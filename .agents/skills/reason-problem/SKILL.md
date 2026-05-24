@@ -8,7 +8,7 @@ tags:
   - thinking
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -17,17 +17,6 @@ metadata:
 # reason-problem
 
 Clarify messy problems without forcing a premature answer.
-
-## Scope
-
-**Use this skill when the user needs structured thinking more than a final decision or plan.**
-
-- **Trigger on ambiguity**: use for "reason through", "think through", "brainstorm", "tackle this problem", "help me frame this", "let's work through this", and unclear problem statements.
-- **Frame the problem**: clarify terms, goals, constraints, assumptions, competing interpretations, hypotheses, and possible directions.
-- **Keep uncertainty visible**: separate facts, assumptions, opinions, and open questions.
-- **Avoid premature closure**: do not force a recommendation, step-by-step plan, or implementation unless the user asks for that next.
-
----
 
 ## Workflow
 
@@ -49,6 +38,16 @@ Clarify messy problems without forcing a premature answer.
 - **Show useful structure**: use short sections such as facts, assumptions, hypotheses, tensions, and next clarity step when the problem is complex.
 - **Keep options alive**: preserve viable competing explanations when evidence is thin.
 - **Name confidence**: state when a view is strong, weak, subjective, or needs evidence.
+
+---
+
+## Boundaries
+
+**Use structured thinking without forcing a premature artifact.**
+
+- **Frame the problem**: clarify terms, goals, constraints, assumptions, competing interpretations, hypotheses, and possible directions.
+- **Keep uncertainty visible**: separate facts, assumptions, opinions, and open questions.
+- **Avoid premature closure**: do not force a recommendation, step-by-step plan, or implementation unless the user asks for that next.
 
 ---
 

@@ -8,7 +8,7 @@ tags:
   - tradeoffs
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: project-management
@@ -17,17 +17,6 @@ metadata:
 # decide-direction
 
 Choose a direction by comparing viable options against explicit criteria.
-
-## Scope
-
-**Use this skill when the user wants a recommendation or choice among options.**
-
-- **Trigger on selection**: use for decision requests like "choose", "which option", "tradeoffs", "recommend", "should we", and similar decision requests.
-- **State criteria**: compare options against goals, constraints, risk, cost, speed, reversibility, maintenance, user impact, or user-provided criteria.
-- **Recommend when supported**: choose one option when evidence is sufficient, and say when it is not.
-- **Do not just classify**: grouping options is useful only as support for a decision.
-
----
 
 ## Workflow
 
@@ -51,6 +40,16 @@ Choose a direction by comparing viable options against explicit criteria.
 - **Name tradeoffs**: explain what the recommendation gives up.
 - **State reversibility**: note whether the choice is easy to change later.
 - **Handle ties honestly**: recommend a tie-breaker or next evidence step when options remain balanced.
+
+---
+
+## Boundaries
+
+**Turn options into a defensible recommendation when the evidence supports one.**
+
+- **State criteria**: compare options against goals, constraints, risk, cost, speed, reversibility, maintenance, user impact, or user-provided criteria.
+- **Recommend when supported**: choose one option when evidence is sufficient, and say when it is not.
+- **Do not just classify**: grouping options is useful only as support for a decision.
 
 ---
 

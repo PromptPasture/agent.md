@@ -8,7 +8,7 @@ tags:
   - sequencing
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: project-management
@@ -17,17 +17,6 @@ metadata:
 # plan-work
 
 Turn a goal into a practical sequence of work.
-
-## Scope
-
-**Use this skill when the user wants an approach, roadmap, milestones, or next-step sequence before execution.**
-
-- **Trigger on planning**: use for planning requests like "break this down", "roadmap", "approach", "milestones", and "how should we proceed".
-- **Sequence work**: identify phases, dependencies, assumptions, risks, verification, and immediate next actions.
-- **Stay pre-execution**: do not manage live owners, blockers, or handoffs as the primary behavior.
-- **Default conversationally**: create durable files only when the user asks or the work clearly needs durable task documentation.
-
----
 
 ## Workflow
 
@@ -51,6 +40,16 @@ Turn a goal into a practical sequence of work.
 - **Keep steps scoped**: each step should have a visible outcome.
 - **Flag blockers**: name missing context that prevents a reliable plan.
 - **Avoid fake precision**: do not invent owners, dates, or estimates without evidence.
+
+---
+
+## Boundaries
+
+**Keep the output as a pre-execution sequence.**
+
+- **Sequence work**: identify phases, dependencies, assumptions, risks, verification, and immediate next actions.
+- **Stay pre-execution**: do not manage live owners, blockers, or handoffs as the primary behavior.
+- **Default conversationally**: create durable files only when the user asks or the work clearly needs durable task documentation.
 
 ---
 

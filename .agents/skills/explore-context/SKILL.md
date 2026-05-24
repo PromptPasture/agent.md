@@ -8,7 +8,7 @@ tags:
   - local-context
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: research
@@ -17,17 +17,6 @@ metadata:
 # explore-context
 
 Investigate local context and report evidence-backed findings.
-
-## Scope
-
-**Use this skill for local repository, project document, and attached-artifact investigation.**
-
-- **Trigger on local research**: use for local investigation requests like "investigate", "find where", "understand this repo", "trace", and requests to inspect local project context.
-- **Stay local**: search local files, project docs, attached artifacts, repository history, and available workspace context only.
-- **Exclude web research**: do not perform web search, browsing, or current-information research as part of this skill.
-- **Report evidence**: ground findings in file references, artifact references, command output, or clearly marked inference.
-
----
 
 ## Workflow
 
@@ -50,6 +39,16 @@ Investigate local context and report evidence-backed findings.
 - **Separate inference**: label deductions that are not directly stated in files.
 - **Name gaps**: call out missing files, inaccessible artifacts, ambiguous ownership, or unverified runtime behavior.
 - **Keep scope tight**: do not explain unrelated systems discovered during the search.
+
+---
+
+## Boundaries
+
+**Keep the investigation local and evidence-backed.**
+
+- **Stay local**: search local files, project docs, attached artifacts, repository history, and available workspace context only.
+- **Exclude web research**: do not perform web search, browsing, or current-information research as part of this skill.
+- **Report evidence**: ground findings in file references, artifact references, command output, or clearly marked inference.
 
 ---
 

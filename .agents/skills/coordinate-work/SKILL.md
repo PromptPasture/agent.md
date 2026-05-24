@@ -8,7 +8,7 @@ tags:
   - handoff
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: project-management
@@ -17,17 +17,6 @@ metadata:
 # coordinate-work
 
 Keep active work understandable across owners, dependencies, blockers, and handoffs.
-
-## Scope
-
-**Use this skill when execution is active or split across workstreams.**
-
-- **Trigger on coordination**: use for coordination requests like "manage this work", "team lead", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-agent or multi-workstream requests.
-- **Track execution**: maintain goals, owners, dependencies, current status, blockers, decisions, and next actions.
-- **Separate from planning**: planning sequences future work; coordination keeps active work moving and handoff-ready.
-- **Do not invent authority**: do not silently assign real people without user-provided ownership or clearly stated assumptions.
-
----
 
 ## Workflow
 
@@ -51,6 +40,16 @@ Keep active work understandable across owners, dependencies, blockers, and hando
 - **Separate assumptions**: mark assumed owners, priorities, deadlines, or statuses.
 - **Preserve handoff state**: include enough context for continuation without rereading the whole thread.
 - **Avoid over-documenting**: keep the view proportional to the number of workstreams.
+
+---
+
+## Boundaries
+
+**Keep active execution understandable and handoff-ready.**
+
+- **Track execution**: maintain goals, owners, dependencies, current status, blockers, decisions, and next actions.
+- **Separate from planning**: planning sequences future work; coordination keeps active work moving and handoff-ready.
+- **Do not invent authority**: do not silently assign real people without user-provided ownership or clearly stated assumptions.
 
 ---
 

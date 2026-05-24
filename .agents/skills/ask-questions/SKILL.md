@@ -8,7 +8,7 @@ tags:
   - questions
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: collaboration
@@ -17,17 +17,6 @@ metadata:
 # ask-questions
 
 Generate the smallest useful set of questions that would change the next action.
-
-## Scope
-
-**Use this skill when the useful output is questions, assumptions, or missing context.**
-
-- **Trigger on clarification**: use for requests such as "what should I ask", "what are the right questions", "what are we missing", "clarify this", and ambiguous requests where progress depends on missing context.
-- **Surface gaps**: identify unknown goals, constraints, stakeholders, acceptance criteria, data, ownership, risks, and decision criteria.
-- **Stay question-first**: do not make decisions, produce implementation plans, or change files as the primary output.
-- **Avoid questionnaires**: ask only the few questions likely to affect the next move unless the user explicitly requests a full discovery list.
-
----
 
 ## Workflow
 
@@ -50,6 +39,16 @@ Generate the smallest useful set of questions that would change the next action.
 - **Group only when needed**: use categories such as goal, scope, risk, data, owner, and acceptance criteria only if they improve scanability.
 - **Mark blockers**: distinguish must-answer questions from nice-to-have questions.
 - **Include assumptions sparingly**: list assumptions only when they affect the question set or proposed next step.
+
+---
+
+## Boundaries
+
+**Keep the output centered on questions, assumptions, or missing context.**
+
+- **Surface gaps**: identify unknown goals, constraints, stakeholders, acceptance criteria, data, ownership, risks, and decision criteria.
+- **Stay question-first**: do not make decisions, produce implementation plans, or change files as the primary output.
+- **Avoid questionnaires**: ask only the few questions likely to affect the next move unless the user explicitly requests a full discovery list.
 
 ---
 
