@@ -14,14 +14,14 @@ Source documents:
 - **Persona:** As a skill library maintainer,
 - **Action:** I want the missing general-purpose agent skills authored as standalone installable skill folders,
 - **Outcome:** so that users can invoke consistent collaboration modes without hidden runtime dependencies.
-- **Epic Context:** Implements the approved General Agent Skills PRD/SPEC by creating `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, and `remember-context`. Existing `explain-topic` is already complete and must not be rewritten unless validation reveals a spec violation.
+- **Epic Context:** Implements the approved General Agent Skills PRD/SPEC by creating `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`. Existing `explain-topic` is already complete and must not be rewritten unless validation reveals a spec violation.
 
 ---
 
 ## 🔍 2. Strict Constraints & Scope Boundaries
 
 - **In-Scope:**
-  - Create `.agents/skills/<skill-name>/SKILL.md` for `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, and `remember-context`.
+  - Create `.agents/skills/<skill-name>/SKILL.md` for `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`.
   - Use initial skill version `1.0.0`.
   - Include frontmatter fields required by local skill conventions.
   - Define each skill's purpose, trigger cases, non-trigger cases, workflow, output expectations, error paths, and verification guidance where relevant.
@@ -49,7 +49,7 @@ Source documents:
 
 ```gherkin
 Scenario: Create standalone skill instructions
-  Given the approved SPEC defines eight new general skills
+  Given the approved SPEC defines nine new general skills
   When the agent creates the new skill folders and SKILL.md files
   Then each new skill folder exists under .agents/skills/
   And each SKILL.md includes name, description, license, version, tags, author, and metadata frontmatter
@@ -82,6 +82,7 @@ Scenario: Avoid placeholder support folders
   6. `.agents/skills/decide-direction/SKILL.md` -> New decision support skill.
   7. `.agents/skills/coordinate-work/SKILL.md` -> New coordination skill.
   8. `.agents/skills/remember-context/SKILL.md` -> New durable memory skill.
+  9. `.agents/skills/adapt/SKILL.md` -> New evidence-driven adaptation diagnosis and routing skill.
 - **Shared Dependencies/Imports:**
   - Follow `.agents/skills/create-skill/references/authoring.md`.
   - Use [SPEC.md](../SPEC.md) as the implementation contract.
@@ -94,7 +95,7 @@ Scenario: Avoid placeholder support folders
 *Note to Agent: Execute these steps sequentially. Verify state after each step.*
 
 1. **Analyze & Validate:** Read [SPEC.md](../SPEC.md), `.agents/skills/create-skill/SKILL.md`, and `.agents/skills/create-skill/references/authoring.md`.
-2. **Create Skill Folders:** Create only the eight missing skill directories and required files.
+2. **Create Skill Folders:** Create only the nine missing skill directories and required files.
 3. **Author Skill Instructions:** Write focused `SKILL.md` files with explicit trigger and non-trigger behavior.
 4. **Check Runtime Boundaries:** Search new skill files for runtime dependency language that points to another skill.
 5. **Check Folder Hygiene:** Confirm no placeholder support folders were created.

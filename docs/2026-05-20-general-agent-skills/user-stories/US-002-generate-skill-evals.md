@@ -14,7 +14,7 @@ Source documents:
 - **Persona:** As a skill library maintainer,
 - **Action:** I want representative evals generated for each general skill,
 - **Outcome:** so that trigger behavior and near-miss boundaries can be reviewed before release.
-- **Epic Context:** Implements FR-011 from the approved SPEC. Evals are generated through `.agents/skills/create-skill/` and stored inside each skill folder.
+- **Epic Context:** Implements FR-012 from the approved SPEC. Evals are generated through `.agents/skills/create-skill/` and stored inside each skill folder.
 
 ---
 
@@ -43,7 +43,7 @@ Source documents:
 
 ```gherkin
 Scenario: Generate evals for each skill
-  Given the eight new general skills exist
+  Given the nine new general skills exist
   When the agent generates evals through create-skill conventions
   Then each new skill has evals/evals.json
   And each eval file contains 8-10 realistic prompts where possible
@@ -77,6 +77,7 @@ Scenario: Preserve eval folder discipline
   6. `.agents/skills/decide-direction/evals/evals.json` -> Trigger and output evals.
   7. `.agents/skills/coordinate-work/evals/evals.json` -> Trigger and output evals.
   8. `.agents/skills/remember-context/evals/evals.json` -> Trigger and output evals.
+  9. `.agents/skills/adapt/evals/evals.json` -> Trigger and output evals.
 - **Shared Dependencies/Imports:**
   - Follow `.agents/skills/create-skill/references/evaluation.md`.
   - Use boundary distinctions from [SPEC.md](../SPEC.md).

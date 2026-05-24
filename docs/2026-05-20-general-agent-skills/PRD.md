@@ -3,7 +3,7 @@ status: APPROVED
 documentType: PRD
 phase: delivery
 createdAt: "2026-05-20"
-updatedAt: "2026-05-21"
+updatedAt: "2026-05-24"
 author: Oleg Shulyakov
 owner: Oleg Shulyakov
 stakeholders: Users of this agent.md skill library
@@ -18,9 +18,9 @@ related:
 
 ## Objective
 
-Create a small set of general-purpose agent skills that cover recurring thinking modes across all projects: asking, explaining, reasoning, classifying, planning, exploring local context, deciding, coordinating, and remembering. Each skill must be useful as a standalone installable unit at runtime, without assuming any other skill is present.
+Create a small set of general-purpose agent skills that cover recurring thinking modes across all projects: asking, explaining, reasoning, classifying, planning, exploring local context, deciding, coordinating, remembering, and adapting. Each skill must be useful as a standalone installable unit at runtime, without assuming any other skill is present.
 
-The remaining gap is a set of project-agnostic skills for common collaboration modes: when the user wants to ask better questions, understand something, reason through an ambiguous problem, organize messy material, frame work, inspect local project context, choose a direction, coordinate execution, or persist useful project memory.
+The remaining gap is a set of project-agnostic skills for common collaboration modes: when the user wants to ask better questions, understand something, reason through an ambiguous problem, organize messy material, frame work, inspect local project context, choose a direction, coordinate execution, persist useful project memory, or detect when existing behavior no longer fits observed evidence.
 
 Without these skills, the agent has to infer these broad behaviors from generic instructions each time. That increases trigger ambiguity and makes common collaboration modes less consistent.
 
@@ -30,8 +30,8 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 
 | Goal ID | Target Outcome | Success Metric |
 | --- | --- | --- |
-| G-1 | Provide a minimal general skill set for common agent collaboration modes. | Nine skills exist: `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, and `remember-context`. |
-| G-2 | Keep every skill independently installable. | Each skill works at runtime without requiring, naming, or delegating to another skill. |
+| G-1 | Provide a minimal general skill set for common agent collaboration modes. | Ten skills exist: `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`. |
+| G-2 | Keep every skill independently installable. | Each skill works at runtime without requiring, calling, importing, or delegating to another installed skill. |
 | G-3 | Make trigger behavior predictable. | Each skill has explicit trigger phrases, exclusions, and at least 7 representative eval prompts: 3 true-positive, 2 false-positive, and 2 non-trigger prompts. |
 | G-4 | Keep each skill lightweight and reusable across repositories. | Each `SKILL.md` stays under 500 lines and uses references only when needed. |
 
@@ -58,6 +58,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 - `decide-direction`: Compare options and recommend a course of action with tradeoffs, assumptions, and decision criteria.
 - `coordinate-work`: Manage multi-step or multi-agent work by tracking goals, owners, dependencies, status, blockers, handoffs, and next actions.
 - `remember-context`: Capture durable project facts, decisions, and useful observations in `.agents/memory/`.
+- `adapt`: Detect when existing behavior, skills, rules, workflows, docs, evals, or memory conventions no longer fit observed outcomes, user feedback, failures, repeated friction, outdated assumptions, or changed constraints, then identify what should change and which appropriate skill or workflow should make the change.
 - Trigger and exclusion guidance for each skill.
 - Acceptance criteria and eval prompts for skill behavior.
 - Standalone installation guidance for each skill.
@@ -67,6 +68,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 - Live integrations with Jira, Linear, Confluence, GitHub Issues, or external memory stores.
 - Web search, web browsing, or external/current-information research inside `explore-context`.
 - Automatic memory writes without user intent or clearly durable project value.
+- Direct artifact rewrites by `adapt` unless the user separately asks to proceed with the appropriate update workflow.
 - Replacing project instructions in `AGENTS.md`.
 
 ### Later
@@ -89,8 +91,9 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | FR-7 | Define `decide-direction` as the skill for choosing among options. | MUST | Triggers on “decide-direction”, “choose”, “which option”, “tradeoffs”, “recommend”, and “should we”. States decision criteria, compares viable options, recommends one, and identifies reversibility or risk. | TBD |
 | FR-8 | Define `coordinate-work` as the skill for managing active work across people, agents, tasks, and dependencies. | MUST | Triggers on “coordinate-work”, “manage this work”, “team lead”, “lead this”, “assign”, “delegate”, “track blockers”, “status”, “handoff”, and multi-agent or multi-workstream requests. Maintains an execution view with goals, owners, dependencies, current status, blockers, and next actions. | TBD |
 | FR-9 | Define `remember-context` as the skill for durable project memory. | MUST | Triggers when the user asks to remember, save context, record a decision, update memory, or preserve a project fact. When the user explicitly asks to remember something, the memory write is auto-approved and should proceed without asking again. Writes only durable facts, decisions, and observations to `.agents/memory/` according to project conventions. Avoids storing transient task chatter or unverifiable assumptions as fact. | TBD |
-| FR-10 | Document standalone runtime boundaries. | MUST | Each skill defines its own purpose, trigger phrases, non-trigger cases, expected behavior, and output shape without requiring, naming, or delegating to another skill at runtime. | TBD |
-| FR-11 | Add behavior evals. | SHOULD | Each skill has at least 7 representative prompts: 3 true-positive prompts, 2 false-positive prompts, and 2 non-trigger prompts. | TBD |
+| FR-10 | Define `adapt` as the skill for detecting evidence-driven change needs and routing the update. | MUST | Triggers on “adapt based on this”, “what should change after this?”, “fold this feedback into our process”, “this keeps happening”, “we keep hitting this issue”, “this failed, what should change?”, “our instructions didn’t handle this”, “the workflow no longer fits”, “the constraints changed”, “this behavior is outdated”, “adjust future behavior based on this”, “turn this failure into an instruction change”, “what artifact should change because of this?”, and “do we need to update a skill, rule, doc, eval, or memory?”. Identifies the adaptation signal, affected behavior or artifact, smallest useful change, and appropriate follow-up skill or workflow. Does not directly update artifacts by default. | TBD |
+| FR-11 | Document standalone runtime boundaries. | MUST | Each skill defines its own purpose, trigger phrases, non-trigger cases, expected behavior, and output shape without requiring, calling, importing, or delegating to another skill at runtime. `adapt` may identify an appropriate follow-up skill or workflow as a route, but that route is not a runtime dependency. | TBD |
+| FR-12 | Add behavior evals. | SHOULD | Each skill has at least 7 representative prompts: 3 true-positive prompts, 2 false-positive prompts, and 2 non-trigger prompts. | TBD |
 
 ---
 
@@ -107,6 +110,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | NFR-7 | Source Discipline | `explore-context` must cite local files, project docs, or attached artifacts and distinguish verified repository facts from inference. It must not perform web search or browsing. |
 | NFR-8 | Memory Hygiene | `remember-context` must preserve useful context without duplicating docs or storing sensitive/transient information. |
 | NFR-9 | Coordination Clarity | `coordinate-work` must keep status, owners, blockers, and next actions explicit enough that another agent or human can continue the work. |
+| NFR-10 | Adaptation Discipline | `adapt` must distinguish durable evidence-driven change signals from one-off exceptions and route actual updates to the appropriate skill or workflow. |
 
 ---
 
@@ -115,7 +119,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | Milestone | Target Date | Exit Criteria | Owner |
 | --- | --- | --- | --- |
 | M-1 | TBD | Draft PRD approved. | Oleg Shulyakov |
-| M-2 | TBD | Skill descriptions and trigger boundaries drafted for all nine skills. | TBD |
+| M-2 | TBD | Skill descriptions and trigger boundaries drafted for all ten skills. | TBD |
 | M-3 | TBD | `SKILL.md` files created or updated. | TBD |
 | M-4 | TBD | Eval prompts added and trigger overlap checked. | TBD |
 
@@ -132,6 +136,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 7. A user asks, “Should we build this as a plugin or a skill?” The agent uses `decide-direction`, compares options against explicit criteria, and recommends one.
 8. A user asks, “Lead this migration across frontend, backend, and tests.” The agent uses `coordinate-work` to track workstreams, owners, dependencies, blockers, status, and handoffs.
 9. A user asks, “Remember that we chose skills over plugins for this.” The agent uses `remember-context`, records the durable decision in the appropriate memory file, and keeps the note concise.
+10. A user says, “This failed, what should change?” The agent uses `adapt` to identify the failure signal, determine whether a skill, rule, doc, eval, memory convention, or workflow should change, and route the actual update to the appropriate follow-up skill or workflow.
 
 ---
 
@@ -148,6 +153,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | R-7 | `reason-problem` could become vague brainstorming without useful output. | MEDIUM | Require a clear problem framing, assumptions, hypotheses or options, and suggested next clarity step. | OPEN |
 | R-8 | `ask-questions` could become an endless questionnaire. | MEDIUM | Require prioritized questions and a bias toward the smallest question set that changes the next action. | OPEN |
 | R-9 | `classify-content` could force false precision. | MEDIUM | Require explicit grouping criteria, ambiguous cases, and optional multi-label classifications when needed. | OPEN |
+| R-10 | `adapt` could become a generic “improve anything” skill or rewrite artifacts directly. | MEDIUM | Define `adapt` as evidence-driven change detection and routing only; actual updates belong to the appropriate artifact-specific skill or workflow. | OPEN |
 
 ---
 
@@ -156,7 +162,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | Dependency ID | Item | Impacted Requirements | Validation Owner |
 | --- | --- | --- | --- |
 | D-1 | Existing `.agents/memory/` conventions | FR-9, NFR-8 | Oleg Shulyakov |
-| D-2 | `create-skill` validation workflow for development-time checks only | FR-11 | TBD |
+| D-2 | `create-skill` validation workflow for development-time checks only | FR-12 | TBD |
 
 ---
 
@@ -172,5 +178,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | Q-6 | Should the ambiguous-problem skill be named `reason-problem`, `think`, or `brainstorm`? | Decided: `reason-problem`, because it covers brainstorming, framing, assumptions, and argument-testing without being limited to idea generation. | Oleg Shulyakov | 2026-05-21 |
 | Q-7 | Should question generation be its own skill or part of `reason-problem`? | Decided: keep `ask-questions` separate because identifying the right questions is a distinct output and often useful before any reasoning path is chosen. | Oleg Shulyakov | 2026-05-21 |
 | Q-8 | Should grouping be named `classify-content`, `sort`, or `categorize`? | Decided: `classify-content`, because it covers category assignment, similarity/difference grouping, taxonomies, and edge cases more precisely than `sort`. | Oleg Shulyakov | 2026-05-21 |
+| Q-9 | Should the evidence-driven change-detection skill be named `evolve` or `adapt`? | Decided: `adapt`, because it detects when existing behavior or artifacts no longer fit observed evidence without implying autonomous self-modification. | Oleg Shulyakov | 2026-05-24 |
+| Q-10 | Should `adapt` perform the actual update to skills, rules, docs, evals, or memory? | Decided: no. `adapt` diagnoses the need and routes the update; artifact-specific skills such as `create-skill`, `create-rule`, `write-*`, `write-tests`, or `remember-context` perform the actual change when requested. | Oleg Shulyakov | 2026-05-24 |
 
 ---
