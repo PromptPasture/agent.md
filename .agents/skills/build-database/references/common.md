@@ -1,0 +1,146 @@
+# OLTP SQL Reference
+
+Write **production-quality SQL** for OLTP databases: queries, DDL, stored procedures, views, transactions, and optimization.
+
+## Variant detection
+
+**Detect dialect from context before choosing syntax.**
+
+Identify the dialect from context. Check in this order:
+
+1. Explicit mention ("postgres", "mysql", "sqlite", etc.)
+2. File extensions or migration tool conventions (`.sql`, Flyway prefix `V1__`, Liquibase)
+3. Code imports (`pg`, `mysql2`, `sqlite3`, `pyodbc`)
+4. Infrastructure mentions ("RDS Postgres", "Azure SQL", etc.)
+5. If genuinely ambiguous: ask-questions once — "Which database are you using? (PostgreSQL, MySQL, MSSQL, SQLite, Oracle)"
+
+Once identified, load the dialect-specific reference for syntax details:
+
+- **PostgreSQL** → read `references/postgres.md`
+- **MySQL / MariaDB** → read `references/mysql.md`
+- **MSSQL / SQL Server** → read `references/mssql.md`
+- **SQLite** → read `references/sqlite.md`
+- **Oracle** → read `references/oracle.md`
+- **BigQuery** → read `references/bigquery.md` for warehouse SQL, usually with `references/analytics.md`
+- **Snowflake** → read `references/snowflake.md` for warehouse SQL, usually with `references/analytics.md`
+- **ClickHouse** → read `references/clickhouse.md` for analytical tables and queries, usually with `references/analytics.md`
+- **CockroachDB** → read `references/cockroachdb.md` for distributed SQL and PostgreSQL-like syntax caveats
+
+## SQL quality standards
+
+**Write readable, parameterized SQL with explicit assumptions.**
+
+### Formatting
+
+```sql
+-- Use uppercase for SQL keywords
+-- Align columns in SELECT lists
+SELECT
+    u.id,
+    u.email,
+    u.created_at,
+    COUNT(o.id)  AS order_count,
+    SUM(o.total) AS lifetime_value
+FROM users u
+    LEFT JOIN orders o ON o.user_id = u.id
+WHERE
+    u.deleted_at IS NULL
+    AND u.created_at >= '2024-01-01'
+GROUP BY
+    u.id,
+    u.email,
+    u.created_at
+ORDER BY
+    lifetime_value DESC NULLS LAST
+LIMIT 100;
+```
+
+### CTEs over subqueries
+
+Prefer CTEs for readability. Use subqueries only when a CTE would be materially slower.
+
+```sql
+WITH active_users AS (
+    SELECT id, email
+    FROM users
+    WHERE deleted_at IS NULL
+),
+recent_orders AS (
+    SELECT user_id, COUNT(*) AS count
+    FROM orders
+    WHERE created_at >= NOW() - INTERVAL '30 days'
+    GROUP BY user_id
+)
+SELECT
+    u.email,
+    COALESCE(ro.count, 0) AS orders_last_30_days
+FROM active_users u
+    LEFT JOIN recent_orders ro ON ro.user_id = u.id;
+```
+
+### NULL handling
+
+- **Null predicates:** Use `IS NULL` / `IS NOT NULL`, never `= NULL`.
+- **Defaults:** Use `COALESCE` for defaults and explain the semantic choice.
+- **Nullable columns:** Document nullable columns in comments.
+
+### Transactions
+
+Wrap multi-statement mutations in explicit transactions with rollback on error:
+
+```sql
+BEGIN;
+
+UPDATE accounts SET balance = balance - 100 WHERE id = :from_id;
+UPDATE accounts SET balance = balance + 100 WHERE id = :to_id;
+
+-- Verify no negative balances
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM accounts WHERE balance < 0 AND id IN (:from_id, :to_id)) THEN
+        RAISE EXCEPTION 'Insufficient funds';
+    END IF;
+END $$;
+
+COMMIT;
+```
+
+### Parameterized queries
+
+Always use parameters (`$1`, `:name`, `?`) instead of string interpolation. Note which style applies to the dialect.
+
+### Index awareness
+
+After writing a query, note which indexes it relies on:
+
+```sql
+-- This query benefits from: idx_orders_user_id, idx_orders_created_at
+-- If these don't exist: CREATE INDEX idx_orders_user_id ON orders(user_id);
+```
+
+## Common patterns by dialect
+
+**Load dialect details only when syntax or behavior differs.**
+
+Read the relevant `references/<dialect>.md` file for:
+
+- **Type system:** Type system quirks, such as Postgres JSONB, MySQL ENUM pitfalls, and SQLite type affinity.
+- **Pagination:** Pagination idioms, especially OFFSET versus keyset.
+- **Plans:** EXPLAIN and execution-plan syntax.
+- **Search:** Full-text search capabilities.
+- **Time:** Date/time functions.
+- **Upsert:** Upsert syntax such as `ON CONFLICT`, `ON DUPLICATE KEY UPDATE`, and `MERGE`.
+
+## Query optimization checklist
+
+**Optimize from access patterns and execution plans, not guesses.**
+
+When asked to optimize a query, check:
+
+- **Rule:** [ ] Are all JOIN columns indexed?
+- **Rule:** [ ] Is there an index on all WHERE clause columns used for filtering (not full-table-scan)?
+- **Rule:** [ ] Are there unnecessary subqueries that could be CTEs or JOINs?
+- **Rule:** [ ] Is `SELECT *` used where specific columns would suffice?
+- **Rule:** [ ] For pagination: is OFFSET used on large tables? (switch to keyset if so)
+- **Rule:** [ ] Is `LIKE '%value%'` used? (leading wildcard prevents index use — consider full-text search)
+- **Rule:** [ ] Are there implicit type casts in WHERE clauses causing index skips?

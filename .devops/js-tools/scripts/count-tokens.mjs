@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { normalizeTokenUsage, tallyCosts } from "tokentally";
@@ -31,7 +31,7 @@ async function buildTokenReport() {
   const entries = await Promise.all(
     files.map(async (entry) => {
       const content = await readFile(join(repoRoot, entry.path), "utf8");
-      const totalTokens = estimateMarkdownTokens(content);
+      const totalTokens = estimateMarkdownTokens(markdownBody(content));
       const usage = normalizeTokenUsage({ input_tokens: totalTokens });
 
       return {
@@ -57,7 +57,7 @@ async function buildTokenReport() {
 
   return {
     generatedAt: new Date().toISOString(),
-    estimator: "local markdown token estimate normalized with tokentally",
+    estimator: "local markdown body token estimate normalized with tokentally",
     totals: {
       files: entries.length,
       tokens: entries.reduce((sum, entry) => sum + entry.tokens, 0),
@@ -105,13 +105,17 @@ async function markdownEntries(kind, directory) {
 async function skillEntries() {
   const skillsDirectory = join(repoRoot, ".agents/skills");
   const skills = await readdir(skillsDirectory, { withFileTypes: true });
-  return skills
-    .filter((skill) => skill.isDirectory())
-    .map((skill) => ({
+  const entries = await Promise.all(
+    skills.filter((skill) => skill.isDirectory()).map(async (skill) => ({
       kind: "skill",
       name: skill.name,
       path: `.agents/skills/${skill.name}/SKILL.md`,
-    }));
+      exists: await fileExists(join(skillsDirectory, skill.name, "SKILL.md")),
+    })),
+  );
+  return entries
+    .filter((entry) => entry.exists)
+    .map(({ exists, ...entry }) => entry);
 }
 
 async function agentEntries() {
@@ -147,6 +151,20 @@ function estimateMarkdownTokens(content) {
     .replace(/`([^`]+)`/g, " $1 ");
   const pieces = normalized.match(/[A-Za-z0-9]+|[^\sA-Za-z0-9]/g) ?? [];
   return pieces.length;
+}
+
+function markdownBody(content) {
+  return content.replace(/^---[ \t]*\r?\n[\s\S]*?\r?\n---[ \t]*(?:\r?\n|$)/, "");
+}
+
+async function fileExists(path) {
+  try {
+    await access(path);
+    return true;
+  } catch (error) {
+    if (error.code === "ENOENT") return false;
+    throw error;
+  }
 }
 
 async function writeReports(report) {

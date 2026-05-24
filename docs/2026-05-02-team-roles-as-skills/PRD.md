@@ -33,9 +33,9 @@ The initiative targets teams and individual practitioners who want role-aware AI
 
 | Goal ID | Target Outcome | Success Metric |
 | --- | --- | --- |
-| G-1 | Cover the core artifact-producing responsibilities of a software delivery team. | 55 cataloged skills exist across the approved prefix groups. |
+| G-1 | Cover the core artifact-producing responsibilities of a software delivery team. | 55 cataloged skills exist across the approved verb groups. |
 | G-1a | Track current implementation progress against the catalog. | 10 of 55 catalog skills currently exist in `.agents/skills/`; current catalog completion is 18%. |
-| G-2 | Make skill discovery predictable from the filesystem. | 100% of catalog skills follow the `<type>-<subject>[-<variant>]` naming convention. |
+| G-2 | Make skill discovery predictable from the filesystem. | 100% of catalog skills follow the `<verb>-<subject>[-<variant>]` naming convention. |
 | G-3 | Reduce repeated role-specific prompting. | Users can invoke each completed skill by artifact or task intent without restating its output structure or role conventions. |
 | G-4 | Produce concrete, reusable artifacts instead of generic advice. | Every completed skill description names the artifact it produces and when it should trigger. |
 | G-5 | Keep complex domains usable without exploding the skill count. | Multi-variant router skills select the correct reference from context or ask only when materially ambiguous. |
@@ -58,7 +58,7 @@ The initiative targets teams and individual practitioners who want role-aware AI
 ### ✅ In Scope
 
 - A local library of 55 software-team skills defined in [SPEC.md](SPEC.md).
-- Prefix-first naming across `audit`, `checklist`, `codegen`, `design`, `diagram`, `model`, `patterns`, `planner`, `report`, `review`, `setup`, `strategy`, `template`, `tracker`, and `writer`.
+- Verb-first naming across `audit`, `check`, `build`, `design`, `diagram`, `model`, `document`, `plan`, `report`, `review`, `configure`, `create`, `track`, and `write`.
 - Skill folders containing `SKILL.md`, eval coverage, and optional `references/` for detailed variant guidance.
 - Multi-variant router skills for domains where one trigger should select among related artifact variants, including backend, frontend, database, testing, architecture, security, infrastructure, and templates.
 - Packaging each completed skill as a distributable `.skill` artifact [assumed].
@@ -86,12 +86,12 @@ The initiative targets teams and individual practitioners who want role-aware AI
 | Requirement ID | Capability / Feature | Priority | Acceptance Criteria | Tracker |
 | --- | --- | --- | --- | --- |
 | FR-1 | Define and track the full team-role skill catalog. | MUST | Catalog includes 55 named skills; each skill maps to at least one primary role and one output artifact; implementation status is checked against `.agents/skills/`; catalog stays aligned across PRD, SPEC, and TASKS. | [TASKS.md](TASKS.md) |
-| FR-2 | Enforce prefix-first skill naming. | MUST | Every skill name follows `<type>-<subject>[-<variant>]`; prefixes match the approved type list in SPEC.md; renames are reflected in docs and task tracking. | [SPEC.md](SPEC.md) |
+| FR-2 | Enforce verb-first skill naming. | MUST | Every skill name follows `<verb>-<subject>[-<variant>]`; verbs match the approved verb list in SPEC.md; renames are reflected in docs and task tracking. | [SPEC.md](SPEC.md) |
 | FR-3 | Provide a standard skill structure. | MUST | Each skill has a `SKILL.md` with valid frontmatter; each skill has eval coverage; large reusable guidance lives in `references/` instead of bloating `SKILL.md`. | [SPEC.md](SPEC.md) |
 | FR-4 | Support multi-variant routing where domains share one role context. | SHOULD | Router skills detect variants from prompt and repo context; router skills ask at most one clarifying question when context is materially ambiguous; variant references are loaded on demand. | [SPEC.md](SPEC.md) |
 | FR-5 | Prioritize build order by daily leverage and role coverage. | MUST | P1 foundation skills are built first; P2/P3/P4 priorities are visible in TASKS.md; completed skills are marked in the tracker. | [TASKS.md](TASKS.md) |
 | FR-6 | Package completed skills for distribution. | SHOULD | Completed skills can be exported as `.skill` files; package contents include instructions, references, scripts, and assets needed for reuse; root-level evals are retained in the source folder and excluded from packaged artifacts by the current packager. | [SPEC.md](SPEC.md), [.agents/skills/README.md](../../.agents/skills/README.md) |
-| FR-7 | Keep security and test responsibilities separated. | MUST | `audit-security` owns prompt-injection, jailbreak, exfiltration, secrets, and threat-modeling guidance; `codegen-test` owns functional tests, AI evals, tool-use evals, performance tests, and CI test setup. | [SPEC.md](SPEC.md) |
+| FR-7 | Keep security and test responsibilities separated. | MUST | `audit-security` owns prompt-injection, jailbreak, exfiltration, secrets, and threat-modeling guidance; `write-tests` owns functional tests, AI evals, tool-use evals, performance tests, and CI test setup. | [SPEC.md](SPEC.md) |
 
 ---
 
@@ -122,14 +122,14 @@ The initiative targets teams and individual practitioners who want role-aware AI
 
 Users invoke skills by naming the skill directly, asking for the artifact the skill owns, or describing a role-specific task. The agent should select the matching skill from its description, load only the needed references, and produce or edit the requested artifact in the repository.
 
-For multi-variant skills, the expected interaction is context-first routing. For example, a request for API tests, E2E tests, AI evals, or performance tests should route through `codegen-test` and select the relevant testing reference without requiring the user to know the internal variant name.
+For multi-variant skills, the expected interaction is context-first routing. For example, a request for API tests, E2E tests, AI evals, or performance tests should route through `write-tests` and select the relevant testing reference without requiring the user to know the internal variant name.
 
 ---
 
 ## 🗺️ User Journeys / Key Flows
 
-1. A product owner asks for a PRD. The agent loads `writer-prd`, reads the required output format, extracts known context, marks inferences with `[assumed]`, and writes `PRD.md`.
-2. A backend engineer asks for API code. The agent loads `codegen-backend`, detects language and framework from repository context, writes focused code changes, and verifies them with local tests where available.
+1. A product owner asks for a PRD. The agent loads `write-prd`, reads the required output format, extracts known context, marks inferences with `[assumed]`, and writes `PRD.md`.
+2. A backend engineer asks for API code. The agent loads `build-backend`, detects language and framework from repository context, writes focused code changes, and verifies them with local tests where available.
 3. A maintainer adds a new skill. The maintainer follows the skill structure in SPEC.md, adds references only when needed, writes eval cases, updates TASKS.md, and packages the skill when complete.
 
 ---
@@ -143,7 +143,7 @@ For multi-variant skills, the expected interaction is context-first routing. For
 | R-3 | Eval requirements slow down early skill creation. | MEDIUM | Build P1 skills first and treat evals as part of the definition of done, not cleanup. | OPEN |
 | R-4 | Team-specific conventions may not fit the base library. | MEDIUM | Keep base skills generic, then support local install-time or repository-level guidance. | OPEN |
 | R-5 | Documentation can drift from the actual skill folders. | HIGH | Update PRD, SPEC, TASKS, and memory notes in the same change when catalog decisions change. | OPEN |
-| R-6 | Some implemented skills predate the current `creator-skill` validation rules. | HIGH | Run `quick_validate.py` per skill, then fix missing bold scan anchors, routed eval `reference` fields, and reference-section principles before release readiness. | OPEN |
+| R-6 | Some implemented skills predate the current `create-skill` validation rules. | HIGH | Run `quick_validate.py` per skill, then fix missing bold scan anchors, routed eval `reference` fields, and reference-section principles before release readiness. | OPEN |
 
 ---
 
@@ -162,8 +162,8 @@ For multi-variant skills, the expected interaction is context-first routing. For
 | Decision ID | Decision | Rationale | Owner | Decision Date |
 | --- | --- | --- | --- | --- |
 | DEC-1 | Use milestone gates instead of a fixed calendar date for the first complete catalog release. | The release is ready when all 55 cataloged skills are implemented, evaluated, documented, and packageable; 10 catalog skills are implemented as of 2026-05-23. | Oleg Shulyakov [assumed] | 2026-05-23 |
-| DEC-2 | Use the `creator-skill` eval bar: 8-10 realistic eval prompts for focused skills and 8-10 prompts per routed reference for router skills. | This keeps the PRD aligned with the maintained authoring workflow while allowing specialized skills to add cases for variant coverage, boundary-trigger testing, or safety-sensitive behavior. | Skill maintainers [assumed] | 2026-05-23 |
-| DEC-3 | Package release-ready skills from `.agents/skills/creator-skill` with `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`. | Release readiness requires `quick_validate.py` to pass, evals to be present in source and pass at least an 85% aggregate expectation pass rate with no failed critical expectations, router evals to include `reference` fields, references to be useful, and no security or packaging blockers to remain. | Skill maintainers [assumed] | 2026-05-23 |
+| DEC-2 | Use the `create-skill` eval bar: 8-10 realistic eval prompts for focused skills and 8-10 prompts per routed reference for router skills. | This keeps the PRD aligned with the maintained authoring workflow while allowing specialized skills to add cases for variant coverage, boundary-trigger testing, or safety-sensitive behavior. | Skill maintainers [assumed] | 2026-05-23 |
+| DEC-3 | Package release-ready skills from `.agents/skills/create-skill` with `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`. | Release readiness requires `quick_validate.py` to pass, evals to be present in source and pass at least an 85% aggregate expectation pass rate with no failed critical expectations, router evals to include `reference` fields, references to be useful, and no security or packaging blockers to remain. | Skill maintainers [assumed] | 2026-05-23 |
 | DEC-4 | Treat organization-level convention packs as a separate follow-up. | This initiative ships the base local skill library first; organization convention packs should layer on later once the base format and release checks are stable. | Oleg Shulyakov [assumed] | 2026-05-23 |
 
 ---

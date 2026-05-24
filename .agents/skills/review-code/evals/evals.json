@@ -178,7 +178,7 @@
         "Recognizes this is a skill-authoring request, not a review request.",
         "Does not produce severity-ranked review findings by default.",
         "Routes to the skill-creation workflow.",
-        "Mentions creator-skill review only if the user later asks to review the created skill."
+        "Mentions create-skill review only if the user later asks to review the created skill."
       ]
     }
   ]

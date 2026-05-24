@@ -97,7 +97,8 @@ async function tokensAtRef(ref, path) {
   const { stdout } = await git(["show", `${ref}:${path}`], {
     maxBuffer: 50 * 1024 * 1024,
   });
-  const estimatedTokens = estimateMarkdownTokens(stdout);
+  const content = isMarkdownPath(path) ? markdownBody(stdout) : stdout;
+  const estimatedTokens = estimateMarkdownTokens(content);
   const usage = normalizeTokenUsage({ input_tokens: estimatedTokens });
   return usage?.totalTokens ?? estimatedTokens;
 }
@@ -116,6 +117,14 @@ function estimateMarkdownTokens(content) {
     .replace(/`([^`]+)`/g, " $1 ");
   const pieces = normalized.match(/[A-Za-z0-9]+|[^\sA-Za-z0-9]/g) ?? [];
   return pieces.length;
+}
+
+function markdownBody(content) {
+  return content.replace(/^---[ \t]*\r?\n[\s\S]*?\r?\n---[ \t]*(?:\r?\n|$)/, "");
+}
+
+function isMarkdownPath(path) {
+  return /\.(md|markdown)$/i.test(path);
 }
 
 function renderComment(rows) {
@@ -146,7 +155,7 @@ Estimated token changes for files under \`.agents/\`.
 ${tableRows}
 | **Total** |  | **${totalBefore}** | **${totalAfter}** | **${formatDelta(totalDelta)}** |
 
-Counts use the repository's local Markdown token estimator, so they are for review comparison rather than provider billing.
+Counts use the repository's local Markdown body token estimator, so they are for review comparison rather than provider billing.
 `;
 }
 
