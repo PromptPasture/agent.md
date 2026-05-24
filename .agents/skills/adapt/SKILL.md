@@ -8,7 +8,7 @@ tags:
   - process
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -31,11 +31,12 @@ metadata:
 
 1. Identify the adaptation signal: observed outcome, user feedback, failure, repeated friction, outdated assumption, or changed constraint.
 2. Decide whether the signal is durable enough to justify adaptation, or only a one-off exception.
-3. Identify the affected behavior or artifact: skill, rule, workflow, document, eval, memory convention, test, or process.
-4. Check whether the symptom comes from a governing convention, template, or source-of-truth artifact; route the change there instead of patching only the local artifact.
-5. State the smallest useful change that would prevent recurrence or fit the new constraint.
-6. Route the actual update to the appropriate follow-up skill, workflow, or owner.
-7. Define how the adaptation should be verified.
+3. Identify the affected behavior or artifact from the signal: skill, rule, workflow, document, eval, memory convention, test, or process.
+4. Treat the invoked skill as the diagnostic lens, not as the target artifact. Do not update `adapt` itself unless the failure is in adaptation behavior.
+5. Check whether the symptom comes from a governing convention, template, or source-of-truth artifact; route the change there instead of patching only the local artifact.
+6. State the smallest useful change that would prevent recurrence or fit the new constraint.
+7. Route the actual update to the appropriate follow-up skill, workflow, or owner.
+8. Define how the adaptation should be verified.
 
 ---
 
@@ -59,6 +60,7 @@ metadata:
 - **Do not overfit:** Avoid changing durable behavior for a single ambiguous incident unless the user explicitly wants a one-off correction.
 - **Do not rewrite by default:** Do not edit skills, rules, docs, evals, tests, or memory unless the user separately asks to proceed with that update.
 - **Use evidence:** Base adaptation on observed outcomes, feedback, failures, repeated friction, outdated assumptions, or changed constraints.
+- **Do not self-target by invocation:** If the user invokes `adapt`, use it to diagnose the needed future change; only modify `adapt` when the evidence shows the adaptation workflow or routing rules failed.
 - **Route precisely:** Skills belong with skill-authoring workflows, rules with rule-authoring workflows, docs with writing workflows, tests with testing workflows, and durable facts with memory workflows.
 - **Prefer source of truth:** When the mismatch comes from a convention, template, or authoring guidance, adapt that governing artifact instead of only patching the artifact that exposed the problem.
 - **Keep uncertainty visible:** If the target artifact or change is unclear, name the likely candidates and the evidence needed to choose.

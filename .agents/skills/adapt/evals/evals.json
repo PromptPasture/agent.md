@@ -5,63 +5,350 @@
       "category": "true-positive",
       "prompt": "This failed, what should change so we don't repeat it?",
       "expected_trigger": "Trigger adapt.",
-      "expected_output": "Identifies the failure signal, decides whether durable adaptation is warranted, names the affected behavior or artifact, routes the actual update, and defines verification."
+      "expected_output": "Identifies the concrete failure signal, decides whether it is durable enough to adapt, names the affected behavior or artifact, proposes the smallest preventive change, routes the update, and defines verification."
     },
     {
       "id": "adapt-002",
       "category": "true-positive",
       "prompt": "Our instructions didn't handle this edge case. What artifact should change because of this?",
       "expected_trigger": "Trigger adapt.",
-      "expected_output": "Maps the observed gap to likely instruction, rule, skill, eval, or doc targets and recommends the smallest follow-up update path."
+      "expected_output": "Maps the edge case to likely instruction, rule, skill, eval, doc, memory, or process targets and recommends the smallest source-of-truth update path."
     },
     {
       "id": "adapt-003",
       "category": "true-positive",
       "prompt": "We keep hitting this issue during reviews. Do we need to update a skill, rule, doc, eval, or memory?",
       "expected_trigger": "Trigger adapt.",
-      "expected_output": "Treats the repeated friction as an adaptation signal, compares likely target artifacts, and routes the actual change without rewriting by default."
+      "expected_output": "Treats repeated review friction as durable evidence, compares likely target artifacts, routes the actual change precisely, and avoids rewriting by default."
     },
     {
       "id": "adapt-004",
       "category": "true-positive",
       "prompt": "The constraints changed, and the workflow no longer fits. Adapt based on this.",
       "expected_trigger": "Trigger adapt.",
-      "expected_output": "Identifies the changed constraint, explains the mismatch, proposes the smallest workflow or artifact adaptation, and states verification criteria."
+      "expected_output": "Identifies the changed constraint, explains the mismatch with the existing workflow, proposes a small workflow or artifact update, and states how to verify the new behavior."
     },
     {
       "id": "adapt-005",
       "category": "true-positive",
       "prompt": "You patched this skill, but the real issue was the authoring guidance. What should change?",
       "expected_trigger": "Trigger adapt.",
-      "expected_output": "Recognizes that the durable change belongs in the governing convention or authoring source of truth, not only in the local skill that exposed the mismatch."
+      "expected_output": "Recognizes that the durable fix belongs in the governing authoring guidance or template, not only in the local skill that exposed the mismatch."
     },
     {
       "id": "adapt-006",
-      "category": "false-positive",
-      "prompt": "Improve this skill's examples and validation checklist.",
-      "expected_trigger": "Do not trigger adapt as the primary skill.",
-      "expected_output": "Should use the skill-authoring workflow directly because the user already requested a concrete skill update."
+      "category": "true-positive",
+      "prompt": "Use adapt: the generated SPEC failed markdownlint because it used bold pseudo-headings. Prevent this in the future.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Uses adapt as the diagnostic workflow, does not assume adapt is the target, identifies write-spec or Markdown generation guidance as the likely target, and names lint passing as verification."
     },
     {
       "id": "adapt-007",
-      "category": "false-positive",
-      "prompt": "Remember that we decided to keep adapt as a routing skill.",
-      "expected_trigger": "Do not trigger adapt.",
-      "expected_output": "Should preserve durable memory if appropriate rather than diagnose what should change."
+      "category": "true-positive",
+      "prompt": "The same clarification question comes up every time we create a PRD. What should change going forward?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Treats the recurring clarification as evidence, identifies PRD guidance or template questions as the likely target, and proposes a small preventive update."
     },
     {
       "id": "adapt-008",
-      "category": "non-trigger",
-      "prompt": "Why did the deployment fail yesterday?",
-      "expected_trigger": "Do not trigger adapt.",
-      "expected_output": "Should investigate or explain the failure unless the user asks what should change going forward."
+      "category": "true-positive",
+      "prompt": "This keeps happening: agents add broad refactors when asked for narrow fixes. What should change?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies repeated scope creep as the signal, routes to implementation rules or relevant coding skills, and proposes stronger narrow-scope guidance with verification."
     },
     {
       "id": "adapt-009",
+      "category": "true-positive",
+      "prompt": "The workflow assumed network access, but this environment is offline. Adapt based on that constraint.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies changed or previously false environment assumptions, routes to workflow or tool guidance, and proposes an offline-safe behavior update."
+    },
+    {
+      "id": "adapt-010",
+      "category": "true-positive",
+      "prompt": "The eval caught a false positive trigger for plan-work. What should we adjust?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies a trigger-boundary problem, targets the affected skill description or evals, and proposes a focused trigger or non-trigger update."
+    },
+    {
+      "id": "adapt-011",
+      "category": "true-positive",
+      "prompt": "The skill routed to web search when the task needed local repo inspection. What should change?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies wrong routing behavior, targets the relevant skill or rule boundary, and proposes guidance that distinguishes local-context research from web research."
+    },
+    {
+      "id": "adapt-012",
+      "category": "true-positive",
+      "prompt": "The user corrected our assumption twice in similar tasks. What durable instruction needs updating?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Treats repeated correction as evidence, names the assumption, distinguishes fact from inference, and routes to the smallest instruction, memory, or workflow update."
+    },
+    {
+      "id": "adapt-013",
+      "category": "true-positive",
+      "prompt": "We created a standalone skill when a rule would have been enough. Adapt this decision pattern.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies an artifact-selection failure, routes to skill/rule authoring guidance, and proposes criteria for choosing a rule versus a skill."
+    },
+    {
+      "id": "adapt-014",
+      "category": "true-positive",
+      "prompt": "The generated examples keep missing expected action and result. What should change?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Treats repeated example weakness as durable, routes to the governing example or eval authoring guidance, and proposes a concise STAR-style requirement."
+    },
+    {
+      "id": "adapt-015",
+      "category": "true-positive",
+      "prompt": "The skill description undertriggered for common user phrases. Adapt the trigger guidance.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Targets the skill description or trigger evals, proposes adding concrete phrases, and defines verification through trigger-focused eval cases."
+    },
+    {
+      "id": "adapt-016",
+      "category": "true-positive",
+      "prompt": "The skill overtriggered on direct editing requests. What should change?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Targets non-trigger or boundary guidance, proposes preventing adapt from taking over concrete edit requests, and adds or updates false-positive evals."
+    },
+    {
+      "id": "adapt-017",
+      "category": "true-positive",
+      "prompt": "The project convention changed from global memory to project-local memory. What should we update?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies a changed convention, routes to memory guidance or project instructions, and states verification against the new project-local memory path."
+    },
+    {
+      "id": "adapt-018",
+      "category": "true-positive",
+      "prompt": "The browser verification step is often skipped for frontend UI changes. Adapt this workflow.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies recurring missing verification, routes to frontend or browser workflow guidance, and proposes a targeted verification requirement."
+    },
+    {
+      "id": "adapt-019",
+      "category": "true-positive",
+      "prompt": "The API spec omitted error paths for the third time. Adapt based on this.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Treats repeated omission as durable, targets API/spec guidance or templates, proposes mandatory error-path coverage, and defines a review or eval check."
+    },
+    {
+      "id": "adapt-020",
+      "category": "true-positive",
+      "prompt": "The agent treated a one-off user preference as a global rule. What should adapt?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies overfitting as the signal, routes to adaptation or memory guidance, and proposes stronger durability criteria before changing global behavior."
+    },
+    {
+      "id": "adapt-021",
+      "category": "true-positive",
+      "prompt": "This happened once and might have been a typo. Should we update the rules?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies a weak adaptation signal, avoids overfitting durable behavior to one ambiguous incident, recommends no rule change yet or a lightweight note, and states what evidence would justify adaptation later."
+    },
+    {
+      "id": "adapt-022",
+      "category": "true-positive",
+      "prompt": "A user disliked one response style. Adapt all future behavior to match that preference.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Treats the request as a possible overfit, distinguishes one-off preference from durable project guidance, and recommends either scoped memory with explicit approval or no global instruction change."
+    },
+    {
+      "id": "adapt-023",
+      "category": "true-positive",
+      "prompt": "Use adapt: always update adapt when an adaptation request mentions a skill path.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Rejects the proposed self-targeting rule, explains that the invoked or linked skill is not automatically the target, and preserves signal-based target selection."
+    },
+    {
+      "id": "adapt-024",
+      "category": "true-positive",
+      "prompt": "The failure could come from write-spec, formatting-markdown, or the PRD template. What should change?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Keeps uncertainty visible, names the likely target artifacts, identifies the evidence needed to choose, and avoids patching a random local file."
+    },
+    {
+      "id": "adapt-025",
+      "category": "true-positive",
+      "prompt": "The same command failed once because I misspelled it. What should change in our process?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Recognizes a likely one-off operator error, avoids durable process changes unless similar failures recur, and may suggest a local correction or verification step."
+    },
+    {
+      "id": "adapt-026",
+      "category": "true-positive",
+      "prompt": "The eval schema and actual eval convention conflict. What artifact should change?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies a source-of-truth conflict, compares schema docs versus current convention as candidate targets, and proposes resolving the governing documentation or validator."
+    },
+    {
+      "id": "adapt-027",
+      "category": "true-positive",
+      "prompt": "We keep adding evals that only prove the happy path and miss where the skill breaks. What should change?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Targets test/eval authoring guidance, proposes coverage across true positives, false positives, non-triggers, edge cases, and breaking points, and defines validation."
+    },
+    {
+      "id": "adapt-028",
+      "category": "true-positive",
+      "prompt": "A reviewer says the fix belongs in write-spec, but another says formatting-markdown. Adapt without guessing.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies conflicting target evidence, compares candidate source-of-truth artifacts, states what inspection or decision is needed, and avoids presenting uncertainty as settled."
+    },
+    {
+      "id": "adapt-029",
+      "category": "true-positive",
+      "prompt": "The user asked to think through the problem, but the agent jumped to implementation. Adapt the routing guidance.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies premature implementation as routing failure, targets reasoning or implementation boundaries, and proposes preserving reasoning mode until output shape is clear."
+    },
+    {
+      "id": "adapt-030",
+      "category": "true-positive",
+      "prompt": "A validator now rejects metadata.references when they only mention route-away skills, but the skill body still tells agents to route there. Adapt the authoring workflow.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Targets skill-authoring guidance, distinguishes runtime workflow dependencies from boundary mentions, handles the apparent contradiction, and defines validation with the existing skill validator."
+    },
+    {
+      "id": "adapt-031",
+      "category": "false-positive",
+      "prompt": "Improve this skill's examples and validation checklist.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Uses the skill-authoring workflow directly because the user requested a concrete skill update, not adaptation diagnosis."
+    },
+    {
+      "id": "adapt-032",
+      "category": "false-positive",
+      "prompt": "Remember that we decided to keep adapt as a routing skill.",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Uses memory behavior if the fact is durable; does not diagnose future process change."
+    },
+    {
+      "id": "adapt-033",
+      "category": "false-positive",
+      "prompt": "Prevent this exact lint error now by updating write-spec to ban bold pseudo-headings.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Performs the concrete requested skill update directly because the target and change are already specified."
+    },
+    {
+      "id": "adapt-034",
+      "category": "false-positive",
+      "prompt": "Create evals for write-spec covering Markdown headings.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Uses test/eval creation workflow directly because the target and change are already specified."
+    },
+    {
+      "id": "adapt-035",
+      "category": "false-positive",
+      "prompt": "Fix the failing markdownlint errors in the generated docs.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Fixes the concrete lint errors directly and may mention prevention only if asked."
+    },
+    {
+      "id": "adapt-036",
+      "category": "false-positive",
+      "prompt": "Review this diff for regressions and missing tests.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Uses review behavior and reports findings; adaptation only applies if the user asks what should change going forward."
+    },
+    {
+      "id": "adapt-037",
+      "category": "false-positive",
+      "prompt": "Explain why markdownlint MD036 fired.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Explains the lint rule and cause rather than proposing durable instruction changes."
+    },
+    {
+      "id": "adapt-038",
+      "category": "false-positive",
+      "prompt": "Plan how we should adapt the engineering-principles implementation over three phases.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Uses planning behavior because the user asked for sequencing, even though the word adapt appears."
+    },
+    {
+      "id": "adapt-039",
+      "category": "false-positive",
+      "prompt": "Choose whether this should be a rule or a skill.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Uses decision behavior to compare options and recommend a direction."
+    },
+    {
+      "id": "adapt-040",
+      "category": "false-positive",
+      "prompt": "Investigate where write-spec defines output structure.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Uses local context exploration to find the relevant files and references."
+    },
+    {
+      "id": "adapt-041",
+      "category": "false-positive",
+      "prompt": "Run the lint command, fix any errors, and do not change future guidance.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Runs the requested command and fixes concrete errors while respecting the explicit instruction not to adapt durable guidance."
+    },
+    {
+      "id": "adapt-042",
+      "category": "false-positive",
+      "prompt": "Package the adapt skill for distribution.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Uses skill packaging workflow; the request is not about future behavior adaptation."
+    },
+    {
+      "id": "adapt-043",
+      "category": "non-trigger",
+      "prompt": "Why did the deployment fail yesterday?",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Investigates or explains the failure; does not recommend process changes unless asked."
+    },
+    {
+      "id": "adapt-044",
       "category": "non-trigger",
       "prompt": "Break the migration into milestones with risks and validation steps.",
       "expected_trigger": "Do not trigger adapt.",
-      "expected_output": "Should produce a work plan because the user asked for sequencing, not evidence-driven adaptation."
+      "expected_output": "Produces a work plan because the request is sequencing, not evidence-driven adaptation."
+    },
+    {
+      "id": "adapt-045",
+      "category": "non-trigger",
+      "prompt": "What is the Single Responsibility Principle?",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Explains the concept rather than changing future behavior."
+    },
+    {
+      "id": "adapt-046",
+      "category": "non-trigger",
+      "prompt": "Find where markdownlint is configured.",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Explores local repository context and reports file references."
+    },
+    {
+      "id": "adapt-047",
+      "category": "non-trigger",
+      "prompt": "Sort these requirements by priority.",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Classifies or prioritizes the provided requirements."
+    },
+    {
+      "id": "adapt-048",
+      "category": "non-trigger",
+      "prompt": "Should we use composition or inheritance here?",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Compares options and recommends a direction using decision criteria."
+    },
+    {
+      "id": "adapt-049",
+      "category": "non-trigger",
+      "prompt": "What questions should I ask before the migration?",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Generates clarification or discovery questions."
+    },
+    {
+      "id": "adapt-050",
+      "category": "non-trigger",
+      "prompt": "Draft release notes for this change.",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Writes release notes using documentation behavior."
     }
   ]
 }
