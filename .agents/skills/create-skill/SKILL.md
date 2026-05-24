@@ -8,7 +8,7 @@ tags:
   - authoring
 metadata:
   author: Anthropic
-  version: "1.6.0"
+  version: "1.6.1"
   source: github.com/anthropics/skills
   catalog: utility
   category: meta
@@ -36,7 +36,7 @@ Create new skills, review and improve existing skills, evaluate outputs, optimiz
    If the request spans multiple phases, read the references in workflow order: authoring, review, evaluation, description optimization, then agent compatibility only when platform details matter.
 
 2. **Clarify activation and behavior.** Identify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
-3. **Write or revise the skill.** Follow `references/authoring.md` for metadata, trigger descriptions, body format, section delimiters, scan anchors, examples, helper scripts, portability, and validation.
+3. **Write or revise the skill.** Follow `references/authoring.md` for metadata, trigger descriptions, `SKILL.md` body format, reference file format, section delimiters, scan anchors, examples, helper scripts, portability, and validation.
 4. **Test behavior.** Run this skill's `scripts/quick_validate.py` against the target skill when available. For router skills, confirm every `references/*.md` file has 8-10 evals mapped by `reference`; for objectively testable skills, run skill-enabled outputs against a meaningful baseline.
 5. **Show evidence.** Share validation output, eval results, benchmark summaries, and relevant diffs before making another revision.
 6. **Iterate deliberately.** Continue until feedback is resolved or further changes stop improving behavior.
@@ -76,6 +76,6 @@ Create new skills, review and improve existing skills, evaluate outputs, optimiz
 ## Verification
 
 - [ ] The selected reference matches the user's current task
-- [ ] Skill edits follow `references/authoring.md`
+- [ ] `SKILL.md` and reference edits follow `references/authoring.md`
 - [ ] Validation, eval, benchmark, or packaging commands were run when applicable
 - [ ] Results and remaining risks are reported to the user

@@ -6,8 +6,6 @@ The `description` field is the main signal native skill runtimes use to decide w
 
 ## Choose the Agent Adapter
 
-**Match the optimization harness to the agent that will actually use the skill.**
-
 Infer the calling agent from the current session or CLI. Use native trigger detection when the agent exposes it. Otherwise, use routing-judgment evals.
 
 Examples:
@@ -26,9 +24,9 @@ python -m scripts.run_loop \
 
 For CLIs with unusual invocation shapes, pass `--agent-command` with `{prompt}` or `{prompt_file}` placeholders. Do not override the model unless the user explicitly asks; the eval should match the agent's normal behavior.
 
-## Create Trigger Evals
+---
 
-**Build near-miss evals that expose false positives and false negatives.**
+## Create Trigger Evals
 
 Create about 20 realistic queries, split between should-trigger and should-not-trigger cases. Use concrete prompts that resemble real user requests, including file paths, domain details, typos, abbreviations, and ambiguous phrasing.
 
@@ -43,9 +41,9 @@ Save them as:
 ]
 ```
 
-## Review the Eval Set
+---
 
-**Let the user correct the eval set before optimizing against it.**
+## Review the Eval Set
 
 When possible, present the eval set to the user before running optimization. Use `assets/eval_review.html` by replacing:
 
@@ -55,9 +53,9 @@ When possible, present the eval set to the user before running optimization. Use
 
 The user can edit queries and export the final eval set.
 
-## Run the Optimization Loop
+---
 
-**Optimize on held-out performance, not just the prompts that exposed the issue.**
+## Run the Optimization Loop
 
 Run:
 
@@ -75,8 +73,8 @@ The loop splits train and held-out test data, evaluates the current description,
 
 Apply the best description to `SKILL.md`, then report the before/after and scores. Keep the updated metadata under 100 tokens.
 
-## Triggering Notes
+---
 
-**Trigger tests should resemble tasks where the skill materially helps.**
+## Triggering Notes
 
 Agents may skip a skill for simple tasks they can handle directly. Trigger eval prompts should be substantive enough that a specialized skill would help. Tiny prompts like "read this file" are poor trigger tests even if the skill technically could help.

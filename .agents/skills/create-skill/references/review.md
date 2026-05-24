@@ -4,8 +4,6 @@ Use this reference when reviewing a created or revised skill folder. Treat the s
 
 ## Trigger Description
 
-**The description should make the skill trigger for the right work and stay quiet for near misses.**
-
 Check whether the frontmatter `description` is a useful trigger signal.
 
 - **Intent phrasing**: use imperative, intent-focused language such as "Use when..." or "Use for..." rather than only describing internal mechanics.
@@ -15,9 +13,9 @@ Check whether the frontmatter `description` is a useful trigger signal.
 - **Skill value**: remember that agents tend to reach for skills only when a task requires knowledge or capabilities beyond what they can handle alone. Weight eval queries toward specialized knowledge, unfamiliar APIs, or domain-specific workflows.
 - **Trigger evals**: check for realistic should-trigger and should-not-trigger prompts. Strong should-trigger cases are ones where the skill would help but the connection is not obvious; strong should-not-trigger cases are near misses. Vary phrasing, explicitness, detail level, and complexity.
 
-## Coherence And Boundaries
+---
 
-**One skill should cover one coherent unit of work.**
+## Coherence And Boundaries
 
 Check whether the skill covers a coherent unit of work and adds genuine value.
 
@@ -27,9 +25,9 @@ Check whether the skill covers a coherent unit of work and adds genuine value.
 - **Body scope sections**: flag `## Scope` sections that describe activation criteria. Skill-call scope belongs in the frontmatter `description`; body sections should cover workflow, boundaries, routing, and output rules.
 - **Defaults first**: prefer defaults over menus when the skill names tools, formats, or procedures. Alternatives should be escape hatches, not equal-choice catalogs.
 
-## Instruction Quality
+---
 
-**The body should teach reusable judgment, not a one-off answer.**
+## Instruction Quality
 
 Check whether the body teaches a reusable procedure rather than a one-off answer.
 
@@ -40,13 +38,13 @@ Check whether the body teaches a reusable procedure rather than a one-off answer
 - **Templates**: provide output templates when format consistency matters. Short templates can live inline; longer or conditional ones belong in `assets/`.
 - **Section boundaries**: require standalone `---` delimiters between `##` sections in `SKILL.md`, without changing YAML frontmatter delimiters or adding an extra delimiter before the `#` title.
 - **Execution-first order**: the first body section should usually be `## Workflow`, `## Source Handling`, or `## Route the Work`, not `## Boundaries`. Boundary-first order needs a concrete safety or destructive-action reason.
-- **Scan anchors**: require a bold principle sentence after each `##` section heading and bold labels for distinct rule bullets in prose skill docs, unless the section is a schema, command example, or literal output template.
+- **Scan anchors**: require bold labels inside steps or bullets when they make distinct actions, fields, or rules easier to scan. Do not require a bold principle sentence after each `##` heading.
 - **Gotchas**: capture non-obvious mistakes an agent is likely to make, not generic advice like "handle errors appropriately."
 - **Sensitive behavior**: make security-sensitive or destructive behavior explicit, expected by the user, and bounded by the skill description.
 
-## Progressive Disclosure
+---
 
-**Spend context deliberately and only when it changes the run.**
+## Progressive Disclosure
 
 Check whether context is spent deliberately.
 
@@ -56,9 +54,9 @@ Check whether context is spent deliberately.
 - **Metadata references**: verify `metadata.references` lists only local skills or rules used inside the workflow. Remove route-away, adjacent-skill, near-miss, exclusion, and boundary mentions.
 - **Unused folders**: placeholder folders or unused resources are review issues when they make the skill harder to understand or maintain.
 
-## Validation And Evals
+---
 
-**A good skill can be tested without pretending every judgment is objective.**
+## Validation And Evals
 
 Check whether the skill can be tested and improved systematically.
 
