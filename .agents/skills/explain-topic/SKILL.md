@@ -2,13 +2,14 @@
 name: explain-topic
 description: Explain any knowledge topic simply and accurately. Use for explanation requests like "explain X", "why/how/what is X?", concepts, science, definitions, code, design, architecture, and walkthroughs.
 license: MIT
-version: 2.1.0
 tags:
   - explain
   - education
   - reference
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "2.1.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 

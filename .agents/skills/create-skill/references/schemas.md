@@ -10,6 +10,9 @@ Defines project-owned metadata conventions inside `SKILL.md` frontmatter.
 
 ```yaml
 metadata:
+  author: Oleg Shulyakov
+  version: "1.2.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   references:
     - write-spec
@@ -19,6 +22,9 @@ metadata:
 **Fields:**
 
 - `metadata.catalog`: Optional catalog grouping string
+- `metadata.author`: Optional creator name or GitHub profile URL
+- `metadata.version`: Optional semantic versioning string
+- `metadata.source`: Optional repository or canonical source reference, such as `github.com/org/repo`
 - `metadata.references`: Optional list of local skill or rule names this skill explicitly uses as part of its workflow. Include references only when the body tells the agent to use, apply, delegate to, or run that skill/rule before or during this skill's work. Do not include route-away, adjacent-skill, near-miss, exclusion, or boundary mentions.
 
 ---

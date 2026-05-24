@@ -1,8 +1,10 @@
 ---
 description: Commit staged changes with a Conventional Commits message after confirmation
-author: Oleg Shulyakov
 license: MIT
-version: 1.1.0
+metadata:
+  author: Oleg Shulyakov
+  version: "1.1.0"
+  source: github.com/olegshulyakov/agent.md
 ---
 
 <!-- markdownlint-disable-next-line MD041 -->

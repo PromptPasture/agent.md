@@ -1,8 +1,10 @@
 ---
 description: Create a properly named Git branch for staged changes after confirmation
-author: Oleg Shulyakov
 license: MIT
-version: 1.2.0
+metadata:
+  author: Oleg Shulyakov
+  version: "1.2.0"
+  source: github.com/olegshulyakov/agent.md
 ---
 
 <!-- markdownlint-disable-next-line MD041 -->

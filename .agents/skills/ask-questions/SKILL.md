@@ -2,13 +2,14 @@
 name: ask-questions
 description: Generate high-leverage questions and clarify missing context. Use for question-generation requests like "what should I ask", "right questions", "what are we missing", "clarify this", and ambiguous requests blocked by unknowns.
 license: MIT
-version: 1.0.0
 tags:
   - question-generation
   - clarification
   - questions
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 

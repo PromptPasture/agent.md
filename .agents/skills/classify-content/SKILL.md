@@ -2,13 +2,14 @@
 name: classify-content
 description: Organize material into meaningful groups. Use for classification requests like "categorize", "group", "cluster", "sort", "taxonomy", "organize these", and grouping by criteria, priority, dependency, similarity, or abstraction level.
 license: MIT
-version: 1.0.0
 tags:
   - classification
   - taxonomy
   - organization
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 

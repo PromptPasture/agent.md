@@ -8,6 +8,7 @@
 - **Creator skills support multiple agent runtimes** — `.agents/skills/creator-skill` guidance and scripts were updated to avoid assumptions tied to a single tool.
 - **Design API is a router skill** — `design-api` routes contract design work across OpenAPI, AsyncAPI, and GraphQL references.
 - **Operator git has shared action/output behavior** — `operator-git` keeps branch naming and commit message conventions while centralizing action and output workflow behavior in router instructions.
+- **Agent artifact metadata is compact** — Skills, rules, and commands store `author`, `version`, and `source` under `metadata`; use compact source references such as `github.com/olegshulyakov/agent.md`, without `https://` or `www.`.
 
 ## Preferences
 

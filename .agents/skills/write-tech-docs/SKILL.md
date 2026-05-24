@@ -5,13 +5,14 @@ description: >
   runbooks, operational procedures, changelogs, and release notes. Use for operational,
   reference, and release communication docs rather than product or specification docs.
 license: MIT
-version: 1.0.0
 tags:
   - writer
   - docs
   - technical-writing
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
 ---
 

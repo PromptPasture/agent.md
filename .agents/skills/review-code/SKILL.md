@@ -5,13 +5,14 @@ description: >
   review findings covering correctness, regressions, security, performance, and
   test gaps.
 license: MIT
-version: 1.0.0
 tags:
   - review
   - code
   - quality
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
 ---
 

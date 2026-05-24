@@ -2,13 +2,14 @@
 name: coordinate-work
 description: Manage active work across people, agents, tasks, dependencies, blockers, and handoffs. Use for coordination requests like "manage this work", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-workstream execution.
 license: MIT
-version: 1.0.0
 tags:
   - coordinate-work
   - execution
   - handoff
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 

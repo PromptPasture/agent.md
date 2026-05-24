@@ -5,13 +5,14 @@ description: >
   TDDs, functional or non-functional requirements, data contracts, UI specs, release specs,
   handoff docs, and system behavior.
 license: MIT
-version: 1.3.0
 tags:
   - writer
   - specification
   - requirements
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.3.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
 ---
 

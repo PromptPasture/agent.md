@@ -2,13 +2,14 @@
 name: build-frontend
 description: Generate production-ready frontend code. Use for components, pages, routes, client state, forms, styling, accessibility, performance, PWA behavior, and data visualization.
 license: MIT
-version: 1.1.0
 tags:
   - codegen
   - frontend
   - ui
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.1.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
 ---
 

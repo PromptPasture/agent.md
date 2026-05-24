@@ -3,6 +3,10 @@ name: formatting-markdown
 description: Keep Markdown files linted, tidy, and token-efficient.
 applies_to: ["**/*.md", "**/*.markdown"]
 priority: medium
+metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
 ---
 
 # Markdown Formatting Rules

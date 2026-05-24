@@ -4,13 +4,14 @@ description: >
   Handle Git branch naming, branch actions, commit-message drafting, and committing staged changes.
   Use for Git workflow tasks, branch review, commit requests, and diffs needing commit messages.
 license: MIT
-version: 1.1.0
 tags:
   - operator
   - git
   - workflow
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.1.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 

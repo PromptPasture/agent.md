@@ -2,13 +2,14 @@
 name: plan-work
 description: Sequence work before execution. Use for planning requests like "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
 license: MIT
-version: 1.0.0
 tags:
   - plan
   - roadmap
   - sequencing
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 

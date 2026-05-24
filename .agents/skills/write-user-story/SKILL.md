@@ -4,13 +4,14 @@ description: >
   Write user stories with acceptance criteria and developer tasks. Use for story writing,
   Jira/Linear/GitHub tickets, task breakdowns, story points, and story-level sprint planning.
 license: MIT
-version: 1.1.0
 tags:
   - writer
   - agile
   - user-stories
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.1.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
 ---
 

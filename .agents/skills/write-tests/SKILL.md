@@ -5,13 +5,14 @@ description: >
   integration, load/performance, LLM output, RAG, prompt regression, AI tool-use,
   and AI cost/latency benchmark requests.
 license: MIT
-version: 1.0.0
 tags:
   - codegen
   - testing
   - evals
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
 ---
 

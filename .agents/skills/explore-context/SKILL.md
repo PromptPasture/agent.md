@@ -2,13 +2,14 @@
 name: explore-context
 description: Investigate local repository, document, and attached-artifact context. Use for local investigation requests like "investigate", "find where", "understand this repo", "trace", and local-context research; do not use for web search.
 license: MIT
-version: 1.0.0
 tags:
   - local-investigation
   - investigation
   - local-context
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 

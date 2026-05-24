@@ -4,8 +4,10 @@ description: Keep coding work simple, surgical, explicit, and verifiable.
 applies_to: ["**/*"]
 priority: high
 license: MIT
-author: multica-ai
-version: 1.0.0
+metadata:
+  author: multica-ai
+  version: "1.0.0"
+  source: github.com/multica-ai/andrej-karpathy-skills
 ---
 
 # Karpathy Guidelines

@@ -2,13 +2,14 @@
 name: remember-context
 description: Preserve durable project facts, decisions, and useful observations in .agents/memory/. Use for memory requests like "remember this", "save context", "record a decision", "update memory", or preserving a project fact.
 license: MIT
-version: 1.0.0
 tags:
   - remember
   - memory
   - project-context
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 

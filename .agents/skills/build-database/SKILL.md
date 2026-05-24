@@ -4,13 +4,14 @@ description: >
   Generate or modify database code: schemas, DDL, SQL queries, migrations, analytics SQL,
   indexes, stored procedures, and dialect-specific database scripts.
 license: MIT
-version: 1.0.0
 tags:
   - codegen
   - database
   - data
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   references:
     - classify-content

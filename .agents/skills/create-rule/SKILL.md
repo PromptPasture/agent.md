@@ -2,13 +2,14 @@
 name: create-rule
 description: Use when writing or improving CLI-agent rules, custom instruction files, AGENTS.md, CLAUDE.md, Cursor rules, Copilot instructions, or modular `.agents/rules/*.md` files.
 license: MIT
-version: 1.2.0
 tags:
   - creator
   - rules
   - agents
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.3.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 
@@ -67,6 +68,10 @@ name: [Human-Readable Rule Name]
 description: [One sentence describing the behavior this rule governs]
 applies_to: ["glob/or/path/**"]
 priority: low | medium | high | critical
+metadata:
+  author: [Name or profile URL]
+  version: "[semantic version]"
+  source: [Repository or canonical source reference]
 ---
 
 # [Human-Readable Rule Name] Rules
@@ -76,7 +81,7 @@ priority: low | medium | high | critical
 - **Source link**: [instruction referencing authoritative source instead of duplicating it]
 ```
 
-Use `applies_to: ["**/*"]` or omit scope for global rules. Reserve `critical` for security, data-loss, compliance, or production-safety rules.
+Use `applies_to: ["**/*"]` or omit scope for global rules. Reserve `critical` for security, data-loss, compliance, or production-safety rules. Put optional ownership, release, and origin fields such as `author`, `version`, and compact `source` references under `metadata`, not at the top level.
 
 For runtimes with their own front matter, adapt the fields instead of forcing this exact schema. For plain `AGENTS.md`, write a short section with imperative bullets and concrete paths or commands.
 

@@ -16,9 +16,8 @@ except ImportError:  # pragma: no cover - depends on local Python environment
 ALLOWED_FRONTMATTER_KEYS = {
     "name",
     "description",
-    "author",
     "license",
-    "version",
+    "tags",
     "allowed-tools",
     "metadata",
     "compatibility",
@@ -84,6 +83,34 @@ def validate(skill_root: Path) -> list[str]:
     elif len(description.strip()) > 1024:
         errors.append("description must be 1024 characters or fewer")
 
+    tags = frontmatter.get("tags")
+    if tags is not None:
+        if not isinstance(tags, list):
+            errors.append("tags must be a list")
+        elif any(not isinstance(tag, str) for tag in tags):
+            errors.append("tags must contain only strings")
+
+    metadata = frontmatter.get("metadata")
+    if metadata is not None:
+        if not isinstance(metadata, dict):
+            errors.append("metadata must be a mapping")
+        else:
+            author = metadata.get("author")
+            if author is not None and not isinstance(author, str):
+                errors.append("metadata.author must be a string")
+            version = metadata.get("version")
+            if version is not None:
+                if not isinstance(version, str):
+                    errors.append("metadata.version must be a string")
+                elif not re.match(r"^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$", version):
+                    errors.append("metadata.version must be a semantic versioning string")
+            source = metadata.get("source")
+            if source is not None:
+                if not isinstance(source, str):
+                    errors.append("metadata.source must be a string")
+                elif not re.match(r"^(?:https?://)?[A-Za-z0-9.-]+(?:/[A-Za-z0-9._~!$&'()*+,;=:@%-]+)*/?$", source):
+                    errors.append("metadata.source must be a repository or source reference like github.com/org/repo")
+
     if not (skill_root / "evals" / "evals.json").exists():
         errors.append("evals/evals.json not found")
     if not (skill_root / "evals" / "trigger-evals.json").exists():
@@ -107,4 +134,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

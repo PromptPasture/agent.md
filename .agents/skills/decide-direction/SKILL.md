@@ -2,13 +2,14 @@
 name: decide-direction
 description: Compare options and recommend a direction. Use for decision requests like "choose", "which option", "tradeoffs", "recommend", "should we", and option selection with criteria, risks, and reversibility.
 license: MIT
-version: 1.0.0
 tags:
   - decision
   - recommendation
   - tradeoffs
-author: Oleg Shulyakov
 metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
   catalog: utility
 ---
 
