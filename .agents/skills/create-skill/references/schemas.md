@@ -4,6 +4,25 @@ This document defines the JSON schemas used by skill-creator.
 
 ---
 
+## SKILL.md Metadata
+
+Defines project-owned metadata conventions inside `SKILL.md` frontmatter.
+
+```yaml
+metadata:
+  catalog: software-team-roles
+  references:
+    - write-spec
+    - formatting-markdown
+```
+
+**Fields:**
+
+- `metadata.catalog`: Optional catalog grouping string
+- `metadata.references`: Optional list of local skill or rule names this skill explicitly uses as part of its workflow. Include references only when the body tells the agent to use, apply, delegate to, or run that skill/rule before or during this skill's work. Do not include route-away, adjacent-skill, near-miss, exclusion, or boundary mentions.
+
+---
+
 ## evals.json
 
 Defines the evals for a skill. Located at `<skill-path>/evals/evals.json` within the skill directory. Do not create `evals/` as a sibling of the skill.

@@ -214,7 +214,7 @@ Write a JSON file with this structure:
   - **needs_review**: Items requiring human attention
   - **workarounds**: Places where the skill didn't work as expected
 - **eval_feedback**: Improvement suggestions for the evals (only when warranted)
-  - **suggestions**: List of concrete suggestions, each with a `reason-problem` and optionally an `assertion` it relates to
+  - **suggestions**: List of concrete suggestions, each with a `reason` and optionally an `assertion` it relates to
   - **overall**: Brief assessment — can be "No suggestions, evals look solid" if nothing to flag
 
 ## Guidelines

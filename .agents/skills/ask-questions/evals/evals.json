@@ -3,7 +3,7 @@
     {
       "id": "ask-questions-001",
       "category": "true-positive",
-      "prompt": "What should I ask-questions the team before we commit to this migration approach?",
+      "prompt": "What should I ask the team before we commit to this migration approach?",
       "expected_trigger": "Trigger ask-questions.",
       "expected_output": "Produces a short prioritized set of migration questions, with blockers separated from nice-to-have context."
     },

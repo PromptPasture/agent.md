@@ -1,6 +1,6 @@
 ---
 name: remember-context
-description: Preserve durable project facts, decisions, and useful observations in .agents/memory/. Use when the user asks to remember, save context, record a decision, update memory, or preserve a project fact.
+description: Preserve durable project facts, decisions, and useful observations in .agents/memory/. Use for memory requests like "remember this", "save context", "record a decision", "update memory", or preserving a project fact.
 license: MIT
 version: 1.0.0
 tags:

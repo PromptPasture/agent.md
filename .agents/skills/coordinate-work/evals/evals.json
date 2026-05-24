@@ -38,7 +38,7 @@
     {
       "id": "coordinate-work-006",
       "category": "false-positive",
-      "prompt": "What questions should I ask-questions each team before assigning work?",
+      "prompt": "What questions should I ask each team before assigning work?",
       "expected_trigger": "Do not trigger coordinate-work as the primary skill.",
       "expected_output": "Should generate clarification questions before coordination."
     },
@@ -54,7 +54,7 @@
       "category": "non-trigger",
       "prompt": "Categorize these tasks by frontend, backend, and docs.",
       "expected_trigger": "Do not trigger coordinate-work.",
-      "expected_output": "Should classify-content tasks by component."
+      "expected_output": "Should classify tasks by component."
     }
   ]
 }

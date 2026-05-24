@@ -1,6 +1,6 @@
 ---
 name: reason-problem
-description: Work through ambiguous problems before a firm output shape is warranted. Use for "reason through", "think through", "brainstorm", "help me frame this", "let's work through this", and messy problem statements.
+description: Work through ambiguous problems before a firm output shape is warranted. Use for reasoning requests like "reason through", "think through", "brainstorm", "help me frame this", "let's work through this", and messy problem statements.
 license: MIT
 version: 1.0.0
 tags:

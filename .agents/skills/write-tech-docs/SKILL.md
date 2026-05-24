@@ -34,7 +34,7 @@ Check in this order:
    - `on-call` / `alert` / `pagerduty` / `incident response` — runbook-oncall variant
    - `changelog` / `keep a changelog` / `CHANGELOG` — changelog variant
    - `release notes` / `what's new` / `version announcement` — release-notes variant
-4. **If still ambiguous**: ask-questions the user once with the list of variants
+4. **If still ambiguous**: ask the user once with the list of variants
 
 ## Variants
 

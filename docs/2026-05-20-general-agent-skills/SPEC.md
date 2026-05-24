@@ -168,7 +168,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 - [ ] Triggers on "plan-work", "break this down", "roadmap", "approach", "milestones", and "how should we proceed".
 - [ ] Produces scoped steps, milestones, dependencies, assumptions, risks, and verification strategy when relevant.
 - [ ] Defaults to conversational planning unless durable files are explicitly requested or the task clearly needs them.
-- [ ] Does not coordinate-work live owners, blockers, handoffs, or active workstreams as its primary behavior.
+- [ ] Does not coordinate live owners, blockers, handoffs, or active workstreams as its primary behavior.
 - [ ] Identifies when more context is required before a reliable plan can be made.
 
 #### FR-006: `explore-context`
@@ -218,7 +218,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 **Acceptance criteria:**
 
 - [ ] Triggers when the user asks to remember, save context, record a decision, update memory, or preserve a project fact.
-- [ ] Treats explicit user requests to remember-context as approval to write memory without asking again.
+- [ ] Treats explicit user requests to remember context as approval to write memory without asking again.
 - [ ] Writes only durable facts, decisions, and observations with project value.
 - [ ] Avoids storing transient task chatter, sensitive information, or unverifiable assumptions as fact.
 - [ ] Follows existing `.agents/memory/MEMORY.md` and dated memory file conventions.
@@ -310,7 +310,7 @@ Chosen names are short and direct because the PRD resolved naming in favor of st
 **Decision: Keep `explore-context` local-only.**  
 This prevents accidental current-information research and keeps the skill portable across disconnected or restricted environments. The tradeoff is that users must invoke another workflow for web research.
 
-**Decision: Treat explicit remember-context requests as approval.**  
+**Decision: Treat explicit memory requests as approval.**  
 This removes a redundant confirmation step when the user has already asked to remember something. The tradeoff is that the skill must filter carefully for durability and sensitivity before writing.
 
 **Decision: Store eval prompts per skill.**  

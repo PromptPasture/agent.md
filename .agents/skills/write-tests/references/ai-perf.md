@@ -65,7 +65,7 @@ Use thresholds that match the product experience:
 - **RAG answer:** Retrieval latency, generation latency, grounded-answer pass rate, and cost per grounded answer.
 - **Tool-using agent:** Max model calls, max tool calls, task completion rate, and cost per completed task.
 
-Avoid average-only gates. Averages hide the one slow path that users remember-context with surprising emotional clarity.
+Avoid average-only gates. Averages hide the one slow path that users remember with surprising emotional clarity.
 
 ## Runner Pattern
 

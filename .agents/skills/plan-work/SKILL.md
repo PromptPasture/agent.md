@@ -1,6 +1,6 @@
 ---
 name: plan-work
-description: Sequence work before execution. Use for "plan", "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
+description: Sequence work before execution. Use for planning requests like "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
 license: MIT
 version: 1.0.0
 tags:
@@ -20,7 +20,7 @@ Turn a goal into a practical sequence of work.
 
 **Use this skill when the user wants an approach, roadmap, milestones, or next-step sequence before execution.**
 
-- **Trigger on planning**: use for "plan", "break this down", "roadmap", "approach", "milestones", and "how should we proceed".
+- **Trigger on planning**: use for planning requests like "break this down", "roadmap", "approach", "milestones", and "how should we proceed".
 - **Sequence work**: identify phases, dependencies, assumptions, risks, verification, and immediate next actions.
 - **Stay pre-execution**: do not manage live owners, blockers, or handoffs as the primary behavior.
 - **Default conversationally**: create durable files only when the user asks or the work clearly needs durable task documentation.
@@ -56,7 +56,7 @@ Turn a goal into a practical sequence of work.
 
 **When context is thin, produce a conditional plan instead of pretending the path is fixed.**
 
-- **Unclear goal**: ask-questions the one question that most affects scope, then provide a provisional outline if useful.
+- **Unclear goal**: ask the one question that most affects scope, then provide a provisional outline if useful.
 - **Many unknowns**: split discovery from execution and identify what must be learned first.
 - **Execution already active**: switch the output toward status, blockers, and handoff only when the user asks to manage ongoing work.
 

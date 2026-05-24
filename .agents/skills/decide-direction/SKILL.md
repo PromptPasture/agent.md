@@ -1,10 +1,10 @@
 ---
 name: decide-direction
-description: Compare options and recommend a direction. Use for "decide", "choose", "which option", "tradeoffs", "recommend", "should we", and option selection with criteria, risks, and reversibility.
+description: Compare options and recommend a direction. Use for decision requests like "choose", "which option", "tradeoffs", "recommend", "should we", and option selection with criteria, risks, and reversibility.
 license: MIT
 version: 1.0.0
 tags:
-  - decide-
+  - decision
   - recommendation
   - tradeoffs
 author: Oleg Shulyakov
@@ -20,10 +20,10 @@ Choose a direction by comparing viable options against explicit criteria.
 
 **Use this skill when the user wants a recommendation or choice among options.**
 
-- **Trigger on selection**: use for "decide", "choose", "which option", "tradeoffs", "recommend", "should we", and similar decision requests.
+- **Trigger on selection**: use for decision requests like "choose", "which option", "tradeoffs", "recommend", "should we", and similar decision requests.
 - **State criteria**: compare options against goals, constraints, risk, cost, speed, reversibility, maintenance, user impact, or user-provided criteria.
 - **Recommend when supported**: choose one option when evidence is sufficient, and say when it is not.
-- **Do not just classify-content**: grouping options is useful only as support for a decision.
+- **Do not just classify**: grouping options is useful only as support for a decision.
 
 ---
 

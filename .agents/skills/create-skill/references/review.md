@@ -12,7 +12,7 @@ Check whether the frontmatter `description` is a useful trigger signal.
 - **Trigger contexts**: name the core user intents and strongest trigger contexts. Be proactive when the skill applies even if the user does not name the domain directly, such as when they omit an obvious domain keyword.
 - **Near misses**: avoid broad keyword stuffing that would trigger on adjacent tasks the skill does not actually handle.
 - **Hard limit**: stay under the **1024-character hard limit** enforced by the spec. Check the character count directly; detailed routing, exclusions, and examples belong in the body or references.
-- **Skill value**: remember-context that agents tend to reach for skills only when a task requires knowledge or capabilities beyond what they can handle alone. Weight eval queries toward specialized knowledge, unfamiliar APIs, or domain-specific workflows.
+- **Skill value**: remember that agents tend to reach for skills only when a task requires knowledge or capabilities beyond what they can handle alone. Weight eval queries toward specialized knowledge, unfamiliar APIs, or domain-specific workflows.
 - **Trigger evals**: check for realistic should-trigger and should-not-trigger prompts. Strong should-trigger cases are ones where the skill would help but the connection is not obvious; strong should-not-trigger cases are near misses. Vary phrasing, explicitness, detail level, and complexity.
 
 ## Scope And Coherence
@@ -51,6 +51,7 @@ Check whether context is spent deliberately.
 - **Top-level focus**: `SKILL.md` should contain the routing logic and shared rules needed on every run. The spec recommends keeping it under **500 lines and 5,000 tokens**.
 - **Resource purpose**: deep details should live in `references/`, `assets/`, or `scripts/` only when they are actually used.
 - **Load conditions**: references must be loaded by clear conditions, not vague "read everything" guidance.
+- **Metadata references**: verify `metadata.references` lists only local skills or rules used inside the workflow. Remove route-away, adjacent-skill, near-miss, exclusion, and boundary mentions.
 - **Unused folders**: placeholder folders or unused resources are review issues when they make the skill harder to understand or maintain.
 
 ## Validation And Evals

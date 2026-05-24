@@ -1,10 +1,10 @@
 ---
 name: ask-questions
-description: Generate high-leverage questions and clarify missing context. Use for "ask", "what should I ask", "right questions", "what are we missing", "clarify this", and ambiguous requests blocked by unknowns.
+description: Generate high-leverage questions and clarify missing context. Use for question-generation requests like "what should I ask", "right questions", "what are we missing", "clarify this", and ambiguous requests blocked by unknowns.
 license: MIT
 version: 1.0.0
 tags:
-  - ask
+  - question-generation
   - clarification
   - questions
 author: Oleg Shulyakov

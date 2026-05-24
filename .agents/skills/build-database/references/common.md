@@ -12,7 +12,7 @@ Identify the dialect from context. Check in this order:
 2. File extensions or migration tool conventions (`.sql`, Flyway prefix `V1__`, Liquibase)
 3. Code imports (`pg`, `mysql2`, `sqlite3`, `pyodbc`)
 4. Infrastructure mentions ("RDS Postgres", "Azure SQL", etc.)
-5. If genuinely ambiguous: ask-questions once — "Which database are you using? (PostgreSQL, MySQL, MSSQL, SQLite, Oracle)"
+5. If genuinely ambiguous: ask once — "Which database are you using? (PostgreSQL, MySQL, MSSQL, SQLite, Oracle)"
 
 Once identified, load the dialect-specific reference for syntax details:
 

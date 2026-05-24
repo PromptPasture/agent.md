@@ -2,7 +2,7 @@
 
 Use this reference when optimizing a skill's frontmatter description for trigger accuracy.
 
-The `description` field is the main signal native skill runtimes use to decide-direction whether to invoke a skill. Optimize it after the skill behavior is stable.
+The `description` field is the main signal native skill runtimes use to decide whether to invoke a skill. Optimize it after the skill behavior is stable.
 
 ## Choose the Agent Adapter
 

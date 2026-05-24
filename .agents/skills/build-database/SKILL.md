@@ -12,11 +12,13 @@ tags:
 author: Oleg Shulyakov
 metadata:
   catalog: software-team-roles
+  references:
+    - classify-content
 ---
 
 # build-database
 
-Generate production-ready database code for schemas, DDL, OLTP queries, analytics SQL, migrations, indexes, stored procedures, and dialect-specific scripts. Use this as a router: classify-content the database artifact first, detect the dialect from context or repository evidence, then read only the relevant references.
+Generate production-ready database code for schemas, DDL, OLTP queries, analytics SQL, migrations, indexes, stored procedures, and dialect-specific scripts. Use this as a router: classify the database artifact first, detect the dialect from context or repository evidence, then read only the relevant references.
 
 ## Variant Detection
 
@@ -57,7 +59,7 @@ If the user asks for portable SQL, use `references/common.md` and avoid dialect-
 - **Use parameters:** Never generate SQL that interpolates user input into executable statements. Use the placeholder style for the target dialect or framework.
 - **Index deliberately:** Tie each recommended index to a query, constraint, or access pattern. Avoid adding write-costly indexes without a reason.
 - **Handle concurrency:** Use transactions, locks, isolation levels, uniqueness, idempotency keys, or retry notes when the database operation can race.
-- **Respect dialect limits:** Do not mix syntax across engines. If the dialect is unknown and syntax materially differs, ask-questions once instead of producing decorative nonsense in SQL clothing.
+- **Respect dialect limits:** Do not mix syntax across engines. If the dialect is unknown and syntax materially differs, ask once instead of producing decorative nonsense in SQL clothing.
 - **Verify locally:** Run the narrowest relevant migration check, SQL parser, formatter, test, or application test available. If no database is available, state what was reviewed statically.
 
 ## Implementation Flow

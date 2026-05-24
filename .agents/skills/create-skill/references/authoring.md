@@ -36,6 +36,8 @@ Use these metadata fields:
 | `author` | The creator's name or GitHub profile URL. |
 | `metadata` | A nested mapping for arbitrary key-value pairs. |
 
+Use `metadata.references` only when this skill actually uses another local skill or rule as part of its workflow. Include a referenced item when the body tells the agent to use, apply, delegate to, or run that skill/rule before or during this skill's work. Do not include skills that appear only as route-away guidance, adjacent alternatives, near misses, exclusions, or examples of work this skill should not handle.
+
 Keep the Markdown body under 500 lines. The body should explain workflow, routing decisions, critical rules, and output format. Move deep detail into `references/` and point to it clearly.
 
 Apply the house Markdown style while writing, not as a later cleanup pass:
@@ -79,7 +81,7 @@ Do not create placeholder directories. Add a folder only when it contains useful
 
 Use three levels: metadata loaded by the runtime, main body loaded when the skill triggers, and bundled resources loaded only when needed.
 
-Router skills should classify-content the request, choose the relevant reference, read only that reference, and act.
+Router skills should classify the request, choose the relevant reference, read only that reference, and act.
 
 ## Compatibility
 

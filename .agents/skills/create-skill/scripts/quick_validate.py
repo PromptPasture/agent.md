@@ -139,6 +139,42 @@ def validate_eval_coverage(skill_path):
     return True, None
 
 
+def validate_metadata_references(skill_path, references):
+    """Validate project-local metadata.references entries."""
+    if not isinstance(references, list):
+        return False, f"Metadata references must be a list, got {type(references).__name__}"
+
+    skills_root = skill_path.parent
+    repo_root = skills_root.parent.parent
+    boundary_terms = re.compile(
+        r'\b(route away|adjacent skills?|near[- ]miss|exclusions?|do not|don\'t|instead|rather than)\b',
+        re.IGNORECASE,
+    )
+
+    for reference in references:
+        if not isinstance(reference, str):
+            return False, f"Metadata references must contain only strings, got {type(reference).__name__}"
+        if not re.match(r'^[a-z0-9-]+$', reference):
+            return False, f"Metadata reference '{reference}' should be kebab-case"
+
+        skill_reference = skills_root / reference / 'SKILL.md'
+        rule_reference = repo_root / 'rules' / f'{reference}.md'
+        if not skill_reference.exists() and not rule_reference.exists():
+            return False, (
+                f"Metadata reference '{reference}' must match a local skill "
+                f"or rule name"
+            )
+
+        for line_number, line in iter_markdown_lines(skill_path / 'SKILL.md'):
+            if f"`{reference}`" in line and boundary_terms.search(line):
+                return False, (
+                    f"Metadata reference '{reference}' appears to be a route-away "
+                    f"or boundary mention at line {line_number}"
+                )
+
+    return True, None
+
+
 def validate_skill(skill_path):
     """Basic validation of a skill"""
     skill_path = Path(skill_path)
@@ -252,6 +288,12 @@ def validate_skill(skill_path):
     metadata = frontmatter.get('metadata')
     if metadata is not None and not isinstance(metadata, dict):
         return False, f"Metadata must be a mapping, got {type(metadata).__name__}"
+    if isinstance(metadata, dict):
+        references = metadata.get('references')
+        if references is not None:
+            valid_references, references_message = validate_metadata_references(skill_path, references)
+            if not valid_references:
+                return False, references_message
 
     valid_style, style_message = validate_markdown_style(skill_path)
     if not valid_style:
