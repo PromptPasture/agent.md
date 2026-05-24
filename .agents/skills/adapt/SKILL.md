@@ -1,6 +1,6 @@
 ---
 name: adapt
-description: Detect evidence-driven change needs. Use when the user says "adapt based on this", "what should change after this?", "this keeps happening", "this failed, what should change?", "the workflow no longer fits", "the constraints changed", or asks what skill, rule, doc, eval, memory, or process should change.
+description: Diagnose when skills, rules, workflows, docs, evals, or memory conventions are mismatched to current conditions — triggered by failures, friction, user feedback, outdated assumptions, or changed constraints — then name the smallest change needed and route to the skill or workflow that should update it. Use when the user says "adapt based on this", "what should change after this?", "this keeps happening", "this failed, what should change?", "the workflow no longer fits", "the constraints changed", or asks what skill, rule, doc, eval, memory, or process should change.
 license: MIT
 tags:
   - adaptation
@@ -8,7 +8,7 @@ tags:
   - process
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -16,74 +16,81 @@ metadata:
     - create-skill
     - create-rule
     - remember-context
-    - write-prd
-    - write-spec
-    - write-tech-docs
-    - build-tests
-    - write-user-story
 ---
 
 # adapt
 
+Diagnose when skills, rules, workflows, docs, evals, or memory conventions are mismatched to current conditions — from failures, friction, feedback, outdated assumptions, or changed constraints — then name the smallest change needed and route to the skill or workflow that should update it.
+
+---
+
 ## Workflow
 
-**Detect what should change going forward because reality contradicted the current setup.**
+1. **Classify the signal.** Identify which type of mismatch was presented:
+   - *Failure* — an action produced a wrong or broken result
+   - *Friction* — a step is consistently slow, ambiguous, or skipped
+   - *Feedback* — the user explicitly named something that didn't work
+   - *Outdated assumption* — a prior decision no longer holds given current context
+   - *Changed constraint* — external requirements shifted (scope, platform, team, policy)
 
-1. Identify the adaptation signal: observed outcome, user feedback, failure, repeated friction, outdated assumption, or changed constraint.
-2. Decide whether the signal is durable enough to justify adaptation, or only a one-off exception.
-3. Identify the affected behavior or artifact from the signal: skill, rule, workflow, document, eval, memory convention, test, or process.
-4. Treat the invoked skill as the diagnostic lens, not as the target artifact. Do not update `adapt` itself unless the failure is in adaptation behavior.
-5. Check whether the symptom comes from a governing convention, template, or source-of-truth artifact; route the change there instead of patching only the local artifact.
-6. State the smallest useful change that would prevent recurrence or fit the new constraint.
-7. Route the actual update to the appropriate follow-up skill, workflow, or owner.
-8. Define how the adaptation should be verified.
+2. **Test durability.** Skip adaptation if all three are true:
+   - The signal occurred exactly once
+   - No structural cause is identifiable
+   - The user hasn't signaled recurrence ("this keeps happening", "again", "always")
+
+   Otherwise, proceed.
+
+3. **Identify the target artifact.** Match signal type to likely target:
+
+   | Signal | Likely target |
+   | --- | --- |
+   | Failure | skill, eval, test |
+   | Friction | rule, workflow, process |
+   | Feedback | skill, doc, memory |
+   | Outdated assumption | memory, doc, spec |
+   | Changed constraint | rule, PRD, skill |
+
+4. **Prefer the source of truth.** If the artifact inherits from a template, convention, or governing doc, route the change there — not only to the downstream artifact.
+
+5. **Name the smallest change.** One behavioral delta. Not a rewrite.
+
+6. **Route it.** Name the follow-up skill or owner. Do not apply the update unless separately asked.
+
+7. **Define verification.** State what must be true after the adaptation succeeds.
 
 ---
 
 ## Output
 
-**Make the diagnosis actionable without doing the update by default.**
+- **Signal:** What happened or changed, and which type it is.
+- **Interpretation:** Why it indicates a mismatch, not a one-off.
+- **Target:** The artifact or behavior that should change.
+- **Change:** The smallest useful adaptation — one behavioral delta.
+- **Route:** The follow-up skill or workflow that should apply the update.
+- **Verification:** What must be true after the change succeeds.
 
-- **Signal:** State what happened or changed.
-- **Interpretation:** Explain why it indicates a future behavior or artifact may need to change.
-- **Target:** Name the affected artifact, behavior, or process when identifiable.
-- **Change:** Describe the smallest useful adaptation.
-- **Route:** Identify the appropriate follow-up skill, workflow, or owner for the actual update.
-- **Verification:** State what should be true after the adaptation.
+### Example
+
+**Signal:** The `create-skill` output omits a Verification section on 3 consecutive runs. *(Friction)*
+**Interpretation:** A recurring omission across runs points to a missing template step, not operator error.
+**Target:** `create-skill` SKILL.md — the output template is missing a required `## Verification` heading.
+**Change:** Add a `## Verification` heading with a placeholder to the skill output template.
+**Route:** `skill-creator` to apply the update.
+**Verification:** The next 3 `create-skill` runs each include a non-empty Verification section without prompting.
 
 ---
 
 ## Boundaries
 
-**Adaptation is diagnosis and routing, not a generic rewrite workflow.**
-
-- **Do not overfit:** Avoid changing durable behavior for a single ambiguous incident unless the user explicitly wants a one-off correction.
-- **Do not rewrite by default:** Do not edit skills, rules, docs, evals, tests, or memory unless the user separately asks to proceed with that update.
-- **Use evidence:** Base adaptation on observed outcomes, feedback, failures, repeated friction, outdated assumptions, or changed constraints.
-- **Do not self-target by invocation:** If the user invokes `adapt`, use it to diagnose the needed future change; only modify `adapt` when the evidence shows the adaptation workflow or routing rules failed.
-- **Route precisely:** Skills belong with skill-authoring workflows, rules with rule-authoring workflows, docs with writing workflows, tests with testing workflows, and durable facts with memory workflows.
-- **Prefer source of truth:** When the mismatch comes from a convention, template, or authoring guidance, adapt that governing artifact instead of only patching the artifact that exposed the problem.
-- **Keep uncertainty visible:** If the target artifact or change is unclear, name the likely candidates and the evidence needed to choose.
-
----
-
-## Non-Triggers
-
-**Nearby requests often need another mode unless they ask what should change going forward.**
-
-- **Direct editing:** "Update this doc" or "rewrite this skill" should perform the requested artifact update, not stop at adaptation diagnosis.
-- **Memory only:** "Remember this decision" should preserve durable context rather than diagnose process change.
-- **Root-cause only:** "Why did this fail?" should explain or investigate unless the user asks what should change afterward.
-- **Decision only:** "Which option should we choose?" should compare options and recommend a direction.
-- **Planning only:** "Break this down" should produce a plan when the desired change is already known.
+- **Diagnose, don't rewrite.** Produce a diagnosis and routing recommendation only. Apply the update only when separately asked.
+- **Don't self-target by invocation.** Invoking `adapt` does not make `adapt` the target. Only route changes to `adapt` when the adaptation workflow itself failed.
+- **Keep uncertainty visible.** If the target artifact or routing is unclear, name the candidates and the evidence needed to choose.
 
 ---
 
 ## Verification
 
-**A good adaptation recommendation changes future behavior without broadening the system unnecessarily.**
-
-- **Evidence test:** The recommendation ties back to a concrete signal, not a vague desire to improve.
-- **Durability test:** The change handles a repeated or likely future condition, not only the exact current wording.
-- **Scope test:** The proposed change is the smallest artifact or behavior update that addresses the signal.
-- **Routing test:** The actual update path is clear and does not create a hidden runtime dependency on another skill.
+- [ ] The signal maps to a concrete observed event, not a vague quality concern
+- [ ] The change would apply to future occurrences, not only this exact incident
+- [ ] No smaller artifact change would address the same signal
+- [ ] A follow-up skill or owner is named for the actual update
