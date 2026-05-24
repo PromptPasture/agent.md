@@ -1,6 +1,6 @@
 ---
 name: coordinate-work
-description: Manage active work across people, agents, tasks, dependencies, blockers, and handoffs. Use for "coordinate-work", "manage this work", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-workstream execution.
+description: Manage active work across people, agents, tasks, dependencies, blockers, and handoffs. Use for "coordinate", "manage", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-workstream execution.
 license: MIT
 version: 1.0.0
 tags:
@@ -20,7 +20,7 @@ Keep active work understandable across owners, dependencies, blockers, and hando
 
 **Use this skill when execution is active or split across workstreams.**
 
-- **Trigger on coordination**: use for "coordinate-work", "manage this work", "team lead", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-agent or multi-workstream requests.
+- **Trigger on coordination**: use for "coordinate, "manage", "team lead", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-agent or multi-workstream requests.
 - **Track execution**: maintain goals, owners, dependencies, current status, blockers, decisions, and next actions.
 - **Separate from planning**: planning sequences future work; coordination keeps active work moving and handoff-ready.
 - **Do not invent authority**: do not silently assign real people without user-provided ownership or clearly stated assumptions.

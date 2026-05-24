@@ -1,10 +1,10 @@
 ---
 name: explain-topic
-description: Explain any knowledge topic simply and accurately. Use for "explain-topic X", "why/how/what is X?", concepts, science, definitions, code, design, architecture, and walkthroughs.
+description: Explain any knowledge topic simply and accurately. Use for "explain X", "why/how/what is X?", concepts, science, definitions, code, design, architecture, and walkthroughs.
 license: MIT
 version: 2.1.0
 tags:
-  - explain-topic
+  - explain
   - education
   - reference
 author: Oleg Shulyakov

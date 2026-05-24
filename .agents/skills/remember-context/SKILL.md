@@ -4,7 +4,7 @@ description: Preserve durable project facts, decisions, and useful observations 
 license: MIT
 version: 1.0.0
 tags:
-  - remember-context
+  - remember
   - memory
   - project-context
 author: Oleg Shulyakov
@@ -20,7 +20,7 @@ Write durable project memory only when it will help future work.
 
 **Use this skill when the user explicitly asks to preserve project context.**
 
-- **Trigger on memory requests**: use for "remember-context", "save context", "record this decision", "update memory", "preserve this", and similar requests.
+- **Trigger on memory requests**: use for "remember", "save context", "record this decision", "update memory", "preserve this", and similar requests.
 - **Auto-approve explicit memory**: when the user clearly asks to remember something, write the memory without asking for separate confirmation.
 - **Store durable value**: record project facts, decisions, conventions, recurring constraints, implementation observations, and useful handoff facts.
 - **Reject low-value memory**: do not store transient chatter, todo noise, sensitive information, unverifiable assumptions as fact, or details already captured better in durable docs.

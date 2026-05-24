@@ -1,10 +1,10 @@
 ---
 name: plan-work
-description: Sequence work before execution. Use for "plan-work", "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
+description: Sequence work before execution. Use for "plan", "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
 license: MIT
 version: 1.0.0
 tags:
-  - plan-work
+  - plan
   - roadmap
   - sequencing
 author: Oleg Shulyakov
@@ -20,7 +20,7 @@ Turn a goal into a practical sequence of work.
 
 **Use this skill when the user wants an approach, roadmap, milestones, or next-step sequence before execution.**
 
-- **Trigger on planning**: use for "plan-work", "break this down", "roadmap", "approach", "milestones", and "how should we proceed".
+- **Trigger on planning**: use for "plan", "break this down", "roadmap", "approach", "milestones", and "how should we proceed".
 - **Sequence work**: identify phases, dependencies, assumptions, risks, verification, and immediate next actions.
 - **Stay pre-execution**: do not manage live owners, blockers, or handoffs as the primary behavior.
 - **Default conversationally**: create durable files only when the user asks or the work clearly needs durable task documentation.

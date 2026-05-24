@@ -4,7 +4,7 @@ description: Work through ambiguous problems before a firm output shape is warra
 license: MIT
 version: 1.0.0
 tags:
-  - reason-problem
+  - reason
   - framing
   - thinking
 author: Oleg Shulyakov

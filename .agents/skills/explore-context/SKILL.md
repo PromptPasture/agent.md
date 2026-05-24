@@ -1,10 +1,10 @@
 ---
 name: explore-context
-description: Investigate local repository, document, and attached-artifact context. Use for "explore-context", "investigate", "find where", "understand this repo", "trace", and local-context research; do not use for web search.
+description: Investigate local repository, document, and attached-artifact context. Use for "explore", "investigate", "find where", "understand this repo", "trace", and local-context research; do not use for web search.
 license: MIT
 version: 1.0.0
 tags:
-  - explore-context
+  - explore
   - investigation
   - local-context
 author: Oleg Shulyakov
@@ -20,7 +20,7 @@ Investigate local context and report evidence-backed findings.
 
 **Use this skill for local repository, project document, and attached-artifact investigation.**
 
-- **Trigger on local research**: use for "explore-context", "investigate", "find where", "understand this repo", "trace", and requests to inspect local project context.
+- **Trigger on local research**: use for "explore", "investigate", "find where", "understand this repo", "trace", and requests to inspect local project context.
 - **Stay local**: search local files, project docs, attached artifacts, repository history, and available workspace context only.
 - **Exclude web research**: do not perform web search, browsing, or current-information research as part of this skill.
 - **Report evidence**: ground findings in file references, artifact references, command output, or clearly marked inference.
