@@ -1,0 +1,67 @@
+{
+  "evals": [
+    {
+      "id": "adapt-001",
+      "category": "true-positive",
+      "prompt": "This failed, what should change so we don't repeat it?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies the failure signal, decides whether durable adaptation is warranted, names the affected behavior or artifact, routes the actual update, and defines verification."
+    },
+    {
+      "id": "adapt-002",
+      "category": "true-positive",
+      "prompt": "Our instructions didn't handle this edge case. What artifact should change because of this?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Maps the observed gap to likely instruction, rule, skill, eval, or doc targets and recommends the smallest follow-up update path."
+    },
+    {
+      "id": "adapt-003",
+      "category": "true-positive",
+      "prompt": "We keep hitting this issue during reviews. Do we need to update a skill, rule, doc, eval, or memory?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Treats the repeated friction as an adaptation signal, compares likely target artifacts, and routes the actual change without rewriting by default."
+    },
+    {
+      "id": "adapt-004",
+      "category": "true-positive",
+      "prompt": "The constraints changed, and the workflow no longer fits. Adapt based on this.",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Identifies the changed constraint, explains the mismatch, proposes the smallest workflow or artifact adaptation, and states verification criteria."
+    },
+    {
+      "id": "adapt-005",
+      "category": "true-positive",
+      "prompt": "You patched this skill, but the real issue was the authoring guidance. What should change?",
+      "expected_trigger": "Trigger adapt.",
+      "expected_output": "Recognizes that the durable change belongs in the governing convention or authoring source of truth, not only in the local skill that exposed the mismatch."
+    },
+    {
+      "id": "adapt-006",
+      "category": "false-positive",
+      "prompt": "Improve this skill's examples and validation checklist.",
+      "expected_trigger": "Do not trigger adapt as the primary skill.",
+      "expected_output": "Should use the skill-authoring workflow directly because the user already requested a concrete skill update."
+    },
+    {
+      "id": "adapt-007",
+      "category": "false-positive",
+      "prompt": "Remember that we decided to keep adapt as a routing skill.",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Should preserve durable memory if appropriate rather than diagnose what should change."
+    },
+    {
+      "id": "adapt-008",
+      "category": "non-trigger",
+      "prompt": "Why did the deployment fail yesterday?",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Should investigate or explain the failure unless the user asks what should change going forward."
+    },
+    {
+      "id": "adapt-009",
+      "category": "non-trigger",
+      "prompt": "Break the migration into milestones with risks and validation steps.",
+      "expected_trigger": "Do not trigger adapt.",
+      "expected_output": "Should produce a work plan because the user asked for sequencing, not evidence-driven adaptation."
+    }
+  ]
+}

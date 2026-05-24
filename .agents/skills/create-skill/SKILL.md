@@ -60,7 +60,7 @@ If the request spans multiple phases, read the references in workflow order: aut
 - **Scan anchors**: use bold labels for distinct rule bullets in prose skill docs unless the section is a schema, command example, or literal output template.
 - **Size discipline**: keep metadata under 100 tokens and the main instruction body under 500 lines; use references for anything that would push past that.
 - **Metadata fields**: use only `name`, `description`, `license`, `tags`, and `metadata` at the top level; put `author`, `version`, `source`, `catalog`, `category`, and `references` under `metadata`.
-- **Reference metadata**: use `metadata.references` only for local skills or rules the skill uses as part of its workflow; do not list route-away, adjacent-skill, near-miss, or boundary mentions.
+- **Reference metadata**: use `metadata.references` for local skills or rules the skill uses as part of its workflow, including router skills that name follow-up skills as intended routes. Do not list adjacent-skill, near-miss, boundary, or example-only mentions.
 - **Pushy descriptions**: explicitly name the user phrases and contexts that should trigger the skill, not just what it does. Claude tends to undertrigger, so err toward specificity.
 - **Trigger placement**: put all "when to use" and skill-call scope information in the frontmatter `description`; do not add a body `Scope` section for activation criteria. Put routing, exclusions, boundaries, examples, and detailed procedures in the body or references.
 - **No placeholders**: add `scripts/`, `references/`, `assets/`, or `evals/` only when the skill actually uses them.

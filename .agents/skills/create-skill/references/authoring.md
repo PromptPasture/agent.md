@@ -43,9 +43,9 @@ Common nested metadata fields:
 | `metadata.source` | Repository or canonical source reference, such as `github.com/org/repo`. |
 | `metadata.catalog` | Optional catalog grouping string. |
 | `metadata.category` | Optional domain category string in lowercase kebab-case, such as `development`, `documentation`, or `project-management`. |
-| `metadata.references` | Optional list of local skill or rule names this skill explicitly uses. |
+| `metadata.references` | Optional list of local skill or rule names this skill explicitly uses or routes to. |
 
-Use `metadata.references` only when this skill actually uses another local skill or rule as part of its workflow. Include a referenced item when the body tells the agent to use, apply, delegate to, or run that skill/rule before or during this skill's work. Do not include skills that appear only as route-away guidance, adjacent alternatives, near misses, exclusions, or examples of work this skill should not handle.
+Use `metadata.references` when this skill actually uses another local skill or rule as part of its workflow. Include a referenced item when the body tells the agent to use, apply, delegate to, run, or route follow-up work to that skill/rule. Do not include skills that appear only as adjacent alternatives, near misses, exclusions, boundaries, or examples of work this skill should not handle.
 
 Keep the Markdown body under 500 lines. The body should explain workflow, routing decisions, boundaries, critical rules, and output format. Move deep detail into `references/` and point to it clearly. Do not use a body `Scope` section to describe when the skill should be called; that belongs in `description` per the Agent Skills spec.
 

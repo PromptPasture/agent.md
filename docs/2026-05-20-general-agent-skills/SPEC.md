@@ -4,7 +4,7 @@ documentType: SPEC
 phase: delivery
 version: 1.0
 createdAt: "2026-05-20"
-updatedAt: "2026-05-21"
+updatedAt: "2026-05-24"
 author: Oleg Shulyakov
 tags:
   - skills
@@ -19,7 +19,7 @@ related:
 
 ### 1.1 Purpose
 
-This spec defines the implementation contract for nine standalone, general-purpose agent skills: `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, and `remember-context`.
+This spec defines the implementation contract for ten standalone, general-purpose agent skills: `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`.
 
 The goal is to make common collaboration modes predictable at runtime without requiring any skill to depend on another installed skill.
 
@@ -42,16 +42,16 @@ This work creates a small general layer with clear trigger boundaries, exclusion
 
 ### 1.4 Customer & Business Context
 
-The primary users are individual developers, maintainers, and project leads who want consistent collaboration behavior for asking, explaining, reasoning, classifying, planning, exploring local context, deciding, coordinating, and remembering.
+The primary users are individual developers, maintainers, and project leads who want consistent collaboration behavior for asking, explaining, reasoning, classifying, planning, exploring local context, deciding, coordinating, remembering, and adapting to evidence that existing behavior no longer fits.
 
-Success means a user can install any one of the nine skills independently and get useful behavior for that mode without hidden runtime coupling.
+Success means a user can install any one of the ten skills independently and get useful behavior for that mode without hidden runtime coupling.
 
 ### 1.5 Goals
 
 | Goal | Success Metric | Target |
 | --- | --- | --- |
-| Minimal general skill set | Nine skills exist with approved names | `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context` |
-| Standalone runtime behavior | No skill requires another skill to be installed, named, or delegated to | 100% of skills |
+| Minimal general skill set | Ten skills exist with approved names | `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, `adapt` |
+| Standalone runtime behavior | No skill requires another skill to be installed, called, imported, or delegated to | 100% of skills |
 | Predictable triggers | Each skill documents triggers, exclusions, expected behavior, and eval prompts | 8-10 eval prompts where possible, never fewer than 7 |
 | Lightweight packaging | Main `SKILL.md` files remain concise | Under 500 lines each |
 
@@ -226,7 +226,21 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 - [ ] Avoids storing transient task chatter, sensitive information, or unverifiable assumptions as fact.
 - [ ] Follows existing `.agents/memory/MEMORY.md` and dated memory file conventions.
 
-#### FR-010: Standalone Runtime Boundaries
+#### FR-010: `adapt`
+
+**Priority:** Must-have
+**Description:** The system shall use `adapt` to detect when existing behavior, skills, rules, workflows, docs, evals, or memory conventions no longer fit observed outcomes, user feedback, failures, repeated friction, outdated assumptions, or changed constraints.
+
+**Acceptance criteria:**
+
+- [ ] Triggers on "adapt based on this", "what should change after this?", "fold this feedback into our process", "this keeps happening", "we keep hitting this issue", "this failed, what should change?", "our instructions didn't handle this", "the workflow no longer fits", "the constraints changed", "this behavior is outdated", "adjust future behavior based on this", "turn this failure into an instruction change", "what artifact should change because of this?", and "do we need to update a skill, rule, doc, eval, or memory?".
+- [ ] Identifies the adaptation signal: observed outcome, user feedback, failure, repeated friction, outdated assumption, or changed constraint.
+- [ ] Distinguishes durable evidence-driven change needs from one-off exceptions.
+- [ ] Identifies the affected behavior or artifact, such as a skill, rule, workflow, document, eval, memory convention, or process.
+- [ ] Recommends the smallest useful change and the appropriate follow-up skill or workflow for the actual update.
+- [ ] Does not directly rewrite artifacts by default; actual updates belong to artifact-specific skills such as `create-skill`, `create-rule`, `write-*`, `write-tests`, or `remember-context` when the user asks to proceed.
+
+#### FR-011: Standalone Runtime Boundaries
 
 **Priority:** Must-have
 **Description:** Each skill shall define complete runtime behavior without requiring another skill.
@@ -234,10 +248,11 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 **Acceptance criteria:**
 
 - [ ] No `SKILL.md` says the runtime must use, call, import, or delegate to another skill.
+- [ ] `adapt` may identify an appropriate follow-up skill or workflow as a route, but that route is not a runtime dependency.
 - [ ] Any development-time references to authoring or validation workflows are clearly not runtime dependencies.
 - [ ] Shared concepts may be repeated where needed to preserve standalone behavior.
 
-#### FR-011: Behavior Evals
+#### FR-012: Behavior Evals
 
 **Priority:** Should-have
 **Description:** Each skill shall include representative eval prompts for trigger behavior.
@@ -253,7 +268,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 ### 2.5 Business Rules
 
-**BR-001:** Skill names are fixed as `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, and `remember-context`.
+**BR-001:** Skill names are fixed as `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`.
 
 **BR-002:** Runtime behavior must be standalone. Development-time validation may use existing creator or packaging workflows, but installed skill behavior must not depend on them.
 
@@ -261,7 +276,9 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 **BR-004:** `remember-context` may write memory automatically only when the user explicitly asks to remember or preserve something.
 
-**BR-005:** Durable task documentation belongs under `docs/`; durable memory facts and small implementation notes belong under `.agents/memory/`.
+**BR-005:** `adapt` detects and routes evidence-driven change needs. It shall not directly rewrite skills, rules, docs, evals, or memory by default.
+
+**BR-006:** Durable task documentation belongs under `docs/`; durable memory facts and small implementation notes belong under `.agents/memory/`.
 
 ---
 
@@ -276,6 +293,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 | Source discipline | `explore-context` cites local evidence and marks inference | Findings include file/artifact references when available | High |
 | Memory hygiene | `remember-context` stores only durable value | No transient chatter or sensitive data in memory notes | High |
 | Coordination clarity | `coordinate-work` preserves execution state | Goals, owners, status, blockers, dependencies, and next actions are explicit | Medium |
+| Adaptation discipline | `adapt` diagnoses evidence-driven change needs without becoming a generic update workflow | Actual artifact changes are routed to the appropriate follow-up skill or workflow | High |
 
 ---
 
@@ -385,6 +403,8 @@ Boundary prompts shall specifically test likely overlaps:
 | `explain-topic` vs `explore-context` | `explain-topic` teaches; `explore-context` investigates local evidence |
 | `classify-content` vs `decide-direction` | `classify-content` groups material; `decide-direction` chooses a direction |
 | `remember-context` vs docs writing | `remember-context` captures durable memory; docs writing creates formal project artifacts |
+| `adapt` vs `create-skill` / `create-rule` / docs writing | `adapt` identifies what should change and routes the update; artifact-specific skills perform the actual update |
+| `adapt` vs `remember-context` | `adapt` identifies future behavior or artifact changes; `remember-context` preserves durable facts and decisions |
 
 ### 8.4 Manual Acceptance
 
@@ -396,7 +416,7 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 
 ### Phase 1: Skill Boundaries
 
-- [ ] Draft `SKILL.md` for `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, and `remember-context`.
+- [ ] Draft `SKILL.md` for `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`.
 - [x] Treat existing `explain-topic` as complete for this work.
 - [ ] Confirm each skill has clear trigger and non-trigger rules.
 
@@ -450,6 +470,8 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 | 1 | Should eval prompts be plain Markdown or a machine-readable format? | Oleg Shulyakov | 2026-05-21 | Resolved: evals are generated by `.agents/skills/create-skill/`. |
 | 2 | Should `explain-topic` be treated as already complete or revised to match the new general skill set style? | Oleg Shulyakov | 2026-05-21 | Resolved: mark `explain-topic` as complete. |
 | 3 | Should every new skill use version `1.0.0`, or inherit a project-wide initial version convention? | Oleg Shulyakov | 2026-05-21 | Resolved: use `1.0.0` as the initial version. |
+| 4 | Should the evidence-driven change-detection skill be named `evolve` or `adapt`? | Oleg Shulyakov | 2026-05-24 | Resolved: use `adapt`, because it detects that existing behavior no longer fits evidence without implying autonomous self-modification. |
+| 5 | Should `adapt` perform the actual updates it identifies? | Oleg Shulyakov | 2026-05-24 | Resolved: no. It diagnoses and routes updates to artifact-specific skills or workflows. |
 
 ---
 

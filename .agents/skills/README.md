@@ -8,6 +8,7 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 
 | Skill | Use it for | Notable resources |
 | --- | --- | --- |
+| [`adapt`](adapt/SKILL.md) | Detecting evidence-driven change needs and routing updates to the right skill, workflow, artifact, or owner. | [`evals/`](adapt/evals/) |
 | [`ask-questions`](ask-questions/SKILL.md) | Generating high-leverage questions, clarifying missing context, and surfacing assumptions. | [`evals/`](ask-questions/evals/) |
 | [`audit-skill-security`](audit-skill-security/SKILL.md) | Auditing third-party or local skills before installing, updating, or trusting them. | [`references/audit-protocol.md`](audit-skill-security/references/audit-protocol.md) |
 | [`classify-content`](classify-content/SKILL.md) | Organizing material into meaningful groups by criteria, similarity, priority, dependency, or abstraction level. | [`evals/`](classify-content/evals/) |
