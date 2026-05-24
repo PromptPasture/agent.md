@@ -1,6 +1,6 @@
 ---
 name: create-skill
-description: Use when creating, editing, reviewing, evaluating, packaging, optimizing or improving skills.
+description: Create, edit, review, evaluate, package, and optimize skills. Use when users ask to create a skill, revise skill instructions, review a skill, run skill evals, benchmark skill performance, package a skill, or optimize a skill description for trigger accuracy.
 license: Apache-2.0
 tags:
   - creator
@@ -8,7 +8,7 @@ tags:
   - authoring
 metadata:
   author: Anthropic
-  version: "1.5.0"
+  version: "1.6.0"
   source: github.com/anthropics/skills
   catalog: utility
   category: meta
@@ -20,60 +20,49 @@ Create new skills, review and improve existing skills, evaluate outputs, optimiz
 
 ---
 
-## Route the Work
+## Workflow
 
-**Read only the reference that matches the user's current task.**
+1. **Route the request.** Read only the reference that matches the user's current task:
 
-| User intent | Read |
-| --- | --- |
-| Create a new skill or revise skill instructions | `references/authoring.md` |
-| Review a created or revised skill | `references/review.md` |
-| Build eval cases, run iterations, benchmark outputs, or collect human feedback | `references/evaluation.md` |
-| Optimize a skill description for trigger accuracy | `references/description-optimization.md` |
-| Adapt the workflow for agents without subagents, Claude Code, generic CLIs, or Cowork | `references/agent-compatibility.md` |
-| Validate eval, grading, benchmark, or feedback JSON structures | `references/schemas.md` |
+   | User intent | Read |
+   | --- | --- |
+   | Create a new skill or revise skill instructions | `references/authoring.md` |
+   | Review a created or revised skill | `references/review.md` |
+   | Build eval cases, run iterations, benchmark outputs, or collect human feedback | `references/evaluation.md` |
+   | Optimize a skill description for trigger accuracy | `references/description-optimization.md` |
+   | Adapt the workflow for agents without subagents, Claude Code, generic CLIs, or Cowork | `references/agent-compatibility.md` |
+   | Validate eval, grading, benchmark, or feedback JSON structures | `references/schemas.md` |
 
-If the request spans multiple phases, read the references in workflow order: authoring, review, evaluation, description optimization, then agent compatibility only when platform details matter.
+   If the request spans multiple phases, read the references in workflow order: authoring, review, evaluation, description optimization, then agent compatibility only when platform details matter.
 
----
-
-## Core Workflow
-
-**Clarify, write, test, show, iterate, and package — in that order.**
-
-1. **Clarify activation and behavior**: identify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
-2. **Write the skill**: revise `SKILL.md` with concise metadata, focused instructions, bold scan anchors, and references for details that would bloat the main file.
-3. **Test behavior**: run this skill's `scripts/quick_validate.py` against the target skill; for router skills, confirm every `references/*.md` file has 8-10 evals mapped by `reference`; for objectively testable skills, run skill-enabled outputs against a meaningful baseline.
-4. **Show evidence**: share outputs and benchmark results with the user before making another revision.
-5. **Iterate deliberately**: continue until feedback is resolved or further changes stop improving results.
-6. **Package last**: package the final skill only after the user is satisfied with behavior and trigger accuracy.
+2. **Clarify activation and behavior.** Identify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
+3. **Write or revise the skill.** Follow `references/authoring.md` for metadata, trigger descriptions, body format, section delimiters, scan anchors, examples, helper scripts, portability, and validation.
+4. **Test behavior.** Run this skill's `scripts/quick_validate.py` against the target skill when available. For router skills, confirm every `references/*.md` file has 8-10 evals mapped by `reference`; for objectively testable skills, run skill-enabled outputs against a meaningful baseline.
+5. **Show evidence.** Share validation output, eval results, benchmark summaries, and relevant diffs before making another revision.
+6. **Iterate deliberately.** Continue until feedback is resolved or further changes stop improving behavior.
+7. **Package last.** Package the final skill only after the user is satisfied with behavior and trigger accuracy.
 
 ---
 
-## Skill Authoring Rules
+## Output
 
-**One skill, one workflow, one clear trigger — no more.**
+- **For skill edits:** summarize changed files, behavior changes, and validation results.
+- **For reviews:** lead with correctness, trigger, structure, safety, and test coverage findings.
+- **For evals or benchmarks:** report the command, dataset or eval set, pass/fail counts, variance notes, and recommended next change.
+- **For packaging:** report the generated artifact path and any remaining manual checks.
 
-- **Section delimiters**: place a standalone `---` between `##` sections in authored `SKILL.md` files so models see strong structural boundaries.
-- **Section principles**: open each `##` section with a single bold sentence that states the section's core principle.
-- **Execution-first bodies**: start the body with the section that tells the agent what to do, usually `## Workflow`, `## Source Handling`, or `## Route the Work`; put `## Boundaries` after the main workflow or output guidance unless safety requires earlier placement.
-- **Scan anchors**: use bold labels for distinct rule bullets in prose skill docs unless the section is a schema, command example, or literal output template.
-- **Size discipline**: keep metadata under 100 tokens and the main instruction body under 500 lines; use references for anything that would push past that.
-- **Metadata fields**: use only `name`, `description`, `license`, `tags`, and `metadata` at the top level; put `author`, `version`, `source`, `catalog`, `category`, and `references` under `metadata`.
-- **Reference metadata**: use `metadata.references` for local skills or rules the skill uses as part of its workflow, including router skills that name follow-up skills as intended routes. Do not list adjacent-skill, near-miss, boundary, or example-only mentions.
-- **Pushy descriptions**: explicitly name the user phrases and contexts that should trigger the skill, not just what it does. Claude tends to undertrigger, so err toward specificity.
-- **Trigger placement**: put all "when to use" and skill-call scope information in the frontmatter `description`; do not add a body `Scope` section for activation criteria. Put routing, exclusions, boundaries, examples, and detailed procedures in the body or references.
-- **No placeholders**: add `scripts/`, `references/`, `assets/`, or `evals/` only when the skill actually uses them.
-- **Deterministic helpers**: prefer scripts for repetitive validation, grading, packaging, and report generation.
-- **STAR examples**: write examples and eval prompts so reviewers can see the situation, task, expected action, and result criteria.
-- **SOLID code**: keep responsibilities clear, interfaces small, and dependencies explicit without adding unnecessary layers in code-generation skills and bundled helper scripts.
-- **Portability**: keep skills portable across agents unless the user asks for one specific runtime. Isolate platform-specific behavior in a compatibility section or reference.
+---
+
+## Boundaries
+
+- **Use the reference as source of truth.** Do not duplicate detailed authoring, review, evaluation, schema, or compatibility rules in this file.
+- **Keep skills focused.** Center each skill on one trigger and one workflow; route broad domains through references instead of expanding the main body.
+- **Avoid placeholders.** Add `scripts/`, `references/`, `assets/`, or `evals/` only when the skill actually uses them.
+- **Package after behavior.** Do not package a skill before the user is satisfied with behavior and trigger accuracy.
 
 ---
 
 ## Bundled Resources
-
-**Scripts and agents cover the full eval, grading, and packaging loop.**
 
 - **Trigger optimization**: `scripts/run_eval.py`, `scripts/run_loop.py`, and `scripts/improve_description.py`
 - **Validation**: `scripts/quick_validate.py`
@@ -81,3 +70,12 @@ If the request spans multiple phases, read the references in workflow order: aut
 - **Packaging**: `scripts/package_skill.py`
 - **Human review UI**: `eval-viewer/generate_review.py`
 - **Review agents**: `agents/grader.md`, `agents/comparator.md`, `agents/analyzer.md`, and `agents/benchmark-analyzer.md`
+
+---
+
+## Verification
+
+- [ ] The selected reference matches the user's current task
+- [ ] Skill edits follow `references/authoring.md`
+- [ ] Validation, eval, benchmark, or packaging commands were run when applicable
+- [ ] Results and remaining risks are reported to the user

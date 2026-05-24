@@ -22,7 +22,7 @@ Ground the draft in real source material when available: prior task traces, exis
 
 **Keep the top-level skill file focused on trigger, routing, and shared workflow.**
 
-Required frontmatter fields are `name` and `description`. Optional top-level fields are `license`, `tags`, and `metadata`. Put `author`, `version`, `source`, `catalog`, `category`, and `references` inside `metadata`. Keep the complete frontmatter under 100 tokens. The description is the primary trigger signal, so include the core task and strongest trigger contexts, but avoid long keyword inventories.
+Required frontmatter fields are `name` and `description`. Optional top-level fields are `license`, `tags`, and `metadata`. Put `author`, `version`, `source`, `catalog`, `category`, and `references` inside `metadata`. Keep the complete frontmatter under 100 tokens. The description is the primary trigger signal, so write it as action plus activation cues: name the task the skill performs, the contexts that should trigger it, representative user phrases, and exclusions only when they prevent likely misfires.
 
 Use these metadata fields:
 
@@ -47,18 +47,20 @@ Common nested metadata fields:
 
 Use `metadata.references` when this skill actually uses another local skill or rule as part of its workflow. Include a referenced item when the body tells the agent to use, apply, delegate to, run, or route follow-up work to that skill/rule. Do not include skills that appear only as adjacent alternatives, near misses, exclusions, boundaries, or examples of work this skill should not handle.
 
-Keep the Markdown body under 500 lines. The body should explain workflow, routing decisions, boundaries, critical rules, and output format. Move deep detail into `references/` and point to it clearly. Do not use a body `Scope` section to describe when the skill should be called; that belongs in `description` per the Agent Skills spec.
+Keep the Markdown body under 500 lines. The default body shape is a `#` title, one short purpose sentence, a standalone `---`, then `## Workflow`, `## Output`, `## Boundaries`, and `## Verification`. Add `## Error Paths` when failures need explicit handling. Use specialized sections such as `## Route the Work`, `## Source Handling`, or `## Bundled Resources` only when they replace or extend the default flow. Move deep detail into `references/` and point to it clearly. Do not use a body `Scope` section to describe when the skill should be called; that belongs in `description` per the Agent Skills spec.
 
 Start the body with the section that helps the activated agent act: usually `## Workflow`, `## Source Handling`, or `## Route the Work`. Put `## Boundaries` after the main workflow or output guidance so the file opens with execution, not limits. Place boundaries first only when safety or destructive behavior must be checked before any action.
 
 Apply the house Markdown style while writing, not as a later cleanup pass:
 
 - **Section delimiters**: place a standalone `---` between `##` sections in `SKILL.md`. Keep the YAML frontmatter delimiters unchanged, and do not add an extra delimiter immediately after the frontmatter or before the `#` title.
-- **Section principles**: open each `##` section with a single bold sentence that states the section's core principle.
-- **Rule bullets**: use bold labels as scan anchors when each bullet is a distinct rule.
+- **Intro purpose**: after the `#` title, write one short sentence that states what the skill does, then place `---` before the first `##` section.
+- **Scan anchors**: use bold labels inside steps or bullets when they make distinct actions, fields, or rules easier to scan. Do not require a bold principle sentence after each `##` heading.
 - **Template exceptions**: do not force bold labels into schemas, command examples, literal output templates, or checklist items where they would make the example less accurate.
 
 After editing, run `create-skill/scripts/quick_validate.py <target-skill-directory>` when this skill's scripts are available. Treat style failures as authoring bugs, not optional polish.
+
+Prefer deterministic helper scripts for repetitive validation, grading, packaging, report generation, or other mechanical checks that would otherwise be reimplemented by hand.
 
 For router skills with `references/*.md`, create `evals/evals.json` before validation is considered complete. Each eval must include a `reference` field that points to the routed reference, and every non-schema reference must have 8-10 evals. This keeps the router honest instead of giving it one polite smoke test and hoping for the best.
 
@@ -106,10 +108,12 @@ Avoid relying on one agent's tool names, slash commands, event stream, or UI unl
 
 **Write like a compact operating procedure for another agent.**
 
-Use imperative instructions. Explain why constraints matter instead of stacking brittle all-caps rules. Include examples when they prevent ambiguity, but keep examples short and move large examples into references.
+Use imperative instructions. Explain why constraints matter instead of stacking brittle all-caps rules. Include a `### Example` subsection under the relevant `##` section only when it clarifies behavior, boundaries, or output shape. Write examples and eval prompts so reviewers can see the situation, task, expected action, and result criteria. Keep examples short and move large examples into references.
 
-Use bold scan anchors consistently so another agent can skim section principles and rule labels before reading details.
+Use bold scan anchors where they help another agent skim distinct actions, fields, or rules before reading details. Do not add bold principle sentences after `##` headings just for style compliance.
 
 Use standalone `---` delimiters between `##` sections so long skill files segment cleanly in model context.
+
+For code-generation skills and bundled helper scripts, keep responsibilities clear, interfaces small, and dependencies explicit without adding unnecessary layers.
 
 Skills must not contain malware, hidden exfiltration behavior, credential capture, or instructions that would surprise the user relative to the skill description.
