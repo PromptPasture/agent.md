@@ -144,13 +144,13 @@ Skills are pre-defined workflows that the agent can load when the current task m
 skills/<name>/SKILL.md
 ```
 
-Examples: `skills/on-new-file/SKILL.md`, `skills/on-test-fail/SKILL.md`, `skills/on-pr-open/SKILL.md`, `skills/on-commit/SKILL.md`
+Examples: `skills/create-source-file/SKILL.md`, `skills/diagnose-test-failure/SKILL.md`, `skills/review-pull-request/SKILL.md`, `skills/prepare-commit/SKILL.md`
 
 #### File Schema
 
 ```markdown
 ---
-name: on-new-file
+name: create-source-file
 description: Auto-generates a matching test file when a new TypeScript file is created
 when_to_use: Use when creating or updating TypeScript source files that may need matching tests.
 paths: ["src/**/*.ts"]
@@ -511,9 +511,9 @@ my-saas-app/
 │   │ ├── testing.md          # Test coverage requirements
 │   │ └── security.md         # OWASP top-10 awareness
 │   ├── skills/
-│   │ ├── on-new-file/        # Auto-scaffold test files
+│   │ ├── create-source-file/        # Auto-scaffold test files
 │   │ │ └── SKILL.md
-│   │ └── on-test-fail/       # Diagnose CI failures
+│   │ └── diagnose-test-failure/       # Diagnose CI failures
 │   │     └── SKILL.md
 │   ├── commands/
 │   │ ├── review.md           # /review — structured code review

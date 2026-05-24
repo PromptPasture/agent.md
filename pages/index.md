@@ -87,9 +87,9 @@ priority: high
 
 Skills are reusable procedures the agent can load when the current task matches their metadata, or when the user invokes them directly.
 
-- `skills/on-new-file/SKILL.md` → use when creating source files that need matching tests
-- `skills/on-test-fail/SKILL.md` → use when diagnosing failing tests or CI
-- `skills/on-commit/SKILL.md` → use when preparing a commit
+- `skills/create-source-file/SKILL.md` → use when creating source files that need matching tests
+- `skills/diagnose-test-failure/SKILL.md` → use when diagnosing failing tests or CI
+- `skills/prepare-commit/SKILL.md` → use when preparing a commit
 
 Use `description` and `when_to_use` to explain when a skill applies. Use `paths` to scope a skill to matching files, and `disable-model-invocation: true` for workflows that should only run when explicitly invoked.
 

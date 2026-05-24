@@ -60,8 +60,8 @@ Currently, LLM agents lack a standardized way to maintain context, rules, and me
 │   ├── testing.md
 │   └── security.md
 ├── skills/
-│   ├── on-new-file/SKILL.md
-│   └── on-test-fail/SKILL.md
+│   ├── create-source-file/SKILL.md
+│   └── diagnose-test-failure/SKILL.md
 ├── commands/
 │   ├── review.md
 │   └── scaffold.md

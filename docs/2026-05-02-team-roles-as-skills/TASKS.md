@@ -8,30 +8,30 @@ Each skill is a `SKILL.md` that teaches the agent how to produce a specific arti
 ## Naming Convention
 
 ```text
-<type>-<subject>[-<variant>]
+<verb>-<subject>[-<variant>]
 ```
 
-The **type prefix** comes first so skills sort naturally on the filesystem and visually cluster by what they _do_, not what they’re about.
+The **verb prefix** comes first so skills sort naturally on the filesystem and visually cluster by what they _do_, not what they’re about.
 
 Use `[-<variant>]` only when the variant needs its own trigger, eval set, and lifecycle. Otherwise, keep variants as router references under one skill.
 
-| Prefix | Produces |
+| Verb | Produces |
 | ------------ | ------------------------------------------------ |
 | `audit-` | Review report or model with findings, risks, and recommendations |
-| `checklist-` | Step-by-step verification list |
-| `codegen-` | Source code, scripts, or executable configuration files |
+| `check-` | Step-by-step verification list |
+| `build-` | Source code, scripts, or executable configuration files |
 | `design-` | Design document or spec (contract-first) |
 | `diagram-` | Visual diagram (C4, DFD, flow, etc.) |
 | `model-` | Structured model definition |
-| `patterns-` | Pattern catalogue with examples |
-| `planner-` | Planning document with estimates |
+| `document-` | Pattern catalogue with examples |
+| `plan-` | Planning document with estimates |
 | `report-` | Status or analysis report |
 | `review-` | Review findings against a concrete code or artifact change |
-| `setup-` | Configuration files and scaffolding |
-| `strategy-` | Decision framework and approach |
-| `template-` | Reusable blank template |
-| `tracker-` | Metrics or progress tracking document |
-| `writer-` | Authored prose artifact (spec, doc, story, etc.) |
+| `configure-` | Configuration files and scaffolding |
+| `plan-` | Decision framework and approach |
+| `create-` | Reusable blank template |
+| `track-` | Metrics or progress tracking document |
+| `write-` | Authored prose artifact (spec, doc, story, etc.) |
 
 ---
 
@@ -60,21 +60,21 @@ Ordered alphabetically by name (matches filesystem order).
 | - [x] | `audit-skill-security` | 🟠 P2 | Security | Security Engineer | Pre-install skill security audit with findings, risks, and install recommendation |
 | - [ ] | `audit-test-flaky` | 🟡 P3 | Testing | AQA | Root cause report for flaky tests with fix recommendations |
 
-### `checklist-`
+### `check-`
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ----------------------- | -------- | ---------- | --------------- | ------------------------------------------------- |
-| - [ ] | `checklist-release` | 🟡 P3 | Release | Release Manager | Go/no-go release checklist with sign-off sections |
+| - [ ] | `check-release` | 🟡 P3 | Release | Release Manager | Go/no-go release checklist with sign-off sections |
 
-### `codegen-`
+### `build-`
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ------------------ | -------- | ------- | ------------- | ------------------------------------------------------------------------------------------- |
-| - [x] | `codegen-backend` | 🔴 P1 | Code | Backend Dev | Production-ready backend code across TIOBE-informed backend routes |
-| - [x] | `codegen-database` | 🔴 P1 | Database | DBA / Backend | Database code router for OLTP SQL, analytics SQL, schema design, and migrations |
-| - [x] | `codegen-frontend` | 🔴 P1 | Code | Frontend Dev | Production-ready frontend code + design system tokens + component style guide |
-| - [ ] | `codegen-mobile` | 🟠 P2 | Code | Mobile Dev | Production-ready mobile code (Swift/iOS, Kotlin/Android, React Native, Flutter) |
-| - [x] | `codegen-test` | 🔴 P1 | Testing | AQA / Backend / ML | Test suite and test framework generation (e2e, api, perf, AI evals, CI config) |
+| - [x] | `build-backend` | 🔴 P1 | Code | Backend Dev | Production-ready backend code across TIOBE-informed backend routes |
+| - [x] | `build-database` | 🔴 P1 | Database | DBA / Backend | Database code router for OLTP SQL, analytics SQL, schema design, and migrations |
+| - [x] | `build-frontend` | 🔴 P1 | Code | Frontend Dev | Production-ready frontend code + design system tokens + component style guide |
+| - [ ] | `build-mobile` | 🟠 P2 | Code | Mobile Dev | Production-ready mobile code (Swift/iOS, Kotlin/Android, React Native, Flutter) |
+| - [x] | `write-tests` | 🔴 P1 | Testing | AQA / Backend / ML | Test suite and test framework generation (e2e, api, perf, AI evals, CI config) |
 
 ### `design-`
 
@@ -97,20 +97,20 @@ Ordered alphabetically by name (matches filesystem order).
 | ----- | -------------- | -------- | -------- | ----------------- | -------------------------------------------------- |
 | - [ ] | `model-dbt` | 🟡 P3 | Data | Data Engineer | dbt model definitions with tests and documentation |
 
-### `patterns-`
+### `document-`
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ------------------- | -------- | ------ | ------------ | ------------------------------------------------------------------------------------- |
-| - [ ] | `patterns-auth` | 🟠 P2 | Code | Backend Dev | Auth pattern catalogue (JWT, OAuth2, sessions, API keys) with implementation examples |
-| - [ ] | `patterns-graphql` | 🟡 P3 | Code | Backend Dev | GraphQL schema, resolver, and N+1 pattern guide |
-| - [ ] | `patterns-realtime` | 🟡 P3 | Code | Backend Dev | WebSocket / SSE / polling pattern guide with tradeoffs |
+| - [ ] | `document-auth-patterns` | 🟠 P2 | Code | Backend Dev | Auth pattern catalogue (JWT, OAuth2, sessions, API keys) with implementation examples |
+| - [ ] | `document-graphql-patterns` | 🟡 P3 | Code | Backend Dev | GraphQL schema, resolver, and N+1 pattern guide |
+| - [ ] | `document-realtime-patterns` | 🟡 P3 | Code | Backend Dev | WebSocket / SSE / polling pattern guide with tradeoffs |
 
-### `planner-`
+### `plan-`
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ------------------ | -------- | ------ | ------------ | ---------------------------------------------------------- |
-| - [ ] | `planner-capacity` | ⚪ P4 | Ops | DBA / DevOps | Capacity plan with growth projections and scaling triggers |
-| - [ ] | `planner-sprint` | 🟡 P3 | Agile | Scrum Master | Sprint plan with goals, capacity, impediment log |
+| - [ ] | `plan-capacity` | ⚪ P4 | Ops | DBA / DevOps | Capacity plan with growth projections and scaling triggers |
+| - [ ] | `plan-sprint` | 🟡 P3 | Agile | Scrum Master | Sprint plan with goals, capacity, impediment log |
 
 ### `report-`
 
@@ -126,57 +126,57 @@ Ordered alphabetically by name (matches filesystem order).
 | ----- | ------------- | -------- | ---------- | ------------ | --------------------------------------------------------------------- |
 | - [x] | `review-code` | 🟠 P2 | Leadership | Team Lead | Structured code review findings plus a reusable review checklist reference |
 
-### `setup-`
+### `configure-`
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ------------------------ | -------- | ------------ | ----------------- | ------------------------------------------------------------ |
-| - [ ] | `setup-developer-portal` | ⚪ P4 | Platform | Platform Engineer | Internal developer portal structure with service catalog |
-| - [ ] | `setup-eval-harness` | 🟡 P3 | ML / AI | ML Engineer | Model evaluation harness with metrics and baselines |
-| - [ ] | `setup-infra` | 🟠 P2 | DevOps | DevOps | Ops setup router for IaC, observability, CI/CD, and ETL pipeline config |
-| - [ ] | `setup-monorepo` | 🟡 P3 | Platform | Platform Engineer | Monorepo configuration (Nx, Turborepo, Bazel) |
-| - [ ] | `setup-rag` | 🟡 P3 | ML / AI | AI Engineer | RAG pipeline setup (chunking, embedding, retrieval) |
+| - [ ] | `configure-developer-portal` | ⚪ P4 | Platform | Platform Engineer | Internal developer portal structure with service catalog |
+| - [ ] | `configure-eval-harness` | 🟡 P3 | ML / AI | ML Engineer | Model evaluation harness with metrics and baselines |
+| - [ ] | `configure-infra` | 🟠 P2 | DevOps | DevOps | Ops setup router for IaC, observability, CI/CD, and ETL pipeline config |
+| - [ ] | `configure-monorepo` | 🟡 P3 | Platform | Platform Engineer | Monorepo configuration (Nx, Turborepo, Bazel) |
+| - [ ] | `configure-rag` | 🟡 P3 | ML / AI | AI Engineer | RAG pipeline setup (chunking, embedding, retrieval) |
 
-### `strategy-`
+### `plan-` strategy
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ----------------------------- | -------- | -------- | ------------------- | --------------------------------------------------------------- |
-| - [ ] | `strategy-api-versioning` | 🟡 P3 | Code | Backend Dev | API versioning strategy with deprecation and migration guide |
-| - [ ] | `strategy-backup` | 🟡 P3 | Database | DBA | Backup and recovery strategy with RPO/RTO targets |
-| - [ ] | `strategy-dependency-upgrade` | 🟡 P3 | Release | DevOps / Team Lead | Dependency upgrade strategy with risk assessment |
-| - [ ] | `strategy-feature-flag` | 🟡 P3 | Code | Team Lead / Backend | Feature flag strategy with rollout and rollback plan |
+| - [ ] | `plan-api-versioning` | 🟡 P3 | Code | Backend Dev | API versioning strategy with deprecation and migration guide |
+| - [ ] | `plan-backup` | 🟡 P3 | Database | DBA | Backup and recovery strategy with RPO/RTO targets |
+| - [ ] | `plan-dependency-upgrade` | 🟡 P3 | Release | DevOps / Team Lead | Dependency upgrade strategy with risk assessment |
+| - [ ] | `plan-feature-flag` | 🟡 P3 | Code | Team Lead / Backend | Feature flag strategy with rollout and rollback plan |
 
-### `template-`
+### `create-`
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ---------------- | -------- | ---------- | ------------ | --------------------------------------------------------------- |
-| - [ ] | `template-creator` | 🟡 P3 | Leadership / Agile | Team Lead / Scrum Master | Reusable team templates for PRs, retros, issues, meetings, decisions, incidents, and releases |
+| - [ ] | `create-template` | 🟡 P3 | Leadership / Agile | Team Lead / Scrum Master | Reusable team templates for PRs, retros, issues, meetings, decisions, incidents, and releases |
 
-### `tracker-`
+### `track-`
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ------------------ | -------- | ------ | ------------ | ---------------------------------------------- |
-| - [ ] | `tracker-velocity` | ⚪ P4 | Agile | Scrum Master | Sprint velocity report with trend and forecast |
+| - [ ] | `track-velocity` | ⚪ P4 | Agile | Scrum Master | Sprint velocity report with trend and forecast |
 
-### `writer-`
+### `write-`
 
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ----------------------- | -------- | ------------ | ------------------- | --------------------------------------------------------------------- |
-| - [ ] | `writer-alert-rules` | 🟡 P3 | DevOps / SRE | SRE | Alert rule definitions with severity and runbook links |
-| - [ ] | `writer-backlog` | 🟡 P3 | Agile | Product Owner | Groomed backlog with priorities, estimates, and dependencies |
-| - [ ] | `writer-compliance` | ⚪ P4 | Security | Security / Legal | Compliance documentation (GDPR, SOC2, HIPAA) |
-| - [ ] | `writer-epic` | 🟠 P2 | Agile | Product Owner | Epic definition with goal, scope, child stories, DoD |
-| - [ ] | `writer-lineage` | ⚪ P4 | Data | Data Engineer | Data lineage documentation (sources, transforms, destinations) |
-| - [ ] | `writer-mentorship` | ⚪ P4 | Leadership | Team Lead | Mentorship guide with goals, checkpoints, and resources |
-| - [ ] | `writer-ml-experiment` | 🟡 P3 | ML / AI | ML Engineer | ML experiment report with setup, results, and model card |
-| - [ ] | `writer-postmortem` | 🟡 P3 | Leadership | Team Lead / SRE | Incident postmortem (timeline, root cause, action items) |
-| - [x] | `writer-prd` | 🔴 P1 | Requirements | PM / PO | Product Requirements Document (goals, personas, scope, metrics) |
-| - [ ] | `writer-prompt` | 🟡 P3 | ML / AI | ML / AI Engineer | Optimized prompt with system instructions, examples, and eval |
-| - [x] | `writer-tech-docs` | 🔴 P1 | Docs | Tech Writer | Technical docs: README, API docs, runbooks, changelog, release notes |
-| - [ ] | `writer-slo` | 🟡 P3 | DevOps / SRE | SRE | SLO definition with indicators, targets, and error budget |
-| - [x] | `writer-spec` | 🔴 P1 | Requirements | SA / Architect / UX | Specification document (functional, tech, NFR, design, data-contract) |
-| - [ ] | `writer-stakeholder` | 🟡 P3 | Agile | PM / PO | Stakeholder update (status, risks, decisions needed) |
-| - [x] | `writer-user-story` | 🔴 P1 | Agile | PO / Team Lead | User stories with acceptance criteria decomposed into dev tasks |
-| - [ ] | `writer-team-agreement` | ⚪ P4 | Agile | Scrum Master | Team working agreement (definition of done, norms, ceremonies) |
-| - [ ] | `writer-tech-radar` | ⚪ P4 | Architecture | Solution Architect | Technology radar (adopt, trial, assess, hold) |
-| - [ ] | `writer-test-strategy` | 🟠 P2 | Testing | AQA / QA | Test strategy document (scope, levels, tools, coverage targets) |
-| - [ ] | `writer-use-case` | 🟡 P3 | Requirements | System Analyst | Use case document (actors, preconditions, main/alternate flows) |
+| - [ ] | `write-alert-rules` | 🟡 P3 | DevOps / SRE | SRE | Alert rule definitions with severity and runbook links |
+| - [ ] | `write-backlog` | 🟡 P3 | Agile | Product Owner | Groomed backlog with priorities, estimates, and dependencies |
+| - [ ] | `write-compliance` | ⚪ P4 | Security | Security / Legal | Compliance documentation (GDPR, SOC2, HIPAA) |
+| - [ ] | `write-epic` | 🟠 P2 | Agile | Product Owner | Epic definition with goal, scope, child stories, DoD |
+| - [ ] | `write-lineage` | ⚪ P4 | Data | Data Engineer | Data lineage documentation (sources, transforms, destinations) |
+| - [ ] | `write-mentorship` | ⚪ P4 | Leadership | Team Lead | Mentorship guide with goals, checkpoints, and resources |
+| - [ ] | `write-ml-experiment` | 🟡 P3 | ML / AI | ML Engineer | ML experiment report with setup, results, and model card |
+| - [ ] | `write-postmortem` | 🟡 P3 | Leadership | Team Lead / SRE | Incident postmortem (timeline, root cause, action items) |
+| - [x] | `write-prd` | 🔴 P1 | Requirements | PM / PO | Product Requirements Document (goals, personas, scope, metrics) |
+| - [ ] | `write-prompt` | 🟡 P3 | ML / AI | ML / AI Engineer | Optimized prompt with system instructions, examples, and eval |
+| - [x] | `write-tech-docs` | 🔴 P1 | Docs | Tech Writer | Technical docs: README, API docs, runbooks, changelog, release notes |
+| - [ ] | `write-slo` | 🟡 P3 | DevOps / SRE | SRE | SLO definition with indicators, targets, and error budget |
+| - [x] | `write-spec` | 🔴 P1 | Requirements | SA / Architect / UX | Specification document (functional, tech, NFR, design, data-contract) |
+| - [ ] | `write-stakeholder` | 🟡 P3 | Agile | PM / PO | Stakeholder update (status, risks, decisions needed) |
+| - [x] | `write-user-story` | 🔴 P1 | Agile | PO / Team Lead | User stories with acceptance criteria decomposed into dev tasks |
+| - [ ] | `write-team-agreement` | ⚪ P4 | Agile | Scrum Master | Team working agreement (definition of done, norms, ceremonies) |
+| - [ ] | `write-tech-radar` | ⚪ P4 | Architecture | Solution Architect | Technology radar (adopt, trial, assess, hold) |
+| - [ ] | `write-test-strategy` | 🟠 P2 | Testing | AQA / QA | Test strategy document (scope, levels, tools, coverage targets) |
+| - [ ] | `write-use-case` | 🟡 P3 | Requirements | System Analyst | Use case document (actors, preconditions, main/alternate flows) |
