@@ -8,7 +8,7 @@ tags:
   - agents
 metadata:
   author: Oleg Shulyakov
-  version: "1.3.0"
+  version: "1.4.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: meta
@@ -18,9 +18,26 @@ metadata:
 
 Write agent rules as durable operating instructions: concise, scoped, concrete, and easy for another agent to apply without guessing.
 
-## Output Locations
+---
 
-**Choose the narrowest durable location that the target runtime actually loads.**
+## Workflow
+
+1. **Identify the target.** Determine the runtime, intended audience, output path, and whether the rule is global or path-scoped.
+2. **Inspect existing instructions.** Read `AGENTS.md`, `CLAUDE.md`, `.agents/rules/`, `.claude/rules/`, `.github/copilot-instructions.md`, `.github/instructions/`, `.cursorrules`, and `.cursor/rules/` when present.
+3. **Extract durable behavior.** Keep build and test commands, repo layout, coding standards, generated-file workflows, review expectations, security constraints, deployment boundaries, and domain conventions.
+4. **Scope narrowly.** Use a project-wide file for global behavior; use a path-scoped rule for language, framework, package, generated-code, infrastructure, migration, or review guidance.
+5. **Check conflicts.** If the requested rule contradicts existing instructions, call out the conflict and either update the older rule deliberately or ask one concise question before proceeding.
+6. **Write direct imperatives.** Use concrete commands, paths, globs, or examples. Add a short rationale only when it helps an agent decide an edge case.
+7. **Reference source material.** Prefer authoritative docs over duplicated policy. Summarize only the behavior an agent must follow while working.
+8. **Add safety boundaries.** Cover shell commands, secrets, destructive actions, generated files, migrations, deployment, production data, and external services when relevant.
+9. **Keep one concern per file.** Split mixed drafts into separate rules and update the runtime index when the project expects one.
+10. **Report completion details.** Name changed files, assumptions, and verification performed after writing.
+
+---
+
+## Output
+
+Choose the narrowest durable location that the target runtime actually loads.
 
 | Runtime | Location |
 | --- | --- |
@@ -31,37 +48,11 @@ Write agent rules as durable operating instructions: concise, scoped, concrete, 
 
 Default to `.agents/rules/<name>.md` when runtime is unspecified.
 
-Keep personal, machine-specific, or unshared preferences out of committed project instructions. If the user asks for local-only behavior, put it in an explicitly local/uncommitted location or explain that it should not be added to shared rules.
-
-## Workflow
-
-**Inspect existing instructions before writing, then add only behavior that should guide future agents.**
-
-1. **Identify target**: determine the runtime, intended audience, output path, and whether the rule is global or path-scoped.
-2. **Inspect existing instructions**: read `AGENTS.md`, `CLAUDE.md`, `.agents/rules/`, `.claude/rules/`, `.github/copilot-instructions.md`, `.github/instructions/`, `.cursorrules`, and `.cursor/rules/` when present.
-3. **Extract durable behavior**: keep build and test commands, repo layout, coding standards, generated-file workflows, review expectations, security constraints, deployment boundaries, and domain conventions.
-4. **Exclude temporary context**: remove task notes, vague preferences, stale context, secrets, personal environment details, and commands that require credentials the agent cannot verify.
-5. **Scope narrowly**: use a project-wide file for global behavior; use a path-scoped rule for language, framework, package, generated-code, infrastructure, migration, or review guidance.
-6. **Check conflicts**: if the requested rule contradicts existing instructions, call out the conflict and either update the older rule deliberately or ask one concise question before proceeding.
-7. **Write direct imperatives**: use concrete commands, paths, globs, or examples. Add a short rationale only when it helps an agent decide an edge case.
-8. **Reference source material**: prefer authoritative docs over duplicated policy. Summarize only the behavior an agent must follow while working.
-9. **Add safety boundaries**: cover shell commands, secrets, destructive actions, generated files, migrations, deployment, production data, and external services when relevant.
-10. **Keep one concern per file**: split mixed drafts into separate rules and update the runtime index when the project expects one.
-11. **Report completion details**: name changed files, assumptions, and verification performed after writing.
-
-## Rule Scope
-
-**Make each rule specific enough to act on and small enough to stay true.**
-
 Write rules for recurring agent behavior, not one-off task execution. Good subjects include test commands, package-manager policy, generated-code workflows, migration handling, public API documentation, review format, architecture boundaries, frontend visual QA, and security constraints.
 
-Do not turn broad human documentation into agent rules wholesale. Extract the parts that change an agent's actions during coding, review, verification, or release work. If the source material mixes unrelated concerns, split it by concern instead of preserving the original shape.
+Use concrete identifiers whenever possible: `pnpm test`, `src/generated/**`, `infra/**`, `openapi.yaml`, `make fmt`, or `packages/shared`.
 
-Use concrete identifiers whenever possible: `pnpm test`, `src/generated/**`, `infra/**`, `openapi.yaml`, `make fmt`, or `packages/shared`. Avoid instructions like "write clean code," "be careful," or "follow best practices" unless they are immediately followed by project-specific behavior that can be checked.
-
-## Rule Template
-
-**Use front matter only when the runtime supports filtering, scoping, or priority.**
+Use front matter only when the runtime supports filtering, scoping, or priority.
 
 ```markdown
 ---
@@ -87,9 +78,13 @@ Use `applies_to: ["**/*"]` or omit scope for global rules. Reserve `critical` fo
 
 For runtimes with their own front matter, adapt the fields instead of forcing this exact schema. For plain `AGENTS.md`, write a short section with imperative bullets and concrete paths or commands.
 
-## Good vs. Bad
+Write the rule body so the next agent can act without reading around it:
 
-**Prefer instructions that name observable behavior over taste or intent.**
+- **Start actionable.** Open with a `#` title and one short purpose sentence, then put the workflow, rule instructions, or source-handling guidance before background or limitations.
+- **Use section delimiters.** Put standalone `---` lines between long `##` sections when the target runtime treats Markdown normally. Do not add ornamental dividers to formats that reserve them for front matter or rule metadata.
+- **Use scan anchors.** Add bold labels inside bullets or numbered steps when they separate distinct actions, fields, or rule types. Do not force bold labels into schemas, command examples, literal templates, or checklist items.
+
+### Example
 
 **Write this:**
 
@@ -106,26 +101,29 @@ For runtimes with their own front matter, adapt the fields instead of forcing th
 - **Hidden dependencies**: rules requiring unlisted tools, hidden knowledge, or credentials.
 - **Temporary context**: issue notes or one-off instructions disguised as durable policy.
 
-## Runtime Notes
+---
 
-**Adapt to the target tool without inventing a private format.**
+## Boundaries
 
 Use `.agents/rules/*.md` for modular CLI-agent rules when the project has no stricter convention. Use `AGENTS.md` for shared Codex-style project instructions and indexes. Use `CLAUDE.md` or `.claude/rules/*.md` for Claude Code. Use `.github/copilot-instructions.md` for repository-wide Copilot behavior and `.github/instructions/*.instructions.md` for scoped Copilot instructions. Use Cursor's existing rule format if `.cursorrules` or `.cursor/rules/` is already present.
 
 When a runtime has required front matter fields, preserve them. When the runtime is plain Markdown, do not add front matter just to look organized. It is not a stationery contest.
 
-## Quality Checklist
+Do not turn broad human documentation into agent rules wholesale. Extract the parts that change an agent's actions during coding, review, verification, or release work. If the source material mixes unrelated concerns, split it by concern instead of preserving the original shape.
 
-**Finish only after the rule is scoped, concrete, non-conflicting, and in the right place.**
+Keep personal, machine-specific, or unshared preferences out of committed project instructions. If the user asks for local-only behavior, put it in an explicitly local or uncommitted location, or explain that it should not be added to shared rules.
 
-Before finishing, verify the rule:
+Exclude task notes, vague preferences, stale context, secrets, personal environment details, and commands that require credentials the agent cannot verify.
 
-- **Single concern**: one concern per file with a descriptive `lowercase-hyphenated` filename
-- **Front matter**: present when the runtime supports filtering or priority
-- **Concrete anchors**: commands, paths, globs, or examples included where they reduce ambiguity
-- **Rationale**: non-obvious reasoning explained briefly
-- **Clean content**: no secrets, personal preferences, stale context, or unrelated docs
-- **No conflicts**: checked against existing instructions
-- **Runtime format**: matches the requested tool
-- **Indexing**: linked from `AGENTS.md`, `CLAUDE.md`, Copilot instructions, or the runtime entry point when the project expects an index
-- **Final report**: names changed files and any verification skipped or completed
+---
+
+## Verification
+
+- [ ] One concern per file with a descriptive `lowercase-hyphenated` filename
+- [ ] Front matter is present only when the runtime supports filtering or priority
+- [ ] Commands, paths, globs, or examples are included where they reduce ambiguity
+- [ ] Non-obvious reasoning is explained briefly
+- [ ] No secrets, personal preferences, stale context, or unrelated docs are included
+- [ ] Existing instructions were checked for conflicts
+- [ ] The rule format matches the requested runtime
+- [ ] The final response names changed files and any verification skipped or completed
