@@ -51,6 +51,7 @@ When product intent is missing, ask for or infer it before writing technical det
 - **Behavioral, not implementational**: Describe what it does, not how it's built.
 - **Define roles and decisions**: Name owners, reviewers, stakeholders, and decision areas when known.
 - **Use frontmatter for metadata**: Put document status, type, phase, version, dates, author/owner, tags, and related docs in YAML frontmatter instead of a body "Document Info" block. Add optional fields such as `reviewers`, `targetDate`, or `tracker` only when they have real value.
+- **Use real Markdown structure**: Use `###`/`####` headings for named flows, decisions, examples, and subsections. Do not use bold-only lines as pseudo-headings, because they fail Markdown lint rules such as `MD036`.
 - **Tie scope to success**: Include purpose, scope, non-goals, success measures, risks, assumptions, and excluded features where relevant.
 - **Connect design and behavior**: Link or summarize workflows, UI states, high-level architecture, and user interactions when they affect requirements.
 - **Plan verification and release**: Include test plans, privacy/data handling, rollout, training, documentation, support readiness, and feedback collection when the spec affects launch.
