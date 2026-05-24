@@ -1,0 +1,213 @@
+{
+  "skill_name": "explain-topic",
+  "evals": [
+    {
+      "id": 1,
+      "query": "Why is the sky blue?",
+      "prompt": "Why is the sky blue?",
+      "should_trigger": true,
+      "expected_output": "Explains Rayleigh scattering in simple terms, gives the short answer first, and avoids unnecessary technical depth.",
+      "files": [],
+      "expectations": [
+        "Triggers the explain-topic skill for a general knowledge why question",
+        "Starts with a concise answer",
+        "Explains sunlight scattering by air molecules",
+        "Mentions shorter blue wavelengths scattering more than red wavelengths",
+        "Keeps the explanation simple and accurate"
+      ]
+    },
+    {
+      "id": 2,
+      "query": "What is a planet?",
+      "prompt": "What is a planet?",
+      "should_trigger": true,
+      "expected_output": "Defines planet clearly, gives the core criteria, and notes context where definitions vary.",
+      "files": [],
+      "expectations": [
+        "Triggers the explain-topic skill for a definition question",
+        "Gives a plain-language definition first",
+        "Explains orbiting a star and being rounded by gravity",
+        "Mentions clearing the orbital neighborhood when using the IAU Solar System definition",
+        "Notes that definitions can depend on context"
+      ]
+    },
+    {
+      "id": 3,
+      "query": "Why do birds fly?",
+      "prompt": "Why do birds fly?",
+      "should_trigger": true,
+      "expected_output": "Explains both evolutionary reasons and the physical mechanism of flight in simple language.",
+      "files": [],
+      "expectations": [
+        "Triggers the explain-topic skill for a general biology question",
+        "Explains reasons such as food, escape, migration, and nesting",
+        "Explains wings, lift, thrust, and lightweight bodies at a simple level",
+        "Separates why birds evolved flight from how flight works",
+        "Avoids overcomplicating the answer"
+      ]
+    },
+    {
+      "id": 4,
+      "query": "What is the speed of light?",
+      "prompt": "What is the speed of light?",
+      "should_trigger": true,
+      "expected_output": "Gives the exact vacuum speed of light and briefly explains why it matters.",
+      "files": [],
+      "expectations": [
+        "Triggers the explain-topic skill for a factual knowledge question",
+        "States 299,792,458 meters per second in vacuum",
+        "Mentions that light slows in materials",
+        "Briefly explains its role as a fundamental speed limit",
+        "Keeps the answer concise"
+      ]
+    },
+    {
+      "id": 5,
+      "query": "How does authentication work in this codebase?",
+      "prompt": "How does authentication work in this codebase?",
+      "should_trigger": true,
+      "expected_output": "Explores repository entry points and auth-related code before explaining the authentication architecture, runtime flow, key files, and edge cases.",
+      "files": [],
+      "expectations": [
+        "Identifies concrete auth entry points such as middleware, routes, guards, sessions, or token handling",
+        "Explains the main control flow in execution order",
+        "Names key files, functions, types, or modules",
+        "Covers important edge cases such as validation, authorization failures, expiry, or missing configuration",
+        "Distinguishes verified findings from uncertainty"
+      ]
+    },
+    {
+      "id": 6,
+      "query": "/explain-topic user signup",
+      "prompt": "/explain-topic user signup",
+      "should_trigger": true,
+      "expected_output": "Treats /explain-topic as an explanation request, recognizes signup as a code walkthrough topic, traces the signup path, and explains how data moves through the system.",
+      "files": [],
+      "expectations": [
+        "Triggers the explain-topic skill from the /explain-topic phrasing",
+        "Starts from likely signup entry points",
+        "Explains data flow from input through persistence or side effects",
+        "Mentions tests or fixtures when found",
+        "Avoids implementing changes unless explicitly requested"
+      ]
+    },
+    {
+      "id": 7,
+      "query": "Walk me through how background jobs are scheduled and executed here.",
+      "prompt": "Walk me through how background jobs are scheduled and executed here.",
+      "should_trigger": true,
+      "expected_output": "Explores job registration, producers, workers, queue configuration, retry behavior, and observability before explaining the architecture.",
+      "files": [],
+      "expectations": [
+        "Identifies job entry points and worker execution paths",
+        "Explains scheduling, enqueueing, processing, and completion behavior",
+        "Covers retries, failures, configuration, or observability where present",
+        "Uses repository terminology rather than generic queue labels",
+        "Ends with evidence such as files inspected for non-trivial answers"
+      ]
+    },
+    {
+      "id": 8,
+      "query": "How does the payment webhook flow work, including validation and idempotency?",
+      "prompt": "How does the payment webhook flow work, including validation and idempotency?",
+      "should_trigger": true,
+      "expected_output": "Traces webhook routing, signature or payload validation, idempotency checks, persistence, side effects, and failure handling.",
+      "files": [],
+      "expectations": [
+        "Finds webhook routes or event consumers",
+        "Explains validation before side effects",
+        "Explains idempotency or explicitly notes if it was not found",
+        "Describes downstream side effects and storage",
+        "Covers error handling and retry implications"
+      ]
+    },
+    {
+      "id": 9,
+      "query": "Explain the architecture of the search subsystem.",
+      "prompt": "Explain the architecture of the search subsystem.",
+      "should_trigger": true,
+      "expected_output": "Produces a subsystem-level explanation that identifies entry points, query/data flow, storage or index dependencies, and important boundaries.",
+      "files": [],
+      "expectations": [
+        "Frames the subsystem with a short answer first",
+        "Names entry points and core modules",
+        "Explains query/data flow through the subsystem",
+        "Identifies storage, index, cache, or external service dependencies when present",
+        "Keeps the explanation architectural instead of line-by-line source commentary"
+      ]
+    },
+    {
+      "id": 10,
+      "query": "How does configuration get loaded and passed into services?",
+      "prompt": "How does configuration get loaded and passed into services?",
+      "should_trigger": true,
+      "expected_output": "Explores configuration files, environment handling, dependency injection, service construction, and runtime overrides before explaining the flow.",
+      "files": [],
+      "expectations": [
+        "Identifies configuration sources and loading entry points",
+        "Explains how values reach services or runtime components",
+        "Covers defaults, environment variables, validation, or override behavior where present",
+        "Names concrete files and types",
+        "States uncertainty if configuration paths are ambiguous"
+      ]
+    },
+    {
+      "id": 11,
+      "query": "Can you critique the architecture of the billing module?",
+      "prompt": "Can you critique the architecture of the billing module?",
+      "should_trigger": true,
+      "expected_output": "First explains how the billing module works, then lists architecture risks with evidence, impact, and tradeoffs.",
+      "files": [],
+      "expectations": [
+        "Uses Critique mode because the user asks for critique",
+        "Explains the current architecture before judging it",
+        "Orders risks by severity or practical impact",
+        "Grounds each critique in repository evidence",
+        "Includes tradeoffs or reasons the current design may be acceptable"
+      ]
+    },
+    {
+      "id": 12,
+      "query": "What is wrong with the way this app handles authorization?",
+      "prompt": "What is wrong with the way this app handles authorization?",
+      "should_trigger": true,
+      "expected_output": "Treats the request as architecture critique, explores authorization flow, explains current behavior, and identifies supported risks without speculation.",
+      "files": [],
+      "expectations": [
+        "Uses Critique mode from the problem-focused phrasing",
+        "Traces authorization checks across relevant boundaries",
+        "Separates confirmed issues from possible concerns",
+        "Prioritizes correctness and security risks",
+        "Avoids broad generic security advice unsupported by the code"
+      ]
+    },
+    {
+      "id": 13,
+      "query": "Summarize the README.",
+      "prompt": "Summarize the README.",
+      "should_trigger": false,
+      "expected_output": "Does not over-apply the how workflow; answers as a documentation summary unless codebase architecture exploration is needed.",
+      "files": [],
+      "expectations": [
+        "Does not force a code exploration workflow for a plain README summary",
+        "Does not produce architecture critique",
+        "Keeps the answer scoped to summarization",
+        "Mentions if repository inspection is limited to the README"
+      ]
+    },
+    {
+      "id": 14,
+      "query": "Implement a new endpoint for exporting audit logs.",
+      "prompt": "Implement a new endpoint for exporting audit logs.",
+      "should_trigger": false,
+      "expected_output": "Does not route to explain-topic; treats the request as implementation work rather than an explanation or architecture critique.",
+      "files": [],
+      "expectations": [
+        "Does not produce an explain-topic-style architecture walkthrough as the main output",
+        "Inspects implementation conventions before editing",
+        "Routes to a code generation skill or normal implementation workflow",
+        "Adds or updates code and tests when appropriate"
+      ]
+    }
+  ]
+}

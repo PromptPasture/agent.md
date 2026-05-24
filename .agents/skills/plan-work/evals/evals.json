@@ -1,0 +1,60 @@
+{
+  "evals": [
+    {
+      "id": "plan-work-001",
+      "category": "true-positive",
+      "prompt": "Plan the migration from the old auth service to the new one.",
+      "expected_trigger": "Trigger plan.",
+      "expected_output": "Produces phases, dependencies, risks, validation steps, and a next action."
+    },
+    {
+      "id": "plan-work-002",
+      "category": "true-positive",
+      "prompt": "Break this feature into milestones we can implement safely.",
+      "expected_trigger": "Trigger plan.",
+      "expected_output": "Breaks work into scoped milestones with assumptions and verification."
+    },
+    {
+      "id": "plan-work-003",
+      "category": "true-positive",
+      "prompt": "What's the best approach for rolling this out gradually?",
+      "expected_trigger": "Trigger plan.",
+      "expected_output": "Outlines a staged rollout with risks, gates, and rollback or validation checks."
+    },
+    {
+      "id": "plan-work-004",
+      "category": "true-positive",
+      "prompt": "How should we proceed with cleaning up this module?",
+      "expected_trigger": "Trigger plan.",
+      "expected_output": "Defines a practical sequence and notes missing context that could change it."
+    },
+    {
+      "id": "plan-work-005",
+      "category": "false-positive",
+      "prompt": "Coordinate frontend, backend, and QA while this migration is already in progress.",
+      "expected_trigger": "Do not trigger plan-work as the primary skill.",
+      "expected_output": "Should manage active workstreams, owners, blockers, and handoffs."
+    },
+    {
+      "id": "plan-work-006",
+      "category": "false-positive",
+      "prompt": "What are the right questions before we plan the migration?",
+      "expected_trigger": "Do not trigger plan-work as the primary skill.",
+      "expected_output": "Should generate high-leverage clarification questions first."
+    },
+    {
+      "id": "plan-work-007",
+      "category": "non-trigger",
+      "prompt": "Classify these API endpoints by customer-facing versus internal.",
+      "expected_trigger": "Do not trigger plan.",
+      "expected_output": "Should group endpoints by the requested criteria."
+    },
+    {
+      "id": "plan-work-008",
+      "category": "non-trigger",
+      "prompt": "Remember that migration plans should include rollback checks.",
+      "expected_trigger": "Do not trigger plan.",
+      "expected_output": "Should record durable memory if appropriate."
+    }
+  ]
+}

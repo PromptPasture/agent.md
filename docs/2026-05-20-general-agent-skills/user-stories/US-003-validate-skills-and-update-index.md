@@ -21,7 +21,7 @@ Source documents:
 ## 🔍 2. Strict Constraints & Scope Boundaries
 
 - **In-Scope:**
-  - Run available creator-skill validation checks on each new skill.
+  - Run available create-skill validation checks on each new skill.
   - Review line counts, metadata, section style, and runtime standalone behavior.
   - Update `.agents/skills/README.md` if it indexes maintained skills.
   - Fix validation failures that are directly related to the new skills.
@@ -43,7 +43,7 @@ Source documents:
 ```gherkin
 Scenario: Validate each new skill
   Given a new skill folder exists with SKILL.md and evals/evals.json
-  When creator-skill validation is run against the skill folder
+  When create-skill validation is run against the skill folder
   Then validation passes
   And any failures are fixed or documented with a clear reason
 
@@ -71,8 +71,8 @@ Scenario: Prevent runtime coupling
   2. `.agents/skills/<skill-name>/evals/evals.json` -> Validation target.
   3. `.agents/skills/README.md` -> Skill index, if present.
 - **Shared Dependencies/Imports:**
-  - Use `.agents/skills/creator-skill/scripts/quick_validate.py` when available.
-  - Follow `.agents/skills/creator-skill/references/authoring.md`.
+  - Use `.agents/skills/create-skill/scripts/quick_validate.py` when available.
+  - Follow `.agents/skills/create-skill/references/authoring.md`.
 
 ---
 
@@ -80,7 +80,7 @@ Scenario: Prevent runtime coupling
 
 *Note to Agent: Execute these steps sequentially. Verify state after each step.*
 
-1. **Analyze & Validate:** Inspect `.agents/skills/README.md` and creator-skill validation scripts.
+1. **Analyze & Validate:** Inspect `.agents/skills/README.md` and create-skill validation scripts.
 2. **Run Validation:** Run quick validation for each new skill directory.
 3. **Fix Failures:** Apply focused fixes to new skill files and evals.
 4. **Update Index:** Add new skills to the README only if the README indexes maintained skills.

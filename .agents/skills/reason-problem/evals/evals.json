@@ -1,0 +1,60 @@
+{
+  "evals": [
+    {
+      "id": "reason-problem-001",
+      "category": "true-positive",
+      "prompt": "Let's reason through why this workflow feels fragile before we change it.",
+      "expected_trigger": "Trigger reason-problem.",
+      "expected_output": "Frames the problem, separates facts from assumptions, names hypotheses, and ends with a clearer next clarity step."
+    },
+    {
+      "id": "reason-problem-002",
+      "category": "true-positive",
+      "prompt": "Help me think through whether this product idea is actually one problem or three.",
+      "expected_trigger": "Trigger reason-problem.",
+      "expected_output": "Explores interpretations, constraints, and possible framings without forcing an immediate recommendation."
+    },
+    {
+      "id": "reason-problem-003",
+      "category": "true-positive",
+      "prompt": "Brainstorm possible causes for the drop in activation, but keep uncertainty visible.",
+      "expected_trigger": "Trigger reason-problem.",
+      "expected_output": "Generates hypotheses, marks assumptions, and identifies evidence that would distinguish them."
+    },
+    {
+      "id": "reason-problem-004",
+      "category": "true-positive",
+      "prompt": "This architecture debate is messy. Help me frame the core tension.",
+      "expected_trigger": "Trigger reason-problem.",
+      "expected_output": "Clarifies competing goals and tradeoffs, then states a sharper problem framing."
+    },
+    {
+      "id": "reason-problem-005",
+      "category": "false-positive",
+      "prompt": "Choose the best database for this workload and recommend one.",
+      "expected_trigger": "Do not trigger reason-problem as the primary skill.",
+      "expected_output": "Should use decision criteria and produce a recommendation."
+    },
+    {
+      "id": "reason-problem-006",
+      "category": "false-positive",
+      "prompt": "Break this migration into phases with validation steps.",
+      "expected_trigger": "Do not trigger reason-problem as the primary skill.",
+      "expected_output": "Should produce a plan rather than an open-ended reasoning frame."
+    },
+    {
+      "id": "reason-problem-007",
+      "category": "non-trigger",
+      "prompt": "Classify these bugs by severity and affected component.",
+      "expected_trigger": "Do not trigger reason-problem.",
+      "expected_output": "Should group items by explicit criteria."
+    },
+    {
+      "id": "reason-problem-008",
+      "category": "non-trigger",
+      "prompt": "Remember that we chose SQLite for local development.",
+      "expected_trigger": "Do not trigger reason-problem.",
+      "expected_output": "Should write durable memory if appropriate."
+    }
+  ]
+}
