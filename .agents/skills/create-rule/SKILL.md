@@ -56,8 +56,9 @@ Use front matter only when the runtime supports filtering, scoping, or priority.
 
 ```markdown
 ---
-name: [Human-Readable Rule Name]
+name: [lowercase-hyphenated-rule-id]
 description: [One sentence describing the behavior this rule governs]
+license: [SPDX license identifier, when applicable]
 applies_to: ["glob/or/path/**"]
 priority: low | medium | high | critical
 metadata:
@@ -67,20 +68,22 @@ metadata:
   category: [lowercase-kebab-case domain]
 ---
 
-# [Human-Readable Rule Name] Rules
+# [Human-Readable Rule Name]
 
 - **Direct instruction**: [testable behavior]
 - **Concrete reference**: [instruction with `command` or `path` where useful]
 - **Source link**: [instruction referencing authoritative source instead of duplicating it]
 ```
 
-Use `applies_to: ["**/*"]` or omit scope for global rules. Reserve `critical` for security, data-loss, compliance, or production-safety rules. Put optional ownership, release, category, and origin fields such as `author`, `version`, `category`, and compact `source` references under `metadata`, not at the top level.
+Use a lowercase, hyphenated `name` as the stable rule identifier. Prefer matching the filename without `.md`, for example `.agents/rules/api-contracts.md` uses `name: api-contracts`.
+
+Use `applies_to: ["**/*"]` or omit scope for global rules. Reserve `critical` for security, data-loss, compliance, or production-safety rules. Put `license` at the top level when the rule is imported, adapted, or has explicit licensing. Put optional ownership, release, category, and origin fields such as `author`, `version`, `category`, and compact `source` references under `metadata`.
 
 For runtimes with their own front matter, adapt the fields instead of forcing this exact schema. For plain `AGENTS.md`, write a short section with imperative bullets and concrete paths or commands.
 
 Write the rule body so the next agent can act without reading around it:
 
-- **Start actionable.** Open with a `#` title and one short purpose sentence, then put the workflow, rule instructions, or source-handling guidance before background or limitations.
+- **Start actionable.** Open with a `#` title, then put the workflow, rule instructions, or source-handling guidance before background or limitations.
 - **Use section delimiters.** Put standalone `---` lines between long `##` sections when the target runtime treats Markdown normally. Do not add ornamental dividers to formats that reserve them for front matter or rule metadata.
 - **Use scan anchors.** Add bold labels inside bullets or numbered steps when they separate distinct actions, fields, or rule types. Do not force bold labels into schemas, command examples, literal templates, or checklist items.
 

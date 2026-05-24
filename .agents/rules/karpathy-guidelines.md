@@ -1,12 +1,12 @@
 ---
 name: karpathy-guidelines
 description: Keep coding work simple, surgical, explicit, and verifiable.
+license: MIT
 applies_to: ["**/*"]
 priority: high
-license: MIT
 metadata:
   author: multica-ai
-  version: "1.0.0"
+  version: "1.1.0"
   source: github.com/multica-ai/andrej-karpathy-skills
   category: development
 ---
