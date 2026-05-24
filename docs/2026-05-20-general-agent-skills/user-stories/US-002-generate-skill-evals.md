@@ -14,7 +14,7 @@ Source documents:
 - **Persona:** As a skill library maintainer,
 - **Action:** I want representative evals generated for each general skill,
 - **Outcome:** so that trigger behavior and near-miss boundaries can be reviewed before release.
-- **Epic Context:** Implements FR-011 from the approved SPEC. Evals are generated through `.agents/skills/creator-skill/` and stored inside each skill folder.
+- **Epic Context:** Implements FR-011 from the approved SPEC. Evals are generated through `.agents/skills/create-skill/` and stored inside each skill folder.
 
 ---
 
@@ -31,7 +31,7 @@ Source documents:
   - Do not store evals in a shared docs folder.
   - Do not create eval iteration output folders unless eval runs are actually executed.
 - **Data Models & Schemas:**
-  - Use the eval schema expected by `.agents/skills/creator-skill/`.
+  - Use the eval schema expected by `.agents/skills/create-skill/`.
   - Store eval cases at `.agents/skills/<skill-name>/evals/evals.json`.
   - Store run outputs only under `.agents/skills/<skill-name>/evals/iterations/iteration-N/` if runs are performed.
 
@@ -44,7 +44,7 @@ Source documents:
 ```gherkin
 Scenario: Generate evals for each skill
   Given the eight new general skills exist
-  When the agent generates evals through creator-skill conventions
+  When the agent generates evals through create-skill conventions
   Then each new skill has evals/evals.json
   And each eval file contains 8-10 realistic prompts where possible
   And no eval file contains fewer than 7 prompts
@@ -69,16 +69,16 @@ Scenario: Preserve eval folder discipline
 *Note to Agent: You are restricted to modifying or analyzing the following components.*
 
 - **Primary Target Files:**
-  1. `.agents/skills/ask/evals/evals.json` -> Trigger and output evals.
-  2. `.agents/skills/reason/evals/evals.json` -> Trigger and output evals.
-  3. `.agents/skills/classify/evals/evals.json` -> Trigger and output evals.
-  4. `.agents/skills/plan/evals/evals.json` -> Trigger and output evals.
-  5. `.agents/skills/explore/evals/evals.json` -> Trigger and output evals.
-  6. `.agents/skills/decide/evals/evals.json` -> Trigger and output evals.
-  7. `.agents/skills/coordinate/evals/evals.json` -> Trigger and output evals.
-  8. `.agents/skills/remember/evals/evals.json` -> Trigger and output evals.
+  1. `.agents/skills/ask-questions/evals/evals.json` -> Trigger and output evals.
+  2. `.agents/skills/reason-problem/evals/evals.json` -> Trigger and output evals.
+  3. `.agents/skills/classify-content/evals/evals.json` -> Trigger and output evals.
+  4. `.agents/skills/plan-work/evals/evals.json` -> Trigger and output evals.
+  5. `.agents/skills/explore-context/evals/evals.json` -> Trigger and output evals.
+  6. `.agents/skills/decide-direction/evals/evals.json` -> Trigger and output evals.
+  7. `.agents/skills/coordinate-work/evals/evals.json` -> Trigger and output evals.
+  8. `.agents/skills/remember-context/evals/evals.json` -> Trigger and output evals.
 - **Shared Dependencies/Imports:**
-  - Follow `.agents/skills/creator-skill/references/evaluation.md`.
+  - Follow `.agents/skills/create-skill/references/evaluation.md`.
   - Use boundary distinctions from [SPEC.md](../SPEC.md).
 
 ---
@@ -87,11 +87,11 @@ Scenario: Preserve eval folder discipline
 
 *Note to Agent: Execute these steps sequentially. Verify state after each step.*
 
-1. **Analyze & Validate:** Read [SPEC.md](../SPEC.md) Section 8 and `.agents/skills/creator-skill/references/evaluation.md`.
+1. **Analyze & Validate:** Read [SPEC.md](../SPEC.md) Section 8 and `.agents/skills/create-skill/references/evaluation.md`.
 2. **Generate Eval Cases:** Create prompt-level evals for each new skill.
 3. **Check Counts:** Verify each eval file meets the 8-10 target where possible and never drops below 7.
 4. **Check Boundary Coverage:** Confirm likely overlaps are represented across the relevant eval files.
-5. **Validate JSON:** Ensure every `evals.json` file is valid JSON and follows the local creator-skill expectations.
+5. **Validate JSON:** Ensure every `evals.json` file is valid JSON and follows the local create-skill expectations.
 
 ---
 

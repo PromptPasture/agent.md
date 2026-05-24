@@ -1,5 +1,5 @@
 {
-  "skill_name": "explain",
+  "skill_name": "explain-topic",
   "evals": [
     {
       "id": 1,
@@ -9,7 +9,7 @@
       "expected_output": "Explains Rayleigh scattering in simple terms, gives the short answer first, and avoids unnecessary technical depth.",
       "files": [],
       "expectations": [
-        "Triggers the explain skill for a general knowledge why question",
+        "Triggers the explain-topic skill for a general knowledge why question",
         "Starts with a concise answer",
         "Explains sunlight scattering by air molecules",
         "Mentions shorter blue wavelengths scattering more than red wavelengths",
@@ -24,7 +24,7 @@
       "expected_output": "Defines planet clearly, gives the core criteria, and notes context where definitions vary.",
       "files": [],
       "expectations": [
-        "Triggers the explain skill for a definition question",
+        "Triggers the explain-topic skill for a definition question",
         "Gives a plain-language definition first",
         "Explains orbiting a star and being rounded by gravity",
         "Mentions clearing the orbital neighborhood when using the IAU Solar System definition",
@@ -39,7 +39,7 @@
       "expected_output": "Explains both evolutionary reasons and the physical mechanism of flight in simple language.",
       "files": [],
       "expectations": [
-        "Triggers the explain skill for a general biology question",
+        "Triggers the explain-topic skill for a general biology question",
         "Explains reasons such as food, escape, migration, and nesting",
         "Explains wings, lift, thrust, and lightweight bodies at a simple level",
         "Separates why birds evolved flight from how flight works",
@@ -54,7 +54,7 @@
       "expected_output": "Gives the exact vacuum speed of light and briefly explains why it matters.",
       "files": [],
       "expectations": [
-        "Triggers the explain skill for a factual knowledge question",
+        "Triggers the explain-topic skill for a factual knowledge question",
         "States 299,792,458 meters per second in vacuum",
         "Mentions that light slows in materials",
         "Briefly explains its role as a fundamental speed limit",
@@ -78,13 +78,13 @@
     },
     {
       "id": 6,
-      "query": "/explain user signup",
-      "prompt": "/explain user signup",
+      "query": "/explain-topic user signup",
+      "prompt": "/explain-topic user signup",
       "should_trigger": true,
-      "expected_output": "Treats /explain as an explanation request, recognizes signup as a code walkthrough topic, traces the signup path, and explains how data moves through the system.",
+      "expected_output": "Treats /explain-topic as an explanation request, recognizes signup as a code walkthrough topic, traces the signup path, and explains how data moves through the system.",
       "files": [],
       "expectations": [
-        "Triggers the explain skill from the /explain phrasing",
+        "Triggers the explain-topic skill from the /explain-topic phrasing",
         "Starts from likely signup entry points",
         "Explains data flow from input through persistence or side effects",
         "Mentions tests or fixtures when found",
@@ -200,10 +200,10 @@
       "query": "Implement a new endpoint for exporting audit logs.",
       "prompt": "Implement a new endpoint for exporting audit logs.",
       "should_trigger": false,
-      "expected_output": "Does not route to explain; treats the request as implementation work rather than an explanation or architecture critique.",
+      "expected_output": "Does not route to explain-topic; treats the request as implementation work rather than an explanation or architecture critique.",
       "files": [],
       "expectations": [
-        "Does not produce an explain-style architecture walkthrough as the main output",
+        "Does not produce an explain-topic-style architecture walkthrough as the main output",
         "Inspects implementation conventions before editing",
         "Routes to a code generation skill or normal implementation workflow",
         "Adds or updates code and tests when appropriate"

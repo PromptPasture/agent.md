@@ -1,5 +1,5 @@
 ---
-name: explain
+name: explain-topic
 description: Explain any knowledge topic simply and accurately. Use for "explain X", "why/how/what is X?", concepts, science, definitions, code, design, architecture, and walkthroughs.
 license: MIT
 version: 2.1.0
@@ -12,7 +12,7 @@ metadata:
   catalog: utility
 ---
 
-# explain
+# explain-topic
 
 Explain knowledge questions clearly, accurately, and at the right depth. Use simple language first, then add precision only where it helps the user understand.
 
