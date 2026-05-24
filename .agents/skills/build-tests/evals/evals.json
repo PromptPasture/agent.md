@@ -60,42 +60,6 @@
       "prompt": "Make sure the reports page can handle Monday morning traffic without p95 going over 1.2s.",
       "expected_output": "Routes to perf, identifies a load/performance scenario, creates configurable script and percentile threshold.",
       "files": []
-    },
-    {
-      "id": 11,
-      "prompt": "Create evals for our support chatbot so we can catch prompt regressions in refund-policy answers.",
-      "expected_output": "Routes to ai-output, creates output-quality eval cases with deterministic and rubric assertions, and includes a runner/report structure.",
-      "files": []
-    },
-    {
-      "id": 12,
-      "prompt": "Add RAG answer quality tests that verify citations point to the retrieved source chunks and unsupported claims fail.",
-      "expected_output": "Routes to ai-output, separates retrieval and answer-grounding assertions, and tests missing-context behavior.",
-      "files": []
-    },
-    {
-      "id": 13,
-      "prompt": "Build tool-use evals for an agent that should search files, patch one file, run tests, and stop.",
-      "expected_output": "Routes to ai-tool-use, defines fixture workspace, expected tool trace assertions, final-state checks, and max-call limits.",
-      "files": []
-    },
-    {
-      "id": 14,
-      "prompt": "Test that our agent recovers when the first tool call returns an empty result instead of pretending it found the answer.",
-      "expected_output": "Routes to ai-tool-use, creates mocked failure/empty tool responses and assertions for recovery behavior.",
-      "files": []
-    },
-    {
-      "id": 15,
-      "prompt": "Benchmark our AI code review assistant for p95 latency, token usage, and cost per passing review.",
-      "expected_output": "Routes to ai-perf, creates a benchmark harness that records latency, tokens, model/tool calls, cost, and quality pass/fail together.",
-      "files": []
-    },
-    {
-      "id": 16,
-      "prompt": "Compare two model versions for a background research agent and report throughput, retry rate, and quality-per-dollar.",
-      "expected_output": "Routes to ai-perf, generates multi-run benchmark cases with baseline comparison and quality-adjusted cost metrics.",
-      "files": []
     }
   ]
 }

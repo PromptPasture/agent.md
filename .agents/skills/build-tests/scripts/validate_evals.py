@@ -12,9 +12,6 @@ VALID_ROUTES = {
     "e2e",
     "api",
     "perf",
-    "ai-output",
-    "ai-tool-use",
-    "ai-perf",
 }
 
 
