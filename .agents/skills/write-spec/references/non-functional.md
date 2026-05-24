@@ -1,7 +1,18 @@
-# Non-Functional Requirements: [System / Feature Name]
+---
+status: "[DRAFT | IN_REVIEW | APPROVED]"
+documentType: SPEC
+phase: "[discovery | delivery | maintenance]"
+version: "[1.0]"
+createdAt: "[YYYY-MM-DD]"
+updatedAt: "[YYYY-MM-DD]"
+author: "[name or team]"
+tags:
+  - "[non-functional-requirements]"
+related:
+  - "[PRD.md or related doc]"
+---
 
-**Version:** [1.0]
-**Date:** [YYYY-MM-DD]
+# Non-Functional Requirements: [System / Feature Name]
 
 ## 1. Performance & Responsiveness
 

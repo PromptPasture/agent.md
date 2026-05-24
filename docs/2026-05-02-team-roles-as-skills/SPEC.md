@@ -1,15 +1,25 @@
+---
+status: APPROVED
+documentType: SPEC
+phase: delivery
+version: 2.0
+createdAt: "2026-05-02"
+updatedAt: "2026-05-23"
+author: Oleg Shulyakov
+owner: Oleg Shulyakov
+reviewers: Skill authors and maintainers
+targetDate: Milestone-gated; no fixed calendar date
+tracker: TASKS.md
+tags:
+  - skills
+  - agents
+  - team-roles
+related:
+  - PRD.md
+  - TASKS.md
+---
+
 # SPEC: Software Team Roles as Skills
-
-## Document Info
-
-**Status:** APPROVED  
-**Version:** 2.0  
-**Date:** 2026-05-23  
-**Owner:** Oleg Shulyakov
-**Reviewers:** Skill authors and maintainers
-**Target release:** Milestone-gated; no fixed calendar date  
-**Source PRD:** [PRD.md](PRD.md)  
-**Tracker:** [TASKS.md](TASKS.md)
 
 ## 1. Overview
 
@@ -99,8 +109,8 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 #### FR-001: Catalog Definition
 
-**Priority:** Must-have  
-**Actor:** Skill maintainer  
+**Priority:** Must-have
+**Actor:** Skill maintainer
 **Requirement:** The library shall define exactly 55 catalog skills for the first full release.
 
 **Acceptance criteria:**
@@ -112,8 +122,8 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 #### FR-002: Verb-First Naming
 
-**Priority:** Must-have  
-**Actor:** Skill maintainer  
+**Priority:** Must-have
+**Actor:** Skill maintainer
 **Requirement:** Every catalog skill shall use `<verb>-<subject>[-<variant>]`.
 
 **Acceptance criteria:**
@@ -124,8 +134,8 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 #### FR-003: Standard Skill Structure
 
-**Priority:** Must-have  
-**Actor:** Skill author  
+**Priority:** Must-have
+**Actor:** Skill author
 **Requirement:** Each completed skill shall have a standard local folder layout.
 
 **Acceptance criteria:**
@@ -138,8 +148,8 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 #### FR-004: Router Skill Behavior
 
-**Priority:** Should-have  
-**Actor:** Agent  
+**Priority:** Should-have
+**Actor:** Agent
 **Requirement:** Multi-variant skills shall route to the correct reference from context before asking the user.
 
 **Acceptance criteria:**
@@ -151,8 +161,8 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 #### FR-005: Trigger Collision Prevention
 
-**Priority:** Must-have  
-**Actor:** Skill author  
+**Priority:** Must-have
+**Actor:** Skill author
 **Requirement:** Skills with overlapping domains shall define explicit trigger boundaries.
 
 **Acceptance criteria:**
@@ -163,8 +173,8 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 #### FR-006: Validation and Eval Coverage
 
-**Priority:** Must-have  
-**Actor:** Skill maintainer  
+**Priority:** Must-have
+**Actor:** Skill maintainer
 **Requirement:** Release-ready skills shall pass structural validation and required eval coverage.
 
 **Acceptance criteria:**
@@ -177,8 +187,8 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 #### FR-007: Packaging
 
-**Priority:** Should-have  
-**Actor:** Skill maintainer  
+**Priority:** Should-have
+**Actor:** Skill maintainer
 **Requirement:** Release-ready skills shall package into local `.skill` artifacts.
 
 **Acceptance criteria:**
@@ -191,8 +201,8 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 #### FR-008: Security and Testing Separation
 
-**Priority:** Must-have  
-**Actor:** Skill author  
+**Priority:** Must-have
+**Actor:** Skill author
 **Requirement:** Security audit behavior and test-generation behavior shall stay separated.
 
 **Acceptance criteria:**

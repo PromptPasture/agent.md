@@ -11,7 +11,7 @@ tags:
   - requirements
 metadata:
   author: Oleg Shulyakov
-  version: "1.3.0"
+  version: "1.4.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: documentation
@@ -50,6 +50,7 @@ When product intent is missing, ask for or infer it before writing technical det
 - **Keep it simple**: Choose the smallest complete specification shape that resolves the user's decision or handoff need.
 - **Behavioral, not implementational**: Describe what it does, not how it's built.
 - **Define roles and decisions**: Name owners, reviewers, stakeholders, and decision areas when known.
+- **Use frontmatter for metadata**: Put document status, type, phase, version, dates, author/owner, tags, and related docs in YAML frontmatter instead of a body "Document Info" block. Add optional fields such as `reviewers`, `targetDate`, or `tracker` only when they have real value.
 - **Tie scope to success**: Include purpose, scope, non-goals, success measures, risks, assumptions, and excluded features where relevant.
 - **Connect design and behavior**: Link or summarize workflows, UI states, high-level architecture, and user interactions when they affect requirements.
 - **Plan verification and release**: Include test plans, privacy/data handling, rollout, training, documentation, support readiness, and feedback collection when the spec affects launch.

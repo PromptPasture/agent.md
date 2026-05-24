@@ -9,6 +9,7 @@
       "files": [],
       "expectations": [
         "Output is a technical spec or design doc",
+        "Output includes YAML frontmatter with document metadata before the spec title",
         "Architecture or component changes are described",
         "Roles, reviewers, or decision owners are included or marked as assumptions",
         "Data model or persistence impact is covered",
@@ -25,6 +26,7 @@
       "files": [],
       "expectations": [
         "Output focuses on functional behavior, not implementation",
+        "Output includes YAML frontmatter with document metadata before the spec title",
         "Requirements cover immediate cancellation and period-end cancellation",
         "Admin reversal behavior is documented",
         "Business rules and edge cases are explicit",
@@ -40,6 +42,7 @@
       "files": [],
       "expectations": [
         "Output is organized as non-functional requirements",
+        "Output includes YAML frontmatter with document metadata before the spec title",
         "Performance requirements include measurable latency or throughput targets",
         "Availability or reliability target is specified",
         "Data retention and privacy requirements are included",
@@ -55,6 +58,7 @@
       "files": [],
       "expectations": [
         "Output defines the invoice.paid event",
+        "Output includes YAML frontmatter with data contract metadata before the title",
         "Payload schema includes concrete required fields",
         "Producer and consumer expectations are described",
         "Schema evolution or compatibility rules are included",
@@ -69,6 +73,7 @@
       "files": [],
       "expectations": [
         "Output is a UI or design handoff spec",
+        "Output includes YAML frontmatter with design metadata before the title",
         "All requested states are covered",
         "Validation and partial-success behavior are documented",
         "Accessibility requirements are included",

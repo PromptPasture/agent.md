@@ -1,10 +1,19 @@
-# Design Specification: [Component / Feature Name]
-
-**Status:** [DRAFT / FINAL / READY FOR DEV]
-**Designer:** [name]
-**Figma Link:** [url]
-
 ---
+status: "[DRAFT | FINAL | READY_FOR_DEV]"
+documentType: DESIGN
+phase: "[discovery | delivery | maintenance]"
+version: "[1.0]"
+createdAt: "[YYYY-MM-DD]"
+updatedAt: "[YYYY-MM-DD]"
+author: "[designer or team]"
+tags:
+  - "[design]"
+  - "[ui]"
+related:
+  - "[PRD.md, SPEC.md, Figma URL, or related doc]"
+---
+
+# Design Specification: [Component / Feature Name]
 
 ## 1. Overview & Purpose
 

@@ -9,6 +9,7 @@
 - **Design API is a router skill** — `design-api` routes contract design work across OpenAPI, AsyncAPI, and GraphQL references.
 - **Operator git has shared action/output behavior** — `operator-git` keeps branch naming and commit message conventions while centralizing action and output workflow behavior in router instructions.
 - **Agent artifact metadata is compact** — Skills, rules, and commands store `author`, `version`, `source`, and `category` under `metadata`; use compact source references such as `github.com/olegshulyakov/agent.md`, without `https://` or `www.`.
+- **Generated docs use YAML frontmatter for document metadata** — PRDs, specs, stories, runbooks, and similar generated Markdown artifacts put document-level metadata in frontmatter instead of body metadata tables or `Document Info` blocks. Quote date-like values, keep placeholder examples in square brackets, use no-space status tokens such as `IN_REVIEW`, `IN_PROGRESS`, and `READY_FOR_DEV`, and add optional fields only when they have real value.
 
 ## Preferences
 

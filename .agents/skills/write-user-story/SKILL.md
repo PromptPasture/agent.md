@@ -10,7 +10,7 @@ tags:
   - user-stories
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: project-management
@@ -55,6 +55,7 @@ Ask for missing information only when the answer would materially change the sto
 - **Product or planning audience:** Read `references/output-format.md` for the default Jira/Linear/GitHub story format.
 - **AI implementation audience:** Read `references/ai-output-format.md` when the user asks for an AI-agent-ready story, autonomous implementation prompt, task specification, executable agent handoff, or code-agent work item.
 - **Ambiguous audience:** Use the delivery-audience answer from information gathering before choosing a template.
+- **Story metadata:** Put status, story type, phase, story ID, points, priority, owner, epic, design link, tags, and related docs in YAML frontmatter. Add optional fields only when they have real value.
 
 ## Writing guidance
 

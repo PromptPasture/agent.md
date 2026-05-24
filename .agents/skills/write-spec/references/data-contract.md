@@ -1,9 +1,20 @@
-# Data Contract: [Data Product Name]
+---
+status: "[DRAFT | ACTIVE | DEPRECATED]"
+documentType: DATA_CONTRACT
+phase: "[discovery | delivery | maintenance]"
+version: "[1.0.0]"
+createdAt: "[YYYY-MM-DD]"
+updatedAt: "[YYYY-MM-DD]"
+author: "[data producer or team]"
+domain: "[domain-name]"
+dataProductUrn: "urn:dataproduct:[domain]:[name]"
+tags:
+  - "[data-contract]"
+related:
+  - "[PRD.md, SPEC.md, schema, or related doc]"
+---
 
-**Version:** [1.0.0]
-**Status:** [DRAFT / ACTIVE / DEPRECATED]
-**Domain:** [domain-name]
-**Data Product URN:** `urn:dataproduct:[domain]:[name]`
+# Data Contract: [Data Product Name]
 
 ## 1. Ownership & Roles
 

@@ -11,7 +11,7 @@ tags:
   - technical-writing
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: documentation
@@ -57,12 +57,12 @@ Check in this order:
 
 After detecting the variant, load the corresponding reference:
 
-- `references/readme.md`
-- `references/api-docs.md`
-- `references/runbook-routine.md`
-- `references/runbook-oncall.md`
-- `references/changelog.md`
-- `references/release-notes.md`
+- **README:** `references/readme.md`
+- **API docs:** `references/api-docs.md`
+- **Routine runbook:** `references/runbook-routine.md`
+- **On-call runbook:** `references/runbook-oncall.md`
+- **Changelog:** `references/changelog.md`
+- **Release notes:** `references/release-notes.md`
 
 Never load multiple reference files simultaneously. If the user switches context to a different variant, unload and reload.
 
@@ -73,5 +73,6 @@ Never load multiple reference files simultaneously. If the user switches context
 - **Know your audience**: internal devs, external partners, end users, or on-call engineers
 - **Link rather than repeat**: reference existing docs rather than duplicating them
 - **Default to Markdown** unless the context specifies another format
+- **Use frontmatter for document metadata** when the doc has ownership, status, version, dates, tags, or related-doc fields. Keep task-specific operational facts in the body where operators can scan them.
 - **Flag assumptions**: mark anything you inferred with `[assumed]` if you're not certain
 - **Remove placeholder text before outputting**: no `[YOUR_VALUE]` or `[TODO]` left behind

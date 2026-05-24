@@ -1,17 +1,18 @@
-# Technical Specification: [Feature / System Name]
-
-## Document Info
-
-**Record ownership, review state, and release targeting.**
-
-**Status:** [DRAFT | IN REVIEW | APPROVED]
-**Version:** 1.0
-**Date:** [YYYY-MM-DD]
-**Author(s):** [name(s) or team]
-**Reviewer(s):** [name(s) or team]
-**Target release:** [version or sprint]
-
 ---
+status: "[DRAFT | IN_REVIEW | APPROVED]"
+documentType: SPEC
+phase: "[discovery | delivery | maintenance]"
+version: "[1.0]"
+createdAt: "[YYYY-MM-DD]"
+updatedAt: "[YYYY-MM-DD]"
+author: "[name or team]"
+tags:
+  - "[tag]"
+related:
+  - "[PRD.md or related doc]"
+---
+
+# Technical Specification: [Feature / System Name]
 
 ## 1. Overview
 

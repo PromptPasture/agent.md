@@ -1,3 +1,20 @@
+---
+status: IN-PROGRESS
+documentType: TASKS
+phase: delivery
+version: 2.0
+createdAt: "2026-05-02"
+updatedAt: "2026-05-23"
+author: Oleg Shulyakov
+tags:
+  - skills
+  - agents
+  - team-roles
+related:
+  - PRD.md
+  - SPEC.md
+---
+
 # Tasks
 
 A collection of skills for AI coding agents, modeled after real software team roles.

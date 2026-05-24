@@ -1,16 +1,19 @@
-# Technical Specification: General Agent Skills
-
-## Document Info
-
-**Status:** Approved  
-**Version:** 1.0  
-**Date:** 2026-05-21  
-**Author:** Oleg Shulyakov  
-**Reviewer:** TBD  
-**Target release:** TBD  
-**Source PRD:** [PRD.md](PRD.md)
-
 ---
+status: APPROVED
+documentType: SPEC
+phase: delivery
+version: 1.0
+createdAt: "2026-05-20"
+updatedAt: "2026-05-21"
+author: Oleg Shulyakov
+tags:
+  - skills
+  - agents
+related:
+  - PRD.md
+---
+
+# Technical Specification: General Agent Skills
 
 ## 1. Overview
 
@@ -108,7 +111,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-001: `ask-questions`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `ask-questions` for question generation, clarification, missing-context discovery, and assumption surfacing.
 
 **Acceptance criteria:**
@@ -121,7 +124,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-002: `explain-topic`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `explain-topic` for teaching, clarification, walkthroughs, concepts, code behavior, architecture, tradeoffs, and decisions.
 
 **Acceptance criteria:**
@@ -134,7 +137,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-003: `reason-problem`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `reason-problem` to work through ambiguous problems before a firm output shape, decision, or plan is warranted.
 
 **Acceptance criteria:**
@@ -147,7 +150,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-004: `classify-content`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `classify-content` to organize material into meaningful groups.
 
 **Acceptance criteria:**
@@ -160,7 +163,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-005: `plan-work`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `plan-work` to sequence work before execution.
 
 **Acceptance criteria:**
@@ -173,7 +176,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-006: `explore-context`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `explore-context` for local repository, local document, and attached-artifact investigation.
 
 **Acceptance criteria:**
@@ -186,7 +189,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-007: `decide-direction`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `decide-direction` to compare options and recommend a direction.
 
 **Acceptance criteria:**
@@ -199,7 +202,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-008: `coordinate-work`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `coordinate-work` to manage active work across people, agents, tasks, dependencies, blockers, and handoffs.
 
 **Acceptance criteria:**
@@ -212,7 +215,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-009: `remember-context`
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** The system shall use `remember-context` to preserve durable project facts, decisions, and useful observations in `.agents/memory/`.
 
 **Acceptance criteria:**
@@ -225,7 +228,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-010: Standalone Runtime Boundaries
 
-**Priority:** Must-have  
+**Priority:** Must-have
 **Description:** Each skill shall define complete runtime behavior without requiring another skill.
 
 **Acceptance criteria:**
@@ -236,7 +239,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 #### FR-011: Behavior Evals
 
-**Priority:** Should-have  
+**Priority:** Should-have
 **Description:** Each skill shall include representative eval prompts for trigger behavior.
 
 **Acceptance criteria:**
@@ -304,16 +307,16 @@ flowchart TD
 
 ### 4.3 Key Design Decisions
 
-**Decision: Use simple cognitive-mode names.**  
+**Decision: Use simple cognitive-mode names.**
 Chosen names are short and direct because the PRD resolved naming in favor of standalone cognitive modes. The tradeoff is that trigger boundaries must be especially explicit to avoid overlap.
 
-**Decision: Keep `explore-context` local-only.**  
+**Decision: Keep `explore-context` local-only.**
 This prevents accidental current-information research and keeps the skill portable across disconnected or restricted environments. The tradeoff is that users must invoke another workflow for web research.
 
-**Decision: Treat explicit memory requests as approval.**  
+**Decision: Treat explicit memory requests as approval.**
 This removes a redundant confirmation step when the user has already asked to remember something. The tradeoff is that the skill must filter carefully for durability and sensitivity before writing.
 
-**Decision: Store eval prompts per skill.**  
+**Decision: Store eval prompts per skill.**
 Per-skill eval files keep each installable unit self-contained. A shared overlap harness remains future work.
 
 ---

@@ -1,31 +1,30 @@
 # PRD Output Format
 
-Use this reference when drafting the final PRD.
+**Use this reference when drafting the final PRD.**
 
 ## Template
 
-Always produce a Markdown file. Use this structure exactly unless the user provides a stricter template:
+**Always produce a Markdown file with frontmatter metadata followed by the body.**
+
+Use this structure exactly unless the user provides a stricter template:
 
 ```md
+---
+status: "[DRAFT | IN_REVIEW | APPROVED]"
+documentType: PRD
+phase: "[discovery | delivery | maintenance]"
+createdAt: "[YYYY-MM-DD]"
+updatedAt: "[YYYY-MM-DD]"
+author: "[Name]"
+owner: "[Name or TBD]"
+stakeholders: "[Names, teams, or TBD]"
+tags:
+  - "[tag]"
+related:
+  - "[SPEC.md or related doc]"
+---
+
 # PRD: [Product / Feature Name]
-
----
-
-## 🔭 Product Overview
-
-| Field | Value |
-| --- | --- |
-| 🟡 Document Status | [DRAFT / IN_REVIEW / APPROVED] |
-| 📅 Target Date | [YYYY-MM-DD or TBD] |
-| 👤 Owner | [Name or TBD] |
-| 🎽 Team Members | [Names/Teams or TBD] |
-| 💬 Stakeholders | [Names or TBD] |
-| 🎨 Designs Link | [URL or TBD] |
-| 🎥 Demo Link | [URL or TBD] |
-| 🗂️ Work Tracker Link | [URL or TBD] |
-| ✏️ Last Updated | [YYYY-MM-DD] |
-
----
 
 ## 🎯 Objective
 
@@ -146,6 +145,10 @@ Always produce a Markdown file. Use this structure exactly unless the user provi
 
 ## Section Rules
 
+**Keep the PRD body focused while frontmatter carries document metadata.**
+
 Keep the main PRD short enough to function as the initiative landing page. Link to deeper source material rather than copying long research notes, technical designs, or implementation plans into the PRD.
+
+Use frontmatter for document-level metadata instead of a body "Product Overview" table. Keep frontmatter narrow: status, document type, phase, dates, author/owner, stakeholders, tags, and related docs. Add optional fields such as `targetDate`, `tracker`, `designsLink`, or `demoLink` only when they have real values. Quote date-like values so CLI agents and YAML parsers keep them as strings.
 
 Use `TBD` for genuinely unknown fields when the missing value is expected, and `[assumed]` for inferred content the user should verify.

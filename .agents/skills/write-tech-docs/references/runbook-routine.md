@@ -17,11 +17,22 @@ A runbook should be executable by someone unfamiliar with the system. Assume not
 ## Output format
 
 ````markdown
+---
+status: "[DRAFT | ACTIVE | DEPRECATED]"
+documentType: RUNBOOK
+phase: "[operations | maintenance]"
+version: "[1.0]"
+createdAt: "[YYYY-MM-DD]"
+updatedAt: "[YYYY-MM-DD]"
+owner: "[team or person]"
+tags:
+  - "[runbook]"
+related:
+  - "[related doc]"
+---
+
 # Runbook: [Operation Name]
 
-**Version:** 1.0
-**Last updated:** [date]
-**Owner:** [team or person]
 **Estimated duration:** [X minutes]
 **Risk level:** 🔴 High (makes production changes) / 🟠 Medium / 🟢 Low (read-only)
 

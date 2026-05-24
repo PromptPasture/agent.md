@@ -9,6 +9,21 @@ Use this reference when drafting user stories and developer tasks for an AI codi
 Use this exact structure. Repeat for each story.
 
 ```md
+---
+status: "[DRAFT | READY | IN_PROGRESS | DONE]"
+documentType: AI_IMPLEMENTATION_STORY
+phase: "[delivery | maintenance]"
+storyId: "[US-N]"
+storyPoints: "[1 | 2 | 3 | 5 | 8]"
+priority: "[High | Medium | Low]"
+owner: "[agent, team, or assignee]"
+epic: "[Link to parent epic or initiative]"
+tags:
+  - "[tag]"
+related:
+  - "[PRD.md, SPEC.md, issue, or related doc]"
+---
+
 ## 🛠️ Task Specification: [Short Title] ([Story ID])
 # SYSTEM: You are an autonomous software engineer agent. Execute the following specification.
 

@@ -8,7 +8,7 @@ tags:
   - requirements
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: project-management
@@ -47,7 +47,7 @@ If the user provides a rough description, work with what's there. Make educated 
 
 **Load the detailed Markdown structure only when writing the PRD.**
 
-Always produce a Markdown PRD, usually named `PRD.md` when writing to disk. Before drafting, read `references/output-format.md` for the required structure. Convert Confluence or DOC/DOCX templates into clean Markdown tables and headings; do not preserve export artifacts, emojis, styling, or application-specific markup.
+Always produce a Markdown PRD, usually named `PRD.md` when writing to disk. Before drafting, read `references/output-format.md` for the required structure. Convert Confluence or DOC/DOCX templates into clean Markdown with YAML frontmatter for document metadata, then headings and tables for the document body; do not preserve export artifacts, emojis, styling, or application-specific markup.
 
 ## Writing guidance
 
@@ -63,13 +63,13 @@ Always produce a Markdown PRD, usually named `PRD.md` when writing to disk. Befo
 - **Scope the out-of-scope.** Explicitly naming non-goals is as valuable as naming goals because it prevents future debate.
 - **Mark inferences.** If you infer a persona, metric, or assumption, add `[assumed]` inline so the user can verify.
 - **Track uncertainty.** Use assumptions for beliefs to validate and open questions for decisions or research still needed.
-- **Keep it scannable.** Use tables for metadata, success metrics, requirements, assumptions, milestones, and open questions. Avoid walls of prose.
+- **Keep it scannable.** Use YAML frontmatter for document metadata. Use tables for success metrics, requirements, assumptions, milestones, and open questions. Avoid walls of prose.
 
 ## Recommended content
 
 **Include just enough context to explain requirements and user impact.**
 
-- **Product overview:** target date, document status, team members, stakeholders, and important links.
+- **Document metadata:** status, document type, phase, dates, author/owner, stakeholders, tags, and related docs in YAML frontmatter. Add optional fields such as `targetDate`, `tracker`, or `demoLink` only when they have real value.
 - **Objective:** product goal, customer problem, business reason, and timing.
 - **Success metrics:** goals paired with measurable indicators.
 - **Assumptions:** beliefs about technology, business needs, user behavior, or constraints that should be validated.

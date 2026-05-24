@@ -133,6 +133,7 @@
       "files": [],
       "expectations": [
         "Detects runbook-routine variant from 'runbook' and operational language",
+        "Output includes YAML frontmatter with runbook metadata before the title",
         "Lists prerequisites (e.g., AWS CLI access, Secret Manager access)",
         "Details the steps clearly (e.g., generate new password, update Secret Manager, restart app instances rolling)",
         "Includes a verification step to confirm the new password works",
@@ -147,6 +148,7 @@
       "files": [],
       "expectations": [
         "Detects runbook-routine variant from 'procedure' and 'restoring' keywords",
+        "Output includes YAML frontmatter with runbook metadata before the title",
         "Provides the exact pg_restore commands with necessary flags (e.g., -t table_name)",
         "Includes warnings about data consistency or foreign key constraints",
         "Suggests restoring to a temporary database or schema first as a safety measure",
@@ -161,6 +163,7 @@
       "files": [],
       "expectations": [
         "Detects runbook-oncall variant from 'on-call runbook' and 'alert' keywords",
+        "Output includes YAML frontmatter with runbook metadata before the title",
         "Prioritizes immediate assessment and mitigation steps over deep context",
         "Provides specific commands or dashboard links to check Redis hit rates and network latency",
         "Lists quick mitigation options (e.g., scaling up Redis, scaling up the auth-service)",
@@ -175,6 +178,7 @@
       "files": [],
       "expectations": [
         "Detects runbook-oncall variant from 'on-call runbook' and 'alert' keywords",
+        "Output includes YAML frontmatter with runbook metadata before the title",
         "Provides `kubectl` commands to check pod status and previous logs",
         "Suggests checking JVM heap settings vs container memory limits",
         "Provides a quick mitigation (e.g., restarting the pod or increasing the limit temporarily via scaling)",

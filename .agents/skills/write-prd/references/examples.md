@@ -1,29 +1,33 @@
 # PRD Examples
 
-Use this example to calibrate tone, specificity, section depth, and table usage when drafting a PRD.
+**Use this example to calibrate tone, specificity, section depth, and table usage when drafting a PRD.**
 
 ## Complete PRD Example
+
+**Show frontmatter metadata followed by the PRD body.**
 
 **Input:** "Write a PRD for workspace-level audit logs in our B2B SaaS admin console. Enterprise admins need to see who changed settings, exports must be available for compliance, and the goal is to reduce support tickets about unexplained changes."
 
 **Output:**
 
 ```markdown
+---
+status: "[DRAFT | IN_REVIEW | APPROVED]"
+documentType: PRD
+phase: "[discovery | delivery | maintenance]"
+createdAt: "2026-05-19"
+updatedAt: "2026-05-19"
+author: Product Manager, Admin Experience [assumed]
+owner: Product Manager, Admin Experience [assumed]
+stakeholders: Enterprise customers, Customer Support, Security, Compliance, Sales [assumed]
+tags:
+  - "[audit-logs]"
+  - "[admin-console]"
+related:
+  - SPEC.md
+---
+
 # PRD: Workspace Audit Logs
-
-## Product Overview
-
-| Field | Value |
-| --- | --- |
-| Document status | Draft |
-| Target date | TBD |
-| Owner | Product Manager, Admin Experience [assumed] |
-| Team members | Admin Experience, Platform, Security [assumed] |
-| Stakeholders | Enterprise customers, Customer Support, Security, Compliance, Sales [assumed] |
-| Designs | TBD |
-| Demo | TBD |
-| Work tracker | TBD |
-| Last updated | 2026-05-19 |
 
 ## Objective
 

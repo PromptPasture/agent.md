@@ -1,22 +1,21 @@
+---
+status: IN_REVIEW
+documentType: PRD
+phase: delivery
+createdAt: "2026-05-02"
+updatedAt: "2026-05-22"
+author: Oleg Shulyakov
+owner: Oleg Shulyakov
+stakeholders: Developers, maintainers, AI coding agent users, agent runtime implementors
+demoLink: https://olegshulyakov.github.io/agent.md
+tags:
+  - agents
+  - playbook
+related:
+  - SPEC.md
+---
+
 # PRD: Agent Playbook
-
----
-
-## Product Overview
-
-| Field | Value |
-| --- | --- |
-| Document Status | IN_REVIEW |
-| Target Date | TBD |
-| Owner | Oleg Shulyakov |
-| Team Members | TBD |
-| Stakeholders | Developers, maintainers, AI coding agent users, agent runtime implementors |
-| Designs Link | TBD |
-| Demo Link | TBD |
-| Work Tracker Link | TBD |
-| Last Updated | 2026-05-22 |
-
----
 
 ## Objective
 

@@ -1,23 +1,25 @@
+---
+status: APPROVED
+documentType: PRD
+phase: delivery
+version: 2.0
+createdAt: "2026-05-02"
+updatedAt: "2026-05-23"
+author: Oleg Shulyakov
+owner: Oleg Shulyakov
+stakeholders: CLI agent users, software delivery teams, skill maintainers
+targetDate: Milestone-gated; no fixed calendar date
+tracker: TASKS.md
+tags:
+  - skills
+  - agents
+  - team-roles
+related:
+  - SPEC.md
+  - TASKS.md
+---
+
 # PRD: Software Team Roles as Skills
-
----
-
-## 🔭 Product Overview
-
-| Field | Value |
-| --- | --- |
-| 🟡 Document Status | APPROVED |
-| 📅 Target Date | Milestone-gated; no fixed calendar date |
-| 👤 Owner | Oleg Shulyakov [assumed] |
-| 🎽 Team Members | Skill authors and maintainers [assumed] |
-| 💬 Stakeholders | CLI agent users, software delivery teams, skill maintainers [assumed] |
-| 🎨 Designs Link | TBD |
-| 🎥 Demo Link | TBD |
-| 🗂️ Work Tracker Link | [TASKS.md](TASKS.md) |
-| ✏️ Last Updated | 2026-05-23 |
-| ✅ Implemented Catalog Skills | 10 of 55 |
-
----
 
 ## 🎯 Objective
 

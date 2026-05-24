@@ -1,14 +1,20 @@
-# Technical Specification: Agent Playbook
-
-## Document Info
-
-**Status:** Draft
-**Version:** 1.0
-**Date:** 2026-05-11
-**Author(s):** Oleg Shulyakov
-**Target release:** Initial
-
 ---
+status: DRAFT
+documentType: SPEC
+phase: delivery
+version: 1.0
+createdAt: "2026-05-02"
+updatedAt: "2026-05-11"
+author: Oleg Shulyakov
+targetDate: Initial
+tags:
+  - agents
+  - playbook
+related:
+  - PRD.md
+---
+
+# Technical Specification: Agent Playbook
 
 ## 1. Overview
 

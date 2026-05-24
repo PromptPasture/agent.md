@@ -1,22 +1,20 @@
+---
+status: APPROVED
+documentType: PRD
+phase: delivery
+createdAt: "2026-05-20"
+updatedAt: "2026-05-21"
+author: Oleg Shulyakov
+owner: Oleg Shulyakov
+stakeholders: Users of this agent.md skill library
+tags:
+  - skills
+  - agents
+related:
+  - SPEC.md
+---
+
 # PRD: General Agent Skills
-
----
-
-## Product Overview
-
-| Field | Value |
-| --- | --- |
-| Document Status | APPROVED |
-| Target Date | TBD |
-| Owner | Oleg Shulyakov |
-| Team Members | TBD |
-| Stakeholders | Users of this agent.md skill library |
-| Designs Link | TBD |
-| Demo Link | TBD |
-| Work Tracker Link | TBD |
-| Last Updated | 2026-05-21 |
-
----
 
 ## Objective
 

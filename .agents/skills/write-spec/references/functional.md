@@ -1,8 +1,18 @@
-# Functional Requirements Specification: [System / Module Name]
+---
+status: "[DRAFT | IN_REVIEW | APPROVED]"
+documentType: SPEC
+phase: "[discovery | delivery | maintenance]"
+version: "[1.0]"
+createdAt: "[YYYY-MM-DD]"
+updatedAt: "[YYYY-MM-DD]"
+author: "[name or team]"
+tags:
+  - "[functional-requirements]"
+related:
+  - "[PRD.md or related doc]"
+---
 
-**Version:** [1.0 Draft]
-**Date:** [YYYY-MM-DD]
-**Status:** [DRAFT | IN REVIEW | APPROVED]
+# Functional Requirements Specification: [System / Module Name]
 
 ## 1. Overview
 

@@ -9,14 +9,27 @@ Use these examples to calibrate story granularity, acceptance criteria, and deve
 **Input:** "Users should be able to reset their password via email."
 
 ```markdown
+---
+status: "[DRAFT | READY | IN_PROGRESS | DONE]"
+documentType: USER_STORY
+phase: "[discovery | delivery | maintenance]"
+storyId: "[US-1]"
+storyPoints: "[3]"
+priority: "[High]"
+owner: "[Product Manager or team]"
+epic: "[Password recovery]"
+tags:
+  - "[auth]"
+  - "[password-reset]"
+related:
+  - "[SPEC.md or issue link]"
+---
+
 ## User-Story 1: Request password reset
 
 **As a** registered user who has forgotten my password,
 **I want** to request a password reset link via my email,
 **so that** I can regain access to my account without contacting support.
-
-**Story points:** 3
-**Priority:** High
 
 ### Acceptance Criteria
 

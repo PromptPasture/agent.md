@@ -18,13 +18,27 @@ An on-call runbook is read at 3 AM by someone who just got paged. It must be fas
 ## Output format
 
 ````markdown
+---
+status: "[DRAFT | ACTIVE | DEPRECATED]"
+documentType: RUNBOOK
+phase: "[operations | maintenance]"
+createdAt: "[YYYY-MM-DD]"
+updatedAt: "[YYYY-MM-DD]"
+owner: "[team-name]"
+tags:
+  - "[on-call]"
+  - "[runbook]"
+related:
+  - "[alert, dashboard, service doc, or escalation policy]"
+---
+
 # On-Call Runbook: [Alert Name / Service Name]
 
 **Alert:** `[AlertName]` in [Prometheus / Datadog / PagerDuty]
 **Service:** [service-name]
 **Severity:** [Critical / High / Medium]
 **SLO impact:** [e.g., "This alert indicates SLO breach — error budget is being consumed"]
-**Owner:** [team-name] | [Slack: #channel] | [PagerDuty: escalation-policy-name]
+**Escalation:** [Slack: #channel] | [PagerDuty: escalation-policy-name]
 
 ---
 

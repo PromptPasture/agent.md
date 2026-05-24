@@ -9,20 +9,28 @@ Use this reference when drafting user stories and developer tasks.
 Use this exact structure. Repeat for each story.
 
 ```md
+---
+status: "[DRAFT | READY | IN_PROGRESS | DONE]"
+documentType: USER_STORY
+phase: "[discovery | delivery | maintenance]"
+storyId: "[US-N]"
+storyPoints: "[1 | 2 | 3 | 5 | 8]"
+priority: "[High | Medium | Low]"
+owner: "[name or team]"
+epic: "[Link to parent epic or initiative]"
+designLink: "[Link to UI/UX prototype if applicable]"
+tags:
+  - "[tag]"
+related:
+  - "[PRD.md, SPEC.md, issue, or related doc]"
+---
+
 ## 📖 User-Story [N]: [Short title]
 
 ### 👤 Story Definition
 **As a** [user type],
 **I want** [action or capability],
 **so that** [benefit or outcome].
-
----
-
-### 📊 Metadata
-* **Story Points:** [1 / 2 / 3 / 5 / 8]
-* **Priority:** [High / Medium / Low]
-* **Epic/Feature Link:** [Link to parent epic or initiative]
-* **Design/Figma Link:** [Link to UI/UX prototypes if applicable]
 
 ---
 
