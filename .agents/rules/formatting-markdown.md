@@ -7,6 +7,7 @@ metadata:
   author: Oleg Shulyakov
   version: "1.0.0"
   source: github.com/olegshulyakov/agent.md
+  category: documentation
 ---
 
 # Markdown Formatting Rules

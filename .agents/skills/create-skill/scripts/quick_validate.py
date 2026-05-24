@@ -289,6 +289,12 @@ def validate_skill(skill_path):
                 return False, f"Metadata source must be a string, got {type(source).__name__}"
             if not re.match(r'^(?:https?://)?[A-Za-z0-9.-]+(?:/[A-Za-z0-9._~!$&\'()*+,;=:@%-]+)*/?$', source):
                 return False, "Metadata source must be a repository or source reference like github.com/org/repo"
+        category = metadata.get('category')
+        if category is not None:
+            if not isinstance(category, str):
+                return False, f"Metadata category must be a string, got {type(category).__name__}"
+            if not re.match(r'^[a-z0-9]+(?:-[a-z0-9]+)*$', category):
+                return False, "Metadata category must use lowercase kebab-case"
         references = metadata.get('references')
         if references is not None:
             valid_references, references_message = validate_metadata_references(skill_path, references)

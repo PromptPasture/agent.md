@@ -22,7 +22,7 @@ Ground the draft in real source material when available: prior task traces, exis
 
 **Keep the top-level skill file focused on trigger, routing, and shared workflow.**
 
-Required frontmatter fields are `name` and `description`. Optional top-level fields are `license`, `tags`, and `metadata`. Put `author`, `version`, `source`, `catalog`, and `references` inside `metadata`. Keep the complete frontmatter under 100 tokens. The description is the primary trigger signal, so include the core task and strongest trigger contexts, but avoid long keyword inventories.
+Required frontmatter fields are `name` and `description`. Optional top-level fields are `license`, `tags`, and `metadata`. Put `author`, `version`, `source`, `catalog`, `category`, and `references` inside `metadata`. Keep the complete frontmatter under 100 tokens. The description is the primary trigger signal, so include the core task and strongest trigger contexts, but avoid long keyword inventories.
 
 Use these metadata fields:
 
@@ -31,7 +31,7 @@ Use these metadata fields:
 | `name` | A unique identifier for the skill. |
 | `description` | A concise explanation of the skill's purpose and when to use it. |
 | `license` | The name of the license, such as `MIT` or `Apache-2.0`. |
-| `tags` | A list of categories for easier discovery and filtering. |
+| `tags` | A list of searchable keywords for discovery and filtering. |
 | `metadata` | A nested mapping for arbitrary key-value pairs. |
 
 Common nested metadata fields:
@@ -42,6 +42,7 @@ Common nested metadata fields:
 | `metadata.version` | Semantic versioning string, such as `1.2.0`. |
 | `metadata.source` | Repository or canonical source reference, such as `github.com/org/repo`. |
 | `metadata.catalog` | Optional catalog grouping string. |
+| `metadata.category` | Optional domain category string in lowercase kebab-case, such as `development`, `documentation`, or `project-management`. |
 | `metadata.references` | Optional list of local skill or rule names this skill explicitly uses. |
 
 Use `metadata.references` only when this skill actually uses another local skill or rule as part of its workflow. Include a referenced item when the body tells the agent to use, apply, delegate to, or run that skill/rule before or during this skill's work. Do not include skills that appear only as route-away guidance, adjacent alternatives, near misses, exclusions, or examples of work this skill should not handle.

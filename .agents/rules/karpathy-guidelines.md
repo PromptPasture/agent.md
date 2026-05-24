@@ -8,6 +8,7 @@ metadata:
   author: multica-ai
   version: "1.0.0"
   source: github.com/multica-ai/andrej-karpathy-skills
+  category: development
 ---
 
 # Karpathy Guidelines

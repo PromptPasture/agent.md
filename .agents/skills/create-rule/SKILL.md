@@ -11,6 +11,7 @@ metadata:
   version: "1.3.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
+  category: meta
 ---
 
 # create-rule
@@ -72,6 +73,7 @@ metadata:
   author: [Name or profile URL]
   version: "[semantic version]"
   source: [Repository or canonical source reference]
+  category: [lowercase-kebab-case domain]
 ---
 
 # [Human-Readable Rule Name] Rules
@@ -81,7 +83,7 @@ metadata:
 - **Source link**: [instruction referencing authoritative source instead of duplicating it]
 ```
 
-Use `applies_to: ["**/*"]` or omit scope for global rules. Reserve `critical` for security, data-loss, compliance, or production-safety rules. Put optional ownership, release, and origin fields such as `author`, `version`, and compact `source` references under `metadata`, not at the top level.
+Use `applies_to: ["**/*"]` or omit scope for global rules. Reserve `critical` for security, data-loss, compliance, or production-safety rules. Put optional ownership, release, category, and origin fields such as `author`, `version`, `category`, and compact `source` references under `metadata`, not at the top level.
 
 For runtimes with their own front matter, adapt the fields instead of forcing this exact schema. For plain `AGENTS.md`, write a short section with imperative bullets and concrete paths or commands.
 

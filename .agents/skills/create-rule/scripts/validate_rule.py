@@ -110,6 +110,12 @@ def validate(skill_root: Path) -> list[str]:
                     errors.append("metadata.source must be a string")
                 elif not re.match(r"^(?:https?://)?[A-Za-z0-9.-]+(?:/[A-Za-z0-9._~!$&'()*+,;=:@%-]+)*/?$", source):
                     errors.append("metadata.source must be a repository or source reference like github.com/org/repo")
+            category = metadata.get("category")
+            if category is not None:
+                if not isinstance(category, str):
+                    errors.append("metadata.category must be a string")
+                elif not re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", category):
+                    errors.append("metadata.category must use lowercase kebab-case")
 
     if not (skill_root / "evals" / "evals.json").exists():
         errors.append("evals/evals.json not found")

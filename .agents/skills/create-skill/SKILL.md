@@ -11,6 +11,7 @@ metadata:
   version: "1.4.0"
   source: github.com/anthropics/skills
   catalog: utility
+  category: meta
 ---
 
 # create-skill
@@ -57,7 +58,7 @@ If the request spans multiple phases, read the references in workflow order: aut
 - **Section principles**: open each `##` section with a single bold sentence that states the section's core principle.
 - **Scan anchors**: use bold labels for distinct rule bullets in prose skill docs unless the section is a schema, command example, or literal output template.
 - **Size discipline**: keep metadata under 100 tokens and the main instruction body under 500 lines; use references for anything that would push past that.
-- **Metadata fields**: use only `name`, `description`, `license`, `tags`, and `metadata` at the top level; put `author`, `version`, `source`, `catalog`, and `references` under `metadata`.
+- **Metadata fields**: use only `name`, `description`, `license`, `tags`, and `metadata` at the top level; put `author`, `version`, `source`, `catalog`, `category`, and `references` under `metadata`.
 - **Reference metadata**: use `metadata.references` only for local skills or rules the skill uses as part of its workflow; do not list route-away, adjacent-skill, near-miss, or boundary mentions.
 - **Pushy descriptions**: explicitly name the user phrases and contexts that should trigger the skill, not just what it does. Claude tends to undertrigger, so err toward specificity.
 - **Trigger placement**: put all "when to use" information in the frontmatter `description`; put routing, exclusions, examples, and detailed procedures in the body or references.

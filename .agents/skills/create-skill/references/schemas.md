@@ -14,6 +14,7 @@ metadata:
   version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
+  category: documentation
   references:
     - write-spec
     - formatting-markdown
@@ -22,6 +23,7 @@ metadata:
 **Fields:**
 
 - `metadata.catalog`: Optional catalog grouping string
+- `metadata.category`: Optional domain category string in lowercase kebab-case
 - `metadata.author`: Optional creator name or GitHub profile URL
 - `metadata.version`: Optional semantic versioning string
 - `metadata.source`: Optional repository or canonical source reference, such as `github.com/org/repo`

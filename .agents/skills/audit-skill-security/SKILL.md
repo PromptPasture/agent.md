@@ -11,6 +11,7 @@ metadata:
   version: "2.0.0"
   source: github.com/UseAI-pro/openclaw-skills-security
   catalog: utility
+  category: security
 ---
 
 # Audit Skill Security

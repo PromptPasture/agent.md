@@ -13,6 +13,7 @@ metadata:
   version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
+  category: development
 ---
 
 # manage-git

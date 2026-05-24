@@ -4,11 +4,11 @@
 
 - **GitHub Pages source lives in `pages/`** — Repository Pages files were moved from the root into `pages/` on 2026-05-14.
 - **Markdown PR checks use extracted helper scripts** — The pull request workflow for changed Markdown files delegates Bash and JavaScript logic to `.devops/markdown-format`.
-- **Library skills have a table-of-contents README** — `.agents/skills/README.md` indexes the maintained skills; `.agents/skills/creator-skill` covers setup, authoring, evals, packaging, and troubleshooting.
-- **Creator skills support multiple agent runtimes** — `.agents/skills/creator-skill` guidance and scripts were updated to avoid assumptions tied to a single tool.
+- **Library skills have a table-of-contents README** — `.agents/skills/README.md` indexes the maintained skills; `.agents/skills/create-skill` covers setup, authoring, evals, packaging, and troubleshooting.
+- **Creator skills support multiple agent runtimes** — `.agents/skills/create-skill` guidance and scripts were updated to avoid assumptions tied to a single tool.
 - **Design API is a router skill** — `design-api` routes contract design work across OpenAPI, AsyncAPI, and GraphQL references.
 - **Operator git has shared action/output behavior** — `operator-git` keeps branch naming and commit message conventions while centralizing action and output workflow behavior in router instructions.
-- **Agent artifact metadata is compact** — Skills, rules, and commands store `author`, `version`, and `source` under `metadata`; use compact source references such as `github.com/olegshulyakov/agent.md`, without `https://` or `www.`.
+- **Agent artifact metadata is compact** — Skills, rules, and commands store `author`, `version`, `source`, and `category` under `metadata`; use compact source references such as `github.com/olegshulyakov/agent.md`, without `https://` or `www.`.
 
 ## Preferences
 

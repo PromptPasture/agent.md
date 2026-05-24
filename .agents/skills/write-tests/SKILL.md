@@ -14,6 +14,7 @@ metadata:
   version: "1.0.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
+  category: testing
 ---
 
 # write-tests

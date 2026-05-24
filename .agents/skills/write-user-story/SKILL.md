@@ -13,6 +13,7 @@ metadata:
   version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
+  category: project-management
 ---
 
 # write-user-story
