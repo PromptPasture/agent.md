@@ -19,7 +19,7 @@ metadata:
     - write-prd
     - write-spec
     - write-tech-docs
-    - write-tests
+    - build-tests
     - write-user-story
 ---
 

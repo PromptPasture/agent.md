@@ -208,7 +208,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 **Acceptance criteria:**
 
 - `audit-security` owns prompt injection, jailbreak, exfiltration, secrets, OWASP review, and threat modeling.
-- `write-tests` owns executable tests, AI evals, tool-use evals, performance tests, fixtures, framework setup, and CI test setup.
+- `build-tests` owns executable tests, AI evals, tool-use evals, performance tests, fixtures, framework setup, and CI test setup.
 - Boundary prompts route consistently between the two.
 
 ## 3. Non-Functional Requirements
@@ -294,7 +294,7 @@ Router skills use one `SKILL.md` plus variant references when related artifacts 
 4. Ask one concise question only when the route changes the output materially.
 5. Mark inferred details with `[assumed]` when producing a spec or planning artifact.
 
-Router skills for this release are `audit-security`, `build-frontend`, `build-backend`, `build-database`, `build-mobile`, `write-tests`, `design-arch`, `write-spec`, `configure-infra`, `create-template`, `write-tech-docs`, `review-code`, and `plan-capacity`.
+Router skills for this release are `audit-security`, `build-frontend`, `build-backend`, `build-database`, `build-mobile`, `build-tests`, `design-arch`, `write-spec`, `configure-infra`, `create-template`, `write-tech-docs`, `review-code`, and `plan-capacity`.
 
 ## 5. Catalog
 
@@ -311,7 +311,7 @@ Router skills for this release are `audit-security`, `build-frontend`, `build-ba
 | `build-database` | DBA, Backend, Data Eng | Database code: schemas, SQL, migrations, analytics queries |
 | `build-frontend` | Frontend Dev | Frontend code: components, pages, state, styling |
 | `build-mobile` | Mobile Dev | Mobile code: screens, navigation, platform patterns |
-| `write-tests` | AQA | Test suites, eval harnesses, fixtures, configs, CI setup |
+| `build-tests` | AQA | Test suites, eval harnesses, fixtures, configs, CI setup |
 | `design-api` | Backend Dev | API contract: OpenAPI, AsyncAPI, GraphQL, endpoints, schemas |
 | `design-arch` | Architect | Architecture router: system design, ADR, C4 diagram |
 | `diagram-dfd` | System Analyst | Data flow diagram in Mermaid or structured text |
@@ -370,7 +370,7 @@ Router skills for this release are `audit-security`, `build-frontend`, `build-ba
 | `build-frontend` | Language, framework, styling, accessibility, forms, state, performance, PWA, i18n, visualization references |
 | `build-backend` | Language-level references plus supported framework references |
 | `build-mobile` | `swift.md`, `kotlin-android.md`, `react-native.md`, `flutter.md` |
-| `write-tests` | `e2e.md`, `api.md`, `perf.md`, `framework-setup.md`, `ai-output.md`, `ai-tool-use.md`, `ai-perf.md` |
+| `build-tests` | `e2e.md`, `api.md`, `perf.md`, `framework-setup.md`, `ai-output.md`, `ai-tool-use.md`, `ai-perf.md` |
 | `configure-infra` | `iac.md`, `cicd.md`, `etl.md`, `observability.md` |
 | `plan-capacity` | `db.md`, `infra.md` |
 | `audit-security` | `owasp.md`, `secrets.md`, `threat-model.md` |
@@ -386,10 +386,10 @@ Router skills for this release are `audit-security`, `build-frontend`, `build-ba
 | `design-api` vs `write-tech-docs` API docs | `design-api` is contract-first before implementation; `write-tech-docs` documents an existing API. |
 | `design-arch` variants | System design is broad architecture; ADR is one decision; C4 is diagram-focused. |
 | `write-user-story` vs `write-epic` | User story is one deliverable with acceptance criteria and tasks; epic groups related stories. |
-| `write-tests` vs `write-test-strategy` | `write-tests` writes executable tests/config/evals; `write-test-strategy` writes planning guidance. |
+| `build-tests` vs `write-test-strategy` | `build-tests` writes executable tests/config/evals; `write-test-strategy` writes planning guidance. |
 | `review-code` vs `audit-security` | `review-code` reviews a code change; `audit-security` performs standalone security analysis. |
 | `create-template` vs `write-*` | `create-template` creates reusable blank templates; `write-*` creates filled artifacts. |
-| `audit-security` vs `write-tests` AI evals | `audit-security` owns abuse, exfiltration, secrets, and threat modeling; `write-tests` owns quality, tool-use, latency, cost, and regression evals. |
+| `audit-security` vs `build-tests` AI evals | `audit-security` owns abuse, exfiltration, secrets, and threat modeling; `build-tests` owns quality, tool-use, latency, cost, and regression evals. |
 
 ## 7. Validation
 

@@ -238,7 +238,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 - [ ] Distinguishes durable evidence-driven change needs from one-off exceptions.
 - [ ] Identifies the affected behavior or artifact, such as a skill, rule, workflow, document, eval, memory convention, or process.
 - [ ] Recommends the smallest useful change and the appropriate follow-up skill or workflow for the actual update.
-- [ ] Does not directly rewrite artifacts by default; actual updates belong to artifact-specific skills such as `create-skill`, `create-rule`, `write-*`, `write-tests`, or `remember-context` when the user asks to proceed.
+- [ ] Does not directly rewrite artifacts by default; actual updates belong to artifact-specific skills such as `create-skill`, `create-rule`, `write-*`, `build-tests`, or `remember-context` when the user asks to proceed.
 
 #### FR-011: Standalone Runtime Boundaries
 

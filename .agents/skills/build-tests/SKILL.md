@@ -1,5 +1,5 @@
 ---
-name: write-tests
+name: build-tests
 description: >
   Generate or revise automated tests and evals. Use for E2E/browser, API/contract,
   integration, load/performance, LLM output, RAG, prompt regression, AI tool-use,
@@ -17,7 +17,7 @@ metadata:
   category: testing
 ---
 
-# write-tests
+# build-tests
 
 Generate production-ready test code and evaluation suites. Classify the request, read the matching reference, inspect the repository, then implement runnable tests or provide complete files when direct edits are not safe.
 

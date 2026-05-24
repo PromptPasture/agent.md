@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate write-tests eval files."""
+"""Validate build-tests eval files."""
 
 from __future__ import annotations
 
@@ -39,8 +39,8 @@ def validate(path: Path) -> list[str]:
     if not isinstance(data, dict):
         return ["evals.json must contain a JSON object"]
 
-    if data.get("skill_name") != "write-tests":
-        errors.append("skill_name must be write-tests")
+    if data.get("skill_name") != "build-tests":
+        errors.append("skill_name must be build-tests")
 
     evals = data.get("evals")
     if not isinstance(evals, list) or not evals:

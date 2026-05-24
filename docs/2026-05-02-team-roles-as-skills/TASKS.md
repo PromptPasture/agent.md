@@ -91,7 +91,7 @@ Ordered alphabetically by name (matches filesystem order).
 | - [x] | `build-database` | 🔴 P1 | Database | DBA / Backend | Database code router for OLTP SQL, analytics SQL, schema design, and migrations |
 | - [x] | `build-frontend` | 🔴 P1 | Code | Frontend Dev | Production-ready frontend code + design system tokens + component style guide |
 | - [ ] | `build-mobile` | 🟠 P2 | Code | Mobile Dev | Production-ready mobile code (Swift/iOS, Kotlin/Android, React Native, Flutter) |
-| - [x] | `write-tests` | 🔴 P1 | Testing | AQA / Backend / ML | Test suite and test framework generation (e2e, api, perf, AI evals, CI config) |
+| - [x] | `build-tests` | 🔴 P1 | Testing | AQA / Backend / ML | Test suite and test framework generation (e2e, api, perf, AI evals, CI config) |
 
 ### `design-`
 

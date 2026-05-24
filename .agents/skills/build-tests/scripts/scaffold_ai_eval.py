@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scaffold AI eval fixtures for write-tests users."""
+"""Scaffold AI eval fixtures for build-tests users."""
 
 from __future__ import annotations
 

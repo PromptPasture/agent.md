@@ -25,7 +25,7 @@ Implement production frontend work by routing to the smallest relevant reference
 - **User signals:** Look for framework names, route or page names, component libraries, state libraries, CSS systems, test tools, file paths, file extensions, and requested user-facing behavior.
 - **Repository signals:** Inspect `package.json`, lockfiles, framework configs, `tsconfig.json`, source folders, imports, routing structure, design tokens, Storybook, test setup, and CI jobs before choosing an implementation path.
 - **Frontend scope:** Use this skill for components, pages, layouts, routes, loaders/actions, forms, stores, queries, charts, responsive styling, accessibility fixes, PWA behavior, and frontend performance work.
-- **Route away:** Use `write-tests` for test-only work, `design-api` for API contract design, `build-backend` for backend implementation, and `write-spec` or a design skill for UI/UX specification when no code is requested.
+- **Route away:** Use `build-tests` for test-only work, `design-api` for API contract design, `build-backend` for backend implementation, and `write-spec` or a design skill for UI/UX specification when no code is requested.
 - **Clarify rarely:** If the framework, styling system, or target surface remains genuinely ambiguous after inspection, ask one short question naming the likely options.
 
 ## Reference Routing
