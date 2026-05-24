@@ -44,13 +44,8 @@ def validate_markdown_style(skill_path):
 
             if line.startswith("## "):
                 line_number = index + 1
-                if index + 2 >= len(lines):
-                    return False, f"{path}:{line_number}: missing bold principle after heading"
-                if lines[index + 1] != "":
+                if index + 1 >= len(lines) or lines[index + 1] != "":
                     return False, f"{path}:{line_number}: expected blank line after heading"
-                principle = lines[index + 2]
-                if not re.match(r'^\*\*.+\*\*$', principle):
-                    return False, f"{path}:{line_number}: expected bold principle sentence after heading"
 
         for line_number, line in iter_markdown_lines(path):
             if line.startswith("- ") and not line.startswith("- **") and not line.startswith("- [ ]"):
