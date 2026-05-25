@@ -12,6 +12,7 @@
         "Produces or revises SKILL.md instructions",
         "Keeps metadata and body budgets in mind",
         "Uses references only when they reduce main-file complexity",
+        "Uses the reference format that best teaches the behavior instead of defaulting to terse bullets",
         "Avoids placeholder bundled resources",
         "Preserves portability and safety"
       ]
@@ -27,6 +28,7 @@
         "Produces or revises SKILL.md instructions",
         "Keeps metadata and body budgets in mind",
         "Uses references only when they reduce main-file complexity",
+        "Uses the reference format that best teaches the behavior instead of defaulting to terse bullets",
         "Avoids placeholder bundled resources",
         "Preserves portability and safety"
       ]
@@ -42,6 +44,7 @@
         "Produces or revises SKILL.md instructions",
         "Keeps metadata and body budgets in mind",
         "Uses references only when they reduce main-file complexity",
+        "Uses the reference format that best teaches the behavior instead of defaulting to terse bullets",
         "Avoids placeholder bundled resources",
         "Preserves portability and safety"
       ]
@@ -57,6 +60,7 @@
         "Produces or revises SKILL.md instructions",
         "Keeps metadata and body budgets in mind",
         "Uses references only when they reduce main-file complexity",
+        "Uses the reference format that best teaches the behavior instead of defaulting to terse bullets",
         "Avoids placeholder bundled resources",
         "Preserves portability and safety"
       ]
@@ -72,6 +76,7 @@
         "Produces or revises SKILL.md instructions",
         "Keeps metadata and body budgets in mind",
         "Uses references only when they reduce main-file complexity",
+        "Uses the reference format that best teaches the behavior instead of defaulting to terse bullets",
         "Avoids placeholder bundled resources",
         "Preserves portability and safety"
       ]
@@ -87,6 +92,7 @@
         "Produces or revises SKILL.md instructions",
         "Keeps metadata and body budgets in mind",
         "Uses references only when they reduce main-file complexity",
+        "Uses the reference format that best teaches the behavior instead of defaulting to terse bullets",
         "Avoids placeholder bundled resources",
         "Preserves portability and safety"
       ]
@@ -102,6 +108,7 @@
         "Produces or revises SKILL.md instructions",
         "Keeps metadata and body budgets in mind",
         "Uses references only when they reduce main-file complexity",
+        "Uses the reference format that best teaches the behavior instead of defaulting to terse bullets",
         "Avoids placeholder bundled resources",
         "Preserves portability and safety"
       ]
@@ -117,6 +124,7 @@
         "Produces or revises SKILL.md instructions",
         "Keeps metadata and body budgets in mind",
         "Uses references only when they reduce main-file complexity",
+        "Uses the reference format that best teaches the behavior instead of defaulting to terse bullets",
         "Avoids placeholder bundled resources",
         "Preserves portability and safety"
       ]
@@ -251,7 +259,9 @@
         "Routes to evaluation guidance",
         "Creates realistic prompt-level eval cases",
         "Includes route or trigger boundary coverage",
-        "Uses objective expectations where possible",
+        "Derives assertions from the skill contract when objective checks are useful",
+        "Covers distinct failure modes or input classes without redundant assertions",
+        "Includes at least one negative assertion for evals with objective checks",
         "Keeps evals inside the skill folder",
         "Mentions reproducible iteration or benchmark workflow when relevant"
       ]
@@ -266,7 +276,9 @@
         "Routes to evaluation guidance",
         "Creates realistic prompt-level eval cases",
         "Includes route or trigger boundary coverage",
-        "Uses objective expectations where possible",
+        "Derives assertions from the skill contract when objective checks are useful",
+        "Covers distinct failure modes or input classes without redundant assertions",
+        "Includes at least one negative assertion for evals with objective checks",
         "Keeps evals inside the skill folder",
         "Mentions reproducible iteration or benchmark workflow when relevant"
       ]
@@ -281,7 +293,9 @@
         "Routes to evaluation guidance",
         "Creates realistic prompt-level eval cases",
         "Includes route or trigger boundary coverage",
-        "Uses objective expectations where possible",
+        "Derives assertions from the skill contract when objective checks are useful",
+        "Covers distinct failure modes or input classes without redundant assertions",
+        "Includes at least one negative assertion for evals with objective checks",
         "Keeps evals inside the skill folder",
         "Mentions reproducible iteration or benchmark workflow when relevant"
       ]
@@ -296,7 +310,9 @@
         "Routes to evaluation guidance",
         "Creates realistic prompt-level eval cases",
         "Includes route or trigger boundary coverage",
-        "Uses objective expectations where possible",
+        "Derives assertions from the skill contract when objective checks are useful",
+        "Covers distinct failure modes or input classes without redundant assertions",
+        "Includes at least one negative assertion for evals with objective checks",
         "Keeps evals inside the skill folder",
         "Mentions reproducible iteration or benchmark workflow when relevant"
       ]
@@ -311,7 +327,9 @@
         "Routes to evaluation guidance",
         "Creates realistic prompt-level eval cases",
         "Includes route or trigger boundary coverage",
-        "Uses objective expectations where possible",
+        "Derives assertions from the skill contract when objective checks are useful",
+        "Covers distinct failure modes or input classes without redundant assertions",
+        "Includes at least one negative assertion for evals with objective checks",
         "Keeps evals inside the skill folder",
         "Mentions reproducible iteration or benchmark workflow when relevant"
       ]
@@ -326,7 +344,9 @@
         "Routes to evaluation guidance",
         "Creates realistic prompt-level eval cases",
         "Includes route or trigger boundary coverage",
-        "Uses objective expectations where possible",
+        "Derives assertions from the skill contract when objective checks are useful",
+        "Covers distinct failure modes or input classes without redundant assertions",
+        "Includes at least one negative assertion for evals with objective checks",
         "Keeps evals inside the skill folder",
         "Mentions reproducible iteration or benchmark workflow when relevant"
       ]
@@ -341,7 +361,9 @@
         "Routes to evaluation guidance",
         "Creates realistic prompt-level eval cases",
         "Includes route or trigger boundary coverage",
-        "Uses objective expectations where possible",
+        "Derives assertions from the skill contract when objective checks are useful",
+        "Covers distinct failure modes or input classes without redundant assertions",
+        "Includes at least one negative assertion for evals with objective checks",
         "Keeps evals inside the skill folder",
         "Mentions reproducible iteration or benchmark workflow when relevant"
       ]
@@ -356,7 +378,9 @@
         "Routes to evaluation guidance",
         "Creates realistic prompt-level eval cases",
         "Includes route or trigger boundary coverage",
-        "Uses objective expectations where possible",
+        "Derives assertions from the skill contract when objective checks are useful",
+        "Covers distinct failure modes or input classes without redundant assertions",
+        "Includes at least one negative assertion for evals with objective checks",
         "Keeps evals inside the skill folder",
         "Mentions reproducible iteration or benchmark workflow when relevant"
       ]
