@@ -198,7 +198,7 @@ For objectively testable skills, include assertions, scripts, schemas, fixtures,
 After editing, run:
 
 ```bash
-python <create-skill-path>/scripts/quick_validate.py <target-skill-directory>
+python <create-skill-path>/scripts/validate.py <target-skill-directory>
 ```
 
 Treat style failures as authoring bugs, not optional polish.

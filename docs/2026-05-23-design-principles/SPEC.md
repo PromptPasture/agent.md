@@ -279,7 +279,7 @@ No production observability changes are required. Development-time validation sh
 | Level | Scope | Tools | Coverage Target |
 | --- | --- | --- | --- |
 | Markdown lint | Changed Markdown files | `markdownlint` or `markdownlint-cli2` | No lint errors, unless documented |
-| Skill validation | Changed skills | `.agents/skills/create-skill/scripts/quick_validate.py` | Pass for every changed skill |
+| Skill validation | Changed skills | `.agents/skills/create-skill/scripts/validate.py` | Pass for every changed skill |
 | Eval prompts | Principle-specific behavior | Existing skill eval workflow | Added only where behavior risk justifies it |
 | Manual review | Runtime wording | Human review | No duplicated full principle catalog or vague principle boilerplate |
 

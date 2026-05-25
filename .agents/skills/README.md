@@ -55,7 +55,7 @@ python3 -m scripts.package_skill ../code-database /tmp/skills-dist
 Use this validation command when changing an existing skill:
 
 ```bash
-python3 .agents/skills/create-skill/scripts/quick_validate.py .agents/skills/code-database
+python3 .agents/skills/create-skill/scripts/validate.py .agents/skills/code-database
 ```
 
 The key rule is simple: keep `SKILL.md` and any files it references together. If a skill says to read `references/postgres.md`, that file must remain available relative to the skill folder. Tiny rule, large consequences. Filesystems enjoy pettiness.

@@ -71,7 +71,7 @@ Scenario: Prevent runtime coupling
   2. `.agents/skills/<skill-name>/evals/evals.yaml` -> Validation target.
   3. `.agents/skills/README.md` -> Skill index, if present.
 - **Shared Dependencies/Imports:**
-  - Use `.agents/skills/create-skill/scripts/quick_validate.py` when available.
+  - Use `.agents/skills/create-skill/scripts/validate.py` when available.
   - Follow `.agents/skills/create-skill/references/authoring.md`.
 
 ---
