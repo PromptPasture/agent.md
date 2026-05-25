@@ -14,6 +14,7 @@
 - **Skill audit tasks are grouped by skill** — When auditing skill format or authoring compliance, write remediation checklists as one top-level task per skill folder; put style, structure, reference, and validation fixes under that skill.
 - **Agent artifact metadata is compact** — Skills, rules, and commands store `author`, `version`, `source`, and `category` under `metadata`; use compact source references such as `github.com/olegshulyakov/agent.md`.
 - **Generated docs use YAML frontmatter for document metadata** — PRDs, specs, stories, runbooks, and similar generated Markdown artifacts put document-level metadata in frontmatter instead of body metadata tables or `Document Info` blocks.
+- **Skills use verb-first naming** — All skills are named using the `<verb>-<subject>[-<variant>]` or concise `<verb>` convention (e.g., `code-tests`, `ask`, `choose`).
 
 ## Preferences
 
@@ -39,3 +40,9 @@
 **Context:** A skill-format audit checklist was initially grouped by issue type, which made execution awkward because fixes are applied skill folder by skill folder.
 **Decision:** For skill authoring or format audits, group remediation checklists by affected skill folder first. Put style, structure, reference, and validation fixes as subitems under each skill.
 **Revisit if:** A future audit is only a single mechanical issue across many files and bulk editing by issue type is clearly faster.
+
+### [2026-05-25] Use verb-first naming and mandate semantic version bumps for skills
+
+**Context:** Skill naming was previously inconsistent, and version bumping was frequently forgotten during edits.
+**Decision:** All skills must be named using the `<verb>-<subject>[-<variant>]` convention or a concise `<verb>` format (e.g., `code-tests`, `ask`, `choose`). Whenever a skill is materially updated, its `metadata.version` must be incremented using semantic versioning.
+**Revisit if:** The verb-first convention causes collisions or if version tracking is moved to automated tooling.
