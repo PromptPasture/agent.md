@@ -8,7 +8,7 @@ tags:
   - authoring
 metadata:
   author: Anthropic
-  version: "1.7.0"
+  version: "1.8.0"
   source: github.com/anthropics/skills
   catalog: utility
   category: meta
