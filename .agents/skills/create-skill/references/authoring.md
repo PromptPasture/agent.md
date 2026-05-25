@@ -45,6 +45,12 @@ Common nested metadata fields:
 
 Use `metadata.references` when this skill actually uses another local skill or rule as part of its workflow. Include a referenced item when the body tells the agent to use, apply, delegate to, run, or route follow-up work to that skill/rule. Do not include skills that appear only as adjacent alternatives, near misses, exclusions, boundaries, or examples of work this skill should not handle.
 
+For `metadata.version`, use Semantic Versioning (Major.Minor.Patch) with these specific criteria for agent skills:
+
+- **Major (X.0.0)**: Breaking changes to the skill's contract. This includes shrinking or redefining the trigger `description`, splitting the skill into multiple skills, removing a required workflow step, or altering expected output formats.
+- **Minor (0.X.0)**: Backward-compatible additions. This includes adding a new `references/*.md` file, expanding the trigger to cover new intents without dropping old ones, or adding optional output sections.
+- **Patch (0.0.X)**: Safe reliability tweaks. This includes wording adjustments to improve adherence, fixing typos, or adding boundaries to prevent hallucinations.
+
 ---
 
 ## Write `SKILL.md` Body
