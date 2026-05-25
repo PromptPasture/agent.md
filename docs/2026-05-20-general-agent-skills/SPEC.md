@@ -19,7 +19,7 @@ related:
 
 ### 1.1 Purpose
 
-This spec defines the implementation contract for ten standalone, general-purpose agent skills: `ask`, `explain`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`.
+This spec defines the implementation contract for ten standalone, general-purpose agent skills: `ask`, `explain`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, and `adapt`.
 
 The goal is to make common collaboration modes predictable at runtime without requiring any skill to depend on another installed skill.
 
@@ -50,14 +50,14 @@ Success means a user can install any one of the ten skills independently and get
 
 | Goal | Success Metric | Target |
 | --- | --- | --- |
-| Minimal general skill set | Ten skills exist with approved names | `ask`, `explain`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, `adapt` |
+| Minimal general skill set | Ten skills exist with approved names | `ask`, `explain`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, `adapt` |
 | Standalone runtime behavior | No skill requires another skill to be installed, called, imported, or delegated to | 100% of skills |
 | Predictable triggers | Each skill documents triggers, exclusions, expected behavior, and eval prompts | 8-10 eval prompts where possible, never fewer than 7 |
 | Lightweight packaging | Main `SKILL.md` files remain concise | Under 500 lines each |
 
 ### 1.6 Non-Goals
 
-This work does not add live integrations with Jira, Linear, Confluence, GitHub Issues, or external memory stores. It does not add web search behavior to `explore`, automatic memory writes without durable value, a shared trigger-overlap eval harness, or replacements for project-level `AGENTS.md` instructions.
+This work does not add live integrations with Jira, Linear, Confluence, GitHub Issues, or external memory stores. It does not add web search behavior to `investigate`, automatic memory writes without durable value, a shared trigger-overlap eval harness, or replacements for project-level `AGENTS.md` instructions.
 
 ---
 
@@ -174,14 +174,14 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 - [ ] Does not coordinate live owners, blockers, handoffs, or active workstreams as its primary behavior.
 - [ ] Identifies when more context is required before a reliable plan can be made.
 
-#### FR-006: `explore`
+#### FR-006: `investigate`
 
 **Priority:** Must-have
-**Description:** The system shall use `explore` for local repository, local document, and attached-artifact investigation.
+**Description:** The system shall use `investigate` for local repository, local document, and attached-artifact investigation.
 
 **Acceptance criteria:**
 
-- [ ] Triggers on "explore", "investigate", "find where", "understand this repo", "trace", and local-context research requests.
+- [ ] Triggers on "investigate", "investigate", "find where", "understand this repo", "trace", and local-context research requests.
 - [ ] Searches local files, project docs, attached artifacts, and repository context only.
 - [ ] Uses file references, artifact references, and command evidence for findings.
 - [ ] Distinguishes verified facts from inference.
@@ -268,11 +268,11 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 ### 2.5 Business Rules
 
-**BR-001:** Skill names are fixed as `ask`, `explain`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`.
+**BR-001:** Skill names are fixed as `ask`, `explain`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, and `adapt`.
 
 **BR-002:** Runtime behavior must be standalone. Development-time validation may use existing creator or packaging workflows, but installed skill behavior must not depend on them.
 
-**BR-003:** `explore` is local-only. Web search, browsing, and current-information research are out of scope.
+**BR-003:** `investigate` is local-only. Web search, browsing, and current-information research are out of scope.
 
 **BR-004:** `remember` may write memory automatically only when the user explicitly asks to remember or preserve something.
 
@@ -290,7 +290,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 | Portability | Skills work across repositories without assuming this repo layout, except `remember` memory conventions | No hard dependency on project-specific files outside documented exceptions | High |
 | Token efficiency | Main skill files stay concise | Under 500 lines per `SKILL.md` | High |
 | Trigger accuracy | Trigger and exclusion rules are explicit | Evals include positive, false-positive, and non-trigger prompts | High |
-| Source discipline | `explore` cites local evidence and marks inference | Findings include file/artifact references when available | High |
+| Source discipline | `investigate` cites local evidence and marks inference | Findings include file/artifact references when available | High |
 | Memory hygiene | `remember` stores only durable value | No transient chatter or sensitive data in memory notes | High |
 | Coordination clarity | `manage` preserves execution state | Goals, owners, status, blockers, dependencies, and next actions are explicit | Medium |
 | Adaptation discipline | `adapt` diagnoses evidence-driven change needs without becoming a generic update workflow | Actual artifact changes are routed to the appropriate follow-up skill or workflow | High |
@@ -328,7 +328,7 @@ flowchart TD
 **Decision: Use simple cognitive-mode names.**
 Chosen names are short and direct because the PRD resolved naming in favor of standalone cognitive modes. The tradeoff is that trigger boundaries must be especially explicit to avoid overlap.
 
-**Decision: Keep `explore` local-only.**
+**Decision: Keep `investigate` local-only.**
 This prevents accidental current-information research and keeps the skill portable across disconnected or restricted environments. The tradeoff is that users must invoke another workflow for web research.
 
 **Decision: Treat explicit memory requests as approval.**
@@ -353,7 +353,7 @@ Memory entries shall use one of these categories when applicable: facts, prefere
 
 Skills shall not request, store, or expose secrets. `remember` shall avoid writing credentials, tokens, private personal information, transient task chatter, or unverifiable assumptions as fact.
 
-`explore` shall not use web browsing, web search, external services, or live integrations. Its findings shall be based on local repository files, local docs, attached artifacts, or clearly marked inference.
+`investigate` shall not use web browsing, web search, external services, or live integrations. Its findings shall be based on local repository files, local docs, attached artifacts, or clearly marked inference.
 
 Skills shall avoid presenting subjective recommendations as facts. `brainstorm` and `choose` shall distinguish assumptions, evidence, opinion, and uncertainty.
 
@@ -363,7 +363,7 @@ Skills shall avoid presenting subjective recommendations as facts. `brainstorm` 
 
 If a user request matches multiple skills, the selected skill shall explain the dominant intent through its output shape, not through a long routing discussion. For example, "Should we plan this migration or split it?" should favor `choose` if the user needs a choice, and `plan` if the choice is already settled.
 
-If required local evidence is missing, `explore` and `explain` shall report what was inspected, what could not be verified, and the best-supported inference.
+If required local evidence is missing, `investigate` and `explain` shall report what was inspected, what could not be verified, and the best-supported inference.
 
 If `remember` receives content that is explicit but not durable, sensitive, or unverifiable, it shall decline the memory write briefly and explain the reason.
 
@@ -400,7 +400,7 @@ Boundary prompts shall specifically test likely overlaps:
 | `ask` vs `brainstorm` | `ask` produces questions; `brainstorm` develops framing and hypotheses |
 | `brainstorm` vs `choose` | `brainstorm` clarifies ambiguity; `choose` recommends between options |
 | `plan` vs `manage` | `plan` sequences future work; `manage` tracks active workstreams and handoffs |
-| `explain` vs `explore` | `explain` teaches; `explore` investigates local evidence |
+| `explain` vs `investigate` | `explain` teaches; `investigate` investigates local evidence |
 | `classify` vs `choose` | `classify` groups material; `choose` chooses a direction |
 | `remember` vs docs writing | `remember` captures durable memory; docs writing creates formal project artifacts |
 | `adapt` vs `create-skill` / `create-rule` / docs writing | `adapt` identifies what should change and routes the update; artifact-specific skills perform the actual update |
@@ -416,7 +416,7 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 
 ### Phase 1: Skill Boundaries
 
-- [ ] Draft `SKILL.md` for `ask`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`.
+- [ ] Draft `SKILL.md` for `ask`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, and `adapt`.
 - [x] Treat existing `explain` as complete for this work.
 - [ ] Confirm each skill has clear trigger and non-trigger rules.
 

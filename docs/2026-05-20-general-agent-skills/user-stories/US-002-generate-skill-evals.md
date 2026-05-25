@@ -73,7 +73,7 @@ Scenario: Preserve eval folder discipline
   2. `.agents/skills/brainstorm/evals/evals.json` -> Trigger and output evals.
   3. `.agents/skills/classify/evals/evals.json` -> Trigger and output evals.
   4. `.agents/skills/plan/evals/evals.json` -> Trigger and output evals.
-  5. `.agents/skills/explore/evals/evals.json` -> Trigger and output evals.
+  5. `.agents/skills/investigate/evals/evals.json` -> Trigger and output evals.
   6. `.agents/skills/choose/evals/evals.json` -> Trigger and output evals.
   7. `.agents/skills/manage/evals/evals.json` -> Trigger and output evals.
   8. `.agents/skills/remember/evals/evals.json` -> Trigger and output evals.

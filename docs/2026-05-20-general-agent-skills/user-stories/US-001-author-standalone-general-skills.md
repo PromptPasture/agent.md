@@ -14,14 +14,14 @@ Source documents:
 - **Persona:** As a skill library maintainer,
 - **Action:** I want the missing general-purpose agent skills authored as standalone installable skill folders,
 - **Outcome:** so that users can invoke consistent collaboration modes without hidden runtime dependencies.
-- **Epic Context:** Implements the approved General Agent Skills PRD/SPEC by creating `ask`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`. Existing `explain` is already complete and must not be rewritten unless validation reveals a spec violation.
+- **Epic Context:** Implements the approved General Agent Skills PRD/SPEC by creating `ask`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, and `adapt`. Existing `explain` is already complete and must not be rewritten unless validation reveals a spec violation.
 
 ---
 
 ## 🔍 2. Strict Constraints & Scope Boundaries
 
 - **In-Scope:**
-  - Create `.agents/skills/<skill-name>/SKILL.md` for `ask`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`.
+  - Create `.agents/skills/<skill-name>/SKILL.md` for `ask`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, and `adapt`.
   - Use initial skill version `1.0.0`.
   - Include frontmatter fields required by local skill conventions.
   - Define each skill's purpose, trigger cases, non-trigger cases, workflow, output expectations, error paths, and verification guidance where relevant.
@@ -78,7 +78,7 @@ Scenario: Avoid placeholder support folders
   2. `.agents/skills/brainstorm/SKILL.md` -> New ambiguous-problem reasoning skill.
   3. `.agents/skills/classify/SKILL.md` -> New classification and grouping skill.
   4. `.agents/skills/plan/SKILL.md` -> New planning skill.
-  5. `.agents/skills/explore/SKILL.md` -> New local investigation skill.
+  5. `.agents/skills/investigate/SKILL.md` -> New local investigation skill.
   6. `.agents/skills/choose/SKILL.md` -> New decision support skill.
   7. `.agents/skills/manage/SKILL.md` -> New coordination skill.
   8. `.agents/skills/remember/SKILL.md` -> New durable memory skill.

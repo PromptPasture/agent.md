@@ -1,5 +1,5 @@
 ---
-name: explore
+name: investigate
 description: Investigate local repository, document, and attached-artifact context. Use for local investigation requests like "investigate", "find where", "understand this repo", "trace", and local-context research; do not use for web search.
 license: MIT
 tags:
@@ -8,13 +8,13 @@ tags:
   - local-context
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.3"
+  version: "1.0.4"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: research
 ---
 
-# explore
+# investigate
 
 Investigate local context and report evidence-backed findings.
 

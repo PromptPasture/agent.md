@@ -171,7 +171,7 @@
       "query": "What is wrong with the way this app handles authorization?",
       "prompt": "What is wrong with the way this app handles authorization?",
       "should_trigger": true,
-      "expected_output": "Treats the request as architecture critique, explores authorization flow, explains current behavior, and identifies supported risks without speculation.",
+      "expected_output": "Treats the request as architecture critique, investigates authorization flow, explains current behavior, and identifies supported risks without speculation.",
       "files": [],
       "expectations": [
         "Uses Critique mode from the problem-focused phrasing",

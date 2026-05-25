@@ -22,7 +22,7 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 | [`create-skill`](create-skill/SKILL.md) | Creating, editing, reviewing, evaluating, packaging, optimizing, or improving skills. Start here for skill authoring. | [`references/`](create-skill/references/), [`scripts/`](create-skill/scripts/), [`eval-viewer/`](create-skill/eval-viewer/), [`agents/`](create-skill/agents/), [`assets/`](create-skill/assets/), [`evals/`](create-skill/evals/) |
 | [`design-api`](design-api/SKILL.md) | Contract-first API design for OpenAPI, AsyncAPI, GraphQL, endpoints, schemas, and request/response shapes. | [`references/`](design-api/references/), [`evals/`](design-api/evals/) |
 | [`explain`](explain/SKILL.md) | Explaining general knowledge, concepts, code, behavior, design, architecture, APIs, data flow, and tradeoffs in simple terms. | [`evals/`](explain/evals/) |
-| [`explore`](explore/SKILL.md) | Investigating local repository, project document, and attached-artifact context with evidence. | [`evals/`](explore/evals/) |
+| [`investigate`](investigate/SKILL.md) | Investigating local repository, project document, and attached-artifact context with evidence. | [`evals/`](investigate/evals/) |
 | [`manage`](manage/SKILL.md) | Managing active work across people, agents, tasks, dependencies, blockers, status, and handoffs. | [`evals/`](manage/evals/) |
 | [`manage-git`](manage-git/SKILL.md) | Git branch naming, branch actions, commit-message drafting, and committing staged changes. | [`references/`](manage-git/references/), [`evals/`](manage-git/evals/) |
 | [`plan`](plan/SKILL.md) | Sequencing work before execution with phases, dependencies, risks, validation, and next actions. | [`evals/`](plan/evals/) |
