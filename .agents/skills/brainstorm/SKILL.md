@@ -8,7 +8,7 @@ tags:
   - thinking
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.3"
+  version: "1.0.6"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -22,11 +22,12 @@ Clarify messy problems without forcing a premature answer.
 
 ## Workflow
 
-1. Identify the central tension, ambiguity, or decision pressure.
-2. List known facts and explicitly mark assumptions.
-3. Name plausible interpretations or hypotheses.
-4. Test each direction against constraints, evidence, tradeoffs, and failure modes.
-5. End with the clearest current framing and the next useful clarity step.
+1. **Identify the tension.** Map the central tension, ambiguity, or decision pressure.
+2. **Ask clarifying questions.** Ask any necessary questions to resolve ambiguity. Wait for the user's response before moving to the next step.
+3. **List facts and assumptions.** Explicitly mark what is known and what is assumed.
+4. **Name hypotheses.** List plausible interpretations or competing views.
+5. **Test each direction.** Evaluate against constraints, evidence, tradeoffs, and failure modes.
+6. **End with framing.** Provide the clearest current framing and the next useful clarity step.
 
 ---
 
@@ -42,6 +43,7 @@ Clarify messy problems without forcing a premature answer.
 ## Boundaries
 
 - **Frame the problem**: clarify terms, goals, constraints, assumptions, competing interpretations, hypotheses, and possible directions.
+- **Enforce the loop**: Do not provide the final framing or outline until the user has answered the clarifying questions. You may ask multiple questions in a single message if needed.
 - **Keep uncertainty visible**: separate facts, assumptions, opinions, and open questions.
 - **Avoid premature closure**: do not force a recommendation, step-by-step plan, or implementation unless the user asks for that next.
 
