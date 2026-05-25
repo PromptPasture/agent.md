@@ -26,12 +26,12 @@ Examples:
 
 ```bash
 python -m scripts.run_eval \
-  --eval-set <skill-path>/evals/trigger-evals.json \
+  --eval-set <skill-path>/evals/trigger-evals.yaml \
   --skill-path <skill-path> \
   --agent codex-cli
 
 python -m scripts.run_loop \
-  --eval-set <skill-path>/evals/trigger-evals.json \
+  --eval-set <skill-path>/evals/trigger-evals.yaml \
   --skill-path <skill-path> \
   --agent my-agent
 ```
@@ -40,7 +40,7 @@ For CLIs with unusual invocation shapes, pass `--agent-command` with `{prompt}` 
 
 ```bash
 python -m scripts.run_loop \
-  --eval-set <skill-path>/evals/trigger-evals.json \
+  --eval-set <skill-path>/evals/trigger-evals.yaml \
   --skill-path <skill-path> \
   --agent custom \
   --agent-command "agent run --input {prompt_file}"
@@ -56,13 +56,13 @@ Create about 20 realistic queries split between should-trigger and should-not-tr
 
 Positive cases should cover varied ways users ask for the skill's core capability. Negative cases should be near misses, not obviously irrelevant prompts.
 
-Save them as:
+Save them as YAML:
 
-```json
-[
-  { "query": "the user prompt", "should_trigger": true },
-  { "query": "a near miss", "should_trigger": false }
-]
+```yaml
+- query: the user prompt
+  should_trigger: true
+- query: a near miss
+  should_trigger: false
 ```
 
 ### Weak vs strong eval prompts
@@ -101,7 +101,7 @@ When possible, show the eval set to the user before running optimization. People
 
 Use `assets/eval_review.html` by replacing:
 
-- **Eval data:** replace `__EVAL_DATA_PLACEHOLDER__` with the JSON array
+- **Eval data:** replace `__EVAL_DATA_PLACEHOLDER__` with the eval array as JavaScript data
 - **Skill name:** replace `__SKILL_NAME_PLACEHOLDER__` with the skill name
 - **Current description:** replace `__SKILL_DESCRIPTION_PLACEHOLDER__` with the current description
 
@@ -115,7 +115,7 @@ Run:
 
 ```bash
 python -m scripts.run_loop \
-  --eval-set <path-to-trigger-eval.json> \
+  --eval-set <path-to-trigger-eval.yaml> \
   --skill-path <path-to-skill> \
   --agent <calling-agent-label> \
   --results-dir <skill-path>/evals/description-optimization \

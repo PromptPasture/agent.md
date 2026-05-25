@@ -61,7 +61,7 @@ The library must remain local-first. It is not a plugin marketplace, a project m
 | Keep discovery predictable | Skill names follow verb-first convention. | 100% compliance |
 | Reduce repeated prompting | Completed skills encode trigger, output, and quality expectations. | Every completed skill has specific frontmatter and instructions |
 | Keep complex domains usable | Router skills select variants from context. | Ask at most one clarifying question when materially ambiguous |
-| Maintain quality | Skills pass validation and eval thresholds. | `quick_validate.py` pass plus required eval coverage |
+| Maintain quality | Skills pass validation and eval thresholds. | `validate.py` pass plus required eval coverage |
 | Support local distribution | Release-ready skills package as `.skill` files. | Successful local package build |
 
 ### 1.6 Non-Goals
@@ -100,7 +100,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 1. Maintainer confirms trigger scope, output artifact, routing needs, and eval expectations.
 2. Maintainer creates or updates `SKILL.md`, references, and evals.
-3. Maintainer validates the skill with `quick_validate.py`.
+3. Maintainer validates the skill with `validate.py`.
 4. Maintainer runs or reviews eval coverage where available.
 5. Maintainer updates PRD, SPEC, TASKS, and memory notes when catalog behavior changes.
 6. Maintainer packages the skill once release-ready.
@@ -142,7 +142,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 - `SKILL.md` exists and contains valid YAML frontmatter with `name` and `description`.
 - `description` states when to trigger the skill and what artifact it produces.
-- `evals/evals.json` exists for release-ready skills.
+- `evals/evals.yaml` exists for release-ready skills.
 - `references/` is used only for substantial reusable guidance loaded on demand.
 - `SKILL.md` stays under 500 lines.
 
@@ -179,7 +179,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 **Acceptance criteria:**
 
-- `python3 .agents/skills/create-skill/scripts/quick_validate.py .agents/skills/<skill-name>` passes.
+- `python3 .agents/skills/create-skill/scripts/validate.py .agents/skills/<skill-name>` passes.
 - Focused skills have 8-10 realistic eval prompts.
 - Router skills have 8-10 eval prompts per routed reference before release readiness.
 - Eval assertions reach at least 85% aggregate pass rate with no failed critical expectations.
@@ -242,7 +242,7 @@ The verb identifies the artifact or action family. The subject identifies the do
 ├── <skill-name>/
 │   ├── SKILL.md
 │   ├── evals/
-│   │   └── evals.json
+│   │   └── evals.yaml
 │   ├── references/
 │   │   └── <variant>.md
 │   ├── scripts/
@@ -398,7 +398,7 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 Each release-ready skill must pass:
 
 ```bash
-python3 .agents/skills/create-skill/scripts/quick_validate.py .agents/skills/<skill-name>
+python3 .agents/skills/create-skill/scripts/validate.py .agents/skills/<skill-name>
 ```
 
 Validation failures block packaging. Common blockers include invalid frontmatter, missing required sections, weak scan anchors, malformed evals, missing router `reference` fields, and unused placeholder folders.
@@ -439,8 +439,8 @@ Each skill should be built with `create-skill` using this sequence:
 1. Clarify trigger scope, expected output, routing needs, and eval expectations.
 2. Draft `SKILL.md` with frontmatter, concise workflow instructions, clear section headings, and scan anchors.
 3. Move reusable detail into `references/` only when needed.
-4. Add `evals/evals.json` with required focused or routed coverage.
-5. Run `quick_validate.py`.
+4. Add `evals/evals.yaml` with required focused or routed coverage.
+5. Run `validate.py`.
 6. Run or review eval iterations when behavior needs evidence.
 7. Review outputs qualitatively and assertions quantitatively where objective checks apply.
 8. Iterate until feedback is resolved, improvements flatten, or the user accepts behavior.
@@ -500,7 +500,7 @@ python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist
 
 | # | Question | Answer | Owner | Status |
 | --- | --- | --- | --- | --- |
-| 1 | What assertion pass threshold is required for eval release readiness? | Release-ready skills must reach at least 85% aggregate expectation pass rate, with no failed critical expectations, after `quick_validate.py` passes and required eval coverage exists. Human review may require fixes above that threshold when failures affect the skill's core artifact. | Skill maintainers [assumed] | Closed |
+| 1 | What assertion pass threshold is required for eval release readiness? | Release-ready skills must reach at least 85% aggregate expectation pass rate, with no failed critical expectations, after `validate.py` passes and required eval coverage exists. Human review may require fixes above that threshold when failures affect the skill's core artifact. | Skill maintainers [assumed] | Closed |
 | 2 | What local install command or workflow confirms packaged `.skill` artifacts are installable? | No separate local install command exists in the repo today. Current release verification is package-and-inspect: run `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`, confirm exit code 0, then list the `.skill` archive and verify `<skill-name>/SKILL.md` plus required references, scripts, and assets are present. | Oleg Shulyakov [assumed] | Closed |
 
 ## 14. Appendix

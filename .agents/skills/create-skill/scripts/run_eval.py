@@ -16,9 +16,37 @@ import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+import yaml
 
 from scripts.agent_runner import AGENT_COMMAND_PRESETS, resolve_agent_command, run_agent_command
 from scripts.utils import parse_skill_md
+
+
+def load_eval_set(path: Path) -> list[dict]:
+    """Load a YAML eval set, flattening suites/cases when present."""
+    data = yaml.safe_load(path.read_text())
+    if isinstance(data, list):
+        return data
+    if not isinstance(data, dict):
+        raise ValueError(f"{path}: expected a YAML list or mapping")
+    suites = data.get("suites")
+    if suites is None:
+        evals = data.get("evals")
+        if isinstance(evals, list):
+            return evals
+        raise ValueError(f"{path}: missing 'suites' mapping")
+    if not isinstance(suites, dict):
+        raise ValueError(f"{path}: 'suites' must be a mapping")
+
+    evals = []
+    for suite_name, suite in suites.items():
+        if not isinstance(suite, dict) or not isinstance(suite.get("cases"), dict):
+            raise ValueError(f"{path}: suite '{suite_name}' must contain a cases mapping")
+        for case_id, case in suite["cases"].items():
+            if not isinstance(case, dict):
+                raise ValueError(f"{path}: case '{suite_name}.{case_id}' must be a mapping")
+            evals.append({"id": f"{suite_name}.{case_id}", **case})
+    return evals
 
 
 def find_project_root() -> Path:
@@ -339,7 +367,7 @@ def run_eval(
 
 def main():
     parser = argparse.ArgumentParser(description="Run trigger evaluation for a skill description")
-    parser.add_argument("--eval-set", required=True, help="Path to eval set JSON file")
+    parser.add_argument("--eval-set", required=True, help="Path to eval set YAML file")
     parser.add_argument("--skill-path", required=True, help="Path to skill directory")
     parser.add_argument("--description", default=None, help="Override description to test")
     parser.add_argument("--num-workers", type=int, default=10, help="Number of parallel workers")
@@ -366,7 +394,7 @@ def main():
     parser.add_argument("--verbose", action="store_true", help="Print progress to stderr")
     args = parser.parse_args()
 
-    eval_set = json.loads(Path(args.eval_set).read_text())
+    eval_set = load_eval_set(Path(args.eval_set))
     skill_path = Path(args.skill_path)
 
     if not (skill_path / "SKILL.md").exists():

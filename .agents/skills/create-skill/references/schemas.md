@@ -1,6 +1,6 @@
-# JSON Schemas
+# Data Schemas
 
-This document defines the JSON schemas used by skill-creator.
+This document defines the YAML and JSON schemas used by skill-creator.
 
 ---
 
@@ -31,35 +31,38 @@ metadata:
 
 ---
 
-## evals.json
+## evals.yaml
 
-Defines the evals for a skill. Located at `<skill-path>/evals/evals.json` within the skill directory. Do not create `evals/` as a sibling of the skill.
+Defines the evals for a skill. Located at `<skill-path>/evals/evals.yaml` within the skill directory. Do not create `evals/` as a sibling of the skill.
 
-```json
-{
-  "skill_name": "example-skill",
-  "evals": [
-    {
-      "id": 1,
-      "reference": "references/example-route.md",
-      "prompt": "User's example prompt",
-      "expected_output": "Description of expected result",
-      "files": ["evals/files/sample1.pdf"],
-      "expectations": ["The output includes X", "The skill used script Y"]
-    }
-  ]
-}
+```yaml
+name: example-skill evals
+suites:
+  example-route:
+    description: Eval cases routed to references/example-route.md.
+    cases:
+      basic-routing:
+        reference: references/example-route.md
+        prompt: "User's example prompt"
+        expected_output: Description of expected result
+        files:
+          - evals/files/sample1.pdf
+        expectations:
+          - The output includes X
+          - The skill used script Y
 ```
 
 **Fields:**
 
-- `skill_name`: Name matching the skill's frontmatter
-- `evals[].id`: Unique integer identifier
-- `evals[].reference`: Required for router skills; exact relative path to the routed reference, such as `references/postgres.md`
-- `evals[].prompt`: The task to execute
-- `evals[].expected_output`: Human-readable description of success
-- `evals[].files`: Optional list of input file paths (relative to skill root)
-- `evals[].expectations`: List of verifiable statements
+- `name`: Human-readable eval set name
+- `suites`: Mapping of suite names to related eval cases
+- `suites.<suite>.description`: Human-readable suite purpose
+- `suites.<suite>.cases`: Mapping of stable case IDs to eval case objects
+- `cases.<case>.reference`: Required for router skills; exact relative path to the routed reference, such as `references/postgres.md`
+- `cases.<case>.prompt`: The task to execute
+- `cases.<case>.expected_output`: Human-readable description of success
+- `cases.<case>.files`: Optional list of input file paths (relative to skill root)
+- `cases.<case>.expectations`: List of verifiable statements
 
 ---
 

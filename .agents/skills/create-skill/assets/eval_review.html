@@ -270,11 +270,24 @@
       function exportEvalSet() {
         const valid = evalItems.filter((i) => i.query.trim() !== "");
         const data = valid.map((i) => ({ query: i.query.trim(), should_trigger: i.should_trigger }));
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const yaml = [
+          `name: ${JSON.stringify(skillName + " trigger evals")}`,
+          "suites:",
+          "  trigger-routing:",
+          "    description: Trigger and non-trigger routing checks.",
+          "    cases:",
+          ...data.flatMap((item, idx) => [
+            `      case-${String(idx + 1).padStart(3, "0")}:`,
+            `        query: ${JSON.stringify(item.query)}`,
+            `        should_trigger: ${item.should_trigger ? "true" : "false"}`,
+          ]),
+          "",
+        ].join("\n");
+        const blob = new Blob([yaml], { type: "application/x-yaml" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "eval_set.json";
+        a.download = "eval_set.yaml";
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

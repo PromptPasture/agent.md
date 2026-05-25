@@ -82,7 +82,7 @@ Each skill folder shall include:
 .agents/skills/<skill-name>/
 ├── SKILL.md
 └── evals/
-    └── evals.json
+    └── evals.yaml
 ```
 
 Evaluation run results, when generated, shall be stored under `evals/iterations/iteration-N/` according to the `create-skill` workflow. A `references/` folder may be added only when it contains useful supporting files, such as examples, detailed procedures, or compatibility notes that would make `SKILL.md` too long or less readable. Do not create placeholder `references/` folders.
@@ -259,7 +259,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 **Acceptance criteria:**
 
-- [ ] Each skill has `evals/evals.json` generated through `.agents/skills/create-skill/`.
+- [ ] Each skill has `evals/evals.yaml` generated through `.agents/skills/create-skill/`.
 - [ ] Each skill has 8-10 realistic eval prompts where possible, and never fewer than the PRD minimum of 7.
 - [ ] Each eval set includes at least 3 true-positive prompts.
 - [ ] Each eval set includes at least 2 false-positive prompts where nearby language should route elsewhere or not trigger.
@@ -318,7 +318,7 @@ flowchart TD
 | Component | Responsibility |
 | --- | --- |
 | `.agents/skills/<skill>/SKILL.md` | Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations |
-| `.agents/skills/<skill>/evals/evals.json` | Representative trigger and non-trigger prompts generated through `create-skill` |
+| `.agents/skills/<skill>/evals/evals.yaml` | Representative trigger and non-trigger prompts generated through `create-skill` |
 | `.agents/skills/<skill>/evals/iterations/iteration-N/` | Reproducible eval run outputs, grading, and benchmark artifacts when generated |
 | `.agents/memory/` | Target memory location for `remember` behavior |
 | `.agents/skills/create-skill/` | Development-time eval generation, validation, and packaging support |
@@ -381,7 +381,7 @@ Review every `SKILL.md` for frontmatter completeness, trigger specificity, exclu
 
 ### 8.2 Trigger Eval Review
 
-For each skill, generate and review `evals/evals.json` through `.agents/skills/create-skill/`. Use 8-10 realistic prompts where possible, and never fewer than the PRD minimum of 7:
+For each skill, generate and review `evals/evals.yaml` through `.agents/skills/create-skill/`. Use 8-10 realistic prompts where possible, and never fewer than the PRD minimum of 7:
 
 ```text
 3 true-positive prompts

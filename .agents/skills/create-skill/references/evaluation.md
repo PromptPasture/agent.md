@@ -6,7 +6,7 @@ Use this reference when creating eval cases, running skill iterations, benchmark
 
 Create 8-10 realistic prompts for a focused skill. For router skills, create 8-10 prompts per route and include near-miss prompts that could be confused with another route.
 
-Save test cases to `<skill-path>/evals/evals.json`. Keep evals inside the skill folder so prompts, fixtures, outputs, and benchmark history travel with the skill.
+Save test cases to `<skill-path>/evals/evals.yaml`. Keep evals inside the skill folder so prompts, fixtures, outputs, and benchmark history travel with the skill.
 
 For router skills, add a `reference` field to every eval using the exact relative path, such as `references/postgres.md`. Every reference file that the router can load must have 8-10 evals. Near-miss prompts still count toward the route they are intended to test.
 
@@ -16,7 +16,7 @@ Start with prompt-level expectations. Add objective assertions after the test se
 
 ## Assertion Design
 
-Read this when drafting assertions for a skill's `evals/evals.json`. It answers one question: **what makes an assertion actually useful?**
+Read this when drafting assertions for a skill's `evals/evals.yaml`. It answers one question: **what makes an assertion actually useful?**
 
 ### Start with the contract, not the test cases
 

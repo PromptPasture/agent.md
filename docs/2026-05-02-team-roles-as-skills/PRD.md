@@ -41,7 +41,7 @@ The initiative targets teams and individual practitioners who want role-aware AI
 | G-3 | Reduce repeated role-specific prompting. | Users can invoke each completed skill by artifact or task intent without restating its output structure or role conventions. |
 | G-4 | Produce concrete, reusable artifacts instead of generic advice. | Every completed skill description names the artifact it produces and when it should trigger. |
 | G-5 | Keep complex domains usable without exploding the skill count. | Multi-variant router skills select the correct reference from context or ask only when materially ambiguous. |
-| G-6 | Maintain quality through repeatable evaluation. | Each release-ready skill passes `quick_validate.py`, has required eval coverage, and clears an 85% aggregate expectation pass rate with no failed critical expectations. |
+| G-6 | Maintain quality through repeatable evaluation. | Each release-ready skill passes `validate.py`, has required eval coverage, and clears an 85% aggregate expectation pass rate with no failed critical expectations. |
 | G-7 | Make completed skills distributable from local artifacts. | Each release-ready skill packages successfully as a `.skill` file with bundled instructions, references, scripts, and assets as applicable. |
 
 ---
@@ -145,7 +145,7 @@ For multi-variant skills, the expected interaction is context-first routing. For
 | R-3 | Eval requirements slow down early skill creation. | MEDIUM | Build P1 skills first and treat evals as part of the definition of done, not cleanup. | OPEN |
 | R-4 | Team-specific conventions may not fit the base library. | MEDIUM | Keep base skills generic, then support local install-time or repository-level guidance. | OPEN |
 | R-5 | Documentation can drift from the actual skill folders. | HIGH | Update PRD, SPEC, TASKS, and memory notes in the same change when catalog decisions change. | OPEN |
-| R-6 | Some implemented skills predate the current `create-skill` validation rules. | HIGH | Run `quick_validate.py` per skill, then fix missing bold scan anchors, routed eval `reference` fields, and reference-section principles before release readiness. | OPEN |
+| R-6 | Some implemented skills predate the current `create-skill` validation rules. | HIGH | Run `validate.py` per skill, then fix missing bold scan anchors, routed eval `reference` fields, and reference-section principles before release readiness. | OPEN |
 
 ---
 
@@ -165,7 +165,7 @@ For multi-variant skills, the expected interaction is context-first routing. For
 | --- | --- | --- | --- | --- |
 | DEC-1 | Use milestone gates instead of a fixed calendar date for the first complete catalog release. | The release is ready when all 55 cataloged skills are implemented, evaluated, documented, and packageable; 10 catalog skills are implemented as of 2026-05-23. | Oleg Shulyakov [assumed] | 2026-05-23 |
 | DEC-2 | Use the `create-skill` eval bar: 8-10 realistic eval prompts for focused skills and 8-10 prompts per routed reference for router skills. | This keeps the PRD aligned with the maintained authoring workflow while allowing specialized skills to add cases for variant coverage, boundary-trigger testing, or safety-sensitive behavior. | Skill maintainers [assumed] | 2026-05-23 |
-| DEC-3 | Package release-ready skills from `.agents/skills/create-skill` with `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`. | Release readiness requires `quick_validate.py` to pass, evals to be present in source and pass at least an 85% aggregate expectation pass rate with no failed critical expectations, router evals to include `reference` fields, references to be useful, and no security or packaging blockers to remain. | Skill maintainers [assumed] | 2026-05-23 |
+| DEC-3 | Package release-ready skills from `.agents/skills/create-skill` with `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`. | Release readiness requires `validate.py` to pass, evals to be present in source and pass at least an 85% aggregate expectation pass rate with no failed critical expectations, router evals to include `reference` fields, references to be useful, and no security or packaging blockers to remain. | Skill maintainers [assumed] | 2026-05-23 |
 | DEC-4 | Treat organization-level convention packs as a separate follow-up. | This initiative ships the base local skill library first; organization convention packs should layer on later once the base format and release checks are stable. | Oleg Shulyakov [assumed] | 2026-05-23 |
 
 ---
