@@ -2,9 +2,9 @@
 
 Use this reference for HTTP endpoint, controller, contract, and service integration test suites.
 
-## Framework Selection
+---
 
-**Use the repository's existing API test stack before introducing another one.**
+## Framework Selection
 
 Prefer the repository's existing stack:
 
@@ -16,9 +16,9 @@ Prefer the repository's existing stack:
 | Java/Kotlin with Spring test dependencies | MockMvc, WebTestClient, or REST-assured |
 | Go with `net/http/httptest` | Standard library HTTP tests |
 
-## Implementation Pattern
+---
 
-**Assert the contract, durable side effects, and realistic failure behavior.**
+## Implementation Pattern
 
 - **Local helpers:** Reuse app factories, test clients, database fixtures, auth helpers, and factories already in the repo.
 - **Assertions:** Assert status, response shape, important headers, and durable side effects. Avoid snapshotting whole payloads unless the repo already does so.
@@ -27,9 +27,9 @@ Prefer the repository's existing stack:
 - **Contract examples:** Use OpenAPI/AsyncAPI schemas when available, and keep generated payloads realistic.
 - **Secrets:** Never hard-code secrets. Use test tokens, factories, or environment variables.
 
-## Suite Shape
+---
 
-**Cover the resource behavior users and clients depend on.**
+## Suite Shape
 
 For each endpoint or resource, cover:
 
@@ -39,9 +39,9 @@ For each endpoint or resource, cover:
 - **Missing resources:** Not-found or conflict behavior where the API exposes it.
 - **Side effects:** Emitted events, database rows, or downstream calls when the repo has test hooks for them.
 
-## Supertest Example
+---
 
-**Keep Supertest examples close to the app factory and response contract.**
+## Supertest Example
 
 ```ts
 import request from 'supertest';
@@ -64,14 +64,14 @@ describe('POST /api/widgets', () => {
 });
 ```
 
-## Postman/Newman Pattern
+---
 
-**Variableize environment-specific values and assert key response fields.**
+## Postman/Newman Pattern
 
 When producing a collection, include request examples, environment variables, pre-request auth setup if needed, and tests for status code plus key JSON fields. Keep environment-specific base URLs as variables.
 
-## Pytest API Pattern
+---
 
-**Use the app's test client and fixtures instead of standalone HTTP glue.**
+## Pytest API Pattern
 
 Use the app's test client fixture. Prefer explicit payload factories over inline repetition when multiple tests use the same shape.

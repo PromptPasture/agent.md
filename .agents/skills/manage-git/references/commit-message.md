@@ -4,6 +4,8 @@ Generate commit messages in the Conventional Commits format. Use the target repo
 
 Before generating a message, inspect the relevant diff and recent commit subjects.
 
+---
+
 ## Format
 
 ```text
@@ -22,18 +24,20 @@ Before generating a message, inspect the relevant diff and recent commit subject
 - **Body bullets**: when needed, use `-` bullets and describe what changed and why.
 - **Footer**: reserved for metadata such as breaking changes or issue references.
 
+---
+
 ## Repository Style
 
 Infer local preferences from recent commit subjects in the target repository:
 
-- Use `type(scope): summary` when the repository commonly uses scopes and there is a clear package, folder, domain, component, or feature area.
-- Use `type: summary` when the change is broad or no scope is clearer.
-- Prefer scopes already present in history when they fit. If no local scope pattern exists, derive a short noun from the changed area, such as the package, module, app, command, or documentation section.
-- Match the repository's capitalization style after the colon. If history is mixed or unclear, default to lowercase imperative text and preserve proper nouns, acronyms, tool names, and file names.
-- Include PR, issue, or ticket suffixes only when they are already known from the user's context, branch name, staged diff, or command output. Do not invent identifiers.
-- Preserve quoting style around literal file names, directories, commands, API names, config keys, or package names when that matches the repository or improves clarity.
-- For simple commits, return a single-line message unless the repository consistently uses bodies.
-- For squash-style or multi-part commits, use a concise header followed by bullets. Do not copy GitHub merge bullet prefixes such as `* feat(...)` into newly generated messages.
+- **Scoped format:** Use `type(scope): summary` when the repository commonly uses scopes and there is a clear package, folder, domain, component, or feature area.
+- **Unscoped format:** Use `type: summary` when the change is broad or no scope is clearer.
+- **Scope choice:** Prefer scopes already present in history when they fit. If no local scope pattern exists, derive a short noun from the changed area, such as the package, module, app, command, or documentation section.
+- **Capitalization:** Match the repository's capitalization style after the colon. If history is mixed or unclear, default to lowercase imperative text and preserve proper nouns, acronyms, tool names, and file names.
+- **Known identifiers:** Include PR, issue, or ticket suffixes only when they are already known from the user's context, branch name, staged diff, or command output. Do not invent identifiers.
+- **Literal quoting:** Preserve quoting style around literal file names, directories, commands, API names, config keys, or package names when that matches the repository or improves clarity.
+- **Simple commits:** For simple commits, return a single-line message unless the repository consistently uses bodies.
+- **Multi-part commits:** For squash-style or multi-part commits, use a concise header followed by bullets. Do not copy GitHub merge bullet prefixes such as `* feat(...)` into newly generated messages.
 
 Do not imitate obvious historical mistakes such as misspelled types, malformed headers, duplicate prefixes, or accidental copied bullet text. Treat those as evidence that the generator needs guardrails, not as precedent. A little mercy for past commits; none for new ones.
 
@@ -54,6 +58,8 @@ Do not imitate obvious historical mistakes such as misspelled types, malformed h
 | `revert` | Reverts a previous commit |
 
 Use only these type names. Convert `feature` to `feat`, and fix obvious type typos.
+
+---
 
 ## Action Words
 
@@ -77,10 +83,10 @@ Prefer scopes from recent history when applicable. If the repository has no clea
 
 ### Short Description
 
-- Imperative mood: "add feature" not "adds feature" or "added feature"
-- Lowercase first letter unless the first word is a proper noun or acronym
-- No trailing period
-- Keep the header compact; if it becomes hard to read, use a body instead of cramming
+- **Imperative mood:** Use "add feature" not "adds feature" or "added feature".
+- **Lowercase start:** Use a lowercase first letter unless the first word is a proper noun or acronym.
+- **No trailing period:** End the header without punctuation.
+- **Compact header:** If the header becomes hard to read, use a body instead of cramming.
 
 ### Body (optional)
 

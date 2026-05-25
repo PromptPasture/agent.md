@@ -2,15 +2,15 @@
 
 Produce a **normalized relational database schema** with DDL, relationship documentation, and design rationale.
 
-## What makes a great schema
+---
 
-**Encode business rules in the schema without overcomplicating common queries.**
+## What makes a great schema
 
 A good schema encodes business rules structurally so they can't be violated at the application layer. It anticipates common query patterns and pre-optimizes with the right indexes. It's normalized enough to avoid update anomalies, but not over-normalized to the point of making every query a 6-way join.
 
-## Detect the SQL dialect
+---
 
-**Choose schema syntax from the target engine before writing DDL.**
+## Detect the SQL dialect
 
 Identify the target database from context:
 
@@ -25,9 +25,9 @@ Identify the target database from context:
 | "cockroachdb", distributed SQL, regional tables | CockroachDB |
 | Ambiguous / not mentioned | Default to PostgreSQL for OLTP schemas; note the assumption |
 
-## Information gathering
+---
 
-**Extract the domain facts that affect tables, relationships, constraints, and indexes.**
+## Information gathering
 
 Extract:
 
@@ -38,16 +38,14 @@ Extract:
 - **Scale hints** (millions of rows? partitioning needed?)
 - **Special requirements**: soft deletes, multi-tenancy, audit log, temporal data
 
-## Output format
+---
 
-**Produce schema output in a reviewable order from overview to executable DDL.**
+## Output format
 
 ### Part 1: Entity-Relationship Summary
 
 ```
 ## Entity-Relationship Overview
-
-**Summarize entities and relationships before showing DDL.**
 
 ### Entities
 - **[Entity]** — [1-line description]
@@ -132,9 +130,9 @@ Document key choices:
 - **Why soft delete?** If the entity has audit / compliance needs or is referenced by other records that should remain consistent.
 - **Normalization level:** Note if you've intentionally denormalized something and why.
 
-## Design guidelines
+---
 
-**Naming:**
+## Design guidelines
 
 - **Rule:** Table names: `snake_case`, plural (`orders`, `order_items`)
 - **Rule:** Column names: `snake_case`, singular
@@ -171,9 +169,9 @@ Document key choices:
 - **Rule:** Partial indexes for soft-delete patterns: `WHERE deleted_at IS NULL`
 - **Rule:** Avoid over-indexing write-heavy tables
 
-## Scale / special patterns
+---
 
-**Add scale patterns only when the requirements justify them.**
+## Scale / special patterns
 
 Add these sections only if relevant:
 

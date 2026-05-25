@@ -22,9 +22,9 @@ metadata:
 
 Generate production-ready database code for schemas, DDL, OLTP queries, analytics SQL, migrations, indexes, stored procedures, and dialect-specific scripts. Use this as a router: classify the database artifact first, detect the dialect from context or repository evidence, then read only the relevant references.
 
-## Variant Detection
+---
 
-**Route from artifact type before choosing syntax details.**
+## Variant Detection
 
 - **Schema design:** Requests for entities, tables, relationships, normalization, constraints, ERD-to-DDL, or "what tables do I need" route to `references/schema-design.md`.
 - **Migrations:** Requests for up/down migrations, Flyway, Liquibase, Rails/ActiveRecord migrations, Alembic, Prisma migrations, rollback, data backfills, or deployment-safe DDL route to `references/migration.md`.
@@ -33,9 +33,9 @@ Generate production-ready database code for schemas, DDL, OLTP queries, analytic
 - **Adjacent skills:** Use `report-db-health` for database health findings from existing telemetry. Use `plan-backup` for backup and recovery policy. Use `write-spec` for data contracts when the output is prose rather than executable database code.
 - **Ambiguity:** If the artifact type or database remains genuinely ambiguous after inspecting context, ask one short question naming the likely choices.
 
-## Dialect Routing
+---
 
-**Choose the database from explicit signals, then repository evidence, then ask only if the choice changes the code.**
+## Dialect Routing
 
 | Signal | Reference |
 | --- | --- |
@@ -51,9 +51,9 @@ Generate production-ready database code for schemas, DDL, OLTP queries, analytic
 
 If the user asks for portable SQL, use `references/common.md` and avoid dialect-specific syntax unless you clearly mark alternatives.
 
-## Working Rules
+---
 
-**Database code must be executable, reversible when applicable, and honest about assumptions.**
+## Working Rules
 
 - **Inspect first:** Read existing migrations, schema files, ORM models, query builders, naming conventions, fixtures, and migration tooling before editing repository files.
 - **Prefer structural guarantees:** Encode business rules with constraints, foreign keys, uniqueness, checks, generated columns, and transaction boundaries before relying on application-only enforcement.
@@ -64,9 +64,9 @@ If the user asks for portable SQL, use `references/common.md` and avoid dialect-
 - **Respect dialect limits:** Do not mix syntax across engines. If the dialect is unknown and syntax materially differs, ask once instead of producing decorative nonsense in SQL clothing.
 - **Verify locally:** Run the narrowest relevant migration check, SQL parser, formatter, test, or application test available. If no database is available, state what was reviewed statically.
 
-## Implementation Flow
+---
 
-**Move from existing schema to minimal database change to verification.**
+## Implementation Flow
 
 1. Identify artifact type and dialect, then read the selected artifact reference and dialect reference.
 2. Inspect the closest existing schema, migration, query, model, and tests.
@@ -75,9 +75,9 @@ If the user asks for portable SQL, use `references/common.md` and avoid dialect-
 5. Add or update focused tests, fixtures, or migration assertions when the repository supports them.
 6. Run focused verification and fix regressions within scope.
 
-## Output Format
+---
 
-**Return runnable database code plus the operational context needed to use it.**
+## Output
 
 When editing a repository, finish with changed files, commands run, and verification status.
 
@@ -96,3 +96,9 @@ Performance:
 Rollback / Safety:
 - ...
 ```
+
+---
+
+## Verification
+
+Use the narrowest relevant migration check, SQL parser, formatter, test, or application test available. If no database is available, report the static checks performed and the remaining runtime risk.

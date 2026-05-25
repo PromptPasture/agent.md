@@ -2,9 +2,9 @@
 
 Produce database migrations that are safe to run, clear to review, and aligned with the repository's migration tool.
 
-## Detect the Migration Tool
+---
 
-**Use the repository's migration tool instead of inventing a new format.**
+## Detect the Migration Tool
 
 Identify tooling from file names, folders, dependencies, or framework conventions:
 
@@ -19,9 +19,9 @@ Identify tooling from file names, folders, dependencies, or framework convention
 
 Follow the existing repository style before introducing a new migration shape.
 
-## Safety Rules
+---
 
-**Prefer staged, reversible changes that avoid surprise locks and data loss.**
+## Safety Rules
 
 - **Transactional DDL:** Use transaction-wrapped migrations when the dialect and tool support it. Note exceptions such as PostgreSQL `CREATE INDEX CONCURRENTLY`.
 - **Reversibility:** Provide a down migration when the tool expects one. If data loss prevents a true rollback, state the forward-fix path.
@@ -31,9 +31,9 @@ Follow the existing repository style before introducing a new migration shape.
 - **Constraints:** Add constraints after data is valid. For PostgreSQL, consider `NOT VALID` plus later validation for large tables.
 - **Destructive changes:** Do not drop columns, tables, or data without making the risk explicit and offering a safer staged alternative.
 
-## Output Shape
+---
 
-**Match the project's migration format and make rollback behavior explicit.**
+## Output Shape
 
 For SQL-first migrations, produce:
 
@@ -55,8 +55,8 @@ COMMIT;
 
 For framework migrations, use the framework's existing class/function style and include validation notes for generated SQL when the ORM hides important DDL details.
 
-## Verification
+---
 
-**Check both schema application and rollback whenever the project supports it.**
+## Verification
 
 Recommend the narrowest useful checks: migration dry-run, schema diff, rollback test, application tests that touch the changed table, and query-plan review for new indexes.

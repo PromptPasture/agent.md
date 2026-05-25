@@ -2,6 +2,8 @@
 
 Produce a **developer changelog** in Keep a Changelog format, grouped by change type.
 
+---
+
 ## Keep a Changelog format
 
 Follow [keepachangelog.com](https://keepachangelog.com) conventions:
@@ -15,6 +17,8 @@ Follow [keepachangelog.com](https://keepachangelog.com) conventions:
 - **Fixed**: Bug fixes
 - **Security**: Security fixes (always call these out prominently)
 
+---
+
 ## Information gathering
 
 - **Version**: What version number is this entry for?
@@ -23,6 +27,8 @@ Follow [keepachangelog.com](https://keepachangelog.com) conventions:
 - **Links**: PR numbers, issue tracker URLs (if available)
 
 If given raw commit messages, organize them into appropriate types. Mark unclear items with `[?]`.
+
+---
 
 ## Output format
 
@@ -104,6 +110,8 @@ This is a major release. See the [migration guide](./docs/migration/v1-to-v2.md)
 [2.0.0]: https://github.com/org/repo/compare/v1.9.2...v2.0.0
 ```
 
+---
+
 ## Writing style
 
 - **Be specific**: "Fixed bug" is useless. "Fixed race condition in session cleanup that caused 401 errors" is actionable.
@@ -112,6 +120,8 @@ This is a major release. See the [migration guide](./docs/migration/v1-to-v2.md)
 - **Note security fixes separately**: Even if a CVE is just a dependency bump, put it in Security
 - **Link everything**: Every entry should have a PR or issue link if available
 - **Omit non-user-visible internals**: CI config changes, test-only changes, style fixes don't need individual entries
+
+---
 
 ## Commit → changelog mapping
 
@@ -124,6 +134,8 @@ This is a major release. See the [migration guide](./docs/migration/v1-to-v2.md)
 | `docs:` | Changed | Only if docs are the product |
 | `BREAKING CHANGE:` | Removed/Changed + `[BREAKING]` | Lead with a breaking changes section |
 | `perf:` | Changed | Only if perf is meaningful to users |
+
+---
 
 ## Calibration
 

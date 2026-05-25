@@ -2,11 +2,15 @@
 
 Produce valid OpenAPI 3.1 YAML. Start directly with `openapi: "3.1.0"` unless the user asked for explanation.
 
+---
+
 ## Required Shape
 
 Include `info`, `servers`, top-level `security` when authenticated, `paths`, and `components`. Every operation needs `summary`, `operationId`, `tags`, parameters or request body where relevant, at least one success response, and appropriate error responses.
 
 Use `components.schemas` for all request and response bodies. Use `components.responses` for shared errors. Use `components.securitySchemes` for auth.
+
+---
 
 ## REST Defaults
 
@@ -27,6 +31,8 @@ parameters:
 Represent list responses as `{ data, pageInfo }`, where `pageInfo` includes `nextCursor` and `hasMore`.
 
 For mutating operations, include an optional `Idempotency-Key` header unless the operation is naturally idempotent.
+
+---
 
 ## Error Model
 
@@ -50,6 +56,8 @@ ErrorResponse:
 ```
 
 Use `400` for validation, `401` for unauthenticated, `403` for unauthorized, `404` for missing resources, `409` for conflicts, `422` for semantic validation when useful, and `429` when rate limits are part of the contract.
+
+---
 
 ## Quality Bar
 

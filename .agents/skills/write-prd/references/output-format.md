@@ -2,9 +2,9 @@
 
 **Use this reference when drafting the final PRD.**
 
-## Template
+---
 
-**Always produce a Markdown file with frontmatter metadata followed by the body.**
+## Template
 
 Use this structure exactly unless the user provides a stricter template:
 
@@ -143,9 +143,9 @@ related:
 - **Ref-2**: [Description of link, e.g., Technical API Documentation] - [URL]
 ```
 
-## Section Rules
+---
 
-**Keep the PRD body focused while frontmatter carries document metadata.**
+## Section Rules
 
 Keep the main PRD short enough to function as the initiative landing page. Link to deeper source material rather than copying long research notes, technical designs, or implementation plans into the PRD.
 

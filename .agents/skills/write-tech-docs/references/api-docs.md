@@ -2,9 +2,13 @@
 
 Produce **API reference documentation** for existing endpoints, ready for a developer portal or README.
 
+---
+
 ## What makes great API docs
 
 Great API docs answer: What does this endpoint do? What do I send? What do I get back? What can go wrong? Show me an example. Developers read docs to unblock themselves — every missing field or ambiguous description is a support ticket.
+
+---
 
 ## Information gathering
 
@@ -13,6 +17,8 @@ Great API docs answer: What does this endpoint do? What do I send? What do I get
 - **Auth**: Bearer token, API key, session cookie, OAuth2?
 - **Audience**: Internal developers, external partners, public developers?
 - **Format**: Markdown docs, OpenAPI annotation enrichment, README section?
+
+---
 
 ## Output format
 
@@ -165,6 +171,8 @@ Use `POST /auth/refresh` with your refresh token to get a new access token.
 | `500`  | Internal server error — contact support with the `X-Request-Id` header value |
 ```
 
+---
+
 ## Quality checklist
 
 - [ ] Every field has a type AND description
@@ -174,6 +182,8 @@ Use `POST /auth/refresh` with your refresh token to get a new access token.
 - [ ] At least one curl example per endpoint
 - [ ] All error codes for that endpoint are listed
 - [ ] Sensitive fields (passwords, tokens) are noted as write-only (not returned)
+
+---
 
 ## Calibration
 

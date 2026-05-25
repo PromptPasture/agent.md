@@ -1,8 +1,10 @@
 # MSSQL / SQL Server Reference
 
-## Key types
+Use T-SQL and SQL Server patterns for types, upserts, pagination, plans, JSON, and naming.
 
-**Use dialect-native types and call out portability tradeoffs.**
+---
+
+## Key types
 
 - **Rule:** `UNIQUEIDENTIFIER` — UUID/GUID (`NEWID()` or `NEWSEQUENTIALID()`)
 - **Rule:** `BIGINT IDENTITY(1,1)` — auto-increment integer PK
@@ -13,9 +15,9 @@
 - **Rule:** `BIT` — boolean (0/1)
 - **Rule:** `VARBINARY(MAX)` — binary data
 
-## T-SQL specific syntax
+---
 
-**Use T-SQL constructs intentionally and keep SQL Server behavior explicit.**
+## T-SQL specific syntax
 
 ### Variables and blocks
 
@@ -91,9 +93,9 @@ GO
 SET SHOWPLAN_XML OFF;
 ```
 
-## TempDB patterns
+---
 
-**Use temporary objects when they reduce complexity or repeated work.**
+## TempDB patterns
 
 ```sql
 -- Temp table (session-scoped)
@@ -107,9 +109,9 @@ INSERT INTO #TempResults SELECT id, RAND() FROM users;
 DECLARE @Results TABLE (id UNIQUEIDENTIFIER, name NVARCHAR(255));
 ```
 
-## String functions
+---
 
-**Use SQL Server string functions with collation and null behavior in mind.**
+## String functions
 
 ```sql
 -- Concatenation
@@ -120,9 +122,9 @@ SELECT CONCAT(first_name, N' ', last_name) AS full_name FROM users;
 SELECT value FROM STRING_SPLIT(@csv, ',');
 ```
 
-## JSON support (SQL Server 2016+)
+---
 
-**Use SQL Server JSON functions while remembering JSON is stored as text.**
+## JSON support (SQL Server 2016+)
 
 ```sql
 -- Parse JSON
@@ -136,9 +138,9 @@ SELECT id, email FROM users FOR JSON PATH;
 SELECT * FROM events WHERE ISJSON(payload) = 1;
 ```
 
-## Common naming conventions
+---
 
-**Keep object names schema-qualified and predictable.**
+## Common naming conventions
 
 - **Rule:** Schema-qualify all objects: `dbo.users`, `dbo.orders`
 - **Rule:** Stored procedures: `usp_[Description]`

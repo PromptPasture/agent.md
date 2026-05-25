@@ -2,9 +2,9 @@
 
 Use ClickHouse patterns for high-volume analytical tables and queries.
 
-## Key Patterns
+---
 
-**Design ClickHouse tables around scan pruning, append-heavy writes, and explicit aggregation.**
+## Key Patterns
 
 - **Engines:** Choose `MergeTree` family engines deliberately. State the `ORDER BY` key because it drives data skipping and query performance.
 - **Partitioning:** Partition by coarse time windows or stable lifecycle boundaries. Avoid high-cardinality partitions.
@@ -13,9 +13,9 @@ Use ClickHouse patterns for high-volume analytical tables and queries.
 - **Types:** Prefer concrete numeric and datetime types; use `LowCardinality(String)` for repeated low-cardinality text.
 - **Mutations:** Treat updates and deletes as expensive asynchronous mutations.
 
-## Example
+---
 
-**Choose partition and order keys from the most common query filters.**
+## Example
 
 ```sql
 CREATE TABLE events

@@ -18,9 +18,9 @@ metadata:
 
 Implement production frontend work by routing to the smallest relevant reference set, matching the repository's existing architecture, and verifying the user-facing behavior.
 
-## Variant Detection
+---
 
-**Classify the work from explicit user intent first, then confirm it against the repository.**
+## Variant Detection
 
 - **User signals:** Look for framework names, route or page names, component libraries, state libraries, CSS systems, test tools, file paths, file extensions, and requested user-facing behavior.
 - **Repository signals:** Inspect `package.json`, lockfiles, framework configs, `tsconfig.json`, source folders, imports, routing structure, design tokens, Storybook, test setup, and CI jobs before choosing an implementation path.
@@ -28,9 +28,9 @@ Implement production frontend work by routing to the smallest relevant reference
 - **Route away:** Use `build-tests` for test-only work, `design-api` for API contract design, `build-backend` for backend implementation, and `write-spec` or a design skill for UI/UX specification when no code is requested.
 - **Clarify rarely:** If the framework, styling system, or target surface remains genuinely ambiguous after inspection, ask one short question naming the likely options.
 
-## Reference Routing
+---
 
-**Read only the references needed for the current implementation.**
+## Reference Routing
 
 Start with one language or markup reference:
 
@@ -71,9 +71,9 @@ Add capability references only when the task needs them:
 | Service workers, manifest, offline mode, installability | `references/pwa.md` |
 | Charts, dashboards, dense tables, interactive data | `references/visualization.md` |
 
-## Implementation Workflow
+---
 
-**Build the real workflow in the local style before polishing edge cases.**
+## Implementation Workflow
 
 - **Inspect first:** Identify the existing component boundaries, route conventions, data-fetching layer, state model, styling approach, design tokens, lint rules, and accessibility patterns before editing.
 - **Keep scope tight:** Make the smallest change that completes the requested behavior. Avoid new providers, stores, component layers, UI kits, icon sets, chart libraries, or form libraries unless the request or repository already points there.
@@ -82,9 +82,9 @@ Add capability references only when the task needs them:
 - **Preserve visual language:** Match existing typography, spacing, color tokens, icon conventions, motion, density, and component APIs. Prefer project-owned abstractions when they already fit.
 - **Design for change:** Keep components cohesive, props explicit, dependencies local or injected through existing mechanisms, and shared logic extracted only when it removes meaningful duplication.
 
-## Working Rules
+---
 
-**Treat frontend quality as behavior, accessibility, resilience, and maintainability together.**
+## Working Rules
 
 - **Accessibility:** Use semantic elements, labels, keyboard navigation, visible focus, reduced-motion behavior, useful alt text, and status announcements where needed. Accessibility is implementation work, not a final checklist.
 - **Responsive layout:** Use stable constraints such as grid tracks, flex rules, aspect ratios, min/max sizes, and explicit wrapping. Avoid text overlap, layout shift, viewport-scaled typography, and controls that resize unpredictably.
@@ -94,9 +94,9 @@ Add capability references only when the task needs them:
 - **Tests:** Add or update focused tests when the repository has a frontend test setup. Prefer component, interaction, route, accessibility, or visual-regression coverage that exercises behavior over shallow render-only tests.
 - **Verification:** Run the narrowest relevant formatter, linter, typecheck, build, and tests available. For browser-visible changes, inspect the running UI when practical and check responsive breakpoints that matter.
 
-## Output Format
+---
 
-**Report what changed, how it was checked, and any remaining risk.**
+## Output
 
 When editing a repository, finish with changed files, commands run, and verification status. Mention commands that could not be run and why.
 
@@ -115,3 +115,12 @@ Run:
 Notes:
 - ...
 ```
+
+---
+
+## Verification
+
+- [ ] The selected references match the detected language, framework, and capability needs
+- [ ] The implementation follows existing component, routing, state, styling, and accessibility conventions
+- [ ] User-visible states, responsive behavior, and accessibility risks were handled for the requested surface
+- [ ] Focused frontend tests and relevant formatter, linter, typecheck, build, browser, or test commands were run or the blocker was reported

@@ -2,9 +2,9 @@
 
 Write **production-quality SQL** for OLTP databases: queries, DDL, stored procedures, views, transactions, and optimization.
 
-## Variant detection
+---
 
-**Detect dialect from context before choosing syntax.**
+## Variant detection
 
 Identify the dialect from context. Check in this order:
 
@@ -26,9 +26,9 @@ Once identified, load the dialect-specific reference for syntax details:
 - **ClickHouse** → read `references/clickhouse.md` for analytical tables and queries, usually with `references/analytics.md`
 - **CockroachDB** → read `references/cockroachdb.md` for distributed SQL and PostgreSQL-like syntax caveats
 
-## SQL quality standards
+---
 
-**Write readable, parameterized SQL with explicit assumptions.**
+## SQL quality standards
 
 ### Formatting
 
@@ -118,9 +118,9 @@ After writing a query, note which indexes it relies on:
 -- If these don't exist: CREATE INDEX idx_orders_user_id ON orders(user_id);
 ```
 
-## Common patterns by dialect
+---
 
-**Load dialect details only when syntax or behavior differs.**
+## Common patterns by dialect
 
 Read the relevant `references/<dialect>.md` file for:
 
@@ -131,9 +131,9 @@ Read the relevant `references/<dialect>.md` file for:
 - **Time:** Date/time functions.
 - **Upsert:** Upsert syntax such as `ON CONFLICT`, `ON DUPLICATE KEY UPDATE`, and `MERGE`.
 
-## Query optimization checklist
+---
 
-**Optimize from access patterns and execution plans, not guesses.**
+## Query optimization checklist
 
 When asked to optimize a query, check:
 

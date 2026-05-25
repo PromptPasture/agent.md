@@ -2,9 +2,9 @@
 
 Use GoogleSQL syntax for BigQuery warehouse SQL.
 
-## Key Patterns
+---
 
-**Write BigQuery SQL with cost, partition pruning, and nested data semantics in mind.**
+## Key Patterns
 
 - **Types:** Use `ARRAY`, `STRUCT`, `JSON`, `NUMERIC`, `BIGNUMERIC`, `TIMESTAMP`, and `DATETIME` intentionally. Prefer `TIMESTAMP` for absolute instants.
 - **Nested data:** Use `UNNEST` with aliases and guard against row multiplication.
@@ -13,9 +13,9 @@ Use GoogleSQL syntax for BigQuery warehouse SQL.
 - **Cost control:** Select only needed columns, filter partitions early, and avoid repeated scans of large CTEs when materialization would be cheaper.
 - **Parameters:** Use named parameters like `@start_date`.
 
-## Example
+---
 
-**Use GoogleSQL syntax and project-qualified tables when appropriate.**
+## Example
 
 ```sql
 SELECT

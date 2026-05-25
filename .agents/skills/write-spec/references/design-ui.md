@@ -1,4 +1,12 @@
+# Design UI Specification
+
+Use this template for UI/UX specifications, component states, and design handoff documents.
+
 ---
+
+## Metadata Template
+
+```yaml
 status: "[DRAFT | FINAL | READY_FOR_DEV]"
 documentType: DESIGN
 phase: "[discovery | delivery | maintenance]"
@@ -11,21 +19,22 @@ tags:
   - "[ui]"
 related:
   - "[PRD.md, SPEC.md, Figma URL, or related doc]"
+```
+
 ---
 
+## Document Template
+
+```markdown
 # Design Specification: [Component / Feature Name]
 
 ## 1. Overview & Purpose
-
-**Explain the UI element's role and usage context.**
 
 [Brief description of what this UI element does and when it should be used.]
 
 ---
 
 ## 2. Visual Attributes & Tokens
-
-**Map visible styling decisions to implementation-ready tokens.**
 
 | Element | Property | Token / Value | Notes |
 | ---------- | ---------- | ------------------------------- | ------------- |
@@ -37,8 +46,6 @@ related:
 ---
 
 ## 3. States
-
-**Document every user-visible component state and its behavior.**
 
 - **Default:** [Description of the standard state]
 - **Hover:** [e.g., "Cursor → pointer. Background → `--color-surface-hover`. Shadow → `--shadow-md`."]
@@ -52,8 +59,6 @@ related:
 
 ## 4. Interaction & Motion
 
-**Specify triggers, responses, and motion details that affect implementation.**
-
 **Trigger:** [e.g., "Clicking 'Submit'"]
 **Action:** [e.g., "Transitions to Loading state immediately."]
 **Animation:**
@@ -66,8 +71,6 @@ related:
 
 ## 5. Responsive Behavior
 
-**Define how the UI adapts across supported viewport ranges.**
-
 | Breakpoint | Behavior |
 | ----------------------- | ------------------------------------------- |
 | **Mobile** (< 768px) | Elements stack. Width: 100%. Padding: 12px. |
@@ -78,8 +81,7 @@ related:
 
 ## 6. Edge Cases & Content Scaling
 
-**Capture content and data variations that can break layout or usability.**
-
 - **Long text:** [e.g., "Truncate with ellipsis on a single line."]
 - **Missing data:** [e.g., "Avatar fails → colored circle with initials."]
 - **Localization:** [e.g., "Don't set fixed widths — German strings can be 50% longer."]
+```

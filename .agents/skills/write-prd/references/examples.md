@@ -2,9 +2,9 @@
 
 **Use this example to calibrate tone, specificity, section depth, and table usage when drafting a PRD.**
 
-## Complete PRD Example
+---
 
-**Show frontmatter metadata followed by the PRD body.**
+## Complete PRD Example
 
 **Input:** "Write a PRD for workspace-level audit logs in our B2B SaaS admin console. Enterprise admins need to see who changed settings, exports must be available for compliance, and the goal is to reduce support tickets about unexplained changes."
 

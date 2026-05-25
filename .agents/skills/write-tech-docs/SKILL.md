@@ -21,9 +21,9 @@ metadata:
 
 Router skill that dispatches to the correct technical documentation variant.
 
-## Variant Detection
+---
 
-**Classify the documentation task before loading any variant reference.**
+## Variant Detection
 
 Check in this order:
 
@@ -38,9 +38,9 @@ Check in this order:
    - `release notes` / `what's new` / `version announcement` — release-notes variant
 4. **If still ambiguous**: ask the user once with the list of variants
 
-## Variants
+---
 
-**Each variant has one audience and one expected documentation shape.**
+## Variants
 
 | Variant | Output | When to use |
 | ----------------- | ----------------------------------------------------- | ------------------------------------------- |
@@ -51,9 +51,9 @@ Check in this order:
 | `changelog` | Developer changelog (Keep a Changelog format) | Changes between versions, developer-facing |
 | `release-notes` | User-facing release notes | Product updates, version announcements |
 
-## Loading References
+---
 
-**Load only the reference for the detected variant.**
+## Loading References
 
 After detecting the variant, load the corresponding reference:
 
@@ -66,9 +66,9 @@ After detecting the variant, load the corresponding reference:
 
 Never load multiple reference files simultaneously. If the user switches context to a different variant, unload and reload.
 
-## Common Principles Across All Variants
+---
 
-**Write durable docs that point to source-of-truth material instead of copying it.**
+## Common Principles Across All Variants
 
 - **Know your audience**: internal devs, external partners, end users, or on-call engineers
 - **Link rather than repeat**: reference existing docs rather than duplicating them
@@ -76,3 +76,9 @@ Never load multiple reference files simultaneously. If the user switches context
 - **Use frontmatter for document metadata** when the doc has ownership, status, version, dates, tags, or related-doc fields. Keep task-specific operational facts in the body where operators can scan them.
 - **Flag assumptions**: mark anything you inferred with `[assumed]` if you're not certain
 - **Remove placeholder text before outputting**: no `[YOUR_VALUE]` or `[TODO]` left behind
+
+---
+
+## Verification
+
+Confirm the selected variant matches the user request, the loaded reference was applied, and the output is audience-appropriate. Check that assumptions are marked, placeholders are removed, and operational or release docs include the concrete commands, owners, dates, versions, or escalation paths needed by their audience.

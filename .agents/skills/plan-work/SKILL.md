@@ -18,9 +18,9 @@ metadata:
 
 Turn a goal into a practical sequence of work.
 
-## Workflow
+---
 
-**Build the plan around dependencies and validation.**
+## Workflow
 
 1. Define the goal, scope, and success condition.
 2. Identify constraints, assumptions, dependencies, and unknowns.
@@ -33,8 +33,6 @@ Turn a goal into a practical sequence of work.
 
 ## Output
 
-**Use the lightest structure that makes the sequence executable.**
-
 - **Lead with the approach**: state the overall strategy in one short paragraph.
 - **Use phases for larger work**: include purpose, key tasks, dependencies, and validation.
 - **Keep steps scoped**: each step should have a visible outcome.
@@ -45,8 +43,6 @@ Turn a goal into a practical sequence of work.
 
 ## Boundaries
 
-**Keep the output as a pre-execution sequence.**
-
 - **Sequence work**: identify phases, dependencies, assumptions, risks, verification, and immediate next actions.
 - **Stay pre-execution**: do not manage live owners, blockers, or handoffs as the primary behavior.
 - **Default conversationally**: create durable files only when the user asks or the work clearly needs durable task documentation.
@@ -55,8 +51,6 @@ Turn a goal into a practical sequence of work.
 
 ## Error Paths
 
-**When context is thin, produce a conditional plan instead of pretending the path is fixed.**
-
 - **Unclear goal**: ask the one question that most affects scope, then provide a provisional outline if useful.
 - **Many unknowns**: split discovery from execution and identify what must be learned first.
 - **Execution already active**: switch the output toward status, blockers, and handoff only when the user asks to manage ongoing work.
@@ -64,8 +58,6 @@ Turn a goal into a practical sequence of work.
 ---
 
 ## Verification
-
-**Check that the plan can guide action without overfitting to guesses.**
 
 - **Trace dependencies**: verify that later steps do not require missing earlier outputs.
 - **Define done**: include validation or acceptance checks for non-trivial work.

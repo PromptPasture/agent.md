@@ -18,9 +18,9 @@ metadata:
 
 Investigate local context and report evidence-backed findings.
 
-## Workflow
+---
 
-**Start broad enough to find entry points, then narrow to evidence.**
+## Workflow
 
 1. Identify the target concept, behavior, file, command, error, or workflow.
 2. Search names, strings, docs, tests, configuration, and related symbols.
@@ -32,8 +32,6 @@ Investigate local context and report evidence-backed findings.
 
 ## Output
 
-**Make findings traceable and useful for the next action.**
-
 - **Lead with the answer**: state what was found or not found.
 - **Cite local evidence**: include file paths, line references when available, and relevant commands.
 - **Separate inference**: label deductions that are not directly stated in files.
@@ -44,8 +42,6 @@ Investigate local context and report evidence-backed findings.
 
 ## Boundaries
 
-**Keep the investigation local and evidence-backed.**
-
 - **Stay local**: search local files, project docs, attached artifacts, repository history, and available workspace context only.
 - **Exclude web research**: do not perform web search, browsing, or current-information research as part of this skill.
 - **Report evidence**: ground findings in file references, artifact references, command output, or clearly marked inference.
@@ -54,8 +50,6 @@ Investigate local context and report evidence-backed findings.
 
 ## Error Paths
 
-**When evidence is incomplete, report the limits rather than filling gaps with guesses.**
-
 - **No matches**: say what was searched and suggest the next local search path.
 - **Conflicting sources**: prefer runtime wiring and tests over stale docs, and state the conflict.
 - **Generated or external code missing**: identify the missing source and how it affects confidence.
@@ -63,8 +57,6 @@ Investigate local context and report evidence-backed findings.
 ---
 
 ## Verification
-
-**Check that every conclusion has local support.**
 
 - **Reproduce key searches**: use fast local search before relying on memory.
 - **Prefer primary files**: cite implementation, tests, configs, or authoritative docs over secondary mentions.

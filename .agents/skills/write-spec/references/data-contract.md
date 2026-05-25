@@ -1,4 +1,12 @@
+# Data Contract Specification
+
+Use this template for data contracts, event schemas, and data SLA documents.
+
 ---
+
+## Metadata Template
+
+```yaml
 status: "[DRAFT | ACTIVE | DEPRECATED]"
 documentType: DATA_CONTRACT
 phase: "[discovery | delivery | maintenance]"
@@ -12,13 +20,16 @@ tags:
   - "[data-contract]"
 related:
   - "[PRD.md, SPEC.md, schema, or related doc]"
+```
+
 ---
 
+## Document Template
+
+```markdown
 # Data Contract: [Data Product Name]
 
 ## 1. Ownership & Roles
-
-**Define who owns the data, stewardship, and consumer relationships.**
 
 | Role | Team/Person | Contact |
 | ------------------ | ---------------- | ---------------- |
@@ -29,8 +40,6 @@ related:
 ---
 
 ## 2. Business Context & Semantics
-
-**Describe what the data means and how consumers should interpret it.**
 
 **Description:** [2–3 sentences: what this data represents in the real world.]
 
@@ -46,8 +55,6 @@ related:
 
 ## 3. Schema Definition
 
-**Specify the physical shape, location, and field-level meaning of the dataset.**
-
 **Format:** [Parquet / Avro / JSON / Snowflake Table]
 **Location:** [e.g., `s3://bucket/domain/dataset/` or `db.schema.table`]
 
@@ -59,8 +66,6 @@ related:
 ---
 
 ## 4. Data Quality & SLAs
-
-**Make freshness, reliability, and correctness expectations measurable.**
 
 **Availability SLA:** Data available within [N hours] of the business event. Uptime: [99.9%].
 
@@ -74,8 +79,6 @@ related:
 
 ## 5. Security & Access Control
 
-**State how the data is classified, protected, and accessed.**
-
 - **Classification:** [Confidential / Internal / Public]
 - **Access mechanism:** [e.g., IAM group `data-readers-orders`]
 - **Masking:** [e.g., `user_email` is SHA-256 hashed in non-prod environments]
@@ -83,8 +86,6 @@ related:
 ---
 
 ## 6. Versioning & Change Management
-
-**Define how contract changes are communicated and governed.**
 
 Follows [Semantic Versioning](https://semver.org/).
 
@@ -94,3 +95,4 @@ Follows [Semantic Versioning](https://semver.org/).
 **Changelog:**
 
 - **`1.0.0`:** [Date] — Initial contract definition.
+```

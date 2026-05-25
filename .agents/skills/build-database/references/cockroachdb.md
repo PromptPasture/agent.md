@@ -2,9 +2,9 @@
 
 Use CockroachDB-compatible distributed SQL and call out behavior that differs from single-node PostgreSQL.
 
-## Key Patterns
+---
 
-**Treat CockroachDB as distributed SQL with PostgreSQL-like syntax, not as a PostgreSQL clone.**
+## Key Patterns
 
 - **Postgres-like, not Postgres:** CockroachDB supports much PostgreSQL syntax, but extensions, functions, locking behavior, and some types differ.
 - **Primary keys:** Prefer keys that avoid hot ranges. Random UUIDs are often safer than monotonic keys for write-heavy tables.
@@ -13,9 +13,9 @@ Use CockroachDB-compatible distributed SQL and call out behavior that differs fr
 - **Indexes:** Use secondary indexes carefully because distributed writes pay extra coordination cost.
 - **Sequences:** Avoid sequence-heavy designs for high-scale distributed writes unless the tradeoff is acceptable.
 
-## Example
+---
 
-**Prefer keys and constraints that avoid distributed hot spots.**
+## Example
 
 ```sql
 CREATE TABLE accounts (

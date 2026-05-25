@@ -21,17 +21,17 @@ metadata:
 
 A **router** skill to generate specific product specification document types. Identify user intent, select the matching spec type, and produce the document using its reference format. For ambiguous or multi-type requests, combine sections and note the merged types.
 
-## Product Specification Model
+---
 
-**A product specification is the development blueprint, not just a requirements list.**
+## Product Specification Model
 
 A strong product specification aligns the team on what is being built, why it matters, how the customer will use it, and how success will be measured. It should reduce ambiguity, feature creep, delays, and cross-functional disagreement by making responsibilities, scope, design, test plans, release work, and ongoing management explicit.
 
 When product intent is missing, ask for or infer it before writing technical detail. If the user needs product purpose, personas, market context, or success metrics more than delivery detail, route them to `write-prd` first or state the assumptions clearly.
 
-## Routing Table
+---
 
-**Choose the most specific spec reference for the requested document type.**
+## Routing Table
 
 | Request Type | Reference |
 | :------------------------------------------------- | :----------------------------- |
@@ -42,9 +42,9 @@ When product intent is missing, ask for or infer it before writing technical det
 | UI/UX spec, design handoff, component states | `references/design-ui.md` |
 | Release plan, rollout activities, training, documentation, support readiness | `references/technical.md` plus release sections |
 
-## Writing Rules (All Specs)
+---
 
-**Every spec should produce behavior that can be reviewed and tested.**
+## Writing Rules (All Specs)
 
 - **Be specific & testable**: Requirements must translate directly to test cases (e.g., "Token expires after 15m").
 - **Keep it simple**: Choose the smallest complete specification shape that resolves the user's decision or handoff need.
@@ -60,8 +60,14 @@ When product intent is missing, ask for or infer it before writing technical det
 - **Document Omissions**: Explicitly state what is out of scope.
 - **Mark Inferences**: Flag assumed details with `[assumed]`.
 
+---
+
 ## Product Spec Workflow
 
-**Research, define, specify, review, then distribute.**
-
 Before drafting, gather customer problems, service tickets, feature requests, complaints, analytics, existing PRDs, designs, and implementation constraints when available. Define the purpose in customer and business terms, then document functional and technical requirements from user stories and project scope. Include review feedback or open questions when information is incomplete. The final spec should be ready for cross-functional review and development handoff.
+
+---
+
+## Verification
+
+Confirm the selected reference matches the requested spec type, the document includes measurable acceptance or verification criteria, and assumptions are marked with `[assumed]`. Check that scope, non-goals, error paths, owners, and release or support readiness are explicit when relevant.

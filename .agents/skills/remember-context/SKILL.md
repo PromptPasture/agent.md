@@ -18,9 +18,9 @@ metadata:
 
 Write durable project memory only when it will help future work.
 
-## Workflow
+---
 
-**Filter for durable usefulness before writing.**
+## Workflow
 
 1. Identify the fact, decision, convention, or observation to preserve.
 2. Check whether it is durable, project-relevant, and safe to store.
@@ -32,8 +32,6 @@ Write durable project memory only when it will help future work.
 
 ## Output
 
-**Keep memory entries brief, factual, and easy to reuse.**
-
 - **Use dated notes for task observations**: prefer `.agents/memory/YYYY-MM-DD.md` for day-specific implementation facts.
 - **Use durable memory for stable facts**: use `.agents/memory/MEMORY.md` for ongoing project conventions or long-lived decisions when that file's structure supports it.
 - **Mark uncertainty**: record assumptions as assumptions, not facts.
@@ -44,8 +42,6 @@ Write durable project memory only when it will help future work.
 
 ## Boundaries
 
-**Preserve only project context that will help future work.**
-
 - **Auto-approve explicit memory**: when the user clearly asks to remember something, write the memory without asking for separate confirmation.
 - **Store durable value**: record project facts, decisions, conventions, recurring constraints, implementation observations, and useful handoff facts.
 - **Reject low-value memory**: do not store transient chatter, todo noise, sensitive information, unverifiable assumptions as fact, or details already captured better in durable docs.
@@ -54,8 +50,6 @@ Write durable project memory only when it will help future work.
 
 ## Error Paths
 
-**When the requested memory is unsafe or not durable, explain the constraint and offer a safer note.**
-
 - **Sensitive content**: refuse to store secrets and suggest storing the location or policy instead.
 - **Transient detail**: explain that it is not worth durable memory unless the user insists and it has future value.
 - **Unverifiable claim**: record as "user stated" or ask one clarifying question if writing it as fact would mislead future work.
@@ -63,8 +57,6 @@ Write durable project memory only when it will help future work.
 ---
 
 ## Verification
-
-**Confirm the memory is accurate, scoped, and non-duplicative.**
 
 - **Read before writing**: check relevant existing memory when practical.
 - **Keep provenance clear**: distinguish observed repository facts from user-provided decisions.

@@ -2,6 +2,8 @@
 
 Produce a **complete, professional README.md** that gives any reader everything they need to understand, install, and use the project.
 
+---
+
 ## Understand the audience
 
 | Signal | Audience | Tone |
@@ -12,11 +14,15 @@ Produce a **complete, professional README.md** that gives any reader everything 
 | Internal tool / repo | Team members | More casual, context-assumed |
 | Open source project | Community contributors | Welcoming, contribution-focused |
 
+---
+
 ## Information gathering
 
 Read the codebase or ask for: what does it do (1 sentence), primary language and framework, how to install/run, main use cases, contributing and license info.
 
 If code is available, read: `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod` — they contain name, description, version, dependencies.
+
+---
 
 ## Output format
 
@@ -46,8 +52,6 @@ If code is available, read: `package.json`, `pyproject.toml`, `Cargo.toml`, `go.
 | [Node.js / Python / Go / etc.] | [version]       |
 
 ## Installation
-
-**Package manager:**
 
 ```bash
 npm install [package-name]
@@ -120,6 +124,8 @@ docker pull [image]:[tag]
 [License name] — see [LICENSE](LICENSE) for details.
 ````
 
+---
+
 ## Adaptive rules
 
 - **Libraries**: Lead with a code example in the first screenful
@@ -127,6 +133,8 @@ docker pull [image]:[tag]
 - **Internal tools**: Omit badges, Contributing, License. Add "Who maintains this?" section
 - **Open source**: Add "Roadmap" or "Status" if early-stage. Add "Support" with community links
 - **Existing codebase**: Extract project name from `package.json`/`pyproject.toml`, check `/docs`, and improve rather than overwrite
+
+---
 
 ## Quality checklist
 

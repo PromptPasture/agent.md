@@ -2,9 +2,13 @@
 
 Produce an **on-call alert runbook** with symptoms, diagnosis steps, escalation paths, and resolution procedures.
 
+---
+
 ## What makes a great on-call runbook
 
 An on-call runbook is read at 3 AM by someone who just got paged. It must be fast to scan, immediately actionable, and complete enough that even someone unfamiliar with the service can mitigate the issue. Prioritize getting to diagnosis and mitigation quickly.
+
+---
 
 ## Information gathering
 
@@ -14,6 +18,8 @@ An on-call runbook is read at 3 AM by someone who just got paged. It must be fas
 - **Common causes**: Known root causes?
 - **Mitigation**: Known fixes, rollbacks, restarts?
 - **Escalation**: Who else needs to be involved?
+
+---
 
 ## Output format
 
@@ -54,8 +60,6 @@ related:
 ---
 
 ## 1. Assess the Situation (2 minutes)
-
-**Confirm the alert is real:**
 
 ```bash
 # Check current error rate

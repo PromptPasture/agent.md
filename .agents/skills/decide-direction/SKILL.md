@@ -18,9 +18,9 @@ metadata:
 
 Choose a direction by comparing viable options against explicit criteria.
 
-## Workflow
+---
 
-**Make the decision criteria visible before the recommendation.**
+## Workflow
 
 1. Identify the decision, options, and constraints.
 2. Define criteria, prioritizing user-provided criteria over inferred ones.
@@ -33,8 +33,6 @@ Choose a direction by comparing viable options against explicit criteria.
 
 ## Output
 
-**Give the user a clear recommendation they can accept, reject, or revise.**
-
 - **Lead with the recommendation**: state the choice when the evidence supports one.
 - **Show the basis**: include criteria and concise option comparison.
 - **Name tradeoffs**: explain what the recommendation gives up.
@@ -45,8 +43,6 @@ Choose a direction by comparing viable options against explicit criteria.
 
 ## Boundaries
 
-**Turn options into a defensible recommendation when the evidence supports one.**
-
 - **State criteria**: compare options against goals, constraints, risk, cost, speed, reversibility, maintenance, user impact, or user-provided criteria.
 - **Recommend when supported**: choose one option when evidence is sufficient, and say when it is not.
 - **Do not just classify**: grouping options is useful only as support for a decision.
@@ -55,8 +51,6 @@ Choose a direction by comparing viable options against explicit criteria.
 
 ## Error Paths
 
-**When criteria or evidence are missing, make the uncertainty part of the decision.**
-
 - **No criteria**: infer practical criteria and label them as assumptions.
 - **No options**: define plausible options before comparing them.
 - **Insufficient evidence**: provide a conditional recommendation and the smallest information needed to firm it up.
@@ -64,8 +58,6 @@ Choose a direction by comparing viable options against explicit criteria.
 ---
 
 ## Verification
-
-**Check that the recommendation follows from the comparison.**
 
 - **Criteria alignment**: the selected option should win on the criteria that matter most.
 - **No hidden values**: surface subjective preferences and uncertain assumptions.

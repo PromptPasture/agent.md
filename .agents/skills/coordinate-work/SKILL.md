@@ -18,9 +18,9 @@ metadata:
 
 Keep active work understandable across owners, dependencies, blockers, and handoffs.
 
-## Workflow
+---
 
-**Maintain a compact execution view that another person or agent can resume from.**
+## Workflow
 
 1. Identify the goal, active workstreams, stakeholders, and ownership.
 2. Capture status for each workstream: not started, in progress, blocked, review, done, or unknown.
@@ -33,8 +33,6 @@ Keep active work understandable across owners, dependencies, blockers, and hando
 
 ## Output
 
-**Make status, ownership, blockers, and next actions explicit.**
-
 - **Lead with current state**: summarize whether work is on track, blocked, or needs a decision.
 - **Use an execution table when useful**: include workstream, owner, status, blocker, dependency, and next action.
 - **Separate assumptions**: mark assumed owners, priorities, deadlines, or statuses.
@@ -45,8 +43,6 @@ Keep active work understandable across owners, dependencies, blockers, and hando
 
 ## Boundaries
 
-**Keep active execution understandable and handoff-ready.**
-
 - **Track execution**: maintain goals, owners, dependencies, current status, blockers, decisions, and next actions.
 - **Separate from planning**: planning sequences future work; coordination keeps active work moving and handoff-ready.
 - **Do not invent authority**: do not silently assign real people without user-provided ownership or clearly stated assumptions.
@@ -55,8 +51,6 @@ Keep active work understandable across owners, dependencies, blockers, and hando
 
 ## Error Paths
 
-**When ownership or status is unclear, expose the gap and keep work moving where possible.**
-
 - **Unknown owners**: use "unassigned" or "assumed owner" instead of inventing responsibility.
 - **Blocked work**: name the blocker, impact, and unblock action.
 - **Conflicting updates**: keep the latest known state and identify the conflict.
@@ -64,8 +58,6 @@ Keep active work understandable across owners, dependencies, blockers, and hando
 ---
 
 ## Verification
-
-**Check that another capable person could continue from the coordination view.**
 
 - **Every active stream has a next action**: done or blocked streams should say why.
 - **Dependencies are visible**: downstream work should show what it waits on.
