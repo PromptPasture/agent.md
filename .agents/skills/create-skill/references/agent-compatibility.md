@@ -45,7 +45,7 @@ Claude Code can use native trigger detection through the optimization scripts:
 
 ```bash
 python -m scripts.run_loop \
-  --eval-set <path-to-trigger-eval.json> \
+  --eval-set <path-to-trigger-eval.yaml> \
   --skill-path <path-to-skill> \
   --agent claude-code \
   --verbose
@@ -61,7 +61,7 @@ Use the generic command adapter unless the agent exposes better trigger telemetr
 
 ```bash
 python -m scripts.run_loop \
-  --eval-set <path-to-trigger-eval.json> \
+  --eval-set <path-to-trigger-eval.yaml> \
   --skill-path <path-to-skill> \
   --agent codex-cli \
   --verbose
@@ -71,7 +71,7 @@ For CLIs that need arguments or files instead of stdin, use `--agent-command`:
 
 ```bash
 python -m scripts.run_loop \
-  --eval-set <path-to-trigger-eval.json> \
+  --eval-set <path-to-trigger-eval.yaml> \
   --skill-path <path-to-skill> \
   --agent custom \
   --agent-command "agent run --input {prompt_file}" \

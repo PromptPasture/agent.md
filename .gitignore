@@ -497,4 +497,4 @@ $RECYCLE.BIN/
 
 # Evaluation output quality files
 .agents/**/evals/*
-!.agents/**/evals/evals.json
+!.agents/**/evals/evals.yaml

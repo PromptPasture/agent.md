@@ -38,7 +38,7 @@ Source documents:
 .agents/skills/<skill-name>/
 ├── SKILL.md
 └── evals/
-    └── evals.json
+    └── evals.yaml
 ```
 
 ---

@@ -8,7 +8,7 @@ tags:
   - authoring
 metadata:
   author: Anthropic
-  version: "1.8.0"
+  version: "1.9.0"
   source: github.com/anthropics/skills
   catalog: utility
   category: meta
@@ -31,7 +31,7 @@ Create new skills, review and improve existing skills, evaluate outputs, optimiz
    | Build eval cases, run iterations, benchmark outputs, or collect human feedback | `references/evaluation.md` |
    | Optimize a skill description for trigger accuracy | `references/description-optimization.md` |
    | Adapt the workflow for agents without subagents, Claude Code, generic CLIs, or Cowork | `references/agent-compatibility.md` |
-   | Validate eval, grading, benchmark, or feedback JSON structures | `references/schemas.md` |
+   | Validate eval YAML or grading, benchmark, and feedback JSON structures | `references/schemas.md` |
 
    If the request spans multiple phases, read the references in workflow order: authoring, review, evaluation, description optimization, then agent compatibility only when platform details matter.
 

@@ -18,7 +18,7 @@ from pathlib import Path
 from scripts.agent_runner import AGENT_COMMAND_PRESETS
 from scripts.generate_report import generate_html
 from scripts.improve_description import improve_description
-from scripts.run_eval import find_project_root, run_eval
+from scripts.run_eval import find_project_root, load_eval_set, run_eval
 from scripts.utils import parse_skill_md
 
 
@@ -249,7 +249,7 @@ def run_loop(
 
 def main():
     parser = argparse.ArgumentParser(description="Run eval + improve loop")
-    parser.add_argument("--eval-set", required=True, help="Path to eval set JSON file")
+    parser.add_argument("--eval-set", required=True, help="Path to eval set YAML file")
     parser.add_argument("--skill-path", required=True, help="Path to skill directory")
     parser.add_argument("--description", default=None, help="Override starting description")
     parser.add_argument("--num-workers", type=int, default=10, help="Number of parallel workers")
@@ -280,7 +280,7 @@ def main():
     parser.add_argument("--results-dir", default=None, help="Save all outputs (results.json, report.html, log.txt) to a timestamped subdirectory here")
     args = parser.parse_args()
 
-    eval_set = json.loads(Path(args.eval_set).read_text())
+    eval_set = load_eval_set(Path(args.eval_set))
     skill_path = Path(args.skill_path)
 
     if not (skill_path / "SKILL.md").exists():

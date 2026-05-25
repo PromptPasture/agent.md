@@ -185,7 +185,7 @@ Move long templates, large examples, fixture files, and generated review assets 
 
 ## Add Evals
 
-For router skills with `references/*.md`, create `evals/evals.json` before validation is considered complete.
+For router skills with `references/*.md`, create `evals/evals.yaml` before validation is considered complete.
 
 Each eval must include a `reference` field pointing to the routed reference. Every non-schema reference must have 8-10 evals. Near-miss prompts count toward the route they are intended to test.
 

@@ -142,7 +142,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 - `SKILL.md` exists and contains valid YAML frontmatter with `name` and `description`.
 - `description` states when to trigger the skill and what artifact it produces.
-- `evals/evals.json` exists for release-ready skills.
+- `evals/evals.yaml` exists for release-ready skills.
 - `references/` is used only for substantial reusable guidance loaded on demand.
 - `SKILL.md` stays under 500 lines.
 
@@ -242,7 +242,7 @@ The verb identifies the artifact or action family. The subject identifies the do
 ├── <skill-name>/
 │   ├── SKILL.md
 │   ├── evals/
-│   │   └── evals.json
+│   │   └── evals.yaml
 │   ├── references/
 │   │   └── <variant>.md
 │   ├── scripts/
@@ -439,7 +439,7 @@ Each skill should be built with `create-skill` using this sequence:
 1. Clarify trigger scope, expected output, routing needs, and eval expectations.
 2. Draft `SKILL.md` with frontmatter, concise workflow instructions, clear section headings, and scan anchors.
 3. Move reusable detail into `references/` only when needed.
-4. Add `evals/evals.json` with required focused or routed coverage.
+4. Add `evals/evals.yaml` with required focused or routed coverage.
 5. Run `quick_validate.py`.
 6. Run or review eval iterations when behavior needs evidence.
 7. Review outputs qualitatively and assertions quantitatively where objective checks apply.

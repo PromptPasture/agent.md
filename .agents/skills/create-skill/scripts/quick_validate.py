@@ -6,7 +6,6 @@ Quick validation script for skills - minimal version
 import sys
 import os
 import re
-import json
 import yaml
 from pathlib import Path
 
@@ -67,22 +66,36 @@ def validate_markdown_style(skill_path):
 
 def validate_eval_coverage(skill_path):
     """Validate eval coverage for focused and router skills."""
-    evals_path = skill_path / 'evals' / 'evals.json'
+    evals_path = skill_path / 'evals' / 'evals.yaml'
     references_dir = skill_path / 'references'
 
     if not evals_path.exists():
         if references_dir.exists() and any(references_dir.glob('*.md')):
-            return False, "Router skills with references must include evals/evals.json"
+            return False, "Router skills with references must include evals/evals.yaml"
         return True, None
 
     try:
-        data = json.loads(evals_path.read_text())
-    except json.JSONDecodeError as e:
-        return False, f"Invalid JSON in {evals_path}: {e}"
+        data = yaml.safe_load(evals_path.read_text())
+    except yaml.YAMLError as e:
+        return False, f"Invalid YAML in {evals_path}: {e}"
+    if not isinstance(data, dict):
+        return False, f"{evals_path}: expected a YAML mapping"
 
-    evals = data.get('evals')
-    if not isinstance(evals, list):
-        return False, f"{evals_path}: missing list field 'evals'"
+    suites = data.get('suites')
+    if not isinstance(suites, dict):
+        return False, f"{evals_path}: missing mapping field 'suites'"
+
+    evals = []
+    for suite_name, suite in suites.items():
+        if not isinstance(suite, dict):
+            return False, f"{evals_path}: suite '{suite_name}' must be an object"
+        cases = suite.get('cases')
+        if not isinstance(cases, dict):
+            return False, f"{evals_path}: suite '{suite_name}' missing mapping field 'cases'"
+        for case_id, item in cases.items():
+            if not isinstance(item, dict):
+                return False, f"{evals_path}: case '{suite_name}.{case_id}' must be an object"
+            evals.append((f"{suite_name}.{case_id}", item))
 
     if len(evals) < 2:
         return False, f"{evals_path}: expected at least 2 evals, found {len(evals)}"
@@ -102,15 +115,13 @@ def validate_eval_coverage(skill_path):
     missing_reference = []
     unknown_references = {}
 
-    for index, item in enumerate(evals, start=1):
-        if not isinstance(item, dict):
-            return False, f"{evals_path}: eval {index} must be an object"
+    for case_id, item in evals:
         reference = item.get('reference')
         if not reference:
-            missing_reference.append(str(item.get('id', index)))
+            missing_reference.append(case_id)
             continue
         if reference not in counts:
-            unknown_references[str(item.get('id', index))] = reference
+            unknown_references[case_id] = reference
             continue
         counts[reference] += 1
 
