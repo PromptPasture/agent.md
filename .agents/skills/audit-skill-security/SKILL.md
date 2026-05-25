@@ -8,7 +8,7 @@ tags:
   - skills
 metadata:
   author: UseAI-pro
-  version: "2.0.0"
+  version: "2.0.1"
   source: github.com/UseAI-pro/openclaw-skills-security
   catalog: utility
   category: security

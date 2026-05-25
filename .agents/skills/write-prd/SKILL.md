@@ -8,7 +8,7 @@ tags:
   - requirements
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.0"
+  version: "1.2.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: project-management

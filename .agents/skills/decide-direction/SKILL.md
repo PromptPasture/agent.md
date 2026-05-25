@@ -8,7 +8,7 @@ tags:
   - tradeoffs
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.1"
+  version: "1.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: project-management

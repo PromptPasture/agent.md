@@ -11,7 +11,7 @@ tags:
   - technical-writing
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: documentation

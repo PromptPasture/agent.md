@@ -8,7 +8,7 @@ tags:
   - reference
 metadata:
   author: Oleg Shulyakov
-  version: "2.1.1"
+  version: "2.1.2"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: education
