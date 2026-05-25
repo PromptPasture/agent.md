@@ -10,7 +10,7 @@ tags:
   - workflow
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: development
@@ -19,6 +19,8 @@ metadata:
 # manage-git
 
 A **router** skill for Git workflow conventions. First classify the request as either an output workflow or an action workflow, then load the relevant convention reference.
+
+---
 
 ## Workflow Types
 
@@ -44,6 +46,8 @@ For successful actions, run the Git command and do not add extra explanatory out
 
 For branch actions, create or switch to the branch using the selected branch convention. For commit actions, create the commit using the selected message convention.
 
+---
+
 ## Routing Table
 
 | Request Type | Workflow Type | Reference |
@@ -54,9 +58,17 @@ For branch actions, create or switch to the branch using the selected branch con
 | Commit message generation/improvement | Output | `references/commit-message.md` |
 | Commit staged changes | Action | `references/commit-message.md` |
 
+---
+
 ## Repository Safety
 
-- Inspect the current branch and worktree before action workflows.
-- Do not overwrite, reset, or discard user changes unless the user explicitly asks.
-- If a requested branch already exists, switch to it only if that clearly matches the request; otherwise report the conflict briefly.
-- For commits, use staged changes as the commit input. Do not stage unrelated files unless the user explicitly asks.
+- **Inspect first:** Check the current branch and worktree before action workflows.
+- **Preserve user work:** Do not overwrite, reset, or discard user changes unless the user explicitly asks.
+- **Handle branch conflicts:** If a requested branch already exists, switch to it only if that clearly matches the request; otherwise report the conflict briefly.
+- **Commit staged input:** Use staged changes as the commit input. Do not stage unrelated files unless the user explicitly asks.
+
+---
+
+## Verification
+
+For action workflows, report the Git command outcome and any blocker that prevented completion. For output workflows, ensure generated branch names and commit messages match the selected reference and repository evidence.

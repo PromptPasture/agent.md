@@ -2,9 +2,13 @@
 
 Produce a **general operational runbook** with clear steps, prerequisites, verification, and rollback procedures.
 
+---
+
 ## What makes a great runbook
 
 A runbook should be executable by someone unfamiliar with the system. Assume nothing — list prerequisites, provide exact commands, specify expected output, and tell the reader what to do when something doesn't look right. If a step can fail in an interesting way, the runbook should address it.
+
+---
 
 ## Information gathering
 
@@ -13,6 +17,8 @@ A runbook should be executable by someone unfamiliar with the system. Assume not
 - **Frequency**: One-time? Daily? Monthly?
 - **Risk level**: Read-only or does it make changes? Can it cause an outage?
 - **Systems involved**: What services, databases, cloud resources?
+
+---
 
 ## Output format
 

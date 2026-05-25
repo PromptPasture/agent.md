@@ -8,7 +8,7 @@ tags:
   - organization
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.1"
+  version: "1.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: data
@@ -18,9 +18,9 @@ metadata:
 
 Group material by explicit criteria while preserving edge cases.
 
-## Workflow
+---
 
-**State the grouping lens before assigning items.**
+## Workflow
 
 1. Identify the items to classify and any user-provided criteria.
 2. Define or infer the grouping criteria, marking inferred criteria as assumptions.
@@ -32,8 +32,6 @@ Group material by explicit criteria while preserving edge cases.
 
 ## Output
 
-**Make the taxonomy easy to inspect and revise.**
-
 - **Lead with criteria**: state the grouping rule before or alongside the groups.
 - **Use stable labels**: choose labels that describe the underlying reason items belong together.
 - **Preserve source text**: keep item names recognizable unless normalization is requested.
@@ -44,8 +42,6 @@ Group material by explicit criteria while preserving edge cases.
 
 ## Boundaries
 
-**Keep the primary output as labeled organization.**
-
 - **Support many criteria**: group by similarity, difference, category, priority, dependency, abstraction level, user need, risk, ownership, or another stated lens.
 - **Respect ambiguity**: keep multi-fit, unclear, or unclassified items visible instead of forcing false precision.
 - **Do not decide by default**: classification may inform a decision, but the primary output is labeled organization.
@@ -54,8 +50,6 @@ Group material by explicit criteria while preserving edge cases.
 
 ## Error Paths
 
-**When the items or criteria are unclear, classify what can be classified and isolate the rest.**
-
 - **No criteria provided**: infer a practical lens and state it as an assumption.
 - **Too little item detail**: group by observable wording and list what context would improve accuracy.
 - **Conflicting criteria**: choose the primary criterion first, then note secondary tags if useful.
@@ -63,8 +57,6 @@ Group material by explicit criteria while preserving edge cases.
 ---
 
 ## Verification
-
-**Check for useful categories, not tidy-looking fiction.**
 
 - **Every group has a reason**: remove or merge groups whose distinction does not matter.
 - **Every item is accounted for**: placed, multi-labeled, or explicitly unclassified.

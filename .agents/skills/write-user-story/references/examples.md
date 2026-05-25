@@ -2,9 +2,9 @@
 
 Use these examples to calibrate story granularity, acceptance criteria, and developer-task detail.
 
-## Password Reset
+---
 
-**Use this example to calibrate a small, independently valuable story.**
+## Password Reset
 
 **Input:** "Users should be able to reset their password via email."
 

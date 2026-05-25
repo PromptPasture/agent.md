@@ -1,8 +1,10 @@
 # MySQL / MariaDB Reference
 
-## Key types
+Use MySQL and MariaDB patterns for types, upserts, storage engines, JSON, search, plans, and stored routines.
 
-**Use dialect-native types and call out portability tradeoffs.**
+---
+
+## Key types
 
 - **Rule:** `BIGINT UNSIGNED AUTO_INCREMENT` — primary keys (or `CHAR(36)` for UUID)
 - **Rule:** `VARCHAR(n)` — always specify length (required by MySQL)
@@ -12,9 +14,9 @@
 - **Rule:** `TEXT` / `MEDIUMTEXT` / `LONGTEXT` — for large text (no indexes without prefix)
 - **Rule:** `TINYINT(1)` — booleans (MySQL has no native BOOLEAN, maps to TINYINT)
 
-## Upsert
+---
 
-**Use the dialect-native upsert form and state the required uniqueness constraint.**
+## Upsert
 
 ```sql
 INSERT INTO users (email, name, updated_at)
@@ -24,9 +26,9 @@ ON DUPLICATE KEY UPDATE
     updated_at = NOW();
 ```
 
-## Auto-increment and UUIDs
+---
 
-**Choose identifiers based on distribution, ordering, and write patterns.**
+## Auto-increment and UUIDs
 
 ```sql
 -- Integer PK (simpler, better performance)
@@ -42,16 +44,16 @@ CREATE TABLE users (
 ) ENGINE=InnoDB;
 ```
 
-## Storage engines
+---
 
-**Choose storage engines that preserve transactions and referential integrity.**
+## Storage engines
 
 - **Rule:** Always use `ENGINE=InnoDB` (transactions, foreign keys, row-level locking)
 - **Rule:** `ENGINE=MyISAM` is legacy — never use for new tables
 
-## Character set
+---
 
-**Use Unicode-safe defaults unless the repository already requires otherwise.**
+## Character set
 
 ```sql
 -- Database level
@@ -65,9 +67,9 @@ CREATE TABLE articles (
 
 `utf8mb4` is required for emoji and full Unicode support. `utf8` in MySQL is 3-byte only.
 
-## JSON columns
+---
 
-**Use JSON columns for flexible attributes while preserving queryable constraints where needed.**
+## JSON columns
 
 ```sql
 CREATE TABLE events (
@@ -82,9 +84,9 @@ CREATE TABLE events (
 SELECT * FROM events WHERE JSON_UNQUOTE(payload->>'$.userId') = ?;
 ```
 
-## Full-text search
+---
 
-**Use built-in full-text search syntax and indexes for search workloads.**
+## Full-text search
 
 ```sql
 -- Index (MyISAM supports this; InnoDB from 5.6+)
@@ -97,18 +99,18 @@ WHERE MATCH(title, body) AGAINST (? IN BOOLEAN MODE)
 ORDER BY score DESC;
 ```
 
-## EXPLAIN
+---
 
-**Use execution plans to confirm whether indexes and joins behave as expected.**
+## EXPLAIN
 
 ```sql
 EXPLAIN FORMAT=JSON
 SELECT * FROM orders WHERE user_id = ?;
 ```
 
-## Pagination — keyset preferred
+---
 
-**Use keyset pagination when offsets would scan too much data.**
+## Pagination — keyset preferred
 
 ```sql
 -- Offset (avoid on large tables)
@@ -121,9 +123,9 @@ ORDER BY created_at DESC
 LIMIT ?;
 ```
 
-## Common gotchas
+---
 
-**Call out dialect behavior that commonly changes query results or safety.**
+## Common gotchas
 
 - **Rule:** `GROUP BY` in MySQL 5.7+ with `ONLY_FULL_GROUP_BY` mode: all non-aggregate SELECT columns must be in GROUP BY
 - **Rule:** `ENUM` type: changes to ENUM values require ALTER TABLE (expensive on large tables); prefer VARCHAR + CHECK constraint or a lookup table

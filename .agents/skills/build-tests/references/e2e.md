@@ -2,9 +2,9 @@
 
 Use this reference for browser-driven workflows and user journeys.
 
-## Framework Selection
+---
 
-**Use the browser test framework the repository already trusts.**
+## Framework Selection
 
 Prefer the framework already present in the repository. Detect it from config files and dependencies:
 
@@ -16,9 +16,9 @@ Prefer the framework already present in the repository. Detect it from config fi
 
 If there is no existing framework and the user did not choose one, prefer Playwright for new web E2E code because it has first-class fixtures, tracing, retries, and multi-browser support.
 
-## Implementation Pattern
+---
 
-**Make browser tests stable, isolated, and readable.**
+## Implementation Pattern
 
 - **Location:** Put tests in the existing E2E directory, commonly `tests/e2e/`, `e2e/`, `cypress/e2e/`, or the repo's configured test directory.
 - **Page objects:** Use them only when a flow has repeated behavior or multiple tests share the same screen actions. Avoid page objects for one-off checks.
@@ -27,9 +27,9 @@ If there is no existing framework and the user did not choose one, prefer Playwr
 - **Test data:** Isolate data per run. Create data through public APIs, fixtures, factories, or seeded test helpers already present in the repo.
 - **Authentication:** Capture auth through existing storage-state/session helpers when available; otherwise log in through the UI only for one setup path, not every test.
 
-## Coverage Shape
+---
 
-**Keep suites compact and focused on user-visible risk.**
+## Coverage Shape
 
 Generate a compact suite with:
 
@@ -38,9 +38,9 @@ Generate a compact suite with:
 - **Persistence:** One persistence or reload check when the flow changes state.
 - **Accessibility:** Optional smoke check only if the project already uses an accessibility test helper.
 
-## Playwright Defaults
+---
 
-**Prefer role-based actions and assertions close to the behavior.**
+## Playwright Defaults
 
 ```ts
 import { expect, test } from '@playwright/test';
@@ -54,9 +54,9 @@ test('user completes the critical flow', async ({ page }) => {
 
 Use `test.step` for long workflows, `test.describe` for a single feature area, and fixtures for shared setup. Keep assertions close to actions.
 
-## Cypress Defaults
+---
 
-**Use deterministic Cypress flows and Testing Library commands when available.**
+## Cypress Defaults
 
 ```ts
 describe('critical flow', () => {
@@ -70,8 +70,8 @@ describe('critical flow', () => {
 
 Prefer Testing Library commands when installed. Use `cy.intercept` for deterministic network behavior only when the test is intentionally stubbing dependencies.
 
-## Selenium Defaults
+---
 
-**Keep Selenium lifecycle and selector patterns consistent with the project.**
+## Selenium Defaults
 
 Use explicit waits, page objects for repeated screens, and driver lifecycle hooks that match the existing framework. Keep selectors centralized when the suite already follows that pattern.

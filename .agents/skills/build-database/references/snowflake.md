@@ -2,9 +2,9 @@
 
 Use Snowflake SQL for warehouse transformations, semi-structured data, tasks, and analytical queries.
 
-## Key Patterns
+---
 
-**Write Snowflake SQL with semi-structured data and warehouse cost behavior in mind.**
+## Key Patterns
 
 - **Semi-structured data:** Use `VARIANT`, `OBJECT`, `ARRAY`, `:` path access, and `LATERAL FLATTEN` for nested values.
 - **Time travel:** Mention retention and recovery implications when changing or replacing tables.
@@ -13,9 +13,9 @@ Use Snowflake SQL for warehouse transformations, semi-structured data, tasks, an
 - **Identifiers:** Avoid quoted mixed-case identifiers unless the existing warehouse already uses them.
 - **Parameters:** Use bind variables or session variables according to the execution context.
 
-## Example
+---
 
-**Cast semi-structured values explicitly so downstream types are predictable.**
+## Example
 
 ```sql
 SELECT

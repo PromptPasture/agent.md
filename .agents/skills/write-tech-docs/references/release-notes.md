@@ -2,17 +2,21 @@
 
 Produce **user-facing release notes** that communicate new features, improvements, fixes, and upgrade guidance.
 
+---
+
 ## What makes great release notes
 
 User-facing release notes are marketing and communication, not just documentation. Write for someone who doesn't know what you changed — they know what they do with the product, not how you built it.
 
 **Key differences from developer changelog:**
 
-- No internal jargon (no PR numbers, commit hashes, class names)
-- Focus on benefit to user, not technical implementation
-- Tone matches the product (playful app vs. enterprise software)
-- Include visuals/screenshots where possible
-- Highlight top 3 features prominently
+- **No internal jargon:** omit PR numbers, commit hashes, class names, and internal implementation labels.
+- **User benefit:** explain what changed for the user, not how the change was implemented.
+- **Product tone:** match the product voice, from playful consumer app to formal enterprise software.
+- **Visual context:** include visuals or screenshots where possible.
+- **Top features:** highlight the three most important user-facing changes prominently.
+
+---
 
 ## Information gathering
 
@@ -21,6 +25,8 @@ User-facing release notes are marketing and communication, not just documentatio
 - **Product type**: Mobile app, SaaS, CLI, library, OS?
 - **Audience**: End users, developers, enterprise IT admins?
 - **Tone**: Professional, friendly, playful, neutral?
+
+---
 
 ## Output format
 
@@ -97,6 +103,8 @@ _[Optional: teaser of upcoming features]_
 _[Version: X.X.X | Released: Date | Platform: iOS/Android/Web/All]_
 ````
 
+---
+
 ## Tone guide
 
 | Product type | Tone | Opening style |
@@ -106,6 +114,8 @@ _[Version: X.X.X | Released: Date | Platform: iOS/Android/Web/All]_
 | Developer tool / CLI | Technical-friendly, concise | "v2.1.0 includes three new commands and performance improvements..." |
 | Enterprise software | Formal, precise | "Version 4.2 introduces the following capabilities..." |
 
+---
+
 ## Transforming technical changes
 
 | Technical description | User-facing version |
@@ -113,6 +123,8 @@ _[Version: X.X.X | Released: Date | Platform: iOS/Android/Web/All]_
 | "Reduced API latency by 40% via connection pooling" | "Pages load up to 40% faster" |
 | "Fixed NPE in OrderService when order contains no items" | "Fixed a crash that occurred when submitting an empty cart" |
 | "Added index to user_email column" | "Search is now 10× faster when looking up users by email" |
+
+---
 
 ## App Store format
 
@@ -125,6 +137,8 @@ What's New in Version [X.X]:
 
 Thank you for your feedback! Rate us ⭐⭐⭐⭐⭐ if you love the app.
 ```
+
+---
 
 ## Calibration
 

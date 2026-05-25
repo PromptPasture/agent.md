@@ -2,9 +2,9 @@
 
 Use this reference for load, stress, spike, soak, capacity, and latency-budget tests.
 
-## Tool Selection
+---
 
-**Use the existing performance tool, or default to the simplest CI-friendly fit.**
+## Tool Selection
 
 Prefer the existing tool. If no tool exists:
 
@@ -16,9 +16,9 @@ Prefer the existing tool. If no tool exists:
 
 Default to k6 for new HTTP performance scripts because it is scriptable, CI-friendly, and easy to review.
 
-## Implementation Pattern
+---
 
-**Model realistic traffic and validate that responses are actually correct.**
+## Implementation Pattern
 
 - **Objective:** Define smoke performance, load, stress, spike, soak, or regression budget first.
 - **Traffic model:** Use setup data, weighted scenarios, think time, and representative payloads.
@@ -27,9 +27,9 @@ Default to k6 for new HTTP performance scripts because it is scriptable, CI-frie
 - **Response validation:** Validate responses inside the script so performance failures are not masked by fast error pages.
 - **Destructive writes:** Avoid them against production-like systems unless the user explicitly requested that and cleanup is defined.
 
-## Scenario Defaults
+---
 
-**Include configurable targets, meaningful thresholds, and response checks.**
+## Scenario Defaults
 
 For k6, include:
 
@@ -39,9 +39,9 @@ For k6, include:
 - **Checks:** `check` calls for status and important response content.
 - **Run notes:** Short setup comments explaining how to run locally and in CI.
 
-## k6 Example
+---
 
-**Use a minimal script that can run locally and in CI.**
+## k6 Example
 
 ```js
 import http from 'k6/http';
@@ -77,14 +77,14 @@ export default function () {
 }
 ```
 
-## Locust Pattern
+---
 
-**Represent actor behavior with weighted tasks and configurable settings.**
+## Locust Pattern
 
 Use one `HttpUser` per actor type, tasks weighted by expected traffic, and environment variables for host and credentials. Keep setup and teardown idempotent.
 
-## JMeter Pattern
+---
 
-**Only generate JMeter artifacts when they match the repository's existing practice.**
+## JMeter Pattern
 
 When asked for JMeter, generate a `.jmx` plan or a clear XML snippet only if the project already stores JMeter files. Otherwise provide the test plan structure plus CLI invocation.

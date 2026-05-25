@@ -10,7 +10,7 @@ tags:
   - user-stories
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.0"
+  version: "1.2.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: project-management
@@ -20,9 +20,9 @@ metadata:
 
 Produce one or more **user stories** with acceptance criteria, then decompose each into **developer tasks** with file/module hints and effort estimates.
 
-## Why this structure matters
+---
 
-**Stories connect user value to verifiable delivery work.**
+## Workflow
 
 Stories capture user intent and define done. Tasks translate that intent into work a developer can pick up without a meeting. Linking them hierarchically prevents the classic gap where stories are approved but engineers still don't know what to build.
 
@@ -30,9 +30,9 @@ Follow the **3 C's** framework: **Card** (the written story), **Conversation** (
 
 Use **STAR** as a lightweight quality check when context is available: the situation explains the user's current problem, the task defines the goal, the action appears in the behavior or developer work, and the result is captured in the "so that" clause and acceptance criteria.
 
-## Information gathering
+---
 
-**Extract the story ingredients before estimating or decomposing work.**
+## Information gathering
 
 Extract from the user's input:
 
@@ -48,20 +48,18 @@ Ask for missing information only when the answer would materially change the sto
 - **Question budget:** Ask the smallest useful set of questions in one pass. Do not force a fixed number; ask more than one when several answers are genuinely needed, and proceed with marked assumptions when the missing details are low-risk.
 - **Sparse context:** If the user cannot provide more detail, write one exemplary story with clear assumptions and a note that more context would improve the task breakdown.
 
-## Output format
+---
 
-**Choose the story template that matches the delivery audience.**
+## Output
 
 - **Product or planning audience:** Read `references/output-format.md` for the default Jira/Linear/GitHub story format.
 - **AI implementation audience:** Read `references/ai-output-format.md` when the user asks for an AI-agent-ready story, autonomous implementation prompt, task specification, executable agent handoff, or code-agent work item.
 - **Ambiguous audience:** Use the delivery-audience answer from information gathering before choosing a template.
 - **Story metadata:** Put status, story type, phase, story ID, points, priority, owner, epic, design link, tags, and related docs in YAML frontmatter. Add optional fields only when they have real value.
 
+---
+
 ## Writing guidance
-
-**Make each story independently valuable, estimable, and testable.**
-
-**Stories:**
 
 - **Single value:** One user value per story — resist the urge to bundle two different user goals.
 - **Outcome first:** The "so that" is the most important part — it defines the WHY and prevents gold-plating.
@@ -91,9 +89,9 @@ Ask for missing information only when the answer would materially change the sto
 - **Uncertainty:** Be honest about uncertainty. If the task involves unknown third-party APIs, say so.
 - **Risk:** Flag high-risk tasks with ⚠️.
 
-## Splitting stories
+---
 
-**Split whenever one card contains more than one user goal.**
+## Splitting stories
 
 If the feature described maps to multiple user goals, split into separate stories. Common split patterns:
 
@@ -102,3 +100,9 @@ If the feature described maps to multiple user goals, split into separate storie
 - **Read + write operations** (can be developed in parallel)
 
 When examples would help calibrate story granularity, acceptance criteria, or developer-task detail, read `references/examples.md`.
+
+---
+
+## Verification
+
+Confirm each story has a persona, user value, acceptance criteria, and developer tasks sized for handoff. Check that assumptions are marked, points reflect uncertainty, and any story above 5 points is split or called out as needing decomposition.

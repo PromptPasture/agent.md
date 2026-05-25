@@ -1,8 +1,10 @@
 # Oracle Reference
 
-## Key types
+Use Oracle SQL and PL/SQL patterns for types, identity, procedures, DUAL, MERGE, pagination, plans, and partitioning.
 
-**Use dialect-native types and call out portability tradeoffs.**
+---
+
+## Key types
 
 - **Rule:** `NUMBER(p,s)` — exact numeric (both integers and decimals)
 - **Rule:** `VARCHAR2(n CHAR)` — variable-length string (prefer CHAR semantics over BYTE)
@@ -13,9 +15,9 @@
 - **Rule:** `BLOB` — binary data
 - **Rule:** `RAW(16)` — UUIDs (or use `VARCHAR2(36)` with string format)
 
-## Sequences and identity
+---
 
-**Use the dialect identity mechanism that fits insert and migration behavior.**
+## Sequences and identity
 
 ```sql
 -- Traditional sequence
@@ -34,9 +36,9 @@ CREATE TABLE users (
 );
 ```
 
-## PL/SQL procedures
+---
 
-**Keep procedural database code focused, parameterized, and testable.**
+## PL/SQL procedures
 
 ```sql
 CREATE OR REPLACE PROCEDURE create_user(
@@ -59,9 +61,9 @@ END create_user;
 /
 ```
 
-## Dual table
+---
 
-**Use Oracle DUAL only for expression queries that need it.**
+## Dual table
 
 Used for expressions without a real table:
 
@@ -71,9 +73,9 @@ SELECT SYS_GUID() FROM DUAL;
 SELECT UPPER('hello') FROM DUAL;
 ```
 
-## Upsert (MERGE)
+---
 
-**Use MERGE carefully and state match conditions explicitly.**
+## Upsert (MERGE)
 
 ```sql
 MERGE INTO users tgt
@@ -86,9 +88,9 @@ WHEN NOT MATCHED THEN
     VALUES (SYS_GUID(), src.email, src.name, SYSTIMESTAMP, SYSTIMESTAMP);
 ```
 
-## Pagination (12c+)
+---
 
-**Use modern row limiting syntax for Oracle 12c and newer.**
+## Pagination (12c+)
 
 ```sql
 -- Row limiting clause (Oracle 12c+)
@@ -105,9 +107,9 @@ SELECT * FROM (
 ) WHERE rn > :start_row;
 ```
 
-## CTEs
+---
 
-**Use CTEs for readable intermediate result sets.**
+## CTEs
 
 ```sql
 WITH active_users AS (
@@ -121,9 +123,9 @@ FROM active_users u
 LEFT JOIN order_stats o ON o.user_id = u.id;
 ```
 
-## Hints
+---
 
-**Use optimizer hints sparingly and explain why statistics or indexes are insufficient.**
+## Hints
 
 Use hints sparingly — prefer fixing statistics or indexes first:
 
@@ -134,9 +136,9 @@ FROM users u WHERE email = :email;
 SELECT /*+ PARALLEL(o, 4) */ * FROM orders o;
 ```
 
-## EXPLAIN PLAN
+---
 
-**Inspect Oracle execution plans before asserting performance improvements.**
+## EXPLAIN PLAN
 
 ```sql
 EXPLAIN PLAN FOR
@@ -145,9 +147,9 @@ SELECT * FROM orders WHERE user_id = :uid;
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 ```
 
-## Partitioning
+---
 
-**Partition only when pruning, maintenance, or lifecycle management benefits are clear.**
+## Partitioning
 
 ```sql
 CREATE TABLE orders (
@@ -160,9 +162,9 @@ INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))
 (PARTITION p_initial VALUES LESS THAN (DATE '2024-01-01'));
 ```
 
-## Common gotchas
+---
 
-**Call out dialect behavior that commonly changes query results or safety.**
+## Common gotchas
 
 - **Rule:** Empty string `''` equals NULL in Oracle — there is no distinction
 - **Rule:** `VARCHAR2` max is 32767 bytes in PL/SQL, 4000 bytes in SQL (use CLOB beyond that)

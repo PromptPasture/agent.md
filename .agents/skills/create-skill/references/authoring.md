@@ -57,7 +57,7 @@ Apply the house Markdown style while writing, not as a later cleanup pass:
 
 - **Section delimiters**: place a standalone `---` between `##` sections in `SKILL.md`. Keep the YAML frontmatter delimiters unchanged, and do not add an extra delimiter immediately after the frontmatter or before the `#` title.
 - **Intro purpose**: after the `#` title, write one short sentence that states what the skill does, then place `---` before the first `##` section.
-- **Scan anchors**: use bold labels inside steps or bullets when they make distinct actions, fields, or rules easier to scan. Do not require a bold principle sentence after each `##` heading.
+- **Scan anchors**: use bold labels inside steps or bullets when they make distinct actions, fields, or rules easier to scan.
 - **Template exceptions**: do not force bold labels into schemas, command examples, literal output templates, or checklist items where they would make the example less accurate.
 
 After editing, run `create-skill/scripts/quick_validate.py <target-skill-directory>` when this skill's scripts are available. Treat style failures as authoring bugs, not optional polish.
@@ -74,7 +74,7 @@ Use `references/*.md` for details that would bloat `SKILL.md`: variant workflows
 
 Each reference should start with a `#` title and one short purpose sentence. Use task-specific `##` sections instead of forcing the `SKILL.md` default body shape. Put standalone `---` delimiters between `##` sections in long references. Start with the most actionable section for that reference, not background or boundaries.
 
-Use bold scan anchors inside steps or bullets when they make distinct actions, fields, or rules easier to scan. Do not add bold principle sentences after `##` headings just for style compliance. Schema references, command examples, literal templates, and field lists may use their natural formatting instead.
+Use bold scan anchors inside steps or bullets when they make distinct actions, fields, or rules easier to scan. Schema references, command examples, literal templates, and field lists may use their natural formatting instead.
 
 Keep references loaded by clear conditions from `SKILL.md`. Do not create placeholder references, and do not use references as a dumping ground for detail that no workflow loads.
 
@@ -124,7 +124,7 @@ Avoid relying on one agent's tool names, slash commands, event stream, or UI unl
 
 Use imperative instructions. Explain why constraints matter instead of stacking brittle all-caps rules. Include a `### Example` subsection under the relevant `##` section only when it clarifies behavior, boundaries, or output shape. Write examples and eval prompts so reviewers can see the situation, task, expected action, and result criteria. Keep examples short and move large examples into references.
 
-Use bold scan anchors where they help another agent skim distinct actions, fields, or rules before reading details. Do not add bold principle sentences after `##` headings just for style compliance.
+Use bold scan anchors where they help another agent skim distinct actions, fields, or rules before reading details.
 
 Use standalone `---` delimiters between `##` sections so long skill files segment cleanly in model context.
 

@@ -1,4 +1,12 @@
+# Non-Functional Requirements Specification
+
+Use this template for quality attributes, SLAs, performance, reliability, security, and operability requirements.
+
 ---
+
+## Metadata Template
+
+```yaml
 status: "[DRAFT | IN_REVIEW | APPROVED]"
 documentType: SPEC
 phase: "[discovery | delivery | maintenance]"
@@ -10,22 +18,25 @@ tags:
   - "[non-functional-requirements]"
 related:
   - "[PRD.md or related doc]"
+```
+
 ---
 
+## Document Template
+
+```markdown
 # Non-Functional Requirements: [System / Feature Name]
 
 ## 1. Performance & Responsiveness
-
-**Define latency and responsiveness targets that can be measured.**
 
 | Requirement ID | Description | Target | Measure |
 | -------------- | -------------------- | ----------- | ----------------------------------------- |
 | NFR-PERF-01 | API Response Time | p95 < 200ms | Measured at API gateway under normal load |
 | NFR-PERF-02 | Page Load Time (TTI) | < 2.0s | Measured on 3G / Mobile |
 
-## 2. Scalability & Throughput
+---
 
-**Specify capacity, growth, and elasticity expectations.**
+## 2. Scalability & Throughput
 
 | Requirement ID | Description | Target | Measure |
 | -------------- | ------------------ | ----------- | -------------------------------- |
@@ -34,9 +45,9 @@ related:
 | NFR-SCAL-03 | Data Growth | 50 GB/month | Database storage growth |
 | NFR-SCAL-04 | Elasticity | < 5 min | Time to auto-scale new instances |
 
-## 3. Availability & Reliability
+---
 
-**Set uptime, recovery, and fault tolerance commitments.**
+## 3. Availability & Reliability
 
 | Requirement ID | Description | Target | Measure |
 | -------------- | ------------------- | --------- | ------------------------------- |
@@ -45,9 +56,9 @@ related:
 | NFR-AVAIL-03 | RTO (Recovery Time) | < 4 hours | Time to restore from backup |
 | NFR-AVAIL-04 | Fault Tolerance | Yes | Operational if one AZ fails |
 
-## 4. Security & Privacy
+---
 
-**Capture protection requirements for access, data, and privacy.**
+## 4. Security & Privacy
 
 | Requirement ID | Description | Target |
 | -------------- | --------------------- | --------------------------------------- |
@@ -56,9 +67,9 @@ related:
 | NFR-SEC-03 | Authentication | MFA required for all admin access |
 | NFR-SEC-04 | PII Handling | Email and phone masked in logs |
 
-## 5. Usability & Accessibility
+---
 
-**Define quality targets for user experience and supported environments.**
+## 5. Usability & Accessibility
 
 | Requirement ID | Description | Target |
 | -------------- | -------------- | --------------------------------------------- |
@@ -66,12 +77,13 @@ related:
 | NFR-UX-02 | Device Support | iOS 15+, Android 12+, latest 2 major browsers |
 | NFR-UX-03 | Localization | English, Spanish, French |
 
-## 6. Maintainability & Operability
+---
 
-**Set expectations for deployment, testing, and operations.**
+## 6. Maintainability & Operability
 
 | Requirement ID | Description | Target |
 | -------------- | ------------- | ---------------------------------------- |
 | NFR-OPS-01 | Observability | Metrics to Prometheus, logs to ELK |
 | NFR-OPS-02 | Deployability | Zero-downtime deployments via CI/CD |
 | NFR-OPS-03 | Test Coverage | > 80% line coverage for new backend code |
+```

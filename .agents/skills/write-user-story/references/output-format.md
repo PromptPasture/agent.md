@@ -2,9 +2,9 @@
 
 Use this reference when drafting user stories and developer tasks.
 
-## Template
+---
 
-**Use the exact structure below for planning-oriented user stories.**
+## Template
 
 Use this exact structure. Repeat for each story.
 

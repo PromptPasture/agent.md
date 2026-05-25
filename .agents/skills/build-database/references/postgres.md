@@ -1,8 +1,10 @@
 # PostgreSQL Reference
 
-## Key types
+Use PostgreSQL patterns for types, upserts, JSONB, search, pagination, plans, arrays, and constraints.
 
-**Use dialect-native types and call out portability tradeoffs.**
+---
+
+## Key types
 
 - **Rule:** `UUID` — primary/foreign keys (use `uuid_generate_v4()` or `gen_random_uuid()` in PG 13+)
 - **Rule:** `TEXT` — variable-length strings (no arbitrary VARCHAR limits)
@@ -12,9 +14,9 @@
 - **Rule:** `BOOLEAN` — true/false (not 0/1)
 - **Rule:** `BIGINT` — for counts and large IDs when UUID overhead matters
 
-## Upsert
+---
 
-**Use the dialect-native upsert form and state the required uniqueness constraint.**
+## Upsert
 
 ```sql
 INSERT INTO users (email, name)
@@ -26,9 +28,9 @@ DO UPDATE SET
 RETURNING *;
 ```
 
-## CTEs with modification
+---
 
-**Use writable CTEs only when they clarify transactional data flow.**
+## CTEs with modification
 
 ```sql
 WITH inserted AS (
@@ -42,9 +44,9 @@ JOIN inserted al ON true
 WHERE u.id = $1;
 ```
 
-## JSONB queries
+---
 
-**Use JSONB operators with indexes that match the access pattern.**
+## JSONB queries
 
 ```sql
 -- Index JSONB key
@@ -61,9 +63,9 @@ SET metadata = jsonb_set(metadata, '{preferences,theme}', '"dark"')
 WHERE id = $1;
 ```
 
-## Full-text search
+---
 
-**Use built-in full-text search syntax and indexes for search workloads.**
+## Full-text search
 
 ```sql
 -- Index
@@ -77,9 +79,9 @@ WHERE to_tsvector('english', title || ' ' || body) @@ query
 ORDER BY rank DESC;
 ```
 
-## Pagination
+---
 
-**Prefer keyset pagination for large or user-facing result sets.**
+## Pagination
 
 ```sql
 -- Offset (simple, degrades on large tables)
@@ -92,18 +94,18 @@ ORDER BY created_at DESC
 LIMIT $2;
 ```
 
-## EXPLAIN ANALYZE
+---
 
-**Validate performance claims with the dialect execution-plan tool.**
+## EXPLAIN ANALYZE
 
 ```sql
 EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)
 SELECT * FROM orders WHERE user_id = $1;
 ```
 
-## Window functions
+---
 
-**Use window functions for row-relative calculations without collapsing result grain.**
+## Window functions
 
 ```sql
 SELECT
@@ -115,9 +117,9 @@ SELECT
 FROM orders;
 ```
 
-## Array operations
+---
 
-**Use arrays for bounded multi-value attributes, not hidden relationships.**
+## Array operations
 
 ```sql
 -- Array column
@@ -127,9 +129,9 @@ SELECT * FROM tags WHERE 'postgresql' = ANY(names);
 SELECT * FROM tags WHERE names @> ARRAY['postgresql', 'sql'];
 ```
 
-## Constraint naming convention
+---
 
-**Name constraints consistently so errors and migrations stay readable.**
+## Constraint naming convention
 
 ```sql
 CONSTRAINT [table]_[col]_[type]

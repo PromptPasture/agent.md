@@ -2,11 +2,15 @@
 
 Produce valid AsyncAPI 2.6 YAML. Start directly with `asyncapi: "2.6.0"` unless the user asked for explanation.
 
+---
+
 ## Required Shape
 
 Include `info`, `servers`, `channels`, and `components`. Define reusable messages in `components.messages` and payload schemas in `components.schemas`.
 
 For each channel, specify whether the service `publish`es or `subscribe`s from the perspective of the API owner. If ownership is ambiguous, state the assumption once.
+
+---
 
 ## Event Defaults
 
@@ -28,15 +32,21 @@ EventEnvelope:
       type: object
 ```
 
+---
+
 ## Message Design
 
 Define one message per event type. Name messages with domain verbs, such as `OrderCreated`, `PaymentFailed`, or `InventoryReserved`.
 
 Payload schemas must include concrete domain fields, required arrays, enum values, and IDs for referenced entities. Include examples only for complex payloads.
 
+---
+
 ## Reliability Notes
 
 Add concise notes in channel or message descriptions for ordering key, idempotency key, retention, retry/dead-letter expectations, and compatibility rules when those affect consumers.
+
+---
 
 ## Quality Bar
 

@@ -46,6 +46,17 @@ def validate_markdown_style(skill_path):
                 line_number = index + 1
                 if index + 1 >= len(lines) or lines[index + 1] != "":
                     return False, f"{path}:{line_number}: expected blank line after heading"
+                if index + 2 < len(lines):
+                    candidate = lines[index + 2]
+                    if (
+                        candidate.startswith("**")
+                        and candidate.endswith("**")
+                        and candidate.count("**") == 2
+                    ):
+                        return False, (
+                            f"{path}:{line_number + 2}: remove redundant bold "
+                            "principle sentence after heading"
+                        )
 
         for line_number, line in iter_markdown_lines(path):
             if line.startswith("- ") and not line.startswith("- **") and not line.startswith("- [ ]"):

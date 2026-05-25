@@ -2,6 +2,8 @@
 
 Produce clear, consistent, and informative Git branch names that follow team best practices.
 
+---
+
 ## Branch Name Structure
 
 ```text
@@ -16,11 +18,11 @@ Produce clear, consistent, and informative Git branch names that follow team bes
 
 **Examples:**
 
-- `feature/PROJ-42-user-authentication`
-- `bugfix/PROJ-101-fix-login-redirect`
-- `hotfix/payment-null-pointer-crash`
-- `chore/upgrade-node-18`
-- `release/v2.4.0`
+- **Feature:** `feature/PROJ-42-user-authentication`
+- **Bugfix:** `bugfix/PROJ-101-fix-login-redirect`
+- **Hotfix:** `hotfix/payment-null-pointer-crash`
+- **Chore:** `chore/upgrade-node-18`
+- **Release:** `release/v2.4.0`
 
 ---
 
@@ -36,6 +38,8 @@ Produce clear, consistent, and informative Git branch names that follow team bes
 | `docs/` | Documentation-only changes |
 | `test/` | Adding or fixing tests with no production code change |
 | `experiment/` | Exploratory work, spikes, or proof-of-concepts |
+
+---
 
 ## Action Words
 

@@ -1,8 +1,10 @@
 # SQLite Reference
 
-## Key concepts
+Use SQLite patterns for type affinity, primary keys, JSON, FTS, limitations, WAL mode, upserts, and date storage.
 
-**Account for SQLite behavior before writing portable-looking SQL.**
+---
+
+## Key concepts
 
 SQLite has **type affinity** — not strict types. Declared types are suggestions, not enforcements (unless STRICT mode is used).
 
@@ -28,9 +30,9 @@ CREATE TABLE users (
 
 Use STRICT for new tables to get actual type enforcement.
 
-## Primary keys and ROWID
+---
 
-**Choose SQLite primary keys with ROWID behavior in mind.**
+## Primary keys and ROWID
 
 ```sql
 -- INTEGER PRIMARY KEY is an alias for ROWID (fast)
@@ -47,9 +49,9 @@ CREATE TABLE kv_store (
 ) WITHOUT ROWID;
 ```
 
-## UUID simulation
+---
 
-**Represent UUIDs explicitly because SQLite has no native UUID type.**
+## UUID simulation
 
 SQLite has no native UUID type. Use TEXT:
 
@@ -67,9 +69,9 @@ CREATE TABLE users (
 
 Or generate UUIDs in application code and insert as TEXT.
 
-## JSON (SQLite 3.38+)
+---
 
-**Use SQLite JSON functions only when the runtime version supports them.**
+## JSON (SQLite 3.38+)
 
 ```sql
 -- JSON functions
@@ -80,9 +82,9 @@ SELECT json_object('id', id, 'name', name) AS json FROM users;
 SELECT * FROM events WHERE json_extract(payload, '$.type') = 'login';
 ```
 
-## Full-text search (FTS5)
+---
 
-**Use this section to apply the relevant database rule precisely.**
+## Full-text search (FTS5)
 
 ```sql
 -- Create virtual FTS table
@@ -100,18 +102,18 @@ WHERE articles_fts MATCH 'sqlite full-text'
 ORDER BY rank;
 ```
 
-## Limitations to be aware of
+---
 
-**Surface SQLite limits before proposing migration or constraint patterns.**
+## Limitations to be aware of
 
 - **No ALTER TABLE ADD COLUMN with constraints**: only bare ADD COLUMN is supported (no NOT NULL with no default, no UNIQUE)
 - **No DROP COLUMN** (before 3.35): must recreate the table
 - **No RIGHT JOIN or FULL OUTER JOIN** (before 3.39)
 - **Single writer**: SQLite uses file-level locking. WAL mode helps for concurrent readers
 
-## WAL mode (recommended for most apps)
+---
 
-**Use WAL mode when concurrency and durability tradeoffs fit the app.**
+## WAL mode (recommended for most apps)
 
 ```sql
 PRAGMA journal_mode=WAL;
@@ -122,9 +124,9 @@ PRAGMA cache_size=-64000;   -- 64MB page cache
 
 Always enable `foreign_keys=ON` at connection open — SQLite ignores FK constraints by default.
 
-## Upsert
+---
 
-**Use the dialect-native upsert form and state the required uniqueness constraint.**
+## Upsert
 
 ```sql
 INSERT INTO users (email, name, updated_at)
@@ -135,9 +137,9 @@ DO UPDATE SET
     updated_at = excluded.updated_at;
 ```
 
-## Date/time
+---
 
-**Store dates consistently because SQLite has no dedicated datetime type.**
+## Date/time
 
 SQLite stores dates as TEXT (ISO 8601), REAL (Julian day), or INTEGER (Unix timestamp).
 

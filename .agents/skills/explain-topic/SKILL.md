@@ -8,7 +8,7 @@ tags:
   - reference
 metadata:
   author: Oleg Shulyakov
-  version: "2.1.1"
+  version: "2.1.2"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: education
@@ -18,9 +18,9 @@ metadata:
 
 Explain knowledge questions clearly, accurately, and at the right depth. Use simple language first, then add precision only where it helps the user understand.
 
-## Source Handling
+---
 
-**Use the right source of truth for the topic before simplifying it.**
+## Source Handling
 
 - **General knowledge**: answer from stable knowledge when the fact is durable, such as basic physics, biology, math, vocabulary, or common engineering concepts.
 - **Current or high-stakes facts**: verify with reliable sources when the answer may have changed, needs exact attribution, or involves medical, legal, financial, safety, policy, product, or live factual claims.
@@ -30,9 +30,9 @@ Explain knowledge questions clearly, accurately, and at the right depth. Use sim
 - **Prefer call paths**: use call sites, route registries, public exports, tests, and runtime wiring to distinguish live behavior from unused helpers.
 - **Mark uncertainty**: say when you are unsure, when sources disagree, when a claim depends on context, or when repository evidence is incomplete.
 
-## Explanation Workflow
+---
 
-**Choose the smallest trace that answers the question clearly.**
+## Explanation Workflow
 
 1. Identify what the user wants explained: definition, cause, mechanism, comparison, design, code behavior, consequence, or tradeoff.
 2. Start with the shortest useful answer in plain language.
@@ -41,9 +41,9 @@ Explain knowledge questions clearly, accurately, and at the right depth. Use sim
 5. For code, follow entry points, call paths, data shapes, side effects, tests, and configuration only as far as needed.
 6. Stop when the user can explain the idea back accurately without needing a textbook chapter. Civilization may continue.
 
-## Critique Mode
+---
 
-**Explain the current idea or design before judging it.**
+## Critique Mode
 
 - **Ground every finding**: tie each risk to evidence, mechanisms, constraints, code paths, tests, configuration, or missing information.
 - **Use local standards first**: compare the design to patterns already used in the repository before applying generic architecture preferences.
@@ -51,9 +51,9 @@ Explain knowledge questions clearly, accurately, and at the right depth. Use sim
 - **Avoid drive-by advice**: discard critiques that are stylistic, unsupported, or unrelated to the user's question.
 - **Include tradeoffs**: note where the current design is reasonable despite drawbacks.
 
-## Explanation Rules
+---
 
-**Make the topic understandable in plain language while preserving the facts that matter.**
+## Explanation Rules
 
 - **Lead with the answer**: open with one short paragraph that directly answers the question.
 - **Use the right vocabulary**: define technical terms before relying on them. For code, keep repository names intact so the user can find the code afterward.
@@ -63,9 +63,9 @@ Explain knowledge questions clearly, accurately, and at the right depth. Use sim
 - **Stay in explanation mode**: do not prescribe changes unless the user asked for critique, advice, or a serious risk is worth naming.
 - **Respect scope**: answer the user's question, not every file opened along the way.
 
-## Boundaries
+---
 
-**Explain the requested topic without drifting into implementation, planning, or review.**
+## Boundaries
 
 - **Cover the topic**: handle general knowledge, concepts, systems, and code behavior at the depth the user needs.
 - **Include code when asked**: explain how code works, why software is designed a certain way, how modules interact, what an API does, how data moves, or how an implementation compares to a pattern.
@@ -73,9 +73,9 @@ Explain knowledge questions clearly, accurately, and at the right depth. Use sim
 - **Do not implement by default**: if the user asks to build, refactor, debug, or review code, route to the appropriate workflow unless they first ask for an explanation.
 - **Critique only on request**: switch to Critique when the user asks for risks, design feedback, architecture review, "what is wrong with X?", or whether an approach is good.
 
-## Output Format
+---
 
-**Choose the lightest structure that still makes the path easy to follow.**
+## Output
 
 - **Short answers**: use concise prose with inline file references.
 - **Walkthroughs**: use the template below when the behavior spans multiple files, runtime boundaries, or side paths.
@@ -107,9 +107,9 @@ Tradeoffs:
 [Where the current design is reasonable despite drawbacks.]
 ```
 
-## Verification
+---
 
-**Leave the user with a trail they can verify.**
+## Verification
 
 - **Cite when needed**: provide sources for browsed, unstable, disputed, high-stakes, or exact factual claims.
 - **List inspected evidence**: for non-trivial code answers, end with the main files, tests, docs, commands, or runtime checks used.

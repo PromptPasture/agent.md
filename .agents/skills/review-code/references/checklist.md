@@ -9,53 +9,53 @@ Load a focused reference when the diff needs deeper review:
 - **Performance**: `references/performance.md` for hot paths, data access, rendering, payload size, concurrency, or resource-use changes.
 - **Test gaps**: `references/test-gaps.md` for missing, weak, flaky, or misleading tests.
 
-## Correctness
+---
 
-**Check whether the change preserves intended behavior under normal and edge-case inputs.**
+## Correctness
 
 - **Inputs**: validate input handling, nullability, empty states, boundary values, parsing, serialization, and time zone behavior.
 - **Control flow**: check for missed branches, inverted conditions, early returns, retries, and fallback paths.
 - **Contracts**: confirm changed return types, error shapes, status codes, events, and public contracts match callers and documented behavior.
 - **Assumptions**: look for stale assumptions in callers, mocks, fixtures, generated types, and snapshots.
 
-## Regression And Compatibility
+---
 
-**Check whether the change breaks existing users, integrations, data, or deployment flows.**
+## Regression And Compatibility
 
 Use `references/regressions.md` for deeper guidance.
 
-## Tests
+---
 
-**Check whether tests prove the changed behavior and can fail for the right reason.**
+## Tests
 
 Use `references/test-gaps.md` for deeper guidance.
 
-## Security
+---
 
-**Check security-sensitive changes for concrete exposure.**
+## Security
 
 Use `references/security.md` for broader security review concerns when the user asks for OWASP-style review, threat modeling, secrets exposure, abuse resistance, or privacy risk in the reviewed code.
 
 Use `references/security.md` for deeper guidance.
 
-## Performance
+---
 
-**Check whether the change creates avoidable work or changes scaling behavior.**
+## Performance
 
 Use `references/performance.md` for deeper guidance.
 
-## Maintainability
+---
 
-**Check maintainability only where it affects change safety.**
+## Maintainability
 
 - **Duplication**: flag duplicated logic when it can drift and create inconsistent behavior.
 - **Contracts**: check whether naming, ownership boundaries, or abstractions make the changed contract hard to use correctly.
 - **Local fixes**: prefer local fixes that match repository patterns over broad refactors.
 - **Style**: do not elevate style preferences to review findings without a concrete defect or future-risk path.
 
-## Operations And Observability
+---
 
-**Check whether production behavior remains diagnosable and recoverable.**
+## Operations And Observability
 
 - **Diagnostics**: verify logs, metrics, traces, alerts, audit records, and error handling for changed critical paths.
 - **Resilience**: check idempotency, retries, timeout behavior, cancellation, queue semantics, and partial-failure handling.

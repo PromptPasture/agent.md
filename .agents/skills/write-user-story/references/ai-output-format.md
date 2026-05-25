@@ -2,9 +2,9 @@
 
 Use this reference when drafting user stories and developer tasks for an AI coding agent.
 
-## Template
+---
 
-**Use the exact structure below for AI-agent-ready implementation stories.**
+## Template
 
 Use this exact structure. Repeat for each story.
 

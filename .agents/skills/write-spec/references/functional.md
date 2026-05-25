@@ -1,4 +1,12 @@
+# Functional Requirements Specification
+
+Use this template for functional requirements, use cases, workflows, and business rules.
+
 ---
+
+## Metadata Template
+
+```yaml
 status: "[DRAFT | IN_REVIEW | APPROVED]"
 documentType: SPEC
 phase: "[discovery | delivery | maintenance]"
@@ -10,47 +18,50 @@ tags:
   - "[functional-requirements]"
 related:
   - "[PRD.md or related doc]"
+```
+
 ---
 
+## Document Template
+
+```markdown
 # Functional Requirements Specification: [System / Module Name]
 
 ## 1. Overview
 
-**Summarize the system purpose and business context.**
-
 [2–4 sentences: what system, its purpose, business context.]
 
-## 2. Purpose & Success Measures
+---
 
-**Connect the functional scope to measurable outcomes.**
+## 2. Purpose & Success Measures
 
 | Purpose / Outcome | Success Measure | Target |
 | ----------------- | --------------- | ------ |
 
-## 3. Roles & Responsibilities
+---
 
-**Name who owns decisions and delivery responsibilities.**
+## 3. Roles & Responsibilities
 
 | Role / Team | Responsibility | Decision Area |
 | ----------- | -------------- | ------------- |
 
-## 4. Actors
+---
 
-**Identify every human, system, or scheduled actor in scope.**
+## 4. Actors
 
 | Actor | Type | Description |
 | ------ | ---------------------------- | --------------------------- |
 | [Name] | [Human / System / Scheduled] | [Role and key interactions] |
 
-## 5. System Boundary
+---
 
-**Separate the specified system from external dependencies.**
+## 5. System Boundary
 
 [What is inside this spec vs. what interacts from outside. Bulleted list of external systems suffices.]
 
-## 6. Scope
+---
 
-**State included and excluded behavior explicitly.**
+## 6. Scope
 
 ### In Scope
 
@@ -60,16 +71,16 @@ related:
 
 - **Excluded:** [Excluded feature or future consideration]
 
-## 7. Data Entities (Conceptual)
+---
 
-**List the business entities needed to understand behavior.**
+## 7. Data Entities (Conceptual)
 
 | Entity | Key Attributes | Notes |
 | ------ | -------------- | ----- |
 
-## 8. Functional Requirements
+---
 
-**Describe testable behavior by capability area or workflow.**
+## 8. Functional Requirements
 
 ### 8.1 [Capability Area / Actor Workflow]
 
@@ -82,37 +93,37 @@ related:
 - **Business Rules:** [Reference by BR-N]
 - **Error Conditions:** [What happens when preconditions aren't met or processing fails]
 
-## 9. Business Rules
+---
 
-**Capture constraints that govern functional behavior.**
+## 9. Business Rules
 
 | Rule ID | Rule | Applies To |
 | ------- | ---- | ---------- |
 
-## 10. Data Validation Rules
+---
 
-**Define field-level rules and user-facing error messages.**
+## 10. Data Validation Rules
 
 | Field | Validation | Error Message |
 | ----- | ---------- | ------------- |
 
-## 11. State Transitions (if applicable)
+---
 
-**Document valid lifecycle movement and guards.**
+## 11. State Transitions (if applicable)
 
 | From State | Event | To State | Guards |
 | ---------- | ----- | -------- | ------ |
 
-## 12. Test Plan
+---
 
-**Map required behavior to verification scenarios.**
+## 12. Test Plan
 
 | Scenario | Expected Result | Test Level |
 | -------- | --------------- | ---------- |
 
-## 13. Release & Support Readiness
+---
 
-**List launch activities needed for operational handoff.**
+## 13. Release & Support Readiness
 
 | Activity | Owner | Notes |
 | -------- | ----- | ----- |
@@ -121,29 +132,30 @@ related:
 | Rollout / communication | | |
 | Feedback collection | | |
 
-## 14. Non-Functional Requirements (brief)
+---
 
-**Call out the most important quality constraints.**
+## 14. Non-Functional Requirements (brief)
 
 [Most critical NFRs only. For a full NFR spec, use the NFR spec type.]
 
-## 15. Assumptions & Constraints
+---
 
-**Separate inferred details from known constraints.**
+## 15. Assumptions & Constraints
 
 | # | Type | Detail |
 | --- | ---------- | --------- |
 | A-1 | Assumption | [assumed] |
 
-## 16. Open Issues
+---
 
-**Track unresolved decisions and questions.**
+## 16. Open Issues
 
 - [ ] **Open question:** [Question or decision needed]
 
-## Appendix: Glossary
+---
 
-**Define terms that reviewers must interpret consistently.**
+## Appendix: Glossary
 
 | Term | Definition |
 | ---- | ---------- |
+```

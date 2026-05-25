@@ -7,7 +7,7 @@ tags:
   - testing
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: testing
@@ -17,9 +17,9 @@ metadata:
 
 Generate production-ready test code. Classify the request, read the matching reference, inspect the repository, then implement runnable tests or provide complete files when direct edits are not safe.
 
-## Variant Detection
+---
 
-**Route by explicit intent first, then repo evidence, then the system surface under test.**
+## Variant Detection
 
 - **User phrases:** Treat "E2E", "browser", "Playwright", "Cypress", "API", "contract", "integration", "load", "performance", "k6", "Locust", "latency", and "throughput" as strong routing signals.
 - **Repository signals:** Check configs, dependencies, test folders, package scripts, CI jobs, and framework imports before choosing patterns. Common signals include `playwright.config.*`, `cypress.config.*`, `supertest`, `newman`, `pytest`, `k6`, `locust`, and `jmeter`.
@@ -27,9 +27,9 @@ Generate production-ready test code. Classify the request, read the matching ref
 - **Security boundary:** Do not use this skill for security, abuse-resistance, jailbreak, privacy, or adversarial audit work unless the user is asking only for ordinary regression tests around already-defined behavior.
 - **Ambiguity:** If two variants are plausible and the wrong one would change the files or framework, ask one short question naming the likely choices.
 
-## Routing Table
+---
 
-**Read exactly one reference unless the user explicitly asks for a mixed suite.**
+## Routing Table
 
 | Request | Reference |
 | --- | --- |
@@ -37,9 +37,9 @@ Generate production-ready test code. Classify the request, read the matching ref
 | HTTP endpoints, controllers, service integration tests, OpenAPI examples, Postman/Newman collections, Supertest suites | `references/api.md` |
 | Load, stress, soak, spike, capacity, p95/p99 latency, throughput, k6, Locust, JMeter | `references/perf.md` |
 
-## Repository Workflow
+---
 
-**Fit the suite into the project instead of inventing a parallel test universe.**
+## Repository Workflow
 
 - **Inspect first:** Identify the runner, language, fixture style, factories, auth helpers, test data setup, naming conventions, and CI commands before editing.
 - **Reuse local patterns:** Prefer existing helpers, clients, fixtures, page objects, factories, config loaders, and environment handling. Add new helpers only when they remove repeated setup in the tests being added.
@@ -48,16 +48,16 @@ Generate production-ready test code. Classify the request, read the matching ref
 - **Design for determinism:** Prefer stable selectors, public API contracts, deterministic fixtures, isolated data, explicit assertions, and existing test doubles. Avoid sleeps, hidden network dependencies, shared mutable state, and order-dependent tests.
 - **Protect secrets:** Keep credentials, tokens, base URLs, and environment-specific values behind existing config helpers or environment variables.
 
-## Working Rules
+---
 
-**Use the bundled helpers for skill maintenance.**
+## Working Rules
 
 - **Skill validation:** Run `scripts/validate_evals.py` after editing this skill's eval cases, `scripts/run_eval.py` for trigger/routing checks, `scripts/run_loop.py` for eval/improvement loops, and `scripts/aggregate_benchmark.py` to summarize iterations.
 - **Verification:** Run the narrowest relevant test command when feasible. If verification cannot run, state the blocker and provide the exact command the user should run.
 
-## Output Format
+---
 
-**End with the information needed to review and rerun the work.**
+## Output
 
 When editing a repository, finish with changed files, the test command used, and verification status.
 
@@ -76,3 +76,12 @@ Run:
 Notes:
 - ...
 ```
+
+---
+
+## Verification
+
+- [ ] Exactly one test reference was selected unless the user explicitly requested a mixed suite
+- [ ] Tests reuse existing runner, fixtures, helpers, auth setup, naming, and CI conventions
+- [ ] The suite covers high-value happy path and meaningful failure, edge, regression, or performance behavior
+- [ ] The narrowest relevant test command was run or the blocker and exact command were reported

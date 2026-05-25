@@ -8,7 +8,7 @@ tags:
   - engineering
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-team-roles
   category: development
@@ -18,9 +18,9 @@ metadata:
 
 Implement backend code for APIs, services, workers, persistence, middleware, validation, authorization, configuration, observability, and behavior tests. Use this as a router: identify the backend language from the request and repository, read exactly one language reference, and read at most one framework reference when the framework signal is explicit or unambiguous.
 
-## Variant Detection
+---
 
-**Route from concrete evidence before writing code.**
+## Variant Detection
 
 - **User intent:** Prefer explicit language, framework, runtime, package manager, file path, extension, or named backend surface from the prompt.
 - **Repository evidence:** Inspect dependency manifests, source layout, imports, test folders, and CI jobs before choosing a variant. Common signals include `pyproject.toml`, `requirements.txt`, `package.json`, `go.mod`, `pom.xml`, `build.gradle`, `Gemfile`, `Cargo.toml`, `.csproj`, `composer.json`, and `mix.exs`.
@@ -28,9 +28,9 @@ Implement backend code for APIs, services, workers, persistence, middleware, val
 - **Adjacent skills:** Use `design-api` for contract-first API design unless the user asks to implement an existing contract. Use specialized auth, GraphQL, real-time, SQL, or test skills when those are the primary artifact rather than backend implementation.
 - **Ambiguity:** If multiple backend stacks remain plausible after inspection, ask one short question naming the likely choices.
 
-## Language Routing Table
+---
 
-**Read exactly one language reference for the selected backend stack.**
+## Language Routing Table
 
 | Signal | Reference |
 | --- | --- |
@@ -55,9 +55,9 @@ Implement backend code for APIs, services, workers, persistence, middleware, val
 | Ada services, GNAT, Alire, SPARK, AWS Ada Web Server, `.adb`, `.ads` | `references/ada.md` |
 | MATLAB production server code, batch workers, toolboxes, `.m`, `.mlx`, `startup.m` | `references/matlab.md` |
 
-## Framework References
+---
 
-**Add one framework reference only when it materially narrows implementation rules.**
+## Framework References
 
 After reading the language reference, read at most one framework reference when the signal is explicit from the prompt or unambiguous from dependencies, imports, and file layout. Keep framework files flat in `references/`.
 
@@ -89,9 +89,9 @@ After reading the language reference, read at most one framework reference when 
 | ASP.NET Core, Minimal APIs, controllers | `references/csharp-aspnet-core.md` |
 | Phoenix | `references/elixir-phoenix.md` |
 
-## Working Rules
+---
 
-**Make the smallest complete backend change that fits the existing system.**
+## Working Rules
 
 - **Inspect first:** Read the nearby route/controller, service, persistence, validation, error handling, dependency injection, logging, migration, factory, fixture, and test conventions before editing.
 - **Follow the local shape:** Put code where the repository already puts similar behavior. Prefer existing helpers, envelopes, domain errors, configuration loaders, database clients, queue abstractions, and test utilities over new patterns.
@@ -104,9 +104,9 @@ After reading the language reference, read at most one framework reference when 
 - **Test behavior:** Add or update focused tests for the requested behavior, including success, validation failure, authorization failure when relevant, and persistence or transaction edge cases for write flows.
 - **Verify locally:** Run the narrowest relevant formatter, linter, typecheck, migration check, and tests available. If a command cannot run, report the failure reason and the exact command.
 
-## Implementation Flow
+---
 
-**Move from evidence to code to verification without inventing parallel architecture.**
+## Implementation Flow
 
 1. Identify the language and optional framework, then read the selected reference files.
 2. Inspect the closest existing implementation and tests for the same kind of backend surface.
@@ -115,9 +115,9 @@ After reading the language reference, read at most one framework reference when 
 5. Add or update tests that prove the behavior and likely failure paths.
 6. Run focused verification commands and fix regressions within the requested scope.
 
-## Output Format
+---
 
-**Report what changed and how it was checked.**
+## Output
 
 When editing a repository, finish with changed files, commands run, and verification status. Mention unresolved risks only when they affect handoff.
 
@@ -136,3 +136,12 @@ Run:
 Notes:
 - ...
 ```
+
+---
+
+## Verification
+
+- [ ] Exactly one language reference was selected from concrete user or repository evidence
+- [ ] At most one framework reference was loaded, and only for an explicit or unambiguous framework signal
+- [ ] The implementation follows nearby backend conventions and preserves public contracts unless requested otherwise
+- [ ] Focused backend tests and relevant formatter, linter, typecheck, migration, or test commands were run or the blocker was reported
