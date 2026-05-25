@@ -14,20 +14,20 @@ Source documents:
 - **Persona:** As a skill library maintainer,
 - **Action:** I want the missing general-purpose agent skills authored as standalone installable skill folders,
 - **Outcome:** so that users can invoke consistent collaboration modes without hidden runtime dependencies.
-- **Epic Context:** Implements the approved General Agent Skills PRD/SPEC by creating `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`. Existing `explain-topic` is already complete and must not be rewritten unless validation reveals a spec violation.
+- **Epic Context:** Implements the approved General Agent Skills PRD/SPEC by creating `ask`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`. Existing `explain` is already complete and must not be rewritten unless validation reveals a spec violation.
 
 ---
 
 ## 🔍 2. Strict Constraints & Scope Boundaries
 
 - **In-Scope:**
-  - Create `.agents/skills/<skill-name>/SKILL.md` for `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`.
+  - Create `.agents/skills/<skill-name>/SKILL.md` for `ask`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`.
   - Use initial skill version `1.0.0`.
   - Include frontmatter fields required by local skill conventions.
   - Define each skill's purpose, trigger cases, non-trigger cases, workflow, output expectations, error paths, and verification guidance where relevant.
   - Keep every skill independently installable and runtime-standalone.
 - **Out-of-Scope (Do NOT implement):**
-  - Do not modify `explain-topic` unless a direct mismatch with the approved SPEC is found and documented.
+  - Do not modify `explain` unless a direct mismatch with the approved SPEC is found and documented.
   - Do not add live Jira, Linear, Confluence, GitHub Issues, web browsing, web search, or external memory integrations.
   - Do not create placeholder `references/`, `scripts/`, or `assets/` folders.
   - Do not make one skill delegate to another skill at runtime.
@@ -74,19 +74,19 @@ Scenario: Avoid placeholder support folders
 *Note to Agent: You are restricted to modifying or analyzing the following components.*
 
 - **Primary Target Files:**
-  1. `.agents/skills/ask-questions/SKILL.md` -> New question-generation skill.
-  2. `.agents/skills/reason-problem/SKILL.md` -> New ambiguous-problem reasoning skill.
-  3. `.agents/skills/classify-content/SKILL.md` -> New classification and grouping skill.
-  4. `.agents/skills/plan-work/SKILL.md` -> New planning skill.
-  5. `.agents/skills/explore-context/SKILL.md` -> New local investigation skill.
-  6. `.agents/skills/decide-direction/SKILL.md` -> New decision support skill.
-  7. `.agents/skills/coordinate-work/SKILL.md` -> New coordination skill.
-  8. `.agents/skills/remember-context/SKILL.md` -> New durable memory skill.
+  1. `.agents/skills/ask/SKILL.md` -> New question-generation skill.
+  2. `.agents/skills/brainstorm/SKILL.md` -> New ambiguous-problem reasoning skill.
+  3. `.agents/skills/classify/SKILL.md` -> New classification and grouping skill.
+  4. `.agents/skills/plan/SKILL.md` -> New planning skill.
+  5. `.agents/skills/explore/SKILL.md` -> New local investigation skill.
+  6. `.agents/skills/choose/SKILL.md` -> New decision support skill.
+  7. `.agents/skills/manage/SKILL.md` -> New coordination skill.
+  8. `.agents/skills/remember/SKILL.md` -> New durable memory skill.
   9. `.agents/skills/adapt/SKILL.md` -> New evidence-driven adaptation diagnosis and routing skill.
 - **Shared Dependencies/Imports:**
   - Follow `.agents/skills/create-skill/references/authoring.md`.
   - Use [SPEC.md](../SPEC.md) as the implementation contract.
-  - Treat `.agents/skills/explain-topic/SKILL.md` as complete.
+  - Treat `.agents/skills/explain/SKILL.md` as complete.
 
 ---
 
@@ -108,5 +108,5 @@ Scenario: Avoid placeholder support folders
 
 - [ ] **Compilation:** Not applicable; Markdown authoring only.
 - [ ] **Test Coverage:** New skill files are ready for eval generation in US-002.
-- [ ] **No Regression:** Existing `.agents/skills/explain-topic/SKILL.md` remains unchanged unless a documented spec mismatch required a fix.
+- [ ] **No Regression:** Existing `.agents/skills/explain/SKILL.md` remains unchanged unless a documented spec mismatch required a fix.
 - [ ] **Idempotency:** Re-running the work does not duplicate folders, sections, or placeholder resources.

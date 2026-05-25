@@ -34,7 +34,7 @@ Without this integration, agents may apply principles inconsistently: overusing 
 | Goal ID | Target Outcome | Success Metric |
 | --- | --- | --- |
 | G-1 | Establish a shared engineering-principles rule for `.agents`. | One concise global rule exists under `.agents/rules/` and is referenced by implementation-facing skills where useful. |
-| G-2 | Make principles operational in code-writing and code-review workflows. | `build-backend`, `build-frontend`, `build-database`, `build-tests`, `review-code`, and `create-skill` apply relevant principle lenses without duplicating the full source document. |
+| G-2 | Make principles operational in code-writing and code-review workflows. | `code-backend`, `code-frontend`, `code-database`, `code-tests`, `review-code`, and `create-skill` apply relevant principle lenses without duplicating the full source document. |
 | G-3 | Keep runtime instructions token-efficient. | New or edited runtime guidance is concise and avoids copying the entire collected principles list into every skill. |
 | G-4 | Preserve pragmatic judgment. | Guidance explicitly treats KISS and YAGNI as default brakes, DRY as knowledge deduplication, and SOLID as useful only when it reduces real coupling or change risk. |
 
@@ -82,7 +82,7 @@ Without this integration, agents may apply principles inconsistently: overusing 
 | FR-3 | Clarify DRY behavior. | MUST | Guidance distinguishes duplicated knowledge or business logic from harmless repeated syntax, markup, or test setup. | TBD |
 | FR-4 | Clarify SOLID behavior. | MUST | Guidance applies SRP, ISP, DIP, and related principles through clear responsibilities, small interfaces, and explicit dependencies without adding ceremonial layers. | TBD |
 | FR-5 | Scope Boy Scout cleanup. | MUST | Guidance allows cleanup only in touched code or code required for the requested change, and forbids unrelated opportunistic refactors. | TBD |
-| FR-6 | Add principle lenses to implementation skills. | SHOULD | `build-backend`, `build-frontend`, `build-database`, and `build-tests` contain targeted principle guidance only where it changes implementation behavior. | TBD |
+| FR-6 | Add principle lenses to implementation skills. | SHOULD | `code-backend`, `code-frontend`, `code-database`, and `code-tests` contain targeted principle guidance only where it changes implementation behavior. | TBD |
 | FR-7 | Add principle lenses to review and skill-authoring workflows. | SHOULD | `review-code` and `create-skill` can identify over-abstraction, duplicated knowledge, unclear responsibilities, leaky dependencies, and untestable side effects as concrete issues. | TBD |
 | FR-8 | Add focused eval coverage. | COULD | At least one eval or test prompt verifies the agent rejects speculative abstraction and one verifies it flags duplicated business rules over duplicated text. | TBD |
 
@@ -146,7 +146,7 @@ Without this integration, agents may apply principles inconsistently: overusing 
 | Question ID | Question | Answer / Decision | Owner | Resolution Date |
 | --- | --- | --- | --- | --- |
 | Q-1 | Should this be only a global rule, or also a standalone skill? | Proposed: start as a global rule; create a skill only if users ask to reason explicitly about engineering principles. | Oleg Shulyakov | TBD |
-| Q-2 | Which skills should receive direct updates in the first implementation pass? | Proposed: `build-backend`, `build-frontend`, `build-database`, `build-tests`, `review-code`, and `create-skill`. | Oleg Shulyakov | TBD |
+| Q-2 | Which skills should receive direct updates in the first implementation pass? | Proposed: `code-backend`, `code-frontend`, `code-database`, `code-tests`, `review-code`, and `create-skill`. | Oleg Shulyakov | TBD |
 | Q-3 | Should eval coverage be added now or after the first rule/skill update? | TBD | Oleg Shulyakov | TBD |
 
 ---

@@ -93,7 +93,7 @@ The initiative targets teams and individual practitioners who want role-aware AI
 | FR-4 | Support multi-variant routing where domains share one role context. | SHOULD | Router skills detect variants from prompt and repo context; router skills ask at most one clarifying question when context is materially ambiguous; variant references are loaded on demand. | [SPEC.md](SPEC.md) |
 | FR-5 | Prioritize build order by daily leverage and role coverage. | MUST | P1 foundation skills are built first; P2/P3/P4 priorities are visible in TASKS.md; completed skills are marked in the tracker. | [TASKS.md](TASKS.md) |
 | FR-6 | Package completed skills for distribution. | SHOULD | Completed skills can be exported as `.skill` files; package contents include instructions, references, scripts, and assets needed for reuse; root-level evals are retained in the source folder and excluded from packaged artifacts by the current packager. | [SPEC.md](SPEC.md), [.agents/skills/README.md](../../.agents/skills/README.md) |
-| FR-7 | Keep security and test responsibilities separated. | MUST | `audit-security` owns prompt-injection, jailbreak, exfiltration, secrets, and threat-modeling guidance; `build-tests` owns functional tests, AI evals, tool-use evals, performance tests, and CI test setup. | [SPEC.md](SPEC.md) |
+| FR-7 | Keep security and test responsibilities separated. | MUST | `audit-security` owns prompt-injection, jailbreak, exfiltration, secrets, and threat-modeling guidance; `code-tests` owns functional tests, AI evals, tool-use evals, performance tests, and CI test setup. | [SPEC.md](SPEC.md) |
 
 ---
 
@@ -124,14 +124,14 @@ The initiative targets teams and individual practitioners who want role-aware AI
 
 Users invoke skills by naming the skill directly, asking for the artifact the skill owns, or describing a role-specific task. The agent should select the matching skill from its description, load only the needed references, and produce or edit the requested artifact in the repository.
 
-For multi-variant skills, the expected interaction is context-first routing. For example, a request for API tests, E2E tests, AI evals, or performance tests should route through `build-tests` and select the relevant testing reference without requiring the user to know the internal variant name.
+For multi-variant skills, the expected interaction is context-first routing. For example, a request for API tests, E2E tests, AI evals, or performance tests should route through `code-tests` and select the relevant testing reference without requiring the user to know the internal variant name.
 
 ---
 
 ## 🗺️ User Journeys / Key Flows
 
 1. A product owner asks for a PRD. The agent loads `write-prd`, reads the required output format, extracts known context, marks inferences with `[assumed]`, and writes `PRD.md`.
-2. A backend engineer asks for API code. The agent loads `build-backend`, detects language and framework from repository context, writes focused code changes, and verifies them with local tests where available.
+2. A backend engineer asks for API code. The agent loads `code-backend`, detects language and framework from repository context, writes focused code changes, and verifies them with local tests where available.
 3. A maintainer adds a new skill. The maintainer follows the skill structure in SPEC.md, adds references only when needed, writes eval cases, updates TASKS.md, and packages the skill when complete.
 
 ---

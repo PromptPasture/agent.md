@@ -28,7 +28,7 @@ This spec defines how to integrate common engineering principles into `.agents` 
 
 The source document `Most Popular Principles.md` lists SOLID, DRY, KISS, YAGNI, Law of Demeter, Composition Over Inheritance, Boy Scout Rule, CQS, and Separation of Concerns. It correctly frames these as skills disguised as rules: useful guardrails that require judgment.
 
-The existing `.agents` library already contains overlapping guidance in `karpathy-guidelines`, `build-backend`, `build-frontend`, `review-code`, and `create-skill`. The implementation should therefore avoid duplicating definitions and instead add a small shared rule plus targeted skill patches.
+The existing `.agents` library already contains overlapping guidance in `karpathy-guidelines`, `code-backend`, `code-frontend`, `review-code`, and `create-skill`. The implementation should therefore avoid duplicating definitions and instead add a small shared rule plus targeted skill patches.
 
 ### 1.3 Roles & Responsibilities
 
@@ -158,10 +158,10 @@ Users rely on this skill library to produce code, reviews, docs, and agent artif
 **Description:** The system shall update selected build skills with targeted principle behavior.
 **Acceptance criteria:**
 
-- [ ] `build-backend` preserves or improves its existing pragmatic SOLID guidance without duplicating the new rule.
-- [ ] `build-frontend` includes principle guidance only where it affects components, state, effects, or shared abstractions.
-- [ ] `build-database` includes principle guidance where it affects schema ownership, duplicated business rules, migrations, and query responsibilities.
-- [ ] `build-tests` includes principle guidance where it affects test abstraction, duplicated setup, side effects, and maintainability.
+- [ ] `code-backend` preserves or improves its existing pragmatic SOLID guidance without duplicating the new rule.
+- [ ] `code-frontend` includes principle guidance only where it affects components, state, effects, or shared abstractions.
+- [ ] `code-database` includes principle guidance where it affects schema ownership, duplicated business rules, migrations, and query responsibilities.
+- [ ] `code-tests` includes principle guidance where it affects test abstraction, duplicated setup, side effects, and maintainability.
 
 #### FR-007: Review and Skill-Authoring Updates
 
@@ -207,10 +207,10 @@ The integration uses a layered documentation model:
 ```mermaid
 flowchart TD
     Source["Most Popular Principles.md"] --> Rule[".agents/rules/engineering-principles.md"]
-    Rule --> Backend["build-backend"]
-    Rule --> Frontend["build-frontend"]
-    Rule --> Database["build-database"]
-    Rule --> Tests["build-tests"]
+    Rule --> Backend["code-backend"]
+    Rule --> Frontend["code-frontend"]
+    Rule --> Database["code-database"]
+    Rule --> Tests["code-tests"]
     Rule --> Review["review-code"]
     Rule --> SkillAuthoring["create-skill"]
 ```
@@ -305,10 +305,10 @@ No personal data handling changes are expected. Verify that new wording does not
 
 ### Phase 3: Targeted Skill Updates
 
-- [ ] Patch `build-backend` only if the new rule clarifies or replaces current principle wording.
-- [ ] Patch `build-frontend` for component/state/effect abstraction guidance.
-- [ ] Patch `build-database` for schema/query/rule ownership guidance.
-- [ ] Patch `build-tests` for test abstraction and setup duplication guidance.
+- [ ] Patch `code-backend` only if the new rule clarifies or replaces current principle wording.
+- [ ] Patch `code-frontend` for component/state/effect abstraction guidance.
+- [ ] Patch `code-database` for schema/query/rule ownership guidance.
+- [ ] Patch `code-tests` for test abstraction and setup duplication guidance.
 - [ ] Patch `review-code` for actionable principle-based finding criteria.
 - [ ] Patch `create-skill` for skill artifact cohesion and anti-boilerplate guidance.
 

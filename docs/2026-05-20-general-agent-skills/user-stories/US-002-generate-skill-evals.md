@@ -69,14 +69,14 @@ Scenario: Preserve eval folder discipline
 *Note to Agent: You are restricted to modifying or analyzing the following components.*
 
 - **Primary Target Files:**
-  1. `.agents/skills/ask-questions/evals/evals.json` -> Trigger and output evals.
-  2. `.agents/skills/reason-problem/evals/evals.json` -> Trigger and output evals.
-  3. `.agents/skills/classify-content/evals/evals.json` -> Trigger and output evals.
-  4. `.agents/skills/plan-work/evals/evals.json` -> Trigger and output evals.
-  5. `.agents/skills/explore-context/evals/evals.json` -> Trigger and output evals.
-  6. `.agents/skills/decide-direction/evals/evals.json` -> Trigger and output evals.
-  7. `.agents/skills/coordinate-work/evals/evals.json` -> Trigger and output evals.
-  8. `.agents/skills/remember-context/evals/evals.json` -> Trigger and output evals.
+  1. `.agents/skills/ask/evals/evals.json` -> Trigger and output evals.
+  2. `.agents/skills/brainstorm/evals/evals.json` -> Trigger and output evals.
+  3. `.agents/skills/classify/evals/evals.json` -> Trigger and output evals.
+  4. `.agents/skills/plan/evals/evals.json` -> Trigger and output evals.
+  5. `.agents/skills/explore/evals/evals.json` -> Trigger and output evals.
+  6. `.agents/skills/choose/evals/evals.json` -> Trigger and output evals.
+  7. `.agents/skills/manage/evals/evals.json` -> Trigger and output evals.
+  8. `.agents/skills/remember/evals/evals.json` -> Trigger and output evals.
   9. `.agents/skills/adapt/evals/evals.json` -> Trigger and output evals.
 - **Shared Dependencies/Imports:**
   - Follow `.agents/skills/create-skill/references/evaluation.md`.
