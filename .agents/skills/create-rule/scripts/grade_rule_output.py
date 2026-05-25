@@ -25,7 +25,7 @@ GENERIC_FILLER = [
 ]
 
 IMPERATIVE_RE = re.compile(
-    r"\b(use|run|never|do not|don't|ask-questions|include|update|avoid|prefer|keep|"
+    r"\b(use|run|never|do not|don't|ask|include|update|avoid|prefer|keep|"
     r"write|add|check|verify|redact|report|call out|do)\b",
     re.IGNORECASE,
 )

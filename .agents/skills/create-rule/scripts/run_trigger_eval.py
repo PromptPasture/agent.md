@@ -30,7 +30,7 @@ POSITIVE_PATTERNS = [
 
 NEGATIVE_PATTERNS = [
     r"\b(review this pull request|fix the failing|generate SQL|release notes|user story|technical spec)\b",
-    r"\b(explain-topic|summarize)\b.*\b(AGENTS\.md|README|coding standards)\b",
+    r"\b(explain|summarize)\b.*\b(AGENTS\.md|README|coding standards)\b",
 ]
 
 

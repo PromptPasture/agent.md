@@ -15,7 +15,7 @@ metadata:
   references:
     - create-skill
     - create-rule
-    - remember-context
+    - remember
 ---
 
 # adapt

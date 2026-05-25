@@ -19,7 +19,7 @@ related:
 
 ### 1.1 Purpose
 
-This spec defines the implementation contract for ten standalone, general-purpose agent skills: `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`.
+This spec defines the implementation contract for ten standalone, general-purpose agent skills: `ask`, `explain`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`.
 
 The goal is to make common collaboration modes predictable at runtime without requiring any skill to depend on another installed skill.
 
@@ -27,7 +27,7 @@ The goal is to make common collaboration modes predictable at runtime without re
 
 The existing skill library covers specialized creation, coding, review, documentation, and operations workflows. It has a remaining gap for project-agnostic thinking modes that recur across repositories and tasks.
 
-Without explicit skills for these modes, the agent must infer broad behavior from generic instructions each time. That creates inconsistent trigger behavior, unclear output shapes, and accidental overlap between similar modes such as `plan-work` and `coordinate-work`, or `ask-questions` and `reason-problem`.
+Without explicit skills for these modes, the agent must infer broad behavior from generic instructions each time. That creates inconsistent trigger behavior, unclear output shapes, and accidental overlap between similar modes such as `plan` and `manage`, or `ask` and `brainstorm`.
 
 This work creates a small general layer with clear trigger boundaries, exclusions, expected behavior, and eval prompts for each skill.
 
@@ -50,14 +50,14 @@ Success means a user can install any one of the ten skills independently and get
 
 | Goal | Success Metric | Target |
 | --- | --- | --- |
-| Minimal general skill set | Ten skills exist with approved names | `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, `adapt` |
+| Minimal general skill set | Ten skills exist with approved names | `ask`, `explain`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, `adapt` |
 | Standalone runtime behavior | No skill requires another skill to be installed, called, imported, or delegated to | 100% of skills |
 | Predictable triggers | Each skill documents triggers, exclusions, expected behavior, and eval prompts | 8-10 eval prompts where possible, never fewer than 7 |
 | Lightweight packaging | Main `SKILL.md` files remain concise | Under 500 lines each |
 
 ### 1.6 Non-Goals
 
-This work does not add live integrations with Jira, Linear, Confluence, GitHub Issues, or external memory stores. It does not add web search behavior to `explore-context`, automatic memory writes without durable value, a shared trigger-overlap eval harness, or replacements for project-level `AGENTS.md` instructions.
+This work does not add live integrations with Jira, Linear, Confluence, GitHub Issues, or external memory stores. It does not add web search behavior to `explore`, automatic memory writes without durable value, a shared trigger-overlap eval harness, or replacements for project-level `AGENTS.md` instructions.
 
 ---
 
@@ -109,36 +109,36 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 ### 2.4 Per-Skill Behavior Requirements
 
-#### FR-001: `ask-questions`
+#### FR-001: `ask`
 
 **Priority:** Must-have
-**Description:** The system shall use `ask-questions` for question generation, clarification, missing-context discovery, and assumption surfacing.
+**Description:** The system shall use `ask` for question generation, clarification, missing-context discovery, and assumption surfacing.
 
 **Acceptance criteria:**
 
-- [ ] Triggers on "ask-questions", "what should I ask", "right questions", "what are we missing", "clarify this", and ambiguous requests blocked by missing context.
+- [ ] Triggers on "ask", "what should I ask", "right questions", "what are we missing", "clarify this", and ambiguous requests blocked by missing context.
 - [ ] Produces a minimal prioritized set of high-leverage questions.
 - [ ] States assumptions and context gaps when useful.
 - [ ] Avoids exhaustive questionnaires unless explicitly requested.
 - [ ] Does not make decisions, plans, or implementation changes as its primary output.
 
-#### FR-002: `explain-topic`
+#### FR-002: `explain`
 
 **Priority:** Must-have
-**Description:** The system shall use `explain-topic` for teaching, clarification, walkthroughs, concepts, code behavior, architecture, tradeoffs, and decisions.
+**Description:** The system shall use `explain` for teaching, clarification, walkthroughs, concepts, code behavior, architecture, tradeoffs, and decisions.
 
 **Acceptance criteria:**
 
-- [ ] Triggers on "explain-topic", "what is", "why", "how does", "walk me through", and direct explanation requests.
+- [ ] Triggers on "explain", "what is", "why", "how does", "walk me through", and direct explanation requests.
 - [ ] Matches depth to the user's question and available context.
 - [ ] For code explanations, inspects relevant local files before describing repository behavior.
 - [ ] Marks uncertainty when evidence is incomplete.
 - [ ] Does not implement, review, or plan unless the user asks for that additional work.
 
-#### FR-003: `reason-problem`
+#### FR-003: `brainstorm`
 
 **Priority:** Must-have
-**Description:** The system shall use `reason-problem` to work through ambiguous problems before a firm output shape, decision, or plan is warranted.
+**Description:** The system shall use `brainstorm` to work through ambiguous problems before a firm output shape, decision, or plan is warranted.
 
 **Acceptance criteria:**
 
@@ -148,75 +148,75 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 - [ ] Ends with a clearer framing or next clarity step.
 - [ ] Distinguishes facts, assumptions, and opinions.
 
-#### FR-004: `classify-content`
+#### FR-004: `classify`
 
 **Priority:** Must-have
-**Description:** The system shall use `classify-content` to organize material into meaningful groups.
+**Description:** The system shall use `classify` to organize material into meaningful groups.
 
 **Acceptance criteria:**
 
-- [ ] Triggers on "classify-content", "categorize", "group", "cluster", "sort", "taxonomy", "organize these", and requests to group by explicit criteria.
+- [ ] Triggers on "classify", "categorize", "group", "cluster", "sort", "taxonomy", "organize these", and requests to group by explicit criteria.
 - [ ] States grouping criteria before or alongside the classification.
 - [ ] Labels groups clearly and places items into them.
 - [ ] Preserves ambiguous, multi-fit, or unclassified items instead of forcing false precision.
 - [ ] Supports grouping by similarity, difference, category, priority, dependency, abstraction level, or user-provided criteria.
 
-#### FR-005: `plan-work`
+#### FR-005: `plan`
 
 **Priority:** Must-have
-**Description:** The system shall use `plan-work` to sequence work before execution.
+**Description:** The system shall use `plan` to sequence work before execution.
 
 **Acceptance criteria:**
 
-- [ ] Triggers on "plan-work", "break this down", "roadmap", "approach", "milestones", and "how should we proceed".
+- [ ] Triggers on "plan", "break this down", "roadmap", "approach", "milestones", and "how should we proceed".
 - [ ] Produces scoped steps, milestones, dependencies, assumptions, risks, and verification strategy when relevant.
 - [ ] Defaults to conversational planning unless durable files are explicitly requested or the task clearly needs them.
 - [ ] Does not coordinate live owners, blockers, handoffs, or active workstreams as its primary behavior.
 - [ ] Identifies when more context is required before a reliable plan can be made.
 
-#### FR-006: `explore-context`
+#### FR-006: `explore`
 
 **Priority:** Must-have
-**Description:** The system shall use `explore-context` for local repository, local document, and attached-artifact investigation.
+**Description:** The system shall use `explore` for local repository, local document, and attached-artifact investigation.
 
 **Acceptance criteria:**
 
-- [ ] Triggers on "explore-context", "investigate", "find where", "understand this repo", "trace", and local-context research requests.
+- [ ] Triggers on "explore", "investigate", "find where", "understand this repo", "trace", and local-context research requests.
 - [ ] Searches local files, project docs, attached artifacts, and repository context only.
 - [ ] Uses file references, artifact references, and command evidence for findings.
 - [ ] Distinguishes verified facts from inference.
 - [ ] Does not perform web search or browsing as part of this skill.
 
-#### FR-007: `decide-direction`
+#### FR-007: `choose`
 
 **Priority:** Must-have
-**Description:** The system shall use `decide-direction` to compare options and recommend a direction.
+**Description:** The system shall use `choose` to compare options and recommend a direction.
 
 **Acceptance criteria:**
 
-- [ ] Triggers on "decide-direction", "choose", "which option", "tradeoffs", "recommend", and "should we".
+- [ ] Triggers on "choose", "choose", "which option", "tradeoffs", "recommend", and "should we".
 - [ ] States decision criteria before or alongside the comparison.
 - [ ] Compares viable options against the criteria.
 - [ ] Recommends one option when evidence supports a recommendation.
 - [ ] Notes assumptions, risks, tradeoffs, and reversibility.
 
-#### FR-008: `coordinate-work`
+#### FR-008: `manage`
 
 **Priority:** Must-have
-**Description:** The system shall use `coordinate-work` to manage active work across people, agents, tasks, dependencies, blockers, and handoffs.
+**Description:** The system shall use `manage` to manage active work across people, agents, tasks, dependencies, blockers, and handoffs.
 
 **Acceptance criteria:**
 
-- [ ] Triggers on "coordinate-work", "manage this work", "team lead", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-agent or multi-workstream requests.
+- [ ] Triggers on "manage", "manage this work", "team lead", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-agent or multi-workstream requests.
 - [ ] Maintains an execution view with goals, owners, dependencies, current status, blockers, and next actions.
 - [ ] Separates active coordination from pre-execution planning.
 - [ ] Makes handoff state clear enough for another human or agent to continue.
 - [ ] Does not silently assign real people to work without user-provided ownership or clear assumptions.
 
-#### FR-009: `remember-context`
+#### FR-009: `remember`
 
 **Priority:** Must-have
-**Description:** The system shall use `remember-context` to preserve durable project facts, decisions, and useful observations in `.agents/memory/`.
+**Description:** The system shall use `remember` to preserve durable project facts, decisions, and useful observations in `.agents/memory/`.
 
 **Acceptance criteria:**
 
@@ -238,7 +238,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 - [ ] Distinguishes durable evidence-driven change needs from one-off exceptions.
 - [ ] Identifies the affected behavior or artifact, such as a skill, rule, workflow, document, eval, memory convention, or process.
 - [ ] Recommends the smallest useful change and the appropriate follow-up skill or workflow for the actual update.
-- [ ] Does not directly rewrite artifacts by default; actual updates belong to artifact-specific skills such as `create-skill`, `create-rule`, `write-*`, `build-tests`, or `remember-context` when the user asks to proceed.
+- [ ] Does not directly rewrite artifacts by default; actual updates belong to artifact-specific skills such as `create-skill`, `create-rule`, `write-*`, `code-tests`, or `remember` when the user asks to proceed.
 
 #### FR-011: Standalone Runtime Boundaries
 
@@ -268,13 +268,13 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 ### 2.5 Business Rules
 
-**BR-001:** Skill names are fixed as `ask-questions`, `explain-topic`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`.
+**BR-001:** Skill names are fixed as `ask`, `explain`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`.
 
 **BR-002:** Runtime behavior must be standalone. Development-time validation may use existing creator or packaging workflows, but installed skill behavior must not depend on them.
 
-**BR-003:** `explore-context` is local-only. Web search, browsing, and current-information research are out of scope.
+**BR-003:** `explore` is local-only. Web search, browsing, and current-information research are out of scope.
 
-**BR-004:** `remember-context` may write memory automatically only when the user explicitly asks to remember or preserve something.
+**BR-004:** `remember` may write memory automatically only when the user explicitly asks to remember or preserve something.
 
 **BR-005:** `adapt` detects and routes evidence-driven change needs. It shall not directly rewrite skills, rules, docs, evals, or memory by default.
 
@@ -287,12 +287,12 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 | Category | Requirement | Target | Priority |
 | --- | --- | --- | --- |
 | Maintainability | Each skill has one clear workflow and avoids becoming a generic behavior dump | Reviewer can summarize each skill in one sentence | High |
-| Portability | Skills work across repositories without assuming this repo layout, except `remember-context` memory conventions | No hard dependency on project-specific files outside documented exceptions | High |
+| Portability | Skills work across repositories without assuming this repo layout, except `remember` memory conventions | No hard dependency on project-specific files outside documented exceptions | High |
 | Token efficiency | Main skill files stay concise | Under 500 lines per `SKILL.md` | High |
 | Trigger accuracy | Trigger and exclusion rules are explicit | Evals include positive, false-positive, and non-trigger prompts | High |
-| Source discipline | `explore-context` cites local evidence and marks inference | Findings include file/artifact references when available | High |
-| Memory hygiene | `remember-context` stores only durable value | No transient chatter or sensitive data in memory notes | High |
-| Coordination clarity | `coordinate-work` preserves execution state | Goals, owners, status, blockers, dependencies, and next actions are explicit | Medium |
+| Source discipline | `explore` cites local evidence and marks inference | Findings include file/artifact references when available | High |
+| Memory hygiene | `remember` stores only durable value | No transient chatter or sensitive data in memory notes | High |
+| Coordination clarity | `manage` preserves execution state | Goals, owners, status, blockers, dependencies, and next actions are explicit | Medium |
 | Adaptation discipline | `adapt` diagnoses evidence-driven change needs without becoming a generic update workflow | Actual artifact changes are routed to the appropriate follow-up skill or workflow | High |
 
 ---
@@ -320,7 +320,7 @@ flowchart TD
 | `.agents/skills/<skill>/SKILL.md` | Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations |
 | `.agents/skills/<skill>/evals/evals.json` | Representative trigger and non-trigger prompts generated through `create-skill` |
 | `.agents/skills/<skill>/evals/iterations/iteration-N/` | Reproducible eval run outputs, grading, and benchmark artifacts when generated |
-| `.agents/memory/` | Target memory location for `remember-context` behavior |
+| `.agents/memory/` | Target memory location for `remember` behavior |
 | `.agents/skills/create-skill/` | Development-time eval generation, validation, and packaging support |
 
 ### 4.3 Key Design Decisions
@@ -328,7 +328,7 @@ flowchart TD
 **Decision: Use simple cognitive-mode names.**
 Chosen names are short and direct because the PRD resolved naming in favor of standalone cognitive modes. The tradeoff is that trigger boundaries must be especially explicit to avoid overlap.
 
-**Decision: Keep `explore-context` local-only.**
+**Decision: Keep `explore` local-only.**
 This prevents accidental current-information research and keeps the skill portable across disconnected or restricted environments. The tradeoff is that users must invoke another workflow for web research.
 
 **Decision: Treat explicit memory requests as approval.**
@@ -343,7 +343,7 @@ Per-skill eval files keep each installable unit self-contained. A shared overlap
 
 No database or structured runtime data model is added.
 
-The only persistent output introduced by skill behavior is `remember-context` writing Markdown entries under `.agents/memory/` according to existing conventions.
+The only persistent output introduced by skill behavior is `remember` writing Markdown entries under `.agents/memory/` according to existing conventions.
 
 Memory entries shall use one of these categories when applicable: facts, preferences, decisions, or observations. Decision entries should include context, decision, and revisit conditions when those details are available.
 
@@ -351,25 +351,25 @@ Memory entries shall use one of these categories when applicable: facts, prefere
 
 ## 6. Security, Privacy, and Safety
 
-Skills shall not request, store, or expose secrets. `remember-context` shall avoid writing credentials, tokens, private personal information, transient task chatter, or unverifiable assumptions as fact.
+Skills shall not request, store, or expose secrets. `remember` shall avoid writing credentials, tokens, private personal information, transient task chatter, or unverifiable assumptions as fact.
 
-`explore-context` shall not use web browsing, web search, external services, or live integrations. Its findings shall be based on local repository files, local docs, attached artifacts, or clearly marked inference.
+`explore` shall not use web browsing, web search, external services, or live integrations. Its findings shall be based on local repository files, local docs, attached artifacts, or clearly marked inference.
 
-Skills shall avoid presenting subjective recommendations as facts. `reason-problem` and `decide-direction` shall distinguish assumptions, evidence, opinion, and uncertainty.
+Skills shall avoid presenting subjective recommendations as facts. `brainstorm` and `choose` shall distinguish assumptions, evidence, opinion, and uncertainty.
 
 ---
 
 ## 7. Error Paths and Edge Cases
 
-If a user request matches multiple skills, the selected skill shall explain the dominant intent through its output shape, not through a long routing discussion. For example, "Should we plan this migration or split it?" should favor `decide-direction` if the user needs a choice, and `plan-work` if the choice is already settled.
+If a user request matches multiple skills, the selected skill shall explain the dominant intent through its output shape, not through a long routing discussion. For example, "Should we plan this migration or split it?" should favor `choose` if the user needs a choice, and `plan` if the choice is already settled.
 
-If required local evidence is missing, `explore-context` and `explain-topic` shall report what was inspected, what could not be verified, and the best-supported inference.
+If required local evidence is missing, `explore` and `explain` shall report what was inspected, what could not be verified, and the best-supported inference.
 
-If `remember-context` receives content that is explicit but not durable, sensitive, or unverifiable, it shall decline the memory write briefly and explain the reason.
+If `remember` receives content that is explicit but not durable, sensitive, or unverifiable, it shall decline the memory write briefly and explain the reason.
 
-If `coordinate-work` lacks owners, it shall use unassigned workstreams or assumed role labels instead of inventing real ownership.
+If `manage` lacks owners, it shall use unassigned workstreams or assumed role labels instead of inventing real ownership.
 
-If `classify-content` receives items that do not fit a single category, it shall use an ambiguous, multi-label, or needs-review grouping rather than forcing a clean bucket.
+If `classify` receives items that do not fit a single category, it shall use an ambiguous, multi-label, or needs-review grouping rather than forcing a clean bucket.
 
 ---
 
@@ -397,14 +397,14 @@ Boundary prompts shall specifically test likely overlaps:
 
 | Boundary | Expected Distinction |
 | --- | --- |
-| `ask-questions` vs `reason-problem` | `ask-questions` produces questions; `reason-problem` develops framing and hypotheses |
-| `reason-problem` vs `decide-direction` | `reason-problem` clarifies ambiguity; `decide-direction` recommends between options |
-| `plan-work` vs `coordinate-work` | `plan-work` sequences future work; `coordinate-work` tracks active workstreams and handoffs |
-| `explain-topic` vs `explore-context` | `explain-topic` teaches; `explore-context` investigates local evidence |
-| `classify-content` vs `decide-direction` | `classify-content` groups material; `decide-direction` chooses a direction |
-| `remember-context` vs docs writing | `remember-context` captures durable memory; docs writing creates formal project artifacts |
+| `ask` vs `brainstorm` | `ask` produces questions; `brainstorm` develops framing and hypotheses |
+| `brainstorm` vs `choose` | `brainstorm` clarifies ambiguity; `choose` recommends between options |
+| `plan` vs `manage` | `plan` sequences future work; `manage` tracks active workstreams and handoffs |
+| `explain` vs `explore` | `explain` teaches; `explore` investigates local evidence |
+| `classify` vs `choose` | `classify` groups material; `choose` chooses a direction |
+| `remember` vs docs writing | `remember` captures durable memory; docs writing creates formal project artifacts |
 | `adapt` vs `create-skill` / `create-rule` / docs writing | `adapt` identifies what should change and routes the update; artifact-specific skills perform the actual update |
-| `adapt` vs `remember-context` | `adapt` identifies future behavior or artifact changes; `remember-context` preserves durable facts and decisions |
+| `adapt` vs `remember` | `adapt` identifies future behavior or artifact changes; `remember` preserves durable facts and decisions |
 
 ### 8.4 Manual Acceptance
 
@@ -416,8 +416,8 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 
 ### Phase 1: Skill Boundaries
 
-- [ ] Draft `SKILL.md` for `ask-questions`, `reason-problem`, `classify-content`, `plan-work`, `explore-context`, `decide-direction`, `coordinate-work`, `remember-context`, and `adapt`.
-- [x] Treat existing `explain-topic` as complete for this work.
+- [ ] Draft `SKILL.md` for `ask`, `brainstorm`, `classify`, `plan`, `explore`, `choose`, `manage`, `remember`, and `adapt`.
+- [x] Treat existing `explain` as complete for this work.
 - [ ] Confirm each skill has clear trigger and non-trigger rules.
 
 ### Phase 2: Evals
@@ -445,7 +445,7 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 | Dependency | Needed By |
 | --- | --- |
 | Existing skill authoring conventions | All skill files |
-| Existing `.agents/memory/` conventions | `remember-context` |
+| Existing `.agents/memory/` conventions | `remember` |
 | `.agents/skills/create-skill/` eval generation workflow | Evals and release readiness |
 
 ---
@@ -468,7 +468,7 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 | # | Question | Owner | Due | Status |
 | --- | --- | --- | --- | --- |
 | 1 | Should eval prompts be plain Markdown or a machine-readable format? | Oleg Shulyakov | 2026-05-21 | Resolved: evals are generated by `.agents/skills/create-skill/`. |
-| 2 | Should `explain-topic` be treated as already complete or revised to match the new general skill set style? | Oleg Shulyakov | 2026-05-21 | Resolved: mark `explain-topic` as complete. |
+| 2 | Should `explain` be treated as already complete or revised to match the new general skill set style? | Oleg Shulyakov | 2026-05-21 | Resolved: mark `explain` as complete. |
 | 3 | Should every new skill use version `1.0.0`, or inherit a project-wide initial version convention? | Oleg Shulyakov | 2026-05-21 | Resolved: use `1.0.0` as the initial version. |
 | 4 | Should the evidence-driven change-detection skill be named `evolve` or `adapt`? | Oleg Shulyakov | 2026-05-24 | Resolved: use `adapt`, because it detects that existing behavior no longer fits evidence without implying autonomous self-modification. |
 | 5 | Should `adapt` perform the actual updates it identifies? | Oleg Shulyakov | 2026-05-24 | Resolved: no. It diagnoses and routes updates to artifact-specific skills or workflows. |
@@ -482,4 +482,4 @@ Related documents:
 - [PRD.md](PRD.md)
 - `.agents/memory/MEMORY.md`
 - `.agents/skills/create-skill/SKILL.md`
-- `.agents/skills/explain-topic/SKILL.md`
+- `.agents/skills/explain/SKILL.md`

@@ -66,7 +66,7 @@
     {
       "id": "adapt-010",
       "category": "true-positive",
-      "prompt": "The eval caught a false positive trigger for plan-work. What should we adjust?",
+      "prompt": "The eval caught a false positive trigger for plan. What should we adjust?",
       "expected_trigger": "Trigger adapt.",
       "expected_output": "Identifies a trigger-boundary problem, targets the affected skill description or evals, and proposes a focused trigger or non-trigger update."
     },

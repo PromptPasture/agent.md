@@ -208,7 +208,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 **Acceptance criteria:**
 
 - `audit-security` owns prompt injection, jailbreak, exfiltration, secrets, OWASP review, and threat modeling.
-- `build-tests` owns executable tests, AI evals, tool-use evals, performance tests, fixtures, framework setup, and CI test setup.
+- `code-tests` owns executable tests, AI evals, tool-use evals, performance tests, fixtures, framework setup, and CI test setup.
 - Boundary prompts route consistently between the two.
 
 ## 3. Non-Functional Requirements
@@ -294,7 +294,7 @@ Router skills use one `SKILL.md` plus variant references when related artifacts 
 4. Ask one concise question only when the route changes the output materially.
 5. Mark inferred details with `[assumed]` when producing a spec or planning artifact.
 
-Router skills for this release are `audit-security`, `build-frontend`, `build-backend`, `build-database`, `build-mobile`, `build-tests`, `design-arch`, `write-spec`, `configure-infra`, `create-template`, `write-tech-docs`, `review-code`, and `plan-capacity`.
+Router skills for this release are `audit-security`, `code-frontend`, `code-backend`, `code-database`, `build-mobile`, `code-tests`, `design-arch`, `write-spec`, `configure-infra`, `create-template`, `write-tech-docs`, `review-code`, and `plan-capacity`.
 
 ## 5. Catalog
 
@@ -307,11 +307,11 @@ Router skills for this release are `audit-security`, `build-frontend`, `build-ba
 | `audit-security` | Security Eng | Security router: OWASP review, secrets audit, threat model |
 | `audit-test-flaky` | AQA | Flaky test report with root cause and fix recommendations |
 | `check-release` | Release Manager | Release checklist with rollback criteria |
-| `build-backend` | Backend Dev | Backend code: routes, services, middleware, tests |
-| `build-database` | DBA, Backend, Data Eng | Database code: schemas, SQL, migrations, analytics queries |
-| `build-frontend` | Frontend Dev | Frontend code: components, pages, state, styling |
+| `code-backend` | Backend Dev | Backend code: routes, services, middleware, tests |
+| `code-database` | DBA, Backend, Data Eng | Database code: schemas, SQL, migrations, analytics queries |
+| `code-frontend` | Frontend Dev | Frontend code: components, pages, state, styling |
 | `build-mobile` | Mobile Dev | Mobile code: screens, navigation, platform patterns |
-| `build-tests` | AQA | Test suites, eval harnesses, fixtures, configs, CI setup |
+| `code-tests` | AQA | Test suites, eval harnesses, fixtures, configs, CI setup |
 | `design-api` | Backend Dev | API contract: OpenAPI, AsyncAPI, GraphQL, endpoints, schemas |
 | `design-arch` | Architect | Architecture router: system design, ADR, C4 diagram |
 | `diagram-dfd` | System Analyst | Data flow diagram in Mermaid or structured text |
@@ -366,11 +366,11 @@ Router skills for this release are `audit-security`, `build-frontend`, `build-ba
 | --- | --- |
 | `write-spec` | `functional.md`, `technical.md`, `non-functional.md`, `design-ui.md`, `data-contract.md` |
 | `design-arch` | `system-design.md`, `adr.md`, `c4.md` |
-| `build-database` | `schema-design.md`, `migration.md`, `common.md`, plus supported dialect references |
-| `build-frontend` | Language, framework, styling, accessibility, forms, state, performance, PWA, i18n, visualization references |
-| `build-backend` | Language-level references plus supported framework references |
+| `code-database` | `schema-design.md`, `migration.md`, `common.md`, plus supported dialect references |
+| `code-frontend` | Language, framework, styling, accessibility, forms, state, performance, PWA, i18n, visualization references |
+| `code-backend` | Language-level references plus supported framework references |
 | `build-mobile` | `swift.md`, `kotlin-android.md`, `react-native.md`, `flutter.md` |
-| `build-tests` | `e2e.md`, `api.md`, `perf.md`, `framework-setup.md`, `ai-output.md`, `ai-tool-use.md`, `ai-perf.md` |
+| `code-tests` | `e2e.md`, `api.md`, `perf.md`, `framework-setup.md`, `ai-output.md`, `ai-tool-use.md`, `ai-perf.md` |
 | `configure-infra` | `iac.md`, `cicd.md`, `etl.md`, `observability.md` |
 | `plan-capacity` | `db.md`, `infra.md` |
 | `audit-security` | `owasp.md`, `secrets.md`, `threat-model.md` |
@@ -386,10 +386,10 @@ Router skills for this release are `audit-security`, `build-frontend`, `build-ba
 | `design-api` vs `write-tech-docs` API docs | `design-api` is contract-first before implementation; `write-tech-docs` documents an existing API. |
 | `design-arch` variants | System design is broad architecture; ADR is one decision; C4 is diagram-focused. |
 | `write-user-story` vs `write-epic` | User story is one deliverable with acceptance criteria and tasks; epic groups related stories. |
-| `build-tests` vs `write-test-strategy` | `build-tests` writes executable tests/config/evals; `write-test-strategy` writes planning guidance. |
+| `code-tests` vs `write-test-strategy` | `code-tests` writes executable tests/config/evals; `write-test-strategy` writes planning guidance. |
 | `review-code` vs `audit-security` | `review-code` reviews a code change; `audit-security` performs standalone security analysis. |
 | `create-template` vs `write-*` | `create-template` creates reusable blank templates; `write-*` creates filled artifacts. |
-| `audit-security` vs `build-tests` AI evals | `audit-security` owns abuse, exfiltration, secrets, and threat modeling; `build-tests` owns quality, tool-use, latency, cost, and regression evals. |
+| `audit-security` vs `code-tests` AI evals | `audit-security` owns abuse, exfiltration, secrets, and threat modeling; `code-tests` owns quality, tool-use, latency, cost, and regression evals. |
 
 ## 7. Validation
 
