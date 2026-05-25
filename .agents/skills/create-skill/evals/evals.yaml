@@ -1,521 +1,271 @@
-name: create-skill evals
+name: create-skill-evals
 suites:
-  authoring:
-    description: Eval cases routed to references/authoring.md.
+  routing:
+    description: Trigger and route selection coverage for create-skill references.
     cases:
-      case-001:
-        reference: references/authoring.md
-        prompt: Create a new skill for incident postmortems with concise SKILL.md and only useful references.
-        expected_output: A response that routes to references/authoring.md and applies the create-skill workflow for the requested task.
+      create-new-skill:
+        type: positive_trigger
+        prompt: Create a skill for incident postmortems with a focused SKILL.md and only useful references.
+        expected_output: Routes to authoring guidance and creates or revises skill instructions.
         files: []
-        expectations:
-        - Routes to authoring guidance
-        - Produces or revises SKILL.md instructions
-        - Keeps metadata and body budgets in mind
-        - Uses references only when they reduce main-file complexity
-        - Uses the reference format that best teaches the behavior instead of defaulting to terse bullets
-        - Avoids placeholder bundled resources
-        - Preserves portability and safety
-      case-002:
-        reference: references/authoring.md
-        prompt: Refactor a 7000-token cloud skill into a router without changing capabilities.
-        expected_output: A response that routes to references/authoring.md and applies the create-skill workflow for the requested task.
+        expect:
+          routing:
+            trigger: true
+            reference: references/authoring.md
+            evidence: routing_judge
+          assertions:
+            routes-to-authoring:
+              text: The response uses references/authoring.md as the selected create-skill reference.
+              kind: routing
+              grading: transcript
+              failure_mode: The request triggers create-skill but loads the wrong phase guidance.
+            creates-focused-skill:
+              text: The output defines or revises SKILL.md behavior, trigger description, and verification without placeholder bundled resources.
+              kind: outcome
+              grading: artifact
+              failure_mode: The agent produces generic advice instead of concrete skill files or instructions.
+      review-existing-skill:
+        type: positive_trigger
+        prompt: Review .agents/skills/data-cleanup before publishing and point out trigger, structure, safety, and eval issues.
+        expected_output: Routes to review guidance and produces review findings grounded in the skill folder.
         files: []
-        expectations:
-        - Routes to authoring guidance
-        - Produces or revises SKILL.md instructions
-        - Keeps metadata and body budgets in mind
-        - Uses references only when they reduce main-file complexity
-        - Uses the reference format that best teaches the behavior instead of defaulting to terse bullets
-        - Avoids placeholder bundled resources
-        - Preserves portability and safety
-      case-003:
-        reference: references/authoring.md
-        prompt: Create a skill for CSV cleanup with trigger description, workflow, references, and evals.
-        expected_output: A response that routes to references/authoring.md and applies the create-skill workflow for the requested task.
+        expect:
+          routing:
+            trigger: true
+            reference: references/review.md
+            evidence: routing_judge
+          assertions:
+            routes-to-review:
+              text: The response uses references/review.md as the selected create-skill reference.
+              kind: routing
+              grading: transcript
+              failure_mode: The agent treats a review request as authoring or evaluation work.
+            leads-with-findings:
+              text: The review leads with actionable findings tied to files or lines before summary context.
+              kind: outcome
+              grading: artifact
+              failure_mode: The review gives broad impressions without inspectable evidence.
+      generate-evals:
+        type: positive_trigger
+        prompt: Write evals for this skill from scratch in evals/evals.yaml and make sure the tests cover routing, process, and outcome.
+        expected_output: Routes to evaluation guidance and writes schema-compliant skill-local evals.
         files: []
-        expectations:
-        - Routes to authoring guidance
-        - Produces or revises SKILL.md instructions
-        - Keeps metadata and body budgets in mind
-        - Uses references only when they reduce main-file complexity
-        - Uses the reference format that best teaches the behavior instead of defaulting to terse bullets
-        - Avoids placeholder bundled resources
-        - Preserves portability and safety
-      case-004:
-        reference: references/authoring.md
-        prompt: Revise a skill so its frontmatter stays under 100 tokens and the body under 500 lines.
-        expected_output: A response that routes to references/authoring.md and applies the create-skill workflow for the requested task.
+        expect:
+          routing:
+            trigger: true
+            reference: references/evaluation.md
+            evidence: routing_judge
+          assertions:
+            routes-to-evaluation:
+              text: The response uses references/evaluation.md as the selected create-skill reference.
+              kind: routing
+              grading: transcript
+              failure_mode: Eval generation is handled without the evaluation rules.
+            writes-skill-local-yaml:
+              text: The output creates or updates evals/evals.yaml inside the target skill folder.
+              kind: outcome
+              grading: deterministic
+              failure_mode: The agent only describes evals or writes them outside the skill folder.
+              check: file_exists
+              path: evals/evals.yaml
+            covers-three-layers:
+              text: The eval suite includes routing, process, and outcome assertions.
+              kind: eval_quality
+              grading: deterministic
+              failure_mode: The suite tests only happy-path prompts and misses workflow or result quality.
+              check: assertion_kinds_present
+              kinds:
+                - routing
+                - process
+                - outcome
+      optimize-description:
+        type: positive_trigger
+        prompt: Improve this skill description so it triggers for skill packaging requests but not generic archive creation.
+        expected_output: Routes to description optimization guidance and improves trigger precision.
         files: []
-        expectations:
-        - Routes to authoring guidance
-        - Produces or revises SKILL.md instructions
-        - Keeps metadata and body budgets in mind
-        - Uses references only when they reduce main-file complexity
-        - Uses the reference format that best teaches the behavior instead of defaulting to terse bullets
-        - Avoids placeholder bundled resources
-        - Preserves portability and safety
-      case-005:
-        reference: references/authoring.md
-        prompt: Turn a long provider-specific skill into progressive-disclosure references.
-        expected_output: A response that routes to references/authoring.md and applies the create-skill workflow for the requested task.
+        expect:
+          routing:
+            trigger: true
+            reference: references/description-optimization.md
+            evidence: routing_judge
+          assertions:
+            routes-to-description-optimization:
+              text: The response uses references/description-optimization.md as the selected create-skill reference.
+              kind: routing
+              grading: transcript
+              failure_mode: Trigger tuning is treated as general authoring instead of description optimization.
+            tests-positive-and-negative-routing:
+              text: The optimization considers both should-trigger and should-not-trigger examples.
+              kind: process
+              grading: transcript
+              failure_mode: The description becomes broader because near-miss cases were not tested.
+      validate-eval-schema:
+        type: positive_trigger
+        prompt: Validate this skill's evals.yaml schema and tell me which fields are invalid.
+        expected_output: Routes to schema guidance and checks eval YAML structure.
         files: []
-        expectations:
-        - Routes to authoring guidance
-        - Produces or revises SKILL.md instructions
-        - Keeps metadata and body budgets in mind
-        - Uses references only when they reduce main-file complexity
-        - Uses the reference format that best teaches the behavior instead of defaulting to terse bullets
-        - Avoids placeholder bundled resources
-        - Preserves portability and safety
-      case-006:
-        reference: references/authoring.md
-        prompt: Create a new skill folder and avoid placeholder scripts/assets/evals.
-        expected_output: A response that routes to references/authoring.md and applies the create-skill workflow for the requested task.
+        expect:
+          routing:
+            trigger: true
+            reference: references/schemas.md
+            evidence: routing_judge
+          assertions:
+            routes-to-schemas:
+              text: The response uses references/schemas.md as the selected create-skill reference.
+              kind: routing
+              grading: transcript
+              failure_mode: Schema validation is performed from memory instead of the schema reference.
+            checks-new-eval-contract:
+              text: The validation checks suites, keyed cases, optional expect.routing, keyed expect.assertions, and assertion failure_mode.
+              kind: outcome
+              grading: artifact
+              failure_mode: The validator accepts legacy reference or expectations fields.
+      adapt-runtime-compatibility:
+        type: positive_trigger
+        prompt: Adapt this skill so it works in agents that cannot spawn subagents or expose skill-trigger event streams.
+        expected_output: Routes to agent compatibility guidance and isolates runtime-specific behavior.
         files: []
-        expectations:
-        - Routes to authoring guidance
-        - Produces or revises SKILL.md instructions
-        - Keeps metadata and body budgets in mind
-        - Uses references only when they reduce main-file complexity
-        - Uses the reference format that best teaches the behavior instead of defaulting to terse bullets
-        - Avoids placeholder bundled resources
-        - Preserves portability and safety
-      case-007:
-        reference: references/authoring.md
-        prompt: Update a skill to add section delimiters and bold principle sentences.
-        expected_output: A response that routes to references/authoring.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to authoring guidance
-        - Produces or revises SKILL.md instructions
-        - Keeps metadata and body budgets in mind
-        - Uses references only when they reduce main-file complexity
-        - Uses the reference format that best teaches the behavior instead of defaulting to terse bullets
-        - Avoids placeholder bundled resources
-        - Preserves portability and safety
-      case-008:
-        reference: references/authoring.md
-        prompt: Create a portable skill that avoids runtime-specific slash commands.
-        expected_output: A response that routes to references/authoring.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to authoring guidance
-        - Produces or revises SKILL.md instructions
-        - Keeps metadata and body budgets in mind
-        - Uses references only when they reduce main-file complexity
-        - Uses the reference format that best teaches the behavior instead of defaulting to terse bullets
-        - Avoids placeholder bundled resources
-        - Preserves portability and safety
-  review:
-    description: Eval cases routed to references/review.md.
+        expect:
+          routing:
+            trigger: true
+            reference: references/agent-compatibility.md
+            evidence: routing_judge
+          assertions:
+            routes-to-agent-compatibility:
+              text: The response uses references/agent-compatibility.md as the selected create-skill reference.
+              kind: routing
+              grading: transcript
+              failure_mode: Runtime compatibility work is handled as ordinary authoring.
+            preserves-portable-core:
+              text: The update keeps the core workflow portable and isolates runtime-specific fallback behavior.
+              kind: outcome
+              grading: artifact
+              failure_mode: The skill becomes tied to one CLI or UI capability.
+  boundaries:
+    description: Negative and near-miss cases that should not route into create-skill.
     cases:
-      case-009:
-        reference: references/review.md
-        prompt: Review the new agent skill in .agents/skills/data-cleanup before publishing.
-        expected_output: A response that routes to references/review.md and applies the create-skill workflow for the requested task.
+      write-product-requirements:
+        type: negative_trigger
+        prompt: Write a PRD for a marketplace where users can browse and install agent skills.
+        expected_output: Does not trigger create-skill; this is product requirements work.
         files: []
-        expectations:
-        - Routes to review guidance
-        - Inspects the skill folder before judging
-        - Leads with actionable findings
-        - Checks trigger precision, scope, references, and eval coverage
-        - Grounds findings in specific files or lines
-        - Avoids rewriting unless requested
-      case-010:
-        reference: references/review.md
-        prompt: 'Review this skill description: description: Process files.'
-        expected_output: A response that routes to references/review.md and applies the create-skill workflow for the requested task.
+        expect:
+          routing:
+            trigger: false
+            evidence: routing_judge
+          assertions:
+            avoids-product-doc-false-positive:
+              text: The router does not select create-skill for product requirements about skills.
+              kind: routing
+              grading: deterministic
+              failure_mode: Keyword overlap on "skills" causes create-skill to trigger for PRD writing.
+      create-agent-rule:
+        type: near_miss
+        prompt: Create Cursor rules for how this repo should format API documentation.
+        expected_output: Does not trigger create-skill; this is rule creation work.
         files: []
-        expectations:
-        - Routes to review guidance
-        - Inspects the skill folder before judging
-        - Leads with actionable findings
-        - Checks trigger precision, scope, references, and eval coverage
-        - Grounds findings in specific files or lines
-        - Avoids rewriting unless requested
-      case-011:
-        reference: references/review.md
-        prompt: Review a skill for trigger overlap against write-tech-docs and write-spec.
-        expected_output: A response that routes to references/review.md and applies the create-skill workflow for the requested task.
+        expect:
+          routing:
+            trigger: false
+            evidence: routing_judge
+          assertions:
+            avoids-rule-authoring-false-positive:
+              text: The router does not select create-skill for repository rule authoring.
+              kind: routing
+              grading: deterministic
+              failure_mode: The agent confuses rule creation with skill creation.
+      use-existing-skill:
+        type: negative_trigger
+        prompt: Use the spreadsheets skill to build a budget workbook from this CSV.
+        expected_output: Does not trigger create-skill; the user wants to use an existing skill.
         files: []
-        expectations:
-        - Routes to review guidance
-        - Inspects the skill folder before judging
-        - Leads with actionable findings
-        - Checks trigger precision, scope, references, and eval coverage
-        - Grounds findings in specific files or lines
-        - Avoids rewriting unless requested
-      case-012:
-        reference: references/review.md
-        prompt: Find quality issues in a skill that has stale references and no evals.
-        expected_output: A response that routes to references/review.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to review guidance
-        - Inspects the skill folder before judging
-        - Leads with actionable findings
-        - Checks trigger precision, scope, references, and eval coverage
-        - Grounds findings in specific files or lines
-        - Avoids rewriting unless requested
-      case-013:
-        reference: references/review.md
-        prompt: Review whether a skill is too broad and should be split into multiple skills.
-        expected_output: A response that routes to references/review.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to review guidance
-        - Inspects the skill folder before judging
-        - Leads with actionable findings
-        - Checks trigger precision, scope, references, and eval coverage
-        - Grounds findings in specific files or lines
-        - Avoids rewriting unless requested
-      case-014:
-        reference: references/review.md
-        prompt: Review a skill package for hidden credential capture or exfiltration risk.
-        expected_output: A response that routes to references/review.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to review guidance
-        - Inspects the skill folder before judging
-        - Leads with actionable findings
-        - Checks trigger precision, scope, references, and eval coverage
-        - Grounds findings in specific files or lines
-        - Avoids rewriting unless requested
-      case-015:
-        reference: references/review.md
-        prompt: Review a router skill for missing route instructions and weak output format.
-        expected_output: A response that routes to references/review.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to review guidance
-        - Inspects the skill folder before judging
-        - Leads with actionable findings
-        - Checks trigger precision, scope, references, and eval coverage
-        - Grounds findings in specific files or lines
-        - Avoids rewriting unless requested
-      case-016:
-        reference: references/review.md
-        prompt: Review a skill after a style-only patch and identify behavioral drift.
-        expected_output: A response that routes to references/review.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to review guidance
-        - Inspects the skill folder before judging
-        - Leads with actionable findings
-        - Checks trigger precision, scope, references, and eval coverage
-        - Grounds findings in specific files or lines
-        - Avoids rewriting unless requested
-  evaluation:
-    description: Eval cases routed to references/evaluation.md.
+        expect:
+          routing:
+            trigger: false
+            evidence: routing_judge
+          assertions:
+            avoids-existing-skill-use:
+              text: The router does not select create-skill when the user wants to invoke another skill.
+              kind: routing
+              grading: deterministic
+              failure_mode: The agent interprets any skill mention as a request to edit skills.
+  schema-quality:
+    description: Eval schema and assertion quality checks for generated eval suites.
     cases:
-      case-017:
-        reference: references/evaluation.md
-        prompt: Generate eval cases for a router skill that writes README, API docs, changelog, release notes, and runbooks.
-        expected_output: A response that routes to references/evaluation.md and applies the create-skill workflow for the requested task.
+      reject-legacy-reference-field:
+        type: regression
+        prompt: Validate evals.yaml and fail any cases that still use a top-level reference field instead of expect.routing.reference.
+        expected_output: Rejects legacy top-level routing fields.
+        files:
+          - evals/files/legacy-reference-evals.yaml
+        expect:
+          assertions:
+            rejects-legacy-reference:
+              text: The validator rejects cases that use top-level reference.
+              kind: outcome
+              grading: deterministic
+              failure_mode: Legacy eval files pass validation after the schema changed.
+              check: reject_field
+              field: reference
+            points-to-new-location:
+              text: The error message tells the user to use expect.routing.reference.
+              kind: outcome
+              grading: deterministic
+              failure_mode: The validator fails without giving a migration path.
+              check: error_contains
+              text: expect.routing.reference
+      require-failure-mode:
+        type: regression
+        prompt: Validate evals.yaml and fail assertions that do not explain the failure mode they catch.
+        expected_output: Rejects assertions without failure_mode.
+        files:
+          - evals/files/missing-failure-mode-evals.yaml
+        expect:
+          assertions:
+            rejects-missing-failure-mode:
+              text: The validator rejects every assertion without a non-empty failure_mode.
+              kind: eval_quality
+              grading: deterministic
+              failure_mode: Vague assertions create false confidence because they do not name the bug they catch.
+              check: required_field
+              field: failure_mode
+      allow-plain-skill-without-routing:
+        type: robustness
+        prompt: Generate evals for a plain single-file skill that has no references directory and only needs outcome checks.
+        expected_output: Produces valid eval cases with expect.assertions and no expect.routing.
         files: []
-        expectations:
-        - Routes to evaluation guidance
-        - Creates realistic prompt-level eval cases
-        - Includes route or trigger boundary coverage
-        - Derives assertions from the skill contract when objective checks are useful
-        - Covers distinct failure modes or input classes without redundant assertions
-        - Includes at least one negative assertion for evals with objective checks
-        - Keeps evals inside the skill folder
-        - Mentions reproducible iteration or benchmark workflow when relevant
-      case-018:
-        reference: references/evaluation.md
-        prompt: Create evals for a focused skill that writes incident postmortems.
-        expected_output: A response that routes to references/evaluation.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to evaluation guidance
-        - Creates realistic prompt-level eval cases
-        - Includes route or trigger boundary coverage
-        - Derives assertions from the skill contract when objective checks are useful
-        - Covers distinct failure modes or input classes without redundant assertions
-        - Includes at least one negative assertion for evals with objective checks
-        - Keeps evals inside the skill folder
-        - Mentions reproducible iteration or benchmark workflow when relevant
-      case-019:
-        reference: references/evaluation.md
-        prompt: Build near-miss trigger evals for a database skill versus report-db-health.
-        expected_output: A response that routes to references/evaluation.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to evaluation guidance
-        - Creates realistic prompt-level eval cases
-        - Includes route or trigger boundary coverage
-        - Derives assertions from the skill contract when objective checks are useful
-        - Covers distinct failure modes or input classes without redundant assertions
-        - Includes at least one negative assertion for evals with objective checks
-        - Keeps evals inside the skill folder
-        - Mentions reproducible iteration or benchmark workflow when relevant
-      case-020:
-        reference: references/evaluation.md
-        prompt: Plan an iteration comparing with_skill and without_skill outputs.
-        expected_output: A response that routes to references/evaluation.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to evaluation guidance
-        - Creates realistic prompt-level eval cases
-        - Includes route or trigger boundary coverage
-        - Derives assertions from the skill contract when objective checks are useful
-        - Covers distinct failure modes or input classes without redundant assertions
-        - Includes at least one negative assertion for evals with objective checks
-        - Keeps evals inside the skill folder
-        - Mentions reproducible iteration or benchmark workflow when relevant
-      case-021:
-        reference: references/evaluation.md
-        prompt: Define objective grading assertions for generated SQL migrations.
-        expected_output: A response that routes to references/evaluation.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to evaluation guidance
-        - Creates realistic prompt-level eval cases
-        - Includes route or trigger boundary coverage
-        - Derives assertions from the skill contract when objective checks are useful
-        - Covers distinct failure modes or input classes without redundant assertions
-        - Includes at least one negative assertion for evals with objective checks
-        - Keeps evals inside the skill folder
-        - Mentions reproducible iteration or benchmark workflow when relevant
-      case-022:
-        reference: references/evaluation.md
-        prompt: Aggregate benchmark results from iteration-2 and summarize pass rates.
-        expected_output: A response that routes to references/evaluation.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to evaluation guidance
-        - Creates realistic prompt-level eval cases
-        - Includes route or trigger boundary coverage
-        - Derives assertions from the skill contract when objective checks are useful
-        - Covers distinct failure modes or input classes without redundant assertions
-        - Includes at least one negative assertion for evals with objective checks
-        - Keeps evals inside the skill folder
-        - Mentions reproducible iteration or benchmark workflow when relevant
-      case-023:
-        reference: references/evaluation.md
-        prompt: Create a human review UI for a skill eval run in a headless environment.
-        expected_output: A response that routes to references/evaluation.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to evaluation guidance
-        - Creates realistic prompt-level eval cases
-        - Includes route or trigger boundary coverage
-        - Derives assertions from the skill contract when objective checks are useful
-        - Covers distinct failure modes or input classes without redundant assertions
-        - Includes at least one negative assertion for evals with objective checks
-        - Keeps evals inside the skill folder
-        - Mentions reproducible iteration or benchmark workflow when relevant
-      case-024:
-        reference: references/evaluation.md
-        prompt: Revise eval cases after repeated failures in route selection.
-        expected_output: A response that routes to references/evaluation.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to evaluation guidance
-        - Creates realistic prompt-level eval cases
-        - Includes route or trigger boundary coverage
-        - Derives assertions from the skill contract when objective checks are useful
-        - Covers distinct failure modes or input classes without redundant assertions
-        - Includes at least one negative assertion for evals with objective checks
-        - Keeps evals inside the skill folder
-        - Mentions reproducible iteration or benchmark workflow when relevant
-  description-optimization:
-    description: Eval cases routed to references/description-optimization.md.
+        expect:
+          assertions:
+            omits-routing-when-not-needed:
+              text: The eval case is valid without expect.routing when it tests process or outcome only.
+              kind: outcome
+              grading: deterministic
+              failure_mode: Plain SKILL.md skills are forced to invent meaningless routing references.
+              check: routing_optional
+            keeps-assertions-keyed:
+              text: Assertions are a mapping keyed by lowercase kebab-case assertion names.
+              kind: eval_quality
+              grading: deterministic
+              failure_mode: The generated eval falls back to a list of vague expectation strings.
+              check: assertions_are_mapping
+  execution:
+    description: Behavior expected from scripts that consume eval suites.
     cases:
-      case-025:
-        reference: references/description-optimization.md
-        prompt: Optimize a skill description for database schemas and SQL queries within budget.
-        expected_output: A response that routes to references/description-optimization.md and applies the create-skill workflow for the requested task.
+      run-trigger-evals-from-routing:
+        type: process
+        prompt: Run trigger evaluation for this skill using evals/evals.yaml.
+        expected_output: Uses only cases with expect.routing.trigger and derives query/should_trigger from prompt/routing.
         files: []
-        expectations:
-        - Routes to description optimization guidance
-        - Improves trigger precision
-        - Balances should-trigger and should-not-trigger cases
-        - Keeps metadata concise
-        - Avoids keyword stuffing
-        - Explains false-positive or false-negative risk
-      case-026:
-        reference: references/description-optimization.md
-        prompt: Improve a trigger description that undertriggers for runbook requests.
-        expected_output: A response that routes to references/description-optimization.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to description optimization guidance
-        - Improves trigger precision
-        - Balances should-trigger and should-not-trigger cases
-        - Keeps metadata concise
-        - Avoids keyword stuffing
-        - Explains false-positive or false-negative risk
-      case-027:
-        reference: references/description-optimization.md
-        prompt: Make a description less broad so it does not trigger on generic file conversion.
-        expected_output: A response that routes to references/description-optimization.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to description optimization guidance
-        - Improves trigger precision
-        - Balances should-trigger and should-not-trigger cases
-        - Keeps metadata concise
-        - Avoids keyword stuffing
-        - Explains false-positive or false-negative risk
-      case-028:
-        reference: references/description-optimization.md
-        prompt: Create should-trigger and should-not-trigger examples for a skill description.
-        expected_output: A response that routes to references/description-optimization.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to description optimization guidance
-        - Improves trigger precision
-        - Balances should-trigger and should-not-trigger cases
-        - Keeps metadata concise
-        - Avoids keyword stuffing
-        - Explains false-positive or false-negative risk
-      case-029:
-        reference: references/description-optimization.md
-        prompt: Shorten an overlong skill description without losing core trigger cues.
-        expected_output: A response that routes to references/description-optimization.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to description optimization guidance
-        - Improves trigger precision
-        - Balances should-trigger and should-not-trigger cases
-        - Keeps metadata concise
-        - Avoids keyword stuffing
-        - Explains false-positive or false-negative risk
-      case-030:
-        reference: references/description-optimization.md
-        prompt: Diagnose trigger overlap between write-prd and write-spec descriptions.
-        expected_output: A response that routes to references/description-optimization.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to description optimization guidance
-        - Improves trigger precision
-        - Balances should-trigger and should-not-trigger cases
-        - Keeps metadata concise
-        - Avoids keyword stuffing
-        - Explains false-positive or false-negative risk
-      case-031:
-        reference: references/description-optimization.md
-        prompt: Improve a code review skill description for PR, diff, branch, and patch requests.
-        expected_output: A response that routes to references/description-optimization.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to description optimization guidance
-        - Improves trigger precision
-        - Balances should-trigger and should-not-trigger cases
-        - Keeps metadata concise
-        - Avoids keyword stuffing
-        - Explains false-positive or false-negative risk
-      case-032:
-        reference: references/description-optimization.md
-        prompt: Optimize metadata for a router skill without stuffing every route keyword.
-        expected_output: A response that routes to references/description-optimization.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to description optimization guidance
-        - Improves trigger precision
-        - Balances should-trigger and should-not-trigger cases
-        - Keeps metadata concise
-        - Avoids keyword stuffing
-        - Explains false-positive or false-negative risk
-  agent-compatibility:
-    description: Eval cases routed to references/agent-compatibility.md.
-    cases:
-      case-033:
-        reference: references/agent-compatibility.md
-        prompt: Adapt a skill workflow for a generic CLI agent without subagents.
-        expected_output: A response that routes to references/agent-compatibility.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to compatibility guidance
-        - Removes or isolates runtime-specific assumptions
-        - Keeps core workflow portable
-        - Explains fallback behavior for unavailable features
-        - Avoids relying on one agent UI or command set
-        - Preserves skill intent
-      case-034:
-        reference: references/agent-compatibility.md
-        prompt: Port a skill that mentions Claude Code commands to runtime-neutral instructions.
-        expected_output: A response that routes to references/agent-compatibility.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to compatibility guidance
-        - Removes or isolates runtime-specific assumptions
-        - Keeps core workflow portable
-        - Explains fallback behavior for unavailable features
-        - Avoids relying on one agent UI or command set
-        - Preserves skill intent
-      case-035:
-        reference: references/agent-compatibility.md
-        prompt: Document compatibility notes for a skill that uses local scripts.
-        expected_output: A response that routes to references/agent-compatibility.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to compatibility guidance
-        - Removes or isolates runtime-specific assumptions
-        - Keeps core workflow portable
-        - Explains fallback behavior for unavailable features
-        - Avoids relying on one agent UI or command set
-        - Preserves skill intent
-      case-036:
-        reference: references/agent-compatibility.md
-        prompt: Adjust a skill so Browser plugin instructions are isolated from core workflow.
-        expected_output: A response that routes to references/agent-compatibility.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to compatibility guidance
-        - Removes or isolates runtime-specific assumptions
-        - Keeps core workflow portable
-        - Explains fallback behavior for unavailable features
-        - Avoids relying on one agent UI or command set
-        - Preserves skill intent
-      case-037:
-        reference: references/agent-compatibility.md
-        prompt: Make a skill usable in agents that cannot spawn helper agents.
-        expected_output: A response that routes to references/agent-compatibility.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to compatibility guidance
-        - Removes or isolates runtime-specific assumptions
-        - Keeps core workflow portable
-        - Explains fallback behavior for unavailable features
-        - Avoids relying on one agent UI or command set
-        - Preserves skill intent
-      case-038:
-        reference: references/agent-compatibility.md
-        prompt: Replace runtime-specific tool names with portable action descriptions.
-        expected_output: A response that routes to references/agent-compatibility.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to compatibility guidance
-        - Removes or isolates runtime-specific assumptions
-        - Keeps core workflow portable
-        - Explains fallback behavior for unavailable features
-        - Avoids relying on one agent UI or command set
-        - Preserves skill intent
-      case-039:
-        reference: references/agent-compatibility.md
-        prompt: Review a skill for assumptions about event streams and UI affordances.
-        expected_output: A response that routes to references/agent-compatibility.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to compatibility guidance
-        - Removes or isolates runtime-specific assumptions
-        - Keeps core workflow portable
-        - Explains fallback behavior for unavailable features
-        - Avoids relying on one agent UI or command set
-        - Preserves skill intent
-      case-040:
-        reference: references/agent-compatibility.md
-        prompt: Write compatibility guidance for packaging and validation in another CLI runtime.
-        expected_output: A response that routes to references/agent-compatibility.md and applies the create-skill workflow for the requested task.
-        files: []
-        expectations:
-        - Routes to compatibility guidance
-        - Removes or isolates runtime-specific assumptions
-        - Keeps core workflow portable
-        - Explains fallback behavior for unavailable features
-        - Avoids relying on one agent UI or command set
-        - Preserves skill intent
+        expect:
+          assertions:
+            loads-routing-trigger-cases:
+              text: The runner loads prompt as query and expect.routing.trigger as should_trigger.
+              kind: process
+              grading: deterministic
+              failure_mode: The runner still expects legacy query and should_trigger fields.
+              check: load_eval_set
+            skips-non-routing-cases:
+              text: The trigger runner skips process/outcome-only cases without expect.routing.trigger.
+              kind: process
+              grading: deterministic
+              failure_mode: Non-routing cases crash trigger-only evaluation.

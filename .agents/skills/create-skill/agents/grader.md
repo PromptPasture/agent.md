@@ -12,7 +12,7 @@ You have two jobs: grade the outputs, and critique the evals themselves. A passi
 
 You receive these parameters in your prompt:
 
-- **expectations**: List of expectations to evaluate (strings)
+- **expectations**: List of expectations to evaluate. For `evals.yaml`, these usually come from `expect.assertions`; preserve assertion names when provided and grade the assertion text plus its `failure_mode`.
 - **transcript_path**: Path to the execution transcript (markdown file)
 - **outputs_dir**: Directory containing output files from execution
 
@@ -35,10 +35,11 @@ You receive these parameters in your prompt:
 For each expectation:
 
 1. **Search for evidence** in the transcript and outputs
-2. **Determine verdict**:
+2. **Use the failure mode** when provided to decide whether the assertion is discriminating enough to catch the intended bad behavior
+3. **Determine verdict**:
    - **PASS**: Clear evidence the expectation is true AND the evidence reflects genuine task completion, not just surface-level compliance
    - **FAIL**: No evidence, or evidence contradicts the expectation, or the evidence is superficial (e.g., correct filename but empty/wrong content)
-3. **Cite the evidence**: Quote the specific text or describe what you found
+4. **Cite the evidence**: Quote the specific text or describe what you found
 
 ### Step 4: Extract and Verify Claims
 

@@ -37,7 +37,7 @@ Create new skills, review and improve existing skills, evaluate outputs, optimiz
 
 2. **Clarify activation and behavior.** Identify what the skill should do, which user phrases or contexts should trigger it, what output it should produce, and whether objective evals are useful.
 3. **Write or revise the skill.** Name new skills using the `<verb>-<subject>[-<variant>]` convention or a concise `<verb>` format (e.g., `code-tests`, `ask`). Follow `references/authoring.md` for metadata, trigger descriptions, `SKILL.md` body format, reference file format, section delimiters, scan anchors, examples, helper scripts, portability, and validation. Always bump `metadata.version` using semantic versioning upon any material change to a skill's files.
-4. **Test behavior.** Run this skill's `scripts/validate.py` against the target skill when available. For router skills, confirm every `references/*.md` file has 8-10 evals mapped by `reference`; for objectively testable skills, run skill-enabled outputs against a meaningful baseline.
+4. **Test behavior.** Run this skill's `scripts/validate.py` against the target skill when available. For router skills, confirm routed eval cases use `expect.routing.reference`; for objectively testable skills, run skill-enabled outputs against a meaningful baseline.
 5. **Show evidence.** Share validation output, eval results, benchmark summaries, and relevant diffs before making another revision.
 6. **Iterate deliberately.** Continue until feedback is resolved or further changes stop improving behavior.
 7. **Package last.** Package the final skill only after the user is satisfied with behavior and trigger accuracy.

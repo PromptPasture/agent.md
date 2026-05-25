@@ -23,29 +23,35 @@ from scripts.utils import parse_skill_md
 
 
 def load_eval_set(path: Path) -> list[dict]:
-    """Load a YAML eval set, flattening suites/cases when present."""
+    """Load a YAML eval set, flattening suites/cases into routing cases."""
     data = yaml.safe_load(path.read_text())
-    if isinstance(data, list):
-        return data
     if not isinstance(data, dict):
-        raise ValueError(f"{path}: expected a YAML list or mapping")
+        raise ValueError(f"{path}: expected a YAML mapping")
     suites = data.get("suites")
-    if suites is None:
-        evals = data.get("evals")
-        if isinstance(evals, list):
-            return evals
-        raise ValueError(f"{path}: missing 'suites' mapping")
     if not isinstance(suites, dict):
-        raise ValueError(f"{path}: 'suites' must be a mapping")
+        raise ValueError(f"{path}: missing 'suites' mapping")
 
     evals = []
     for suite_name, suite in suites.items():
         if not isinstance(suite, dict) or not isinstance(suite.get("cases"), dict):
             raise ValueError(f"{path}: suite '{suite_name}' must contain a cases mapping")
-        for case_id, case in suite["cases"].items():
+        for case_name, case in suite["cases"].items():
             if not isinstance(case, dict):
-                raise ValueError(f"{path}: case '{suite_name}.{case_id}' must be a mapping")
-            evals.append({"id": f"{suite_name}.{case_id}", **case})
+                raise ValueError(f"{path}: case '{suite_name}.{case_name}' must be a mapping")
+            routing = case.get("expect", {}).get("routing")
+            if not isinstance(routing, dict) or "trigger" not in routing:
+                continue
+            prompt = case.get("prompt")
+            if not isinstance(prompt, str) or not prompt.strip():
+                raise ValueError(f"{path}: routing case '{suite_name}.{case_name}' requires prompt")
+            evals.append({
+                "id": f"{suite_name}.{case_name}",
+                "query": prompt,
+                "should_trigger": routing["trigger"],
+                "reference": routing.get("reference"),
+            })
+    if not evals:
+        raise ValueError(f"{path}: no cases with expect.routing.trigger found")
     return evals
 
 

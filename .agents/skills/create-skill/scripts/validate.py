@@ -68,6 +68,18 @@ def validate_eval_coverage(skill_path):
     """Validate eval coverage for focused and router skills."""
     evals_path = skill_path / 'evals' / 'evals.yaml'
     references_dir = skill_path / 'references'
+    yaml_key = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
+    allowed_case_types = {
+        'positive_trigger',
+        'negative_trigger',
+        'near_miss',
+        'process',
+        'outcome',
+        'regression',
+        'robustness',
+    }
+    allowed_kinds = {'routing', 'process', 'outcome', 'eval_quality'}
+    allowed_grading = {'deterministic', 'transcript', 'artifact', 'human'}
 
     if not evals_path.exists():
         if references_dir.exists() and any(references_dir.glob('*.md')):
@@ -80,6 +92,9 @@ def validate_eval_coverage(skill_path):
         return False, f"Invalid YAML in {evals_path}: {e}"
     if not isinstance(data, dict):
         return False, f"{evals_path}: expected a YAML mapping"
+    eval_name = data.get('name')
+    if not isinstance(eval_name, str) or not yaml_key.match(eval_name):
+        return False, f"{evals_path}: field 'name' must be lowercase kebab-case"
 
     suites = data.get('suites')
     if not isinstance(suites, dict):
@@ -87,15 +102,98 @@ def validate_eval_coverage(skill_path):
 
     evals = []
     for suite_name, suite in suites.items():
+        if not isinstance(suite_name, str) or not yaml_key.match(suite_name):
+            return False, f"{evals_path}: suite name '{suite_name}' must be lowercase kebab-case"
         if not isinstance(suite, dict):
             return False, f"{evals_path}: suite '{suite_name}' must be an object"
         cases = suite.get('cases')
         if not isinstance(cases, dict):
             return False, f"{evals_path}: suite '{suite_name}' missing mapping field 'cases'"
-        for case_id, item in cases.items():
+        for case_name, item in cases.items():
+            if not isinstance(case_name, str) or not yaml_key.match(case_name):
+                return False, (
+                    f"{evals_path}: case name '{suite_name}.{case_name}' "
+                    "must be lowercase kebab-case"
+                )
             if not isinstance(item, dict):
-                return False, f"{evals_path}: case '{suite_name}.{case_id}' must be an object"
-            evals.append((f"{suite_name}.{case_id}", item))
+                return False, f"{evals_path}: case '{suite_name}.{case_name}' must be an object"
+            if 'reference' in item:
+                return False, (
+                    f"{evals_path}: case '{suite_name}.{case_name}' uses legacy "
+                    "'reference'; use expect.routing.reference"
+                )
+            if 'expectations' in item:
+                return False, (
+                    f"{evals_path}: case '{suite_name}.{case_name}' uses legacy "
+                    "'expectations'; use expect.assertions"
+                )
+            case_type = item.get('type')
+            if case_type is not None and case_type not in allowed_case_types:
+                return False, (
+                    f"{evals_path}: case '{suite_name}.{case_name}' has invalid "
+                    f"type '{case_type}'"
+                )
+            prompt = item.get('prompt')
+            if not isinstance(prompt, str) or not prompt.strip():
+                return False, f"{evals_path}: case '{suite_name}.{case_name}' requires non-empty prompt"
+            files = item.get('files', [])
+            if files is not None:
+                if not isinstance(files, list) or not all(isinstance(path, str) for path in files):
+                    return False, f"{evals_path}: case '{suite_name}.{case_name}' files must be a list of strings"
+                for file_path in files:
+                    if Path(file_path).is_absolute() or '..' in Path(file_path).parts:
+                        return False, f"{evals_path}: fixture path '{file_path}' must stay inside the skill"
+                    if not file_path.startswith('evals/files/'):
+                        return False, f"{evals_path}: fixture path '{file_path}' must live under evals/files/"
+
+            expect = item.get('expect')
+            if not isinstance(expect, dict):
+                return False, f"{evals_path}: case '{suite_name}.{case_name}' requires mapping field 'expect'"
+            routing = expect.get('routing')
+            if routing is not None:
+                if not isinstance(routing, dict):
+                    return False, f"{evals_path}: case '{suite_name}.{case_name}' expect.routing must be a mapping"
+                if 'trigger' in routing and not isinstance(routing['trigger'], bool):
+                    return False, f"{evals_path}: case '{suite_name}.{case_name}' expect.routing.trigger must be boolean"
+                if 'reference' in routing and not isinstance(routing['reference'], str):
+                    return False, f"{evals_path}: case '{suite_name}.{case_name}' expect.routing.reference must be a string"
+                if 'evidence' in routing and routing['evidence'] != 'routing_judge':
+                    return False, (
+                        f"{evals_path}: case '{suite_name}.{case_name}' "
+                        "expect.routing.evidence must be routing_judge"
+                    )
+
+            assertions = expect.get('assertions')
+            if not isinstance(assertions, dict) or not assertions:
+                return False, f"{evals_path}: case '{suite_name}.{case_name}' requires expect.assertions"
+            for assertion_name, assertion in assertions.items():
+                if not isinstance(assertion_name, str) or not yaml_key.match(assertion_name):
+                    return False, (
+                        f"{evals_path}: assertion name '{suite_name}.{case_name}.{assertion_name}' "
+                        "must be lowercase kebab-case"
+                    )
+                if not isinstance(assertion, dict):
+                    return False, (
+                        f"{evals_path}: assertion '{suite_name}.{case_name}.{assertion_name}' "
+                        "must be a mapping"
+                    )
+                if assertion.get('kind') not in allowed_kinds:
+                    return False, (
+                        f"{evals_path}: assertion '{suite_name}.{case_name}.{assertion_name}' "
+                        "requires kind routing, process, outcome, or eval_quality"
+                    )
+                if assertion.get('grading') not in allowed_grading:
+                    return False, (
+                        f"{evals_path}: assertion '{suite_name}.{case_name}.{assertion_name}' "
+                        "requires grading deterministic, transcript, artifact, or human"
+                    )
+                failure_mode = assertion.get('failure_mode')
+                if not isinstance(failure_mode, str) or not failure_mode.strip():
+                    return False, (
+                        f"{evals_path}: assertion '{suite_name}.{case_name}.{assertion_name}' "
+                        "requires non-empty failure_mode"
+                    )
+            evals.append((f"{suite_name}.{case_name}", item))
 
     if len(evals) < 2:
         return False, f"{evals_path}: expected at least 2 evals, found {len(evals)}"
@@ -103,33 +201,32 @@ def validate_eval_coverage(skill_path):
     if not references_dir.exists():
         return True, None
 
-    reference_files = [
+    all_reference_files = [
         f"references/{path.name}"
         for path in sorted(references_dir.glob('*.md'))
-        if path.name != 'schemas.md'
+    ]
+    reference_files = [
+        reference
+        for reference in all_reference_files
+        if reference != 'references/schemas.md'
     ]
     if not reference_files:
         return True, None
 
-    counts = {reference: 0 for reference in reference_files}
-    missing_reference = []
+    seen_references = set()
     unknown_references = {}
 
     for case_id, item in evals:
-        reference = item.get('reference')
-        if not reference:
-            missing_reference.append(case_id)
+        routing = item.get('expect', {}).get('routing')
+        if not isinstance(routing, dict):
             continue
-        if reference not in counts:
+        reference = routing.get('reference')
+        if not reference:
+            continue
+        if reference not in all_reference_files:
             unknown_references[case_id] = reference
             continue
-        counts[reference] += 1
-
-    if missing_reference:
-        return False, (
-            f"{evals_path}: router evals must include a 'reference' field; "
-            f"missing on eval id(s): {', '.join(missing_reference[:10])}"
-        )
+        seen_references.add(reference)
 
     if unknown_references:
         examples = ', '.join(
@@ -138,19 +235,11 @@ def validate_eval_coverage(skill_path):
         )
         return False, f"{evals_path}: evals reference unknown files: {examples}"
 
-    bad_counts = {
-        reference: count
-        for reference, count in counts.items()
-        if count < 8 or count > 10
-    }
-    if bad_counts:
-        summary = ', '.join(
-            f"{reference}={count}"
-            for reference, count in bad_counts.items()
-        )
+    missing_coverage = sorted(set(reference_files) - seen_references)
+    if missing_coverage:
         return False, (
-            f"{evals_path}: router references must each have 8-10 evals; "
-            f"found {summary}"
+            f"{evals_path}: router references missing routed eval coverage: "
+            f"{', '.join(missing_coverage)}"
         )
 
     return True, None

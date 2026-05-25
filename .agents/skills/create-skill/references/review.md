@@ -113,7 +113,7 @@ Check that:
 
 Review whether the skill can be tested and improved systematically.
 
-- **Trigger coverage:** For trigger-sensitive skills, evals should include should-trigger and should-not-trigger cases. Aim for roughly 20 trigger queries, with 8-10 per side. Good positive cases are not just obvious keyword matches; they are realistic requests where the skill would help. Good negative cases are near misses.
+- **Trigger coverage:** For trigger-sensitive skills, evals should include should-trigger and should-not-trigger cases. Good positive cases are not just obvious keyword matches; they are realistic requests where the skill would help. Good negative cases are near misses. Case count should be driven by coverage, not a fixed target.
 - **Trigger rate:** Run each trigger query multiple times when the runtime is nondeterministic, then review the trigger rate instead of a single pass. A should-trigger query should pass at a rate >= 0.5; a should-not-trigger query should pass at a rate < 0.5. Keep train and validation splits fixed across iterations so changes are comparable.
 - **Objective checks:** For behavior-sensitive skills, evals should include objective checks when practical: validators, schemas, deterministic scripts, known fixture outputs, or acceptance checks.
 

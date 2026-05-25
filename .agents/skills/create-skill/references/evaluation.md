@@ -4,19 +4,19 @@ Use this reference when creating eval cases, running skill iterations, benchmark
 
 ## Test Cases
 
-Create 8-10 realistic prompts for a focused skill. For router skills, create 8-10 prompts per route and include near-miss prompts that could be confused with another route.
+Create enough realistic cases to cover the skill's trigger surface, workflow obligations, output contract, and known failure modes. Use coverage, not a fixed case count, to decide when the suite is complete.
 
 Save test cases to `<skill-path>/evals/evals.yaml`. Keep evals inside the skill folder so prompts, fixtures, outputs, and benchmark history travel with the skill.
 
-For router skills, add a `reference` field to every eval using the exact relative path, such as `references/postgres.md`. Every reference file that the router can load must have 8-10 evals. Near-miss prompts still count toward the route they are intended to test.
+Group cases by suite. Use YAML-safe lowercase kebab-case keys for suite names, case names, and assertion names. For router skills, set `expect.routing.reference` to the exact relative path, such as `references/postgres.md`, when the case expects a specific route. `expect.routing` is optional for cases that only test process or outcome behavior.
 
-Start with prompt-level expectations. Add objective assertions after the test set is agreed or while runs are in progress.
+Start with prompt-level assertions. Add objective checks after the test set is agreed or while runs are in progress. Keep fixtures under `<skill-path>/evals/files/`.
 
 ---
 
 ## Assertion Design
 
-Read this when drafting assertions for a skill's `evals/evals.yaml`. It answers one question: **what makes an assertion actually useful?**
+Read this when drafting `expect.assertions` for a skill's `evals/evals.yaml`. It answers one question: **what makes an assertion actually useful?**
 
 ### Start with the contract, not the test cases
 
@@ -42,11 +42,11 @@ Don't jump to assertions. Reason about what can go wrong first:
 | **Contamination** | Placeholders, leftover content from a previous run, apology text, or defaults |
 | **Process** | The skill's documented steps were skipped in favor of improvisation |
 
-Each assertion should target at least one of these. If you can't name which failure mode an assertion catches, it is probably not worth including.
+Each assertion must include `failure_mode` and target at least one of these. If you can't name which failure mode an assertion catches, it is probably not worth including.
 
 ### Cover the input space with equivalence classes
 
-Write at least one eval per useful class rather than many similar prompts:
+Write at least one case per useful class rather than many similar prompts:
 
 | Class | Purpose |
 | --- | --- |
@@ -89,7 +89,7 @@ An assertion that always passes is worse than no assertion; it creates false con
 > `"The word 'approximately' does not appear in any numeric field"`
 > `"No text matching 'I was unable to' appears in the output file"`
 
-Every eval with objective checks should include at least one negative assertion. These catch cases where the model attempted the task but gave up, left defaults, or produced a plausible-looking wrong result.
+Every case with objective checks should include at least one negative assertion. These catch cases where the model attempted the task but gave up, left defaults, or produced a plausible-looking wrong result.
 
 ### Use `[MUST]` for blockers
 

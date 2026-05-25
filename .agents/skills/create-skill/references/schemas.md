@@ -36,33 +36,54 @@ metadata:
 Defines the evals for a skill. Located at `<skill-path>/evals/evals.yaml` within the skill directory. Do not create `evals/` as a sibling of the skill.
 
 ```yaml
-name: example-skill evals
+name: example-skill-evals
 suites:
   example-route:
     description: Eval cases routed to references/example-route.md.
     cases:
       basic-routing:
-        reference: references/example-route.md
+        type: positive_trigger
         prompt: "User's example prompt"
         expected_output: Description of expected result
         files:
           - evals/files/sample1.pdf
-        expectations:
-          - The output includes X
-          - The skill used script Y
+        expect:
+          routing:
+            trigger: true
+            reference: references/example-route.md
+            evidence: routing_judge
+          assertions:
+            includes-required-output:
+              kind: outcome
+              grading: deterministic
+              failure_mode: The output omits required content while appearing complete
+              check: contains_text
+              text: X
+            uses-required-script:
+              kind: process
+              grading: transcript
+              failure_mode: The agent improvises instead of using the skill's required script
 ```
 
 **Fields:**
 
-- `name`: Human-readable eval set name
+- `name`: YAML-safe eval set name, preferably `<skill-folder>-evals`
 - `suites`: Mapping of suite names to related eval cases
 - `suites.<suite>.description`: Human-readable suite purpose
 - `suites.<suite>.cases`: Mapping of stable case IDs to eval case objects
-- `cases.<case>.reference`: Required for router skills; exact relative path to the routed reference, such as `references/postgres.md`
+- `cases.<case>.type`: Optional case type, such as `positive_trigger`, `negative_trigger`, `near_miss`, `process`, `outcome`, `regression`, or `robustness`
 - `cases.<case>.prompt`: The task to execute
 - `cases.<case>.expected_output`: Human-readable description of success
 - `cases.<case>.files`: Optional list of input file paths (relative to skill root)
-- `cases.<case>.expectations`: List of verifiable statements
+- `cases.<case>.expect.routing`: Optional routing expectation
+- `cases.<case>.expect.routing.trigger`: Whether the skill should trigger
+- `cases.<case>.expect.routing.reference`: Optional exact relative path to the routed reference, such as `references/postgres.md`
+- `cases.<case>.expect.routing.evidence`: Routing evidence mode; use `routing_judge` unless a more specific runtime signal is available
+- `cases.<case>.expect.assertions`: Mapping of YAML-safe assertion names to assertion objects
+- `assertions.<assertion>.kind`: `routing`, `process`, `outcome`, or `eval_quality`
+- `assertions.<assertion>.grading`: `deterministic`, `transcript`, `artifact`, or `human`
+- `assertions.<assertion>.failure_mode`: Specific bad behavior the assertion catches
+- `assertions.<assertion>.check`: Optional deterministic check name
 
 ---
 

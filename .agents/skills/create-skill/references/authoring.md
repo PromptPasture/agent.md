@@ -187,7 +187,7 @@ Move long templates, large examples, fixture files, and generated review assets 
 
 For router skills with `references/*.md`, create `evals/evals.yaml` before validation is considered complete.
 
-Each eval must include a `reference` field pointing to the routed reference. Every non-schema reference must have 8-10 evals. Near-miss prompts count toward the route they are intended to test.
+Routed cases should set `expect.routing.reference` to the routed reference. Every non-schema reference should have at least one routed case, and total case count should be driven by coverage rather than a fixed number.
 
 For objectively testable skills, include assertions, scripts, schemas, fixtures, or acceptance checks where practical. Use `references/evaluation.md` for deeper eval design guidance.
 
