@@ -23,7 +23,7 @@ POSITIVE_PATTERNS = [
     r"\b(write|create|draft|make|improve|rewrite|turn).{0,60}\b(rule|rules|instruction|instructions)\b",
     r"\b(convert|add).{0,80}\b(agent|agents).{0,30}\b(rule|rules|instruction|instructions)\b",
     r"\b(convert|add).{0,80}\b(rule|rules|instruction|instructions).{0,30}\b(agent|agents)\b",
-    r"\b(AGENTS\.md|CLAUDE\.md|copilot-instructions\.md|Cursor rule|\.agents/rules|\.claude/rules)\b",
+    r"\b(AGENTS\.md|CLAUDE\.md|copilot-instructions\.md|Cursor rule|\src/rules|\.claude/rules)\b",
     r"\bpath-scoped rule\b",
     r"\bCLI-agent rule\b",
 ]

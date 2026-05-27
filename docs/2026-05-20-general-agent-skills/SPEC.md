@@ -74,12 +74,12 @@ This work does not add live integrations with Jira, Linear, Confluence, GitHub I
 
 ### 2.2 Skill File Layout
 
-Each skill shall live in its own folder under `.agents/skills/<skill-name>/`.
+Each skill shall live in its own folder under `src/skills/<skill-name>/`.
 
 Each skill folder shall include:
 
 ```text
-.agents/skills/<skill-name>/
+src/skills/<skill-name>/
 ├── SKILL.md
 └── evals/
     └── evals.yaml
@@ -216,7 +216,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 #### FR-009: `remember`
 
 **Priority:** Must-have
-**Description:** The system shall use `remember` to preserve durable project facts, decisions, and useful observations in `.agents/memory/`.
+**Description:** The system shall use `remember` to preserve durable project facts, decisions, and useful observations in `src/memory/`.
 
 **Acceptance criteria:**
 
@@ -224,7 +224,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 - [ ] Treats explicit user requests to remember context as approval to write memory without asking again.
 - [ ] Writes only durable facts, decisions, and observations with project value.
 - [ ] Avoids storing transient task chatter, sensitive information, or unverifiable assumptions as fact.
-- [ ] Follows existing `.agents/memory/MEMORY.md` and dated memory file conventions.
+- [ ] Follows existing `src/memory/MEMORY.md` and dated memory file conventions.
 
 #### FR-010: `adapt`
 
@@ -259,7 +259,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 **Acceptance criteria:**
 
-- [ ] Each skill has `evals/evals.yaml` generated through `.agents/skills/create-skill/`.
+- [ ] Each skill has `evals/evals.yaml` generated through `src/skills/create-skill/`.
 - [ ] Each skill has 8-10 realistic eval prompts where possible, and never fewer than the PRD minimum of 7.
 - [ ] Each eval set includes at least 3 true-positive prompts.
 - [ ] Each eval set includes at least 2 false-positive prompts where nearby language should route elsewhere or not trigger.
@@ -278,7 +278,7 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 **BR-005:** `adapt` detects and routes evidence-driven change needs. It shall not directly rewrite skills, rules, docs, evals, or memory by default.
 
-**BR-006:** Durable task documentation belongs under `docs/`; durable memory facts and small implementation notes belong under `.agents/memory/`.
+**BR-006:** Durable task documentation belongs under `docs/`; durable memory facts and small implementation notes belong under `src/memory/`.
 
 ---
 
@@ -317,11 +317,11 @@ flowchart TD
 
 | Component | Responsibility |
 | --- | --- |
-| `.agents/skills/<skill>/SKILL.md` | Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations |
-| `.agents/skills/<skill>/evals/evals.yaml` | Representative trigger and non-trigger prompts generated through `create-skill` |
-| `.agents/skills/<skill>/evals/iterations/iteration-N/` | Reproducible eval run outputs, grading, and benchmark artifacts when generated |
-| `.agents/memory/` | Target memory location for `remember` behavior |
-| `.agents/skills/create-skill/` | Development-time eval generation, validation, and packaging support |
+| `src/skills/<skill>/SKILL.md` | Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations |
+| `src/skills/<skill>/evals/evals.yaml` | Representative trigger and non-trigger prompts generated through `create-skill` |
+| `src/skills/<skill>/evals/iterations/iteration-N/` | Reproducible eval run outputs, grading, and benchmark artifacts when generated |
+| `src/memory/` | Target memory location for `remember` behavior |
+| `src/skills/create-skill/` | Development-time eval generation, validation, and packaging support |
 
 ### 4.3 Key Design Decisions
 
@@ -343,7 +343,7 @@ Per-skill eval files keep each installable unit self-contained. A shared overlap
 
 No database or structured runtime data model is added.
 
-The only persistent output introduced by skill behavior is `remember` writing Markdown entries under `.agents/memory/` according to existing conventions.
+The only persistent output introduced by skill behavior is `remember` writing Markdown entries under `src/memory/` according to existing conventions.
 
 Memory entries shall use one of these categories when applicable: facts, preferences, decisions, or observations. Decision entries should include context, decision, and revisit conditions when those details are available.
 
@@ -381,7 +381,7 @@ Review every `SKILL.md` for frontmatter completeness, trigger specificity, exclu
 
 ### 8.2 Trigger Eval Review
 
-For each skill, generate and review `evals/evals.yaml` through `.agents/skills/create-skill/`. Use 8-10 realistic prompts where possible, and never fewer than the PRD minimum of 7:
+For each skill, generate and review `evals/evals.yaml` through `src/skills/create-skill/`. Use 8-10 realistic prompts where possible, and never fewer than the PRD minimum of 7:
 
 ```text
 3 true-positive prompts
@@ -422,7 +422,7 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 
 ### Phase 2: Evals
 
-- [ ] Generate evals through `.agents/skills/create-skill/`.
+- [ ] Generate evals through `src/skills/create-skill/`.
 - [ ] Add generated evals for each skill.
 - [ ] Include true-positive, false-positive, and non-trigger prompts.
 - [ ] Add boundary prompts for common overlaps.
@@ -436,7 +436,7 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 
 ### Phase 4: Release Readiness
 
-- [ ] Update `.agents/skills/README.md` if it indexes maintained skills.
+- [ ] Update `src/skills/README.md` if it indexes maintained skills.
 - [ ] Update project memory or docs only when durable decisions change.
 - [ ] Prepare reviewer handoff with changed files and validation results.
 
@@ -445,8 +445,8 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 | Dependency | Needed By |
 | --- | --- |
 | Existing skill authoring conventions | All skill files |
-| Existing `.agents/memory/` conventions | `remember` |
-| `.agents/skills/create-skill/` eval generation workflow | Evals and release readiness |
+| Existing `src/memory/` conventions | `remember` |
+| `src/skills/create-skill/` eval generation workflow | Evals and release readiness |
 
 ---
 
@@ -467,7 +467,7 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 
 | # | Question | Owner | Due | Status |
 | --- | --- | --- | --- | --- |
-| 1 | Should eval prompts be plain Markdown or a machine-readable format? | Oleg Shulyakov | 2026-05-21 | Resolved: evals are generated by `.agents/skills/create-skill/`. |
+| 1 | Should eval prompts be plain Markdown or a machine-readable format? | Oleg Shulyakov | 2026-05-21 | Resolved: evals are generated by `src/skills/create-skill/`. |
 | 2 | Should `explain` be treated as already complete or revised to match the new general skill set style? | Oleg Shulyakov | 2026-05-21 | Resolved: mark `explain` as complete. |
 | 3 | Should every new skill use version `1.0.0`, or inherit a project-wide initial version convention? | Oleg Shulyakov | 2026-05-21 | Resolved: use `1.0.0` as the initial version. |
 | 4 | Should the evidence-driven change-detection skill be named `evolve` or `adapt`? | Oleg Shulyakov | 2026-05-24 | Resolved: use `adapt`, because it detects that existing behavior no longer fits evidence without implying autonomous self-modification. |
@@ -480,6 +480,6 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 Related documents:
 
 - [PRD.md](PRD.md)
-- `.agents/memory/MEMORY.md`
-- `.agents/skills/create-skill/SKILL.md`
-- `.agents/skills/explain/SKILL.md`
+- `src/memory/MEMORY.md`
+- `src/skills/create-skill/SKILL.md`
+- `src/skills/explain/SKILL.md`

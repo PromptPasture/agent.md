@@ -8,7 +8,7 @@ on:
       - reopened
       - ready_for_review
     paths:
-      - ".agents/**"
+      - "src/**"
 
 permissions:
   contents: read

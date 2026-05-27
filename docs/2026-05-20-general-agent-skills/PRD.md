@@ -57,7 +57,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 - `investigate`: Investigate local code, project docs, attached artifacts, and repository context when local research is needed.
 - `choose`: Compare options and recommend a course of action with tradeoffs, assumptions, and decision criteria.
 - `manage`: Manage multi-step or multi-agent work by tracking goals, owners, dependencies, status, blockers, handoffs, and next actions.
-- `remember`: Capture durable project facts, decisions, and useful observations in `.agents/memory/`.
+- `remember`: Capture durable project facts, decisions, and useful observations in `src/memory/`.
 - `adapt`: Detect when existing behavior, skills, rules, workflows, docs, evals, or memory conventions no longer fit observed outcomes, user feedback, failures, repeated friction, outdated assumptions, or changed constraints, then identify what should change and which appropriate skill or workflow should make the change.
 - Trigger and exclusion guidance for each skill.
 - Acceptance criteria and eval prompts for skill behavior.
@@ -90,7 +90,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | FR-6 | Define `investigate` as the skill for local investigation and repository research. | MUST | Triggers on “investigate”, “investigate”, “find where”, “understand this repo”, “trace”, and local-context research requests. Covers local code, project docs, attached artifacts, and repository context only. Produces findings with file references, artifact references, or uncertainty clearly marked. | TBD |
 | FR-7 | Define `choose` as the skill for choosing among options. | MUST | Triggers on “choose”, “choose”, “which option”, “tradeoffs”, “recommend”, and “should we”. States decision criteria, compares viable options, recommends one, and identifies reversibility or risk. | TBD |
 | FR-8 | Define `manage` as the skill for managing active work across people, agents, tasks, and dependencies. | MUST | Triggers on “manage”, “manage this work”, “team lead”, “lead this”, “assign”, “delegate”, “track blockers”, “status”, “handoff”, and multi-agent or multi-workstream requests. Maintains an execution view with goals, owners, dependencies, current status, blockers, and next actions. | TBD |
-| FR-9 | Define `remember` as the skill for durable project memory. | MUST | Triggers when the user asks to remember, save context, record a decision, update memory, or preserve a project fact. When the user explicitly asks to remember something, the memory write is auto-approved and should proceed without asking again. Writes only durable facts, decisions, and observations to `.agents/memory/` according to project conventions. Avoids storing transient task chatter or unverifiable assumptions as fact. | TBD |
+| FR-9 | Define `remember` as the skill for durable project memory. | MUST | Triggers when the user asks to remember, save context, record a decision, update memory, or preserve a project fact. When the user explicitly asks to remember something, the memory write is auto-approved and should proceed without asking again. Writes only durable facts, decisions, and observations to `src/memory/` according to project conventions. Avoids storing transient task chatter or unverifiable assumptions as fact. | TBD |
 | FR-10 | Define `adapt` as the skill for detecting evidence-driven change needs and routing the update. | MUST | Triggers on “adapt based on this”, “what should change after this?”, “fold this feedback into our process”, “this keeps happening”, “we keep hitting this issue”, “this failed, what should change?”, “our instructions didn’t handle this”, “the workflow no longer fits”, “the constraints changed”, “this behavior is outdated”, “adjust future behavior based on this”, “turn this failure into an instruction change”, “what artifact should change because of this?”, and “do we need to update a skill, rule, doc, eval, or memory?”. Identifies the adaptation signal, affected behavior or artifact, smallest useful change, and appropriate follow-up skill or workflow. Does not directly update artifacts by default. | TBD |
 | FR-11 | Document standalone runtime boundaries. | MUST | Each skill defines its own purpose, trigger phrases, non-trigger cases, expected behavior, and output shape without requiring, calling, importing, or delegating to another skill at runtime. `adapt` may identify an appropriate follow-up skill or workflow as a route, but that route is not a runtime dependency. | TBD |
 | FR-12 | Add behavior evals. | SHOULD | Each skill has at least 7 representative prompts: 3 true-positive prompts, 2 false-positive prompts, and 2 non-trigger prompts. | TBD |
@@ -102,7 +102,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 | NFR ID | Category | Target Specification |
 | --- | --- | --- |
 | NFR-1 | Maintainability | Each skill has one clear workflow and avoids becoming a dumping ground for generic agent behavior. |
-| NFR-2 | Portability | Skills work across repositories and do not assume this repository layout except where `remember` explicitly uses `.agents/memory/`. Runtime behavior must not depend on any other skill being installed. |
+| NFR-2 | Portability | Skills work across repositories and do not assume this repository layout except where `remember` explicitly uses `src/memory/`. Runtime behavior must not depend on any other skill being installed. |
 | NFR-3 | Token Efficiency | Main `SKILL.md` files stay concise; long examples or eval details move to references only when they reduce ambiguity. |
 | NFR-4 | Question Quality | `ask` must prefer the fewest high-leverage questions over exhaustive questionnaires. |
 | NFR-5 | Reasoning Quality | `brainstorm` must expose assumptions, uncertainty, and competing interpretations instead of presenting guesses as settled conclusions. |
@@ -161,7 +161,7 @@ Without these skills, the agent has to infer these broad behaviors from generic 
 
 | Dependency ID | Item | Impacted Requirements | Validation Owner |
 | --- | --- | --- | --- |
-| D-1 | Existing `.agents/memory/` conventions | FR-9, NFR-8 | Oleg Shulyakov |
+| D-1 | Existing `src/memory/` conventions | FR-9, NFR-8 | Oleg Shulyakov |
 | D-2 | `create-skill` validation workflow for development-time checks only | FR-12 | TBD |
 
 ---

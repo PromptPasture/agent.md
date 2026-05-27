@@ -5,7 +5,7 @@
 
 > A portable, tool-agnostic file structure playbook for LLM agents in software projects.
 
-Agent behavior is code. It should be versioned, reviewed, modular, and readable by both humans and machines. The `.agents/` folder is the single source of truth for everything an LLM agent needs to operate within a project — permissions, instructions, skills, memory, commands, and documentation artifacts.
+Agent behavior is code. It should be versioned, reviewed, modular, and readable by both humans and machines. The `src/` folder is the single source of truth for everything an LLM agent needs to operate within a project — permissions, instructions, skills, memory, commands, and documentation artifacts.
 
 ## Overview
 
@@ -16,11 +16,11 @@ This playbook gives agents — and the humans working alongside them — a consi
 ## Features
 
 - **`AGENTS.md`** — Primary instruction file and manifest. Every runtime loads this first.
-- **`.agents/rules/`** — Modular, composable instruction files.
-- **`.agents/skills/`** — Auto-invoking workflows triggered by events or file patterns.
-- **`.agents/commands/`** — Explicit slash commands.
-- **`.agents/agents/`** — Subagent personas invoked by `@mention`.
-- **`.agents/memory/`** — Persistent, append-only memory across sessions.
+- **`src/rules/`** — Modular, composable instruction files.
+- **`src/skills/`** — Auto-invoking workflows triggered by events or file patterns.
+- **`src/commands/`** — Explicit slash commands.
+- **`src/agents/`** — Subagent personas invoked by `@mention`.
+- **`src/memory/`** — Persistent, append-only memory across sessions.
 - **`docs/`** — Task-scoped documentation with standardized layout (PRD, SPEC, ARCHITECTURE, TASKS).
 
 ## Core Principles
@@ -35,7 +35,7 @@ This playbook gives agents — and the humans working alongside them — a consi
 
 ```text
 agent.md/              # ← this repository
-├── .agents/           # Maintained agent asset library
+├── src/           # Maintained agent asset library
 ├── docs/              # Task-scoped documentation
 ├── pages/             # GitHub Pages source
 │   ├── _config.yml    # GitHub Pages configuration
@@ -73,13 +73,13 @@ Add `skills/`, `commands/`, `agents/`, and `docs/` as the project matures.
 
 ### Library
 
-This repository maintains its primary reusable agent assets in [`.agents/`](./.agents):
+This repository maintains its primary reusable agent assets in [`src/`](./.agents):
 
-- **Rules** — `.agents/rules/formatting-markdown.md`
-- **Skills** — `.agents/skills/on-new-example/SKILL.md`
-- **Commands** — `.agents/commands/validate.md`
-- **Agents** — `.agents/agents/spec-reviewer.md`
-- **Memory** — `.agents/memory/MEMORY.md`
+- **Rules** — `src/rules/formatting-markdown.md`
+- **Skills** — `src/skills/on-new-example/SKILL.md`
+- **Commands** — `src/commands/validate.md`
+- **Agents** — `src/agents/spec-reviewer.md`
+- **Memory** — `src/memory/MEMORY.md`
 
 ### Real project layout
 
@@ -121,7 +121,7 @@ project-root/
 
 ## Development
 
-This repo uses itself to govern its own development — the `.agents/` folder is the maintained set of playbook-conformant assets used for that work.
+This repo uses itself to govern its own development — the `src/` folder is the maintained set of playbook-conformant assets used for that work.
 
 ```bash
 # No build step required. All content is plain Markdown.

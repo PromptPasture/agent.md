@@ -1,6 +1,6 @@
 ---
 name: create-rule
-description: Use when writing or improving CLI-agent rules, custom instruction files, AGENTS.md, CLAUDE.md, Cursor rules, Copilot instructions, or modular `.agents/rules/*.md` files.
+description: Use when writing or improving CLI-agent rules, custom instruction files, AGENTS.md, CLAUDE.md, Cursor rules, Copilot instructions, or modular `rules/<name>.md` files.
 license: MIT
 tags:
   - creator
@@ -8,7 +8,7 @@ tags:
   - agents
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.0"
+  version: "1.4.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: meta

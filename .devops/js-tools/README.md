@@ -29,9 +29,9 @@ Review the diff after `lint:fix`; not every rule is safely fixable.
 ## Count Tokens
 
 The token tally helper writes reports to `dist/TOKEN_TALLY.md` and
-`dist/TOKEN_TALLY.json`. It tracks `.agents/rules/*.md`,
-`.agents/commands/*.md`, `.agents/skills/*/SKILL.md`, and
-`.agents/skills/*/agents/*.md`. YAML front matter metadata is excluded from
+`dist/TOKEN_TALLY.json`. It tracks `src/rules/*.md`,
+`src/commands/*.md`, `src/skills/*/SKILL.md`, and
+`src/skills/*/agents/*.md`. YAML front matter metadata is excluded from
 token counts for every tracked Markdown file; files without front matter are
 counted in full.
 

@@ -1,6 +1,6 @@
 ---
 name: remember
-description: Preserve durable project facts, decisions, and useful observations in .agents/memory/. Use for memory requests like "remember this", "save context", "record a decision", "update memory", or preserving a project fact.
+description: Preserve durable project facts, decisions, and useful observations in memory files. Use for memory requests like "remember this", "save context", "record a decision", "update memory", or preserving a project fact.
 license: MIT
 tags:
   - remember
@@ -8,7 +8,7 @@ tags:
   - project-context
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.3"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity

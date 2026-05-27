@@ -48,7 +48,7 @@ async function changedLibraryFiles() {
     "--find-renames",
     `${baseRef}...${headRef}`,
     "--",
-    ".agents/",
+    "src/",
   ]);
 
   const rows = [];
@@ -57,8 +57,8 @@ async function changedLibraryFiles() {
     const status = fields[0];
     const basePath = status.startsWith("R") ? fields[1] : fields[1] ?? fields[0];
     const headPath = status.startsWith("R") ? fields[2] : fields[1] ?? fields[0];
-    const baseInLibrary = basePath?.startsWith(".agents/");
-    const headInLibrary = headPath?.startsWith(".agents/");
+    const baseInLibrary = basePath?.startsWith("src/");
+    const headInLibrary = headPath?.startsWith("src/");
     const displayPath = headInLibrary ? headPath : basePath;
 
     if (!baseInLibrary && !headInLibrary) continue;
@@ -81,7 +81,7 @@ async function changedLibraryFiles() {
 }
 
 function isEvalPath(path) {
-  return path?.startsWith(".agents/") && path.split("/").includes("evals");
+  return path?.startsWith("src/") && path.split("/").includes("evals");
 }
 
 function statusLabel(status) {
@@ -131,7 +131,7 @@ function renderComment(rows) {
   const marker = "<!-- library-token-diff -->";
   if (rows.length === 0) {
     return `${marker}
-No \`.agents/\` file token changes detected.
+No \`src/\` file token changes detected.
 `;
   }
 
@@ -148,7 +148,7 @@ No \`.agents/\` file token changes detected.
   return `${marker}
 ## Library Token Diff
 
-Estimated token changes for files under \`.agents/\`.
+Estimated token changes for files under \`src/\`.
 
 | File | Status | Before | After | Delta |
 | --- | --- | ---: | ---: | ---: |

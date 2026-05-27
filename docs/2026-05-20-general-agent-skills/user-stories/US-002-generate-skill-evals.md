@@ -14,14 +14,14 @@ Source documents:
 - **Persona:** As a skill library maintainer,
 - **Action:** I want representative evals generated for each general skill,
 - **Outcome:** so that trigger behavior and near-miss boundaries can be reviewed before release.
-- **Epic Context:** Implements FR-012 from the approved SPEC. Evals are generated through `.agents/skills/create-skill/` and stored inside each skill folder.
+- **Epic Context:** Implements FR-012 from the approved SPEC. Evals are generated through `src/skills/create-skill/` and stored inside each skill folder.
 
 ---
 
 ## 🔍 2. Strict Constraints & Scope Boundaries
 
 - **In-Scope:**
-  - Generate `.agents/skills/<skill-name>/evals/evals.yaml` for each new skill.
+  - Generate `src/skills/<skill-name>/evals/evals.yaml` for each new skill.
   - Include 8-10 realistic prompts where possible, never fewer than 7.
   - Include at least 3 true-positive prompts, 2 false-positive prompts, and 2 non-trigger prompts per skill.
   - Include expected trigger behavior and expected output behavior for each eval.
@@ -31,9 +31,9 @@ Source documents:
   - Do not store evals in a shared docs folder.
   - Do not create eval iteration output folders unless eval runs are actually executed.
 - **Data Models & Schemas:**
-  - Use the eval schema expected by `.agents/skills/create-skill/`.
-  - Store eval cases at `.agents/skills/<skill-name>/evals/evals.yaml`.
-  - Store run outputs only under `.agents/skills/<skill-name>/evals/iterations/iteration-N/` if runs are performed.
+  - Use the eval schema expected by `src/skills/create-skill/`.
+  - Store eval cases at `src/skills/<skill-name>/evals/evals.yaml`.
+  - Store run outputs only under `src/skills/<skill-name>/evals/iterations/iteration-N/` if runs are performed.
 
 ---
 
@@ -69,17 +69,17 @@ Scenario: Preserve eval folder discipline
 *Note to Agent: You are restricted to modifying or analyzing the following components.*
 
 - **Primary Target Files:**
-  1. `.agents/skills/ask/evals/evals.yaml` -> Trigger and output evals.
-  2. `.agents/skills/brainstorm/evals/evals.yaml` -> Trigger and output evals.
-  3. `.agents/skills/classify/evals/evals.yaml` -> Trigger and output evals.
-  4. `.agents/skills/plan/evals/evals.yaml` -> Trigger and output evals.
-  5. `.agents/skills/investigate/evals/evals.yaml` -> Trigger and output evals.
-  6. `.agents/skills/choose/evals/evals.yaml` -> Trigger and output evals.
-  7. `.agents/skills/manage/evals/evals.yaml` -> Trigger and output evals.
-  8. `.agents/skills/remember/evals/evals.yaml` -> Trigger and output evals.
-  9. `.agents/skills/adapt/evals/evals.yaml` -> Trigger and output evals.
+  1. `src/skills/ask/evals/evals.yaml` -> Trigger and output evals.
+  2. `src/skills/brainstorm/evals/evals.yaml` -> Trigger and output evals.
+  3. `src/skills/classify/evals/evals.yaml` -> Trigger and output evals.
+  4. `src/skills/plan/evals/evals.yaml` -> Trigger and output evals.
+  5. `src/skills/investigate/evals/evals.yaml` -> Trigger and output evals.
+  6. `src/skills/choose/evals/evals.yaml` -> Trigger and output evals.
+  7. `src/skills/manage/evals/evals.yaml` -> Trigger and output evals.
+  8. `src/skills/remember/evals/evals.yaml` -> Trigger and output evals.
+  9. `src/skills/adapt/evals/evals.yaml` -> Trigger and output evals.
 - **Shared Dependencies/Imports:**
-  - Follow `.agents/skills/create-skill/references/evaluation.md`.
+  - Follow `src/skills/create-skill/references/evaluation.md`.
   - Use boundary distinctions from [SPEC.md](../SPEC.md).
 
 ---
@@ -88,7 +88,7 @@ Scenario: Preserve eval folder discipline
 
 *Note to Agent: Execute these steps sequentially. Verify state after each step.*
 
-1. **Analyze & Validate:** Read [SPEC.md](../SPEC.md) Section 8 and `.agents/skills/create-skill/references/evaluation.md`.
+1. **Analyze & Validate:** Read [SPEC.md](../SPEC.md) Section 8 and `src/skills/create-skill/references/evaluation.md`.
 2. **Generate Eval Cases:** Create prompt-level evals for each new skill.
 3. **Check Counts:** Verify each eval file meets the 8-10 target where possible and never drops below 7.
 4. **Check Boundary Coverage:** Confirm likely overlaps are represented across the relevant eval files.

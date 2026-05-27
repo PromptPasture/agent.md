@@ -33,7 +33,7 @@ Without this integration, agents may apply principles inconsistently: overusing 
 
 | Goal ID | Target Outcome | Success Metric |
 | --- | --- | --- |
-| G-1 | Establish a shared engineering-principles rule for `.agents`. | One concise global rule exists under `.agents/rules/` and is referenced by implementation-facing skills where useful. |
+| G-1 | Establish a shared engineering-principles rule for `.agents`. | One concise global rule exists under `src/rules/` and is referenced by implementation-facing skills where useful. |
 | G-2 | Make principles operational in code-writing and code-review workflows. | `code-backend`, `code-frontend`, `code-database`, `code-tests`, `review-code`, and `create-skill` apply relevant principle lenses without duplicating the full source document. |
 | G-3 | Keep runtime instructions token-efficient. | New or edited runtime guidance is concise and avoids copying the entire collected principles list into every skill. |
 | G-4 | Preserve pragmatic judgment. | Guidance explicitly treats KISS and YAGNI as default brakes, DRY as knowledge deduplication, and SOLID as useful only when it reduces real coupling or change risk. |
@@ -52,7 +52,7 @@ Without this integration, agents may apply principles inconsistently: overusing 
 
 ### In Scope
 
-- Create a compact `.agents/rules/engineering-principles.md` rule.
+- Create a compact `src/rules/engineering-principles.md` rule.
 - Translate SOLID, DRY, KISS, YAGNI, Law of Demeter, Composition Over Inheritance, Boy Scout Rule, CQS, and Separation of Concerns into practical agent behavior.
 - Update selected implementation and review skills only where the principle changes expected behavior.
 - Add or update focused eval prompts where needed to check that agents avoid over-engineering, speculative abstraction, and vague principle-name dropping.
@@ -77,7 +77,7 @@ Without this integration, agents may apply principles inconsistently: overusing 
 
 | Requirement ID | Capability / Feature | Priority | Acceptance Criteria | Tracker |
 | --- | --- | --- | --- | --- |
-| FR-1 | Define a global engineering-principles rule. | MUST | A new `.agents/rules/engineering-principles.md` exists with metadata, scope, and concise guidance for applying the collected principles pragmatically. | TBD |
+| FR-1 | Define a global engineering-principles rule. | MUST | A new `src/rules/engineering-principles.md` exists with metadata, scope, and concise guidance for applying the collected principles pragmatically. | TBD |
 | FR-2 | Prioritize simplicity before abstraction. | MUST | The rule states that KISS and YAGNI are default constraints for implementation and that new abstractions require evidence of reduced complexity, duplication of knowledge, coupling, or test risk. | TBD |
 | FR-3 | Clarify DRY behavior. | MUST | Guidance distinguishes duplicated knowledge or business logic from harmless repeated syntax, markup, or test setup. | TBD |
 | FR-4 | Clarify SOLID behavior. | MUST | Guidance applies SRP, ISP, DIP, and related principles through clear responsibilities, small interfaces, and explicit dependencies without adding ceremonial layers. | TBD |
@@ -136,7 +136,7 @@ Without this integration, agents may apply principles inconsistently: overusing 
 | Dependency ID | Item | Impacted Requirements | Validation Owner |
 | --- | --- | --- | --- |
 | D-1 | `docs/2026-05-23-design-principles/Most Popular Principles.md` | FR-1 through FR-5 | Oleg Shulyakov |
-| D-2 | Existing `.agents/rules/karpathy-guidelines.md` | FR-1, FR-2, FR-5 | Oleg Shulyakov |
+| D-2 | Existing `src/rules/karpathy-guidelines.md` | FR-1, FR-2, FR-5 | Oleg Shulyakov |
 | D-3 | Existing implementation and review skills | FR-6, FR-7 | TBD |
 
 ---
@@ -154,4 +154,4 @@ Without this integration, agents may apply principles inconsistently: overusing 
 ## Reference Links
 
 - **Ref-1**: Source principles collection - `docs/2026-05-23-design-principles/Most Popular Principles.md`
-- **Ref-2**: Existing simplicity and verification guidance - `.agents/rules/karpathy-guidelines.md`
+- **Ref-2**: Existing simplicity and verification guidance - `src/rules/karpathy-guidelines.md`
