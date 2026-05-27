@@ -8,7 +8,7 @@ tags:
   - process
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.0"
+  version: "1.3.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -20,77 +20,91 @@ metadata:
 
 # adapt
 
-Diagnose when skills, rules, workflows, docs, evals, or memory conventions are mismatched to current conditions — from failures, friction, feedback, outdated assumptions, or changed constraints — then name the smallest change needed and route to the skill or workflow that should update it.
+Diagnose mismatches in skills, rules, workflows, docs, evals, or memory — then name the smallest change and apply it by routing to the right skill.
 
 ---
 
-## Workflow
+Feature: Diagnose and act on a mismatch signal
 
-1. **Classify the signal.** Identify which type of mismatch was presented:
-   - *Failure* — an action produced a wrong or broken result
-   - *Friction* — a step is consistently slow, ambiguous, or skipped
-   - *Feedback* — the user explicitly named something that didn't work
-   - *Outdated assumption* — a prior decision no longer holds given current context
-   - *Changed constraint* — external requirements shifted (scope, platform, team, policy)
+  Background:
+    Given the user has presented a signal of mismatch
+    And the signal is one of: failure, friction, feedback, outdated assumption, or changed constraint
 
-2. **Test durability.** Skip adaptation if all three are true:
-   - The signal occurred exactly once
-   - No structural cause is identifiable
-   - The user hasn't signaled recurrence ("this keeps happening", "again", "always")
+## Guard: skip one-offs
 
-   Otherwise, proceed.
+  Scenario: Signal is a one-off with no structural cause
+    Given the signal occurred exactly once
+    And no structural cause is identifiable
+    And the user has not signaled recurrence ("this keeps happening", "again", "always")
+    Then explain why no change is warranted
+    And stop
 
-3. **Identify the target artifact.** Match signal type to likely target:
+## Classify signal and identify target
 
-   | Signal | Likely target |
-   | --- | --- |
-   | Failure | skill, eval, test |
-   | Friction | rule, workflow, process |
-   | Feedback | skill, doc, memory |
-   | Outdated assumption | memory, doc, spec |
-   | Changed constraint | rule, PRD, skill |
+  Scenario Outline: Classify signal and map to target artifact
+    Given the signal is a `<type>`
+    Then identify the likely target as `<target>`
+    And proceed to scoping the change
 
-4. **Prefer the source of truth.** If the artifact inherits from a template, convention, or governing doc, route the change there — not only to the downstream artifact.
+    Examples:
+      | type                 | target                  |
+      | failure              | skill, eval, or test    |
+      | friction             | rule, workflow          |
+      | explicit feedback    | skill, doc, or memory   |
+      | outdated assumption  | memory, doc, or spec    |
+      | changed constraint   | rule, PRD, or skill     |
 
-5. **Name the smallest change.** One behavioral delta. Not a rewrite.
+## Scope the change
 
-6. **Route it.** Name the follow-up skill or owner. Do not apply the update unless separately asked.
+  Scenario: Target inherits from a governing doc
+    Given the artifact is downstream of a template, convention, or spec
+    Then route the change to the governing doc first
+    And not only to the downstream artifact
 
-7. **Define verification.** State what must be true after the adaptation succeeds.
+  Scenario: Name the smallest change
+    Given a target artifact is identified
+    Then name exactly one behavioral delta
+    And do not propose a full rewrite
 
----
+## Act: apply the change
 
-## Output
+  Scenario: Target is a skill
+    Given the target artifact is a SKILL.md file
+    Then invoke skill-creator to apply the update
+    And preserve the original skill name and frontmatter fields
+    And copy the skill to a writable location before editing if the source is read-only
 
-- **Signal:** What happened or changed, and which type it is.
-- **Interpretation:** Why it indicates a mismatch, not a one-off.
-- **Target:** The artifact or behavior that should change.
-- **Change:** The smallest useful adaptation — one behavioral delta.
-- **Route:** The follow-up skill or workflow that should apply the update.
-- **Verification:** What must be true after the change succeeds.
+  Scenario: Target is a rule
+    Given the target artifact is a rule file (.agents/rules/, CLAUDE.md, AGENTS.md, etc.)
+    Then invoke creator-rule to write or update the rule
+    And check for conflicts with existing rules before writing
+    And scope the rule narrowly — one concern per file
 
-### Example
+  Scenario: Target is a doc or spec
+    Given the target artifact is documentation or a specification
+    Then draft the minimal diff — only the section that changed
+    And present it to the user for confirmation before writing
 
-**Signal:** The `create-skill` output omits a Verification section on 3 consecutive runs. *(Friction)*
-**Interpretation:** A recurring omission across runs points to a missing template step, not operator error.
-**Target:** `create-skill` SKILL.md — the output template is missing a required `## Verification` heading.
-**Change:** Add a `## Verification` heading with a placeholder to the skill output template.
-**Route:** `skill-creator` to apply the update.
-**Verification:** The next 3 `create-skill` runs each include a non-empty Verification section without prompting.
+  Scenario: Target is memory or context
+    Given the target artifact is a memory or convention held in context
+    Then state the updated convention explicitly
+    And ask the user to confirm before treating it as active
 
----
+  Scenario: Target artifact or routing is unclear
+    Then list the candidate artifacts with supporting evidence for each
+    And ask one question to resolve the ambiguity
+    And do not act until resolved
 
-## Boundaries
+## Verify
 
-- **Diagnose, don't rewrite.** Produce a diagnosis and routing recommendation only. Apply the update only when separately asked.
-- **Don't self-target by invocation.** Invoking `adapt` does not make `adapt` the target. Only route changes to `adapt` when the adaptation workflow itself failed.
-- **Keep uncertainty visible.** If the target artifact or routing is unclear, name the candidates and the evidence needed to choose.
+  Scenario: Confirm the action is complete
+    Then state what was changed and where
+    And state what must be true for the change to be considered successful
+    And confirm the signal maps to a concrete event, not a vague concern
+    And confirm the change addresses future occurrences, not only this incident
+    And confirm no smaller change would have addressed the same signal
 
----
+## Boundary
 
-## Verification
-
-- [ ] The signal maps to a concrete observed event, not a vague quality concern
-- [ ] The change would apply to future occurrences, not only this exact incident
-- [ ] No smaller artifact change would address the same signal
-- [ ] A follow-up skill or owner is named for the actual update
+  Scenario: adapt itself is invoked but its own workflow did not fail
+    Then do not route changes back to adapt
