@@ -24,14 +24,14 @@ Source documents:
   - Summarize created or updated skill files.
   - Summarize validation commands and results.
   - Note any deviations from the approved SPEC.
-  - Record durable implementation observations in `.agents/memory/` only if they are useful beyond the task.
+  - Record durable implementation observations in `src/memory/` only if they are useful beyond the task.
 - **Out-of-Scope (Do NOT implement):**
   - Do not create a new PRD, SPEC, architecture doc, or design doc.
   - Do not record transient task chatter in memory.
   - Do not mark unresolved validation failures as complete.
 - **Data Models & Schemas:**
   - No data model changes.
-  - Use existing `.agents/memory/` conventions if memory is updated.
+  - Use existing `src/memory/` conventions if memory is updated.
 
 ---
 
@@ -50,7 +50,7 @@ Scenario: Produce implementation handoff
 Scenario: Record only durable memory
   Given the implementation produces a reusable project fact or decision
   When the agent considers memory updates
-  Then it writes only durable project value to .agents/memory/
+  Then it writes only durable project value to src/memory/
   And it avoids duplicating the PRD, SPEC, or story contents
 
 Scenario: Avoid false completion
@@ -67,12 +67,12 @@ Scenario: Avoid false completion
 *Note to Agent: You are restricted to modifying or analyzing the following components.*
 
 - **Primary Target Files:**
-  1. `.agents/skills/<skill-name>/` -> Created skill artifacts.
-  2. `.agents/skills/README.md` -> Index updates, if any.
-  3. `.agents/memory/YYYY-MM-DD.md` -> Optional durable implementation notes.
+  1. `src/skills/<skill-name>/` -> Created skill artifacts.
+  2. `src/skills/README.md` -> Index updates, if any.
+  3. `src/memory/YYYY-MM-DD.md` -> Optional durable implementation notes.
 - **Shared Dependencies/Imports:**
   - Use [SPEC.md](../SPEC.md) as the completion contract.
-  - Use existing `.agents/memory/MEMORY.md` and dated memory conventions.
+  - Use existing `src/memory/MEMORY.md` and dated memory conventions.
 
 ---
 

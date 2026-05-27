@@ -80,8 +80,8 @@ async function buildTokenReport() {
 
 async function trackedFiles() {
   return [
-    ...(await markdownEntries("command", ".agents/commands")),
-    ...(await markdownEntries("rule", ".agents/rules")),
+    ...(await markdownEntries("command", "src/commands")),
+    ...(await markdownEntries("rule", "src/rules")),
     ...(await skillEntries()),
     ...(await agentEntries()),
   ];
@@ -103,13 +103,13 @@ async function markdownEntries(kind, directory) {
 }
 
 async function skillEntries() {
-  const skillsDirectory = join(repoRoot, ".agents/skills");
+  const skillsDirectory = join(repoRoot, "src/skills");
   const skills = await readdir(skillsDirectory, { withFileTypes: true });
   const entries = await Promise.all(
     skills.filter((skill) => skill.isDirectory()).map(async (skill) => ({
       kind: "skill",
       name: skill.name,
-      path: `.agents/skills/${skill.name}/SKILL.md`,
+      path: `src/skills/${skill.name}/SKILL.md`,
       exists: await fileExists(join(skillsDirectory, skill.name, "SKILL.md")),
     })),
   );
@@ -120,7 +120,7 @@ async function skillEntries() {
 
 async function agentEntries() {
   const agents = [];
-  const skillsDirectory = join(repoRoot, ".agents/skills");
+  const skillsDirectory = join(repoRoot, "src/skills");
   const skills = await readdir(skillsDirectory, { withFileTypes: true });
 
   for (const skill of skills.filter((entry) => entry.isDirectory())) {
@@ -137,7 +137,7 @@ async function agentEntries() {
       agents.push({
         kind: "agent",
         name: `${skill.name}/${name}`,
-        path: `.agents/skills/${skill.name}/agents/${file.name}`,
+        path: `src/skills/${skill.name}/agents/${file.name}`,
       });
     }
   }

@@ -99,7 +99,7 @@ Users rely on this skill library to produce code, reviews, docs, and agent artif
 
 **Priority:** Must-have
 **Actor:** Skill maintainer
-**Description:** The system shall define `.agents/rules/engineering-principles.md` as the concise shared source for applying engineering principles.
+**Description:** The system shall define `src/rules/engineering-principles.md` as the concise shared source for applying engineering principles.
 **Acceptance criteria:**
 
 - [ ] File includes frontmatter with `name`, `description`, `applies_to`, `priority`, and metadata consistent with existing rules.
@@ -206,7 +206,7 @@ The integration uses a layered documentation model:
 
 ```mermaid
 flowchart TD
-    Source["Most Popular Principles.md"] --> Rule[".agents/rules/engineering-principles.md"]
+    Source["Most Popular Principles.md"] --> Rule["src/rules/engineering-principles.md"]
     Rule --> Backend["code-backend"]
     Rule --> Frontend["code-frontend"]
     Rule --> Database["code-database"]
@@ -232,7 +232,7 @@ The source document remains the collected reference. The new rule becomes the ru
 
 #### Decision: Start With a Rule, Not a Skill
 
-- **Chosen:** Add `.agents/rules/engineering-principles.md`.
+- **Chosen:** Add `src/rules/engineering-principles.md`.
 - **Rationale:** The principles should influence many tasks without requiring a user to ask for an explicit skill.
 - **Trade-off:** The rule cannot provide deep teaching examples. Those can remain in docs or later references.
 
@@ -279,7 +279,7 @@ No production observability changes are required. Development-time validation sh
 | Level | Scope | Tools | Coverage Target |
 | --- | --- | --- | --- |
 | Markdown lint | Changed Markdown files | `markdownlint` or `markdownlint-cli2` | No lint errors, unless documented |
-| Skill validation | Changed skills | `.agents/skills/create-skill/scripts/validate.py` | Pass for every changed skill |
+| Skill validation | Changed skills | `src/skills/create-skill/scripts/validate.py` | Pass for every changed skill |
 | Eval prompts | Principle-specific behavior | Existing skill eval workflow | Added only where behavior risk justifies it |
 | Manual review | Runtime wording | Human review | No duplicated full principle catalog or vague principle boilerplate |
 
@@ -299,9 +299,9 @@ No personal data handling changes are expected. Verify that new wording does not
 
 ### Phase 2: Global Rule
 
-- [ ] Add `.agents/rules/engineering-principles.md`.
+- [ ] Add `src/rules/engineering-principles.md`.
 - [ ] Keep rule concise and consistent with existing rule metadata.
-- [ ] Cross-check overlap with `.agents/rules/karpathy-guidelines.md`.
+- [ ] Cross-check overlap with `src/rules/karpathy-guidelines.md`.
 
 ### Phase 3: Targeted Skill Updates
 

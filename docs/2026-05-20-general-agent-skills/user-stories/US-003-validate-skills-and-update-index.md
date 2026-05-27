@@ -23,7 +23,7 @@ Source documents:
 - **In-Scope:**
   - Run available create-skill validation checks on each new skill.
   - Review line counts, metadata, section style, and runtime standalone behavior.
-  - Update `.agents/skills/README.md` if it indexes maintained skills.
+  - Update `src/skills/README.md` if it indexes maintained skills.
   - Fix validation failures that are directly related to the new skills.
 - **Out-of-Scope (Do NOT implement):**
   - Do not refactor unrelated existing skills.
@@ -32,7 +32,7 @@ Source documents:
   - Do not package or publish skills unless explicitly requested.
 - **Data Models & Schemas:**
   - No runtime data model changes.
-  - README entries shall follow existing `.agents/skills/README.md` conventions.
+  - README entries shall follow existing `src/skills/README.md` conventions.
 
 ---
 
@@ -48,7 +48,7 @@ Scenario: Validate each new skill
   And any failures are fixed or documented with a clear reason
 
 Scenario: Update skill index when present
-  Given .agents/skills/README.md indexes maintained skills
+  Given src/skills/README.md indexes maintained skills
   When the new general skills are ready
   Then the README includes the new skills using the existing index format
   And unrelated README sections remain unchanged
@@ -67,12 +67,12 @@ Scenario: Prevent runtime coupling
 *Note to Agent: You are restricted to modifying or analyzing the following components.*
 
 - **Primary Target Files:**
-  1. `.agents/skills/<skill-name>/SKILL.md` -> Validation target.
-  2. `.agents/skills/<skill-name>/evals/evals.yaml` -> Validation target.
-  3. `.agents/skills/README.md` -> Skill index, if present.
+  1. `src/skills/<skill-name>/SKILL.md` -> Validation target.
+  2. `src/skills/<skill-name>/evals/evals.yaml` -> Validation target.
+  3. `src/skills/README.md` -> Skill index, if present.
 - **Shared Dependencies/Imports:**
-  - Use `.agents/skills/create-skill/scripts/validate.py` when available.
-  - Follow `.agents/skills/create-skill/references/authoring.md`.
+  - Use `src/skills/create-skill/scripts/validate.py` when available.
+  - Follow `src/skills/create-skill/references/authoring.md`.
 
 ---
 
@@ -80,7 +80,7 @@ Scenario: Prevent runtime coupling
 
 *Note to Agent: Execute these steps sequentially. Verify state after each step.*
 
-1. **Analyze & Validate:** Inspect `.agents/skills/README.md` and create-skill validation scripts.
+1. **Analyze & Validate:** Inspect `src/skills/README.md` and create-skill validation scripts.
 2. **Run Validation:** Run quick validation for each new skill directory.
 3. **Fix Failures:** Apply focused fixes to new skill files and evals.
 4. **Update Index:** Add new skills to the README only if the README indexes maintained skills.

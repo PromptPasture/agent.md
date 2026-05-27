@@ -89,7 +89,7 @@ def grade(eval_item: dict, output: str) -> dict:
             "All backticked prompt terms appear in output" if not missing_terms else f"Missing: {missing_terms}",
         )
 
-    wants_modular = any(term in lower_prompt + lower_expected for term in [".agents/rules", "modular", "playbook-compatible"])
+    wants_modular = any(term in lower_prompt + lower_expected for term in ["src/rules", "modular", "playbook-compatible"])
     if wants_modular:
         add_check(
             checks,

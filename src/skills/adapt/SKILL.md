@@ -8,7 +8,7 @@ tags:
   - process
 metadata:
   author: Oleg Shulyakov
-  version: "1.3.0"
+  version: "1.3.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -75,7 +75,7 @@ Feature: Diagnose and act on a mismatch signal
     And copy the skill to a writable location before editing if the source is read-only
 
   Scenario: Target is a rule
-    Given the target artifact is a rule file (.agents/rules/, CLAUDE.md, AGENTS.md, etc.)
+    Given the target artifact is a rule file (`rules/<name>.md`, `CLAUDE.md`, `AGENTS.md`, etc.)
     Then invoke creator-rule to write or update the rule
     And check for conflicts with existing rules before writing
     And scope the rule narrowly — one concern per file

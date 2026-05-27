@@ -38,7 +38,7 @@ docs/                          # Project-scoped documentation
 
 - Folder names: lowercase, hyphenated — e.g. `user-auth`, `payment-v2`, `issue-142`
 - Create a docs task folder only when the work needs durable task-scoped documentation such as `PRD.md`, `SPEC.md`, `ARCHITECTURE.md`, or `DESIGN.md`
-- Small task checklists and completed implementation notes belong in `.agents/memory/YYYY-MM-DD.md`
+- Small task checklists and completed implementation notes belong in `src/memory/YYYY-MM-DD.md`
 
 ## Loaded Context
 
@@ -46,15 +46,15 @@ docs/                          # Project-scoped documentation
 
 | File | Purpose | Auto-load |
 | --- | --- | --- |
-| .agents/memory/MEMORY.md | Durable project facts and decisions | yes |
-| .agents/memory/YYYY-MM-DD.md | Daily task notes and observations | on-demand |
+| src/memory/MEMORY.md | Durable project facts and decisions | yes |
+| src/memory/YYYY-MM-DD.md | Daily task notes and observations | on-demand |
 
 ## Working on a task
 
 **Match the tracking weight to the work.**
 
 - For substantial work, create a task folder before writing code: `mkdir docs/$(date +%Y-%m-%d)-my-feature`
-- For small work, track the checklist in `.agents/memory/$(date -u +%Y-%m-%d).md`
+- For small work, track the checklist in `src/memory/$(date -u +%Y-%m-%d).md`
 - Use `TASKS.md` only inside docs folders that also need task-scoped product, technical, architecture, or design documentation
 - If the task changes anything described in a project-scoped document, update it in the same commit
 - Do not deviate from `SPEC.md` silently — update the file if the spec changes

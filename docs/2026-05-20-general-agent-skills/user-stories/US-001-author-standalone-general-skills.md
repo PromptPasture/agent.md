@@ -21,7 +21,7 @@ Source documents:
 ## 🔍 2. Strict Constraints & Scope Boundaries
 
 - **In-Scope:**
-  - Create `.agents/skills/<skill-name>/SKILL.md` for `ask`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, and `adapt`.
+  - Create `src/skills/<skill-name>/SKILL.md` for `ask`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, and `adapt`.
   - Use initial skill version `1.0.0`.
   - Include frontmatter fields required by local skill conventions.
   - Define each skill's purpose, trigger cases, non-trigger cases, workflow, output expectations, error paths, and verification guidance where relevant.
@@ -35,7 +35,7 @@ Source documents:
   - Skill folder shape:
 
 ```text
-.agents/skills/<skill-name>/
+src/skills/<skill-name>/
 ├── SKILL.md
 └── evals/
     └── evals.yaml
@@ -51,7 +51,7 @@ Source documents:
 Scenario: Create standalone skill instructions
   Given the approved SPEC defines nine new general skills
   When the agent creates the new skill folders and SKILL.md files
-  Then each new skill folder exists under .agents/skills/
+  Then each new skill folder exists under src/skills/
   And each SKILL.md includes name, description, license, version, tags, author, and metadata frontmatter
   And each new skill uses version 1.0.0
 
@@ -74,19 +74,19 @@ Scenario: Avoid placeholder support folders
 *Note to Agent: You are restricted to modifying or analyzing the following components.*
 
 - **Primary Target Files:**
-  1. `.agents/skills/ask/SKILL.md` -> New question-generation skill.
-  2. `.agents/skills/brainstorm/SKILL.md` -> New ambiguous-problem reasoning skill.
-  3. `.agents/skills/classify/SKILL.md` -> New classification and grouping skill.
-  4. `.agents/skills/plan/SKILL.md` -> New planning skill.
-  5. `.agents/skills/investigate/SKILL.md` -> New local investigation skill.
-  6. `.agents/skills/choose/SKILL.md` -> New decision support skill.
-  7. `.agents/skills/manage/SKILL.md` -> New coordination skill.
-  8. `.agents/skills/remember/SKILL.md` -> New durable memory skill.
-  9. `.agents/skills/adapt/SKILL.md` -> New evidence-driven adaptation diagnosis and routing skill.
+  1. `src/skills/ask/SKILL.md` -> New question-generation skill.
+  2. `src/skills/brainstorm/SKILL.md` -> New ambiguous-problem reasoning skill.
+  3. `src/skills/classify/SKILL.md` -> New classification and grouping skill.
+  4. `src/skills/plan/SKILL.md` -> New planning skill.
+  5. `src/skills/investigate/SKILL.md` -> New local investigation skill.
+  6. `src/skills/choose/SKILL.md` -> New decision support skill.
+  7. `src/skills/manage/SKILL.md` -> New coordination skill.
+  8. `src/skills/remember/SKILL.md` -> New durable memory skill.
+  9. `src/skills/adapt/SKILL.md` -> New evidence-driven adaptation diagnosis and routing skill.
 - **Shared Dependencies/Imports:**
-  - Follow `.agents/skills/create-skill/references/authoring.md`.
+  - Follow `src/skills/create-skill/references/authoring.md`.
   - Use [SPEC.md](../SPEC.md) as the implementation contract.
-  - Treat `.agents/skills/explain/SKILL.md` as complete.
+  - Treat `src/skills/explain/SKILL.md` as complete.
 
 ---
 
@@ -94,7 +94,7 @@ Scenario: Avoid placeholder support folders
 
 *Note to Agent: Execute these steps sequentially. Verify state after each step.*
 
-1. **Analyze & Validate:** Read [SPEC.md](../SPEC.md), `.agents/skills/create-skill/SKILL.md`, and `.agents/skills/create-skill/references/authoring.md`.
+1. **Analyze & Validate:** Read [SPEC.md](../SPEC.md), `src/skills/create-skill/SKILL.md`, and `src/skills/create-skill/references/authoring.md`.
 2. **Create Skill Folders:** Create only the nine missing skill directories and required files.
 3. **Author Skill Instructions:** Write focused `SKILL.md` files with explicit trigger and non-trigger behavior.
 4. **Check Runtime Boundaries:** Search new skill files for runtime dependency language that points to another skill.
@@ -108,5 +108,5 @@ Scenario: Avoid placeholder support folders
 
 - [ ] **Compilation:** Not applicable; Markdown authoring only.
 - [ ] **Test Coverage:** New skill files are ready for eval generation in US-002.
-- [ ] **No Regression:** Existing `.agents/skills/explain/SKILL.md` remains unchanged unless a documented spec mismatch required a fix.
+- [ ] **No Regression:** Existing `src/skills/explain/SKILL.md` remains unchanged unless a documented spec mismatch required a fix.
 - [ ] **Idempotency:** Re-running the work does not duplicate folders, sections, or placeholder resources.

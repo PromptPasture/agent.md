@@ -57,7 +57,7 @@ The library must remain local-first. It is not a plugin marketplace, a project m
 
 | Goal | Success Metric | Target |
 | --- | --- | --- |
-| Complete catalog coverage | Cataloged software delivery role skills exist in `.agents/skills/`. | 55 skills |
+| Complete catalog coverage | Cataloged software delivery role skills exist in `src/skills/`. | 55 skills |
 | Keep discovery predictable | Skill names follow verb-first convention. | 100% compliance |
 | Reduce repeated prompting | Completed skills encode trigger, output, and quality expectations. | Every completed skill has specific frontmatter and instructions |
 | Keep complex domains usable | Router skills select variants from context. | Ask at most one clarifying question when materially ambiguous |
@@ -118,7 +118,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 - The catalog lists each skill name, primary roles, and output artifact.
 - Each catalog skill maps to one approved verb.
 - PRD, SPEC, and TASKS agree on catalog names.
-- Drift between docs and `.agents/skills/` is treated as a release blocker.
+- Drift between docs and `src/skills/` is treated as a release blocker.
 
 #### FR-002: Verb-First Naming
 
@@ -179,7 +179,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 **Acceptance criteria:**
 
-- `python3 .agents/skills/create-skill/scripts/validate.py .agents/skills/<skill-name>` passes.
+- `python3 src/skills/create-skill/scripts/validate.py src/skills/<skill-name>` passes.
 - Focused skills have 8-10 realistic eval prompts.
 - Router skills have 8-10 eval prompts per routed reference before release readiness.
 - Eval assertions reach at least 85% aggregate pass rate with no failed critical expectations.
@@ -193,7 +193,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 **Acceptance criteria:**
 
-- Packaging runs from `.agents/skills/create-skill`.
+- Packaging runs from `src/skills/create-skill`.
 - Package command succeeds: `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`.
 - Package includes required instructions, references, scripts, and assets.
 - Root-level `evals/` are intentionally excluded from packaged artifacts by `package_skill.py`.
@@ -238,7 +238,7 @@ The verb identifies the artifact or action family. The subject identifies the do
 ### 4.2 Filesystem Layout
 
 ```text
-.agents/skills/
+src/skills/
 ├── <skill-name>/
 │   ├── SKILL.md
 │   ├── evals/
@@ -398,7 +398,7 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 Each release-ready skill must pass:
 
 ```bash
-python3 .agents/skills/create-skill/scripts/validate.py .agents/skills/<skill-name>
+python3 src/skills/create-skill/scripts/validate.py src/skills/<skill-name>
 ```
 
 Validation failures block packaging. Common blockers include invalid frontmatter, missing required sections, weak scan anchors, malformed evals, missing router `reference` fields, and unused placeholder folders.
@@ -445,7 +445,7 @@ Each skill should be built with `create-skill` using this sequence:
 7. Review outputs qualitatively and assertions quantitatively where objective checks apply.
 8. Iterate until feedback is resolved, improvements flatten, or the user accepts behavior.
 9. Tune the description for triggering accuracy after behavior is stable.
-10. Package release-ready skills from `.agents/skills/create-skill`:
+10. Package release-ready skills from `src/skills/create-skill`:
 
 ```bash
 python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist
@@ -485,7 +485,7 @@ python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist
 | Team conventions do not fit base skills. | Medium | Keep base skills generic; defer convention packs. | Open |
 | Docs drift from folders. | High | Update PRD, SPEC, TASKS, and memory together. | Open |
 | Older skills fail current validation. | High | Run validation per skill and fix blockers before release readiness. | Open |
-| Implementation count is inconsistent. | Medium | Reconcile PRD status, TASKS, and actual `.agents/skills/` folders. | Open |
+| Implementation count is inconsistent. | Medium | Reconcile PRD status, TASKS, and actual `src/skills/` folders. | Open |
 
 ## 12. Decisions
 
@@ -509,8 +509,8 @@ python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist
 
 - Product requirements: [PRD.md](PRD.md)
 - Build tracker: [TASKS.md](TASKS.md)
-- Prior memory note: [.agents/memory/2026-05-18.md](../../.agents/memory/2026-05-18.md)
-- Skill authoring support: [create-skill](../../.agents/skills/create-skill/SKILL.md)
+- Prior memory note: [src/memory/2026-05-18.md](../../src/memory/2026-05-18.md)
+- Skill authoring support: [create-skill](../../src/skills/create-skill/SKILL.md)
 
 ### 14.2 Totals
 
