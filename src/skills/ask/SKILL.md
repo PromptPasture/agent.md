@@ -8,7 +8,7 @@ tags:
   - questions
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.3"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: collaboration
@@ -33,8 +33,8 @@ Generate the smallest useful set of questions that would change the next action.
 ## Output
 
 - **Lead with the core gap**: name the uncertainty that makes the questions necessary.
-- **Use short lists when useful**: prefer three to seven prioritized questions for normal work.
-- **Group only when needed**: use categories such as goal, scope, risk, data, owner, and acceptance criteria only if they improve scanability.
+- **Group only when needed**: group questions into categories such as goal, scope, risk, data, owner, acceptance criteria only if they improve scannability.
+- **Use short lists when useful**: prefer three to seven prioritized questions for normal work across all categories.
 - **Mark blockers**: distinguish must-answer questions from nice-to-have questions.
 - **Include assumptions sparingly**: list assumptions only when they affect the question set or proposed next step.
 
@@ -42,22 +42,46 @@ Generate the smallest useful set of questions that would change the next action.
 
 ## Boundaries
 
-- **Surface gaps**: identify unknown goals, constraints, stakeholders, acceptance criteria, data, ownership, risks, and decision criteria.
-- **Stay question-first**: do not make decisions, produce implementation plans, or change files as the primary output.
-- **Avoid questionnaires**: ask only the few questions likely to affect the next move unless the user explicitly requests a full discovery list.
+  Scenario: Resolving unknowns
+    Given there are missing facts, constraints, stakeholders, acceptance criteria, data, ownership, risks, or decision criteria
+    Then explicitly surface these gaps as questions
+
+  Scenario: Output crosses into action or planning
+    Given the generated output is mainly a recommendation, plan, explanation, or classification
+    Then flag that ask is no longer the right mode
+    And adjust the output to remain question-first
+    And avoid making decisions or producing implementation plans
+
+  Scenario: Full questionnaire was not requested
+    Given the user has not explicitly requested a full discovery list
+    Then ask only the few questions likely to affect the next move
+    And do not generate a long, exhaustive questionnaire
 
 ---
 
 ## Error Paths
 
-- **No clear domain**: ask one question about the intended context before generating a detailed set.
-- **Too many unknowns**: provide a first-pass discovery set and name what would refine it.
-- **User asks for action too**: answer the question-generation part first, then state what can proceed after the answers.
+  Scenario: Domain is entirely unclear
+    Given there is no clear domain or context for the task
+    Then ask exactly one question about the intended context
+    And do not generate a detailed set of questions until answered
+
+  Scenario: Too many unknowns exist to prioritize
+    Given the problem has too many unknowns to ask a concise list
+    Then provide a first-pass discovery set
+    And name what constraints would help refine it
+
+  Scenario: User asks for action alongside questions
+    Given the user requests both questions and an action
+    Then answer the question-generation part first
+    And state what action can proceed after the answers are provided
 
 ---
 
 ## Verification
 
-- **Remove decorative questions**: delete questions whose answer would not change scope, approach, risk, or acceptance.
-- **Check boundaries**: if the output is mainly a recommendation, plan, explanation, or classification, this skill is no longer the right mode.
-- **Preserve uncertainty**: do not present assumptions as facts.
+  Scenario: Output passes quality check
+    Given the question set is generated
+    Then no decorative questions remain (questions whose answer would not change scope, approach, risk, or acceptance)
+    And assumptions are not presented as facts
+    And boundaries are respected (no implicit planning or decision making)
