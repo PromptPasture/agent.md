@@ -8,7 +8,7 @@ tags:
   - sequencing
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.3"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: project-management
@@ -43,22 +43,44 @@ Turn a goal into a practical sequence of work.
 
 ## Boundaries
 
-- **Sequence work**: identify phases, dependencies, assumptions, risks, verification, and immediate next actions.
-- **Stay pre-execution**: do not manage live owners, blockers, or handoffs as the primary behavior.
-- **Default conversationally**: create durable files only when the user asks or the work clearly needs durable task documentation.
+  Scenario: Work needs sequencing
+    Given the user asks how to proceed
+    Then identify phases, dependencies, assumptions, risks, verification, and immediate next actions
+
+  Scenario: Execution is already active
+    Given the primary need is managing live owners, blockers, or handoffs
+    Then do not treat planning as the primary behavior
+    And route the output toward coordination only when the user asks to manage ongoing work
+
+  Scenario: Durable documentation is optional
+    Given the user has not requested durable files
+    Then default to a conversational plan
+    And create durable files only when the work clearly needs durable task documentation
 
 ---
 
 ## Error Paths
 
-- **Unclear goal**: ask the one question that most affects scope, then provide a provisional outline if useful.
-- **Many unknowns**: split discovery from execution and identify what must be learned first.
-- **Execution already active**: switch the output toward status, blockers, and handoff only when the user asks to manage ongoing work.
+  Scenario: Goal is unclear
+    Given the goal is not clear enough to plan reliably
+    Then ask the one question that most affects scope
+    And provide a provisional outline if useful
+
+  Scenario: Many unknowns exist
+    Given too many unknowns prevent reliable sequencing
+    Then split discovery from execution
+    And identify what must be learned first
+
+  Scenario: Execution is already active
+    Given the user asks about ongoing work
+    Then switch the output toward status, blockers, and handoff only when the user asks to manage that work
 
 ---
 
 ## Verification
 
-- **Trace dependencies**: verify that later steps do not require missing earlier outputs.
-- **Define done**: include validation or acceptance checks for non-trivial work.
-- **Keep it current**: revise the plan when new facts change scope, risk, or sequence.
+  Scenario: Output passes quality check
+    Given a plan has been produced
+    Then later steps do not require missing earlier outputs
+    And validation or acceptance checks are included for non-trivial work
+    And the plan is revised when new facts change scope, risk, or sequence

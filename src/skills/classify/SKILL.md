@@ -8,7 +8,7 @@ tags:
   - organization
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.3"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: data
@@ -42,22 +42,45 @@ Group material by explicit criteria while preserving edge cases.
 
 ## Boundaries
 
-- **Support many criteria**: group by similarity, difference, category, priority, dependency, abstraction level, user need, risk, ownership, or another stated lens.
-- **Respect ambiguity**: keep multi-fit, unclear, or unclassified items visible instead of forcing false precision.
-- **Do not decide by default**: classification may inform a decision, but the primary output is labeled organization.
+  Scenario: Classification criteria vary
+    Given the user provides or implies a grouping lens
+    Then group by similarity, difference, category, priority, dependency, abstraction level, user need, risk, ownership, or another stated lens
+
+  Scenario: Items are ambiguous
+    Given items are multi-fit, unclear, or unclassified
+    Then keep the ambiguity visible
+    And do not force false precision
+
+  Scenario: Output drifts into decision making
+    Given classification could inform a decision
+    Then keep the primary output as labeled organization
+    And do not decide by default
 
 ---
 
 ## Error Paths
 
-- **No criteria provided**: infer a practical lens and state it as an assumption.
-- **Too little item detail**: group by observable wording and list what context would improve accuracy.
-- **Conflicting criteria**: choose the primary criterion first, then note secondary tags if useful.
+  Scenario: No criteria are provided
+    Given the user has not provided grouping criteria
+    Then infer a practical lens
+    And state it as an assumption
+
+  Scenario: Item detail is insufficient
+    Given the items lack enough detail for confident grouping
+    Then group by observable wording
+    And list what context would improve accuracy
+
+  Scenario: Criteria conflict
+    Given multiple grouping criteria conflict
+    Then choose the primary criterion first
+    And note secondary tags if useful
 
 ---
 
 ## Verification
 
-- **Every group has a reason**: remove or merge groups whose distinction does not matter.
-- **Every item is accounted for**: placed, multi-labeled, or explicitly unclassified.
-- **Ambiguity remains visible**: do not hide uncertainty to make the table look clean.
+  Scenario: Output passes quality check
+    Given classification has been produced
+    Then every group has a meaningful reason
+    And every item is placed, multi-labeled, or explicitly unclassified
+    And ambiguity remains visible

@@ -8,7 +8,7 @@ tags:
   - local-context
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.4"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: research
@@ -42,22 +42,44 @@ Investigate local context and report evidence-backed findings.
 
 ## Boundaries
 
-- **Stay local**: search local files, project docs, attached artifacts, repository history, and available workspace context only.
-- **Exclude web research**: do not perform web search, browsing, or current-information research as part of this skill.
-- **Report evidence**: ground findings in file references, artifact references, command output, or clearly marked inference.
+  Scenario: Investigation stays local
+    Given the user asks for local investigation
+    Then search local files, project docs, attached artifacts, repository history, and available workspace context only
+
+  Scenario: Web research would be needed
+    Given the answer requires web search, browsing, or current-information research
+    Then do not perform it as part of this skill
+    And state that external research is outside the local investigation scope
+
+  Scenario: Findings are reported
+    Given findings are presented
+    Then ground them in file references, artifact references, command output, or clearly marked inference
 
 ---
 
 ## Error Paths
 
-- **No matches**: say what was searched and suggest the next local search path.
-- **Conflicting sources**: prefer runtime wiring and tests over stale docs, and state the conflict.
-- **Generated or external code missing**: identify the missing source and how it affects confidence.
+  Scenario: No matches are found
+    Given local searches return no matches
+    Then say what was searched
+    And suggest the next local search path
+
+  Scenario: Sources conflict
+    Given local sources disagree
+    Then prefer runtime wiring and tests over stale docs
+    And state the conflict
+
+  Scenario: Generated or external code is missing
+    Given a needed generated or external source is unavailable
+    Then identify the missing source
+    And explain how it affects confidence
 
 ---
 
 ## Verification
 
-- **Reproduce key searches**: use fast local search before relying on memory.
-- **Prefer primary files**: cite implementation, tests, configs, or authoritative docs over secondary mentions.
-- **No external claims**: leave web or current-information research to an explicit user request outside this skill.
+  Scenario: Output passes quality check
+    Given local findings have been produced
+    Then key searches were run before relying on memory
+    And implementation, tests, configs, or authoritative docs are preferred over secondary mentions
+    And no external or current-information claims are introduced

@@ -8,7 +8,7 @@ tags:
   - reference
 metadata:
   author: Oleg Shulyakov
-  version: "2.1.3"
+  version: "2.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: education
@@ -67,11 +67,28 @@ Explain knowledge questions clearly, accurately, and at the right depth. Use sim
 
 ## Boundaries
 
-- **Cover the topic**: handle general knowledge, concepts, systems, and code behavior at the depth the user needs.
-- **Include code when asked**: explain how code works, why software is designed a certain way, how modules interact, what an API does, how data moves, or how an implementation compares to a pattern.
-- **Do not over-trigger**: do not use this for requests to write documents, create content, implement changes, debug failures, review code, run commands, or make plans unless the user asks for an explanation first.
-- **Do not implement by default**: if the user asks to build, refactor, debug, or review code, route to the appropriate workflow unless they first ask for an explanation.
-- **Critique only on request**: switch to Critique when the user asks for risks, design feedback, architecture review, "what is wrong with X?", or whether an approach is good.
+  Scenario: Topic needs explanation
+    Given the user asks about general knowledge, concepts, systems, or code behavior
+    Then explain at the depth the user needs
+
+  Scenario: Code explanation is requested
+    Given the user asks how code works, why software is designed a certain way, how modules interact, what an API does, how data moves, or how an implementation compares to a pattern
+    Then include code behavior and repository evidence when useful
+
+  Scenario: Request belongs to another workflow
+    Given the user asks to write documents, create content, implement changes, debug failures, review code, run commands, or make plans
+    And the user has not asked for an explanation first
+    Then route to the appropriate workflow instead of over-triggering explain
+
+  Scenario: Implementation is requested
+    Given the user asks to build, refactor, debug, or review code
+    And the user has not first asked for an explanation
+    Then do not implement by default
+    And route to the appropriate workflow
+
+  Scenario: Critique is requested
+    Given the user asks for risks, design feedback, architecture review, "what is wrong with X?", or whether an approach is good
+    Then switch to Critique mode
 
 ---
 
@@ -111,7 +128,9 @@ Tradeoffs:
 
 ## Verification
 
-- **Cite when needed**: provide sources for browsed, unstable, disputed, high-stakes, or exact factual claims.
-- **List inspected evidence**: for non-trivial code answers, end with the main files, tests, docs, commands, or runtime checks used.
-- **Report limits**: if evidence could not be inspected, or if the trace depends on missing generated files, inaccessible services, incomplete tests, or uncertain sources, say so plainly.
-- **Do not fake certainty**: when evidence is incomplete, give the best-supported explanation and name what would confirm it.
+  Scenario: Output passes quality check
+    Given an explanation has been produced
+    Then sources are provided for browsed, unstable, disputed, high-stakes, or exact factual claims
+    And non-trivial code answers list the main files, tests, docs, commands, or runtime checks used
+    And missing evidence, inaccessible services, incomplete tests, uncertain sources, or unavailable generated files are reported
+    And incomplete evidence is not presented with false certainty

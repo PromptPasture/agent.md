@@ -8,7 +8,7 @@ tags:
   - project-context
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -42,22 +42,42 @@ Write durable project memory only when it will help future work.
 
 ## Boundaries
 
-- **Auto-approve explicit memory**: when the user clearly asks to remember something, write the memory without asking for separate confirmation.
-- **Store durable value**: record project facts, decisions, conventions, recurring constraints, implementation observations, and useful handoff facts.
-- **Reject low-value memory**: do not store transient chatter, todo noise, sensitive information, unverifiable assumptions as fact, or details already captured better in durable docs.
+  Scenario: User explicitly asks to remember something
+    Given the memory request is clear
+    Then write the memory without asking for separate confirmation
+
+  Scenario: Information has durable value
+    Given the information is a project fact, decision, convention, recurring constraint, implementation observation, or useful handoff fact
+    Then record it in the appropriate memory file
+
+  Scenario: Information has low durable value
+    Given the information is transient chatter, todo noise, sensitive information, an unverifiable assumption, or already captured better in durable docs
+    Then do not store it as durable memory
 
 ---
 
 ## Error Paths
 
-- **Sensitive content**: refuse to store secrets and suggest storing the location or policy instead.
-- **Transient detail**: explain that it is not worth durable memory unless the user insists and it has future value.
-- **Unverifiable claim**: record as "user stated" or ask one clarifying question if writing it as fact would mislead future work.
+  Scenario: Content is sensitive
+    Given the user asks to store secrets or sensitive information
+    Then refuse to store the sensitive content
+    And suggest storing the location or policy instead
+
+  Scenario: Detail is transient
+    Given the information is not worth durable memory
+    Then explain that it should not be stored unless the user insists and it has future value
+
+  Scenario: Claim is unverifiable
+    Given writing the claim as fact would mislead future work
+    Then record it as "user stated"
+    And ask one clarifying question before storing it as fact when needed
 
 ---
 
 ## Verification
 
-- **Read before writing**: check relevant existing memory when practical.
-- **Keep provenance clear**: distinguish observed repository facts from user-provided decisions.
-- **Report the write**: tell the user the file updated and summarize the note.
+  Scenario: Output passes quality check
+    Given memory has been written
+    Then relevant existing memory was checked when practical
+    And observed repository facts are distinguished from user-provided decisions
+    And the updated file and note summary are reported

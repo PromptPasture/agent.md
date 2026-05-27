@@ -8,7 +8,7 @@ tags:
   - tradeoffs
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.3"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: project-management
@@ -43,22 +43,44 @@ Choose a direction by comparing viable options against explicit criteria.
 
 ## Boundaries
 
-- **State criteria**: compare options against goals, constraints, risk, cost, speed, reversibility, maintenance, user impact, or user-provided criteria.
-- **Recommend when supported**: choose one option when evidence is sufficient, and say when it is not.
-- **Do not just classify**: grouping options is useful only as support for a decision.
+  Scenario: Criteria are needed for comparison
+    Given options are being compared
+    Then compare them against goals, constraints, risk, cost, speed, reversibility, maintenance, user impact, or user-provided criteria
+
+  Scenario: Evidence supports a recommendation
+    Given evidence is sufficient to prefer one option
+    Then choose one option
+    And state when the evidence is not sufficient
+
+  Scenario: Output drifts into classification
+    Given grouping options is useful
+    Then use grouping only as support for a decision
+    And keep the primary output focused on choosing
 
 ---
 
 ## Error Paths
 
-- **No criteria**: infer practical criteria and label them as assumptions.
-- **No options**: define plausible options before comparing them.
-- **Insufficient evidence**: provide a conditional recommendation and the smallest information needed to firm it up.
+  Scenario: No criteria are provided
+    Given the user has not provided decision criteria
+    Then infer practical criteria
+    And label them as assumptions
+
+  Scenario: No options are provided
+    Given the user has not provided options
+    Then define plausible options before comparing them
+
+  Scenario: Evidence is insufficient
+    Given the available evidence cannot support a firm recommendation
+    Then provide a conditional recommendation
+    And name the smallest information needed to firm it up
 
 ---
 
 ## Verification
 
-- **Criteria alignment**: the selected option should win on the criteria that matter most.
-- **No hidden values**: surface subjective preferences and uncertain assumptions.
-- **Risk visibility**: include meaningful risks, mitigations, and reversibility.
+  Scenario: Output passes quality check
+    Given a recommendation has been produced
+    Then the selected option wins on the criteria that matter most
+    And subjective preferences and uncertain assumptions are surfaced
+    And meaningful risks, mitigations, and reversibility are included

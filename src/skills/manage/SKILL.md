@@ -8,7 +8,7 @@ tags:
   - handoff
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.3"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: project-management
@@ -43,22 +43,44 @@ Keep active work understandable across owners, dependencies, blockers, and hando
 
 ## Boundaries
 
-- **Track execution**: maintain goals, owners, dependencies, current status, blockers, decisions, and next actions.
-- **Separate from planning**: planning sequences future work; coordination keeps active work moving and handoff-ready.
-- **Do not invent authority**: do not silently assign real people without user-provided ownership or clearly stated assumptions.
+  Scenario: Active execution is being managed
+    Given work is underway
+    Then maintain goals, owners, dependencies, current status, blockers, decisions, and next actions
+
+  Scenario: Output drifts into planning
+    Given the main need is future sequencing
+    Then distinguish planning from coordination
+    And keep this skill focused on active work and handoff readiness
+
+  Scenario: Ownership is unclear
+    Given real people have not been assigned by the user
+    Then do not silently assign them
+    And mark ownership as user-provided, unassigned, or assumed
 
 ---
 
 ## Error Paths
 
-- **Unknown owners**: use "unassigned" or "assumed owner" instead of inventing responsibility.
-- **Blocked work**: name the blocker, impact, and unblock action.
-- **Conflicting updates**: keep the latest known state and identify the conflict.
+  Scenario: Owners are unknown
+    Given ownership is not known
+    Then use "unassigned" or "assumed owner"
+    And do not invent responsibility
+
+  Scenario: Work is blocked
+    Given a workstream is blocked
+    Then name the blocker, impact, and unblock action
+
+  Scenario: Updates conflict
+    Given status updates conflict
+    Then keep the latest known state
+    And identify the conflict
 
 ---
 
 ## Verification
 
-- **Every active stream has a next action**: done or blocked streams should say why.
-- **Dependencies are visible**: downstream work should show what it waits on.
-- **Handoff is concrete**: include open decisions, files, commands, artifacts, and validation status when relevant.
+  Scenario: Output passes quality check
+    Given an execution view has been produced
+    Then every active stream has a next action or a reason it is done or blocked
+    And dependencies are visible
+    And handoff context includes open decisions, files, commands, artifacts, and validation status when relevant
