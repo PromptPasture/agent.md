@@ -8,7 +8,7 @@ tags:
   - thinking
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.6"
+  version: "2.0.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -33,32 +33,49 @@ Clarify messy problems without forcing a premature answer.
 
 ## Output
 
-- **Lead with framing**: state what the problem appears to be and why it is ambiguous.
-- **Show useful structure**: use short sections such as facts, assumptions, hypotheses, tensions, and next clarity step when the problem is complex.
-- **Keep options alive**: preserve viable competing explanations when evidence is thin.
-- **Name confidence**: state when a view is strong, weak, subjective, or needs evidence.
+- Lead with framing: state what the problem appears to be and why it is ambiguous.
+- Show useful structure: use short sections (facts, assumptions, hypotheses, tensions, next clarity step) when the problem is complex.
+- Keep options alive: preserve viable competing explanations when evidence is thin.
+- Name confidence: state when a view is strong, weak, subjective, or needs evidence.
 
 ---
 
 ## Boundaries
 
-- **Frame the problem**: clarify terms, goals, constraints, assumptions, competing interpretations, hypotheses, and possible directions.
-- **Enforce the loop**: Do not provide the final framing or outline until the user has answered the clarifying questions. You may ask multiple questions in a single message if needed.
-- **Keep uncertainty visible**: separate facts, assumptions, opinions, and open questions.
-- **Avoid premature closure**: do not force a recommendation, step-by-step plan, or implementation unless the user asks for that next.
+  Scenario: User requests final framing before clarifying questions are answered
+    Given clarifying questions have been asked
+    And the user has not yet responded to them
+    Then do not provide final framing or outline
+    And wait for the user's answers before proceeding
+
+  Scenario: Planning is requested prematurely
+    Given the user asks for a step-by-step plan
+    And the problem framing is still ambiguous
+    Then outline reasoning about sequence and risks first
+    And convert to steps only if the user confirms
 
 ---
 
 ## Error Paths
 
-- **Missing context**: reason from available facts and identify what would change the framing.
-- **Decision requested**: compare options and state that a recommendation depends on criteria when criteria are missing.
-- **Planning requested**: outline reasoning about sequence and risks before turning it into steps only if asked.
+  Scenario: User requests a recommendation and criteria are missing
+    Given the user asks for a recommendation or decision
+    And the criteria for choosing have not been stated
+    Then compare options
+    And state that a recommendation depends on the missing criteria
+    And do not force a conclusion
+
+  Scenario: Context is missing
+    Given the problem statement lacks key facts
+    Then reason from available facts
+    And explicitly identify what additional information would change the framing
 
 ---
 
 ## Verification
 
-- **No false certainty**: do not hide uncertainty behind confident prose.
-- **No generic brainstorming**: tie ideas to the user's constraints and evidence.
-- **Clear exit**: end with a sharper framing, candidate direction, or next question.
+  Scenario: Output passes quality check
+    Given a brainstorm response has been drafted
+    Then no uncertainty is hidden behind confident prose
+    And all ideas are tied to the user's constraints and evidence, not generic
+    And the response ends with a sharper framing, a candidate direction, or a next question
