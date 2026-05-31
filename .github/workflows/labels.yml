@@ -15,24 +15,26 @@ jobs:
     env:
       LABELS_JSON: |
         [
-          {"name": "bug", "color": "d73a4a", "description": "Something isn't working"},
-          {"name": "feature", "color": "a2eeef", "description": "New functionality or enhancement"},
-          {"name": "refactor", "color": "d4c5f9", "description": "Code improvements (no logic change)"},
-          {"name": "chore", "color": "ededed", "description": "Maintenance, dependencies, config"},
-          {"name": "docs", "color": "0075ca", "description": "Documentation changes"},
-          {"name": "security", "color": "e99695", "description": "Security updates"},
-          {"name": "P0", "color": "b60205", "description": "Critical - data loss, security, crash loop, or release blocker"},
-          {"name": "P1", "color": "d93f0b", "description": "High - major functionality broken with no clear workaround"},
-          {"name": "P2", "color": "fbca04", "description": "Medium - degraded behavior where a workaround exists"},
-          {"name": "P3", "color": "0e8a16", "description": "Low - cosmetic, cleanup, or nice-to-have improvement"},
-          {"name": "needs-triage", "color": "d876e3", "description": "Not yet categorized"},
-          {"name": "needs-repro", "color": "d876e3", "description": "Bug needs reproduction steps"},
-          {"name": "in-progress", "color": "1d76db", "description": "Work started"},
-          {"name": "needs-review", "color": "bfd4f2", "description": "PR or task awaiting review"},
-          {"name": "blocked", "color": "b60205", "description": "Waiting on external dependency or decision"},
-          {"name": "help-wanted", "color": "008672", "description": "Open for contributors"},
-          {"name": "stale", "color": "848d97", "description": "No activity, may auto-close"},
-          {"name": "declined", "color": "e6e6e6", "description": "Will not be implemented"},
+          {"name": "bug",           "color": "d73a4a", "description": "Something isn't working"},
+          {"name": "feature",       "color": "a2eeef", "description": "New functionality or enhancement"},
+          {"name": "refactor",      "color": "d4c5f9", "description": "Code improvements (no logic change)"},
+          {"name": "chore",         "color": "ededed", "description": "Maintenance, dependencies, config"},
+          {"name": "docs",          "color": "0075ca", "description": "Documentation changes"},
+          {"name": "security",      "color": "e99695", "description": "Security updates"},
+
+          {"name": "P0",            "color": "ff0000", "description": "Critical - data loss, security, crash loop, or release blocker"},
+          {"name": "P1",            "color": "d93f0b", "description": "High - major functionality broken with no clear workaround"},
+          {"name": "P2",            "color": "fbca04", "description": "Medium - degraded behavior where a workaround exists"},
+          {"name": "P3",            "color": "0e8a16", "description": "Low - cosmetic, cleanup, or nice-to-have improvement"},
+
+          {"name": "needs-triage",  "color": "d876e3", "description": "Not yet categorized"},
+          {"name": "needs-repro",   "color": "e4b8f0", "description": "Bug needs reproduction steps"},
+
+          {"name": "blocked",       "color": "f97316", "description": "Waiting on external dependency or decision"},
+          {"name": "declined",      "color": "e6e6e6", "description": "Will not be implemented"},
+          {"name": "stale",         "color": "848d97", "description": "No activity, may auto-close"},
+          {"name": "help-wanted",   "color": "008672", "description": "Open for contributors"}
+
           {"name": "playbook", "color": "0075ca", "description": "Core AGENTS.md playbook model and compatibility guidance"},
           {"name": "rules", "color": "d4c5f9", "description": "Reusable rule files under src/rules"},
           {"name": "skills", "color": "a2eeef", "description": "Reusable skill specs and skill authoring guidance"},
