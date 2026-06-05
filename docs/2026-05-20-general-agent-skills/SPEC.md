@@ -74,12 +74,12 @@ This work does not add live integrations with Jira, Linear, Confluence, GitHub I
 
 ### 2.2 Skill File Layout
 
-Each skill shall live in its own folder under `src/skills/<skill-name>/`.
+Each skill shall live in its own folder under `src/skills/productivity/<skill-name>/`, where `category` comes from the `metadata.category` frontmatter field.
 
 Each skill folder shall include:
 
 ```text
-src/skills/<skill-name>/
+src/skills/productivity/<skill-name>/
 ├── SKILL.md
 └── evals/
     └── evals.yaml
@@ -317,9 +317,9 @@ flowchart TD
 
 | Component | Responsibility |
 | --- | --- |
-| `src/skills/<skill>/SKILL.md` | Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations |
-| `src/skills/<skill>/evals/evals.yaml` | Representative trigger and non-trigger prompts generated through `create-skill` |
-| `src/skills/<skill>/evals/iterations/iteration-N/` | Reproducible eval run outputs, grading, and benchmark artifacts when generated |
+| `src/skills/productivity/<skill>/SKILL.md` | Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations |
+| `src/skills/productivity/<skill>/evals/evals.yaml` | Representative trigger and non-trigger prompts generated through `create-skill` |
+| `src/skills/productivity/<skill>/evals/iterations/iteration-N/` | Reproducible eval run outputs, grading, and benchmark artifacts when generated |
 | `src/memory/` | Target memory location for `remember` behavior |
 | `src/skills/create-skill/` | Development-time eval generation, validation, and packaging support |
 
