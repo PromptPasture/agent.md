@@ -7,7 +7,7 @@ tags:
   - testing
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.2"
+  version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: testing
@@ -52,7 +52,6 @@ Generate production-ready test code. Classify the request, read the matching ref
 
 ## Working Rules
 
-- **Skill validation:** Run `scripts/validate_evals.py` after editing this skill's eval cases, `scripts/run_eval.py` for trigger/routing checks, `scripts/run_loop.py` for eval/improvement loops, and `scripts/aggregate_benchmark.py` to summarize iterations.
 - **Verification:** Run the narrowest relevant test command when feasible. If verification cannot run, state the blocker and provide the exact command the user should run.
 
 ---
