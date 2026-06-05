@@ -1,7 +1,7 @@
 ---
 name: audit-skill-security
 description: Use before installing, updating, or trusting a skill from any source. Audits SKILL.md, permissions, dependencies, prompt-injection patterns, network behavior, exfiltration risk, and bundled resources, then returns a severity-based install verdict.
-license: MIT
+license: Apache-2.0
 tags:
   - audit
   - security

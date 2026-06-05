@@ -1,7 +1,7 @@
 ---
 name: investigate
 description: Investigate local repository, document, and attached-artifact context. Use for local investigation requests like "investigate", "find where", "understand this repo", "trace", and local-context research; do not use for web search.
-license: MIT
+license: Apache-2.0
 tags:
   - local-investigation
   - investigation

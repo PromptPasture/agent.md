@@ -1,7 +1,7 @@
 ---
 name: manage
 description: Manage active work across people, agents, tasks, dependencies, blockers, and handoffs. Use for coordination requests like "manage this work", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-workstream execution.
-license: MIT
+license: Apache-2.0
 tags:
   - manage
   - execution

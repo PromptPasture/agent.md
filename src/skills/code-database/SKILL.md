@@ -3,7 +3,7 @@ name: code-database
 description: >
   Generate or modify database code: schemas, DDL, SQL queries, migrations, analytics SQL,
   indexes, stored procedures, and dialect-specific database scripts.
-license: MIT
+license: Apache-2.0
 tags:
   - codegen
   - database

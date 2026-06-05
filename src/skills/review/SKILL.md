@@ -1,7 +1,7 @@
 ---
 name: review
 description: Review any artifact and output results in a Retrospective board format — what is well, what is bad, what should be improved, what to change. Use when the user says "review", "critique", "evaluate", "what's wrong with", "compare", or passes a skill, rule, doc, spec, code, diff, or pull request for assessment. Works on a single artifact, an artifact against a reference, a diff or PR, or two artifacts side by side.
-license: MIT
+license: Apache-2.0
 tags:
   - review
   - quality

@@ -1,7 +1,7 @@
 ---
 name: brainstorm
 description: Work through ambiguous problems before a firm output shape is warranted. Use for reasoning requests like "reason through", "think through", "brainstorm", "help me frame this", "let's work through this", and messy problem statements.
-license: MIT
+license: Apache-2.0
 tags:
   - reason
   - framing

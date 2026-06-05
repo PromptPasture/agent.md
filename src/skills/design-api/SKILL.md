@@ -4,7 +4,7 @@ description: >
   Contract-first API design. Use when asked to design an API contract, OpenAPI/Swagger spec,
   AsyncAPI event contract, GraphQL schema, endpoints, schemas, request/response shapes, or
   "what should the API look like?" Produces an interface spec before implementation.
-license: MIT
+license: Apache-2.0
 tags:
   - design
   - api

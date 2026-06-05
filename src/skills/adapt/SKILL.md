@@ -1,7 +1,7 @@
 ---
 name: adapt
 description: Diagnose when skills, rules, workflows, docs, evals, or memory conventions are mismatched to current conditions — triggered by failures, friction, user feedback, outdated assumptions, or changed constraints — then name the smallest change needed and route to the skill or workflow that should update it. Use when the user says "adapt based on this", "what should change after this?", "this keeps happening", "this failed, what should change?", "the workflow no longer fits", "the constraints changed", or asks what skill, rule, doc, eval, memory, or process should change.
-license: MIT
+license: Apache-2.0
 tags:
   - adaptation
   - feedback

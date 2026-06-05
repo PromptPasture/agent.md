@@ -4,7 +4,7 @@ description: >
   Write product specifications and requirements documents. Use for tech specs, design docs,
   TDDs, functional or non-functional requirements, data contracts, UI specs, release specs,
   handoff docs, and system behavior.
-license: MIT
+license: Apache-2.0
 tags:
   - writer
   - specification

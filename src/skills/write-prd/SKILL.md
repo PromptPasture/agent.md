@@ -1,7 +1,7 @@
 ---
 name: write-prd
 description: Use whenever the user asks to write or revise a PRD, product requirements, product brief, feature requirements, product scope, launch requirements.
-license: MIT
+license: Apache-2.0
 tags:
   - writer
   - product

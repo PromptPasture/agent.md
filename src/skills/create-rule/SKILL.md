@@ -1,7 +1,7 @@
 ---
 name: create-rule
 description: Use when writing or improving CLI-agent rules, custom instruction files, AGENTS.md, CLAUDE.md, Cursor rules, Copilot instructions, or modular `rules/<name>.md` files.
-license: MIT
+license: Apache-2.0
 tags:
   - creator
   - rules

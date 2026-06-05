@@ -1,7 +1,7 @@
 ---
 name: ask
 description: Generate high-leverage questions and clarify missing context. Use for question-generation requests like "what should I ask", "right questions", "what are we missing", "clarify this", and ambiguous requests blocked by unknowns.
-license: MIT
+license: Apache-2.0
 tags:
   - question-generation
   - clarification

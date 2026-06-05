@@ -4,7 +4,7 @@ description: >
   Write technical docs. Use for READMEs, API docs, endpoint references, routine or on-call
   runbooks, operational procedures, changelogs, and release notes. Use for operational,
   reference, and release communication docs rather than product or specification docs.
-license: MIT
+license: Apache-2.0
 tags:
   - writer
   - docs

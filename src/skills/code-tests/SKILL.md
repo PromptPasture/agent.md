@@ -1,7 +1,7 @@
 ---
 name: code-tests
 description: Generate or revise automated tests. Use for E2E/browser, API/contract, integration, and load/performance test requests.
-license: MIT
+license: Apache-2.0
 tags:
   - codegen
   - testing

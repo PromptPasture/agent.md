@@ -1,7 +1,7 @@
 ---
 name: classify
 description: Organize material into meaningful groups. Use for classification requests like "categorize", "group", "cluster", "sort", "taxonomy", "organize these", and grouping by criteria, priority, dependency, similarity, or abstraction level.
-license: MIT
+license: Apache-2.0
 tags:
   - classification
   - taxonomy

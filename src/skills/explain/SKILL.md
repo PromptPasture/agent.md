@@ -1,7 +1,7 @@
 ---
 name: explain
 description: Explain any knowledge topic simply and accurately. Use for explanation requests like "explain X", "why/how/what is X?", concepts, science, definitions, code, design, architecture, and walkthroughs.
-license: MIT
+license: Apache-2.0
 tags:
   - explain
   - education

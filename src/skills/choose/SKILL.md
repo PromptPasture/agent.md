@@ -1,7 +1,7 @@
 ---
 name: choose
 description: Compare options and recommend a direction. Use for decision requests like "choose", "which option", "tradeoffs", "recommend", "should we", and option selection with criteria, risks, and reversibility.
-license: MIT
+license: Apache-2.0
 tags:
   - decision
   - recommendation

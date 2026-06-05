@@ -4,7 +4,7 @@ description: >
   Review code changes, diffs, pull requests, branches, or patches. Use for
   review findings covering correctness, regressions, security, performance, and
   test gaps.
-license: MIT
+license: Apache-2.0
 tags:
   - review
   - code

@@ -3,7 +3,7 @@ name: write-user-story
 description: >
   Write user stories with acceptance criteria and developer tasks. Use for story writing,
   Jira/Linear/GitHub tickets, task breakdowns, story points, and story-level sprint planning.
-license: MIT
+license: Apache-2.0
 tags:
   - writer
   - agile

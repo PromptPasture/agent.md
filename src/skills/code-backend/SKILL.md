@@ -1,7 +1,7 @@
 ---
 name: code-backend
 description: Build or modify backend implementation. Use for API routes, services, middleware, workers, persistence, validation, authorization, configuration, observability, and backend behavior tests.
-license: MIT
+license: Apache-2.0
 tags:
   - codegen
   - backend

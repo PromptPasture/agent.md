@@ -1,7 +1,7 @@
 ---
 name: code-frontend
 description: Generate production-ready frontend code. Use for components, pages, routes, client state, forms, styling, accessibility, performance, PWA behavior, and data visualization.
-license: MIT
+license: Apache-2.0
 tags:
   - codegen
   - frontend

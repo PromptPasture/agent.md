@@ -1,7 +1,7 @@
 ---
 name: remember
 description: Preserve durable project facts, decisions, and useful observations in memory files. Use for memory requests like "remember this", "save context", "record a decision", "update memory", or preserving a project fact.
-license: MIT
+license: Apache-2.0
 tags:
   - remember
   - memory

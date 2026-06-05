@@ -1,7 +1,7 @@
 ---
 name: plan
 description: Sequence work before execution. Use for planning requests like "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
-license: MIT
+license: Apache-2.0
 tags:
   - plan
   - roadmap
