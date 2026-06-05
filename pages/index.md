@@ -93,6 +93,8 @@ Skills are reusable procedures the agent can load when the current task matches 
 
 Use `description` and `when_to_use` to explain when a skill applies. Use `paths` to scope a skill to matching files, and `disable-model-invocation: true` for workflows that should only run when explicitly invoked.
 
+For a deeper authoring guide, see [Building Skills](./BUILDING_SKILLS.md).
+
 ### `.agents/commands/` — Slash Commands
 
 Explicit, user-invoked operations. Registered by the runtime and exposed via its invocation interface.
@@ -187,6 +189,7 @@ A compliant runtime **SHOULD**:
 ## References
 
 - **[PLAYBOOK.md](./PLAYBOOK.md)**
+- **[Building Skills](./BUILDING_SKILLS.md)**
 - **[Agent PDLC](./AGENT_PDLC.md)**
 - **[library](https://github.com/olegshulyakov/agent.md/tree/main/.agents)**
 

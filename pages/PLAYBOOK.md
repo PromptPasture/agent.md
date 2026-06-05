@@ -138,6 +138,8 @@ priority: high
 
 Skills are pre-defined workflows that the agent can load when the current task matches their metadata, or when the user invokes them directly. They are the agent's reusable procedures.
 
+For planning, testing, and distribution guidance, see [Building Skills](./BUILDING_SKILLS.md).
+
 #### Naming Convention
 
 ```text
