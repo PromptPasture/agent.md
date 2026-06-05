@@ -10,7 +10,7 @@ metadata:
   author: Oleg Shulyakov
   version: "1.2.1"
   source: github.com/olegshulyakov/agent.md
-  catalog: software-team-roles
+  catalog: software-engineering
   category: project-management
 ---
 
