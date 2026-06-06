@@ -2,11 +2,11 @@
 
 ## Loaded Context
 
-- At the start of every session, before any other repository work, you MUST read `src/memory/MEMORY.md` and today's UTC daily note at `src/memory/$(date -u +%Y-%m-%d).md`.
-- If either required memory file or the `src/memory/` directory is missing, you MUST create it before continuing. Create only the missing path or file; do not overwrite existing memory.
-- `src/memory/MEMORY.md` stores durable project facts and decisions. Treat it as low-confidence context and verify facts against the repository before acting on them.
-- `src/memory/YYYY-MM-DD.md` stores daily task notes and observations. Daily memory filenames MUST use UTC dates.
-- Small task checklists and completed implementation notes belong in `src/memory/$(date -u +%Y-%m-%d).md`.
+- At the start of every session, before any other repository work, you MUST read `.agents/memory/MEMORY.md` and today's UTC daily note at `.agents/memory/$(date -u +%Y-%m-%d).md`.
+- If either required memory file or the `.agents/memory/` directory is missing, you MUST create it before continuing. Create only the missing path or file; do not overwrite existing memory.
+- `.agents/memory/MEMORY.md` stores durable project facts and decisions. Treat it as low-confidence context and verify facts against the repository before acting on them.
+- `.agents/memory/YYYY-MM-DD.md` stores daily task notes and observations. Daily memory filenames MUST use UTC dates.
+- Small task checklists and completed implementation notes belong in `.agents/memory/$(date -u +%Y-%m-%d).md`.
 - For substantial work that needs durable product, technical, architecture, or design documentation, create a task folder under `docs/YYYY-MM-DD-task-name/` instead of expanding memory notes.
 
 ## Repository Behavior
