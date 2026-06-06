@@ -26,12 +26,15 @@
 
 ## Artifact Quality
 
-- Every artifact MUST be complete, directly actionable, internally consistent, and specific enough to verify.
+- Every artifact created or materially modified for the request MUST be complete, directly actionable, internally consistent, and specific enough to verify.
+- Vendored, and third-party files are exempt from editorial quality requirements, but you MUST regenerate or validate them using the repository's established workflow.
 - You MUST NOT leave placeholders, `TODO` markers, unsupported claims, unresolved ambiguity, or missing required sections unless the user explicitly requests an incomplete draft.
 - Every section, example, step, abstraction, and file MUST contribute to the requested outcome, understanding, behavior, or verification. Remove anything that does not.
 - Examples MUST be narrow, direct, complete, and consistent with the repository's actual interfaces and conventions.
 - Code and design artifacts MUST preserve clear responsibilities, isolate change-prone behavior where practical, and keep interfaces no larger than required.
 - Introduce an abstraction only when it reduces concrete complexity or duplication, isolates meaningful change, or follows an established repository pattern.
+- You MUST NOT add speculative features, unused extension points, single-use abstractions, or configurability that the user did not request.
 - KISS governs artifact design: prefer the simplest complete solution that satisfies the request and verification criteria.
+- If an implementation grows noticeably larger or more complex than the problem requires, you MUST simplify it before finalizing.
 - Before presenting or completing any non-trivial artifact, you MUST self-review it for placeholders, contradictions, ambiguity, unnecessary content, unsupported claims, scope drift, and missing verification.
 - You MUST fix issues found during self-review before presenting the artifact. Do not merely report defects that you can correct.
