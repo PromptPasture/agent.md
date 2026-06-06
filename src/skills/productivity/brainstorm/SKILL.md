@@ -8,7 +8,7 @@ tags:
   - thinking
 metadata:
   author: github.com/obra/superpowers
-  version: "3.0.1"
+  version: "3.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity
@@ -33,7 +33,7 @@ You MUST create a task for each of these items and complete them in order:
 3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
 4. **Propose 2-3 approaches** — with trade-offs and your recommendation
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
-6. **Write design doc** — save to `docs/YYYY-MM-DD-[topic]/DESIGN.md` and commit
+6. **Write brainstorm doc** — save to `docs/YYYY-MM-DD-[topic]/BRAINSTORM.md` and commit
 7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
 8. **User reviews written spec** — ask user to review the spec file before proceeding
 9. **Transition to implementation** — create an implementation plan
@@ -49,7 +49,7 @@ digraph brainstorming {
     "Propose 2-3 approaches" [shape=box];
     "Present design sections" [shape=box];
     "User approves design?" [shape=diamond];
-    "Write design doc" [shape=box];
+    "Write brainstorm doc" [shape=box];
     "Spec self-review\n(fix inline)" [shape=box];
     "User reviews spec?" [shape=diamond];
     "Invoke writing-plans skill" [shape=doublecircle];
@@ -62,10 +62,10 @@ digraph brainstorming {
     "Propose 2-3 approaches" -> "Present design sections";
     "Present design sections" -> "User approves design?";
     "User approves design?" -> "Present design sections" [label="no, revise"];
-    "User approves design?" -> "Write design doc" [label="yes"];
-    "Write design doc" -> "Spec self-review\n(fix inline)";
+    "User approves design?" -> "Write brainstorm doc" [label="yes"];
+    "Write brainstorm doc" -> "Spec self-review\n(fix inline)";
     "Spec self-review\n(fix inline)" -> "User reviews spec?";
-    "User reviews spec?" -> "Write design doc" [label="changes requested"];
+    "User reviews spec?" -> "Write brainstorm doc" [label="changes requested"];
     "User reviews spec?" -> "Invoke writing-plans skill" [label="approved"];
 }
 ```
@@ -115,7 +115,7 @@ digraph brainstorming {
 
 **Documentation:**
 
-- Write the validated design (spec) to `docs/YYYY-MM-DD-[topic]/DESIGN.md`
+- Write the validated design (spec) to `docs/YYYY-MM-DD-[topic]/BRAINSTORM.md`
   - (User preferences for spec location override this default)
 - Commit the design document to git
 
