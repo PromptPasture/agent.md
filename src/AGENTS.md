@@ -10,4 +10,4 @@
 
 ## Skills
 
-- For `src/skills/*`, follow `src/skills/HOWTO.md`.
+- For `src/skills/*`, follow `pages/BUILDING_SKILLS.md`.
