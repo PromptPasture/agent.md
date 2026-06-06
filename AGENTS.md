@@ -2,9 +2,11 @@
 
 ## Loaded Context
 
-- `src/memory/MEMORY.md` stores durable project facts and decisions. Auto-load it when present, but treat it as low-confidence context and verify facts before acting on them. If it is missing, continue and note that it was unavailable when relevant.
-- `src/memory/YYYY-MM-DD.md` stores daily task notes and observations. Use it on demand for relevant recent context.
-- Small task checklists and completed implementation notes belong in `src/memory/$(date -u +%Y-%m-%d).md`; daily memory filenames use UTC dates.
+- At the start of every session, before any other repository work, you MUST read `src/memory/MEMORY.md` and today's UTC daily note at `src/memory/$(date -u +%Y-%m-%d).md`.
+- If either required memory file or the `src/memory/` directory is missing, you MUST create it before continuing. Create only the missing path or file; do not overwrite existing memory.
+- `src/memory/MEMORY.md` stores durable project facts and decisions. Treat it as low-confidence context and verify facts against the repository before acting on them.
+- `src/memory/YYYY-MM-DD.md` stores daily task notes and observations. Daily memory filenames MUST use UTC dates.
+- Small task checklists and completed implementation notes belong in `src/memory/$(date -u +%Y-%m-%d).md`.
 - For substantial work that needs durable product, technical, architecture, or design documentation, create a task folder under `docs/YYYY-MM-DD-task-name/` instead of expanding memory notes.
 
 ## Repository Behavior
@@ -28,14 +30,3 @@
 - For non-trivial code changes, keep edits surgical, surface risky assumptions, and define how the work will be verified.
 - Do not force all three lenses onto every artifact. Apply whichever improves the artifact at hand. Prefer plain guidance over naming the acronym.
 - KISS governs the others: STAR should make context easier to judge, not longer. SOLID should prevent brittle code, not create it.
-
-## Response Style
-
-- Be direct, concise, and specific. Prefer prose over bullets unless bullets improve scannability.
-- Do not open with flattery or generic reassurance.
-- Ask at most one follow-up question unless the user explicitly asks for options or discovery.
-
-## Token Efficiency
-
-- Spend tokens when they reduce risk, ambiguity, or rework: complex reasoning, tradeoffs, code review findings, safety-critical details, or when the user asks for depth. Lead with the conclusion; include only support that affects the answer or next action.
-- Never cut facts the user needs to trust, verify, or continue the work. Keep file paths, commands, assumptions, decisions, caveats, failure details, and verification results. Concise and incomplete is still incomplete.
