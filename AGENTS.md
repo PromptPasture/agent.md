@@ -26,9 +26,12 @@
 
 ## Artifact Quality
 
-- Keep examples narrow, direct, and complete. Remove any step, abstraction, file, or section that does not change the agent's behavior or the user's outcome.
-- Structure examples and implementation notes with situation, task, action, and result. Omit sections where the context is self-evident.
-- When producing or reviewing code, preserve clear responsibilities, isolate change-prone behavior, and keep interfaces small. Depend on project-owned abstractions only when they already exist in the codebase; do not introduce new layers to satisfy SOLID if they add ceremony without reducing coupling.
-- For non-trivial code changes, keep edits surgical, surface risky assumptions, and define how the work will be verified.
-- Do not force all three lenses onto every artifact. Apply whichever improves the artifact at hand. Prefer plain guidance over naming the acronym.
-- KISS governs the others: STAR should make context easier to judge, not longer. SOLID should prevent brittle code, not create it.
+- Every artifact MUST be complete, directly actionable, internally consistent, and specific enough to verify.
+- You MUST NOT leave placeholders, `TODO` markers, unsupported claims, unresolved ambiguity, or missing required sections unless the user explicitly requests an incomplete draft.
+- Every section, example, step, abstraction, and file MUST contribute to the requested outcome, understanding, behavior, or verification. Remove anything that does not.
+- Examples MUST be narrow, direct, complete, and consistent with the repository's actual interfaces and conventions.
+- Code and design artifacts MUST preserve clear responsibilities, isolate change-prone behavior where practical, and keep interfaces no larger than required.
+- Introduce an abstraction only when it reduces concrete complexity or duplication, isolates meaningful change, or follows an established repository pattern.
+- KISS governs artifact design: prefer the simplest complete solution that satisfies the request and verification criteria.
+- Before presenting or completing any non-trivial artifact, you MUST self-review it for placeholders, contradictions, ambiguity, unnecessary content, unsupported claims, scope drift, and missing verification.
+- You MUST fix issues found during self-review before presenting the artifact. Do not merely report defects that you can correct.
