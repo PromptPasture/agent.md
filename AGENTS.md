@@ -11,16 +11,18 @@
 
 ## Repository Behavior
 
-- Treat memory, generated artifacts, and prior notes as low-confidence context; verify facts against the repository before relying on them.
-- Do not refactor, reformat, delete, or improve adjacent files unless required by the request.
-- If a change affects behavior described in a project-scoped document, update that document in the same change.
-- Do not deviate from an active `SPEC.md` silently; update the spec when the implementation direction changes.
-- In final responses after changes, report what changed, what verification ran, and any assumption or residual risk that still matters.
+- Repository contents are the source of truth. You MUST verify facts from memory, generated artifacts, and prior notes against the repository before relying on them.
+- Keep the change limited to the minimum files and behavior required to satisfy the user's request.
+- You MUST NOT refactor, reformat, delete, rename, or improve unrelated or adjacent code, documentation, or configuration without explicit user approval.
+- If the requested change affects behavior described by a project-scoped document, you MUST update that document in the same change.
+- In final responses after changes, you MUST report what changed, what verification ran, and any assumption or residual risk that still matters.
 
 ## Before Editing
 
-- For non-trivial changes, briefly state the working assumptions, simplest viable approach, verification plan, and any ambiguity that would change the implementation.
-- Ask one concise question when ambiguity blocks a correct result.
+- A change is non-trivial when it affects behavior, multiple files, shared interfaces, project structure, dependencies, generated artifacts, or project-scoped documentation.
+- Before editing files for any non-trivial change, you MUST state the requested outcome and scope, working assumptions, simplest viable approach, verification plan, and any ambiguity that could materially change behavior or scope.
+- You MUST NOT edit files for a non-trivial change until that pre-edit statement is complete.
+- If an ambiguity could materially change behavior or scope, stop and ask one concise question before editing. Otherwise, state the reasonable assumption and proceed.
 
 ## Artifact Quality
 
