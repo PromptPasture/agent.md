@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Sequence work before execution. Use for planning requests like "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
+description: You MUST use this before starting any multi-step execution. Sequence work into ordered phases with dependencies and success conditions. Use for planning requests like "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
 license: Apache-2.0
 tags:
   - plan
@@ -8,7 +8,7 @@ tags:
   - sequencing
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: project-management

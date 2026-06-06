@@ -1,6 +1,6 @@
 ---
 name: adapt
-description: Diagnose when skills, rules, workflows, docs, evals, or memory conventions are mismatched to current conditions — triggered by failures, friction, user feedback, outdated assumptions, or changed constraints — then name the smallest change needed and route to the skill or workflow that should update it. Use when the user says "adapt based on this", "what should change after this?", "this keeps happening", "this failed, what should change?", "the workflow no longer fits", "the constraints changed", or asks what skill, rule, doc, eval, memory, or process should change.
+description: You MUST use this when a mismatch signal appears — triggered by failures, friction, user feedback, outdated assumptions, or changed constraints. Diagnose mismatches in skills, rules or workflows and route to the right skill or workflow to apply the smallest necessary change. Use when the user says "adapt based on this", "what should change after this?", "this keeps happening", "this failed, what should change?", "the workflow no longer fits", "the constraints changed", or asks what skill, rule, doc, eval, memory, or process should change.
 license: Apache-2.0
 tags:
   - adaptation
@@ -8,7 +8,7 @@ tags:
   - process
 metadata:
   author: Oleg Shulyakov
-  version: "1.3.1"
+  version: "1.4.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: productivity

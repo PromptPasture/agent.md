@@ -1,6 +1,6 @@
 ---
 name: investigate
-description: Investigate local repository, document, and attached-artifact context. Use for local investigation requests like "investigate", "find where", "understand this repo", "trace", and local-context research; do not use for web search.
+description: You MUST use this before drawing conclusions about local repository, document, or artifact context — do not assume. Investigates and reports evidence-backed findings from local sources only. Use for local investigation requests like "investigate", "find where", "understand this repo", "trace", and local-context research; do not use for web search.
 license: Apache-2.0
 tags:
   - local-investigation
@@ -8,7 +8,7 @@ tags:
   - local-context
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: research
