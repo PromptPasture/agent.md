@@ -1,0 +1,37 @@
+{
+  "name": "prompt-pasture",
+  "version": "0.1.0",
+  "description": "Portable productivity and software engineering skills for coding agents.",
+  "author": {
+    "name": "Oleg Shulyakov",
+    "url": "https://github.com/olegshulyakov"
+  },
+  "homepage": "https://promptpasture.github.io/agent.md/",
+  "repository": "https://github.com/PromptPasture/agent.md",
+  "license": "Apache-2.0",
+  "keywords": [
+    "productivity",
+    "software-engineering",
+    "planning",
+    "coding",
+    "testing",
+    "review",
+    "skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Prompt Pasture",
+    "shortDescription": "Productivity and software engineering skills for coding agents",
+    "longDescription": "Use Prompt Pasture to plan and investigate work, write and review code, design APIs and databases, create tests and technical documents, coordinate execution, and preserve durable project knowledge.",
+    "developerName": "Oleg Shulyakov",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://promptpasture.github.io/agent.md/",
+    "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+    "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service"
+  }
+}
