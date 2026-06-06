@@ -33,6 +33,7 @@
 - Every skill folder MUST contain `SKILL.md` and MUST NOT contain a `README.md`.
 - `SKILL.md` frontmatter `name` MUST match the skill folder name.
 - Skill descriptions MUST include BOTH: what the skill does AND when to use it.
+- Skill body sections MUST be selected from the structures and workflow patterns in `pages/BUILDING_SKILLS.md` according to the skill's actual needs. You MUST NOT impose a fixed section template or add a section that has no distinct purpose.
 - You MUST keep `SKILL.md` focused on the core workflow and place optional detail in `references/`, deterministic helpers in `scripts/`, and reusable output resources in `assets/`.
 - Referenced skill resources MUST exist at the stated relative paths.
 - When a skill is added, removed, renamed, or moved, you MUST update `src/skills/README.md` and affected relative links in the same change.

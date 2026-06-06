@@ -8,7 +8,7 @@ tags:
   - process
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.0"
+  version: "1.5.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: adaptation
@@ -20,91 +20,52 @@ metadata:
 
 # adapt
 
-Diagnose mismatches in skills, rules, workflows, docs, evals, or memory — then name the smallest change and apply it by routing to the right skill.
+Turn failures, friction, feedback, stale assumptions, and changed constraints into the smallest verified change that prevents the mismatch from recurring.
 
----
+## Workflow
 
-Feature: Diagnose and act on a mismatch signal
+1. Identify the mismatch signal, expected behavior, observed behavior, impact, and available evidence. Treat feedback as evidence to investigate, not proof of the cause or requested remedy.
+2. Inspect the current skill, rule, workflow, documentation, evaluation, memory, or implementation involved. Verify repository facts before relying on feedback or prior context. When required evidence or a target artifact is unavailable, report what was inspected, make no unsupported change, and identify what is needed to continue.
+3. Determine the cause:
+   - Correct an artifact when its instruction, behavior, or assumption is wrong or incomplete.
+   - Correct execution when the artifact is adequate but was not followed.
+   - Update memory when the new information is durable context rather than enforceable behavior.
+   - Add or update an evaluation when recurrence needs a reproducible check.
+   - Escalate to the responsible owner when the required change is outside the available authority or evidence.
+4. Choose the narrowest durable target. Prefer correcting an existing artifact over adding a new one. Touch multiple artifacts only when evidence shows each contributes to the mismatch or consistency requires the change.
+5. Define the intended change and how it will resolve the mismatch without weakening valid behavior.
+6. Apply the change automatically when the user explicitly asks to adapt, fix, update, or implement it. When the user asks only what should change, diagnose and recommend without editing. Ask one concise question before editing when competing interpretations would materially change behavior, privacy, authority, or scope; otherwise, state the assumption and proceed. Do not modify external systems, public artifacts, or protected policy without the required confirmation or authority.
+7. Run the smallest meaningful verification that reproduces the original signal or checks the corrected behavior.
+8. Review the result for contradictions, regressions, unnecessary scope, and unsupported changes. Preserve intentional behavior unrelated to the mismatch, and do not encode a one-off preference as durable policy unless the user makes it a lasting requirement. Iterate only when verification shows the mismatch remains.
+9. Report the cause, changed artifacts, verification, and any unresolved risk.
 
-  Background:
-    Given the user has presented a signal of mismatch
-    And the signal is one of: failure, friction, feedback, outdated assumption, or changed constraint
+## Output
 
-## Guard: skip one-offs
+After applying the adaptation, report:
 
-  Scenario: Signal is a one-off with no structural cause
-    Given the signal occurred exactly once
-    And no structural cause is identifiable
-    And the user has not signaled recurrence ("this keeps happening", "again", "always")
-    Then explain why no change is warranted
-    And stop
+```text
+Cause:
+[Evidence-backed explanation of the mismatch.]
 
-## Classify signal and identify target
+Changed:
+- [Artifact and smallest necessary correction.]
 
-  Scenario Outline: Classify signal and map to target artifact
-    Given the signal is a `<type>`
-    Then identify the likely target as `<target>`
-    And proceed to scoping the change
+Verified:
+- [Check performed and result.]
 
-    Examples:
-      | type                 | target                  |
-      | failure              | skill, eval, or test    |
-      | friction             | rule, workflow          |
-      | explicit feedback    | skill, doc, or memory   |
-      | outdated assumption  | memory, doc, or spec    |
-      | changed constraint   | rule, PRD, or skill     |
+Residual risk:
+- [Unresolved uncertainty or "None identified."]
+```
 
-## Scope the change
+Keep diagnosis proportional to the evidence. When no change is justified, state why and identify the additional evidence needed.
 
-  Scenario: Target inherits from a governing doc
-    Given the artifact is downstream of a template, convention, or spec
-    Then route the change to the governing doc first
-    And not only to the downstream artifact
+## Verification
 
-  Scenario: Name the smallest change
-    Given a target artifact is identified
-    Then name exactly one behavioral delta
-    And do not propose a full rewrite
+Before completing the adaptation, verify that:
 
-## Act: apply the change
-
-  Scenario: Target is a skill
-    Given the target artifact is a SKILL.md file
-    Then invoke skill-creator to apply the update
-    And preserve the original skill name and frontmatter fields
-    And copy the skill to a writable location before editing if the source is read-only
-
-  Scenario: Target is a rule
-    Given the target artifact is a rule file (`rules/<name>.md`, `CLAUDE.md`, `AGENTS.md`, etc.)
-    Then invoke creator-rule to write or update the rule
-    And check for conflicts with existing rules before writing
-    And scope the rule narrowly — one concern per file
-
-  Scenario: Target is a doc or spec
-    Given the target artifact is documentation or a specification
-    Then draft the minimal diff — only the section that changed
-    And present it to the user for confirmation before writing
-
-  Scenario: Target is memory or context
-    Given the target artifact is a memory or convention held in context
-    Then state the updated convention explicitly
-    And ask the user to confirm before treating it as active
-
-  Scenario: Target artifact or routing is unclear
-    Then list the candidate artifacts with supporting evidence for each
-    And ask one question to resolve the ambiguity
-    And do not act until resolved
-
-## Verify
-
-  Scenario: Confirm the action is complete
-    Then state what was changed and where
-    And state what must be true for the change to be considered successful
-    And confirm the signal maps to a concrete event, not a vague concern
-    And confirm the change addresses future occurrences, not only this incident
-    And confirm no smaller change would have addressed the same signal
-
-## Boundary
-
-  Scenario: adapt itself is invoked but its own workflow did not fail
-    Then do not route changes back to adapt
+- The change addresses the observed cause rather than only its symptom.
+- Every modified artifact is supported by evidence and necessary for consistency.
+- The original mismatch is reproduced or represented by a meaningful check when practical.
+- Existing valid behavior remains intact.
+- Documentation, tests, evaluations, and metadata affected by the change are synchronized.
+- The result contains no speculative policy, duplicate guidance, placeholders, contradictions, or unrelated improvements.
