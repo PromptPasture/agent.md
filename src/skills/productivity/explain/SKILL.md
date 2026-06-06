@@ -10,7 +10,7 @@ metadata:
   author: Oleg Shulyakov
   version: "2.2.0"
   source: github.com/olegshulyakov/agent.md
-  catalog: utility
+  catalog: productivity
   category: education
 ---
 

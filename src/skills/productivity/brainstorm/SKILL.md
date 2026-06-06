@@ -10,8 +10,8 @@ metadata:
   author: github.com/obra/superpowers
   version: "3.0.2"
   source: github.com/olegshulyakov/agent.md
-  catalog: utility
-  category: productivity
+  catalog: productivity
+  category: research
 ---
 
 # Brainstorming Ideas Into Designs

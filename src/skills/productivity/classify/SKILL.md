@@ -10,7 +10,7 @@ metadata:
   author: Oleg Shulyakov
   version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
-  catalog: utility
+  catalog: productivity
   category: data
 ---
 

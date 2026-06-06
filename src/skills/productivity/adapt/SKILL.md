@@ -10,8 +10,8 @@ metadata:
   author: Oleg Shulyakov
   version: "1.4.0"
   source: github.com/olegshulyakov/agent.md
-  catalog: utility
-  category: productivity
+  catalog: productivity
+  category: adaptation
   references:
     - create-skill
     - create-rule
