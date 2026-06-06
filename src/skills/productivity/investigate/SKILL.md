@@ -8,7 +8,7 @@ tags:
   - local-context
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.0"
+  version: "1.3.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: research
@@ -16,70 +16,30 @@ metadata:
 
 # investigate
 
-Investigate local context and report evidence-backed findings.
-
----
+Investigate local context and report evidence-backed conclusions.
 
 ## Workflow
 
-1. Identify the target concept, behavior, file, command, error, or workflow.
-2. Search names, strings, docs, tests, configuration, and related symbols.
-3. Follow call paths, imports, references, generated sources, and tests only as needed.
-4. Distinguish live behavior from dead code, examples, fixtures, or stale docs.
-5. Summarize findings, gaps, and confidence with references.
-
----
+1. Define the question and local scope.
+2. Inspect the named targets and repository guidance before searching related files, symbols, references, history, configuration, and tests.
+3. Follow relevant connections far enough to understand the behavior and test plausible alternative explanations.
+4. Prefer current source code, tests, and configuration over memory, names, comments, generated summaries, or stale documentation.
+5. Separate confirmed facts, supported inferences, conflicting evidence, and unknowns.
+6. Stop when local evidence answers the question or cannot resolve the remaining uncertainty.
 
 ## Output
 
-- **Lead with the answer**: state what was found or not found.
-- **Cite local evidence**: include file paths, line references when available, and relevant commands.
-- **Separate inference**: label deductions that are not directly stated in files.
-- **Name gaps**: call out missing files, inaccessible artifacts, ambiguous ownership, or unverified runtime behavior.
-- **Keep scope tight**: do not explain unrelated systems discovered during the search.
-
----
-
-## Boundaries
-
-  Scenario: Investigation stays local
-    Given the user asks for local investigation
-    Then search local files, project docs, attached artifacts, repository history, and available workspace context only
-
-  Scenario: Web research would be needed
-    Given the answer requires web search, browsing, or current-information research
-    Then do not perform it as part of this skill
-    And state that external research is outside the local investigation scope
-
-  Scenario: Findings are reported
-    Given findings are presented
-    Then ground them in file references, artifact references, command output, or clearly marked inference
-
----
-
-## Error Paths
-
-  Scenario: No matches are found
-    Given local searches return no matches
-    Then say what was searched
-    And suggest the next local search path
-
-  Scenario: Sources conflict
-    Given local sources disagree
-    Then prefer runtime wiring and tests over stale docs
-    And state the conflict
-
-  Scenario: Generated or external code is missing
-    Given a needed generated or external source is unavailable
-    Then identify the missing source
-    And explain how it affects confidence
-
----
+- **Lead with the answer**: state the conclusion or that local evidence is insufficient.
+- **Cite local evidence**: identify precise sources for each material conclusion.
+- **State uncertainty**: label inferences, conflicts, unknowns, and confidence limits.
+- **Report missing context**: identify missing targets and what was searched.
+- **Keep scope tight**: omit search transcripts and findings unrelated to the question.
+- **Respect boundaries**: do not modify files or perform external research unless the user explicitly requests it.
 
 ## Verification
 
-  Scenario: Output passes quality check
-    Given local findings have been produced
-    Then key searches were run before relying on memory
-    And implementation, tests, configs, or authoritative docs are preferred over secondary mentions
-    And no external or current-information claims are introduced
+- Every material conclusion is traceable to inspected local evidence.
+- Facts and inferences are distinct.
+- Conflicts and unresolved gaps are visible.
+- Confidence matches the available evidence.
+- No external claims or unrelated recommendations were introduced.
