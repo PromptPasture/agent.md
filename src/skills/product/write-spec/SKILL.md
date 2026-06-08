@@ -11,10 +11,10 @@ tags:
   - requirements
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.1"
+  version: "1.4.2"
   source: github.com/olegshulyakov/agent.md
-  catalog: software-engineering
-  category: documentation
+  catalog: product
+  category: requirements
 ---
 
 # write-spec

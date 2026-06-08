@@ -9,7 +9,9 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 | Folder | Contains |
 | --- | --- |
 | [`productivity/`](productivity/) | General reasoning, communication, planning, investigation, coordination, and memory skills. |
-| [`software-engineering/`](software-engineering/) | Code, test, API design, Git, product, specification, and technical documentation skills. |
+| [`product/`](product/) | Product requirements, specifications, user stories, and delivery definition skills. |
+| [`documentation/`](documentation/) | Technical documentation, operational guidance, and release communication skills. |
+| [`software-engineering/`](software-engineering/) | Code, test, API design, and code review skills. |
 | [`utility/`](utility/) | Operational helper skills that support the skill library itself. |
 
 ## Productivity Skills
@@ -38,10 +40,20 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 | [`code-tests`](software-engineering/code-tests/SKILL.md) | Automated product and system tests, including E2E, API, integration, load, and performance suites. | [`references/`](software-engineering/code-tests/references/) |
 | [`design-api`](software-engineering/design-api/SKILL.md) | Contract-first API design for OpenAPI, AsyncAPI, GraphQL, endpoints, schemas, and request/response shapes. | [`references/`](software-engineering/design-api/references/) |
 | [`review-code`](software-engineering/review-code/SKILL.md) | Reviewing code changes, diffs, pull requests, branches, or patches for correctness, regressions, security, performance, and test gaps. | [`references/`](software-engineering/review-code/references/) |
-| [`write-prd`](software-engineering/write-prd/SKILL.md) | Product requirements, product briefs, feature requirements, product scope, and launch requirements. | [`references/`](software-engineering/write-prd/references/) |
-| [`write-spec`](software-engineering/write-spec/SKILL.md) | Technical specs, design docs, functional and non-functional requirements, data contracts, UI specs, release specs, and handoff docs. | [`references/`](software-engineering/write-spec/references/) |
-| [`write-tech-docs`](software-engineering/write-tech-docs/SKILL.md) | READMEs, API docs, endpoint references, routine and on-call runbooks, changelogs, and release notes. | [`references/`](software-engineering/write-tech-docs/references/) |
-| [`write-user-story`](software-engineering/write-user-story/SKILL.md) | User stories, acceptance criteria, developer tasks, tickets, story points, and sprint planning breakdowns. | [`references/`](software-engineering/write-user-story/references/) |
+
+## Product Skills
+
+| Skill | Use it for | Notable resources |
+| --- | --- | --- |
+| [`write-prd`](product/write-prd/SKILL.md) | Product requirements, product briefs, feature requirements, product scope, and launch requirements. | [`references/`](product/write-prd/references/) |
+| [`write-spec`](product/write-spec/SKILL.md) | Technical specs, design docs, functional and non-functional requirements, data contracts, UI specs, release specs, and handoff docs. | [`references/`](product/write-spec/references/) |
+| [`write-user-story`](product/write-user-story/SKILL.md) | User stories, acceptance criteria, developer tasks, tickets, story points, and sprint planning breakdowns. | [`references/`](product/write-user-story/references/) |
+
+## Documentation Skills
+
+| Skill | Use it for | Notable resources |
+| --- | --- | --- |
+| [`write-tech-docs`](documentation/write-tech-docs/SKILL.md) | READMEs, API docs, endpoint references, routine and on-call runbooks, changelogs, and release notes. | [`references/`](documentation/write-tech-docs/references/) |
 
 ## Utility Skills
 

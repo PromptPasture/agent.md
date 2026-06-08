@@ -10,10 +10,10 @@ tags:
   - user-stories
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.1"
+  version: "1.2.2"
   source: github.com/olegshulyakov/agent.md
-  catalog: software-engineering
-  category: project-management
+  catalog: product
+  category: requirements
 ---
 
 # write-user-story
