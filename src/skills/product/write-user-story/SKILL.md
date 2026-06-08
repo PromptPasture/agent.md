@@ -1,8 +1,6 @@
 ---
 name: write-user-story
-description: >
-  Write user stories with acceptance criteria and developer tasks. Use for story writing,
-  Jira/Linear/GitHub tickets, task breakdowns, story points, and story-level sprint planning.
+description: You use this user ask to write a user-story, Jira/Linear/GitHub tickets and task breakdowns.
 license: Apache-2.0
 tags:
   - writer
@@ -10,99 +8,118 @@ tags:
   - user-stories
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.2"
+  version: "1.3.0"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
 ---
 
-# write-user-story
+# Writing User Story
 
 Produce one or more **user stories** with acceptance criteria, then decompose each into **developer tasks** with file/module hints and effort estimates.
 
----
-
 ## Workflow
 
-Stories capture user intent and define done. Tasks translate that intent into work a developer can pick up without a meeting. Linking them hierarchically prevents the classic gap where stories are approved but engineers still don't know what to build.
-
-Follow the **3 C's** framework: **Card** (the written story), **Conversation** (the ongoing dialogue that refines scope and details — stories are conversation starters, not specs), **Confirmation** (acceptance criteria that define done).
-
-Use **STAR** as a lightweight quality check when context is available: the situation explains the user's current problem, the task defines the goal, the action appears in the behavior or developer work, and the result is captured in the "so that" clause and acceptance criteria.
-
----
-
-## Information gathering
-
-Extract from the user's input:
-
-- **Feature or capability** being described
-- **User type(s)** / persona(s)
-- **Technical context**: codebase language, framework, relevant modules (if mentioned or inferable)
-- **Scope**: single story, or multiple stories for a feature/epic?
-
-Ask for missing information only when the answer would materially change the story, acceptance criteria, or implementation tasks.
-
-- **Delivery audience:** If missing, ask who the story is for before drafting: a product/planning workflow or an AI coding agent that will implement it.
-- **Critical context:** Ask for any additional missing context that blocks a useful output, such as persona, business outcome, feature scope, target platform, codebase stack, or target modules.
-- **Question budget:** Ask the smallest useful set of questions in one pass. Do not force a fixed number; ask more than one when several answers are genuinely needed, and proceed with marked assumptions when the missing details are low-risk.
-- **Sparse context:** If the user cannot provide more detail, write one exemplary story with clear assumptions and a note that more context would improve the task breakdown.
-
----
+1. Identify the capability, target user, desired outcome, delivery audience, and requested tracker or document format.
+2. Inspect the prompt, repository, PRD, specification, designs, existing tickets, and constraints before asking for information already available.
+3. Separate confirmed facts, reasonable assumptions, material unknowns, and unresolved product or technical decisions.
+4. Ask only questions whose answers would materially change the user value, scope, acceptance criteria, dependencies, or implementation tasks. If missing details are low-risk, mark assumptions and proceed.
+5. Split the request into independently valuable stories when it contains multiple personas, outcomes, workflows, or sprint-sized goals.
+6. Write each story from the user's perspective using the Card, Conversation, Confirmation model:
+   - **Card:** a concise statement of user value.
+   - **Conversation:** context, scope, assumptions, and open decisions needed for shared understanding.
+   - **Confirmation:** observable acceptance criteria that define done.
+7. Derive acceptance criteria from the story and relevant requirements. Cover the primary path and applicable validation, permission, empty, error, recovery, and boundary conditions.
+8. Decompose the story into coherent developer tasks only when requested or useful for handoff. Use repository evidence for file or module hints and include verification work.
+9. Estimate points or task effort only when the user requests estimates or the team scale is known. State uncertainty and avoid false precision.
+10. Self-review every story for user value, scope, independence, testability, implementation leakage, unsupported assumptions, and missing failure behavior.
 
 ## Output
 
-- **Product or planning audience:** Read `references/output-format.md` for the default Jira/Linear/GitHub story format.
-- **AI implementation audience:** Read `references/ai-output-format.md` when the user asks for an AI-agent-ready story, autonomous implementation prompt, task specification, executable agent handoff, or code-agent work item.
-- **Ambiguous audience:** Use the delivery-audience answer from information gathering before choosing a template.
-- **Story metadata:** Put status, story type, phase, story ID, points, priority, owner, epic, design link, tags, and related docs in YAML frontmatter. Add optional fields only when they have real value.
+Produce Markdown suitable for Jira, Linear, GitHub, or a standalone story file. Preserve a user-provided template when it is stricter.
 
+Use this default structure and remove optional sections that add no delivery value:
+
+```markdown
+---
+status: "[DRAFT | READY | IN_PROGRESS | DONE]"
+documentType: USER_STORY
+phase: "[discovery | delivery | maintenance]"
+storyId: "[US-N]"
+storyPoints: "[1 | 2 | 3 | 5 | 8]"
+priority: "[HIGH | MEDIUM | LOW]"
+owner: "[Name, team, or TBD]"
+epic: "[Parent epic, initiative, or URL]"
+tags:
+  - "[tag]"
+related:
+  - "[PRD, specification, design, issue, or URL]"
 ---
 
-## Writing guidance
+# [US-N]: [Outcome-focused title]
 
-- **Single value:** One user value per story — resist the urge to bundle two different user goals.
-- **Outcome first:** The "so that" is the most important part — it defines the WHY and prevents gold-plating.
-- **Small cards:** Keep stories simple. Split whenever the card needs multiple personas, unrelated outcomes, or more than one sprint-sized goal.
-- **INVEST check:** Validate each story against **INVEST**:
-  - **I**ndependent (self-contained, orderable),
-  - **N**egotiable (details emerge through conversation),
-  - **V**aluable (delivers user value),
-  - **E**stimable (team can size it),
-  - **S**mall (fits one sprint),
-  - **T**estable (clear pass/fail via AC)
-- **Acceptance criteria:** Write AC in Given/When/Then; each criterion should be independently testable.
-- **Edge coverage:** Include at least one error/edge-case AC.
-- **Points:** Points reflect uncertainty + effort. Anything >5 should be split.
-- **Keep the story statement implementation-free** — describe the user goal, not the UI or technology. "I want to invite my friends" not "I want to click an invite button in the settings menu".
+## Story
 
-**Tasks:**
+**As a** [specific user or role],\
+**I want** [capability or action],\
+**so that** [measurable or observable benefit].
 
-- **Task size:** Each task is a single coherent unit of developer work (ideally <1 day).
-- **Phrasing:** Use imperative phrasing: "Add", "Create", "Update", "Wire", "Write".
-- **File hints:** File hints should be concrete if context allows: `src/api/users.ts`, `UserService.java`.
-- **Unknown codebase:** If you don't know the codebase, use logical module names and note them as `[assumed path]`.
-- **Effort scale:** Use XS (<1h), S (1–2h), M (half-day), L (full day).
+## Acceptance Criteria
 
-**Estimation:**
+### Scenario: [Primary path]
 
-- **Uncertainty:** Be honest about uncertainty. If the task involves unknown third-party APIs, say so.
-- **Risk:** Flag high-risk tasks with ⚠️.
+**Given** [initial state or prerequisite]\
+**When** [user or system action]\
+**Then** [observable result]
 
----
+### Scenario: [Relevant failure or edge path]
 
-## Splitting stories
-
-If the feature described maps to multiple user goals, split into separate stories. Common split patterns:
-
-- **Happy path + error handling** (different complexity, can ship incrementally)
-- **Core feature + admin/configuration** (different user types)
-- **Read + write operations** (can be developed in parallel)
-
-When examples would help calibrate story granularity, acceptance criteria, or developer-task detail, read `references/examples.md`.
-
----
+**Given** [initial state or prerequisite]\
+**When** [invalid, unavailable, unauthorized, empty, or boundary condition]\
+**Then** [observable handling and recovery behavior]
 
 ## Verification
 
-Confirm each story has a persona, user value, acceptance criteria, and developer tasks sized for handoff. Check that assumptions are marked, points reflect uncertainty, and any story above 5 points is split or called out as needing decomposition.
+- [Test, command, review, or observable check that proves the story is done]
+
+## Dependencies and Open Questions [optional]
+
+- [Dependency, unresolved decision, owner, or resolution condition]
+```
+
+- Put status, identifiers, estimates, ownership, epic, tags, and related documents in YAML frontmatter when writing a standalone story file.
+- For a tracker ticket, adapt the same sections to the tracker's native fields instead of duplicating metadata in the body.
+- Repeat the structure for each story and keep IDs, dependencies, and ordering consistent.
+- Add context, scope boundaries, or developer tasks only when the user requests them or they are necessary for an implementation-ready handoff.
+- Omit Dependencies and Open Questions when the story has no meaningful dependency or unresolved decision.
+- Do not emit instructional placeholders in a completed story. Populate them, mark a genuinely unresolved value as `TBD`, or remove the optional field or section.
+
+## Writing Rules
+
+- **Center one user value:** each story serves one persona pursuing one coherent outcome.
+- **Keep the card implementation-free:** describe the needed capability and benefit, not a prescribed UI control, framework, endpoint, or database design unless it is a fixed constraint.
+- **Make value explicit:** the `so that` clause must explain why the capability matters and must not merely restate the action.
+- **Apply INVEST:** stories should be independent, negotiable, valuable, estimable, small, and testable. Surface dependencies when full independence is impossible.
+- **Make criteria atomic:** each scenario covers one behavior and has observable preconditions, action, and result.
+- **Cover unhappy paths:** include only relevant errors and edge cases, but never omit material validation, authorization, privacy, security, recovery, or empty-state behavior.
+- **Avoid hidden scope:** distinguish required behavior, non-goals, dependencies, and later work.
+- **Mark uncertainty:** label inferred details with `[assumed]`; use `TBD` only when a value is expected but cannot yet be resolved.
+- **Use evidence for technical hints:** cite verified repository paths and existing modules. If the codebase is unavailable, use logical component names and label them `[assumed module]`.
+- **Keep tasks actionable:** start with an imperative verb, produce one coherent deliverable, include tests or validation, and avoid prescribing unsupported implementation details.
+- **Use the team's estimation scale:** do not assume story-point meaning or convert points to time. If no scale exists, omit estimates or provide qualitative sizing with the uncertainty stated.
+- **Split oversized stories:** split by workflow step, business rule, persona, operation, platform, or risk when a story cannot be completed and verified as one coherent increment.
+- **Handle incomplete input:** ask one concise blocking question when the user or desired outcome is unknown; otherwise mark low-risk assumptions and proceed.
+- **Surface conflicts:** identify contradictory requirements and the decision needed instead of silently choosing.
+- **Route mismatched requests:** use the corresponding workflow when the request is primarily a PRD, technical specification, implementation plan, or bug report.
+
+## Verification
+
+Before finalizing, verify that:
+
+- Every story identifies a specific user, capability, and meaningful outcome.
+- Each story represents one coherent, independently valuable increment or explicitly states unavoidable dependencies.
+- Acceptance criteria are unambiguous, observable, independently testable, and cover relevant failure behavior.
+- Scope, non-goals, assumptions, dependencies, and open decisions are visible and do not contradict one another.
+- Developer tasks, when included, trace to acceptance criteria and contain enough verified context for handoff.
+- Estimates, file paths, commands, metrics, and technical constraints are evidence-based or clearly marked as uncertain.
+- The output contains no unsupported claims, duplicated requirements, unresolved instructional placeholders, or unnecessary implementation detail.
