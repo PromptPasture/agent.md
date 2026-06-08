@@ -8,7 +8,7 @@ tags:
   - requirements
 metadata:
   author: Oleg Shulyakov
-  version: "1.3.0"
+  version: "1.4.0"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
@@ -25,7 +25,7 @@ Produce a complete, structured **Product Requirements Document (PRD)** for the d
 3. Separate confirmed facts, reasonable assumptions, material unknowns, and unresolved decisions.
 4. Ask the smallest set of questions whose answers would materially change the problem, audience, scope, requirements, success measures, or launch conditions. If the missing details are low-risk, state assumptions and proceed.
 5. Define the customer problem, affected users, current behavior, desired outcome, business value, and cost of inaction before describing a solution.
-6. Establish measurable goals, scope boundaries, non-goals, constraints, dependencies, risks, and open questions.
+6. Establish measurable goals, scope boundaries, non-goals, constraints, dependencies, risks, assumptions, and open questions.
 7. Write outcome-focused requirements and acceptance signals. Include relevant failure, empty, permission, recovery, and edge conditions.
 8. Keep technical implementation detail out of the PRD unless it is a fixed product constraint. Route detailed architecture, interfaces, data contracts, or implementation decisions to a technical specification.
 9. Scale the document to the initiative: use a lean PRD for a narrow feature and a fuller PRD for a cross-functional product or launch.
@@ -56,13 +56,9 @@ related:
 
 # PRD: [Product or Feature Name]
 
-## Summary
-
-[Briefly state what is proposed, for whom, the intended outcome, and why it matters now.]
-
 ## Problem
 
-[Describe the current user problem, evidence, affected users, business impact, and cost of inaction. Keep implementation details out.]
+[Describe the current user problem, evidence, affected users, intended outcome, business impact, and cost of inaction. Keep implementation details out.]
 
 ## Goals and Success Metrics
 
@@ -90,60 +86,47 @@ related:
 
 - [Deliberately deferred capability]
 
-## User Journeys or Use Cases
-
-1. [User starts in a defined context.]
-2. [User performs the key action.]
-3. [Product provides feedback, handles relevant errors, and produces the intended outcome.]
-
 ## Requirements
 
 | Requirement ID | Product Behavior | Priority | Acceptance Signal | Related Goal |
 | --- | --- | --- | --- | --- |
 | FR-1 | [Observable, outcome-focused behavior] | [MUST / SHOULD / COULD] | [Testable pass/fail condition] | [G-1] |
 
-## Non-Functional Requirements
+## Non-Functional Requirements [optional]
 
 | Requirement ID | Category | Target or Constraint |
 | --- | --- | --- |
 | NFR-1 | [Performance, security, accessibility, privacy, reliability, compliance, or operations] | [Quantifiable requirement] |
 
-## Dependencies and Constraints
+## Dependencies and Constraints [optional]
 
 | Item | Type | Impact | Validation or Owner |
 | --- | --- | --- | --- |
 | [Dependency or constraint] | [Dependency / Constraint] | [Affected scope or requirement] | [Validation method, owner, or TBD] |
 
-## Assumptions
-
-| Assumption | Evidence or Rationale | Validation Method | Owner |
-| --- | --- | --- | --- |
-| [Belief marked `[assumed]`] | [Current evidence or reason] | [How and when it will be tested] | [Name, team, or TBD] |
-
-## Risks and Mitigations
+## Risks and Mitigations [optional]
 
 | Risk ID | Risk | Impact | Mitigation | Status |
 | --- | --- | --- | --- | --- |
 | R-1 | [Potential adverse outcome] | [HIGH / MEDIUM / LOW] | [Prevention, contingency, or acceptance] | [OPEN / CLOSED] |
 
-## Rollout and Measurement
+## Rollout and Measurement [optional]
 
 | Stage | Audience or Scope | Entry / Exit Criteria | Measurement or Monitoring |
 | --- | --- | --- | --- |
 | [Pilot, beta, phased rollout, or general availability] | [Users, percentage, platform, or region] | [Observable gate] | [Metric, alert, feedback, or review] |
 
-## Open Questions
+## Open Questions and Assumptions
 
-| Question ID | Decision Needed | Owner | Resolution Condition |
-| --- | --- | --- | --- |
-| Q-1 | [Unresolved question that affects delivery or success] | [Name, team, or TBD] | [Evidence or decision needed] |
-
-## References
-
-- [Customer research, analytics, design, tracker, technical specification, or related discussion]
+| Item ID | Type | Question or Assumption | Evidence or Rationale | Resolution or Validation | Owner |
+| --- | --- | --- | --- | --- | --- |
+| Q-1 | Question | [Unresolved decision that affects delivery or success] | [Why it matters] | [Evidence or decision needed] | [Name, team, or TBD] |
+| A-1 | Assumption | [Belief marked `[assumed]`] | [Current evidence or reason] | [How and when it will be tested] | [Name, team, or TBD] |
 ```
 
 - Put document status, phase, dates, owner, stakeholders, tags, and related documents in YAML frontmatter when known.
+- Always include Problem, Goals and Success Metrics, Target Users, Scope, Requirements, and Open Questions and Assumptions.
+- Include optional sections only when they contain information that affects a product decision, delivery, verification, or launch.
 - Use tables when they improve comparison or traceability, especially for metrics, requirements, risks, dependencies, and open questions.
 - Use stable IDs such as `G-1`, `FR-1`, `NFR-1`, and `R-1` only when the document needs cross-references.
 - Do not emit instructional placeholders or empty tables in a completed PRD. Populate them, mark genuinely expected unknown values as `TBD`, or remove the optional section.
@@ -162,15 +145,11 @@ related:
 - **Keep evidence distinct:** do not present hypotheses, stakeholder opinions, or inferred metrics as validated research.
 - **Keep the PRD concise:** link to research, designs, technical specs, trackers, and launch plans instead of duplicating their full contents.
 - **Use plain Markdown:** use real headings rather than bold pseudo-headings, and avoid decorative formatting that does not improve comprehension.
-
-## Error Paths
-
-- If the request is too broad for one coherent PRD, identify the independent product areas and ask the user to choose the first scope or produce an umbrella PRD with clearly separated child initiatives.
-- If the customer problem or intended user is unknown, ask one concise blocking question before drafting.
-- If evidence is sparse but the user wants a draft, produce a lean PRD with visible assumptions and open questions rather than fabricating research.
-- If requested metrics lack a baseline or measurement source, define the desired outcome and measurement approach, but leave the target as `TBD`.
-- If requirements conflict, surface the conflict and required decision instead of silently choosing.
-- If the request is primarily a technical design, implementation plan, user story, or launch checklist, route to the corresponding workflow while retaining any product context already established.
+- **Decompose broad requests:** when one PRD cannot represent a coherent product decision, split independent product areas or produce an umbrella PRD with clearly separated child initiatives.
+- **Handle incomplete input:** ask one concise blocking question when the customer problem or intended user is unknown; otherwise draft a lean PRD with visible assumptions and open questions.
+- **Avoid fabricated metrics:** when a baseline, target, or measurement source is unknown, define the intended outcome and measurement method and leave the unresolved value as `TBD`.
+- **Surface conflicts:** identify contradictory requirements and the decision needed instead of silently choosing.
+- **Route mismatched requests:** use the corresponding workflow when the request is primarily a technical specification, implementation plan, user story, or launch checklist, while retaining established product context.
 
 ## Verification
 
@@ -181,6 +160,6 @@ Before finalizing the PRD, verify that:
 - In-scope work, non-goals, constraints, and dependencies are distinct.
 - Every requirement is necessary, outcome-focused, unambiguous, and verifiable.
 - Relevant edge cases and failure conditions are covered.
-- Assumptions, evidence, risks, mitigations, and open decisions are not conflated.
+- Questions and assumptions are labeled distinctly, and evidence, risks, mitigations, and open decisions are not conflated.
 - The document contains no placeholders beyond intentional `TBD` fields, unsupported claims, contradictory requirements, duplicated sections, or implementation detail without product significance.
 - The PRD is concise enough to guide alignment and specific enough to support design, specification, planning, and acceptance.
