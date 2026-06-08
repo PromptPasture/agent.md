@@ -14,7 +14,7 @@ metadata:
   category: memory
 ---
 
-# remember
+# Remember Facts
 
 Persist durable context so future sessions can recover verified facts, decisions, conventions, and useful lessons without relying on conversation history.
 

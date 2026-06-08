@@ -14,7 +14,7 @@ metadata:
   category: education
 ---
 
-# explain
+# Explaining Topic
 
 Explain knowledge questions clearly, accurately, and at the right depth. Use simple language first, then add precision only where it helps the user understand.
 

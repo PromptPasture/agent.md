@@ -14,7 +14,7 @@ metadata:
   category: data
 ---
 
-# classify
+# Classifing into Groups
 
 Group material by explicit criteria while preserving edge cases.
 

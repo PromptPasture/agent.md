@@ -14,7 +14,7 @@ metadata:
   category: research
 ---
 
-# Brainstorming Ideas Into Designs
+# Brainstorming Ideas
 
 Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
 

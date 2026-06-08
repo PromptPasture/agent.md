@@ -14,7 +14,7 @@ metadata:
   category: collaboration
 ---
 
-# ask
+# Asking questions
 
 Identify the smallest set of questions whose answers would materially change the next action, decision, or result.
 

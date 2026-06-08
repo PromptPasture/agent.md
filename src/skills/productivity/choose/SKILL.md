@@ -14,7 +14,7 @@ metadata:
   category: management
 ---
 
-# choose
+# Choosing Options
 
 Choose a direction by comparing viable options against explicit criteria.
 

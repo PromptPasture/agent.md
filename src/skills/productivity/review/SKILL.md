@@ -14,7 +14,7 @@ metadata:
   category: quality
 ---
 
-# review
+# Reviewing Artifact
 
 Evaluate an artifact against its purpose, requirements, and relevant quality standards.
 Produce a structured assessment that distinguishes evidence, judgment, uncertainty, and recommended action.

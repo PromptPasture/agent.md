@@ -18,7 +18,7 @@ metadata:
     - remember
 ---
 
-# adapt
+# Adapting to Changes
 
 Turn failures, friction, feedback, stale assumptions, and changed constraints into the smallest verified change that prevents the mismatch from recurring.
 

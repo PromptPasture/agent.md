@@ -14,7 +14,7 @@ metadata:
   category: research
 ---
 
-# investigate
+# Investigation
 
 Investigate local context and report evidence-backed conclusions.
 

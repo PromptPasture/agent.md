@@ -14,7 +14,7 @@ metadata:
   category: management
 ---
 
-# manage
+# Managing Work
 
 Keep active work understandable across owners, dependencies, blockers, and handoffs.
 

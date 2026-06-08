@@ -14,7 +14,7 @@ metadata:
   category: planning
 ---
 
-# plan
+# Planning Steps
 
 Turn a defined outcome into an ordered, executable path with dependencies, decision points, and success conditions.
 
