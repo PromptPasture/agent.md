@@ -18,7 +18,7 @@
     "review",
     "skills"
   ],
-  "skills": "./skills/",
+  "skills": "../src/skills/",
   "interface": {
     "displayName": "Prompt Pasture",
     "shortDescription": "Productivity and software engineering skills for coding agents",
