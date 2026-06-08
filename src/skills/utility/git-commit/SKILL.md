@@ -1,8 +1,49 @@
-# Commit Message Guidelines
+---
+name: git-commit
+description: You MUST use this for commit-message requests and committing staged changes. Generate, improve, or apply Conventional Commit messages using staged changes and repository history.
+license: Apache-2.0
+tags:
+  - git
+  - commit
+metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
+  catalog: utility
+  category: version-control
+---
+
+# Git Commit
 
 Generate commit messages in the Conventional Commits format. Use the target repository's recent Git history to refine scope, capitalization, body usage, and footer conventions without abandoning the Conventional Commits structure.
 
 Before generating a message, inspect the relevant diff and recent commit subjects.
+
+---
+
+## Workflow
+
+1. Classify the request as an output or action workflow.
+2. Inspect the relevant diff and recent commit subjects.
+3. Generate or review the message using the conventions below.
+4. Return only the commit message for pure generation requests.
+5. Commit only staged changes when the user requests an action.
+
+### Output Workflow
+
+Use when the user asks to generate, draft, improve, format, or review a commit
+message. For pure generation requests, return only the message unless the user
+asks for explanation. Reviews may include concise, actionable feedback.
+
+### Action Workflow
+
+Use when the user asks to commit staged changes.
+
+- Inspect the current branch, worktree, and staged diff first.
+- Do not stage files unless the user explicitly asks.
+- If nothing is staged, ask whether to stage files or provide a message only.
+- Preserve the selected message exactly when running `git commit`.
+- Report the command outcome or any blocker that prevents completion.
 
 ---
 
@@ -44,7 +85,7 @@ Do not imitate obvious historical mistakes such as misspelled types, malformed h
 ### Types
 
 | Type | When to use |
-| ---------- | ----------------------------------------- |
+| --- | --- |
 | `feat` | A new feature |
 | `fix` | A bug fix |
 | `docs` | Documentation changes only |
@@ -66,7 +107,7 @@ Use only these type names. Convert `feature` to `feat`, and fix obvious type typ
 Treat these user words as commit action intent:
 
 | User wording | Git behavior |
-| ------------------------------------ | ------------------------------------------------- |
+| --- | --- |
 | `commit this` | Commit staged changes only |
 | `commit the staged changes` | Commit staged changes only |
 | `create a commit` | Commit staged changes only |
@@ -117,3 +158,38 @@ Closes #123
 Fixes #456
 Refs #789
 ```
+
+---
+
+## Examples
+
+### Simple Change
+
+```text
+fix(auth): prevent expired sessions from refreshing
+```
+
+### Multi-Part Change
+
+```text
+refactor(skills): split Git workflow guidance
+
+- Move branch operations into a focused skill
+- Move commit-message guidance into a separate skill
+```
+
+### Breaking Change
+
+```text
+feat(api): require scoped access tokens
+
+BREAKING CHANGE: Existing unscoped tokens must be replaced before upgrading.
+```
+
+---
+
+## Verification
+
+- The message describes the inspected diff and follows Conventional Commits.
+- Repository history informs style without reproducing malformed precedent.
+- Action workflows commit only the intended staged changes.

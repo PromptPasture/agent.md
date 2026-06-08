@@ -21,7 +21,7 @@ Workflow:
 
 Do not stage files. If there are no staged changes, stop and ask what the user wants to stage.
 
-Use the shared convention in the installed `operator-git` skill's `references/commit-message.md`. In short:
+Use the shared convention in the installed `git-commit` skill. In short:
 
 ```text
 <type>(<optional scope>): <short description>

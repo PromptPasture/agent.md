@@ -37,7 +37,6 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 | [`code-frontend`](software-engineering/code-frontend/SKILL.md) | Production frontend code: components, routes, client state, forms, styling, accessibility, performance, PWA behavior, and visualization. | [`references/`](software-engineering/code-frontend/references/) |
 | [`code-tests`](software-engineering/code-tests/SKILL.md) | Automated product and system tests, including E2E, API, integration, load, and performance suites. | [`references/`](software-engineering/code-tests/references/) |
 | [`design-api`](software-engineering/design-api/SKILL.md) | Contract-first API design for OpenAPI, AsyncAPI, GraphQL, endpoints, schemas, and request/response shapes. | [`references/`](software-engineering/design-api/references/) |
-| [`manage-git`](software-engineering/manage-git/SKILL.md) | Git branch naming, branch actions, commit-message drafting, and committing staged changes. | [`references/`](software-engineering/manage-git/references/) |
 | [`review-code`](software-engineering/review-code/SKILL.md) | Reviewing code changes, diffs, pull requests, branches, or patches for correctness, regressions, security, performance, and test gaps. | [`references/`](software-engineering/review-code/references/) |
 | [`write-prd`](software-engineering/write-prd/SKILL.md) | Product requirements, product briefs, feature requirements, product scope, and launch requirements. | [`references/`](software-engineering/write-prd/references/) |
 | [`write-spec`](software-engineering/write-spec/SKILL.md) | Technical specs, design docs, functional and non-functional requirements, data contracts, UI specs, release specs, and handoff docs. | [`references/`](software-engineering/write-spec/references/) |
@@ -49,6 +48,8 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 | Skill | Use it for | Notable resources |
 | --- | --- | --- |
 | [`audit-skill-security`](utility/audit-skill-security/SKILL.md) | Auditing third-party or local skills before installing, updating, or trusting them. | [`references/audit-protocol.md`](utility/audit-skill-security/references/audit-protocol.md) |
+| [`git-branch`](utility/git-branch/SKILL.md) | Generating, switching, and renaming Git branches using repository-aware conventions. | - |
+| [`git-commit`](utility/git-commit/SKILL.md) | Generating and applying Conventional Commit messages from repository evidence. | - |
 
 ## Resource Folders
 

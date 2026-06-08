@@ -1,6 +1,47 @@
-# Branch Naming Guidelines
+---
+name: git-branch
+description: You MUST use this for branch name requests and branch actions. Create, switch, or rename Git branches using repository-aware branch naming conventions.
+license: Apache-2.0
+tags:
+  - git
+  - branch
+metadata:
+  author: Oleg Shulyakov
+  version: "1.0.0"
+  source: github.com/olegshulyakov/agent.md
+  catalog: utility
+  category: version-control
+---
 
-Produce clear, consistent, and informative Git branch names that follow team best practices.
+# Git Branching
+
+Generate, switch, and apply clear Git branch names that follow repository and team conventions.
+
+---
+
+## Workflow
+
+1. Classify the request as an output or action workflow.
+2. Inspect repository context when it can affect the branch name or action.
+3. Apply the naming rules below.
+4. Return only the requested branch name for pure generation requests.
+5. For actions, inspect the current branch and worktree before running Git.
+
+### Output Workflow
+
+Use when the user asks to generate, suggest, improve, or review a branch name.
+
+For pure generation requests, return only the branch name unless the user asks
+for options or rationale. Reviews may include concise, actionable feedback.
+
+### Action Workflow
+
+Use when the user asks to create, start, switch, check out, or rename a branch.
+
+- Preserve user work. Never reset, discard, or overwrite changes.
+- If the requested branch already exists, switch to it only when that clearly
+  matches the request; otherwise report the conflict.
+- Report the command outcome or any blocker that prevents completion.
 
 ---
 
@@ -11,15 +52,15 @@ Produce clear, consistent, and informative Git branch names that follow team bes
 ```
 
 | Part | Required | Notes |
-| ------------------- | ------------ | --------------------------------------------- |
+| --- | --- | --- |
 | `type` | Yes | Category prefix (see below) |
-| `ticket-id` | If available | Issue/ticket number, e.g. `PROJ-123` or `#42` |
+| `ticket-id` | If available | Lowercase issue/ticket ID, e.g. `proj-123` or `42` |
 | `short-description` | Yes | kebab-case summary of the work |
 
 **Examples:**
 
-- **Feature:** `feature/PROJ-42-user-authentication`
-- **Bugfix:** `bugfix/PROJ-101-fix-login-redirect`
+- **Feature:** `feature/proj-42-user-authentication`
+- **Bugfix:** `bugfix/proj-101-fix-login-redirect`
 - **Hotfix:** `hotfix/payment-null-pointer-crash`
 - **Chore:** `chore/upgrade-node-18`
 - **Release:** `release/v2.4.0`
@@ -29,7 +70,7 @@ Produce clear, consistent, and informative Git branch names that follow team bes
 ## Type Prefixes
 
 | Prefix | When to Use |
-| ------------- | ---------------------------------------------------------- |
+| --- | --- |
 | `feature/` | New functionality or user-facing capability |
 | `bugfix/` | Non-urgent bug fixes going through normal workflow |
 | `hotfix/` | Urgent fixes that go directly to production/main |
@@ -46,7 +87,7 @@ Produce clear, consistent, and informative Git branch names that follow team bes
 Treat these user words as branch action intent:
 
 | User wording | Git behavior |
-| ---------------------------- | ------------------------------------------------- |
+| --- | --- |
 | `create a branch` | Create a new branch from the current `HEAD` |
 | `start a branch` | Create and switch to a new branch |
 | `checkout a branch` | Create/switch if clearly requested by the user |
@@ -72,10 +113,12 @@ Prefer `git switch -c <branch>` for creating and switching to a new branch. Pref
    - ✅ `feature/add-dark-mode-toggle`
    - ❌ `feature/add-a-new-dark-mode-toggle-setting-to-the-user-preferences-page`
 
-4. **No special characters** — Avoid `/`, `\`, `@`, `#`, `~`, `^`, `:`, `?`, `*`, spaces. Hyphens and slashes (for the prefix separator) are the only allowed non-alphanumeric characters.
+4. **No special characters** — Use one `/` between the type prefix and branch
+   description. Otherwise, avoid `/`, `\`, `@`, `#`, `~`, `^`, `:`, `?`, `*`,
+   and spaces; hyphens are the only other allowed non-alphanumeric characters.
 
 5. **Include ticket ID when available** — Makes branches traceable to issues.
-   - ✅ `bugfix/GH-204-session-expiry-error`
+   - ✅ `bugfix/gh-204-session-expiry-error`
    - ✅ `feature/123-export-to-csv` _(if project uses numeric IDs only)_
 
 6. **No trailing slashes or dots.**
@@ -96,3 +139,11 @@ Check it against:
 - [ ] Description is meaningful (not vague like `fix` or `stuff`)?
 
 Give specific, actionable feedback. If the name is mostly fine, say so and suggest a small tweak. If it's unclear what the branch is for, ask what the task is before suggesting a name.
+
+---
+
+## Verification
+
+- Generated and reviewed names satisfy the formatting rules.
+- Action workflows leave the repository on the requested branch.
+- Existing user changes remain intact.
