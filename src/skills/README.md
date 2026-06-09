@@ -39,7 +39,7 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 | [`code-frontend`](software-engineering/code-frontend/SKILL.md) | Production frontend code: components, routes, client state, forms, styling, accessibility, performance, PWA behavior, and visualization. | [`references/`](software-engineering/code-frontend/references/) |
 | [`code-tests`](software-engineering/code-tests/SKILL.md) | Automated product and system tests, including E2E, API, integration, load, and performance suites. | [`references/`](software-engineering/code-tests/references/) |
 | [`design-api`](software-engineering/design-api/SKILL.md) | Contract-first API design for OpenAPI, AsyncAPI, GraphQL, endpoints, schemas, and request/response shapes. | [`references/`](software-engineering/design-api/references/) |
-| [`review-code`](software-engineering/review-code/SKILL.md) | Reviewing code changes, diffs, pull requests, branches, or patches for correctness, regressions, security, performance, and test gaps. | [`references/`](software-engineering/review-code/references/) |
+| [`review-code`](software-engineering/review-code/SKILL.md) | Reviewing code changes, diffs, pull requests, branches, or patches for correctness, regressions, security, performance, and test gaps. | — |
 
 ## Product Skills
 

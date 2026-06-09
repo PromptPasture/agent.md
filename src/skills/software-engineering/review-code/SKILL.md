@@ -1,110 +1,170 @@
 ---
 name: review-code
-description: >
-  Review code changes, diffs, pull requests, branches, or patches. Use for
-  review findings covering correctness, regressions, security, performance, and
-  test gaps.
+description: You MUST use this when the user asks to review code, including code changes, diffs, pull requests, branches, or patches.
 license: Apache-2.0
 tags:
   - review
-  - code
-  - quality
+  - code quality
 metadata:
-  author: Oleg Shulyakov
-  version: "1.1.1"
+  author: github.com/wpank/ai
+  version: "2.0.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
-  category: development
+  category: review
 ---
 
-# review-code
+# Reviewing Code
 
-Review concrete code changes. Prioritize defects that could ship, regressions that change behavior, security or performance risks, and missing tests that make the change hard to trust.
-
----
+Review concrete code changes and surface defects, regressions, security or performance risks, maintainability problems with clear impact, and test gaps that make the change difficult to trust.
 
 ## Workflow
 
-1. Identify the review target: supplied diff, PR, commit range, branch comparison, staged changes, or working tree changes.
-2. Read `references/checklist.md` before reviewing so the concern areas match the expected code review checklist.
-3. Inspect the changed files and nearby code that defines contracts, callers, tests, migrations, configuration, or runtime behavior affected by the change.
-4. Check behavior in this order: correctness, regressions and compatibility, security, data integrity, concurrency or async behavior, performance, observability, and tests.
-5. Load one focused reference when the diff needs deeper review: `references/regressions.md`, `references/security.md`, `references/performance.md`, or `references/test-gaps.md`.
-6. Validate assumptions against existing tests, fixtures, type definitions, API contracts, docs, and dependency manifests when available.
-7. Report only actionable findings. Skip style preferences, broad refactors, and speculative issues without a concrete failure mode.
-8. If no issues are found, say so directly and name any residual risk or test coverage gap.
+Review in three passes. Scale each pass to the size and risk of the change rather than using fixed time or line-count limits.
 
----
+1. **Scope and intent**
+   - Identify the target and comparison base: supplied code, diff, patch, pull request, commit range, branch comparison, staged changes, or working tree.
+   - Inspect repository guidance, the request or linked issue, changed files, and the smallest surrounding context needed to understand intended behavior, architecture fit, contracts, and blast radius.
+   - Separate verified intent from assumptions and flag scope that cannot be reviewed reliably with the available context.
+2. **Behavior and dimensions**
+   - Read the changed paths in full and trace inputs, state transitions, side effects, outputs, errors, retries, and cleanup.
+   - Apply the relevant checklists below in risk order. Use them as coverage prompts, not reasons to invent findings.
+3. **Hardening and evidence**
+   - Challenge production failure modes, edge conditions, and rollback safety.
+   - Validate suspected problems against repository contracts and surrounding evidence.
+   - Run focused tests, type checks, linters, builds, or reproductions when available and safe.
 
-## Boundaries
+## Checklists
 
-Review the requested diff, pull request, branch, commit, patch, or recently changed code files, including security-sensitive review of those changes. If the user asks how code works before judging it, use the explanatory workflow first and then review only if requested.
+Use only the checklists relevant to the changed surface.
+A checked item means the concern was investigated; it does not require a finding.
 
-Do not rewrite code during a review unless the user explicitly asks for fixes. Do not produce a praise sandwich. The useful artifact is a findings list grounded in file and line evidence.
+### Correctness
 
----
+- [ ] **Edge Cases** — Empty, zero, negative, maximum, and boundary values follow the contract
+- [ ] **Null/Undefined Handling** — Nullable values are checked before access; optional chaining or guards prevent runtime errors
+- [ ] **Off-by-One Errors** — Loop bounds, array slicing, pagination offsets, and range calculations are verified
+- [ ] **Race Conditions** — Concurrent access preserves ordering and shared-state invariants
+- [ ] **Time Handling** — Storage, comparison, conversion, locale, and daylight-saving behavior match the contract
+- [ ] **Unicode & Encoding** — String operations preserve expected characters and use the required encoding
+- [ ] **Overflow / Precision** — Arithmetic uses types and rounding appropriate to the domain
+- [ ] **Error Propagation** — Errors from async calls and external services are caught and handled; promises are never silently swallowed
+- [ ] **State Consistency** — Multi-step mutations, retries, and partial failures leave the system in a valid state
+- [ ] **Boundary Validation** — Values at the boundaries of valid ranges (min, max, exactly-at-limit) are tested
+
+### Compatibility and Rollout
+
+- [ ] **Public Contracts** — APIs, schemas, events, configuration, defaults, and serialized formats remain compatible or are intentionally versioned
+- [ ] **Data Changes** — Migrations and backfills are safe for existing data, production scale, retries, and interruption
+- [ ] **Mixed Versions** — Old and new application versions can coexist safely during deployment
+- [ ] **Release Order** — Code, configuration, feature flags, generated clients, and migrations do not require an unsafe atomic release
+- [ ] **Rollback** — Reverting the change does not lose data, reinterpret persisted state, or repeat irreversible side effects
+
+### Security and Privacy
+
+- [ ] **Injection** — Untrusted values cannot alter queries, commands, paths, URLs, templates, headers, or parser behavior
+- [ ] **XSS** — User-provided content is escaped/sanitized before rendering; `dangerouslySetInnerHTML` or equivalent is justified and safe
+- [ ] **Request Integrity** — State-changing requests have appropriate CSRF, origin, signature, and replay protections
+- [ ] **Authentication** — Every protected endpoint verifies the user is authenticated before processing
+- [ ] **Authorization** — Resource access is scoped to the requesting user's permissions; no IDOR vulnerabilities
+- [ ] **Input Validation** — All external input (params, headers, body, files) is validated for type, length, format, and range on the server side
+- [ ] **Secrets Management** — Credentials are not committed or exposed and use the repository's approved secret mechanism
+- [ ] **Dependency Safety** — New dependencies are justified, trusted, compatible, and checked for relevant known vulnerabilities
+- [ ] **Sensitive Data** — PII, tokens, and secrets are never logged, included in error messages, or returned in API responses
+- [ ] **Abuse Controls** — Public, authentication, upload, and expensive paths have risk-appropriate limits and validation
+- [ ] **Browser Security** — Cookies, CORS, content types, and security headers remain appropriate where affected
+- [ ] **AI and Agent Boundaries** — Untrusted instructions, tool arguments, retrieved context, actions, and cross-user data access are constrained
+
+### Performance
+
+- [ ] **N+1 Queries** — Database access patterns are batched or joined; no loops issuing individual queries
+- [ ] **Unnecessary Re-renders** — Components avoid repeated rendering work with measurable user or resource impact
+- [ ] **Memory Leaks** — Event listeners, subscriptions, timers, and intervals are cleaned up on unmount/disposal
+- [ ] **Payload and Bundle Size** — New code, dependencies, responses, and assets do not add disproportionate transfer or startup cost
+- [ ] **Loading Strategy** — Expensive work is deferred, streamed, cached, or moved off critical paths when required by measured usage
+- [ ] **Database Access** — Query plans, indexes, transaction length, and connection use fit expected data size and access patterns
+- [ ] **Bounded Work** — Lists, queries, payloads, concurrency, polling, recursion, and fan-out have appropriate limits
+- [ ] **Resource Cost** — Memory, CPU, latency, and external-service cost scale acceptably with traffic and customer data
+
+### Maintainability and Operations
+
+- [ ] **Naming Clarity** — Variables, functions, and classes have descriptive names that reveal intent
+- [ ] **Responsibilities** — Module and function boundaries make the changed behavior understandable and hard to misuse
+- [ ] **Duplication** — Repeated logic creates no concrete drift or inconsistent-behavior risk
+- [ ] **Complexity** — Branching and nesting remain understandable and testable for the changed behavior
+- [ ] **Error Handling** — Errors are caught at appropriate boundaries, logged with context, and surfaced meaningfully
+- [ ] **Dead Code Removal** — Commented-out code, unused imports, unreachable branches, and obsolete feature flags are removed
+- [ ] **Literal Semantics** — Values that encode a shared rule or non-obvious meaning are named or documented
+- [ ] **Consistent Patterns** — New code follows the conventions already established in the codebase
+- [ ] **Dependency Direction** — New dependencies preserve established ownership and architecture boundaries
+- [ ] **Observability** — Critical paths have enough logs, metrics, traces, audit records, or alerts to diagnose failure
+- [ ] **Recovery** — Operational controls and recovery guidance match changed behavior and failure modes
+
+### Testing and User Impact
+
+- [ ] **Test Coverage** — New logic paths have corresponding tests; critical paths have both happy-path and failure-case tests
+- [ ] **Edge Case Tests** — Tests cover boundary values, empty inputs, nulls, and error conditions
+- [ ] **No Flaky Tests** — Tests are deterministic; no reliance on timing, external services, or shared mutable state
+- [ ] **Test Independence** — Each test sets up its own state and tears it down; test order does not affect results
+- [ ] **Meaningful Assertions** — Tests assert on behavior and outcomes, not implementation details
+- [ ] **Test Readability** — Tests follow repository conventions and describe the scenario and expected outcome
+- [ ] **Mocking Discipline** — Mocks preserve realistic contracts and do not hide the behavior under review
+- [ ] **Regression Tests** — Bug fixes include a test that reproduces the original bug and proves it is resolved
+- [ ] **Accessibility** — Affected UI covers keyboard, focus, assistive technology, responsive, loading, empty, error, and permission states
+- [ ] **Documentation** — User-facing behavior, public contracts, configuration, migrations, and operational changes are documented when needed
 
 ## Finding Standard
 
-Each finding should include:
+Include a finding only when the change creates a concrete failure mode or a clear engineering risk.
 
-- **Severity**: `P0` for immediate production breakage or severe security exposure, `P1` for likely user-visible bugs or data loss, `P2` for meaningful edge-case regressions or maintainability risks with clear impact, `P3` for minor issues worth fixing before merge.
-- **Location**: file path and tight line reference from the changed code or the smallest relevant surrounding line.
-- **Problem**: what fails, under what condition, and why the current change causes it.
-- **Impact**: who or what is affected.
-- **Fix direction**: the minimal correction or test that would resolve the issue.
+Each finding must contain:
 
-Prefer fewer, stronger findings over a long list of low-confidence commentary. If a concern depends on missing context, label it as an assumption or open question instead of presenting it as fact.
+- **Severity:**
+  - `P0` for catastrophic production impact or severe active exposure;
+  - `P1` for likely user-visible failure, data loss, security breach, or blocked rollout;
+  - `P2` for a meaningful edge-case defect, compatibility issue, or maintainability risk with concrete future impact;
+  - `P3` for a minor but actionable issue worth fixing.
+- **Title and location:** a specific title with the tightest relevant file and line range.
+- **Reasoning:** the triggering condition, observable impact, and supporting evidence.
+- **Fix direction:** the smallest practical correction or test.
 
----
+Prefer fewer high-confidence findings over speculative commentary.
+If evidence is incomplete, label the concern as an open question rather than a defect.
 
 ## Output
 
-For normal reviews, use this shape:
+Lead with findings ordered by severity, then list open questions or assumptions, test gaps, and a brief summary.
+Omit empty sections except when explicitly stating that no findings were found.
 
-```text
-Findings:
-- [P1] Short title — path/to/file.ext:42
-  The changed code does X when Y happens, which causes Z. Fix by ...
-
-Open questions:
-- ...
-
-Test gaps:
-- ...
-
-Summary:
-One short paragraph, only after findings.
+```markdown
+- **[P1] Short title** — `path/to/file.ext:42`
+  Trigger, impact, evidence, and minimal fix direction.
 ```
 
-If there are no findings:
+After findings, add only substantive `Open Questions`, `Test Gaps`, and `Summary` sections.
+If no findings remain, say `No findings.` and report test gaps, unverified behavior, and residual risk.
 
-```text
-No blocking findings.
-
-Test gaps:
-Mention missing or unverified coverage, or "None found" if applicable.
-
-Residual risk:
-Mention any area not inspected or dependent on environment/runtime behavior.
-```
-
-When the runtime supports inline code comments, use them only for actionable findings with tight line ranges. Keep the normal review summary concise.
-
----
+When the runtime supports inline comments, attach them only to actionable findings and use tight line ranges.
+Keep the summary separate so findings remain usable without the surrounding conversation.
 
 ## Review Rules
 
-- **Changed behavior**: tie findings to changed behavior, not generic best practices.
-- **Missing tests**: do not flag missing tests as a finding unless the missing test hides a concrete bug or high-risk behavior; otherwise put it under `Test gaps`.
-- **Generated files**: treat generated files, snapshots, lockfiles, and vendored code as supporting evidence unless the change directly edits them.
-- **Public contracts**: verify public API, schema, and data migration changes against compatibility expectations.
-- **Frontend changes**: check user-visible state, accessibility regressions, responsive behavior, and data loading errors when relevant.
-- **Backend changes**: check validation, authorization, idempotency, transaction boundaries, error handling, and observability when relevant.
-- **Test changes**: check false positives, order dependence, leaked state, sleeps, network dependence, and assertions that do not prove behavior.
-
----
+- Review the requested target and the minimum surrounding code needed to establish its behavior. Do not expand into unrelated refactoring.
+- Do not rubber-stamp a change or treat checklist completion as evidence that it is correct. Trace behavior and validate conclusions against repository evidence.
+- Tie findings to changed behavior. Do not report generic best practices, personal style preferences, praise, or pre-existing defects unless the change newly exposes or worsens them.
+- Do not bikeshed, block on formatting that automation should enforce, or require a preferred implementation when the submitted approach is correct.
+- Do not leave vague drive-by comments. Explain the triggering condition, impact, evidence, and practical correction.
+- Critique the code and its behavior, never the author or presumed intent.
+- Do not modify code during a review unless the user also asks for fixes.
+- Treat generated files, snapshots, lockfiles, and vendored code as supporting evidence unless they are directly edited or reveal a generated-output defect.
+- Do not promote missing tests to a severity finding unless the test itself is wrong, CI can pass while the behavior is broken, or the absence of coverage makes a high-risk change unverifiable.
+- Distinguish confirmed findings, supported inferences, open questions, test gaps, and residual risk. Never present an assumption as a verified defect.
+- If a command or environment cannot be run, state that limitation without treating the absence of verification as proof of correctness.
 
 ## Verification
 
-Confirm each finding is tied to changed code, includes impact and a fix direction, and has a tight file or line reference. When no findings are reported, state the test gaps and residual risk instead of leaving the review empty.
+Before finalizing the review, verify that:
+
+- Every finding is tied to the reviewed change, evidence, impact, severity, location, and a practical fix direction.
+- Findings are not duplicates, speculation, style comments, or broad redesign requests.
+- Commands, failures, assumptions, gaps, and unverified areas are reported accurately.
+- A review with no findings still reports meaningful residual risk.
