@@ -24,9 +24,16 @@ built and the requirements that delivery must satisfy.
 
 Contains artifacts that explain, operate, or communicate an existing system:
 
-- `write-tech-docs`
+- `write-api-docs`
+- `write-changelog`
+- `write-readme`
+- `write-release-notes`
+- `write-runbook`
 
-This includes READMEs, API references, runbooks, changelogs, and release notes.
+These focused skills replace the former `write-tech-docs` router. Routine and
+on-call procedures share `write-runbook`; the other document jobs remain
+independent because they have different audiences, evidence, structures, and
+verification criteria.
 
 ## Boundary
 
@@ -47,15 +54,17 @@ role-oriented names such as `product-management`, `technical-writing`, or
 
 ## Scope
 
-The subsequent implementation should:
+The implementation should:
 
-- Move the four existing `write-*` skill folders to their agreed catalogs.
+- Move the existing `write-*` skill folders to their agreed catalogs.
+- Split `write-tech-docs` into focused documentation skills.
 - Update each moved skill's `metadata.catalog`.
 - Update the skill library index and affected relative links.
 - Update project-scoped catalog documentation when it describes the old
   placement.
 
-Renaming the skills or changing their runtime behavior is out of scope.
+The focused documentation split supersedes the original constraint against
+renaming `write-tech-docs`.
 
 ## Verification
 

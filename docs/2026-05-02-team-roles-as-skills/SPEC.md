@@ -294,7 +294,7 @@ Router skills use one `SKILL.md` plus variant references when related artifacts 
 4. Ask one concise question only when the route changes the output materially.
 5. Mark inferred details with `[assumed]` when producing a spec or planning artifact.
 
-Router skills for this release are `audit-security`, `code-frontend`, `code-backend`, `code-database`, `build-mobile`, `code-tests`, `design-arch`, `write-spec`, `configure-infra`, `create-template`, `write-tech-docs`, `review-code`, and `plan-capacity`.
+Router skills for this release are `audit-security`, `code-frontend`, `code-backend`, `code-database`, `build-mobile`, `code-tests`, `design-arch`, `write-spec`, `configure-infra`, `create-template`, `review-code`, and `plan-capacity`.
 
 ## 5. Catalog
 
@@ -339,7 +339,9 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 | `create-template` | Team Lead, Scrum Master, PM, PO | Reusable templates for team workflows |
 | `track-velocity` | Scrum Master | Sprint metrics and velocity report |
 | `write-alert-rules` | SRE | Alert rules with severity, routing, and runbook links |
+| `write-api-docs` | Tech Writer, Backend | Reference documentation for implemented APIs |
 | `write-backlog` | PO | Groomed backlog with priority, sizing, and dependencies |
+| `write-changelog` | Tech Writer, Release Mgr | Developer-facing changelog entries and release history |
 | `write-compliance` | Security, Legal | Compliance documentation and evidence checklist |
 | `write-epic` | PO | Epic with goal, value, child stories, definition of done |
 | `write-lineage` | Data Eng | Data lineage document |
@@ -348,11 +350,13 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 | `write-postmortem` | Team Lead, SRE | Postmortem with timeline, root cause, action items |
 | `write-prd` | PM, PO | Product Requirements Document |
 | `write-prompt` | ML, AI Eng | Prompt specification with examples and eval criteria |
+| `write-readme` | Tech Writer, Developers | Project README with installation, usage, and contribution guidance |
+| `write-release-notes` | Tech Writer, Release Mgr | User-facing release communication and upgrade guidance |
+| `write-runbook` | Tech Writer, SRE | Routine and on-call operational procedures |
 | `write-slo` | SRE | SLO definition with SLI, target, error budget, alerts |
 | `write-spec` | SA, Architect, UX | Functional, technical, NFR, design, or data-contract spec |
 | `write-stakeholder` | PM, PO | Stakeholder update |
 | `write-team-agreement` | Scrum Master | Team working agreement |
-| `write-tech-docs` | Tech Writer, Backend, SRE, Release Mgr | Technical docs router: README, API docs, runbooks, changelog, release notes |
 | `write-tech-radar` | Architect | Tech radar |
 | `write-test-strategy` | AQA, QA | Test strategy |
 | `write-use-case` | System Analyst | Use case document |
@@ -374,7 +378,6 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 | `configure-infra` | `iac.md`, `cicd.md`, `etl.md`, `observability.md` |
 | `plan-capacity` | `db.md`, `infra.md` |
 | `audit-security` | `owasp.md`, `secrets.md`, `threat-model.md` |
-| `write-tech-docs` | `readme.md`, `api-docs.md`, `runbook-routine.md`, `runbook-oncall.md`, `changelog.md`, `release-notes.md` |
 | `review-code` | `checklist.md`, `regressions.md`, `security.md`, `performance.md`, `test-gaps.md` |
 | `create-template` | `pr.md`, `retro.md`, `issue.md`, `meeting.md`, `decision.md`, `incident.md`, `release.md` |
 
@@ -383,7 +386,7 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 | Pair | Routing rule |
 | --- | --- |
 | `write-prd` vs `write-spec` | PRD owns product goals, personas, scope, and success metrics; spec owns behavior, technical detail, system handoff, and requirements. |
-| `design-api` vs `write-tech-docs` API docs | `design-api` is contract-first before implementation; `write-tech-docs` documents an existing API. |
+| `design-api` vs `write-api-docs` | `design-api` is contract-first before implementation; `write-api-docs` documents an existing API. |
 | `design-arch` variants | System design is broad architecture; ADR is one decision; C4 is diagram-focused. |
 | `write-user-story` vs `write-epic` | User story is one deliverable with acceptance criteria and tasks; epic groups related stories. |
 | `code-tests` vs `write-test-strategy` | `code-tests` writes executable tests/config/evals; `write-test-strategy` writes planning guidance. |

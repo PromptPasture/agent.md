@@ -179,7 +179,9 @@ Ordered alphabetically by name (matches filesystem order).
 | Done | Skill | Priority | Domain | Primary Role | Produces |
 | ----- | ----------------------- | -------- | ------------ | ------------------- | --------------------------------------------------------------------- |
 | - [ ] | `write-alert-rules` | 🟡 P3 | DevOps / SRE | SRE | Alert rule definitions with severity and runbook links |
+| - [x] | `write-api-docs` | 🔴 P1 | Docs | Tech Writer / Backend | Reference documentation for implemented APIs |
 | - [ ] | `write-backlog` | 🟡 P3 | Agile | Product Owner | Groomed backlog with priorities, estimates, and dependencies |
+| - [x] | `write-changelog` | 🔴 P1 | Docs | Tech Writer / Release Manager | Developer-facing changelog entries and release history |
 | - [ ] | `write-compliance` | ⚪ P4 | Security | Security / Legal | Compliance documentation (GDPR, SOC2, HIPAA) |
 | - [ ] | `write-epic` | 🟠 P2 | Agile | Product Owner | Epic definition with goal, scope, child stories, DoD |
 | - [ ] | `write-lineage` | ⚪ P4 | Data | Data Engineer | Data lineage documentation (sources, transforms, destinations) |
@@ -188,7 +190,9 @@ Ordered alphabetically by name (matches filesystem order).
 | - [ ] | `write-postmortem` | 🟡 P3 | Leadership | Team Lead / SRE | Incident postmortem (timeline, root cause, action items) |
 | - [x] | `write-prd` | 🔴 P1 | Requirements | PM / PO | Product Requirements Document (goals, personas, scope, metrics) |
 | - [ ] | `write-prompt` | 🟡 P3 | ML / AI | ML / AI Engineer | Optimized prompt with system instructions, examples, and eval |
-| - [x] | `write-tech-docs` | 🔴 P1 | Docs | Tech Writer | Technical docs: README, API docs, runbooks, changelog, release notes |
+| - [x] | `write-readme` | 🔴 P1 | Docs | Tech Writer | Project README with installation, usage, and contribution guidance |
+| - [x] | `write-release-notes` | 🔴 P1 | Docs | Tech Writer / Release Manager | User-facing release communication and upgrade guidance |
+| - [x] | `write-runbook` | 🔴 P1 | Docs | Tech Writer / SRE | Routine and on-call operational procedures |
 | - [ ] | `write-slo` | 🟡 P3 | DevOps / SRE | SRE | SLO definition with indicators, targets, and error budget |
 | - [x] | `write-spec` | 🔴 P1 | Requirements | SA / Architect / UX | Specification document (functional, tech, NFR, design, data-contract) |
 | - [ ] | `write-stakeholder` | 🟡 P3 | Agile | PM / PO | Stakeholder update (status, risks, decisions needed) |

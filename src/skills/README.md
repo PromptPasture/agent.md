@@ -53,7 +53,11 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 
 | Skill | Use it for | Notable resources |
 | --- | --- | --- |
-| [`write-tech-docs`](documentation/write-tech-docs/SKILL.md) | READMEs, API docs, endpoint references, routine and on-call runbooks, changelogs, and release notes. | [`references/`](documentation/write-tech-docs/references/) |
+| [`write-api-docs`](documentation/write-api-docs/SKILL.md) | Reference documentation for implemented API endpoints, operations, schemas, errors, authentication, and examples. | - |
+| [`write-changelog`](documentation/write-changelog/SKILL.md) | Developer-facing changelogs, unreleased sections, release entries, breaking changes, and security changes. | - |
+| [`write-readme`](documentation/write-readme/SKILL.md) | Project READMEs covering purpose, installation, quick starts, usage, configuration, and contribution. | - |
+| [`write-release-notes`](documentation/write-release-notes/SKILL.md) | User-facing release notes, product updates, known issues, upgrade guidance, and action-required notices. | - |
+| [`write-runbook`](documentation/write-runbook/SKILL.md) | Routine operational procedures and on-call response runbooks with verification, rollback, mitigation, and escalation. | - |
 
 ## Utility Skills
 
