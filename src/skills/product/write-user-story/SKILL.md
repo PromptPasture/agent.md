@@ -1,6 +1,6 @@
 ---
 name: write-user-story
-description: You use this user ask to write a user-story, Jira/Linear/GitHub tickets and task breakdowns.
+description: You MUST use this user ask to write a user-story, Jira/Linear/GitHub tickets and task breakdowns.
 license: Apache-2.0
 tags:
   - writer
@@ -8,7 +8,7 @@ tags:
   - user-stories
 metadata:
   author: Oleg Shulyakov
-  version: "1.3.0"
+  version: "1.3.1"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
