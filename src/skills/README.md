@@ -62,6 +62,7 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 | [`audit-skill-security`](utility/audit-skill-security/SKILL.md) | Auditing third-party or local skills before installing, updating, or trusting them. | [`references/audit-protocol.md`](utility/audit-skill-security/references/audit-protocol.md) |
 | [`git-branch`](utility/git-branch/SKILL.md) | Generating, switching, and renaming Git branches using repository-aware conventions. | - |
 | [`git-commit`](utility/git-commit/SKILL.md) | Generating and applying Conventional Commit messages from repository evidence. | - |
+| [`markitdown`](utility/markitdown/SKILL.md) | Reading extraction-dependent local documents or converting them to Markdown with the MarkItDown CLI. | - |
 
 ## Resource Folders
 
