@@ -7,7 +7,7 @@ tags:
   - code quality
 metadata:
   author: github.com/wpank/ai
-  version: "2.0.0"
+  version: "2.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: review
@@ -27,7 +27,7 @@ Review in three passes. Scale each pass to the size and risk of the change rathe
    - Separate verified intent from assumptions and flag scope that cannot be reviewed reliably with the available context.
 2. **Behavior and dimensions**
    - Read the changed paths in full and trace inputs, state transitions, side effects, outputs, errors, retries, and cleanup.
-   - Apply the relevant checklists below in risk order. Use them as coverage prompts, not reasons to invent findings.
+   - Apply the relevant checklists below in an order determined by the changed surface. Prioritize trust-boundary, data-loss, and production-availability risks. Use the checklists as coverage prompts, not reasons to invent findings.
 3. **Hardening and evidence**
    - Challenge production failure modes, edge conditions, and rollback safety.
    - Validate suspected problems against repository contracts and surrounding evidence.
@@ -41,13 +41,13 @@ A checked item means the concern was investigated; it does not require a finding
 ### Correctness
 
 - [ ] **Edge Cases** — Empty, zero, negative, maximum, and boundary values follow the contract
-- [ ] **Null/Undefined Handling** — Nullable values are checked before access; optional chaining or guards prevent runtime errors
+- [ ] **Nullable Values** — Missing or optional values are handled before use through guards, defaults, types, or equivalent mechanisms
 - [ ] **Off-by-One Errors** — Loop bounds, array slicing, pagination offsets, and range calculations are verified
 - [ ] **Race Conditions** — Concurrent access preserves ordering and shared-state invariants
 - [ ] **Time Handling** — Storage, comparison, conversion, locale, and daylight-saving behavior match the contract
 - [ ] **Unicode & Encoding** — String operations preserve expected characters and use the required encoding
 - [ ] **Overflow / Precision** — Arithmetic uses types and rounding appropriate to the domain
-- [ ] **Error Propagation** — Errors from async calls and external services are caught and handled; promises are never silently swallowed
+- [ ] **Error Propagation** — Errors from asynchronous work and external services are surfaced or handled; failures are never silently swallowed
 - [ ] **State Consistency** — Multi-step mutations, retries, and partial failures leave the system in a valid state
 - [ ] **Boundary Validation** — Values at the boundaries of valid ranges (min, max, exactly-at-limit) are tested
 
@@ -62,10 +62,10 @@ A checked item means the concern was investigated; it does not require a finding
 ### Security and Privacy
 
 - [ ] **Injection** — Untrusted values cannot alter queries, commands, paths, URLs, templates, headers, or parser behavior
-- [ ] **XSS** — User-provided content is escaped/sanitized before rendering; `dangerouslySetInnerHTML` or equivalent is justified and safe
+- [ ] **XSS** — Untrusted content is encoded or sanitized before rendering; raw HTML APIs such as `dangerouslySetInnerHTML` are justified and safe
 - [ ] **Request Integrity** — State-changing requests have appropriate CSRF, origin, signature, and replay protections
 - [ ] **Authentication** — Every protected endpoint verifies the user is authenticated before processing
-- [ ] **Authorization** — Resource access is scoped to the requesting user's permissions; no IDOR vulnerabilities
+- [ ] **Object-Level Authorization** — Resource access is scoped to the requesting user's permissions; identifier-based access cannot bypass ownership or tenant checks
 - [ ] **Input Validation** — All external input (params, headers, body, files) is validated for type, length, format, and range on the server side
 - [ ] **Secrets Management** — Credentials are not committed or exposed and use the repository's approved secret mechanism
 - [ ] **Dependency Safety** — New dependencies are justified, trusted, compatible, and checked for relevant known vulnerabilities
@@ -77,7 +77,7 @@ A checked item means the concern was investigated; it does not require a finding
 ### Performance
 
 - [ ] **N+1 Queries** — Database access patterns are batched or joined; no loops issuing individual queries
-- [ ] **Unnecessary Re-renders** — Components avoid repeated rendering work with measurable user or resource impact
+- [ ] **Unnecessary Re-renders** — Views, components, templates, or renderers avoid repeated work with measurable user or resource impact
 - [ ] **Memory Leaks** — Event listeners, subscriptions, timers, and intervals are cleaned up on unmount/disposal
 - [ ] **Payload and Bundle Size** — New code, dependencies, responses, and assets do not add disproportionate transfer or startup cost
 - [ ] **Loading Strategy** — Expensive work is deferred, streamed, cached, or moved off critical paths when required by measured usage
