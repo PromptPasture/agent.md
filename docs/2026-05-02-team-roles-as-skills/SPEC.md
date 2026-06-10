@@ -2,9 +2,9 @@
 status: APPROVED
 documentType: SPEC
 phase: delivery
-version: 2.0
+version: 2.1
 createdAt: "2026-05-02"
-updatedAt: "2026-05-23"
+updatedAt: "2026-06-10"
 author: Oleg Shulyakov
 owner: Oleg Shulyakov
 reviewers: Skill authors and maintainers
@@ -35,7 +35,7 @@ CLI agents can produce many software delivery artifacts, but output quality drif
 
 Software Team Roles as Skills turns those repeated instructions into a versioned local library. Each skill owns one role capability or artifact family, declares when it should trigger, and carries its own workflow, output format, references, evals, and packaging expectations.
 
-The first catalog release is milestone-gated. It is ready when all 55 cataloged skills are implemented, validated, evaluated, documented, and packageable from local artifacts.
+The first catalog release is milestone-gated. It is ready when all 56 cataloged skills are implemented, validated, evaluated, documented, and packageable from local artifacts.
 
 ### 1.3 Roles & Responsibilities
 
@@ -57,7 +57,7 @@ The library must remain local-first. It is not a plugin marketplace, a project m
 
 | Goal | Success Metric | Target |
 | --- | --- | --- |
-| Complete catalog coverage | Cataloged software delivery role skills exist in `src/skills/`. | 55 skills |
+| Complete catalog coverage | Cataloged software delivery role skills exist in `src/skills/`. | 56 skills |
 | Keep discovery predictable | Skill names follow verb-first convention. | 100% compliance |
 | Reduce repeated prompting | Completed skills encode trigger, output, and quality expectations. | Every completed skill has specific frontmatter and instructions |
 | Keep complex domains usable | Router skills select variants from context. | Ask at most one clarifying question when materially ambiguous |
@@ -111,7 +111,7 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 **Priority:** Must-have
 **Actor:** Skill maintainer
-**Requirement:** The library shall define exactly 55 catalog skills for the first full release.
+**Requirement:** The library shall define exactly 56 catalog skills for the first full release.
 
 **Acceptance criteria:**
 
@@ -359,8 +359,9 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 | `write-team-agreement` | Scrum Master | Team working agreement |
 | `write-tech-radar` | Architect | Tech radar |
 | `write-test-strategy` | AQA, QA | Test strategy |
+| `write-ticket` | PO, Team Lead, Developers | Jira or GitHub bug, feature, task, or spike ticket |
 | `write-use-case` | System Analyst | Use case document |
-| `write-user-story` | PO, Team Lead | User story with acceptance criteria and developer tasks |
+| `write-user-story` | PO, Team Lead | User story with acceptance criteria |
 
 ## 6. Variant References
 
@@ -388,7 +389,8 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 | `write-prd` vs `write-spec` | PRD owns product goals, personas, scope, and success metrics; spec owns behavior, technical detail, system handoff, and requirements. |
 | `design-api` vs `write-api-docs` | `design-api` is contract-first before implementation; `write-api-docs` documents an existing API. |
 | `design-arch` variants | System design is broad architecture; ADR is one decision; C4 is diagram-focused. |
-| `write-user-story` vs `write-epic` | User story is one deliverable with acceptance criteria and tasks; epic groups related stories. |
+| `write-ticket` vs `write-user-story` | Ticket owns tracker work items using type-specific writing; user story owns persona, user value, and story acceptance criteria. |
+| `write-user-story` vs `write-epic` | User story is one user-value increment with acceptance criteria; epic groups related stories. |
 | `code-tests` vs `write-test-strategy` | `code-tests` writes executable tests/config/evals; `write-test-strategy` writes planning guidance. |
 | `review-code` vs `audit-security` | `review-code` reviews a code change; `audit-security` performs standalone security analysis. |
 | `create-template` vs `write-*` | `create-template` creates reusable blank templates; `write-*` creates filled artifacts. |
@@ -519,6 +521,6 @@ python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist
 
 | Item | Count |
 | --- | ---: |
-| Catalog skills | 55 |
+| Catalog skills | 56 |
 | Approved verbs | 15 |
 | Required router skills | 13 |

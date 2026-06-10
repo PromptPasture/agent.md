@@ -2,9 +2,9 @@
 status: IN-PROGRESS
 documentType: TASKS
 phase: delivery
-version: 2.0
+version: 2.1
 createdAt: "2026-05-02"
-updatedAt: "2026-05-23"
+updatedAt: "2026-06-10"
 author: Oleg Shulyakov
 tags:
   - skills
@@ -196,8 +196,9 @@ Ordered alphabetically by name (matches filesystem order).
 | - [ ] | `write-slo` | 🟡 P3 | DevOps / SRE | SRE | SLO definition with indicators, targets, and error budget |
 | - [x] | `write-spec` | 🔴 P1 | Requirements | SA / Architect / UX | Specification document (functional, tech, NFR, design, data-contract) |
 | - [ ] | `write-stakeholder` | 🟡 P3 | Agile | PM / PO | Stakeholder update (status, risks, decisions needed) |
-| - [x] | `write-user-story` | 🔴 P1 | Agile | PO / Team Lead | User stories with acceptance criteria decomposed into dev tasks |
 | - [ ] | `write-team-agreement` | ⚪ P4 | Agile | Scrum Master | Team working agreement (definition of done, norms, ceremonies) |
 | - [ ] | `write-tech-radar` | ⚪ P4 | Architecture | Solution Architect | Technology radar (adopt, trial, assess, hold) |
 | - [ ] | `write-test-strategy` | 🟠 P2 | Testing | AQA / QA | Test strategy document (scope, levels, tools, coverage targets) |
+| - [x] | `write-ticket` | 🔴 P1 | Requirements | PO / Team Lead / Developers | Jira or GitHub bug, feature, task, or spike tickets |
 | - [ ] | `write-use-case` | 🟡 P3 | Requirements | System Analyst | Use case document (actors, preconditions, main/alternate flows) |
+| - [x] | `write-user-story` | 🔴 P1 | Agile | PO / Team Lead | User stories with acceptance criteria |

@@ -47,7 +47,8 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 | --- | --- | --- |
 | [`write-prd`](product/write-prd/SKILL.md) | Product requirements, product briefs, feature requirements, product scope, and launch requirements. | [`references/`](product/write-prd/references/) |
 | [`write-spec`](product/write-spec/SKILL.md) | Technical specs, design docs, functional and non-functional requirements, data contracts, UI specs, release specs, and handoff docs. | [`references/`](product/write-spec/references/) |
-| [`write-user-story`](product/write-user-story/SKILL.md) | User stories, acceptance criteria, developer tasks, tickets, story points, and sprint planning breakdowns. | [`references/`](product/write-user-story/references/) |
+| [`write-ticket`](product/write-ticket/SKILL.md) | Jira and GitHub bug, feature, task, chore, documentation, and spike tickets using type-specific writing models. | - |
+| [`write-user-story`](product/write-user-story/SKILL.md) | User stories, acceptance criteria, story points, and sprint-ready user-value increments. | - |
 
 ## Documentation Skills
 
