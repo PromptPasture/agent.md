@@ -8,140 +8,358 @@ tags:
   - issue-tracking
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
 ---
 
-# Writing Tickets
+# write-ticket
 
-Write implementation-ready Jira, GitHub, or standalone Markdown tickets using language and structure appropriate to the work item.
+Produces clear, complete, and actionable tickets for Jira, GitHub Issues, or any work-item tracker. Covers bugs, features, tasks, chores, documentation, and spikes.
 
-## Workflow
+---
 
-1. Identify the requested tracker, audience, desired result, and available source material.
-2. Inspect the prompt, repository, requirements, designs, logs, existing issues, and constraints before asking for information already available.
-3. Infer the ticket type from the work:
-   - **Bug:** incorrect or unexpected existing behavior.
-   - **Feature:** a new or changed capability with a defined outcome.
-   - **Task:** implementation, maintenance, chore, or documentation work.
-   - **Spike:** a bounded investigation that must answer a question.
-4. Default genuine ambiguity to `task`. State the assumption only when another type would materially change the ticket.
-5. Separate confirmed facts, reasonable assumptions, material unknowns, and unresolved decisions.
-6. Ask one concise question only when the missing answer would materially change the objective, scope, completion criteria, or investigation boundary. Otherwise, mark low-risk assumptions and proceed.
-7. Select the matching writing model and include only sections that make the ticket actionable.
-8. Adapt metadata and field placement to the requested tracker without changing the ticket's writing model.
-9. Split multiple independently deliverable outcomes into separate tickets.
-10. Self-review each ticket for clear purpose, bounded scope, observable completion, unsupported claims, and unnecessary user-story framing.
+## Instructions
 
-## Ticket Models
+### Step 1: Identify the ticket type
+
+Determine which type applies before writing anything:
+
+| Type | Use when |
+| --- | --- |
+| **Bug** | Something is broken or behaves unexpectedly |
+| **Feature** | New capability or user-visible behaviour is requested |
+| **Task / Chore** | Internal work with no direct user impact (refactor, upgrade, CI fix) |
+| **Documentation** | Docs need to be created, updated, or removed |
+| **Spike** | Research or investigation needed before committing to an approach |
+
+If the type is ambiguous, ask one concise question before writing.
+
+### Step 2: Gather missing context
+
+Only ask when information is genuinely absent and cannot be inferred. Ask all missing questions in a single message.
+
+**Always needed (all types):**
+
+- One-sentence summary of the problem or goal
+- Affected area or component (if not obvious)
+
+**Type-specific:**
+
+- _Bug_ — Steps to reproduce, actual behaviour, expected behaviour, environment/version
+- _Feature_ — Who benefits, what they need, why it matters, any constraints
+- _Spike_ — Questions to answer, time-box (e.g. 2 days), deliverable (doc, PR, ADR)
+- _Docs_ — Target audience, scope (new page vs. update), where it lives
+
+### Step 3: Write the ticket
+
+Use the template for the identified type (see Templates below). Follow all formatting rules.
+
+### Step 4: Self-review before presenting
+
+Check every field:
+
+- [ ] Title: ≤ 72 characters, action-oriented, no jargon acronyms without expansion
+- [ ] No placeholder text (`TBD`, `TODO`, `...`) unless the user explicitly asked for a draft
+- [ ] Acceptance criteria are testable — each starts with "Given / When / Then" or a clear pass/fail statement (Feature only)
+- [ ] Reproducing steps are numbered and deterministic (bug only)
+- [ ] Scope section states what is explicitly out of scope (feature/spike)
+- [ ] Spike has a time-box and a named deliverable
+
+Fix any issue found before presenting.
+
+---
+
+## Templates
 
 ### Bug
 
-Include:
+```markdown
+# [Component] Short description of the broken behaviour
 
-- problem context
-- reproduction steps
-- actual result
-- expected result
-- impact
-- completion criteria
+**Type:** Bug
+**Priority:** P0 | P1 | P2 | P3
 
-Do not invent reproduction details, environment information, severity, or root cause.
-Mark unavailable evidence and ask only when it blocks an actionable ticket.
+## Summary
+
+One or two sentences describing what is broken and its user impact.
+
+## Environment
+
+- Version / Release:
+- Platform / OS:
+- Browser (if applicable):
+
+## Steps to Reproduce
+
+1. Step one
+2. Step two
+3. Step three
+
+## Actual Behaviour
+
+What happens today.
+
+## Expected Behaviour
+
+What should happen instead.
+
+## Additional Context
+
+Screenshots, logs, related tickets, workarounds.
+```
+
+---
 
 ### Feature
 
-Include:
-
-- problem
-- desired outcome
-- scope
-- requirements
-- acceptance criteria
-- non-goals when needed to prevent material ambiguity
-
-Describe the capability directly.
-
-### Task
-
-Include:
-
-- objective
-- required work
-- relevant constraints
-- completion criteria
-- verification
-
-Map chores and documentation tickets to this model.
-Keep the required work outcome-focused and avoid prescribing unsupported implementation details.
-
-### Spike
-
-Include:
-
-- question to answer
-- investigation scope
-- expected deliverable
-- stopping condition or timebox when known
-
-Define completion as producing evidence or a decision, not implementing the solution being investigated.
-
-## Output
-
-Produce concise Markdown suitable for the requested destination. Preserve a user-provided template when it is stricter.
-
-Use an outcome-focused title and the selected ticket model. Add assumptions, dependencies, risks, or open questions only when they affect delivery.
-
-- **Jira:** map known issue type, priority, labels, epic, ownership, and relationships to native fields instead of duplicating them in the body.
-- **GitHub:** use known labels, linked issues, issue-form conventions, and task lists when they match the repository's issue style.
-- **Standalone Markdown:** put known status, type, priority, owner, labels, and related work in YAML frontmatter.
-
-When drafting text without direct tracker access, return known tracker fields in a compact `Metadata` section before the ticket body. Omit unknown optional fields instead of inventing values.
-
-Do not invent tracker fields or values. Omit unknown optional metadata unless the user expects the field and it must be marked `TBD`.
-
-### Feature Ticket Example
-
 ```markdown
-# Allow administrators to revoke active sessions
+# [Verb] [object] so that [benefit]
 
-## Problem
+**Type:** Feature
+**Priority:** P0 | P1 | P2 | P3
 
-Compromised or obsolete sessions remain active until they expire.
+## User Story
 
-## Desired Outcome
+As a [role], I want [capability] so that [benefit].
 
-Administrators can revoke a selected active session and prevent its further use.
+## Problem Statement
+
+Why this matters and what gap it closes.
+
+## Proposed Solution [optional]
+
+High-level description of the approach (avoid implementation detail).
 
 ## Acceptance Criteria
 
-- The selected session becomes invalid immediately after revocation.
-- Other sessions remain active.
-- Unauthorized users cannot revoke sessions.
+- Given [context], when [action], then [outcome].
+- ...
+
+## Out of Scope
+
+- What this ticket explicitly does NOT cover.
+
+## Dependencies
+
+List any blocking tickets, services, or decisions.
+
+## Additional Context
+
+Mockups, references, related tickets.
 ```
 
-## Writing Rules
+---
 
-- **Write the work item, not a disguised story:** use the selected ticket model rather than persona-based story language.
-- **Keep one objective:** each ticket should produce one coherent, independently verifiable result.
-- **Make completion observable:** state what must be true and how it can be checked.
-- **Separate facts from assumptions:** label inferred details with `[assumed]` when the distinction matters.
-- **Use repository evidence:** cite verified paths, modules, commands, logs, or interfaces. Use logical names marked `[assumed]` when the repository is unavailable.
-- **Cover relevant failure behavior:** include validation, authorization, privacy, security, recovery, and boundary conditions only when applicable.
-- **Avoid hidden scope:** distinguish required work, non-goals, dependencies, and later work.
-- **Estimate only when requested:** use the team's known scale and state uncertainty; do not convert points to time.
-- **Keep skills independent:** do not invoke or automatically convert through `write-user-story`. When the user explicitly requests both artifacts, write only the ticket portion of this skill's output.
-- **Route mismatched requests:** use `write-user-story` when the requested artifact is a user story rather than a ticket.
+### Task / Chore
 
-## Verification
+```markdown
+# [Verb] [object] (chore)
 
-Before finalizing, verify that:
+**Type:** Task | Chore
+**Priority:** P0 | P1 | P2 | P3
 
-- The inferred ticket type matches the work or a material assumption is stated.
-- The ticket uses the corresponding bug, feature, task, or spike model.
-- The objective, scope, and completion conditions are clear and consistent.
-- Tracker adaptation changes metadata placement without changing the writing model.
-- Chore and documentation requests use the task model.
-- The output contains no forced user-story framing, unsupported claims, duplicated requirements, unresolved instructional placeholders, or unnecessary sections.
+## Summary
+
+What needs to be done and why, in two to three sentences.
+
+## Motivation
+
+Technical or operational reason (e.g. dependency is EOL, test suite is slow).
+
+## Definition of Done
+
+- [ ] Concrete, verifiable outcome 1
+- [ ] Concrete, verifiable outcome 2
+
+## Out of Scope
+
+What this ticket does NOT change.
+
+## Dependencies
+
+Blocking tickets or decisions.
+```
+
+---
+
+### Documentation
+
+```markdown
+# [Add | Update | Remove] docs for [subject]
+
+**Type:** Documentation
+**Priority:** P0 | P1 | P2 | P3
+
+## Summary
+
+What documentation needs to change and why.
+
+## Audience
+
+Who will read this (e.g. end users, developers, operators).
+
+## Scope
+
+- New page / section: [location or URL]
+- OR: Update existing page: [link]
+- OR: Remove outdated content: [link]
+
+## Key Topics to Cover
+
+- Topic 1
+- Topic 2
+
+## Definition of Done
+
+- [ ] Content reviewed for accuracy
+- [ ] Published to [location]
+- [ ] Linked from [parent page / nav]
+```
+
+---
+
+### Spike
+
+```markdown
+# Spike: [Question or decision to resolve]
+
+**Type:** Spike
+**Priority:** P0 | P1 | P2 | P3
+**Time-box:** [e.g. 2 days]
+
+## Background
+
+Context that makes this investigation necessary.
+
+## Questions to Answer
+
+1. Question one
+2. Question two
+
+## Out of Scope
+
+What the spike will NOT investigate.
+
+## Deliverable
+
+- [ ] Short written summary
+- [ ] ADR (Architecture Decision Record)
+- [ ] Proof-of-concept branch
+- [ ] Other: ...
+
+## Definition of Done
+
+- [ ] All questions above have a documented answer
+- [ ] Deliverable is linked or attached
+- [ ] Follow-up tickets are created if needed
+```
+
+---
+
+## Formatting Rules
+
+- **Title** — imperative verb, sentence case, ≤ 72 characters, rendered as an `#` H1. Do not start with "We need to" or "I want".
+- **Priority** — choose exactly one: P0 (critical / blocking), P1 (high), P2 (medium), P3 (low). If unsure, default to P2 and note the assumption.
+- **Acceptance Criteria** — use Given/When/Then format or plain pass/fail statements. Never use vague terms like "works correctly" or "looks good".
+- **Out of Scope** — required for Feature and Spike. Omit only if the boundary is genuinely self-evident and you state why.
+- **Markdown** — use `#` for the title and `##` for each section header. Keep formatting compatible with both GitHub and Jira (avoid HTML tags).
+
+---
+
+## Examples
+
+### Example 1: Bug from a vague report
+
+**User says:** "The login button doesn't work on mobile."
+
+**Ticket produced:**
+
+```markdown
+# [Auth] Login button unresponsive on iOS Safari 17
+
+**Type:** Bug
+**Priority:** P1
+
+## Summary
+
+Tapping the login button on iOS Safari 17 produces no response — no
+navigation, no error, and no network request. Users cannot sign in on
+affected devices.
+
+## Environment
+
+- Version: 2.4.1
+- Platform: iOS 17.4 / Safari 17
+- Desktop browsers: unaffected
+
+## Steps to Reproduce
+
+1. Open the app at app.example.com on an iPhone running iOS 17.4.
+2. Enter valid credentials.
+3. Tap the Login button.
+
+## Actual Behaviour
+
+Nothing happens. No spinner, no redirect, no console error visible to
+the user.
+
+## Expected Behaviour
+
+The user is authenticated and redirected to the dashboard within 2 s.
+
+## Additional Context
+
+First reported in #support-channel. No related open tickets found.
+```
+
+---
+
+### Example 2: Feature from a user story
+
+**User says:** "Users should be able to export their data as CSV."
+
+**Ticket produced:**
+
+```markdown
+# Add CSV export for user data
+
+**Type:** Feature
+**Priority:** P2
+
+## User Story
+
+As a data analyst, I want to export my account data as a CSV file so
+that I can process it in Excel or Python without manual copy-paste.
+
+## Problem Statement
+
+Currently there is no bulk export. Users copy data row by row, leading
+to errors and support requests.
+
+## Proposed Solution
+
+Add an "Export as CSV" button to the Account > Data page. On click,
+generate and download a CSV containing all records visible in the
+current filtered view.
+
+## Acceptance Criteria
+
+- Given I am on the Account > Data page, when I click "Export as CSV",
+  then a download starts within 3 s.
+- Given the download completes, then the file contains all columns
+  shown in the current view with a header row.
+- Given the filtered view has 0 rows, then the export contains only
+  the header row and a user-facing message explains the result.
+
+## Out of Scope
+
+- Excel (.xlsx) export format
+- Scheduled / automated exports
+- Export of data from other sections of the app
+
+## Dependencies
+
+- None identified
+```
