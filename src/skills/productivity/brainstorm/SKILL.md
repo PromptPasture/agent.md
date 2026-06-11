@@ -8,7 +8,7 @@ tags:
   - thinking
 metadata:
   author: github.com/obra/superpowers
-  version: "3.1.0"
+  version: "3.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: research
@@ -128,7 +128,7 @@ related:
   - [Optional path, issue, or URL]
 ---
 
-# Brainstorm
+# Brainstorm - [Topic]
 
 ## Goal
 
