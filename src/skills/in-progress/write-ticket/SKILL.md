@@ -8,13 +8,13 @@ tags:
   - issue-tracking
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
 ---
 
-# write-ticket
+# Writing Tickets
 
 Produces clear, complete, and actionable tickets for Jira, GitHub Issues, or any work-item tracker. Covers bugs, features, tasks, chores, documentation, and spikes.
 
