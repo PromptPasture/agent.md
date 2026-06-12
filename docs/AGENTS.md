@@ -13,6 +13,7 @@ docs/                          # Project-scoped documentation
 ├── DESIGN.md
 ├── ROADMAP.md
 └── [YYYY-MM-DD-task-name]/    # One folder per task, feature, or epic
+    ├── BRAINSTORM.md          # Task-scoped discovery and explored ideas
     ├── PRD.md                 # Product requirements
     ├── SPEC.md                # Technical specification
     ├── ARCHITECTURE.md        # Task-scoped architecture decisions
@@ -22,6 +23,7 @@ docs/                          # Project-scoped documentation
 
 - Task folder names MUST use a UTC date prefix and a lowercase, hyphenated task name, such as `2026-06-04-user-auth`, `2026-06-04-payment-v2`, or `2026-06-04-issue-142`.
 - You MUST create a task folder only when the work needs durable task-scoped product, technical, architecture, or design documentation.
+- Each document shown in a task folder is optional and MUST be created only when it contributes to the task's requested outcome.
 - You MUST NOT create a docs task folder only to store a checklist, implementation log, status update, or completed-task summary.
 - `TASKS.md` MUST exist only in a task folder that also contains task-scoped product, technical, architecture, or design documentation.
 
