@@ -13,9 +13,10 @@ related:
 
 ## Goal
 
-Make the stable Prompt Pasture skill library easy to consume as a downloadable
-archive and as complete Codex and Claude plugins, without introducing an npm
-package or duplicating skill content.
+Make each stable Prompt Pasture skill easy to install from its own downloadable
+archive, provide a complete archive for bulk use, and expose the complete
+library as Codex and Claude plugins without introducing an npm package or
+duplicating skill content.
 
 ## Context
 
@@ -32,7 +33,7 @@ remain the source of truth; unfinished skills are not published.
 1. Choose the distribution formats.
 2. Define which skills are included.
 3. Decide how plugins discover stable skills.
-4. Define the tagged release archive.
+4. Define the tagged per-skill release archives.
 5. Decide how release artifacts are produced and published.
 
 ## Ideas Considered
@@ -71,17 +72,29 @@ remain the source of truth; unfinished skills are not published.
 
 - **Description:** Produce one archive for each stable catalog.
 - **Benefits:** Smaller downloads and selective installation.
-- **Trade-offs:** More release assets and more decisions for users who want the
-  complete library.
-- **Outcome:** Rejected in favor of one complete archive.
+- **Trade-offs:** A catalog archive still requires users to extract and install
+  individual skill folders.
+- **Outcome:** Rejected in favor of one archive per skill.
 
 ### Complete tagged ZIP archive
 
 - **Description:** Produce one archive containing all stable catalogs and
   skills.
-- **Benefits:** Simple release surface and one portable download.
-- **Trade-offs:** Users who need only one catalog must select folders after
-  extraction.
+- **Benefits:** Provides one portable download for browsing, backup, and bulk
+  manual installation.
+- **Trade-offs:** Users installing one skill must locate and copy its folder
+  from the complete archive.
+- **Outcome:** Selected as a companion to per-skill archives.
+
+### Per-skill tagged ZIP archives
+
+- **Description:** Produce one independently installable archive for every
+  stable skill.
+- **Benefits:** Matches the user installation workflow, supports selective
+  installation, and keeps each artifact focused on one skill and its bundled
+  resources.
+- **Trade-offs:** Creates more release assets and requires deterministic
+  discovery, naming, and validation for every stable skill.
 - **Outcome:** Selected.
 
 ### Standalone generation script
@@ -99,9 +112,9 @@ remain the source of truth; unfinished skills are not published.
 ### Summary
 
 Prompt Pasture will distribute its complete stable skill library through Codex
-and Claude plugins on `main` and through one ZIP archive on each tagged GitHub
-Release. Stable folders remain canonical, and no npm package or copied plugin
-payload is introduced.
+and Claude plugins on `main`. Each tagged GitHub Release will contain both an
+archive for every stable skill and one complete library archive. Stable folders
+remain canonical, and no npm package or copied plugin payload is introduced.
 
 ### Decisions
 
@@ -114,13 +127,18 @@ payload is introduced.
   for release artifact creation.
 - Trigger archive creation from repository tags.
 - Automatically create the corresponding GitHub Release.
-- Attach one archive named `prompt-pasture-agent-<tag>.zip` to the release.
+- Attach one archive per stable skill to the release.
+- Name each archive
+  `prompt-pasture-agent-<skill-name>-<tag>.zip`.
+- Attach one complete archive named `prompt-pasture-agent-<tag>.zip`.
 - Preserve the tag exactly, including a leading `v` when present.
-- Preserve catalog structure inside the archive as
+- Package each skill as `<skill-name>/...` so extraction produces one
+  installable skill folder containing `SKILL.md` and its bundled resources.
+- Do not include `src/skills/README.md` in per-skill archives because it
+  describes the complete library rather than the individual artifact.
+- Preserve catalog structure in the complete archive as
   `skills/<catalog>/<skill>/...`.
-- Copy `src/skills/README.md` to `skills/README.md` in the archive.
-- Keep ZIP instructions generic; do not add runtime-specific installation
-  guidance to the archive.
+- Copy `src/skills/README.md` to `skills/README.md` in the complete archive.
 
 ### Open Questions
 
@@ -130,9 +148,13 @@ payload is introduced.
   stable skills are added, moved, or removed.
 - The implementation plan must define tag validation and the behavior when a
   release with the same tag already exists.
+- The implementation plan must verify that every per-skill archive contains
+  exactly one top-level skill folder and all required local resources.
+- The implementation plan must verify that the complete archive contains the
+  same stable skill set as the per-skill release assets.
 
 ## Next Steps
 
 1. Review and approve these brainstorm notes.
 2. Create an implementation plan covering plugin manifests, validation, the
-   tag-triggered release workflow, and archive verification.
+   tag-triggered per-skill release workflow, and archive verification.
