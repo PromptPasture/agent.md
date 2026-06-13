@@ -2,16 +2,13 @@
 name: manage
 description: Manage active work across people, agents, tasks, dependencies, blockers, and handoffs. Use for coordination requests like "manage this work", "lead this", "assign", "delegate", "track blockers", "status", "handoff", and multi-workstream execution.
 license: Apache-2.0
-tags:
-  - manage
-  - execution
-  - handoff
 metadata:
   author: Oleg Shulyakov
   version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: management
+  tags: [manage, execution, handoff]
 ---
 
 # Managing Work

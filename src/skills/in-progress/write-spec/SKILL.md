@@ -5,16 +5,13 @@ description: >
   TDDs, functional or non-functional requirements, data contracts, UI specs, release specs,
   handoff docs, and system behavior.
 license: Apache-2.0
-tags:
-  - writer
-  - specification
-  - requirements
 metadata:
   author: Oleg Shulyakov
   version: "1.4.2"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
+  tags: [writer, specification, requirements]
 ---
 
 # write-spec

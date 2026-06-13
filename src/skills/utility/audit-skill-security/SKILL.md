@@ -2,16 +2,13 @@
 name: audit-skill-security
 description: You MUST use before installing, updating, or trusting ANY skill from ANY source. Audit SKILL.md, permissions, dependencies, prompt-injection patterns, network behavior, exfiltration risk, bundled resources and suspicious patterns.
 license: Apache-2.0
-tags:
-  - audit
-  - security
-  - skills
 metadata:
   author: UseAI-pro
   version: "2.1.0"
   source: github.com/UseAI-pro/openclaw-skills-security
   catalog: utility
   category: security
+  tags: [audit, security, skills]
 ---
 
 # Auditing Skill Security

@@ -2,16 +2,13 @@
 name: code-frontend
 description: Generate production-ready frontend code. Use for components, pages, routes, client state, forms, styling, accessibility, performance, PWA behavior, and data visualization.
 license: Apache-2.0
-tags:
-  - codegen
-  - frontend
-  - ui
 metadata:
   author: Oleg Shulyakov
   version: "1.1.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
+  tags: [codegen, frontend, ui]
 ---
 
 # code-frontend

@@ -2,16 +2,13 @@
 name: write-user-story
 description: You MUST use this when the user asks to write or revise user stories, acceptance criteria, story points, or sprint-ready user-value increments.
 license: Apache-2.0
-tags:
-  - writer
-  - agile
-  - user-stories
 metadata:
   author: Oleg Shulyakov
   version: "1.4.0"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
+  tags: [writer, agile, user-stories]
 ---
 
 # Writing User Story

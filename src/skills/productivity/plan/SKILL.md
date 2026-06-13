@@ -2,16 +2,13 @@
 name: plan
 description: You MUST use this before starting any multi-step execution. Sequence work into ordered phases with dependencies and success conditions. Use for planning requests like "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
 license: Apache-2.0
-tags:
-  - plan
-  - roadmap
-  - sequencing
 metadata:
   author: Oleg Shulyakov
   version: "1.3.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: planning
+  tags: [plan, roadmap, sequencing]
 ---
 
 # Planning Steps

@@ -5,16 +5,13 @@ description: >
   AsyncAPI event contract, GraphQL schema, endpoints, schemas, request/response shapes, or
   "what should the API look like?" Produces an interface spec before implementation.
 license: Apache-2.0
-tags:
-  - design
-  - api
-  - contract
 metadata:
   author: Oleg Shulyakov
   version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: api
+  tags: [design, api, contract]
 ---
 
 # design-api

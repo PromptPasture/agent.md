@@ -2,16 +2,13 @@
 name: review
 description: You MUST use this when asked to review, critique, or evaluate any artifact — do not produce freeform prose assessments. Surfaces structured findings across consistent quadrants. Use when the user says "review", "critique", "evaluate", "what's wrong with", "compare", or passes a skill, rule, doc, spec, code, diff, or pull request for assessment.
 license: Apache-2.0
-tags:
-  - review
-  - quality
-  - retrospective
 metadata:
   author: Oleg Shulyakov
   version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: quality
+  tags: [review, quality, retrospective]
 ---
 
 # Reviewing Artifact

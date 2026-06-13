@@ -2,15 +2,13 @@
 name: git-commit
 description: You MUST use this for commit-message requests and committing staged changes. Generate, improve, or apply Conventional Commit messages using staged changes and repository history.
 license: Apache-2.0
-tags:
-  - git
-  - commit
 metadata:
   author: Oleg Shulyakov
   version: "1.0.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: version-control
+  tags: [git, commit]
 ---
 
 # Git Commit

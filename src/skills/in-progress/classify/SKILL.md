@@ -2,16 +2,13 @@
 name: classify
 description: Organize material into meaningful groups. Use for classification requests like "categorize", "group", "cluster", "sort", "taxonomy", "organize these", and grouping by criteria, priority, dependency, similarity, or abstraction level.
 license: Apache-2.0
-tags:
-  - classification
-  - taxonomy
-  - organization
 metadata:
   author: Oleg Shulyakov
   version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: data
+  tags: [classification, taxonomy, organization]
 ---
 
 # Classifing into Groups

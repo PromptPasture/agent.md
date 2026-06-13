@@ -2,16 +2,13 @@
 name: write-prd
 description: You MUST use this when the user asks to write or revise a PRD, product requirements, product brief, feature requirements, product scope, launch requirements.
 license: Apache-2.0
-tags:
-  - writer
-  - product
-  - requirements
 metadata:
   author: Oleg Shulyakov
   version: "1.4.1"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
+  tags: [writer, product, requirements]
 ---
 
 # Writing Product Requirements Document

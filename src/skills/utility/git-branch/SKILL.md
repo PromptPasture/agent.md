@@ -2,15 +2,13 @@
 name: git-branch
 description: You MUST use this for branch name requests and branch actions. Create, switch, or rename Git branches using repository-aware branch naming conventions.
 license: Apache-2.0
-tags:
-  - git
-  - branch
 metadata:
   author: Oleg Shulyakov
   version: "1.0.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: version-control
+  tags: [git, branch]
 ---
 
 # Git Branching

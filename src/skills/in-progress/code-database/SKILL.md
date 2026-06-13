@@ -4,18 +4,13 @@ description: >
   Generate or modify database code: schemas, DDL, SQL queries, migrations, analytics SQL,
   indexes, stored procedures, and dialect-specific database scripts.
 license: Apache-2.0
-tags:
-  - codegen
-  - database
-  - data
 metadata:
   author: Oleg Shulyakov
   version: "1.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: database
-  references:
-    - classify
+  tags: [codegen, database, data]
 ---
 
 # code-database

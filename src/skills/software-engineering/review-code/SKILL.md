@@ -2,15 +2,13 @@
 name: review-code
 description: You MUST use this when the user asks to review code, including code changes, diffs, pull requests, branches, or patches.
 license: Apache-2.0
-tags:
-  - review
-  - code quality
 metadata:
   author: github.com/wpank/ai
   version: "2.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: review
+  tags: [review, code quality]
 ---
 
 # Reviewing Code

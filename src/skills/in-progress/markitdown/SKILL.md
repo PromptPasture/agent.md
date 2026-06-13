@@ -2,17 +2,13 @@
 name: markitdown
 description: You MUST use this when you need to read a supported local document or the user asks to convert one to Markdown. Supports PDF, Word, PowerPoint, Excel, Outlook, and EPUB files.
 license: Apache-2.0
-tags:
-  - documents
-  - markdown
-  - conversion
-  - markitdown
 metadata:
   author: Oleg Shulyakov
   version: "1.0.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: document-conversion
+  tags: [documents, markdown, conversion, markitdown]
 ---
 
 # MarkItDown

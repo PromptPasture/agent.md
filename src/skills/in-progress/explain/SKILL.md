@@ -2,16 +2,13 @@
 name: explain
 description: Explain any knowledge topic simply and accurately. Use for explanation requests like "explain X", "why/how/what is X?", concepts, science, definitions, code, design, architecture, and walkthroughs.
 license: Apache-2.0
-tags:
-  - explain
-  - education
-  - reference
 metadata:
   author: Oleg Shulyakov
   version: "2.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: education
+  tags: [explain, education, reference]
 ---
 
 # Explaining Topic

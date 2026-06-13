@@ -2,16 +2,13 @@
 name: write-ticket
 description: You MUST use this when the user asks to write or revise Jira/GitHub tickets, issues, or work items, including bug, feature, task, chore, documentation, and spike requests.
 license: Apache-2.0
-tags:
-  - writer
-  - tickets
-  - issue-tracking
 metadata:
   author: Oleg Shulyakov
   version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
+  tags: [writer, tickets, issue-tracking]
 ---
 
 # Writing Tickets

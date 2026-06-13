@@ -2,16 +2,13 @@
 name: write-changelog
 description: You MUST use this to write or revise developer-facing changelogs. Use for CHANGELOG.md files, unreleased sections, version entries, commit or pull-request categorization, breaking changes, deprecations, removals, fixes, and security changes.
 license: Apache-2.0
-tags:
-  - writer
-  - docs
-  - changelog
 metadata:
   author: Oleg Shulyakov
   version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: documentation
   category: documentation
+  tags: [writer, docs, changelog]
 ---
 
 # Writing Changelogs

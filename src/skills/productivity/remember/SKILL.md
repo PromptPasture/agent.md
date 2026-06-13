@@ -2,16 +2,13 @@
 name: remember
 description: You MUST use this to persist any durable fact, decision, or convention — do not rely on conversation context alone. Write structured memory to the appropriate file. Use for memory requests like "remember this", "save context", "record a decision", "update memory", or preserving a project fact.
 license: Apache-2.0
-tags:
-  - remember
-  - memory
-  - project-context
 metadata:
   author: Oleg Shulyakov
   version: "1.4.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: memory
+  tags: [remember, memory, project-context]
 ---
 
 # Remember Facts

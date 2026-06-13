@@ -2,16 +2,13 @@
 name: brainstorm
 description: You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.
 license: Apache-2.0
-tags:
-  - reason
-  - framing
-  - thinking
 metadata:
   author: github.com/obra/superpowers
   version: "3.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: research
+  tags: [reason, framing, thinking]
 ---
 
 # Brainstorming Ideas

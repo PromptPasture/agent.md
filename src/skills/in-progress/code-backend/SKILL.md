@@ -2,16 +2,13 @@
 name: code-backend
 description: Build or modify backend implementation. Use for API routes, services, middleware, workers, persistence, validation, authorization, configuration, observability, and backend behavior tests.
 license: Apache-2.0
-tags:
-  - codegen
-  - backend
-  - engineering
 metadata:
   author: Oleg Shulyakov
   version: "1.1.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: development
+  tags: [codegen, backend, engineering]
 ---
 
 # code-backend

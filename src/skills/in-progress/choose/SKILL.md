@@ -2,16 +2,13 @@
 name: choose
 description: Compare options and recommend a direction. Use for decision requests like "choose", "which option", "tradeoffs", "recommend", "should we", and option selection with criteria, risks, and reversibility.
 license: Apache-2.0
-tags:
-  - decision
-  - recommendation
-  - tradeoffs
 metadata:
   author: Oleg Shulyakov
   version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: management
+  tags: [decision, recommendation, tradeoffs]
 ---
 
 # Choosing Options

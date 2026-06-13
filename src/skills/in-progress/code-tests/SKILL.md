@@ -2,15 +2,13 @@
 name: code-tests
 description: Generate or revise automated tests. Use for E2E/browser, API/contract, integration, and load/performance test requests.
 license: Apache-2.0
-tags:
-  - codegen
-  - testing
 metadata:
   author: Oleg Shulyakov
   version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: testing
+  tags: [codegen, testing]
 ---
 
 # code-tests
