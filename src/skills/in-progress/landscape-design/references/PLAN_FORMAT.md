@@ -2,6 +2,12 @@
 
 The master design plan. Updated at the end of each session as more is learned. Structure adapts to what has actually been gathered — omit sections that have no meaningful content yet.
 
+```markdown
+# Landscape Design Plan — [Project Name or Address]
+
+_Last updated: YYYY-MM-DD_
+```
+
 ---
 
 ## Overview
