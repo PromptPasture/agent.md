@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.0"
+  version: "2.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -46,6 +46,7 @@ From `package.json` dependencies and config files:
 - **Bootstrap** — `bootstrap` dep
 - **CSS Modules** — `.module.css` files or framework default
 - **Plain CSS** — none of the above
+- **Vue Scoped Styles** — `vue` dep present and no other CSS lib found
 - **Other** — note the library name (Chakra, MUI, shadcn/ui, etc.)
 
 ### 1.3 Output a detection summary
@@ -128,12 +129,20 @@ Notes:
 
 Based on the task and contract, state which reference docs will guide the Build phase. Load them before writing code.
 
-Examples:
-
-- Form inputs present → load `references/forms.md`
-- Data fetched inside component → load `references/data-fetching.md`
-- Animation required → load `references/motion.md`
-- Copy/labels present → load `references/i18n.md`
+| Signal | Load |
+| --- | --- |
+| Form inputs present | `references/forms.md` |
+| Data fetched inside component | `references/data-fetching.md` |
+| Animation or transition required | `references/motion.md` |
+| User-visible copy or labels present | `references/i18n.md` |
+| State shared across components | `references/state.md` |
+| Page component (not shared UI) | `references/seo.md` |
+| CSS approach detected or specified | `references/styling.md` |
+| PWA in manifest or scope | `references/pwa.md` |
+| No existing project conventions found | `references/conventions.md` |
+| Any a11y complexity beyond basics | `references/a11y.md` |
+| Any async operation or heavy dependency | `references/performance.md` |
+| Error states or boundaries needed | `references/error-handling.md` |
 
 ### 2.4 Wait for confirmation
 
@@ -203,21 +212,21 @@ Write in this order:
 
 - Wrap async operations in try/catch with typed errors
 - Provide a visible fallback UI for every error state — never silently swallow
-- Use error boundaries at route and feature boundaries; load `references/error-handling.md` for patterns
+- Use error boundaries at route and feature boundaries; see `references/error-handling.md` for patterns
 
 #### Accessibility
 
 - Prefer semantic HTML over ARIA — use ARIA only where native semantics are insufficient
 - Every interactive element is keyboard reachable and has a visible focus state
 - No `onClick` on non-interactive elements without `role` and `onKeyDown`
-- Load `references/a11y.md` for patterns beyond the basics
+- See `references/a11y.md` for patterns beyond the basics
 
 #### Performance
 
 - Memoize only when a concrete re-render problem exists — not by default
 - Lazy-load routes and heavy components with dynamic imports
 - No derived state in render — compute outside or memoize with `useMemo`
-- Load `references/performance.md` for deeper patterns
+- See `references/performance.md` for deeper patterns
 
 ### 3.5 Write files
 
@@ -234,6 +243,8 @@ Created:
 Modified:
   src/components/index.ts   (added UserCard export)
 ```
+
+Present this list and wait for the user to confirm before proceeding to Validate.
 
 ---
 
