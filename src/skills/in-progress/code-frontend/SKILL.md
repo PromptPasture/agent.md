@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.1.1"
+  version: "2.1.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -31,11 +31,12 @@ Inspect the following in order. Stop reading a file once the needed signal is fo
 | `package.json` | Framework, CSS lib, language, key deps (query, router, i18n, etc.) |
 | `tsconfig.json` | TypeScript presence, `strict` mode on/off, path aliases |
 | `next.config.*` | Next.js — check `app/` dir for App Router, `pages/` for Pages Router |
-| `vite.config.*` | Vite — check plugins for React (`@vitejs/plugin-react`), Vue, Lit, Svelte |
+| `vite.config.*` | Vite — check plugins for React (`@vitejs/plugin-react`), Preact (`@preact/preset-vite`), Vue, Lit, Svelte, Solid (`vite-plugin-solid`) |
 | `svelte.config.*` | SvelteKit |
 | `nuxt.config.*` | Nuxt |
 | `astro.config.*` | Astro |
 | `remix.config.*` / `vite.config.*` with Remix plugin | Remix |
+| `angular.json` | Angular |
 | `pnpm-workspace.yaml` / `turbo.json` / `nx.json` | Monorepo; note which workspace the task targets |
 
 ### 1.2 Detect CSS approach
@@ -133,8 +134,14 @@ Load the framework adapter that matches the detected stack — always load exact
 | --- | --- |
 | Next.js (App Router or Pages Router) | `references/frameworks/js/nextjs.md` + `references/frameworks/js/react.md` |
 | Vite + React / CRA / Remix | `references/frameworks/js/react.md` |
+| Preact | `references/frameworks/js/preact.md` |
 | SvelteKit | `references/frameworks/js/svelte.md` |
-| Nuxt / Astro / other | No adapter available — apply concern docs only; note the gap to the user |
+| Vue (Vite SPA) | `references/frameworks/js/vue.md` |
+| Nuxt | `references/frameworks/js/nuxt.md` + `references/frameworks/js/vue.md` |
+| Astro | `references/frameworks/js/astro.md` |
+| Angular | `references/frameworks/js/angular.md` |
+| SolidJS / SolidStart | `references/frameworks/js/solidjs.md` |
+| Other | No adapter available — apply concern docs only; note the gap to the user |
 
 Then load the CSS framework adapter that matches the detected CSS approach — load exactly one:
 
