@@ -1,6 +1,6 @@
 # Progressive Web App (PWA)
 
-A PWA must be useful offline or in poor network conditions — not just installable. Start with a solid manifest and service worker caching strategy before adding the install prompt. Framework-specific Workbox integration (`vite-plugin-pwa`, `next-pwa`, SvelteKit service worker) is in the active framework adapter (`references/frameworks/`).
+A PWA must be useful offline or in poor network conditions — not just installable. Start with a solid manifest and service worker caching strategy before adding the install prompt. For framework-specific implementations, fetch current docs via Context7.
 
 ---
 
@@ -73,7 +73,7 @@ if ('serviceWorker' in navigator) {
 }
 ```
 
-Framework-specific Workbox plugin configuration (`vite-plugin-pwa`, `next-pwa`, SvelteKit) is in the active framework adapter.
+For framework-specific Workbox plugin configuration (`vite-plugin-pwa`, `next-pwa`, SvelteKit), fetch current docs via Context7.
 
 ---
 
@@ -218,7 +218,7 @@ class InstallPromptManager {
 export const installPrompt = new InstallPromptManager();
 ```
 
-Framework-specific wiring (reactive state, component integration) is in the active framework adapter.
+For framework-specific wiring (reactive state, component integration), fetch current docs via Context7.
 
 ---
 

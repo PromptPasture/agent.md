@@ -1,6 +1,6 @@
 # Forms
 
-Forms must be accessible, validated at the right level, and clear about errors before submission. Never rely on browser defaults alone. Framework-specific implementations (React Hook Form, Superforms, VeeValidate) are in the active framework adapter (`references/frameworks/`).
+Forms must be accessible, validated at the right level, and clear about errors before submission. Never rely on browser defaults alone. For framework-specific implementations, fetch current docs via Context7.
 
 ---
 

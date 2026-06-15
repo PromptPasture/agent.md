@@ -1,6 +1,6 @@
 # State Management
 
-Choose the simplest state solution that covers the need. Add complexity only when a simpler tool genuinely cannot do the job. Framework-specific APIs (`useState`, Svelte stores, Pinia, Zustand, Jotai) are in the active framework adapter (`references/frameworks/`).
+Choose the simplest state solution that covers the need. Add complexity only when a simpler tool genuinely cannot do the job. For framework-specific implementations, fetch current docs via Context7.
 
 ---
 
@@ -35,7 +35,7 @@ Default for component-scoped state that does not need to be shared. Keep state a
 - Group values that always change together into a single object
 - When next state depends on previous state, always derive it from the current value — never read stale state
 
-Framework-specific primitives (`useState`, `ref`/`reactive`, Svelte runes) are in the active framework adapter.
+For framework-specific primitives (`useState`, `ref`/`reactive`, Svelte runes), fetch current docs via Context7.
 
 ---
 
@@ -70,7 +70,7 @@ type Action =
   | { type: 'RESET' };
 ```
 
-Framework-specific reducer implementations (`useReducer`, Svelte stores with update functions) are in the active framework adapter.
+For framework-specific reducer implementations (`useReducer`, Svelte stores with update functions), fetch current docs via Context7.
 
 ---
 
@@ -86,7 +86,7 @@ Use for low-frequency global values: theme, locale, authenticated user, feature 
 - Throw a clear error if the accessor is called outside the provider
 - Split contexts by update frequency — read-only values and write actions should be separate so reading one does not cause re-evaluation when the other changes
 
-Framework-specific context APIs (`createContext`/`useContext`, `provide`/`inject`, Svelte context) are in the active framework adapter.
+For framework-specific context APIs (`createContext`/`useContext`, `provide`/`inject`, Svelte context), fetch current docs via Context7.
 
 ---
 
@@ -115,7 +115,7 @@ store/
   useAppStore.ts     → composed store
 ```
 
-Framework-specific store implementations are in the active framework adapter.
+For framework-specific store implementations, fetch current docs via Context7.
 
 ---
 
@@ -146,7 +146,7 @@ function setParam(key: string, value: string): string {
 }
 ```
 
-Framework-specific router integration (`useSearchParams`, SvelteKit `$page.url`, Vue Router `query`) is in the active framework adapter.
+For framework-specific router integration (`useSearchParams`, SvelteKit `$page.url`, Vue Router `query`), fetch current docs via Context7.
 
 ---
 

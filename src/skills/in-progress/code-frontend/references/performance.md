@@ -1,6 +1,6 @@
 # Performance
 
-Measure before optimising. Never add complexity for a problem that does not exist yet. Apply these patterns when there is a concrete reason — a slow render, a large bundle, a visible layout shift. Framework-specific APIs (memoization hooks, lazy/Suspense, virtual list libraries, image components) are in the active framework adapter (`references/frameworks/`).
+Measure before optimising. Never add complexity for a problem that does not exist yet. Apply these patterns when there is a concrete reason — a slow render, a large bundle, a visible layout shift. For framework-specific implementations, fetch current docs via Context7.
 
 ---
 
@@ -16,7 +16,7 @@ Only memoize when a measured problem exists. Memoization adds complexity and is 
 
 **Do not memoize by default.** Premature memoization increases code weight and can hide real issues. Measure with browser or framework DevTools first.
 
-Framework-specific memoization APIs (`memo`, `useMemo`, `useCallback`, `$derived`, `computed`) are in the active framework adapter.
+For framework-specific memoization APIs (`memo`, `useMemo`, `useCallback`, `$derived`, `computed`), fetch current docs via Context7.
 
 ### Avoid expensive computation in the render path
 
@@ -36,7 +36,7 @@ Render only the visible portion of lists exceeding ~100 items. Mount and unmount
 - A known or estimated row height
 - Absolute positioning of rows within a full-height inner container
 
-Framework-specific virtual list implementations are in the active framework adapter.
+For framework-specific virtual list implementations, fetch current docs via Context7.
 
 ---
 
@@ -53,7 +53,7 @@ Load only the code needed for the current view. Defer heavy components (charts, 
 - Always provide a loading fallback (skeleton, spinner) while deferred code loads
 - For SSR: disable server-side rendering for browser-only libraries
 
-Framework-specific lazy loading (`lazy`/`Suspense`, `dynamic()`, `import()`, SvelteKit route splitting) is in the active framework adapter.
+For framework-specific lazy loading (`lazy`/`Suspense`, `dynamic()`, `import()`, SvelteKit route splitting), fetch current docs via Context7.
 
 ### Avoid importing entire libraries
 
@@ -148,7 +148,7 @@ Prefer `transform` over `top`/`left` for animation — transforms run on the com
 - Always provide `width` and `height` to prevent layout shift
 - Use `srcset` and `sizes` for responsive images
 
-Framework-specific image components (`next/image`, SvelteKit `enhanced:img`) are in the active framework adapter.
+For framework-specific image components (`next/image`, SvelteKit `enhanced:img`), fetch current docs via Context7.
 
 ---
 
@@ -171,7 +171,7 @@ Framework-specific image components (`next/image`, SvelteKit `enhanced:img`) are
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
 ```
 
-Framework-specific font optimisation (`next/font`, Vite font plugins) is in the active framework adapter.
+For framework-specific font optimisation (`next/font`, Vite font plugins), fetch current docs via Context7.
 
 ---
 
@@ -191,7 +191,7 @@ element.addEventListener('pointerenter', () => {
 });
 ```
 
-Framework router prefetch APIs (`<Link prefetch>`, `router.prefetch()`) are in the active framework adapter.
+For framework router prefetch APIs (`<Link prefetch>`, `router.prefetch()`), fetch current docs via Context7.
 
 ### Debounce user input
 

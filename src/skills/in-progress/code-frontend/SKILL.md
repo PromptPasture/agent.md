@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.1.2"
+  version: "2.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -126,35 +126,30 @@ Notes:
   Keyboard accessible. Renders a link when href is provided, button otherwise.
 ```
 
-### 2.3 Identify which reference docs apply
+### 2.3 Check Context7 availability
 
-Load the framework adapter that matches the detected stack — always load exactly one:
+Call the Context7 `resolve-library` tool with the detected framework name (e.g. `nextjs`, `react`, `astro`):
 
-| Detected stack | Adapter |
-| --- | --- |
-| Next.js (App Router or Pages Router) | `references/frameworks/js/nextjs.md` + `references/frameworks/js/react.md` |
-| Vite + React / CRA / Remix | `references/frameworks/js/react.md` |
-| Preact | `references/frameworks/js/preact.md` |
-| SvelteKit | `references/frameworks/js/svelte.md` |
-| Vue (Vite SPA) | `references/frameworks/js/vue.md` |
-| Nuxt | `references/frameworks/js/nuxt.md` + `references/frameworks/js/vue.md` |
-| Astro | `references/frameworks/js/astro.md` |
-| Angular | `references/frameworks/js/angular.md` |
-| SolidJS / SolidStart | `references/frameworks/js/solidjs.md` |
-| Other | No adapter available — apply concern docs only; note the gap to the user |
+- If the call **succeeds**: Context7 is available — proceed to step 2.4.
+- If the tool is **not found or returns an error**: treat Context7 as absent and warn the user:
 
-Then load the CSS framework adapter that matches the detected CSS approach — load exactly one:
+```
+⚠ Context7 MCP is not installed or not configured in this harness.
+Framework-specific docs will not be fetched — code will rely on model knowledge only,
+which may be outdated for rapidly-evolving APIs (Next.js App Router, Astro, SolidJS, etc.).
 
-| Detected CSS | Adapter |
-| --- | --- |
-| TailwindCSS | `references/frameworks/css/tailwind.md` |
-| Bootstrap | `references/frameworks/css/bootstrap.md` |
-| CSS Modules | `references/frameworks/css/css-modules.md` |
-| shadcn/ui or shadcn-svelte | `references/frameworks/css/shadcn.md` + `references/frameworks/css/tailwind.md` |
-| MUI | `references/frameworks/css/mui.md` |
-| Plain CSS / none detected | `references/styling.md` |
+To install Context7: https://context7.com/docs/mcp
+```
 
-Then load concern docs based on the task:
+Continue without blocking — but note the absence in the completion summary.
+
+### 2.4 Fetch framework and CSS docs via Context7
+
+If Context7 is available, fetch current docs for the detected JS framework and CSS library. If a fetch fails, fall back to model knowledge and note it.
+
+### 2.5 Identify concern docs to load
+
+Load concern docs based on the task:
 
 | Signal | Load |
 | --- | --- |
@@ -171,9 +166,15 @@ Then load concern docs based on the task:
 | Any async operation or heavy dependency | `references/performance.md` |
 | Error states or boundaries needed | `references/error-handling.md` |
 
-### 2.4 Wait for confirmation
+### 2.6 Wait for confirmation
 
-Present the contract and the list of reference docs to load. Do not proceed to Build until the user confirms or requests changes.
+Present the following and wait for explicit confirmation before proceeding to Build:
+
+1. The interface contract from step 2.2
+2. The concern docs to load from step 2.5
+3. Context7 status — available (framework + CSS docs fetched) or absent (noted)
+
+If the user corrects any item, update and re-confirm.
 
 ---
 
@@ -183,7 +184,7 @@ Present the contract and the list of reference docs to load. Do not proceed to B
 
 ### 3.1 Load reference docs
 
-Load every reference doc identified in Phase 2 before writing any file. Apply its guidance throughout the Build phase.
+Load every concern doc identified in Phase 2 before writing any file. Apply its guidance — and any framework/CSS docs fetched via Context7 — throughout the Build phase.
 
 ### 3.2 Apply decomposition heuristics
 

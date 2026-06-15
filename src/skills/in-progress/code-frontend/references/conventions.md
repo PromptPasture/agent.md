@@ -1,6 +1,6 @@
 # Code Conventions
 
-Apply these conventions when no project-level standard exists. When one does exist, follow the project — note any deviation. Framework-specific naming and file extensions are defined in the active framework adapter (`references/frameworks/`).
+Apply these conventions when no project-level standard exists. When one does exist, follow the project — note any deviation. For framework-specific naming and file extensions, fetch current docs via Context7.
 
 ---
 
@@ -13,7 +13,7 @@ Apply these conventions when no project-level standard exists. When one does exi
 | Utility function | camelCase, verb-first | `formatDate`, `parseSearchParams` |
 | Type / Interface | PascalCase | `UserCardProps`, `ApiResponse` |
 | Constant | SCREAMING_SNAKE_CASE | `MAX_RETRIES`, `DEFAULT_LOCALE` |
-| CSS class (plain) | kebab-case | `user-card`, `nav-menu-item` |
+| CSS class (plain) | kebab-case (BEM for global scope — see `references/styling.md`) | `user-card`, `user-card__name`, `user-card--featured` |
 | File (component) | PascalCase | `UserCard.tsx`, `UserCard.svelte` |
 | File (util/composable) | camelCase | `formatDate.ts`, `useDebounce.ts` |
 | File (type-only) | camelCase, `.types.ts` | `user.types.ts` |
@@ -96,7 +96,7 @@ Separate each group with a blank line.
 - Group required props before optional ones
 - Use explicit checks for optional callbacks — never rely on falsy coercion
 
-Framework-specific syntax for props is covered in the active framework adapter.
+For framework-specific prop syntax, fetch current docs via Context7.
 
 ---
 
@@ -106,7 +106,7 @@ Framework-specific syntax for props is covered in the active framework adapter.
 - Return named objects, not positional arrays, when returning multiple values
 - Never invoke reactive logic conditionally
 
-Framework-specific patterns are covered in the active framework adapter.
+For framework-specific reactive logic patterns, fetch current docs via Context7.
 
 ---
 

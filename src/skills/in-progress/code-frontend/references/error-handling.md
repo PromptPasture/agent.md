@@ -1,6 +1,6 @@
 # Error Handling
 
-Every error state must be visible to the user. Never swallow errors silently. Framework-specific implementations (error boundaries, error pages, fallback components) are in the active framework adapter (`references/frameworks/`).
+Every error state must be visible to the user. Never swallow errors silently. For framework-specific implementations, fetch current docs via Context7.
 
 ---
 

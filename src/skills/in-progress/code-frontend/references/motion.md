@@ -1,6 +1,6 @@
 # Animation and Motion
 
-Animation enhances clarity and feedback. It must never block interaction, distract, or cause discomfort. Always respect the user's motion preference. Framework-specific animation libraries (Framer Motion, Svelte transitions, Vue Transition) are covered in the active framework adapter (`references/frameworks/`).
+Animation enhances clarity and feedback. It must never block interaction, distract, or cause discomfort. Always respect the user's motion preference. For framework-specific implementations, fetch current docs via Context7.
 
 ---
 
@@ -27,7 +27,7 @@ Read the preference in JavaScript when controlling animation programmatically:
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 ```
 
-Framework-specific hooks and utilities for reading this preference are in the active framework adapter.
+For framework-specific hooks and utilities for reading this preference, fetch current docs via Context7.
 
 ---
 
@@ -105,7 +105,7 @@ function transition(update: () => void) {
 }
 ```
 
-Framework-specific wiring (how to trigger a DOM update inside `startViewTransition`) is in the active framework adapter.
+For framework-specific wiring (how to trigger a DOM update inside `startViewTransition`), fetch current docs via Context7.
 
 ---
 

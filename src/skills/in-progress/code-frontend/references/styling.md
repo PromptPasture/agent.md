@@ -1,6 +1,6 @@
 # Styling
 
-CSS principles that apply regardless of framework or CSS library. Tailwind, Bootstrap, CSS Modules, shadcn/ui, MUI, Chakra UI, and Svelte-specific styling are covered in the active framework adapter (`references/frameworks/`).
+CSS principles that apply regardless of framework or CSS library. For CSS library-specific usage (Tailwind, Bootstrap, CSS Modules, shadcn/ui, MUI, Chakra UI), fetch current docs via Context7.
 
 Never mix styling approaches within a single component — pick one and be consistent across the feature.
 
