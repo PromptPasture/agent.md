@@ -678,22 +678,6 @@ Svelte components are scoped by default — styles in a `<style>` block apply on
 
 For app-wide globals, use `src/app.css` imported once in `+layout.svelte`.
 
-### CSS framework adapters
-
-Load the adapter that matches the detected CSS stack:
-
-| Detected CSS | Adapter |
-| --- | --- |
-| TailwindCSS | `references/frameworks/tailwind.md` |
-| Bootstrap | `references/frameworks/bootstrap.md` |
-| CSS Modules | `references/frameworks/css-modules.md` |
-| shadcn-svelte | `references/frameworks/shadcn.md` + `references/frameworks/tailwind.md` |
-| Plain CSS | `references/styling.md` (tokens, layout, BEM) |
-
-MUI is React-only and not available for SvelteKit.
-
----
-
 ## SEO — svelte:head
 
 ```svelte

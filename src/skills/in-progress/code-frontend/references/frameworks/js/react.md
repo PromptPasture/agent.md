@@ -1,6 +1,6 @@
 # React — Framework Adapter
 
-Core React patterns that work in any React environment (Vite SPA, CRA, Remix, and as the base for Next.js). For Next.js-specific patterns see `references/frameworks/nextjs.md`.
+Core React patterns that work in any React environment (Vite SPA, CRA, Remix, and as the base for Next.js). For Next.js-specific patterns see `references/frameworks/js/nextjs.md`.
 
 ---
 
@@ -547,21 +547,6 @@ function useQueryParam(key: string, defaultValue: string) {
   return [value, setValue] as const;
 }
 ```
-
----
-
-## Styling
-
-Load the CSS framework adapter that matches the detected stack:
-
-| Detected CSS | Adapter |
-| --- | --- |
-| TailwindCSS | `references/frameworks/tailwind.md` |
-| Bootstrap | `references/frameworks/bootstrap.md` |
-| CSS Modules | `references/frameworks/css-modules.md` |
-| shadcn/ui | `references/frameworks/shadcn.md` + `references/frameworks/tailwind.md` |
-| MUI | `references/frameworks/mui.md` |
-| Plain CSS | `references/styling.md` (tokens, layout, BEM) |
 
 ---
 

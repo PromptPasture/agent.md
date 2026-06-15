@@ -1,6 +1,6 @@
 # Next.js — Framework Adapter
 
-Next.js-specific patterns on top of `references/frameworks/react.md`. Read the React adapter first — this file covers only what Next.js adds or overrides.
+Next.js-specific patterns on top of `references/frameworks/js/react.md`. Read the React adapter first — this file covers only what Next.js adds or overrides.
 
 Covers: App Router (primary), Pages Router (noted where different).
 

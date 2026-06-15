@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.1.0"
+  version: "2.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -131,10 +131,21 @@ Load the framework adapter that matches the detected stack — always load exact
 
 | Detected stack | Adapter |
 | --- | --- |
-| Next.js (App Router or Pages Router) | `references/frameworks/nextjs.md` + `references/frameworks/react.md` |
-| Vite + React / CRA / Remix | `references/frameworks/react.md` |
-| SvelteKit | `references/frameworks/svelte.md` |
+| Next.js (App Router or Pages Router) | `references/frameworks/js/nextjs.md` + `references/frameworks/js/react.md` |
+| Vite + React / CRA / Remix | `references/frameworks/js/react.md` |
+| SvelteKit | `references/frameworks/js/svelte.md` |
 | Nuxt / Astro / other | No adapter available — apply concern docs only; note the gap to the user |
+
+Then load the CSS framework adapter that matches the detected CSS approach — load exactly one:
+
+| Detected CSS | Adapter |
+| --- | --- |
+| TailwindCSS | `references/frameworks/css/tailwind.md` |
+| Bootstrap | `references/frameworks/css/bootstrap.md` |
+| CSS Modules | `references/frameworks/css/css-modules.md` |
+| shadcn/ui or shadcn-svelte | `references/frameworks/css/shadcn.md` + `references/frameworks/css/tailwind.md` |
+| MUI | `references/frameworks/css/mui.md` |
+| Plain CSS / none detected | `references/styling.md` |
 
 Then load concern docs based on the task:
 
@@ -147,7 +158,6 @@ Then load concern docs based on the task:
 | State shared across components | `references/state.md` |
 | Persistence across reloads or tabs needed | `references/storage.md` |
 | Page component (not shared UI) | `references/seo.md` |
-| CSS approach detected or specified | `references/frameworks/tailwind.md` or `references/frameworks/bootstrap.md` or `references/frameworks/css-modules.md` or `references/frameworks/shadcn.md` or `references/frameworks/mui.md` |
 | PWA in manifest or scope | `references/pwa.md` |
 | No existing project conventions found | `references/conventions.md` |
 | Any a11y complexity beyond basics | `references/a11y.md` |

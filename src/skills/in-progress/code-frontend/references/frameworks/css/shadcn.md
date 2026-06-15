@@ -133,7 +133,7 @@ const buttonVariants = cva('...base classes...', {
 
 ## Form Integration
 
-shadcn/ui ships a `Form` component that wraps React Hook Form. See `references/frameworks/react.md` for the full RHF + Zod pattern.
+shadcn/ui ships a `Form` component that wraps React Hook Form. See `references/frameworks/js/react.md` for the full RHF + Zod pattern.
 
 ```tsx
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
