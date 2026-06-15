@@ -1,211 +1,108 @@
 # SEO
 
-SEO applies to pages, not components. Skip this reference for non-page components unless they render content that affects crawlability.
+SEO applies to pages, not components. Skip this reference for non-page components unless they render content that affects crawlability. Framework-specific head management (Next.js Metadata API, SvelteKit `<svelte:head>`, Nuxt `useSeoMeta`) is in the active framework adapter (`references/frameworks/`).
 
 ---
 
 ## Core Principles
 
-- **Crawlable content** — critical content must be in the HTML, not injected by JS after load
+- **Crawlable content** — critical content must be in the initial HTML, not injected by JS after load
 - **Unique metadata** — every page has a distinct `title` and `meta description`
 - **Logical structure** — one `h1` per page, headings in order, no skipped levels
-- **Canonical URL** — prevents duplicate content across routes
+- **Canonical URL** — prevents duplicate content across routes with query parameters, trailing slashes, or alternate domains
 
 ---
 
-## Next.js App Router — Metadata API
+## Required Head Tags
 
-Prefer the Metadata API over manual `<head>` tags. It handles deduplication and streaming correctly.
+Every public page must include these at minimum:
 
-### Static metadata
+```html
+<title>Page Title — Site Name</title>
+<meta name="description" content="One to two sentences, under 155 characters." />
+<link rel="canonical" href="https://myapp.com/page-path" />
 
-```ts
-// app/about/page.tsx
-import type { Metadata } from 'next';
+<!-- Open Graph (social sharing) -->
+<meta property="og:title" content="Page Title — Site Name" />
+<meta property="og:description" content="Same as meta description." />
+<meta property="og:image" content="https://myapp.com/og/page.png" />
+<meta property="og:url" content="https://myapp.com/page-path" />
+<meta property="og:type" content="website" />
 
-export const metadata: Metadata = {
-  title: 'About Us — MyApp',
-  description: 'Learn about MyApp and the team behind it.',
-  openGraph: {
-    title: 'About Us — MyApp',
-    description: 'Learn about MyApp and the team behind it.',
-    url: 'https://myapp.com/about',
-    siteName: 'MyApp',
-    images: [{ url: 'https://myapp.com/og/about.png', width: 1200, height: 630 }],
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'About Us — MyApp',
-    description: 'Learn about MyApp and the team behind it.',
-    images: ['https://myapp.com/og/about.png'],
-  },
-};
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Page Title — Site Name" />
+<meta name="twitter:description" content="Same as meta description." />
+<meta name="twitter:image" content="https://myapp.com/og/page.png" />
 ```
 
-### Dynamic metadata
+### Title pattern
 
-```ts
-// app/products/[slug]/page.tsx
-import type { Metadata } from 'next';
-import { fetchProduct } from '@/api/products';
+Use a consistent title template across all pages — `[Page] — [Site Name]`:
 
-interface PageProps {
-  params: { slug: string };
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const product = await fetchProduct(params.slug).catch(() => null);
-  if (!product) return { title: 'Product not found' };
-
-  return {
-    title: `${product.name} — MyApp`,
-    description: product.description.slice(0, 155),
-    openGraph: {
-      title: product.name,
-      description: product.description.slice(0, 155),
-      images: [{ url: product.imageUrl, width: 1200, height: 630 }],
-    },
-    alternates: {
-      canonical: `https://myapp.com/products/${params.slug}`,
-    },
-  };
-}
+```
+Home page:      Site Name
+Inner pages:    Page Title — Site Name
+Error pages:    Not Found — Site Name
 ```
 
-### Title template
+Define the template at the root layout level and let individual pages provide only the page-specific part.
 
-Define a title template at the root layout to avoid repeating the site name:
+### Meta description
 
-```ts
-// app/layout.tsx
-export const metadata: Metadata = {
-  title: {
-    default: 'MyApp',
-    template: '%s — MyApp',
-  },
-};
-
-// app/about/page.tsx — only provide the page title
-export const metadata: Metadata = {
-  title: 'About Us', // renders as "About Us — MyApp"
-};
-```
+- Under 155 characters — longer descriptions are truncated in search results
+- Unique per page — duplicate descriptions are ignored or penalised
+- Descriptive and action-oriented — describes what the user will find, not the site
 
 ---
 
-## Next.js Pages Router
+## OG Image
 
-```tsx
-import Head from 'next/head';
-
-export default function AboutPage() {
-  return (
-    <>
-      <Head>
-        <title>About Us — MyApp</title>
-        <meta name="description" content="Learn about MyApp and the team behind it." />
-        <meta property="og:title" content="About Us — MyApp" />
-        <meta property="og:description" content="Learn about MyApp and the team behind it." />
-        <meta property="og:image" content="https://myapp.com/og/about.png" />
-        <meta property="og:url" content="https://myapp.com/about" />
-        <link rel="canonical" href="https://myapp.com/about" />
-      </Head>
-      <main>...</main>
-    </>
-  );
-}
-```
-
----
-
-## Other Frameworks
-
-For SvelteKit, Nuxt, Astro, and Remix use the framework's native head management:
-
-```svelte
-<!-- SvelteKit — +page.svelte -->
-<svelte:head>
-  <title>About Us — MyApp</title>
-  <meta name="description" content="..." />
-</svelte:head>
-```
-
-```ts
-// Nuxt — useSeoMeta composable
-useSeoMeta({
-  title: 'About Us — MyApp',
-  description: '...',
-  ogImage: 'https://myapp.com/og/about.png',
-});
-```
-
-```astro
-<!-- Astro — pass to Layout -->
-<Layout title="About Us — MyApp" description="...">
-  ...
-</Layout>
-```
-
-```ts
-// Remix — meta export
-export const meta: MetaFunction = () => [
-  { title: 'About Us — MyApp' },
-  { name: 'description', content: '...' },
-];
-```
+- Dimensions: **1200 × 630 px** (standard), **1200 × 1200 px** for square cards
+- Include the page title and site branding
+- Generate dynamically for content pages (product, article, profile)
+- Static fallback for pages without dynamic content
 
 ---
 
 ## Structured Data (JSON-LD)
 
-Add structured data for rich results in search — articles, products, breadcrumbs, FAQs.
+Add structured data for rich results — articles, products, breadcrumbs, FAQs, organisation info.
 
-```tsx
-// app/products/[slug]/page.tsx
-export default async function ProductPage({ params }: PageProps) {
-  const product = await fetchProduct(params.slug);
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    description: product.description,
-    image: product.imageUrl,
-    offers: {
-      '@type': 'Offer',
-      price: product.price,
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-    },
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <ProductView product={product} />
-    </>
-  );
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Widget Pro",
+  "description": "The best widget for your needs.",
+  "image": "https://myapp.com/products/widget-pro.jpg",
+  "offers": {
+    "@type": "Offer",
+    "price": "29.99",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
 }
+</script>
 ```
 
-Common schema types: `Article`, `Product`, `BreadcrumbList`, `FAQPage`, `Organization`, `WebSite`.
+Common schema types: `Article`, `Product`, `BreadcrumbList`, `FAQPage`, `Organization`, `WebSite`, `Person`.
+
+Validate with [Google's Rich Results Test](https://search.google.com/test/rich-results) before shipping.
 
 ---
 
 ## Heading Hierarchy
 
-```tsx
-// Good — one h1, logical order
+```html
+<!-- Good — one h1, logical order, no skipped levels -->
 <main>
-  <h1>Product Catalogue</h1>       {/* one per page */}
+  <h1>Product Catalogue</h1>
   <section>
     <h2>Featured Products</h2>
     <article>
-      <h3>Product Name</h3>
+      <h3>Widget Pro</h3>
     </article>
   </section>
   <section>
@@ -213,28 +110,12 @@ Common schema types: `Article`, `Product`, `BreadcrumbList`, `FAQPage`, `Organiz
   </section>
 </main>
 
-// Bad — skipped levels, multiple h1
+<!-- Bad — multiple h1, skipped levels -->
 <div>
   <h1>Product Catalogue</h1>
-  <h1>Featured</h1>               {/* second h1 */}
-  <h4>Product Name</h4>           {/* skipped h2 and h3 */}
+  <h1>Featured</h1>    <!-- second h1 -->
+  <h4>Widget Pro</h4>  <!-- skipped h2 and h3 -->
 </div>
-```
-
----
-
-## Canonical URLs
-
-Set canonical on every page to prevent duplicate content from query parameters, trailing slashes, or alternate domains:
-
-```ts
-// Next.js App Router
-alternates: {
-  canonical: 'https://myapp.com/products/widget',
-}
-
-// Next.js Pages Router
-<link rel="canonical" href="https://myapp.com/products/widget" />
 ```
 
 ---
@@ -243,7 +124,7 @@ alternates: {
 
 | Strategy | SEO impact | Use when |
 | --- | --- | --- |
-| SSR (Server-Side Rendering) | Excellent — full HTML on first request | Dynamic content, personalised pages |
+| SSR (Server-Side Rendering) | Excellent — full HTML on first request | Dynamic, personalised content |
 | SSG (Static Generation) | Excellent — pre-rendered HTML | Stable content, blogs, marketing |
 | ISR (Incremental Static Regeneration) | Excellent — periodically refreshed | Mostly stable with occasional updates |
 | CSR (Client-Side Rendering) | Poor — content missing on first crawl | Authenticated dashboards, internal tools |
@@ -252,31 +133,46 @@ Avoid CSR for any content that should be indexed. Use SSR or SSG with a loading 
 
 ---
 
-## sitemap.xml and robots.txt
+## sitemap.xml
 
-```ts
-// Next.js App Router — app/sitemap.ts
-import type { MetadataRoute } from 'next';
+Every public site needs a sitemap. At minimum it must list:
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const products = await fetchAllProducts();
+- All static public pages with their canonical URL
+- All dynamic content pages (products, articles, profiles) with `lastModified`
+- Priority and `changeFrequency` hints for the crawler
 
-  return [
-    { url: 'https://myapp.com', lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
-    ...products.map(p => ({
-      url: `https://myapp.com/products/${p.slug}`,
-      lastModified: p.updatedAt,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    })),
-  ];
-}
-
-// app/robots.ts
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: { userAgent: '*', allow: '/', disallow: '/api/' },
-    sitemap: 'https://myapp.com/sitemap.xml',
-  };
-}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://myapp.com/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://myapp.com/products/widget-pro</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
 ```
+
+Framework-specific sitemap generators are in the active framework adapter.
+
+---
+
+## robots.txt
+
+```
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+
+Sitemap: https://myapp.com/sitemap.xml
+```
+
+Disallow pages that should not be indexed: API routes, admin areas, authenticated-only content, duplicate paginated routes.

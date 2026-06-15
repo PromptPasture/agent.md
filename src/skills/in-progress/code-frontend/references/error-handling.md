@@ -1,96 +1,59 @@
 # Error Handling
 
-Every error state must be visible to the user. Never swallow errors silently.
+Every error state must be visible to the user. Never swallow errors silently. Framework-specific implementations (error boundaries, error pages, fallback components) are in the active framework adapter (`references/frameworks/`).
 
 ---
 
-## Error Boundaries
+## Error Containment
 
-Place error boundaries at route and feature boundaries — not around every component.
+Contain errors at route and feature boundaries — not around every component. This limits the blast radius: a failure in one feature does not crash the entire page.
 
-```tsx
-// app/dashboard/error.tsx (Next.js App Router)
-'use client';
+**Placement rules:**
 
-import { useEffect } from 'react';
+- One boundary per route or page
+- One boundary per independently loadable feature within a page
+- Never wrap every leaf component — that defeats the purpose
 
-interface ErrorProps {
-  error: Error & { digest?: string };
-  reset: () => void;
-}
+When an error is caught at a boundary, always provide:
 
-export default function DashboardError({ error, reset }: ErrorProps) {
-  useEffect(() => {
-    // Log to error reporting service
-    console.error(error);
-  }, [error]);
-
-  return (
-    <section role="alert" aria-live="assertive">
-      <h2>Something went wrong</h2>
-      <p>{error.message}</p>
-      <button onClick={reset}>Try again</button>
-    </section>
-  );
-}
-```
-
-For non-Next.js projects, use a class-based `ErrorBoundary` or a library such as `react-error-boundary`:
-
-```tsx
-import { ErrorBoundary } from 'react-error-boundary';
-
-function FeatureFallback({ error, resetErrorBoundary }: FallbackProps) {
-  return (
-    <section role="alert">
-      <p>Failed to load: {error.message}</p>
-      <button onClick={resetErrorBoundary}>Retry</button>
-    </section>
-  );
-}
-
-export function FeatureRoot() {
-  return (
-    <ErrorBoundary FallbackComponent={FeatureFallback}>
-      <Feature />
-    </ErrorBoundary>
-  );
-}
-```
+1. A human-readable message explaining what failed
+2. A recovery action (retry, reload, go back, contact support)
+3. A screen-reader announcement (`role="alert"`)
 
 ---
 
 ## Async Error Handling
 
-Always handle the three states: loading, error, success.
+Always handle three states explicitly: **loading**, **error**, **success**. A missing error or loading state is a bug, not an acceptable default.
 
-```tsx
-// Good — all three states explicit
-function UserProfile({ id }: { id: string }) {
-  const { data, isLoading, error } = useUserProfile(id);
+**Principles:**
 
-  if (isLoading) return <UserProfileSkeleton />;
-  if (error) return <ErrorMessage error={error} />;
+- Catch at the call site — never rely on the component tree to surface async errors
+- Return errors as values for expected failures; throw only for truly unexpected conditions
+- Do not let an unhandled promise rejection reach the user as a blank screen
 
-  return <UserProfileView user={data} />;
-}
-```
-
-Never rely on the component tree to catch async errors — catch at the call site:
+**Result type pattern** — use for operations that are expected to fail:
 
 ```ts
-// Good
+type Result<T, E = Error> =
+  | { ok: true;  data: T }
+  | { ok: false; error: E };
+```
+
+Use `Result` for domain errors (validation failures, not-found, permission denied). Reserve thrown errors for programmer mistakes and unrecoverable conditions.
+
+```ts
+// Good — error is a value, caller decides what to do
 async function saveUser(user: User): Promise<Result<User, ApiError>> {
   try {
     const saved = await api.users.save(user);
     return { ok: true, data: saved };
   } catch (err) {
-    const error = toApiError(err);
-    return { ok: false, error };
+    return { ok: false, error: toApiError(err) };
   }
 }
 
-// Bad — error propagates uncaught to the caller
+// Bad — error propagates uncaught; caller has no typed signal
 async function saveUser(user: User): Promise<User> {
   return api.users.save(user);
 }
@@ -98,90 +61,45 @@ async function saveUser(user: User): Promise<User> {
 
 ---
 
-## Result Type Pattern
-
-Use a `Result` type for operations that are expected to fail:
-
-```ts
-type Result<T, E = Error> =
-  | { ok: true; data: T }
-  | { ok: false; error: E };
-```
-
-Prefer this over throwing for domain errors (validation failures, not-found, permission denied). Reserve thrown errors for truly unexpected conditions.
-
----
-
 ## Empty States
 
-Treat empty as a distinct state — not a subset of success:
+Treat empty as a distinct state — not a subset of success. An empty list after a successful fetch is different from a list that has not loaded yet.
 
-```tsx
-function TaskList({ tasks }: { tasks: Task[] }) {
-  if (tasks.length === 0) {
-    return (
-      <EmptyState
-        icon={<CheckCircleIcon />}
-        title="No tasks yet"
-        description="Create your first task to get started."
-        action={<CreateTaskButton />}
-      />
-    );
-  }
+**Every empty state must include:**
 
-  return <ul>{tasks.map(task => <TaskItem key={task.id} task={task} />)}</ul>;
-}
+- A clear explanation of why it is empty
+- A primary action to move forward (create, import, invite, etc.)
+
+```
+States to handle explicitly:
+  loading  → skeleton or spinner
+  error    → error message + retry
+  empty    → empty state + primary action
+  success  → content
 ```
 
 ---
 
 ## User-Facing Error Messages
 
-- Use plain language — no stack traces, error codes, or technical jargon visible to users
-- Always offer a recovery action (retry, go back, contact support)
-- Use `role="alert"` and `aria-live="assertive"` so screen readers announce the error
-
-```tsx
-// Reusable error message component
-interface ErrorMessageProps {
-  error: Error | string;
-  onRetry?: () => void;
-}
-
-export function ErrorMessage({ error, onRetry }: ErrorMessageProps) {
-  const message = typeof error === 'string' ? error : error.message;
-
-  return (
-    <div role="alert" aria-live="assertive" className="error-message">
-      <p>{message}</p>
-      {onRetry && (
-        <button onClick={onRetry} type="button">
-          Try again
-        </button>
-      )}
-    </div>
-  );
-}
-```
+- Plain language — no stack traces, error codes, or internal identifiers visible to users
+- Always offer a recovery action — never a dead end
+- Announce errors to screen readers via `role="alert"` or `aria-live="assertive"`
+- Distinguish recoverable errors ("Try again") from unrecoverable ones ("Contact support")
 
 ---
 
 ## Toast / Notification Errors
 
-Use toasts only for non-blocking, transient errors (e.g. a background sync failed). Always pair with a persistent fallback UI for blocking errors.
+Use toasts only for **non-blocking, transient** errors (e.g. a background sync failed, a non-critical action timed out). Always pair with a persistent fallback UI for blocking errors.
 
-```ts
-// Good — toast for background operation
-async function syncData() {
-  try {
-    await api.sync();
-  } catch (err) {
-    toast.error('Sync failed. Your changes are saved locally.');
-  }
-}
+```
+Good use of toast:
+  Background sync failed → toast("Sync failed. Changes saved locally.")
 
-// Bad — toast as the only signal for a blocking error
-// The user may miss it; there is no recovery path visible
+Bad use of toast:
+  Form submission failed → toast only (user may miss it; no recovery path visible)
+  Page failed to load → toast only (content is gone; user is stuck)
 ```
 
 ---

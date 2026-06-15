@@ -1,6 +1,6 @@
 # State Management
 
-Choose the simplest state solution that covers the need. Add complexity only when a simpler tool genuinely cannot do the job.
+Choose the simplest state solution that covers the need. Add complexity only when a simpler tool genuinely cannot do the job. Framework-specific APIs (`useState`, Svelte stores, Pinia, Zustand, Jotai) are in the active framework adapter (`references/frameworks/`).
 
 ---
 
@@ -8,315 +8,172 @@ Choose the simplest state solution that covers the need. Add complexity only whe
 
 ```
 Is the state used by only one component?
-  └─ Yes → useState / useReducer
+  └─ Yes → Local reactive primitive (useState, ref, local store)
 
 Is the state shared between a few nearby components?
-  └─ Yes → Lift state to the nearest common ancestor
+  └─ Yes → Lift to the nearest common ancestor
 
 Is the state server data (fetched, cached, synchronised)?
-  └─ Yes → React Query / SWR / framework loader (see references/data-fetching.md)
+  └─ Yes → Framework data layer (see references/data-fetching.md)
 
 Is the state shared across distant components or the whole app?
   └─ Yes → Is it simple (a few values, infrequent updates)?
-              └─ Yes → React Context
+              └─ Yes → Framework context / provide-inject / shared store
             Is it complex (many slices, frequent updates, devtools needed)?
-              └─ Yes → Zustand / Jotai / Redux Toolkit
+              └─ Yes → Dedicated state library (Zustand, Pinia, Jotai, NgRx)
 ```
 
 ---
 
-## Local State — useState
+## Local State
 
-Default for component-scoped state. Prefer multiple focused `useState` calls over a single object state unless the values always change together.
+Default for component-scoped state that does not need to be shared. Keep state as close to where it is used as possible.
 
-```tsx
-// Good — independent pieces of state
-const [isOpen, setIsOpen] = useState(false);
-const [selectedId, setSelectedId] = useState<string | null>(null);
+**Principles:**
 
-// Good — values that always change together belong in one object
-const [pagination, setPagination] = useState({ page: 1, pageSize: 20 });
-```
+- Keep independent values in separate reactive primitives — do not bundle unrelated state into one object
+- Group values that always change together into a single object
+- When next state depends on previous state, always derive it from the current value — never read stale state
 
-### Functional updates for derived state
-
-```ts
-// When next state depends on previous — always use functional form
-setCount(prev => prev + 1);
-setItems(prev => [...prev, newItem]);
-setItems(prev => prev.filter(item => item.id !== id));
-```
+Framework-specific primitives (`useState`, `ref`/`reactive`, Svelte runes) are in the active framework adapter.
 
 ---
 
-## Local Complex State — useReducer
+## Complex Local State — State Machines
 
-Use when state has multiple sub-values with defined transitions, or when `useState` logic is scattered across many handlers.
+Use a reducer or state machine pattern when component state has multiple sub-values with defined transitions — particularly for async sequences (idle → loading → success | error).
+
+**When to use:**
+
+- State logic is scattered across many event handlers
+- Invalid state combinations are possible and need to be prevented
+- The same transition (e.g. reset) must fire from multiple places
+
+**Structure:**
+
+- Define a closed set of states (e.g. `idle | loading | success | error`)
+- Define a closed set of actions
+- Each action maps exactly one state to a next state — no implicit transitions
 
 ```ts
-type State = {
-  status: 'idle' | 'loading' | 'success' | 'error';
-  data: User | null;
-  error: string | null;
-};
+// Framework-agnostic shape — implement with the framework's reducer or store
+type State =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success'; data: User }
+  | { status: 'error'; error: string };
 
 type Action =
   | { type: 'FETCH_START' }
   | { type: 'FETCH_SUCCESS'; payload: User }
   | { type: 'FETCH_ERROR'; payload: string }
   | { type: 'RESET' };
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'FETCH_START':   return { ...state, status: 'loading', error: null };
-    case 'FETCH_SUCCESS': return { status: 'success', data: action.payload, error: null };
-    case 'FETCH_ERROR':   return { status: 'error', data: null, error: action.payload };
-    case 'RESET':         return { status: 'idle', data: null, error: null };
-    default:              return state;
-  }
-}
-
-const [state, dispatch] = useReducer(reducer, { status: 'idle', data: null, error: null });
 ```
+
+Framework-specific reducer implementations (`useReducer`, Svelte stores with update functions) are in the active framework adapter.
 
 ---
 
-## Shared State — React Context
+## Shared State — Context / Provide-Inject
 
 Use for low-frequency global values: theme, locale, authenticated user, feature flags.
 
-**Do not use Context for high-frequency updates** (e.g. mouse position, scroll, form fields) — it re-renders every consumer on every change.
+**Do not use for high-frequency updates** (mouse position, scroll position, form fields) — every consumer re-evaluates on every change.
 
-```tsx
-// contexts/AuthContext.tsx
-interface AuthContextValue {
-  user: User | null;
-  signOut: () => Promise<void>;
-}
+**Rules:**
 
-const AuthContext = createContext<AuthContextValue | null>(null);
+- Always wrap the raw context in a typed accessor function — never expose it directly
+- Throw a clear error if the accessor is called outside the provider
+- Split contexts by update frequency — read-only values and write actions should be separate so reading one does not cause re-evaluation when the other changes
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-
-  const signOut = useCallback(async () => {
-    await api.auth.signOut();
-    setUser(null);
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ user, signOut }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
-
-// Always export a typed hook — never expose the raw context
-export function useAuth(): AuthContextValue {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
-  return ctx;
-}
-```
-
-### Split contexts by update frequency
-
-```tsx
-// Split static and dynamic values into separate contexts
-// so reading user doesn't re-render on every dispatch
-const AuthUserContext = createContext<User | null>(null);
-const AuthActionsContext = createContext<{ signOut: () => void } | null>(null);
-```
+Framework-specific context APIs (`createContext`/`useContext`, `provide`/`inject`, Svelte context) are in the active framework adapter.
 
 ---
 
-## Global State — Zustand
+## Global State — Dedicated Libraries
 
-Prefer Zustand for app-wide state that is too complex for Context or updates too frequently for it to be performant.
+Use when shared state is too complex for context or updates too frequently for it to be performant.
 
-```ts
-// stores/useCartStore.ts
-import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+**Choosing a library:**
 
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-}
+| Need | Library |
+| --- | --- |
+| React — simple global store | Zustand |
+| React — atomic subscriptions | Jotai |
+| React — large app, team conventions | Redux Toolkit |
+| Vue / Nuxt | Pinia |
+| Svelte | Svelte stores (built-in) |
+| Any framework | Nano Stores (framework-agnostic) |
 
-interface CartState {
-  items: CartItem[];
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
-  removeItem: (id: string) => void;
-  updateQuantity: (id: string, quantity: number) => void;
-  clear: () => void;
-  total: () => number;
-}
+**Slice pattern for large stores** — split by domain, compose into one store:
 
-export const useCartStore = create<CartState>()(
-  devtools(
-    persist(
-      (set, get) => ({
-        items: [],
-
-        addItem: (item) =>
-          set(state => {
-            const existing = state.items.find(i => i.id === item.id);
-            if (existing) {
-              return {
-                items: state.items.map(i =>
-                  i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-                ),
-              };
-            }
-            return { items: [...state.items, { ...item, quantity: 1 }] };
-          }),
-
-        removeItem: (id) =>
-          set(state => ({ items: state.items.filter(i => i.id !== id) })),
-
-        updateQuantity: (id, quantity) =>
-          set(state => ({
-            items: quantity <= 0
-              ? state.items.filter(i => i.id !== id)
-              : state.items.map(i => i.id === id ? { ...i, quantity } : i),
-          })),
-
-        clear: () => set({ items: [] }),
-
-        total: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
-      }),
-      { name: 'cart-storage' }
-    )
-  )
-);
+```
+store/
+  slices/
+    uiSlice.ts       → sidebar, modals, toasts
+    cartSlice.ts     → items, totals, checkout state
+  useAppStore.ts     → composed store
 ```
 
-### Slice pattern for large stores
-
-Split large stores into slices and compose:
-
-```ts
-// stores/slices/uiSlice.ts
-interface UiSlice {
-  sidebarOpen: boolean;
-  toggleSidebar: () => void;
-}
-
-export const createUiSlice = (set: SetState): UiSlice => ({
-  sidebarOpen: false,
-  toggleSidebar: () => set(state => ({ sidebarOpen: !state.sidebarOpen })),
-});
-
-// stores/useAppStore.ts
-export const useAppStore = create<UiSlice & CartSlice>()((...args) => ({
-  ...createUiSlice(...args),
-  ...createCartSlice(...args),
-}));
-```
-
----
-
-## Atomic State — Jotai
-
-Prefer Jotai when state is naturally atomic and components subscribe to independent slices without a shared store structure.
-
-```ts
-import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
-
-// Primitive atoms
-const countAtom = atom(0);
-const userAtom = atom<User | null>(null);
-
-// Derived atom — computed from other atoms
-const doubleCountAtom = atom(get => get(countAtom) * 2);
-
-// Async atom
-const userProfileAtom = atom(async get => {
-  const user = get(userAtom);
-  if (!user) return null;
-  return fetchUserProfile(user.id);
-});
-
-// Usage
-function Counter() {
-  const [count, setCount] = useAtom(countAtom);
-  const double = useAtomValue(doubleCountAtom);
-
-  return (
-    <div>
-      <p>{count} × 2 = {double}</p>
-      <button onClick={() => setCount(c => c + 1)}>Increment</button>
-    </div>
-  );
-}
-```
+Framework-specific store implementations are in the active framework adapter.
 
 ---
 
 ## URL State
 
-Treat the URL as state for anything the user should be able to bookmark, share, or navigate back to: filters, search queries, pagination, selected tabs.
+Treat the URL as state for anything the user should be able to bookmark, share, or navigate back to.
+
+**Use URL state for:**
+
+- Filters, sort order, search query
+- Pagination (current page, page size)
+- Selected tab or panel
+- Modal open/closed (when linkable)
+
+**Principles:**
+
+- Parse URL params defensively — always provide a default for missing or invalid values
+- Reset pagination when filters change
+- Use `URLSearchParams` to build and update query strings — never string-concatenate
 
 ```ts
-// Next.js App Router
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-
-function useFilters() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const filters = {
-    category: searchParams.get('category') ?? 'all',
-    page: Number(searchParams.get('page') ?? '1'),
-  };
-
-  function setFilter(key: string, value: string) {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(key, value);
-    params.set('page', '1'); // reset pagination on filter change
-    router.push(`${pathname}?${params.toString()}`);
-  }
-
-  return { filters, setFilter };
+// Framework-agnostic URLSearchParams update
+function setParam(key: string, value: string): string {
+  const params = new URLSearchParams(window.location.search);
+  params.set(key, value);
+  if (key !== 'page') params.set('page', '1'); // reset pagination
+  return `?${params.toString()}`;
 }
 ```
 
+Framework-specific router integration (`useSearchParams`, SvelteKit `$page.url`, Vue Router `query`) is in the active framework adapter.
+
 ---
 
-## Framework-Specific Patterns
+## Framework Reference
 
-| Framework | Local | Shared | Server data |
+| Framework | Local | Shared | Global library |
 | --- | --- | --- | --- |
-| Next.js (React) | `useState` / `useReducer` | Context / Zustand / Jotai | React Query / `fetch` in Server Components |
-| SvelteKit | Svelte stores / runes | Writable stores / context | `load` functions |
-| Nuxt / Vue | `ref` / `reactive` | Pinia | `useFetch` / `useAsyncData` |
-| Remix | `useState` | Context | `loader` / `useFetcher` |
-| Astro | Nano Stores | Nano Stores | Frontmatter `fetch` / API routes |
+| React | `useState` / `useReducer` | Context | Zustand / Jotai / Redux Toolkit |
+| SvelteKit | Runes (`$state`) | Svelte context | Svelte stores (built-in) |
+| Nuxt / Vue | `ref` / `reactive` | `provide` / `inject` | Pinia |
+| Remix | `useState` | Context | Zustand |
+| Astro | Component state | Nano Stores | Nano Stores |
 
 ---
 
 ## Common Mistakes
 
-```ts
-// ❌ Deriving state from props in useState — gets out of sync
-const [name, setName] = useState(user.name); // won't update when user changes
+```
+❌ Deriving state from props on initialisation — gets out of sync when props change
+✅ Derive directly in the render/template; memoize only if the computation is expensive
 
-// ✅ Derive directly in render; memoize if expensive
-const displayName = user.displayName ?? user.name;
+❌ Storing server data in local state with a manual fetch in a lifecycle hook
+✅ Use the framework's data layer or a fetching library — see references/data-fetching.md
 
-// ❌ Storing server data in useState — bypasses caching and sync
-const [users, setUsers] = useState([]);
-useEffect(() => { fetch('/api/users').then(r => r.json()).then(setUsers); }, []);
+❌ Using context/provide-inject for high-frequency values (mouse position, scroll)
+✅ Use a ref or a dedicated high-frequency state library
 
-// ✅ Use React Query — handles caching, refetch, loading, error
-const { data: users } = useQuery({ queryKey: ['users'], queryFn: fetchUsers });
-
-// ❌ Context for high-frequency updates — re-renders every consumer
-const MouseContext = createContext({ x: 0, y: 0 });
-
-// ✅ Use a ref or a dedicated library (use-mouse, @use-gesture) for high-frequency values
+❌ One giant global store for everything
+✅ Split by domain; keep unrelated state in separate stores or local state
 ```

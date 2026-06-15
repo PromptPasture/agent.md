@@ -1,313 +1,281 @@
 # Styling
 
-Apply the approach that matches the detected stack. Never mix approaches within a single component — pick one and be consistent across the feature.
+CSS principles that apply regardless of framework or CSS library. Tailwind, Bootstrap, CSS Modules, shadcn/ui, MUI, Chakra UI, and Svelte-specific styling are covered in the active framework adapter (`references/frameworks/`).
+
+Never mix styling approaches within a single component — pick one and be consistent across the feature.
 
 ---
 
-## TailwindCSS
+## Design Tokens
 
-### Core conventions
-
-```tsx
-// Readable class order: layout → box model → typography → visual → interactive → responsive
-<div className="flex flex-col gap-4 p-6 text-sm font-medium bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow md:flex-row">
-
-// Conditional classes — use clsx or cn (shadcn/ui utility)
-import { clsx } from 'clsx';
-
-<button
-  className={clsx(
-    'px-4 py-2 rounded-lg font-medium transition-colors',
-    isPrimary && 'bg-blue-600 text-white hover:bg-blue-700',
-    !isPrimary && 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-    disabled && 'opacity-50 cursor-not-allowed',
-  )}
->
-  {label}
-</button>
-```
-
-### Extract repeated patterns to components — not to `@apply`
-
-`@apply` defeats the purpose of utility classes and makes refactoring harder.
-
-```tsx
-// Bad — @apply in CSS
-// .btn { @apply px-4 py-2 rounded-lg font-medium; }
-
-// Good — extract to a typed React component
-interface ButtonProps {
-  variant: 'primary' | 'secondary';
-  disabled?: boolean;
-  children: React.ReactNode;
-  onClick?: () => void;
-}
-
-const variantClasses: Record<ButtonProps['variant'], string> = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-700',
-  secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-};
-
-export function Button({ variant, disabled, children, onClick }: ButtonProps) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className={clsx(
-        'px-4 py-2 rounded-lg font-medium transition-colors',
-        variantClasses[variant],
-        disabled && 'opacity-50 cursor-not-allowed',
-      )}
-    >
-      {children}
-    </button>
-  );
-}
-```
-
-### Design tokens
-
-Define custom values in `tailwind.config.ts`, not as arbitrary values in class strings:
-
-```ts
-// tailwind.config.ts
-export default {
-  theme: {
-    extend: {
-      colors: {
-        brand: {
-          50:  '#eff6ff',
-          500: '#3b82f6',
-          900: '#1e3a8a',
-        },
-      },
-      spacing: {
-        '18': '4.5rem',
-      },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
-    },
-  },
-};
-```
-
-```tsx
-// Good — uses token
-<div className="bg-brand-500 p-18">
-
-// Bad — arbitrary value for something that should be a token
-<div className="bg-[#3b82f6] p-[4.5rem]">
-```
-
-### Dark mode
-
-```tsx
-// Use Tailwind's dark: variant — class strategy (add 'dark' class to html)
-<div className="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-50">
-```
-
----
-
-## Bootstrap
-
-### Component patterns
-
-```tsx
-// Use Bootstrap class names directly; avoid mixing with Tailwind
-<div className="card shadow-sm">
-  <div className="card-body">
-    <h5 className="card-title">{title}</h5>
-    <p className="card-text">{description}</p>
-    <button className="btn btn-primary">{cta}</button>
-  </div>
-</div>
-```
-
-### Customise via Sass variables — never override compiled CSS
-
-```scss
-// styles/bootstrap-custom.scss
-// Override before importing Bootstrap
-$primary:   #6366f1;
-$font-size-base: 1rem;
-$border-radius: 0.5rem;
-
-@import 'bootstrap/scss/bootstrap';
-```
-
-### Avoid Bootstrap's JavaScript for interactive components in React
-
-Use React state instead of Bootstrap's JS plugins to avoid DOM conflicts:
-
-```tsx
-// Bad — Bootstrap JS manipulates DOM directly, conflicts with React
-// <button data-bs-toggle="collapse" data-bs-target="#menu">
-
-// Good — React-controlled
-const [isOpen, setIsOpen] = useState(false);
-<button onClick={() => setIsOpen(prev => !prev)} aria-expanded={isOpen}>
-  Menu
-</button>
-<div className={clsx('collapse', isOpen && 'show')} id="menu">
-  ...
-</div>
-```
-
----
-
-## CSS Modules
-
-Co-locate the module file with the component:
-
-```
-UserCard/
-  UserCard.tsx
-  UserCard.module.css
-```
+Define all visual constants as named tokens before writing component styles. Never use raw hex values, magic numbers, or hardcoded pixel values in component CSS.
 
 ```css
-/* UserCard.module.css */
-.root {
-  display: flex;
-  gap: 1rem;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  background: var(--color-surface);
-}
-
-.name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.root:hover {
-  box-shadow: var(--shadow-md);
-}
-```
-
-```tsx
-import styles from './UserCard.module.css';
-import { clsx } from 'clsx';
-
-export function UserCard({ user, className }: UserCardProps) {
-  return (
-    <article className={clsx(styles.root, className)}>
-      <span className={styles.name}>{user.name}</span>
-    </article>
-  );
-}
-```
-
-### CSS custom properties for theming
-
-```css
-/* styles/tokens.css — global */
+/* tokens.css — define once, reference everywhere */
 :root {
+  /* Colour */
+  --color-brand:        #6366f1;
   --color-surface:      #ffffff;
   --color-text-primary: #111827;
   --color-text-muted:   #6b7280;
-  --color-brand:        #6366f1;
+  --color-border:       #e5e7eb;
+  --color-error:        #dc2626;
+  --color-success:      #16a34a;
+
+  /* Spacing scale */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Typography */
+  --font-sans:   'Inter', system-ui, sans-serif;
+  --font-mono:   'JetBrains Mono', monospace;
+  --text-sm:     0.875rem;
+  --text-base:   1rem;
+  --text-lg:     1.125rem;
+  --text-xl:     1.25rem;
+  --leading-tight:  1.25;
+  --leading-normal: 1.5;
+
+  /* Radius */
+  --radius-sm:  0.25rem;
+  --radius-md:  0.5rem;
+  --radius-lg:  0.75rem;
+  --radius-full: 9999px;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+  /* Transition */
+  --duration-fast:   100ms;
+  --duration-normal: 200ms;
+  --duration-slow:   300ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+```
+
+---
+
+## Dark Mode
+
+Use `prefers-color-scheme` for automatic switching and `data-theme` for user-controlled override:
+
+```css
+/* Automatic — follows OS preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface:      #0f172a;
+    --color-text-primary: #f1f5f9;
+    --color-text-muted:   #94a3b8;
+    --color-border:       #1e293b;
+  }
 }
 
+/* Manual override — applied via JS toggle */
 [data-theme='dark'] {
   --color-surface:      #0f172a;
   --color-text-primary: #f1f5f9;
   --color-text-muted:   #94a3b8;
+  --color-border:       #1e293b;
+}
+
+[data-theme='light'] {
+  --color-surface:      #ffffff;
+  --color-text-primary: #111827;
 }
 ```
 
----
+Toggle via JS — always support three values: `light`, `dark`, and `system` (follows OS). Store preference in `localStorage` (see `references/storage.md`):
 
-## Plain CSS
+```ts
+type Theme = 'system' | 'light' | 'dark';
 
-Use BEM naming to prevent collisions in global scope:
+function applyTheme(theme: Theme): void {
+  const resolved = theme === 'system'
+    ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    : theme;
+  document.documentElement.setAttribute('data-theme', resolved);
+}
 
-```css
-/* Block */
-.user-card { }
+function setTheme(theme: Theme): void {
+  localStorage.setItem('theme', theme);
+  applyTheme(theme);
+}
 
-/* Element */
-.user-card__name { }
-.user-card__avatar { }
+// Re-apply when OS preference changes (relevant when theme === 'system')
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  const stored = (localStorage.getItem('theme') as Theme) ?? 'system';
+  if (stored === 'system') applyTheme('system');
+});
 
-/* Modifier */
-.user-card--featured { }
-.user-card__name--truncated { }
-```
-
-Scope to a root selector to reduce collision risk further:
-
-```css
-.user-card { display: flex; gap: 1rem; }
-.user-card .user-card__name { font-weight: 600; }
-```
-
----
-
-## Component Libraries (Chakra UI, MUI, shadcn/ui, Radix)
-
-### shadcn/ui (Radix + Tailwind)
-
-```tsx
-// Add components via CLI — they live in your codebase
-// npx shadcn@latest add button card
-
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-<Card>
-  <CardHeader>
-    <CardTitle>{title}</CardTitle>
-  </CardHeader>
-  <CardContent>
-    <Button variant="outline">{cta}</Button>
-  </CardContent>
-</Card>
-```
-
-Customise via `cn()` and Tailwind classes — never edit the generated component files directly unless the change is permanent.
-
-### MUI (Material UI)
-
-```tsx
-import { Button, Card, CardContent, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
-
-// Prefer styled() over sx prop for reusable overrides
-const StyledCard = styled(Card)(({ theme }) => ({
-  padding: theme.spacing(3),
-  borderRadius: theme.shape.borderRadius * 2,
-}));
-
-// Use sx only for one-off adjustments
-<Button sx={{ mt: 2 }} variant="contained">Submit</Button>
-```
-
-### Chakra UI
-
-```tsx
-import { Box, Button, Text } from '@chakra-ui/react';
-
-<Box p={6} bg="white" borderRadius="xl" boxShadow="md">
-  <Text fontWeight="semibold">{label}</Text>
-  <Button colorScheme="blue" mt={4}>Submit</Button>
-</Box>
+// On page load — restore preference before first paint to avoid flash
+const stored = (localStorage.getItem('theme') as Theme) ?? 'system';
+applyTheme(stored);
 ```
 
 ---
 
-## Animation in Styles
+## Layout
 
-Keep animation utilities alongside the component that owns them. See `references/motion.md` for patterns.
+### Flexbox — for one-dimensional layout
 
 ```css
-/* Prefer transform and opacity for animations — compositor-only */
+/* Row with gap, wrapping on small screens */
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+/* Centering */
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sidebar + main — sidebar fixed, main grows */
+.layout {
+  display: flex;
+  gap: var(--space-8);
+}
+.layout__sidebar { flex: 0 0 240px; }
+.layout__main    { flex: 1 1 0; min-width: 0; } /* min-width: 0 prevents overflow */
+```
+
+### Grid — for two-dimensional layout
+
+```css
+/* Responsive grid — no media queries needed */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Named areas for page layout */
+.page {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'nav    main'
+    'footer footer';
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+}
+.page__header { grid-area: header; }
+.page__nav    { grid-area: nav; }
+.page__main   { grid-area: main; }
+.page__footer { grid-area: footer; }
+```
+
+---
+
+## Responsive Design
+
+**Mobile-first** — write styles for the smallest screen first, then override at larger breakpoints with `min-width` queries:
+
+```css
+/* Mobile default */
+.card { flex-direction: column; padding: var(--space-4); }
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .card { flex-direction: row; padding: var(--space-6); }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .card { padding: var(--space-8); }
+}
+```
+
+### Common breakpoints
+
+| Name | Min-width | Target |
+| --- | --- | --- |
+| `sm` | 640px | Large phones landscape |
+| `md` | 768px | Tablets |
+| `lg` | 1024px | Small desktops |
+| `xl` | 1280px | Standard desktops |
+| `2xl` | 1536px | Wide screens |
+
+Use `dvh` (`100dvh`) instead of `vh` (`100vh`) for full-height layouts on mobile — `vh` does not account for the browser chrome.
+
+---
+
+## Typography
+
+```css
+/* Base scale — set on :root or body */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fluid type scale — scales between viewport sizes without breakpoints */
+h1 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+}
+
+h2 { font-size: clamp(1.375rem, 3vw, 2rem); font-weight: 600; }
+h3 { font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: 600; }
+```
+
+Rules:
+
+- Set `font-size` on `:root` in `rem` — never override the user's browser default font size
+- Use `rem` for font sizes, `em` for spacing relative to font size, `px` for borders only
+- Maximum line length: 60–75 characters (`max-width: 65ch`) for body text
+
+---
+
+## Logical Properties
+
+Use logical properties for layouts that must work in both LTR and RTL (see `references/i18n.md`):
+
+```css
+/* Physical — breaks in RTL */
+.card { margin-left: 1rem; padding-left: 1.5rem; text-align: left; }
+
+/* Logical — works in both LTR and RTL */
+.card {
+  margin-inline-start: 1rem;
+  padding-inline: 1.5rem;
+  text-align: start;
+}
+```
+
+| Physical | Logical equivalent |
+| --- | --- |
+| `margin-left` | `margin-inline-start` |
+| `margin-right` | `margin-inline-end` |
+| `padding-left` / `padding-right` | `padding-inline` |
+| `border-left` | `border-inline-start` |
+| `text-align: left` | `text-align: start` |
+| `top` / `bottom` | `inset-block-start` / `inset-block-end` |
+
+---
+
+## Animation
+
+Prefer `transform` and `opacity` — compositor-only properties that never trigger layout:
+
+```css
 .fade-in {
-  animation: fadeIn 0.2s ease forwards;
+  animation: fadeIn var(--duration-normal) var(--ease-out) forwards;
 }
 
 @keyframes fadeIn {
@@ -320,27 +288,17 @@ Keep animation utilities alongside the component that owns them. See `references
 }
 ```
 
+See `references/motion.md` for full animation patterns and timing guidelines.
+
 ---
 
-## Responsive Design
+## Naming — BEM for Global CSS
 
-Mobile-first in all approaches:
+When not using CSS Modules or a utility library, use BEM to prevent class collisions in the global scope:
 
-```tsx
-// Tailwind — mobile default, larger breakpoints override
-<div className="flex-col md:flex-row lg:gap-8">
-
-// CSS — mobile default, min-width queries override
-// .grid { grid-template-columns: 1fr; }
-// @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+```css
+/* Block */            .user-card { }
+/* Element */          .user-card__name { }
+/* Modifier */         .user-card--featured { }
+/* Element modifier */ .user-card__name--truncated { }
 ```
-
-Common breakpoints (Tailwind defaults, adapt for other approaches):
-
-| Name | Width | Use |
-| --- | --- | --- |
-| `sm` | 640px | Large phones landscape |
-| `md` | 768px | Tablets |
-| `lg` | 1024px | Small desktops |
-| `xl` | 1280px | Standard desktops |
-| `2xl` | 1536px | Wide screens |

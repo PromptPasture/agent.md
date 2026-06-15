@@ -1,6 +1,6 @@
 # Performance
 
-Measure before optimising. Never add complexity for a problem that does not exist yet. Apply these patterns when there is a concrete reason — a slow render, a large bundle, a visible layout shift.
+Measure before optimising. Never add complexity for a problem that does not exist yet. Apply these patterns when there is a concrete reason — a slow render, a large bundle, a visible layout shift. Framework-specific APIs (memoization hooks, lazy/Suspense, virtual list libraries, image components) are in the active framework adapter (`references/frameworks/`).
 
 ---
 
@@ -8,121 +8,66 @@ Measure before optimising. Never add complexity for a problem that does not exis
 
 ### Avoid unnecessary re-renders
 
-```tsx
-// Memoize expensive child components only when the parent re-renders frequently
-// and the child's props are stable
-const UserCard = memo(function UserCard({ user }: UserCardProps) {
-  return <div>{user.name}</div>;
-});
+Only memoize when a measured problem exists. Memoization adds complexity and is only useful when:
 
-// Stabilise callbacks passed as props
-const handleSelect = useCallback((id: string) => {
-  setSelected(id);
-}, []); // deps must be exhaustive
+- A child component re-renders frequently with stable inputs
+- A derived value computation is demonstrably expensive (> ~1ms)
+- A callback is a dependency of another reactive unit or passed to a memoized child
 
-// Memoize expensive derived values
-const sorted = useMemo(
-  () => [...items].sort((a, b) => a.name.localeCompare(b.name)),
-  [items]
-);
-```
+**Do not memoize by default.** Premature memoization increases code weight and can hide real issues. Measure with browser or framework DevTools first.
 
-Rules:
+Framework-specific memoization APIs (`memo`, `useMemo`, `useCallback`, `$derived`, `computed`) are in the active framework adapter.
 
-- Do not `memo` every component — measure first
-- `useCallback` is only useful when the function is a dependency of another hook or passed to a memoized child
-- `useMemo` is only useful when the computation is demonstrably expensive (> ~1ms)
+### Avoid expensive computation in the render path
 
-### Avoid derived state in render
+Computation that runs on every render must be cheap. If a derived value is expensive to compute:
 
-```tsx
-// Bad — recalculated on every render
-function List({ items }: { items: Item[] }) {
-  const total = items.reduce((sum, i) => sum + i.value, 0); // runs every render
-  return <div>Total: {total}</div>;
-}
-
-// Good — memoized
-function List({ items }: { items: Item[] }) {
-  const total = useMemo(() => items.reduce((sum, i) => sum + i.value, 0), [items]);
-  return <div>Total: {total}</div>;
-}
-```
+- Memoize it using the framework's reactive primitive
+- Move it to a server or build step if the data is static
+- Compute it once on input change rather than on every render pass
 
 ### Virtualise long lists
 
-Render only visible rows for lists exceeding ~100 items:
+Render only the visible portion of lists exceeding ~100 items. Mount and unmount rows as the user scrolls rather than rendering the full list.
 
-```tsx
-import { useVirtualizer } from '@tanstack/react-virtual';
+**Requirements for a virtual list:**
 
-function VirtualList({ items }: { items: Item[] }) {
-  const parentRef = useRef<HTMLDivElement>(null);
+- A fixed-height scroll container
+- A known or estimated row height
+- Absolute positioning of rows within a full-height inner container
 
-  const virtualizer = useVirtualizer({
-    count: items.length,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => 56, // estimated row height in px
-    overscan: 5,
-  });
-
-  return (
-    <div ref={parentRef} style={{ height: '600px', overflow: 'auto' }}>
-      <div style={{ height: virtualizer.getTotalSize(), position: 'relative' }}>
-        {virtualizer.getVirtualItems().map(row => (
-          <div
-            key={row.key}
-            style={{ position: 'absolute', top: row.start, width: '100%' }}
-          >
-            <ItemRow item={items[row.index]} />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-```
+Framework-specific virtual list implementations are in the active framework adapter.
 
 ---
 
 ## Code Splitting and Lazy Loading
 
-### Lazy-load routes
+### Split at route and feature boundaries
 
-```tsx
-// Next.js App Router — automatic per-segment code splitting
-// No manual action needed; each segment is its own bundle
+Load only the code needed for the current view. Defer heavy components (charts, rich text editors, maps, date pickers) until they are needed.
 
-// Vite + React — manual lazy loading for routes
-import { lazy, Suspense } from 'react';
-const Dashboard = lazy(() => import('./pages/Dashboard'));
+**Principles:**
 
-<Suspense fallback={<PageSkeleton />}>
-  <Dashboard />
-</Suspense>
-```
+- Split at route level first — this gives the largest gains with the least complexity
+- Split at component level only for components that are rarely shown or are genuinely heavy
+- Always provide a loading fallback (skeleton, spinner) while deferred code loads
+- For SSR: disable server-side rendering for browser-only libraries
 
-### Lazy-load heavy components
-
-```tsx
-// Load only when needed — charts, editors, maps, date pickers
-const RichTextEditor = dynamic(() => import('@/components/RichTextEditor'), {
-  loading: () => <EditorSkeleton />,
-  ssr: false, // disable SSR for browser-only libs
-});
-```
+Framework-specific lazy loading (`lazy`/`Suspense`, `dynamic()`, `import()`, SvelteKit route splitting) is in the active framework adapter.
 
 ### Avoid importing entire libraries
 
 ```ts
-// Bad — imports full library
+// Bad — entire library in the bundle
 import _ from 'lodash';
 const result = _.groupBy(items, 'category');
 
-// Good — imports only the function needed
+// Good — only the function needed
 import groupBy from 'lodash/groupBy';
 const result = groupBy(items, 'category');
 ```
+
+Prefer libraries with native ESM tree-shaking (`date-fns`, `radix-ui`, etc.) over CommonJS bundles where possible.
 
 ---
 
@@ -130,20 +75,25 @@ const result = groupBy(items, 'category');
 
 ### Prevent layout shift (CLS)
 
-```tsx
-// Always set explicit width and height on images
-<img
-  src={src}
-  alt={alt}
-  width={400}
-  height={300}
-  style={{ aspectRatio: '4/3', width: '100%', height: 'auto' }}
-/>
+Set explicit dimensions on all media before it loads:
 
-// Reserve space for dynamic content with min-height
-<div style={{ minHeight: '200px' }}>
-  {isLoading ? <Skeleton /> : <Content />}
-</div>
+```html
+<!-- Always set width and height — browser reserves the space before load -->
+<img
+  src="hero.webp"
+  alt="Hero image"
+  width="1200"
+  height="600"
+  style="width: 100%; height: auto; aspect-ratio: 2/1;"
+/>
+```
+
+Reserve space for dynamic content that appears after load:
+
+```css
+.content-placeholder {
+  min-height: 200px; /* matches expected content height */
+}
 ```
 
 ### Avoid layout thrash
@@ -151,52 +101,54 @@ const result = groupBy(items, 'category');
 Reading then writing DOM dimensions in the same frame forces the browser to recalculate layout twice:
 
 ```ts
-// Bad — read, then write, forces two layout calculations
-const width = element.offsetWidth;  // read — triggers layout
-element.style.width = width + 'px'; // write — invalidates layout
+// Bad — read, then write, two layout calculations
+const width = element.offsetWidth;   // read — forces layout
+element.style.width = width + 'px';  // write — invalidates layout
 
-// Good — batch reads, then batch writes
-// Or use ResizeObserver which fires after layout
+// Good — use ResizeObserver, which fires after layout
 const observer = new ResizeObserver(entries => {
   for (const entry of entries) {
-    const { width } = entry.contentRect; // read after layout
+    const { width } = entry.contentRect;
     doSomethingWith(width);
   }
 });
 observer.observe(element);
 ```
 
-Prefer `transform` over `top`/`left` for animation — transforms run on the compositor thread and do not trigger layout.
+Prefer `transform` over `top`/`left` for animation — transforms run on the compositor thread and never trigger layout.
 
 ---
 
 ## Images
 
-```tsx
-// Next.js — always use next/image for automatic optimisation
-import Image from 'next/image';
-
-<Image
-  src="/hero.jpg"
-  alt="Hero image"
-  width={1200}
-  height={600}
-  priority // add for above-the-fold images; omit for below
-  sizes="(max-width: 768px) 100vw, 50vw"
-/>
-
-// Non-Next.js — use modern formats and lazy loading
+```html
+<!-- Above-the-fold (LCP candidate) — eager, high priority -->
 <img
   src="hero.webp"
   alt="Hero image"
-  width={1200}
-  height={600}
-  loading="lazy"     // omit for above-the-fold
+  width="1200"
+  height="600"
+  loading="eager"
+  fetchpriority="high"
+  decoding="async"
+/>
+
+<!-- Below-the-fold — lazy load -->
+<img
+  src="product.webp"
+  alt="Product photo"
+  width="400"
+  height="400"
+  loading="lazy"
   decoding="async"
 />
 ```
 
-Use `loading="eager"` and `fetchpriority="high"` for the largest above-the-fold image (LCP candidate).
+- Use modern formats: WebP first, AVIF where supported
+- Always provide `width` and `height` to prevent layout shift
+- Use `srcset` and `sizes` for responsive images
+
+Framework-specific image components (`next/image`, SvelteKit `enhanced:img`) are in the active framework adapter.
 
 ---
 
@@ -211,12 +163,15 @@ Use `loading="eager"` and `fetchpriority="high"` for the largest above-the-fold 
 }
 ```
 
-In Next.js, use `next/font` — it inlines font CSS, eliminates layout shift, and self-hosts automatically:
+- Use `woff2` — best compression, supported everywhere
+- Self-host fonts when possible — eliminates third-party DNS lookup
+- Preload the primary font file in `<head>`:
 
-```ts
-import { Inter } from 'next/font/google';
-const inter = Inter({ subsets: ['latin'], display: 'swap' });
+```html
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
 ```
+
+Framework-specific font optimisation (`next/font`, Vite font plugins) is in the active framework adapter.
 
 ---
 
@@ -224,47 +179,49 @@ const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 ### Prefetch on intent
 
-```tsx
-// Next.js Link prefetches on hover by default
-<Link href="/dashboard">Dashboard</Link>
-
-// Prefetch programmatically on hover or focus
-const router = useRouter();
-<button
-  onMouseEnter={() => router.prefetch('/dashboard')}
-  onClick={() => router.push('/dashboard')}
->
-  Go to dashboard
-</button>
-```
-
-### Debounce and throttle user input
+Start loading the next destination when the user signals intent (hover, focus) — not speculatively on page load.
 
 ```ts
-import { useMemo } from 'react';
-import debounce from 'lodash/debounce';
+// Generic prefetch on pointer enter
+element.addEventListener('pointerenter', () => {
+  const link = document.createElement('link');
+  link.rel = 'prefetch';
+  link.href = '/dashboard';
+  document.head.appendChild(link);
+});
+```
 
-function SearchInput({ onSearch }: { onSearch: (q: string) => void }) {
-  const debouncedSearch = useMemo(
-    () => debounce(onSearch, 300),
-    [onSearch]
-  );
+Framework router prefetch APIs (`<Link prefetch>`, `router.prefetch()`) are in the active framework adapter.
 
-  return <input onChange={e => debouncedSearch(e.target.value)} />;
+### Debounce user input
+
+Delay expensive operations triggered by fast input (search, filter, resize):
+
+```ts
+function debounce<T extends (...args: unknown[]) => void>(fn: T, delay: number): T {
+  let timer: ReturnType<typeof setTimeout>;
+  return ((...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  }) as T;
 }
+
+// Usage — works in any framework
+const search = debounce((query: string) => fetchResults(query), 300);
+input.addEventListener('input', e => search((e.target as HTMLInputElement).value));
 ```
 
 ---
 
 ## Measuring
 
-Use these tools before and after optimisation — never guess:
+Always measure before and after. Never optimise by intuition alone.
 
 | Tool | What it measures |
 | --- | --- |
-| React DevTools Profiler | Component render time and frequency |
-| Chrome DevTools Performance | Paint, layout, scripting, long tasks |
-| Lighthouse | LCP, CLS, FID/INP, bundle size, a11y |
+| Framework DevTools (Profiler/Inspector) | Component render time and frequency |
+| Chrome DevTools → Performance | Paint, layout, scripting, long tasks |
+| Lighthouse | LCP, CLS, FID/INP, bundle size, a11y score |
 | `web-vitals` library | Real-user Core Web Vitals in production |
-| `next build` output | Bundle size per route (Next.js) |
-| `vite-bundle-visualizer` | Bundle composition (Vite) |
+| `vite-bundle-visualizer` / `@next/bundle-analyzer` | Bundle composition per route |
+| `rollup-plugin-visualizer` | Bundle composition (Rollup/Vite) |

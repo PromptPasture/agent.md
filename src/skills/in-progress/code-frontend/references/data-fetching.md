@@ -1,6 +1,6 @@
 # Data Fetching
 
-Choose the fetching layer that matches the detected stack. Apply it consistently — do not mix patterns within a single feature.
+Choose the fetching layer that matches the detected stack. Apply it consistently — do not mix patterns within a single feature. Framework-specific implementations (React Query, SWR, SvelteKit `load`, Nuxt `useFetch`) are in the active framework adapter (`references/frameworks/`).
 
 ---
 
@@ -9,210 +9,37 @@ Choose the fetching layer that matches the detected stack. Apply it consistently
 | Context | Preferred approach |
 | --- | --- |
 | Next.js App Router | Server Components + `fetch` with cache options |
-| Next.js Pages Router | `getServerSideProps` / `getStaticProps` + React Query for client |
-| SvelteKit | `load` functions in `+page.server.ts` / `+page.ts` |
-| Nuxt | `useFetch`, `useAsyncData` |
+| Next.js Pages Router | `getServerSideProps` / `getStaticProps` + client library |
+| SvelteKit | `load` in `+page.server.ts` / `+page.ts` |
+| Nuxt | `useFetch` / `useAsyncData` |
 | Astro | `fetch` in frontmatter for static; API routes for dynamic |
 | Remix | `loader` / `action` functions |
-| Vite + React (SPA) | React Query or SWR |
+| Vite SPA | Client fetching library (React Query, SWR, TanStack Query) |
+
+**Prefer server fetching over client fetching** when the framework supports it — it reduces client bundle size, eliminates loading flicker, and keeps sensitive logic off the client.
 
 ---
 
-## React Query
+## Core Principles
 
-Preferred client-side fetching library for React projects without a full-stack framework fetching layer.
+### Always handle three states
 
-### Query
+Every data dependency must render three states explicitly — missing one is a bug:
+
+```
+loading → skeleton or spinner
+error   → error message + retry action
+success → content
+```
+
+Never let undefined data reach the rendering layer. Guard at the top of the component or route handler.
+
+### Never fetch directly in a component
+
+Route all fetch calls through a typed API module. Components should not know about URLs, headers, or response shapes.
 
 ```ts
-// hooks/useUser.ts
-import { useQuery } from '@tanstack/react-query';
-import { fetchUser } from '@/api/users';
-import type { User } from '@/types/user.types';
-
-export function useUser(id: string) {
-  return useQuery<User, Error>({
-    queryKey: ['users', id],
-    queryFn: () => fetchUser(id),
-    staleTime: 1000 * 60 * 5, // 5 minutes
-  });
-}
-```
-
-### Mutation
-
-```ts
-// hooks/useUpdateUser.ts
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateUser } from '@/api/users';
-import type { User, UpdateUserInput } from '@/types/user.types';
-
-export function useUpdateUser() {
-  const queryClient = useQueryClient();
-
-  return useMutation<User, Error, UpdateUserInput>({
-    mutationFn: updateUser,
-    onSuccess: (updated) => {
-      queryClient.setQueryData(['users', updated.id], updated);
-    },
-    onError: (error) => {
-      // Surface via toast or inline — never swallow
-      console.error('Update failed:', error.message);
-    },
-  });
-}
-```
-
-### Key conventions
-
-- Query keys are arrays — `['users', id]` not `'users/' + id`
-- Set explicit `staleTime` — never rely on default (0) in production
-- Invalidate or update cache in `onSuccess` — do not rely on refetch
-- Wrap mutations in a custom hook; never call `useMutation` in a component directly
-
----
-
-## SWR
-
-Lighter alternative for simple read-heavy cases.
-
-```ts
-import useSWR from 'swr';
-import { fetcher } from '@/lib/fetcher';
-import type { User } from '@/types/user.types';
-
-export function useUser(id: string) {
-  const { data, error, isLoading } = useSWR<User>(
-    `/api/users/${id}`,
-    fetcher,
-    { revalidateOnFocus: false }
-  );
-
-  return { data, error, isLoading };
-}
-
-// lib/fetcher.ts
-export async function fetcher<T>(url: string): Promise<T> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
-  return res.json() as Promise<T>;
-}
-```
-
----
-
-## Next.js Server Components
-
-Fetch on the server by default. No loading state needed — use `Suspense` and `loading.tsx` for streaming.
-
-```tsx
-// app/users/[id]/page.tsx
-import { notFound } from 'next/navigation';
-import { fetchUser } from '@/api/users';
-
-interface PageProps {
-  params: { id: string };
-}
-
-export default async function UserPage({ params }: PageProps) {
-  const user = await fetchUser(params.id).catch(() => null);
-
-  if (!user) notFound();
-
-  return <UserProfile user={user} />;
-}
-
-export async function generateMetadata({ params }: PageProps) {
-  const user = await fetchUser(params.id).catch(() => null);
-  return { title: user ? `${user.name} — MyApp` : 'User not found' };
-}
-```
-
-Cache control:
-
-```ts
-// Static — cached indefinitely (default)
-fetch(url);
-
-// Revalidate every 60 seconds
-fetch(url, { next: { revalidate: 60 } });
-
-// No cache — always fresh
-fetch(url, { cache: 'no-store' });
-```
-
----
-
-## Loading States
-
-Always render a skeleton, not a spinner, for content-shaped loading:
-
-```tsx
-// Good — skeleton matches the content shape
-if (isLoading) return <UserCardSkeleton />;
-
-// Acceptable — spinner for indeterminate background operations only
-if (isLoading) return <Spinner aria-label="Loading user" />;
-```
-
-Skeleton components must match the dimensions and layout of the loaded content to prevent layout shift.
-
----
-
-## Optimistic Updates
-
-Apply when the operation is low-risk and the expected result is predictable:
-
-```ts
-onMutate: async (input) => {
-  await queryClient.cancelQueries({ queryKey: ['users', input.id] });
-  const previous = queryClient.getQueryData<User>(['users', input.id]);
-  queryClient.setQueryData(['users', input.id], { ...previous, ...input });
-  return { previous };
-},
-onError: (_err, input, context) => {
-  // Roll back on failure
-  queryClient.setQueryData(['users', input.id], context?.previous);
-},
-```
-
-Do not apply optimistic updates to destructive operations (delete, payment, publish).
-
----
-
-## Cancellation and Cleanup
-
-Cancel in-flight requests when a component unmounts or query key changes:
-
-```ts
-// Native fetch with AbortController (useEffect pattern)
-useEffect(() => {
-  const controller = new AbortController();
-
-  async function load() {
-    try {
-      const data = await fetchUser(id, { signal: controller.signal });
-      setUser(data);
-    } catch (err) {
-      if ((err as Error).name !== 'AbortError') setError(err as Error);
-    }
-  }
-
-  load();
-  return () => controller.abort();
-}, [id]);
-```
-
-React Query and SWR handle cancellation automatically when query keys change.
-
----
-
-## API Layer
-
-Never call `fetch` directly from a component or hook. Route through a typed API module:
-
-```ts
-// api/users.ts
+// api/users.ts — the only place that knows the endpoint
 import { api } from '@/lib/api-client';
 import type { User, UpdateUserInput } from '@/types/user.types';
 
@@ -223,4 +50,80 @@ export const updateUser = (input: UpdateUserInput): Promise<User> =>
   api.patch(`/users/${input.id}`, input);
 ```
 
-The API client handles base URL, auth headers, error normalisation, and response parsing in one place.
+The API client centralises base URL, auth headers, error normalisation, and response parsing. Components import from `api/`, never from `fetch`.
+
+### Use an explicit cache strategy
+
+Never leave caching to chance. For every data dependency, decide:
+
+| Question | Decision |
+| --- | --- |
+| How stale can this data be? | Set a `staleTime` or `revalidate` interval |
+| Should this refetch on window focus? | Explicit on/off |
+| Does a mutation invalidate this? | Explicit invalidation or cache update |
+
+Framework-specific cache configuration is in the active framework adapter.
+
+---
+
+## Loading States
+
+Prefer skeletons over spinners for content-shaped data — a skeleton that matches the content dimensions prevents layout shift and sets the user's expectation correctly.
+
+```
+Content-shaped (list, card, table) → skeleton matching the layout
+Indeterminate background operation → spinner with aria-label
+Full page navigation → framework router loading indicator
+```
+
+Skeleton components must match the dimensions and layout of the loaded content. A mismatched skeleton is worse than a spinner.
+
+---
+
+## Optimistic Updates
+
+Apply optimistic updates when:
+
+- The operation is low-risk (edit, toggle, reorder)
+- The expected result is predictable from the input alone
+- A rollback on failure is straightforward
+
+**Never apply to destructive operations** (delete, payment, publish, send) — the cost of a failed rollback is too high.
+
+Required parts of every optimistic update:
+
+1. Apply the expected result to local state immediately
+2. Fire the real request
+3. On success: confirm or reconcile with the server response
+4. On failure: roll back to the previous state and surface an error
+
+Framework-specific optimistic update implementations are in the active framework adapter.
+
+---
+
+## Cancellation and Cleanup
+
+Cancel in-flight requests when a component unmounts or its inputs change. Leaving requests running after unmount causes state updates on unmounted components and can produce race conditions.
+
+Use `AbortController` — supported natively in all modern browsers and Node.js:
+
+```ts
+// Framework-agnostic cancellation
+async function loadUser(id: string, signal: AbortSignal): Promise<User> {
+  const res = await fetch(`/api/users/${id}`, { signal });
+  if (!res.ok) throw new Error(`Failed: ${res.status}`);
+  return res.json();
+}
+
+// Usage — caller owns the controller
+const controller = new AbortController();
+loadUser(id, controller.signal).catch(err => {
+  if (err.name === 'AbortError') return; // expected — ignore
+  handleError(err);
+});
+
+// Cancel when no longer needed
+controller.abort();
+```
+
+Framework-specific lifecycle wiring (when to create and abort the controller) is in the active framework adapter. Client fetching libraries (React Query, SWR, TanStack Query) handle cancellation automatically when query keys change.

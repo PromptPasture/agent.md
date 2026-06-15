@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.1"
+  version: "2.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -30,8 +30,8 @@ Inspect the following in order. Stop reading a file once the needed signal is fo
 | --- | --- |
 | `package.json` | Framework, CSS lib, language, key deps (query, router, i18n, etc.) |
 | `tsconfig.json` | TypeScript presence, `strict` mode on/off, path aliases |
-| `next.config.*` | Next.js (App Router vs Pages Router) |
-| `vite.config.*` | Vite + React / Vue / Lit |
+| `next.config.*` | Next.js — check `app/` dir for App Router, `pages/` for Pages Router |
+| `vite.config.*` | Vite — check plugins for React (`@vitejs/plugin-react`), Vue, Lit, Svelte |
 | `svelte.config.*` | SvelteKit |
 | `nuxt.config.*` | Nuxt |
 | `astro.config.*` | Astro |
@@ -103,13 +103,13 @@ Produce the contract in this format. Omit sections that are genuinely not applic
 
 ```
 Component:   UserCard
-File:        src/components/UserCard/UserCard.tsx
+File:        src/components/UserCard/UserCard.{tsx,svelte,vue}
 Index:       src/components/UserCard/index.ts
 
 Props:
   user        User        required   User object to display
   onSelect?   () => void  optional   Called when card is clicked
-  className?  string      optional   Additional CSS classes
+  class?      string      optional   Additional CSS classes
 
 Events / Callbacks:
   onSelect    Fires on click and Enter/Space keypress
@@ -127,7 +127,16 @@ Notes:
 
 ### 2.3 Identify which reference docs apply
 
-Based on the task and contract, state which reference docs will guide the Build phase. Load them before writing code.
+Load the framework adapter that matches the detected stack — always load exactly one:
+
+| Detected stack | Adapter |
+| --- | --- |
+| Next.js (App Router or Pages Router) | `references/frameworks/nextjs.md` + `references/frameworks/react.md` |
+| Vite + React / CRA / Remix | `references/frameworks/react.md` |
+| SvelteKit | `references/frameworks/svelte.md` |
+| Nuxt / Astro / other | No adapter available — apply concern docs only; note the gap to the user |
+
+Then load concern docs based on the task:
 
 | Signal | Load |
 | --- | --- |
@@ -136,8 +145,9 @@ Based on the task and contract, state which reference docs will guide the Build 
 | Animation or transition required | `references/motion.md` |
 | User-visible copy or labels present | `references/i18n.md` |
 | State shared across components | `references/state.md` |
+| Persistence across reloads or tabs needed | `references/storage.md` |
 | Page component (not shared UI) | `references/seo.md` |
-| CSS approach detected or specified | `references/styling.md` |
+| CSS approach detected or specified | `references/frameworks/tailwind.md` or `references/frameworks/bootstrap.md` or `references/frameworks/css-modules.md` or `references/frameworks/shadcn.md` or `references/frameworks/mui.md` |
 | PWA in manifest or scope | `references/pwa.md` |
 | No existing project conventions found | `references/conventions.md` |
 | Any a11y complexity beyond basics | `references/a11y.md` |
@@ -163,7 +173,7 @@ Load every reference doc identified in Phase 2 before writing any file. Apply it
 Before writing, state the decomposition rationale out loud. Split into smaller components when any of the following is true:
 
 - Props exceed 5–7 on a single component
-- JSX exceeds ~150 lines
+- Markup or template exceeds ~150 lines
 - A distinct visual or logical unit repeats more than once
 - A section has its own independent state or data dependency
 - A piece could be reused elsewhere without modification
@@ -176,9 +186,9 @@ Follow the project's existing conventions if present. When no convention is esta
 
 ```
 src/components/ComponentName/
-  ComponentName.tsx       # Component implementation
-  ComponentName.types.ts  # Props and local types (if non-trivial)
-  index.ts                # Barrel export
+  ComponentName.{tsx,svelte,vue}   # Component implementation
+  ComponentName.types.ts           # Props and local types (if non-trivial)
+  index.ts                         # Barrel export
 ```
 
 - One component per file
@@ -218,14 +228,14 @@ Write in this order:
 
 - Prefer semantic HTML over ARIA — use ARIA only where native semantics are insufficient
 - Every interactive element is keyboard reachable and has a visible focus state
-- No `onClick` on non-interactive elements without `role` and `onKeyDown`
+- No click handler on a non-interactive element without the appropriate `role` and keyboard event handler
 - See `references/a11y.md` for patterns beyond the basics
 
 #### Performance
 
 - Memoize only when a concrete re-render problem exists — not by default
 - Lazy-load routes and heavy components with dynamic imports
-- No derived state in render — compute outside or memoize with `useMemo`
+- No expensive computation in the render or template path — compute outside or use the framework's reactive primitive
 - See `references/performance.md` for deeper patterns
 
 ### 3.5 Write files
@@ -305,7 +315,7 @@ These issues reduce quality below senior standards. Fix before closing.
 
 #### Performance
 
-- [ ] No unnecessary re-renders — derived values computed outside render or with `useMemo`
+- [ ] No unnecessary re-renders — derived values computed outside the render path or via the framework's reactive primitive
 - [ ] Heavy components or routes lazy-loaded with dynamic imports
 - [ ] No layout-thrashing patterns (reading then writing DOM dimensions in the same frame)
 - [ ] Images have explicit `width` and `height` to prevent layout shift
@@ -313,14 +323,14 @@ These issues reduce quality below senior standards. Fix before closing.
 #### Data fetching (if applicable)
 
 - [ ] Loading, error, and success states all handled and visible to the user
-- [ ] No fetch calls inside `useEffect` without a cancellation or cleanup path
+- [ ] No fetch calls inside a reactive lifecycle without a cancellation or cleanup path
 - [ ] Caching strategy is explicit — not left to default behaviour
 
 #### Code quality
 
-- [ ] No component exceeds ~150 lines of JSX — split if so
+- [ ] No component exceeds ~150 lines of markup/template — split if so
 - [ ] No prop list exceeds 7 — extract a sub-component or group into an object
-- [ ] No logic duplicated across files that could be a shared utility or hook
+- [ ] No logic duplicated across files that could be a shared utility or composable
 
 ---
 
