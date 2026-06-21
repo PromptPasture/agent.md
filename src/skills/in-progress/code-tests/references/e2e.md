@@ -1,77 +1,104 @@
-# E2E Test Generation
+# E2E Testing Reference
 
-Use this reference for browser-driven workflows and user journeys.
+Guidance for writing end-to-end tests with browser automation frameworks (Playwright, Cypress, WebdriverIO).
 
 ---
 
-## Framework Selection
-
-Prefer the framework already present in the repository. Detect it from config files and dependencies:
+## Framework Detection
 
 | Signal | Framework |
 | --- | --- |
-| `playwright.config.*`, `@playwright/test` | Playwright |
-| `cypress.config.*`, `cypress/` | Cypress |
-| Selenium/WebDriver imports or Grid config | Selenium |
-
-If there is no existing framework and the user did not choose one, prefer Playwright for new web E2E code because it has first-class fixtures, tracing, retries, and multi-browser support.
+| `@playwright/test` in deps | Playwright |
+| `cypress` in deps | Cypress |
+| `webdriverio` / `wdio.conf.*` | WebdriverIO |
 
 ---
 
-## Implementation Pattern
+## Test Plan Format
 
-- **Location:** Put tests in the existing E2E directory, commonly `tests/e2e/`, `e2e/`, `cypress/e2e/`, or the repo's configured test directory.
-- **Page objects:** Use them only when a flow has repeated behavior or multiple tests share the same screen actions. Avoid page objects for one-off checks.
-- **Selectors:** Use stable selectors in this order: accessible role/name, label text, explicit test id, semantic text. Avoid brittle CSS paths.
-- **Waiting:** Replace arbitrary waits with assertions on visible UI state, URL changes, network responses, or domain-specific readiness signals.
-- **Test data:** Isolate data per run. Create data through public APIs, fixtures, factories, or seeded test helpers already present in the repo.
-- **Authentication:** Capture auth through existing storage-state/session helpers when available; otherwise log in through the UI only for one setup path, not every test.
+When drafting the test plan in Phase 2, describe user flows step by step:
 
----
+```text
+Flow:         User completes checkout
+Start URL:    /cart
+Auth:         Logged-in user with items in cart
 
-## Coverage Shape
-
-Generate a compact suite with:
-
-- **Smoke:** One test for the critical happy path.
-- **Failure:** One validation or permission failure path.
-- **Persistence:** One persistence or reload check when the flow changes state.
-- **Accessibility:** Optional smoke check only if the project already uses an accessibility test helper.
-
----
-
-## Playwright Defaults
-
-```ts
-import { expect, test } from '@playwright/test';
-
-test('user completes the critical flow', async ({ page }) => {
-  await page.goto('/target');
-  await page.getByRole('button', { name: /continue/i }).click();
-  await expect(page.getByRole('heading', { name: /success/i })).toBeVisible();
-});
+Steps:
+  1. Navigate to /cart
+  2. Verify items are listed with correct prices
+  3. Click "Proceed to Checkout"
+  4. Fill shipping address form
+  5. Select payment method
+  6. Submit order
+  7. Assert: redirected to /order-confirmation
+  8. Assert: order confirmation number displayed
+  9. Assert: confirmation email triggered (check mock inbox or API)
 ```
 
-Use `test.step` for long workflows, `test.describe` for a single feature area, and fixtures for shared setup. Keep assertions close to actions.
+---
+
+## Selector Strategy
+
+Prefer selectors in this order — stop at the first one available:
+
+1. `data-testid` attribute — explicit test hook, immune to style/copy changes
+2. ARIA role + accessible name — `getByRole('button', { name: 'Submit' })`
+3. Label text — `getByLabel('Email address')`
+4. Placeholder or visible text — `getByPlaceholder`, `getByText`
+5. CSS class or XPath — last resort; document why no better option exists
+
+Never select by element position (`nth-child`) or layout-dependent attributes.
 
 ---
 
-## Cypress Defaults
+## Page Object Model (POM)
 
-```ts
-describe('critical flow', () => {
-  it('lets a user complete the flow', () => {
-    cy.visit('/target');
-    cy.findByRole('button', { name: /continue/i }).click();
-    cy.findByRole('heading', { name: /success/i }).should('be.visible');
-  });
-});
+Use POM when a page or component is referenced in more than one spec file. Keep POMs thin:
+
+```typescript
+// pages/CheckoutPage.ts
+export class CheckoutPage {
+  constructor(private page: Page) {}
+
+  async fillShipping(address: Address) { ... }
+  async submitOrder() { ... }
+  async getConfirmationNumber(): Promise<string> { ... }
+}
 ```
 
-Prefer Testing Library commands when installed. Use `cy.intercept` for deterministic network behavior only when the test is intentionally stubbing dependencies.
+- One class per page or significant component
+- POM methods describe user actions, not DOM operations
+- No assertions inside POMs — keep them in spec files
 
 ---
 
-## Selenium Defaults
+## Fixtures and Auth
 
-Use explicit waits, page objects for repeated screens, and driver lifecycle hooks that match the existing framework. Keep selectors centralized when the suite already follows that pattern.
+- Authenticate via API or storage state, not UI login flow, to keep tests fast
+- Use Playwright `storageState` or Cypress `cy.session` to reuse auth across tests
+- Parameterise fixtures for different user roles
+
+```typescript
+// Playwright: reuse auth state
+test.use({ storageState: 'playwright/.auth/user.json' });
+```
+
+---
+
+## Flakiness Prevention
+
+- Wait for network idle or specific response, not arbitrary `sleep`/`waitForTimeout`
+- Use `waitForURL`, `waitForSelector`, or `waitForResponse` with explicit conditions
+- Avoid asserting on animation mid-state — wait for it to complete
+- Intercept and stub non-deterministic third-party services (analytics, chat widgets) — see `references/mocking.md` for HTTP interceptor patterns
+
+---
+
+## P2 Checklist (E2E-specific)
+
+- [ ] No `sleep` or fixed `waitForTimeout` — replaced with explicit wait conditions
+- [ ] Auth set up via API or storage state, not UI login flow
+- [ ] POM used for any page referenced in more than one spec
+- [ ] Selectors use `data-testid` or ARIA roles — no fragile CSS path selectors
+- [ ] Third-party services intercepted or stubbed to prevent flakiness
+- [ ] Tests run headless in CI without browser-specific configuration

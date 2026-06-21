@@ -1,77 +1,108 @@
-# API Test Generation
+# API Testing Reference
 
-Use this reference for HTTP endpoint, controller, contract, and service integration test suites.
+Guidance for writing API tests that verify HTTP endpoints against their contracts (Supertest, httpx, REST Assured, `net/http/httptest`).
 
 ---
 
-## Framework Selection
+## Framework Detection
 
-Prefer the repository's existing stack:
-
-| Signal | Pattern |
+| Signal | Framework |
 | --- | --- |
-| Node with `supertest`, `jest`, `vitest`, `mocha` | Supertest plus the existing runner |
-| Postman collection or Newman scripts | Postman/Newman collection tests |
-| Python with `pytest`, `httpx`, `requests`, FastAPI/Flask/Django tests | Existing pytest/client fixture |
-| Java/Kotlin with Spring test dependencies | MockMvc, WebTestClient, or REST-assured |
-| Go with `net/http/httptest` | Standard library HTTP tests |
+| `supertest` in deps | Supertest (Node.js) |
+| `httpx` or `requests` in deps | httpx / requests (Python) |
+| `rest-assured` in pom.xml | REST Assured (Java/Kotlin) |
+| `net/http/httptest` import | Go stdlib httptest |
+| `@nestjs/testing` in deps | NestJS testing module |
 
 ---
 
-## Implementation Pattern
+## Test Plan Format
 
-- **Local helpers:** Reuse app factories, test clients, database fixtures, auth helpers, and factories already in the repo.
-- **Assertions:** Assert status, response shape, important headers, and durable side effects. Avoid snapshotting whole payloads unless the repo already does so.
-- **Negative cases:** Include validation, missing auth, forbidden access, nonexistent resources, and idempotency where relevant.
-- **Isolation:** Keep tests independent by creating fresh data or using rollback fixtures.
-- **Contract examples:** Use OpenAPI/AsyncAPI schemas when available, and keep generated payloads realistic.
-- **Secrets:** Never hard-code secrets. Use test tokens, factories, or environment variables.
+When drafting the test plan in Phase 2, list each scenario with the full contract:
 
----
+```text
+Endpoint:  POST /api/v1/orders
+Auth:      Bearer token (role: customer)
 
-## Suite Shape
+Scenarios:
+  Happy path
+    Request:  { items: [{ id: "abc", qty: 2 }] }
+    Response: 201 { id: string, status: "pending", total: number }
 
-For each endpoint or resource, cover:
+  Validation failure
+    Request:  { items: [] }
+    Response: 400 { code: "VALIDATION_ERROR", fields: { items: ["required"] } }
 
-- **Success behavior:** Successful create/read/update/delete or command/query behavior.
-- **Validation:** Validation failure with specific field-level expectations.
-- **Auth failure:** Authentication or authorization failure.
-- **Missing resources:** Not-found or conflict behavior where the API exposes it.
-- **Side effects:** Emitted events, database rows, or downstream calls when the repo has test hooks for them.
+  Conflict
+    Request:  duplicate idempotency key
+    Response: 200, original order body returned
 
----
-
-## Supertest Example
-
-```ts
-import request from 'supertest';
-import { createApp } from '../src/app';
-
-describe('POST /api/widgets', () => {
-  it('creates a widget', async () => {
-    const app = createApp();
-
-    const response = await request(app)
-      .post('/api/widgets')
-      .send({ name: 'Launch checklist' })
-      .expect(201);
-
-    expect(response.body).toMatchObject({
-      name: 'Launch checklist',
-      status: 'active',
-    });
-  });
-});
+  Unauthenticated
+    Auth:     none
+    Response: 401 { code: "UNAUTHORIZED" }
 ```
 
 ---
 
-## Postman/Newman Pattern
+## Assertion Depth
 
-When producing a collection, include request examples, environment variables, pre-request auth setup if needed, and tests for status code plus key JSON fields. Keep environment-specific base URLs as variables.
+Assert on the full observable contract, not just status codes:
+
+```typescript
+const res = await request(app)
+  .post('/api/v1/orders')
+  .set('Authorization', `Bearer ${token}`)
+  .send({ items: [{ id: 'abc', qty: 2 }] });
+
+expect(res.status).toBe(201);
+expect(res.body).toMatchObject({
+  id: expect.any(String),
+  status: 'pending',
+  total: expect.any(Number),
+});
+expect(res.headers['content-type']).toMatch(/application\/json/);
+```
+
+- Always assert response body shape, not just presence
+- Assert Content-Type header
+- Assert error body shape on failure responses — not just status code
+- For 4xx/5xx: assert `code` field matches the contract
 
 ---
 
-## Pytest API Pattern
+## Auth Setup
 
-Use the app's test client fixture. Prefer explicit payload factories over inline repetition when multiple tests use the same shape.
+- Generate tokens programmatically in test setup — do not hardcode
+- Use a dedicated test user seeded in the DB or a mock auth service
+- Test both authenticated and unauthenticated paths for every protected endpoint
+- Test role boundaries: a lower-privilege token must not access higher-privilege routes
+
+---
+
+## State Setup and Teardown
+
+- Seed required DB state before the test, clean up after
+- Use transactions that are rolled back on teardown when the framework supports it
+- Do not rely on state left by a previous test
+
+---
+
+## Contract Validation
+
+For endpoints with a published OpenAPI spec, validate responses against the schema:
+
+```typescript
+import { validateResponse } from './helpers/openapi';
+expect(validateResponse('/api/v1/orders', 'POST', 201, res.body)).toPass();
+```
+
+---
+
+## P2 Checklist (API-specific)
+
+- [ ] Every scenario asserts on response body shape, not just status code
+- [ ] Error responses assert on `code` or `message` field shape
+- [ ] Content-Type header asserted on all responses
+- [ ] Auth tested: valid token, missing token, wrong role
+- [ ] DB state seeded before each test and cleaned up after
+- [ ] No hardcoded tokens or credentials — loaded from env or fixture
