@@ -1,197 +1,198 @@
-# Schema Design Reference
-
-Produce a **normalized relational database schema** with DDL, relationship documentation, and design rationale.
+# Schema Design
 
 ---
 
-## What makes a great schema
+## Core Rules
 
-A good schema encodes business rules structurally so they can't be violated at the application layer. It anticipates common query patterns and pre-optimizes with the right indexes. It's normalized enough to avoid update anomalies, but not over-normalized to the point of making every query a 6-way join.
-
----
-
-## Detect the SQL dialect
-
-Identify the target database from context:
-
-| Signal | Dialect |
-| ------------------------------------------------------------ | ------------------------------------------ |
-| "postgres", `.sql` with Postgres types, `JSONB`, `uuid-ossp` | PostgreSQL |
-| "mysql", "mariadb", `AUTO_INCREMENT` | MySQL / MariaDB |
-| "sqlite", mobile app, embedded | SQLite |
-| "mssql", "sql server", T-SQL | MSSQL |
-| "oracle" | Oracle |
-| "bigquery", "snowflake", "clickhouse", warehouse terminology | Warehouse / analytics dialect |
-| "cockroachdb", distributed SQL, regional tables | CockroachDB |
-| Ambiguous / not mentioned | Default to PostgreSQL for OLTP schemas; note the assumption |
+- Design for the access pattern, not for theoretical purity
+- Every table has a single-column surrogate primary key (UUID or auto-increment integer)
+- Every column has a `NOT NULL` constraint unless NULL is semantically meaningful
+- Foreign keys are declared at the DB level — do not rely only on application-level referential integrity
+- Every foreign key column has an index
 
 ---
 
-## Information gathering
+## Naming Conventions
 
-Extract:
-
-- **Domain** and core entities (e.g., e-commerce: products, orders, customers)
-- **Key relationships** (one-to-many, many-to-many, hierarchical)
-- **Cardinality constraints** (nullable FKs, required fields)
-- **Query patterns** (what queries will be most frequent — guides index design)
-- **Scale hints** (millions of rows? partitioning needed?)
-- **Special requirements**: soft deletes, multi-tenancy, audit log, temporal data
+| Object | Convention | Example |
+| --- | --- | --- |
+| Tables | `snake_case`, plural | `users`, `order_items` |
+| Columns | `snake_case` | `email`, `created_at` |
+| Primary key | `id` | `id UUID PRIMARY KEY` |
+| Foreign key | `<referenced_table_singular>_id` | `user_id`, `order_id` |
+| Indexes | `idx_<table>_<columns>` | `idx_orders_user_id` |
+| Unique indexes | `uq_<table>_<columns>` | `uq_users_email` |
+| Check constraints | `chk_<table>_<column>` | `chk_orders_status` |
+| Enums / types | `snake_case` | `order_status`, `user_role` |
 
 ---
 
-## Output format
+## Primary Keys
 
-### Part 1: Entity-Relationship Summary
-
-```
-## Entity-Relationship Overview
-
-### Entities
-- **[Entity]** — [1-line description]
-
-### Relationships
-- [Entity A] has many [Entity B] (via `[table].fk_[entity_a]_id`)
-- [Entity A] and [Entity B] are many-to-many (via `[junction_table]`)
-```
-
-### Part 2: DDL
-
-Produce `CREATE TABLE` statements in dependency order (referenced tables first). For warehouse schemas, define grain, partitioning, clustering or sort keys, and load/update assumptions instead of forcing OLTP normalization.
-
-**PostgreSQL template:**
+**UUID (preferred for distributed systems):**
 
 ```sql
--- ============================================================
--- [Schema Name]: [Domain Description]
--- Generated: [YYYY-MM-DD]
--- Dialect: PostgreSQL 15+
--- ============================================================
-
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
--- ------------------------------------------------------------
--- [table_name]
--- [1-line description of what this table stores]
--- ------------------------------------------------------------
-CREATE TABLE [table_name] (
-    id            UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-
-    -- [Domain-specific columns]
-    [column_name] [TYPE] NOT NULL,           -- [inline comment explaining business rule]
-    [column_name] [TYPE],                    -- nullable: [reason]
-
-    -- Soft delete support
-    deleted_at    TIMESTAMPTZ,               -- NULL = active
-
-    -- Audit
-    created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-
-    -- Constraints
-    CONSTRAINT [table_name]_[rule]_chk CHECK ([condition]),
-    CONSTRAINT [table_name]_[unique_field]_uq UNIQUE ([field])
-);
-
--- Indexes
-CREATE INDEX [table_name]_[col]_idx ON [table_name] ([col]);
--- For soft deletes: only index active rows
-CREATE INDEX [table_name]_[col]_active_idx ON [table_name] ([col]) WHERE deleted_at IS NULL;
-
--- ------------------------------------------------------------
--- [junction_table] — many-to-many between [A] and [B]
--- ------------------------------------------------------------
-CREATE TABLE [junction_table] (
-    [entity_a]_id  UUID NOT NULL REFERENCES [table_a](id) ON DELETE CASCADE,
-    [entity_b]_id  UUID NOT NULL REFERENCES [table_b](id) ON DELETE CASCADE,
-    created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-
-    PRIMARY KEY ([entity_a]_id, [entity_b]_id)
-);
+id UUID PRIMARY KEY DEFAULT gen_random_uuid()   -- Postgres / CockroachDB
+id CHAR(36) PRIMARY KEY DEFAULT (UUID())         -- MySQL 8+
 ```
 
-### Part 3: Relationship Matrix
-
-| Table | Column | References | On Delete | Notes |
-| ------- | ---------------- | -------------- | ----------------------------- | ------------------ |
-| [child] | `fk_[parent]_id` | `[parent](id)` | CASCADE / SET NULL / RESTRICT | [when to use each] |
-
-### Part 4: Index Rationale
-
-| Index | Columns | Purpose |
-| ------------------- | --------- | --------------------------- |
-| `[table]_[col]_idx` | `([col])` | [Which query this supports] |
-
-### Part 5: Design Decisions
-
-Document key choices:
-
-- **Why UUID vs serial?** UUIDs enable distributed ID generation and prevent ID enumeration. Use BIGSERIAL if insert volume is extreme and you don't need distribution.
-- **Why soft delete?** If the entity has audit / compliance needs or is referenced by other records that should remain consistent.
-- **Normalization level:** Note if you've intentionally denormalized something and why.
-
----
-
-## Design guidelines
-
-- **Rule:** Table names: `snake_case`, plural (`orders`, `order_items`)
-- **Rule:** Column names: `snake_case`, singular
-- **Rule:** FK columns: `[referenced_table_singular]_id` (e.g., `user_id`, `order_id`)
-- **Rule:** Constraint names: `[table]_[description]_[type]` (e.g., `orders_status_chk`, `users_email_uq`)
-- **Rule:** Index names: `[table]_[col(s)]_idx`
-
-**Type selection:**
-
-- **Rule:** IDs: `UUID` (with `uuid_generate_v4()` default) unless high-volume serial is needed
-- **Rule:** Text: `TEXT` for variable length (no magic VARCHAR lengths unless there's a business rule)
-- **Rule:** Money: `NUMERIC(15,4)` — never `FLOAT`
-- **Rule:** Status/enum: `TEXT` with a CHECK constraint or a proper `ENUM` type, noted
-- **Rule:** Timestamps: `TIMESTAMPTZ` (always timezone-aware)
-
-**Standard columns on every table:**
-
-- **Rule:** `id UUID PRIMARY KEY`
-- **Rule:** `created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
-- **Rule:** `updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
-- **Rule:** `deleted_at TIMESTAMPTZ` — only if soft delete is appropriate
-
-**Referential integrity:**
-
-- **Rule:** All FKs should be explicit with ON DELETE behavior stated
-- **Rule:** CASCADE: child rows are meaningless without the parent
-- **Rule:** SET NULL: child rows can exist without the parent (nullable FK)
-- **Rule:** RESTRICT: prevent deletion if children exist (default safe choice)
-
-**Indexing strategy:**
-
-- **Rule:** Index every FK column (Postgres doesn't do this automatically)
-- **Rule:** Index columns that appear frequently in WHERE clauses on large tables
-- **Rule:** Partial indexes for soft-delete patterns: `WHERE deleted_at IS NULL`
-- **Rule:** Avoid over-indexing write-heavy tables
-
----
-
-## Scale / special patterns
-
-Add these sections only if relevant:
-
-**Multi-tenancy:**
-Add `tenant_id UUID NOT NULL REFERENCES tenants(id)` to every tenant-scoped table. Add `tenant_id` as the first column of composite indexes.
-
-**Audit log:**
+**Auto-increment integer (preferred for high-insert-rate, single-node):**
 
 ```sql
-CREATE TABLE audit_log (
-    id            UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    table_name    TEXT NOT NULL,
-    record_id     UUID NOT NULL,
-    action        TEXT NOT NULL CHECK (action IN ('INSERT','UPDATE','DELETE')),
-    old_values    JSONB,
-    new_values    JSONB,
-    changed_by    UUID REFERENCES users(id),
-    changed_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY   -- SQL standard
+id BIGSERIAL PRIMARY KEY                              -- Postgres shorthand
+id BIGINT AUTO_INCREMENT PRIMARY KEY                  -- MySQL
+```
+
+Do not use natural keys (email, username, slug) as primary keys — they change and cause cascading updates.
+
+---
+
+## Column Types
+
+Choose the narrowest type that fits:
+
+| Use case | Postgres | MySQL | SQLite |
+| --- | --- | --- | --- |
+| Short text (< 255 chars) | `VARCHAR(n)` or `TEXT` | `VARCHAR(n)` | `TEXT` |
+| Long text | `TEXT` | `TEXT` | `TEXT` |
+| Integer (small) | `INTEGER` | `INT` | `INTEGER` |
+| Integer (large) | `BIGINT` | `BIGINT` | `INTEGER` |
+| Decimal (money) | `NUMERIC(19,4)` | `DECIMAL(19,4)` | `NUMERIC` |
+| Boolean | `BOOLEAN` | `TINYINT(1)` | `INTEGER` (0/1) |
+| UTC timestamp | `TIMESTAMPTZ` | `DATETIME(6)` | `TEXT` (ISO 8601) |
+| Date only | `DATE` | `DATE` | `TEXT` |
+| JSON document | `JSONB` | `JSON` | `TEXT` |
+| UUID | `UUID` | `CHAR(36)` | `TEXT` |
+| Binary | `BYTEA` | `BLOB` | `BLOB` |
+
+Avoid `FLOAT` and `DOUBLE` for monetary values — use `NUMERIC`/`DECIMAL`.
+
+---
+
+## Constraints
+
+Declare all constraints at the column and table level — do not rely solely on application validation:
+
+```sql
+CREATE TABLE orders (
+  id          UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id     UUID        NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
+  status      TEXT        NOT NULL DEFAULT 'pending',
+  total_cents BIGINT      NOT NULL CHECK (total_cents >= 0),
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+  CONSTRAINT chk_orders_status CHECK (status IN ('pending', 'paid', 'cancelled', 'refunded'))
 );
 ```
 
-**Temporal / history tables:**
-If the user needs full history of changes, note this is a separate pattern (temporal tables or CDC) and offer to design it.
+### ON DELETE behaviour
+
+| Option | Use when |
+| --- | --- |
+| `RESTRICT` (default) | Child rows must be deleted first — safest default |
+| `CASCADE` | Child rows should auto-delete with parent (audit logs, line items) |
+| `SET NULL` | FK can be nullable; nullify when parent is deleted |
+| `SET DEFAULT` | Rare — set a fallback FK value |
+
+Prefer `RESTRICT` as the default; use `CASCADE` only when child rows are meaningless without the parent.
+
+---
+
+## Standard Audit Columns
+
+Include on every table that tracks state changes:
+
+```sql
+created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+created_by  UUID        REFERENCES users(id),   -- optional: when user attribution needed
+updated_by  UUID        REFERENCES users(id)    -- optional
+```
+
+Keep `updated_at` current by updating it on every `UPDATE`. In Postgres, use a trigger:
+
+```sql
+CREATE OR REPLACE FUNCTION set_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_users_updated_at
+BEFORE UPDATE ON users
+FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+```
+
+---
+
+## Many-to-Many Relationships
+
+Use a join table with its own PK and audit columns:
+
+```sql
+CREATE TABLE user_roles (
+  id         UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id    UUID        NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  role_id    UUID        NOT NULL REFERENCES roles(id) ON DELETE CASCADE,
+  granted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  granted_by UUID        REFERENCES users(id),
+
+  CONSTRAINT uq_user_roles UNIQUE (user_id, role_id)
+);
+
+CREATE INDEX idx_user_roles_user_id ON user_roles (user_id);
+CREATE INDEX idx_user_roles_role_id ON user_roles (role_id);
+```
+
+---
+
+## Enumerations
+
+Prefer a `CHECK` constraint over a DB enum type for values that change:
+
+```sql
+-- Flexible: add values without a schema migration
+status TEXT NOT NULL DEFAULT 'pending'
+  CONSTRAINT chk_orders_status CHECK (status IN ('pending', 'paid', 'cancelled'));
+
+-- Rigid: requires ALTER TYPE to add values (Postgres)
+CREATE TYPE order_status AS ENUM ('pending', 'paid', 'cancelled');
+status order_status NOT NULL DEFAULT 'pending';
+```
+
+Use `ENUM` types only when the value set is truly stable and the engine's tooling benefits outweigh the migration cost.
+
+---
+
+## Multi-Tenancy
+
+When multiple tenants share a single database, add a `tenant_id` column to every tenant-scoped table:
+
+```sql
+CREATE TABLE projects (
+  id         UUID NOT NULL,
+  tenant_id  UUID NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+  name       TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+  PRIMARY KEY (tenant_id, id)   -- composite PK keeps tenant data clustered
+);
+
+CREATE INDEX idx_projects_tenant_id ON projects (tenant_id);
+```
+
+Always include `tenant_id` in the `WHERE` clause of every query. Row-level security (Postgres) can enforce this at the DB level.
+
+---
+
+## What NOT to Do
+
+- Do not store comma-separated lists in a column — use a join table
+- Do not use `TEXT` for everything — choose typed columns for numbers, booleans, and dates
+- Do not store passwords in plaintext — hash at the application layer before writing
+- Do not use reserved words as column or table names (`order`, `user`, `group`, `index`)
+- Do not design for theoretical 3NF purity at the cost of query performance — denormalize deliberately where access patterns require it, and document why

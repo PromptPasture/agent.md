@@ -1,146 +1,192 @@
-# OLTP SQL Reference
-
-Write **production-quality SQL** for OLTP databases: queries, DDL, stored procedures, views, transactions, and optimization.
+# Common — Cross-Engine SQL Patterns
 
 ---
 
-## Variant detection
+## Core Rules
 
-Identify the dialect from context. Check in this order:
-
-1. Explicit mention ("postgres", "mysql", "sqlite", etc.)
-2. File extensions or migration tool conventions (`.sql`, Flyway prefix `V1__`, Liquibase)
-3. Code imports (`pg`, `mysql2`, `sqlite3`, `pyodbc`)
-4. Infrastructure mentions ("RDS Postgres", "Azure SQL", etc.)
-5. If genuinely ambiguous: ask once — "Which database are you using? (PostgreSQL, MySQL, MSSQL, SQLite, Oracle)"
-
-Once identified, load the dialect-specific reference for syntax details:
-
-- **PostgreSQL** → read `references/postgres.md`
-- **MySQL / MariaDB** → read `references/mysql.md`
-- **MSSQL / SQL Server** → read `references/mssql.md`
-- **SQLite** → read `references/sqlite.md`
-- **Oracle** → read `references/oracle.md`
-- **BigQuery** → read `references/bigquery.md` for warehouse SQL, usually with `references/analytics.md`
-- **Snowflake** → read `references/snowflake.md` for warehouse SQL, usually with `references/analytics.md`
-- **ClickHouse** → read `references/clickhouse.md` for analytical tables and queries, usually with `references/analytics.md`
-- **CockroachDB** → read `references/cockroachdb.md` for distributed SQL and PostgreSQL-like syntax caveats
+- Always use parameterized queries — never interpolate user input into SQL strings
+- List columns explicitly in `SELECT` — never use `SELECT *` in application code
+- Apply `LIMIT` to every list query — never return an unbounded result set
+- Wrap multi-step writes in a transaction — roll back on any error
+- Every `NOT NULL` column should have a meaningful default or be required at the application layer
 
 ---
 
-## SQL quality standards
+## Parameterized Queries
 
-### Formatting
+Different engines use different placeholder syntax — use the one that matches your driver:
 
 ```sql
--- Use uppercase for SQL keywords
--- Align columns in SELECT lists
-SELECT
-    u.id,
-    u.email,
-    u.created_at,
-    COUNT(o.id)  AS order_count,
-    SUM(o.total) AS lifetime_value
-FROM users u
-    LEFT JOIN orders o ON o.user_id = u.id
-WHERE
-    u.deleted_at IS NULL
-    AND u.created_at >= '2024-01-01'
-GROUP BY
-    u.id,
-    u.email,
-    u.created_at
-ORDER BY
-    lifetime_value DESC NULLS LAST
-LIMIT 100;
+-- PostgreSQL, CockroachDB (positional)
+SELECT id, email FROM users WHERE email = $1
+
+-- MySQL, SQLite, SQL Server (question mark)
+SELECT id, email FROM users WHERE email = ?
+
+-- Oracle, SQL Server (named)
+SELECT id, email FROM users WHERE email = :email
 ```
 
-### CTEs over subqueries
-
-Prefer CTEs for readability. Use subqueries only when a CTE would be materially slower.
+Never do this:
 
 ```sql
-WITH active_users AS (
-    SELECT id, email
-    FROM users
-    WHERE deleted_at IS NULL
-),
-recent_orders AS (
-    SELECT user_id, COUNT(*) AS count
-    FROM orders
-    WHERE created_at >= NOW() - INTERVAL '30 days'
-    GROUP BY user_id
-)
-SELECT
-    u.email,
-    COALESCE(ro.count, 0) AS orders_last_30_days
-FROM active_users u
-    LEFT JOIN recent_orders ro ON ro.user_id = u.id;
-```
-
-### NULL handling
-
-- **Null predicates:** Use `IS NULL` / `IS NOT NULL`, never `= NULL`.
-- **Defaults:** Use `COALESCE` for defaults and explain the semantic choice.
-- **Nullable columns:** Document nullable columns in comments.
-
-### Transactions
-
-Wrap multi-statement mutations in explicit transactions with rollback on error:
-
-```sql
-BEGIN;
-
-UPDATE accounts SET balance = balance - 100 WHERE id = :from_id;
-UPDATE accounts SET balance = balance + 100 WHERE id = :to_id;
-
--- Verify no negative balances
-DO $$
-BEGIN
-    IF EXISTS (SELECT 1 FROM accounts WHERE balance < 0 AND id IN (:from_id, :to_id)) THEN
-        RAISE EXCEPTION 'Insufficient funds';
-    END IF;
-END $$;
-
-COMMIT;
-```
-
-### Parameterized queries
-
-Always use parameters (`$1`, `:name`, `?`) instead of string interpolation. Note which style applies to the dialect.
-
-### Index awareness
-
-After writing a query, note which indexes it relies on:
-
-```sql
--- This query benefits from: idx_orders_user_id, idx_orders_created_at
--- If these don't exist: CREATE INDEX idx_orders_user_id ON orders(user_id);
+-- NEVER: SQL injection vector
+SELECT id FROM users WHERE email = '` + userInput + `'
 ```
 
 ---
 
-## Common patterns by dialect
+## Indexes
 
-Read the relevant `references/<dialect>.md` file for:
+Add an index whenever a column appears in `WHERE`, `JOIN ON`, or `ORDER BY` on a table expected to grow.
 
-- **Type system:** Type system quirks, such as Postgres JSONB, MySQL ENUM pitfalls, and SQLite type affinity.
-- **Pagination:** Pagination idioms, especially OFFSET versus keyset.
-- **Plans:** EXPLAIN and execution-plan syntax.
-- **Search:** Full-text search capabilities.
-- **Time:** Date/time functions.
-- **Upsert:** Upsert syntax such as `ON CONFLICT`, `ON DUPLICATE KEY UPDATE`, and `MERGE`.
+```sql
+-- Single-column index (equality lookup)
+CREATE INDEX idx_orders_user_id ON orders (user_id);
+
+-- Composite index (equality + sort — column order matters)
+CREATE INDEX idx_orders_user_status ON orders (user_id, status, created_at DESC);
+
+-- Partial index (sparse condition — only indexes matching rows)
+CREATE INDEX idx_orders_pending ON orders (created_at) WHERE status = 'pending';
+
+-- Unique index (enforces uniqueness at the DB level)
+CREATE UNIQUE INDEX idx_users_email ON users (email);
+```
+
+Index guidelines:
+
+- Leading column of a composite index must match the most selective `WHERE` condition
+- Cover columns used in `SELECT` (covering index) to avoid heap lookups on hot queries
+- Do not index columns with very low cardinality (e.g., boolean, 2-value enum) on their own
 
 ---
 
-## Query optimization checklist
+## Pagination
 
-When asked to optimize a query, check:
+### Offset pagination (simple, small datasets)
 
-- **Rule:** [ ] Are all JOIN columns indexed?
-- **Rule:** [ ] Is there an index on all WHERE clause columns used for filtering (not full-table-scan)?
-- **Rule:** [ ] Are there unnecessary subqueries that could be CTEs or JOINs?
-- **Rule:** [ ] Is `SELECT *` used where specific columns would suffice?
-- **Rule:** [ ] For pagination: is OFFSET used on large tables? (switch to keyset if so)
-- **Rule:** [ ] Is `LIKE '%value%'` used? (leading wildcard prevents index use — consider full-text search)
-- **Rule:** [ ] Are there implicit type casts in WHERE clauses causing index skips?
+```sql
+SELECT id, name, created_at
+FROM users
+ORDER BY created_at DESC
+LIMIT 20 OFFSET 40;
+```
+
+- Simple to implement and reason about
+- Degrades at large offsets — the DB must skip rows it still reads
+
+### Cursor pagination (scalable, large/growing datasets)
+
+```sql
+-- First page
+SELECT id, name, created_at
+FROM users
+ORDER BY created_at DESC, id DESC
+LIMIT 20;
+
+-- Subsequent pages (cursor = last row's created_at + id)
+SELECT id, name, created_at
+FROM users
+WHERE (created_at, id) < (:last_created_at, :last_id)
+ORDER BY created_at DESC, id DESC
+LIMIT 20;
+```
+
+- Consistent under concurrent writes — rows don't shift
+- Requires a stable, unique sort key (add `id` as tiebreaker)
+
+---
+
+## Transactions
+
+Wrap multi-step writes in a transaction. Roll back on any error:
+
+```pseudocode
+tx = db.begin()
+try:
+  tx.exec("INSERT INTO orders ...")
+  tx.exec("UPDATE inventory SET quantity = quantity - 1 WHERE ...")
+  tx.commit()
+catch error:
+  tx.rollback()
+  raise error
+```
+
+Transaction guidelines:
+
+- Keep transactions short — long transactions hold locks and block other writers
+- Do not perform external calls (HTTP, queue publish) inside a transaction
+- Use `READ COMMITTED` isolation unless the task requires stronger guarantees
+
+---
+
+## NULL Handling
+
+- Treat NULL as "unknown", not as empty string or zero
+- Comparisons with NULL always use `IS NULL` / `IS NOT NULL`, never `= NULL`
+- Aggregates (`COUNT`, `SUM`, `AVG`) silently ignore NULLs — make this explicit in comments when it matters
+- Use `COALESCE(col, default)` to substitute a fallback when NULL is possible
+
+```sql
+-- Wrong: always returns no rows (NULL != NULL)
+WHERE deleted_at = NULL
+
+-- Correct
+WHERE deleted_at IS NULL
+```
+
+---
+
+## Timestamps
+
+- Always store timestamps in UTC at the DB level
+- Use timezone-aware types (`TIMESTAMPTZ` in Postgres, `DATETIME(6)` in MySQL 8, `DATETIMEOFFSET` in SQL Server)
+- Set `DEFAULT now()` / `DEFAULT CURRENT_TIMESTAMP` in the column definition — do not rely solely on application code
+- Include `created_at` and `updated_at` on every table that tracks state changes
+
+---
+
+## Soft Deletes
+
+When records must be retained for audit or recovery, add a `deleted_at` nullable timestamp instead of issuing `DELETE`.
+
+```sql
+ALTER TABLE users ADD COLUMN deleted_at TIMESTAMPTZ;
+
+-- Filter deleted rows in all standard queries
+SELECT ... FROM users WHERE deleted_at IS NULL;
+
+-- Partial index keeps the active-row index lean
+CREATE INDEX idx_users_active ON users (email) WHERE deleted_at IS NULL;
+```
+
+---
+
+## N+1 Prevention
+
+Load related records with a JOIN or a single IN-clause batch query — never in a loop:
+
+```sql
+-- Bad: one query per order
+for order in orders:
+  user = SELECT * FROM users WHERE id = order.user_id   -- N extra queries
+
+-- Good: single JOIN
+SELECT o.id, o.total, u.email, u.name
+FROM orders o
+JOIN users u ON u.id = o.user_id
+WHERE o.status = ?;
+
+-- Good: batch fetch with IN
+SELECT id, email, name FROM users WHERE id IN (?, ?, ?, ...);
+```
+
+---
+
+## What NOT to Do
+
+- Do not put business logic in triggers — they are invisible to application code and hard to test
+- Do not use stored procedures for application logic — prefer the application layer for maintainability
+- Do not return entire tables to the application for in-memory filtering — filter in the query
+- Do not commit partial writes — wrap related inserts/updates in a transaction
