@@ -1,6 +1,6 @@
 # Data Fetching
 
-Choose the fetching layer that matches the detected stack. Apply it consistently — do not mix patterns within a single feature. For framework-specific implementations, fetch current docs via Context7.
+Choose the fetching layer that matches the detected stack. Apply it consistently — do not mix patterns within a single feature.
 
 ---
 
@@ -62,8 +62,6 @@ Never leave caching to chance. For every data dependency, decide:
 | Should this refetch on window focus? | Explicit on/off |
 | Does a mutation invalidate this? | Explicit invalidation or cache update |
 
-For framework-specific cache configuration, fetch current docs via Context7.
-
 ---
 
 ## Loading States
@@ -97,8 +95,6 @@ Required parts of every optimistic update:
 3. On success: confirm or reconcile with the server response
 4. On failure: roll back to the previous state and surface an error
 
-For framework-specific optimistic update implementations, fetch current docs via Context7.
-
 ---
 
 ## Cancellation and Cleanup
@@ -126,4 +122,4 @@ loadUser(id, controller.signal).catch(err => {
 controller.abort();
 ```
 
-For framework-specific lifecycle wiring (when to create and abort the controller), fetch current docs via Context7. Client fetching libraries (React Query, SWR, TanStack Query) handle cancellation automatically when query keys change.
+Client fetching libraries (React Query, SWR, TanStack Query) handle cancellation automatically when query keys change.

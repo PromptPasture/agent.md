@@ -1,7 +1,6 @@
 # Styling
 
-CSS principles that apply regardless of framework or CSS library. For CSS library-specific usage (Tailwind, Bootstrap, CSS Modules, shadcn/ui, MUI, Chakra UI), fetch current docs via Context7.
-
+CSS principles that apply regardless of framework or CSS library.
 Never mix styling approaches within a single component — pick one and be consistent across the feature.
 
 ---
@@ -91,7 +90,7 @@ Use `prefers-color-scheme` for automatic switching and `data-theme` for user-con
 }
 ```
 
-Toggle via JS — always support three values: `light`, `dark`, and `system` (follows OS). Store preference in `localStorage` (see `references/storage.md`):
+Toggle via JS — always support three values: `system` (follows OS), `light`, and `dark`. Store preference in `localStorage` (see `references/storage.md`):
 
 ```ts
 type Theme = 'system' | 'light' | 'dark';
@@ -202,10 +201,10 @@ applyTheme(stored);
 | Name | Min-width | Target |
 | --- | --- | --- |
 | `sm` | 640px | Large phones landscape |
-| `md` | 768px | Tablets |
-| `lg` | 1024px | Small desktops |
-| `xl` | 1280px | Standard desktops |
-| `2xl` | 1536px | Wide screens |
+| `md` | 768px | Small Tablets |
+| `lg` | 1024px | Standard Tablets |
+| `xl` | 1280px | Small desktops |
+| `2xl` | 1536px | Standard desktops |
 
 Use `dvh` (`100dvh`) instead of `vh` (`100vh`) for full-height layouts on mobile — `vh` does not account for the browser chrome.
 

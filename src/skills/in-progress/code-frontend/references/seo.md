@@ -1,6 +1,6 @@
 # SEO
 
-SEO applies to pages, not components. Skip this reference for non-page components unless they render content that affects crawlability. For framework-specific head management (Next.js Metadata API, SvelteKit `<svelte:head>`, Nuxt `useSeoMeta`), fetch current docs via Context7.
+SEO applies to pages, not components. Skip this reference for non-page components unless they render content that affects crawlability.
 
 ---
 
@@ -158,8 +158,6 @@ Every public site needs a sitemap. At minimum it must list:
   </url>
 </urlset>
 ```
-
-For framework-specific sitemap generators, fetch current docs via Context7.
 
 ---
 

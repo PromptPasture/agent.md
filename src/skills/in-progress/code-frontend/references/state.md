@@ -1,6 +1,6 @@
 # State Management
 
-Choose the simplest state solution that covers the need. Add complexity only when a simpler tool genuinely cannot do the job. For framework-specific implementations, fetch current docs via Context7.
+Choose the simplest state solution that covers the need. Add complexity only when a simpler tool genuinely cannot do the job.
 
 ---
 
@@ -35,8 +35,6 @@ Default for component-scoped state that does not need to be shared. Keep state a
 - Group values that always change together into a single object
 - When next state depends on previous state, always derive it from the current value — never read stale state
 
-For framework-specific primitives (`useState`, `ref`/`reactive`, Svelte runes), fetch current docs via Context7.
-
 ---
 
 ## Complex Local State — State Machines
@@ -70,8 +68,6 @@ type Action =
   | { type: 'RESET' };
 ```
 
-For framework-specific reducer implementations (`useReducer`, Svelte stores with update functions), fetch current docs via Context7.
-
 ---
 
 ## Shared State — Context / Provide-Inject
@@ -85,8 +81,6 @@ Use for low-frequency global values: theme, locale, authenticated user, feature 
 - Always wrap the raw context in a typed accessor function — never expose it directly
 - Throw a clear error if the accessor is called outside the provider
 - Split contexts by update frequency — read-only values and write actions should be separate so reading one does not cause re-evaluation when the other changes
-
-For framework-specific context APIs (`createContext`/`useContext`, `provide`/`inject`, Svelte context), fetch current docs via Context7.
 
 ---
 
@@ -114,8 +108,6 @@ store/
     cartSlice.ts     → items, totals, checkout state
   useAppStore.ts     → composed store
 ```
-
-For framework-specific store implementations, fetch current docs via Context7.
 
 ---
 
@@ -145,8 +137,6 @@ function setParam(key: string, value: string): string {
   return `?${params.toString()}`;
 }
 ```
-
-For framework-specific router integration (`useSearchParams`, SvelteKit `$page.url`, Vue Router `query`), fetch current docs via Context7.
 
 ---
 

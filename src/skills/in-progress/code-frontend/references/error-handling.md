@@ -1,6 +1,6 @@
 # Error Handling
 
-Every error state must be visible to the user. Never swallow errors silently. For framework-specific implementations, fetch current docs via Context7.
+Every error state must be visible to the user. Never swallow errors silently.
 
 ---
 

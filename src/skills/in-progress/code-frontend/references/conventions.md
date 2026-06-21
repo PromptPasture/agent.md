@@ -1,6 +1,6 @@
 # Code Conventions
 
-Apply these conventions when no project-level standard exists. When one does exist, follow the project — note any deviation. For framework-specific naming and file extensions, fetch current docs via Context7.
+Apply these conventions when no project-level standard exists. When one does exist, follow the project — note any deviation.
 
 ---
 
@@ -96,8 +96,6 @@ Separate each group with a blank line.
 - Group required props before optional ones
 - Use explicit checks for optional callbacks — never rely on falsy coercion
 
-For framework-specific prop syntax, fetch current docs via Context7.
-
 ---
 
 ## Reactive Logic (Composables / Hooks / Stores)
@@ -105,8 +103,6 @@ For framework-specific prop syntax, fetch current docs via Context7.
 - One responsibility per unit — extract when it handles more than one concern
 - Return named objects, not positional arrays, when returning multiple values
 - Never invoke reactive logic conditionally
-
-For framework-specific reactive logic patterns, fetch current docs via Context7.
 
 ---
 

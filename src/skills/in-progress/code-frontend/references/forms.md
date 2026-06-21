@@ -1,19 +1,6 @@
 # Forms
 
-Forms must be accessible, validated at the right level, and clear about errors before submission. Never rely on browser defaults alone. For framework-specific implementations, fetch current docs via Context7.
-
----
-
-## Choosing a Form Approach
-
-| Context | Preferred approach |
-| --- | --- |
-| React — complex forms | React Hook Form + Zod |
-| React — simple 1–3 fields | Controlled state + Zod |
-| SvelteKit | Native `action` + Superforms |
-| Nuxt / Vue | VeeValidate + Zod |
-| Remix | Native `action` + Zod |
-| Astro | Native `action` or API route |
+Forms must be accessible, validated at the right level, and clear about errors before submission. Never rely on browser defaults alone.
 
 ---
 
@@ -48,7 +35,7 @@ Every form must meet these requirements — no exceptions:
 
 - Every input has an associated `<label>` via matching `for` / `id` — never use `placeholder` as a label
 - `placeholder` is supplementary hint text only — it disappears on input and conveys nothing to screen readers
-- Required fields use native `required` AND `aria-required="true"` for maximum compatibility
+- Required fields use native `required` — `aria-required="true"` is only needed on custom controls that cannot use the native attribute
 - Invalid fields: `aria-invalid="true"` on the input; `aria-describedby` pointing to the error element
 - Error messages use `role="alert"` or `aria-live="polite"` so screen readers announce them without moving focus
 - Form-level errors use `role="alert"` and appear at the top of the form — announced immediately on submit failure
@@ -59,7 +46,6 @@ Every form must meet these requirements — no exceptions:
   id="email"
   type="email"
   required
-  aria-required="true"
   aria-invalid="true"
   aria-describedby="email-error"
 />

@@ -1,6 +1,6 @@
 # Animation and Motion
 
-Animation enhances clarity and feedback. It must never block interaction, distract, or cause discomfort. Always respect the user's motion preference. For framework-specific implementations, fetch current docs via Context7.
+Animation enhances clarity and feedback. It must never block interaction, distract, or cause discomfort. Always respect the user's motion preference.
 
 ---
 
@@ -26,8 +26,6 @@ Read the preference in JavaScript when controlling animation programmatically:
 ```ts
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 ```
-
-For framework-specific hooks and utilities for reading this preference, fetch current docs via Context7.
 
 ---
 
@@ -104,8 +102,6 @@ function transition(update: () => void) {
   }
 }
 ```
-
-For framework-specific wiring (how to trigger a DOM update inside `startViewTransition`), fetch current docs via Context7.
 
 ---
 

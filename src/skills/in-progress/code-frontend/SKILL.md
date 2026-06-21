@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.2.0"
+  version: "2.2.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -126,28 +126,7 @@ Notes:
   Keyboard accessible. Renders a link when href is provided, button otherwise.
 ```
 
-### 2.3 Check Context7 availability
-
-Call the Context7 `resolve-library` tool with the detected framework name (e.g. `nextjs`, `react`, `astro`):
-
-- If the call **succeeds**: Context7 is available — proceed to step 2.4.
-- If the tool is **not found or returns an error**: treat Context7 as absent and warn the user:
-
-```
-⚠ Context7 MCP is not installed or not configured in this harness.
-Framework-specific docs will not be fetched — code will rely on model knowledge only,
-which may be outdated for rapidly-evolving APIs (Next.js App Router, Astro, SolidJS, etc.).
-
-To install Context7: https://context7.com/docs/mcp
-```
-
-Continue without blocking — but note the absence in the completion summary.
-
-### 2.4 Fetch framework and CSS docs via Context7
-
-If Context7 is available, fetch current docs for the detected JS framework and CSS library. If a fetch fails, fall back to model knowledge and note it.
-
-### 2.5 Identify concern docs to load
+### 2.3 Identify concern docs to load
 
 Load concern docs based on the task:
 
@@ -166,15 +145,9 @@ Load concern docs based on the task:
 | Any async operation or heavy dependency | `references/performance.md` |
 | Error states or boundaries needed | `references/error-handling.md` |
 
-### 2.6 Wait for confirmation
+### 2.4 Wait for confirmation
 
-Present the following and wait for explicit confirmation before proceeding to Build:
-
-1. The interface contract from step 2.2
-2. The concern docs to load from step 2.5
-3. Context7 status — available (framework + CSS docs fetched) or absent (noted)
-
-If the user corrects any item, update and re-confirm.
+Present the interface contract from step 2.2 and wait for explicit confirmation before proceeding to Build. If the user corrects any item, update and re-confirm.
 
 ---
 
@@ -184,7 +157,7 @@ If the user corrects any item, update and re-confirm.
 
 ### 3.1 Load reference docs
 
-Load every concern doc identified in Phase 2 before writing any file. Apply its guidance — and any framework/CSS docs fetched via Context7 — throughout the Build phase.
+Load every concern doc identified in Phase 2 before writing any file. Apply its guidance throughout the Build phase.
 
 ### 3.2 Apply decomposition heuristics
 
@@ -240,7 +213,7 @@ Write in this order:
 
 - Wrap async operations in try/catch with typed errors
 - Provide a visible fallback UI for every error state — never silently swallow
-- Use error boundaries at route and feature boundaries; see `references/error-handling.md` for patterns
+- Catch errors at route and feature boundaries and render a recoverable UI; see `references/error-handling.md` for patterns
 
 #### Accessibility
 
@@ -289,6 +262,9 @@ Items are ordered by severity. P0 failures block delivery. P1–P3 failures must
 These issues make the output unsafe or broken. Stop and fix before anything else.
 
 - [ ] No `dangerouslySetInnerHTML` with unsanitized input
+- [ ] No user-controlled values used in `href` or `src` without validating the scheme — reject `javascript:` and `data:` URLs
+- [ ] All links to external origins include `rel="noopener noreferrer"`
+- [ ] Forms that mutate server state use CSRF protection (framework token, `SameSite` cookie, or equivalent)
 - [ ] No secrets or environment variables exposed to the client that should be server-only
 - [ ] All props match the confirmed interface contract exactly — no added, removed, or renamed props without re-confirming Plan
 - [ ] Every interactive element is reachable by keyboard and has a visible focus state
@@ -310,7 +286,7 @@ These issues violate production standards. Fix before closing.
 #### Error handling
 
 - [ ] Every async operation has a catch path with a visible fallback — no silent failures
-- [ ] Error boundary present at the nearest route or feature boundary
+- [ ] Errors at route and feature boundaries are caught and render a recoverable UI — not a blank screen
 - [ ] Loading and empty states are handled explicitly, not left as `undefined`
 
 #### SEO (skip for non-page components)
