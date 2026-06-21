@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.2.1"
+  version: "2.3.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -144,6 +144,7 @@ Load concern docs based on the task:
 | Any a11y complexity beyond basics | `references/a11y.md` |
 | Any async operation or heavy dependency | `references/performance.md` |
 | Error states or boundaries needed | `references/error-handling.md` |
+| Component or unit tests required | `references/testing.md` |
 
 ### 2.4 Wait for confirmation
 

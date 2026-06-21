@@ -2,6 +2,7 @@
 topic: code-frontend skill
 method: comparative analysis
 date: "2026-06-13"
+updated: "2026-06-21"
 ---
 
 # Brainstorm - code-frontend Skill
@@ -81,11 +82,14 @@ No external scripts, no bespoke config file.
   if none found, with user confirmation before proceeding.
 - **No config file:** Detection is purely from existing project files
 - **Validate phase checklist axes:**
-  - TypeScript: strict mode respected, no `any`, no unused imports, proper
+  - Security (P0): no unsanitized HTML injection, no `javascript:`/`data:` URL injection,
+    external links include `rel="noopener noreferrer"`, CSRF protection on mutating forms,
+    no server secrets exposed to the client
+  - TypeScript (P1): strict mode respected, no `any`, no unused imports, proper
     return types on all exported functions
-  - Accessibility: semantic HTML elements, ARIA only where native semantics
+  - Accessibility (P0/P1): semantic HTML elements, ARIA only where native semantics
     are insufficient, keyboard navigation, visible focus, no missing alt text
-  - Performance: no unnecessary re-renders, lazy loading where applicable,
+  - Performance (P2): no unnecessary re-renders, lazy loading where applicable,
     no layout-thrashing patterns, images sized appropriately
 - **Companion skill:** `frontend-design` handles visual direction;
   `code-frontend` handles code quality — they compose naturally
@@ -99,6 +103,12 @@ or concern means adding or updating one file only. No changes to `SKILL.md`.
 The agent reads only the reference docs relevant to the current task, keeping
 context lean regardless of how many references exist.
 
+### Plan Phase Confirmation
+
+Phase 2 confirms only the interface contract before Build starts. The list of
+concern docs to load is an internal implementation detail — it is not presented
+to the user for approval. This reduces friction without hiding anything meaningful.
+
 ### Language and Framework Scope (initial)
 
 - **Languages:** JavaScript, TypeScript (strict mode preferred)
@@ -109,7 +119,7 @@ context lean regardless of how many references exist.
 
 Validate phase items are tiered so the agent works through them in severity order:
 
-- **P0 — Blocking:** Security, a11y critical (missing alt, no keyboard nav), broken contracts
+- **P0 — Blocking:** Security (XSS, URL injection, CSRF, secrets), a11y critical (missing alt, no keyboard nav), broken contracts
 - **P1 — Required:** TypeScript strict violations, error boundaries absent, SEO missing meta
 - **P2 — Expected:** Performance patterns, decomposition heuristics, data fetching patterns
 - **P3 — Polish:** Animation/motion, image sizing, bundle hints
@@ -157,22 +167,23 @@ No other changes required.
 
 ### Open Questions
 
-- None — scope is clear and bounded.
+None.
 
 ## Next Steps
 
-1. Write `src/skills/code-frontend/SKILL.md` — 4 phases, interface contracts, decomposition heuristics, P0–P3 validate checklist
-2. Write `src/skills/code-frontend/references/conventions.md`
-3. Write `src/skills/code-frontend/references/error-handling.md`
-4. Write `src/skills/code-frontend/references/data-fetching.md`
-5. Write `src/skills/code-frontend/references/motion.md`
-6. Write `src/skills/code-frontend/references/a11y.md`
-7. Write `src/skills/code-frontend/references/performance.md`
-8. Write `src/skills/code-frontend/references/seo.md`
-9. Write `src/skills/code-frontend/references/styling.md`
-10. Write `src/skills/code-frontend/references/forms.md`
-11. Write `src/skills/code-frontend/references/state.md`
-12. Write `src/skills/code-frontend/references/pwa.md`
-13. Write `src/skills/code-frontend/references/i18n.md`
-14. Verify frontmatter passes all field rules (kebab-case name, no XML, description includes trigger phrases, under 1024 chars)
-15. Test triggering on representative queries
+1. ✅ Write `src/skills/code-frontend/SKILL.md` — 4 phases, interface contracts, decomposition heuristics, P0–P3 validate checklist
+2. ✅ Write `src/skills/code-frontend/references/conventions.md`
+3. ✅ Write `src/skills/code-frontend/references/error-handling.md`
+4. ✅ Write `src/skills/code-frontend/references/data-fetching.md`
+5. ✅ Write `src/skills/code-frontend/references/motion.md`
+6. ✅ Write `src/skills/code-frontend/references/a11y.md`
+7. ✅ Write `src/skills/code-frontend/references/performance.md`
+8. ✅ Write `src/skills/code-frontend/references/seo.md`
+9. ✅ Write `src/skills/code-frontend/references/styling.md`
+10. ✅ Write `src/skills/code-frontend/references/forms.md`
+11. ✅ Write `src/skills/code-frontend/references/state.md`
+12. ✅ Write `src/skills/code-frontend/references/pwa.md`
+13. ✅ Write `src/skills/code-frontend/references/i18n.md`
+14. ✅ Verify frontmatter passes all field rules
+15. ✅ Write `src/skills/code-frontend/references/testing.md`
+16. ⬜ Graduate from `in-progress/` to `published/`
