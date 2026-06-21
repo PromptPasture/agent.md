@@ -1,144 +1,407 @@
 ---
 name: code-backend
-description: Build or modify backend implementation. Use for API routes, services, middleware, workers, persistence, validation, authorization, configuration, observability, and backend behavior tests.
+description: You use this when the user asks to build an API endpoint, implement a service, add middleware, create a worker or queue consumer, write a migration, or produce any backend code in a real codebase. It generates production-ready code with auto-detected stack (Go, Node.js, Python, Java, Kotlin, Rust, and more), confirmed API contracts and DB schema before writing, and a P0–P3 quality checklist covering security, API correctness, observability, and performance.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.2"
+  version: "2.0.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: development
-  tags: [codegen, backend, engineering]
+  tags: [codegen, backend, api, engineering]
 ---
 
-# code-backend
+# Doing Backend
 
-Implement backend code for APIs, services, workers, persistence, middleware, validation, authorization, configuration, observability, and behavior tests. Use this as a router: identify the backend language from the request and repository, read exactly one language reference, and read at most one framework reference when the framework signal is explicit or unambiguous.
-
----
-
-## Variant Detection
-
-- **User intent:** Prefer explicit language, framework, runtime, package manager, file path, extension, or named backend surface from the prompt.
-- **Repository evidence:** Inspect dependency manifests, source layout, imports, test folders, and CI jobs before choosing a variant. Common signals include `pyproject.toml`, `requirements.txt`, `package.json`, `go.mod`, `pom.xml`, `build.gradle`, `Gemfile`, `Cargo.toml`, `.csproj`, `composer.json`, and `mix.exs`.
-- **Owned surface:** Routes, controllers, services, repositories, jobs, workers, middleware, validators, persistence, configuration, observability, and backend tests route to the language that already owns that surface.
-- **Adjacent skills:** Use `design-api` for contract-first API design unless the user asks to implement an existing contract. Use specialized auth, GraphQL, real-time, SQL, or test skills when those are the primary artifact rather than backend implementation.
-- **Ambiguity:** If multiple backend stacks remain plausible after inspection, ask one short question naming the likely choices.
+Generates production-ready backend code in the project's existing stack.
+Four phases: **Discover → Design → Build → Validate**. Each phase produces a confirmed output before the next begins. Phases are skippable when the user already provides the relevant context.
 
 ---
 
-## Language Routing Table
+## Phase 1 — Discover
 
-| Signal | Reference |
+**Goal:** Establish the project stack before writing a single line of code.
+
+### 1.1 Read project files
+
+Inspect the following in order. Stop reading a file once the needed signal is found.
+
+| File | Signal to extract |
 | --- | --- |
-| FastAPI, Django, Flask, Pydantic, SQLAlchemy, pytest, `pyproject.toml`, `.py` | `references/python.md` |
-| Express, Fastify, NestJS, Hono, Zod, Prisma, Vitest/Jest, `package.json`, `.js`, `.ts` | `references/nodejs.md` |
-| `net/http`, Chi, Gin, Echo, sqlc, GORM, `go.mod`, `.go` | `references/go.md` |
-| Spring Boot, Jakarta, Maven, Gradle, JPA, JUnit, `pom.xml`, `.java` | `references/java.md` |
-| Rails, Sinatra, ActiveRecord, Sidekiq, RSpec, `Gemfile`, `.rb` | `references/ruby.md` |
-| Axum, Actix Web, Tokio, SQLx, Diesel, `Cargo.toml`, `.rs` | `references/rust.md` |
-| ASP.NET Core, Minimal APIs, Controllers, EF Core, xUnit, `.csproj`, `.cs` | `references/csharp.md` |
-| Laravel, Symfony, Eloquent, Artisan, Pest/PHPUnit, `composer.json`, `.php` | `references/php.md` |
-| Ktor, Kotlin Spring Boot, coroutines, Exposed, Gradle Kotlin DSL, `.kt` | `references/kotlin.md` |
-| Phoenix, Plug, Ecto, Oban, ExUnit, `mix.exs`, `.ex`, `.exs` | `references/elixir.md` |
-| C services, embedded backends, POSIX sockets, libuv, Mongoose/CivetWeb, CMake, Make, `.c`, `.h` | `references/c.md` |
-| C++ services, Boost.Asio/Beast, Drogon, Pistache, gRPC, CMake, Conan, vcpkg, `.cpp`, `.hpp` | `references/cpp.md` |
-| VB.NET, ASP.NET, .NET Framework, Windows services, `.vbproj`, `.vb` | `references/visual-basic.md` |
-| plumber, Shiny APIs, RServe, batch analytics services, `renv.lock`, `.R`, `.Rmd` | `references/r.md` |
-| Delphi/Object Pascal services, RAD Server, DataSnap, Horse, Lazarus, `.pas`, `.dpr` | `references/delphi.md` |
-| Fortran numerical services, ISO_C_BINDING, fpm, CMake, batch compute jobs, `.f90`, `.f` | `references/fortran.md` |
-| Perl web services, Mojolicious, Dancer2, Catalyst, DBI, CPAN, `cpanfile`, `.pl`, `.pm` | `references/perl.md` |
-| Swift server code, Vapor, Hummingbird, SwiftNIO, `Package.swift`, `.swift` | `references/swift.md` |
-| Ada services, GNAT, Alire, SPARK, AWS Ada Web Server, `.adb`, `.ads` | `references/ada.md` |
-| MATLAB production server code, batch workers, toolboxes, `.m`, `.mlx`, `startup.m` | `references/matlab.md` |
+| `go.mod` | Go version; inspect imports for Gin, Echo, Fiber, Chi, or `net/http` |
+| `package.json` | Node.js; inspect deps for Express, Fastify, NestJS, Hono, Nitro |
+| `requirements.txt` / `pyproject.toml` / `Pipfile` | Python; inspect for FastAPI, Django, Flask |
+| `pom.xml` / `build.gradle` / `build.gradle.kts` | Java/Kotlin; inspect for Spring Boot, Quarkus, Micronaut, Ktor |
+| `Cargo.toml` | Rust; inspect for Axum, Actix-web, Warp |
+| `go.sum` / `package-lock.json` / `poetry.lock` / `Cargo.lock` | Confirm dependency versions |
+| ORM/query files | Detect GORM, sqlx, Prisma, TypeORM, SQLAlchemy, Hibernate, SeaORM, etc. |
+| Migration files | Detect Flyway, Liquibase, Alembic, golang-migrate, Prisma migrations |
+| Auth files | Detect JWT libs, OAuth clients, Passport, Spring Security, etc. |
+| Queue/worker files | Detect BullMQ, Celery, Kafka clients, RabbitMQ, Sidekiq, etc. |
+| Observability config | Detect OpenTelemetry, Prometheus, Datadog, structlog, Zap, etc. |
+| `docker-compose.yml` / `docker-compose.yaml` | DB type, cache, queue services in use |
 
----
+### 1.2 Output a detection summary
 
-## Framework References
-
-After reading the language reference, read at most one framework reference when the signal is explicit from the prompt or unambiguous from dependencies, imports, and file layout. Keep framework files flat in `references/`.
-
-| Signal | Reference |
-| --- | --- |
-| FastAPI, Starlette route dependencies | `references/python-fastapi.md` |
-| Django, Django REST Framework, `manage.py` | `references/python-django.md` |
-| Flask, Flask blueprints | `references/python-flask.md` |
-| Express, Express Router | `references/nodejs-express.md` |
-| Fastify, Fastify plugins | `references/nodejs-fastify.md` |
-| NestJS, modules, providers, decorators | `references/nodejs-nestjs.md` |
-| Hono | `references/nodejs-hono.md` |
-| Nitro, h3 server handlers | `references/nodejs-nitro.md` |
-| Gin | `references/go-gin.md` |
-| Chi | `references/go-chi.md` |
-| Echo | `references/go-echo.md` |
-| Fiber | `references/go-fiber.md` |
-| Spring Boot | `references/java-spring-boot.md` |
-| Quarkus | `references/java-quarkus.md` |
-| Micronaut | `references/java-micronaut.md` |
-| Ktor | `references/kotlin-ktor.md` |
-| Rails | `references/ruby-rails.md` |
-| Sinatra | `references/ruby-sinatra.md` |
-| Laravel | `references/php-laravel.md` |
-| Symfony | `references/php-symfony.md` |
-| Axum | `references/rust-axum.md` |
-| Actix Web | `references/rust-actix-web.md` |
-| Rocket | `references/rust-rocket.md` |
-| ASP.NET Core, Minimal APIs, controllers | `references/csharp-aspnet-core.md` |
-| Phoenix | `references/elixir-phoenix.md` |
-
----
-
-## Working Rules
-
-- **Inspect first:** Read the nearby route/controller, service, persistence, validation, error handling, dependency injection, logging, migration, factory, fixture, and test conventions before editing.
-- **Follow the local shape:** Put code where the repository already puts similar behavior. Prefer existing helpers, envelopes, domain errors, configuration loaders, database clients, queue abstractions, and test utilities over new patterns.
-- **Keep boundaries clear:** Keep transport handlers thin when a service or domain layer exists. Put business rules in the layer that already owns them, and keep persistence details behind the existing repository or ORM boundary.
-- **Apply SOLID pragmatically:** Give new functions, services, and domain objects one clear responsibility; keep interfaces narrow; depend on abstractions only when the project already does or when the boundary reduces real coupling or test risk.
-- **Preserve contracts:** Treat public API behavior, response shapes, status codes, event payloads, and job side effects as contracts. Avoid breaking changes unless the user asks for them, and update docs, generated specs, or fixtures when the repo keeps them in sync.
-- **Secure boundaries:** Validate input at the boundary, enforce authorization before side effects, avoid logging secrets, and store credentials only through existing configuration or secret mechanisms.
-- **Handle data safely:** Use transactions for multi-write operations. Make idempotency, retry classification, cancellation, timeouts, pagination stability, and concurrency behavior explicit for jobs, webhooks, payments, imports, and external integrations.
-- **Return consistent errors:** Use the project's existing error envelope or framework conventions. Do not expose stack traces, raw SQL errors, tokens, secret material, or sensitive internal IDs in user-facing responses.
-- **Test behavior:** Add or update focused tests for the requested behavior, including success, validation failure, authorization failure when relevant, and persistence or transaction edge cases for write flows.
-- **Verify locally:** Run the narrowest relevant formatter, linter, typecheck, migration check, and tests available. If a command cannot run, report the failure reason and the exact command.
-
----
-
-## Implementation Flow
-
-1. Identify the language and optional framework, then read the selected reference files.
-2. Inspect the closest existing implementation and tests for the same kind of backend surface.
-3. Plan the minimal file set across transport, service/domain, persistence, validation, configuration, and tests.
-4. Edit code using project conventions, keeping public behavior compatible unless instructed otherwise.
-5. Add or update tests that prove the behavior and likely failure paths.
-6. Run focused verification commands and fix regressions within the requested scope.
-
----
-
-## Output
-
-When editing a repository, finish with changed files, commands run, and verification status. Mention unresolved risks only when they affect handoff.
-
-When only drafting code, use this structure:
+Present a concise summary and wait for confirmation before proceeding:
 
 ```text
-Assumptions:
-- ...
-
-Files:
-- path/to/file
-
-Run:
-- command
-
-Notes:
-- ...
+Stack detected:
+  Language:      <detected language and version>
+  Framework:     <detected framework>
+  ORM:           <detected ORM or query library>
+  DB:            <detected database>
+  Auth:          <detected auth library or "none">
+  Queue:         <detected queue library or "none">
+  Observability: <detected logging/tracing libs or "none">
+  Monorepo:      yes/no
 ```
+
+If the user corrects any item, update and re-confirm.
+
+### 1.3 Empty project fallback
+
+If no stack files are found, suggest a default stack and wait for explicit user confirmation before proceeding:
+
+```text
+No stack detected. Suggested stack:
+  Language:   Go 1.22
+  Framework:  net/http (stdlib)
+  ORM:        sqlx
+  DB:         PostgreSQL
+
+Confirm, or tell me what stack to use instead.
+```
+
+Do not proceed to Design until the stack is confirmed.
 
 ---
 
-## Verification
+## Phase 2 — Design
 
-- [ ] Exactly one language reference was selected from concrete user or repository evidence
-- [ ] At most one framework reference was loaded, and only for an explicit or unambiguous framework signal
-- [ ] The implementation follows nearby backend conventions and preserves public contracts unless requested otherwise
-- [ ] Focused backend tests and relevant formatter, linter, typecheck, migration, or test commands were run or the blocker was reported
+**Goal:** Produce confirmed API contracts, DB schema changes, and service interface signatures before any code is written.
+
+### 2.1 Ask clarifying questions (if needed)
+
+Before drafting contracts, resolve any ambiguity with a single focused question. Do not ask more than one question at a time. Skip this step if the user's request is already specific enough.
+
+Common gaps to check:
+
+- Is this a new endpoint/service or modifying an existing one?
+- Where does it live in the file tree?
+- What authentication/authorization does this route require?
+- Are there DB schema changes (new tables, columns, indexes)?
+- Any async/background work required?
+
+### 2.2 Draft API contracts
+
+For every endpoint added or changed, produce the contract in this format. Omit sections that are genuinely not applicable.
+
+```text
+Endpoint:   POST /api/v1/users
+Auth:       Bearer token (role: admin)
+
+Request:
+  Content-Type: application/json
+  Body: {
+    email:    string  required  Valid email address
+    name:     string  required  Display name
+    role:     string  optional  Default: "viewer"
+  }
+
+Response 201:
+  Content-Type: application/json
+  Body: {
+    id:         string  UUID
+    email:      string
+    name:       string
+    role:       string
+    created_at: string  ISO 8601
+  }
+
+Errors:
+  400  { code: "VALIDATION_ERROR", message: string, fields: { field: string[] } }
+  401  { code: "UNAUTHORIZED",     message: string }
+  403  { code: "FORBIDDEN",        message: string }
+  409  { code: "CONFLICT",         message: string }
+  500  { code: "INTERNAL_ERROR",   message: string }
+```
+
+### 2.3 Draft DB schema changes
+
+List every schema change required. Use DDL or migration pseudocode — match the project's existing migration format.
+
+```sql
+CREATE TABLE users (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email      TEXT NOT NULL UNIQUE,
+  name       TEXT NOT NULL,
+  role       TEXT NOT NULL DEFAULT 'viewer',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX idx_users_email ON users (email);
+```
+
+Omit this section if no schema changes are required.
+
+### 2.4 Draft service interface contracts
+
+List the service-layer signatures that back the endpoints above.
+
+```pseudocode
+UserService:
+  createUser(input: CreateUserInput) → User | error
+  getUser(id: string) → User | error
+
+CreateUserInput:
+  email  string  required
+  name   string  required
+  role   string  optional  default: "viewer"
+
+User:
+  id         string
+  email      string
+  name       string
+  role       string
+  created_at datetime
+```
+
+### 2.5 Identify concern docs to load
+
+Load concern docs based on the task:
+
+| Signal | Load |
+| --- | --- |
+| DB queries, ORM, migrations required | `references/persistence.md` |
+| Auth/authz on any route | `references/auth.md` |
+| Input validation at entry points | `references/validation.md` |
+| Worker, queue, or background job | `references/workers.md` |
+| Logging, tracing, or metrics | `references/observability.md` |
+| Config or secrets management | `references/config.md` |
+| Unit, integration, or contract tests required | `references/testing.md` |
+| Query performance or caching concern | `references/performance.md` |
+| REST design, versioning, or pagination | `references/api-design.md` |
+| Security patterns beyond basic auth | `references/security.md` |
+| Error handling patterns required | `references/error-handling.md` |
+| No existing project conventions found | `references/conventions.md` |
+
+### 2.6 Wait for confirmation
+
+Present the API contracts, schema changes, and service interfaces from steps 2.2–2.4, then wait for explicit confirmation before proceeding to Build. If the user corrects any item, update and re-confirm.
+
+---
+
+## Phase 3 — Build
+
+**Goal:** Write production-ready files that match the confirmed Design contracts and detected stack.
+
+### 3.1 Load reference docs
+
+Load every concern doc identified in Phase 2 before writing any file. Apply its guidance throughout the Build phase.
+
+### 3.2 Apply decomposition heuristics
+
+Before writing, state the decomposition rationale out loud. Split into smaller units when any of the following is true:
+
+- A handler or service method exceeds ~60 lines
+- A file exceeds ~300 lines
+- A function has more than 4–5 parameters — group into a struct/object
+- A service touches more than one domain boundary
+- A piece of logic is used in more than one place
+
+Prefer thin handlers and fat services. Do not create abstractions that exist only to satisfy a single use case.
+
+### 3.3 File and folder conventions
+
+Follow the project's existing conventions if present. When no convention is established, apply these defaults:
+
+```text
+internal/
+  handlers/       # HTTP handler functions or controllers
+  services/       # Business logic, one file per domain
+  repository/     # DB access layer, one file per domain
+  models/         # Domain types / entities
+  middleware/     # HTTP middleware
+  workers/        # Background jobs and queue consumers
+  config/         # App config loading and validation
+```
+
+- One domain per file in `services/` and `repository/`
+- Handlers delegate to services — no business logic in handlers
+- Repository layer owns all DB access — no raw queries in services
+- Feature folders over type folders where the project already uses them
+
+### 3.4 Code standards
+
+Apply these unconditionally, regardless of what exists in the project:
+
+#### Types and safety
+
+- No untyped boundaries — no dynamic/untyped values at service or handler edges
+- Explicit return types on all exported or public functions
+- Errors as typed values — no raw strings at service boundaries
+- Null/nil safety: check before dereference; return explicit zero values or errors
+
+#### Handler structure
+
+Write handlers in this order:
+
+1. Parse and bind request
+2. Validate input (reject early, before any DB or service call)
+3. Call service
+4. Map service result to response
+5. Write response with correct status code
+
+#### Error handling
+
+- Never swallow errors silently — propagate or log with context
+- Return typed error responses that match the Design contract exactly
+- Wrap errors with context at each layer boundary; see `references/error-handling.md`
+
+#### Security
+
+- Validate all inputs at the entry point before any processing
+- Never log secrets, tokens, or PII
+- Apply authentication and authorization checks before handler logic runs
+- See `references/security.md` for patterns beyond the basics
+
+#### Performance
+
+- No N+1 queries — join or batch-load related data
+- No unbounded queries — always apply LIMIT; add pagination where the result set can grow
+- See `references/performance.md` for deeper patterns
+
+### 3.5 Write files
+
+Write each file in full. No placeholders, no TODOs, no stub implementations. If a piece is genuinely out of scope for this task, omit it and state why — do not leave it half-written.
+
+After writing all files, list every file created or modified:
+
+```text
+Created:
+  <handler file>
+  <service file>
+  <repository file>
+  <model/schema file>
+  <migration file>
+
+Modified:
+  <router/entry file>   (registered POST /api/v1/users)
+```
+
+Present this list and wait for the user to confirm before proceeding to Validate.
+
+---
+
+## Phase 4 — Validate
+
+**Goal:** Work through every checklist item before declaring the output complete. Fix any issue found — do not report and skip.
+
+Items are ordered by severity. P0 failures block delivery. P1–P3 failures must be resolved before closing but do not require re-confirmation from the user unless the fix changes the Design contracts.
+
+---
+
+### P0 — Blocking
+
+These issues make the output insecure or broken. Stop and fix before anything else.
+
+- [ ] Every protected route verifies authentication before handler logic runs
+- [ ] Authorization (role/scope check) applied on every route that requires it
+- [ ] All input validated at entry points — reject before any DB or service call
+- [ ] No SQL injection: parameterized queries or ORM-safe binding used throughout
+- [ ] No command injection: no `exec` / `os.system` / shell calls with user-controlled values
+- [ ] No path traversal: file paths constructed from user input are sanitized and bounded
+- [ ] No secrets, tokens, or PII written to logs or response bodies
+- [ ] All endpoints match the confirmed API contract exactly — method, path, request schema, response schema, status codes
+- [ ] No broken API contract: added, removed, or renamed fields re-confirmed with user
+
+---
+
+### P1 — Required
+
+These issues violate production standards. Fix before closing.
+
+#### Type safety
+
+- [ ] No `any` / `interface{}` / untyped `object` at service or handler boundaries
+- [ ] All exported functions have explicit return types
+- [ ] Errors are typed values — not raw strings at service boundaries
+
+#### Error handling
+
+- [ ] Every error is either returned or logged with context — no silent discard
+- [ ] Error responses match the contract shape from Design phase exactly
+- [ ] All error status codes are correct and documented in the contract
+
+#### API correctness
+
+- [ ] All response fields present and correctly typed
+- [ ] Pagination applied wherever the result set is unbounded
+- [ ] Content-Type headers set correctly on all responses
+
+---
+
+### P2 — Expected
+
+These issues reduce quality below senior standards. Fix before closing.
+
+#### Observability
+
+- [ ] Structured log entry on every request (method, path, status, latency)
+- [ ] Structured log entry on every error with enough context to reproduce
+- [ ] Tracing span created for every external call (DB, HTTP, queue, cache)
+- [ ] Metrics recorded for request count, error rate, and latency where instrumentation exists
+
+#### Query performance
+
+- [ ] No N+1 queries — related data joined or batch-loaded
+- [ ] No unbounded queries — LIMIT applied; pagination where result set can grow
+- [ ] Missing index hints noted in migration comments where applicable
+
+#### Boundary validation
+
+- [ ] Input validated at service entry points as well as handler entry points
+- [ ] Output sanitized before writing to external systems (DB, queue, downstream API)
+
+#### Code quality
+
+- [ ] No handler exceeds ~60 lines — extract to service if so
+- [ ] No file exceeds ~300 lines — split by domain if so
+- [ ] No logic duplicated across files that could be a shared utility or middleware
+
+---
+
+### P3 — Polish
+
+Nice-to-have. Fix if the effort is small; note and defer otherwise.
+
+- [ ] Config values are loaded from environment — no hardcoded ports, DB URLs, or secrets
+- [ ] Worker/queue handlers are idempotent — safe to replay on failure
+- [ ] Graceful shutdown: in-flight requests drain before process exits
+- [ ] Connection pool sizing noted in config (DB, HTTP client, queue)
+- [ ] Rate limiting applied on public-facing endpoints where abuse is plausible
+
+---
+
+### Completion summary
+
+After all items are resolved, output:
+
+```text
+Validate complete.
+
+P0  ✓ all passed
+P1  ✓ all passed
+P2  ✓ all passed      (or: 1 deferred — [item] — [reason])
+P3  ✓ all passed      (or: 1 deferred — [item] — [reason])
+
+Files delivered:
+  <handler file>
+  <service file>
+  <repository file>
+  <model/schema file>
+  <migration file>
+```
+
+If any P2 or P3 item was deferred, state the reason and confirm it is acceptable before closing.
