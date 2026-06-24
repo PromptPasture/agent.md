@@ -4,7 +4,7 @@ description: You MUST use this when the user asks to write or revise a PRD, prod
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.1"
+  version: "1.4.2"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
@@ -24,7 +24,7 @@ Produce a complete, structured **Product Requirements Document (PRD)** for the d
 5. Define the customer problem, affected users, current behavior, desired outcome, business value, and cost of inaction before describing a solution.
 6. Establish measurable goals, scope boundaries, non-goals, constraints, dependencies, risks, assumptions, and open questions.
 7. Write outcome-focused requirements and acceptance signals. Include relevant failure, empty, permission, recovery, and edge conditions.
-8. Keep technical implementation detail out of the PRD unless it is a fixed product constraint. Route detailed architecture, interfaces, data contracts, or implementation decisions to a technical specification.
+8. Keep technical implementation detail out of the PRD unless it is a fixed product constraint. Route detailed architecture, interfaces, data contracts, or implementation decisions to `write-spec`.
 9. Scale the document to the initiative: use a lean PRD for a narrow feature and a fuller PRD for a cross-functional product or launch.
 10. Self-review the draft for unsupported claims, contradictions, vague language, hidden scope, missing decisions, and requirements that cannot be verified.
 
@@ -146,7 +146,7 @@ related:
 - **Handle incomplete input:** ask one concise blocking question when the customer problem or intended user is unknown; otherwise draft a lean PRD with visible assumptions and open questions.
 - **Avoid fabricated metrics:** when a baseline, target, or measurement source is unknown, define the intended outcome and measurement method and leave the unresolved value as `TBD`.
 - **Surface conflicts:** identify contradictory requirements and the decision needed instead of silently choosing.
-- **Route mismatched requests:** use the corresponding workflow when the request is primarily a technical specification, implementation plan, user story, or launch checklist, while retaining established product context.
+- **Route mismatched requests:** when the request is primarily a technical specification, data contract, UI spec, or implementation plan, use `write-spec` instead. Carry the established product context into it. When the request is a user story, use `write-user-story`.
 
 ## Verification
 

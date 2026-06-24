@@ -7,7 +7,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.2"
+  version: "1.4.3"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
@@ -24,7 +24,7 @@ A **router** skill to generate specific product specification document types. Id
 
 A strong product specification aligns the team on what is being built, why it matters, how the customer will use it, and how success will be measured. It should reduce ambiguity, feature creep, delays, and cross-functional disagreement by making responsibilities, scope, design, test plans, release work, and ongoing management explicit.
 
-When product intent is missing, ask for or infer it before writing technical detail. If the user needs product purpose, personas, market context, or success metrics more than delivery detail, route them to `write-prd` first or state the assumptions clearly.
+When product intent is missing, ask for or infer it before writing technical detail. If the user needs product purpose, personas, market context, or success metrics more than delivery detail, use `write-prd` first, then return here with that context. A spec without a clear problem statement isn't ready for review.
 
 ---
 
