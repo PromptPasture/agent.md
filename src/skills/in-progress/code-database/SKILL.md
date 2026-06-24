@@ -4,7 +4,7 @@ description: Use when the user asks to design a table, write a migration, add an
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.1"
+  version: "2.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: database
@@ -200,7 +200,6 @@ migrations/
   YYYYMMDDHHMMSS_<description>.down.sql    # rollback migration
 
 db/
-  schema/         # DDL definitions (reference only — migrations are source of truth)
   queries/        # Named SQL query files (one file per domain)
   models/         # ORM model definitions
   repository/     # Repository implementations
@@ -252,8 +251,6 @@ Created:
   db/models/user.go
   db/repository/user_repository.go
 
-Modified:
-  db/schema/users.sql   (updated reference definition)
 ```
 
 Present this list and wait for the user to confirm before proceeding to Validate.
@@ -320,7 +317,6 @@ These issues reduce quality below senior standards. Fix before closing.
 
 #### Observability
 
-- [ ] Slow query threshold noted in config or README where the engine has a configurable slow query log
 - [ ] Query tracing span created if the project uses OpenTelemetry or equivalent
 
 ---
