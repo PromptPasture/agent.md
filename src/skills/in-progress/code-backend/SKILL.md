@@ -4,7 +4,7 @@ description: You use this when the user asks to build an API endpoint, implement
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.1"
+  version: "2.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: development
@@ -223,7 +223,6 @@ internal/
   repository/     # DB access layer, one file per domain
   models/         # Domain types / entities
   middleware/     # HTTP middleware
-  workers/        # Background jobs and queue consumers
   config/         # App config loading and validation
 ```
 
@@ -377,9 +376,6 @@ These issues reduce quality below senior standards. Fix before closing.
 Nice-to-have. Fix if the effort is small; note and defer otherwise.
 
 - [ ] Config values are loaded from environment — no hardcoded ports, DB URLs, or secrets
-- [ ] Worker/queue handlers are idempotent — safe to replay on failure
-- [ ] Graceful shutdown: in-flight requests drain before process exits
-- [ ] Connection pool sizing noted in config (DB, HTTP client, queue)
 - [ ] Rate limiting applied on public-facing endpoints where abuse is plausible
 
 ---
