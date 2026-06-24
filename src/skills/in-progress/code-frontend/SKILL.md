@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.3.0"
+  version: "2.3.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -14,7 +14,7 @@ metadata:
 # Doing Frontend
 
 Generates production-ready frontend code in the project's existing stack.
-Four phases: **Discover → Plan → Build → Validate**. Each phase produces a confirmed output before the next begins. Phases are skippable when the user already provides the relevant context.
+Four phases: **Discover → Plan → Build → Validate**. Each phase produces a confirmed output before the next begins. Skip phases when you already have the context.
 
 ---
 

@@ -4,14 +4,14 @@ description: Organize material into meaningful groups. Use for classification re
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: data
   tags: [classification, taxonomy, organization]
 ---
 
-# Classifing into Groups
+# Classifying into Groups
 
 Group material by explicit criteria while preserving edge cases.
 

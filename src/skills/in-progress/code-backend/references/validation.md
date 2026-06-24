@@ -4,10 +4,10 @@
 
 ## Core Rules
 
-- Validate at the entry point — reject before any service or DB call
-- Validate again at service boundaries when input crosses a trust boundary
-- Never trust data arriving from external systems (HTTP, queue, webhook)
-- Return all validation errors in one response — do not fail-fast on the first field
+- Validate at the entry point. Reject before any service or DB call.
+- Validate again at service boundaries when input crosses a trust boundary.
+- Never trust data arriving from external systems (HTTP, queue, webhook).
+- Return all validation errors in one response. Do not fail-fast on the first field.
 
 ---
 
@@ -78,7 +78,7 @@ After validation, sanitize before use:
 
 ## What NOT to Do
 
-- Do not rely on the DB to catch missing required fields — validate before the query
-- Do not silently coerce invalid types — return an error
-- Do not truncate oversized input — reject it
-- Do not log raw request bodies — they may contain secrets or PII
+- Do not rely on the DB to catch missing required fields. Validate before the query.
+- Do not silently coerce invalid types. Return an error.
+- Do not truncate oversized input. Reject it.
+- Do not log raw request bodies. They may contain secrets or PII.

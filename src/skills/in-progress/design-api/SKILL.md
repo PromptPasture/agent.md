@@ -7,7 +7,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.1"
+  version: "1.1.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: api
@@ -16,7 +16,7 @@ metadata:
 
 # design-api
 
-Produce a contract-first API specification before implementation code exists. Route to the right reference, load only that file, and output the finished contract in the requested format.
+Produce a contract-first API specification. Route to the right reference, load only that file, and output the finished contract in the requested format.
 
 ---
 

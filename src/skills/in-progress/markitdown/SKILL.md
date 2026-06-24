@@ -9,7 +9,7 @@ description: >-
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: document-conversion
@@ -115,4 +115,4 @@ Only the six extensions above are supported. For other formats, use the appropri
 
 ### Error: conversion failed
 
-markitdown may fail on corrupted or password-protected files. Tell the user the file could not be read and ask them to verify it opens correctly in itsnative application.
+markitdown may fail on corrupted or password-protected files. Tell the user the file could not be read and ask them to verify it opens correctly in its native application.

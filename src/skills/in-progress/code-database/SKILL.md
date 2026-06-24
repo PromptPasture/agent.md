@@ -4,7 +4,7 @@ description: Use when the user asks to design a table, write a migration, add an
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.0"
+  version: "2.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: database
@@ -14,7 +14,7 @@ metadata:
 # Doing Database
 
 Generates production-ready schema, migrations, and queries in the project's existing DB stack.
-Four phases: **Discover → Design → Build → Validate**. Each phase produces a confirmed output before the next begins. Phases are skippable when the user already provides the relevant context.
+Four phases: **Discover → Design → Build → Validate**. Each phase produces a confirmed output before the next begins. Skip phases when you already have the context.
 
 ---
 

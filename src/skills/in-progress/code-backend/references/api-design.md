@@ -136,7 +136,7 @@ Version in the URL path:
 - Maintain the previous version until consumers have migrated
 - Deprecate by adding a `Deprecation` and `Sunset` header to responses
 
-Do not version via request headers or query params — URL versioning is explicit and cacheable.
+Do not version via request headers or query params. URL versioning is explicit and cacheable.
 
 ---
 

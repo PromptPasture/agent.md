@@ -4,10 +4,10 @@
 
 ## Core Rules
 
-- Every worker job must be idempotent — safe to process more than once
-- Acknowledge (ack) a message only after successful processing — never before
-- Failed jobs must be retried with exponential backoff or moved to a dead-letter queue
-- Workers are independent processes — they share the DB but own their own lifecycle
+- Every worker job must be idempotent. It is safe to process more than once.
+- Acknowledge (ack) a message only after successful processing. Never before.
+- Failed jobs must be retried with exponential backoff or moved to a dead-letter queue.
+- Workers are independent processes. They share the DB but own their own lifecycle.
 
 ---
 

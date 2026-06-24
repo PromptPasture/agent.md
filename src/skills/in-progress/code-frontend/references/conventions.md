@@ -1,6 +1,6 @@
 # Code Conventions
 
-Apply these conventions when no project-level standard exists. When one does exist, follow the project — note any deviation.
+Apply these when no project standard exists. If one does, follow it and note any deviations.
 
 ---
 

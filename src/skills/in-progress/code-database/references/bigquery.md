@@ -4,11 +4,11 @@
 
 ## Core Rules
 
-- BigQuery is a columnar, serverless OLAP engine — it is not a transactional database; do not use it as one
-- Always specify column lists in `SELECT` — scanning unused columns costs money and time on a columnar engine
-- Partition large tables by date or ingestion time — most queries filter on a time range
-- Cluster tables on the columns most used in `WHERE` and `JOIN` conditions after partitioning
-- Use parameterized queries (`@param`) — never string-interpolate user input into SQL
+- BigQuery is a columnar, serverless OLAP engine. Don't use it for transactional work
+- Always specify columns in `SELECT`. Scanning unused columns costs money and time on a columnar engine
+- Partition large tables by date or ingestion time. Most queries filter by time range
+- Cluster tables on columns most used in `WHERE` and `JOIN` conditions after partitioning
+- Use parameterized queries (`@param`). Never interpolate user input into SQL
 
 ---
 

@@ -8,7 +8,7 @@ Measure before optimising. Never add complexity for a problem that does not exis
 
 ### Avoid unnecessary re-renders
 
-Only memoize when a measured problem exists. Memoization adds complexity and is only useful when:
+Memoize only when a concrete problem exists. It adds complexity and is only useful when:
 
 - A child component re-renders frequently with stable inputs
 - A derived value computation is demonstrably expensive (> ~1ms)

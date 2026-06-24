@@ -1,10 +1,10 @@
 ---
 name: ask
-description: You MUST use this when missing context or unknowns would cause guessing. Generate the set of high-leverage questions that would change the next action. Use for question-generation requests like "what should I ask", "right questions", "what are we missing", "clarify this", and ambiguous requests blocked by unknowns.
+description: You MUST use this when missing context or unknowns would cause guessing. Generate the set of high-impact questions that would change the next action. Use for question-generation requests like "what should I ask", "right questions", "what are we missing", "clarify this", and ambiguous requests blocked by unknowns.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.0"
+  version: "1.2.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: collaboration

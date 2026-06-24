@@ -101,7 +101,7 @@ Prefer config flags over environment name checks where possible (e.g., `RATE_LIM
 
 ## What NOT to Do
 
-- Do not hardcode ports, base URLs, DB connection strings, or timeouts
-- Do not log config at startup if it contains secrets — log a masked summary instead
-- Do not use config files (YAML, TOML, JSON) for secrets — they end up in the repo or image
-- Do not read environment variables deep in the call stack — read once at startup and pass via struct
+- Do not hardcode ports, base URLs, DB connection strings, or timeouts.
+- Do not log config at startup if it contains secrets. Log a masked summary instead.
+- Do not use config files (YAML, TOML, JSON) for secrets. They end up in the repo or image.
+- Do not read environment variables deep in the call stack. Read once at startup and pass via struct.

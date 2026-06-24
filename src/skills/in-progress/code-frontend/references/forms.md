@@ -1,6 +1,6 @@
 # Forms
 
-Forms must be accessible, validated at the right level, and clear about errors before submission. Never rely on browser defaults alone.
+Forms must be accessible, validated at the right level, and clear about errors before submission. Don't rely on browser defaults.
 
 ---
 

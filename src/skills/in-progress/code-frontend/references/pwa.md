@@ -1,6 +1,6 @@
 # Progressive Web App (PWA)
 
-A PWA must be useful offline or in poor network conditions — not just installable. Start with a solid manifest and service worker caching strategy before adding the install prompt.
+A PWA must work offline or on poor connections, not just be installable. Implement a solid manifest and service worker caching strategy first.
 
 ---
 

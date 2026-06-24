@@ -1,7 +1,7 @@
 # Styling
 
-CSS principles that apply regardless of framework or CSS library.
-Never mix styling approaches within a single component — pick one and be consistent across the feature.
+CSS principles apply across frameworks and libraries.
+Don't mix styling approaches within a component. Pick one and keep it consistent across the feature.
 
 ---
 

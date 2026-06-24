@@ -1,6 +1,6 @@
 # Error Handling
 
-Every error state must be visible to the user. Never swallow errors silently.
+Show every error to the user. Never hide errors silently.
 
 ---
 

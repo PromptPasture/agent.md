@@ -4,10 +4,10 @@
 
 ## Core Rules
 
-- All DB access lives in the repository layer — no raw queries in services or handlers
-- Always use parameterized queries or ORM bindings — never string interpolation
-- Every query accepts a cancellation context — enable timeout and cancellation
-- Migrations are the source of truth for schema — no DDL outside migration files
+- All DB access lives in the repository layer. No raw queries in services or handlers.
+- Always use parameterized queries or ORM bindings. Never use string interpolation.
+- Every query accepts a cancellation context to enable timeout and cancellation.
+- Migrations are the source of truth for schema. No DDL outside migration files.
 
 ---
 
@@ -158,7 +158,7 @@ Add a `deleted_at` timestamp column when records must be retained for audit or r
 
 ## What NOT to Do
 
-- Do not use `SELECT *` in application queries — list columns explicitly
-- Do not load entire tables into memory for processing — stream or paginate
-- Do not put retry logic inside the repository — retry at the service or handler level
-- Do not swallow not-found errors — surface them as a typed `NOT_FOUND` error
+- Do not use `SELECT *` in application queries. List columns explicitly.
+- Do not load entire tables into memory for processing. Stream or paginate.
+- Do not put retry logic inside the repository. Retry at the service or handler level.
+- Do not swallow not-found errors. Surface them as a typed `NOT_FOUND` error.

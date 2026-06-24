@@ -1,6 +1,6 @@
 # SEO
 
-SEO applies to pages, not components. Skip this reference for non-page components unless they render content that affects crawlability.
+SEO applies to pages, not components. Skip this for non-page components unless they affect crawlability.
 
 ---
 

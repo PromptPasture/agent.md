@@ -4,7 +4,7 @@ description: Manage active work across people, agents, tasks, dependencies, bloc
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: management
@@ -33,7 +33,7 @@ Keep active work understandable across owners, dependencies, blockers, and hando
 - **Lead with current state**: summarize whether work is on track, blocked, or needs a decision.
 - **Use an execution table when useful**: include workstream, owner, status, blocker, dependency, and next action.
 - **Separate assumptions**: mark assumed owners, priorities, deadlines, or statuses.
-- **Preserve handoff state**: include enough context for continuation without rereading the whole thread.
+- **Preserve handoff state**: include enough context to continue without rereading the whole thread.
 - **Avoid over-documenting**: keep the view proportional to the number of workstreams.
 
 ---

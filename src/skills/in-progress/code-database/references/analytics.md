@@ -4,10 +4,10 @@
 
 ## Core Rules
 
-- Analytical queries run against OLAP engines or read replicas — never against the primary OLTP replica
-- Partition large tables by time — most analytical queries filter on a date range
-- Pre-aggregate where possible — materialised views or summary tables are cheaper than repeated full scans
-- Avoid row-by-row processing — set-based operations are orders of magnitude faster at scale
+- Run analytical queries against OLAP engines or read replicas, not the primary OLTP replica
+- Partition large tables by time. Most analytical queries filter on date ranges
+- Pre-aggregate where possible. Materialised views or summary tables beat repeated full scans
+- Avoid row-by-row processing. Set-based operations are orders of magnitude faster at scale
 
 ---
 
@@ -22,7 +22,7 @@
 | Schema style | Normalised (3NF) | Denormalised (star / snowflake) |
 | Engine examples | Postgres, MySQL, SQL Server | BigQuery, Snowflake, ClickHouse, Redshift |
 
-Route analytical workloads to a dedicated OLAP engine or a read replica — do not run full-table aggregations on the primary OLTP database.
+Route analytical workloads to a dedicated OLAP engine or read replica. Don't run full-table aggregations on the primary OLTP database.
 
 ---
 

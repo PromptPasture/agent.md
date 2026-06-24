@@ -106,7 +106,7 @@ if "orders:write" not in context.claims.scopes:
 
 ## What NOT to Do
 
-- Do not check auth inside repository methods — auth lives above the data layer
-- Do not return 404 when the resource exists but is forbidden — return 403
-- Do not expose user IDs as sequential integers — use UUIDs or opaque slugs
-- Do not trust client-supplied user IDs — always derive identity from the verified token/session
+- Do not check auth inside repository methods. Auth lives above the data layer.
+- Do not return 404 when the resource exists but is forbidden. Return 403.
+- Do not expose user IDs as sequential integers. Use UUIDs or opaque slugs.
+- Do not trust client-supplied user IDs. Always derive identity from the verified token or session.

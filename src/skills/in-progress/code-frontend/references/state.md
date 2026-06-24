@@ -1,6 +1,6 @@
 # State Management
 
-Choose the simplest state solution that covers the need. Add complexity only when a simpler tool genuinely cannot do the job.
+Pick the simplest state solution that solves the problem. Add complexity only when simpler tools fail.
 
 ---
 

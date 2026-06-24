@@ -16,7 +16,7 @@ Choose the fetching layer that matches the detected stack. Apply it consistently
 | Remix | `loader` / `action` functions |
 | Vite SPA | Client fetching library (React Query, SWR, TanStack Query) |
 
-**Prefer server fetching over client fetching** when the framework supports it — it reduces client bundle size, eliminates loading flicker, and keeps sensitive logic off the client.
+Prefer server fetching when the framework supports it. It reduces client bundle size, prevents loading flicker, and keeps sensitive logic off the client.
 
 ---
 

@@ -4,7 +4,7 @@ description: You use this when the user asks to build an API endpoint, implement
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.0"
+  version: "2.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: development
@@ -20,7 +20,7 @@ Four phases: **Discover → Design → Build → Validate**. Each phase produces
 
 ## Phase 1 — Discover
 
-**Goal:** Establish the project stack before writing a single line of code.
+**Goal:** Identify the project stack before writing any code.
 
 ### 1.1 Read project files
 

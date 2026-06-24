@@ -1,6 +1,6 @@
 # Testing
 
-Tests verify behavior from the user's perspective — not implementation details. Write tests that would still pass after a refactor that changes no observable behavior.
+Tests verify observable behavior, not implementation. Write tests that survive refactors when behavior doesn't change.
 
 ---
 

@@ -4,7 +4,7 @@ description: You MUST use this before any creative work - creating features, bui
 license: Apache-2.0
 metadata:
   author: github.com/obra/superpowers
-  version: "3.1.1"
+  version: "3.1.2"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: research
@@ -100,7 +100,7 @@ digraph brainstorming {
 - Break the system into smaller units that each have one clear purpose, communicate through well-defined interfaces, and can be understood and tested independently
 - For each unit, you should be able to answer: what does it do, how do you use it, and what does it depend on?
 - Can someone understand what a unit does without reading its internals? Can you change the internals without breaking consumers? If not, the boundaries need work.
-- Smaller, well-bounded units are also easier for you to work with - you reason better about code you can hold in context at once, and your edits are more reliable when files are focused. When a file grows large, that's often a signal that it's doing too much.
+- Smaller, well-bounded units are also easier to work with. You reason better about code you can hold in context at once, and your edits are more reliable when files are focused. When a file grows large, that's often a signal that it's doing too much.
 
 **Working in existing codebases:**
 

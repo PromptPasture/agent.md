@@ -4,10 +4,10 @@
 
 ## Core Rules
 
-- Test behaviour, not implementation — test what a function does, not how it does it
-- Unit tests cover services and pure logic; integration tests cover repositories and handlers
-- Do not mock the DB in integration tests — use a real DB (test container or test schema)
-- Each test is independent: seed its own data and clean up after itself
+- Test behaviour, not implementation. Test what a function does, not how it does it.
+- Unit tests cover services and pure logic. Integration tests cover repositories and handlers.
+- Do not mock the DB in integration tests. Use a real DB (test container or test schema).
+- Each test is independent. Seed its own data and clean up after itself.
 
 ---
 
@@ -126,7 +126,7 @@ createUser_insufficientRole_returns403
 
 ## What NOT to Do
 
-- Do not mock the DB in integration tests — mocks hide real constraint and query behaviour
-- Do not share state between tests — each test seeds and cleans its own data
-- Do not test implementation details — test the public contract (inputs and outputs)
-- Do not suppress test output to make logs cleaner — noisy tests surface real problems
+- Do not mock the DB in integration tests. Mocks hide real constraint and query behaviour.
+- Do not share state between tests. Each test seeds and cleans its own data.
+- Do not test implementation details. Test the public contract (inputs and outputs).
+- Do not suppress test output to make logs cleaner. Noisy tests surface real problems.

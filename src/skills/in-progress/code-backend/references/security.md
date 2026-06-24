@@ -4,10 +4,10 @@
 
 ## Core Rules
 
-- Validate all input at entry points — reject before processing
-- Never trust client-supplied IDs for ownership — derive identity from the verified token
-- Never expose internal error details, stack traces, or SQL to clients
-- Secrets never appear in code, logs, or response bodies
+- Validate all input at entry points. Reject before processing.
+- Never trust client-supplied IDs for ownership. Derive identity from the verified token.
+- Never expose internal error details, stack traces, or SQL to clients.
+- Secrets must never appear in code, logs, or response bodies.
 
 ---
 
@@ -166,8 +166,8 @@ if resource.userID != context.claims.userID and context.claims.role != "admin":
 
 ## What NOT to Do
 
-- Do not roll your own crypto — use established libraries
-- Do not return 404 when a resource exists but is forbidden — return 403
-- Do not log auth tokens, even partially
-- Do not expose error details from the DB, ORM, or runtime in API responses
-- Do not disable TLS certificate verification in HTTP clients — even in tests
+- Do not roll your own crypto. Use established libraries.
+- Do not return 404 when a resource exists but is forbidden. Return 403.
+- Do not log auth tokens, even partially.
+- Do not expose error details from the DB, ORM, or runtime in API responses.
+- Do not disable TLS certificate verification in HTTP clients, even in tests.

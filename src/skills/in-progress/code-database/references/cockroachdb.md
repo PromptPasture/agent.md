@@ -4,11 +4,11 @@
 
 ## Core Rules
 
-- CockroachDB is PostgreSQL-compatible and distributed — most Postgres patterns apply, with key differences in primary key design and transaction handling
-- Use UUID v4 as a primary key with `gen_random_uuid()` — sequential integers cause hotspots on the write range leader
-- Serializable isolation is the default — do not lower it without understanding the trade-offs
-- Handle `40001` (serialization failure) errors with exponential backoff retry — they are expected under contention
-- Co-locate related data using interleave or locality optimizations in multi-region deployments
+- CockroachDB is PostgreSQL-compatible and distributed. Most Postgres patterns apply, with differences in primary key design and transactions
+- Use UUID v4 as primary key with `gen_random_uuid()`. Sequential integers cause write hotspots on the range leader
+- Serializable isolation is default. Don't lower it without understanding the trade-offs
+- Handle `40001` (serialization failure) errors with exponential backoff. They're expected under contention
+- Co-locate related data using interleave or locality optimizations in multi-region setups
 
 ---
 

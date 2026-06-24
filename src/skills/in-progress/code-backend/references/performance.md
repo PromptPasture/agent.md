@@ -4,10 +4,10 @@
 
 ## Core Rules
 
-- Measure before optimising — profile first, don't guess
-- No N+1 queries — join or batch-load related data
-- No unbounded queries — always apply LIMIT; paginate where the result set can grow
-- No synchronous blocking in hot paths — offload to workers or use async where the stack supports it
+- Measure before optimising. Profile first, do not guess.
+- No N+1 queries. Join or batch-load related data.
+- No unbounded queries. Always apply LIMIT and paginate where the result set can grow.
+- No synchronous blocking in hot paths. Offload to workers or use async where the stack supports it.
 
 ---
 
@@ -61,7 +61,7 @@ SELECT ... FROM orders WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET
 SELECT ... FROM orders WHERE user_id = ? AND created_at < ? ORDER BY created_at DESC LIMIT ?
 ```
 
-Cursor pagination avoids the row-skip cost of large offsets and stays consistent under concurrent writes.
+Cursor pagination avoids the performance cost of large offsets and remains consistent under concurrent writes.
 
 ---
 

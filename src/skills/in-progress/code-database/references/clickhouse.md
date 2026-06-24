@@ -4,11 +4,11 @@
 
 ## Core Rules
 
-- ClickHouse is a columnar OLAP engine optimised for append-only, high-throughput analytics — it is not a transactional database
-- Choose the table engine carefully — `MergeTree` is the default for almost all production use cases
-- The primary key in ClickHouse is a sparse index (not a uniqueness constraint) — design it for query patterns, not data integrity
-- Inserts are batched server-side; send large batches (≥ 1000 rows) rather than single-row inserts
-- Use parameterized queries (`{param:Type}`) — never string-interpolate user input
+- ClickHouse is a columnar OLAP engine for append-only, high-throughput analytics. It's not a transactional database
+- Choose the table engine carefully. `MergeTree` works for almost all production cases
+- ClickHouse primary keys are sparse indexes (not uniqueness constraints). Design for query patterns, not data integrity
+- Inserts batch server-side. Send large batches (≥ 1000 rows), not single rows
+- Use parameterized queries (`{param:Type}`). Never interpolate user input
 
 ---
 

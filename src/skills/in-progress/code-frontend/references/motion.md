@@ -1,6 +1,6 @@
 # Animation and Motion
 
-Animation enhances clarity and feedback. It must never block interaction, distract, or cause discomfort. Always respect the user's motion preference.
+Animation clarifies and provides feedback. Never block interaction, distract, or cause discomfort. Always respect user motion preferences.
 
 ---
 

@@ -4,8 +4,8 @@
 
 ## Core Rules
 
-- Never silently discard an error — propagate it or log it with context, never both
-- Wrap errors with context at each layer boundary so the chain is readable at the top
+- Never silently discard an error. Propagate it or log it with context, not both.
+- Wrap errors with context at each layer boundary. The chain remains readable at the top.
 - Return typed errors from services; map to HTTP status codes in handlers
 - Error responses must match the API contract exactly
 

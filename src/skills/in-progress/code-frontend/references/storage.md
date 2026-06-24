@@ -1,6 +1,6 @@
 # Browser Storage
 
-Choose the storage mechanism that matches the data's scope, lifetime, size, and sensitivity. Never store sensitive data client-side without understanding the security implications.
+Pick the storage mechanism that matches data scope, lifetime, size, and sensitivity. Never store sensitive data client-side without understanding security trade-offs.
 
 ---
 

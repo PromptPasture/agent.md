@@ -4,7 +4,7 @@ description: Explain any knowledge topic simply and accurately. Use for explanat
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.2.0"
+  version: "2.2.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: education
@@ -36,7 +36,7 @@ Explain knowledge questions clearly, accurately, and at the right depth. Use sim
 3. Add the mechanism: explain what happens, why it happens, and what parts are involved.
 4. Add one concrete example or analogy only if it makes the idea easier to understand.
 5. For code, follow entry points, call paths, data shapes, side effects, tests, and configuration only as far as needed.
-6. Stop when the user can explain the idea back accurately without needing a textbook chapter. Civilization may continue.
+6. Stop when the user can explain the idea back accurately without needing a textbook chapter.
 
 ---
 

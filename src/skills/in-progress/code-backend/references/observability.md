@@ -4,10 +4,10 @@
 
 ## Core Rules
 
-- Every request gets a structured log entry: method, path, status, latency
-- Every error gets a structured log entry with enough context to reproduce
-- Every external call (DB, HTTP, queue, cache) gets a tracing span
-- Metrics cover at minimum: request count, error rate, and latency
+- Every request gets a structured log entry with method, path, status, and latency.
+- Every error gets a structured log entry with enough context to reproduce.
+- Every external call (DB, HTTP, queue, cache) gets a tracing span.
+- Metrics must cover request count, error rate, and latency at minimum.
 
 ---
 
