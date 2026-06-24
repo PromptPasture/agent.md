@@ -6,10 +6,10 @@ Guidance for creating, managing, and cleaning up test data across all test types
 
 ## Principles
 
-- **Minimal** — create only what the test requires; no full production snapshots
-- **Isolated** — each test owns its data; no cross-test dependencies
-- **Realistic** — values should be valid and representative, not `"test"` or `123`
-- **Deterministic** — no random values without a seeded generator; tests must be reproducible
+- **Minimal**: create only what the test requires; no full production snapshots
+- **Isolated**: each test owns its data; no cross-test dependencies
+- **Realistic**: values should be valid and representative, not `"test"` or `123`
+- **Deterministic**: no random values without a seeded generator; tests must be reproducible
 
 ---
 

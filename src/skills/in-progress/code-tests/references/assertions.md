@@ -39,10 +39,10 @@ expect(result).toMatchObject({
 
 ## What NOT to Assert
 
-- **Internal state** — private fields, internal counters, call counts (unless the side effect is the subject)
-- **Implementation choices** — which method was called internally, which SQL query ran
-- **Framework internals** — React component lifecycle, ORM internals
-- **Irrelevant fields** — don't assert every field when only two are relevant to the scenario
+- **Internal state**: private fields, internal counters, call counts (unless the side effect is the subject)
+- **Implementation choices**: which method was called internally, which SQL query ran
+- **Framework internals**: React component lifecycle, ORM internals
+- **Irrelevant fields**: don't assert every field when only two are relevant to the scenario
 
 ```typescript
 // Bad — asserts on implementation detail

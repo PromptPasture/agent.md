@@ -4,7 +4,7 @@ description: You use this when the user asks to write automated tests — E2E, A
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.0"
+  version: "2.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: testing
@@ -26,16 +26,7 @@ One test type per invocation: **E2E**, **API**, **Integration**, or **Load/Perfo
 
 ### 1.1 Identify test type
 
-Determine the test type from the user's request:
-
-| User intent | Test type |
-| --- | --- |
-| "E2E", "end-to-end", "user flow", "browser test", "UI test" | E2E |
-| "API test", "endpoint test", "contract test", "HTTP test" | API |
-| "integration test", "service test", "real DB", "with dependencies" | Integration |
-| "load test", "performance test", "stress test", "soak test", "spike test" | Load/Performance |
-
-If the type is ambiguous, ask one clarifying question before proceeding.
+Determine the test type from the user's request: **E2E**, **API**, **Integration**, or **Load/Performance**. If the type is ambiguous, ask one clarifying question before proceeding.
 
 ### 1.2 Read project files
 
@@ -311,17 +302,12 @@ These issues reduce quality below senior standards. Fix before closing.
 - [ ] No setup logic duplicated across files — extract to shared helper
 - [ ] Describe and test block names form a readable sentence describing the scenario
 
-#### Type-specific checks
-
-Load the active type reference (`references/e2e.md`, `references/api.md`, `references/integration.md`, or `references/perf.md`) and apply its P2 checklist items here.
-
 ---
 
 ### P3 — Polish
 
 Nice-to-have. Fix if the effort is small; note and defer otherwise.
 
-- [ ] Tests are tagged or grouped for selective CI execution (smoke, regression, slow)
 - [ ] Test output is readable in CI logs — no excessive noise or truncated errors
 - [ ] Load tests include a summary threshold check that fails the CI step on breach
 - [ ] Flaky test risk noted with a comment where timing or network is unavoidable

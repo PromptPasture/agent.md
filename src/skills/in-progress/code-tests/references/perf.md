@@ -97,10 +97,10 @@ export default function () {
 
 Always define thresholds — a load test without thresholds does not pass or fail CI:
 
-- **p(95) latency** — covers the experience of 95% of users; primary SLO metric
-- **p(99) latency** — catches long tail; set 2–3× the p95 threshold
-- **error rate** — set below 1% for production-critical paths
-- **throughput floor** — set a minimum req/s to catch performance regressions disguised as low traffic
+- **p(95) latency**: covers the experience of 95% of users; primary SLO metric
+- **p(99) latency**: catches long tail; set 2–3× the p95 threshold
+- **error rate**: set below 1% for production-critical paths
+- **throughput floor**: set a minimum req/s to catch performance regressions disguised as low traffic
 
 Thresholds must match the team's SLOs. If SLOs are unknown, ask in Phase 2 before writing.
 
