@@ -94,10 +94,10 @@ Do not wait for every field to be filled. A useful partial plan is better than a
 
 Read the reference files before producing any output:
 
-- `references/NOTES-FORMAT.md` — for `NOTES.md`
-- `references/PLAN-FORMAT.md` — for `PLAN.md`
-- `references/ZONE-FORMAT.md` — for each `zones/*.html`
-- `references/PHASE-FORMAT.md` — for each `phases/*.html`
+- `references/NOTES_FORMAT.md` — for `NOTES.md`
+- `references/PLAN_FORMAT.md` — for `PLAN.md`
+- `references/ZONE_FORMAT.md` — for each `zones/*.html`
+- `references/PHASE_FORMAT.md` — for each `phases/*.html`
 
 ### Files to produce
 
