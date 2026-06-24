@@ -6,6 +6,7 @@ metadata:
   author: Oleg Shulyakov
   version: "1.0.0"
   source: github.com/olegshulyakov/agent.md
+  catalog: lifestyle
   category: home-and-garden
   tags: [landscape, garden, yard, outdoor, plants, design]
 ---

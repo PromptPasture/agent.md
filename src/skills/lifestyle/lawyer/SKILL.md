@@ -6,7 +6,7 @@ metadata:
   author: github.com/olegshulyakov
   version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
-  catalog: productivity
+  catalog: lifestyle
   category: legal
   tags: [legal, contracts, compliance, drafting]
 ---
