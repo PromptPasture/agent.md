@@ -66,7 +66,7 @@ function deleteCookie(name: string): void {
 
 ### Rules
 
-- **Never store auth tokens in `localStorage`** — use `HttpOnly` cookies; JS cannot read them, making them immune to XSS
+- **Never store auth tokens in `localStorage`**: use `HttpOnly` cookies; JS cannot read them, making them immune to XSS
 - Use `SameSite=Strict` for auth; `SameSite=Lax` for OAuth redirect flows; never `SameSite=None` without `Secure`
 - Max cookie size is ~4 KB per cookie — store IDs, not payloads
 - Cookies are sent on every matching request — keep them small
@@ -106,12 +106,12 @@ const storage = {
 
 ### Rules
 
-- **Synchronous** — large reads/writes block the main thread; keep values small
-- **Not available during SSR** — always guard with `typeof window !== 'undefined'`
+- **Synchronous**: large reads/writes block the main thread; keep values small
+- **Not available during SSR**: always guard with `typeof window !== 'undefined'`
 - **Shared across all tabs** of the same origin — changes are visible immediately
-- **Persists until cleared** — no expiry mechanism; implement your own if needed
+- **Persists until cleared**: no expiry mechanism; implement your own if needed
 - **5–10 MB limit** depending on browser — not for large datasets
-- **Never store tokens, passwords, PII, or payment data** — XSS can read everything in `localStorage`
+- **Never store tokens, passwords, PII, or payment data**: XSS can read everything in `localStorage`
 
 ```ts
 // SSR guard
@@ -135,9 +135,9 @@ const step = JSON.parse(sessionStorage.getItem('step') ?? 'null');
 
 ### Rules
 
-- **Tab-scoped** — not shared between tabs, even same origin
-- **Cleared on tab close** — survives page reload within the tab
-- **Not available during SSR** — same guard as `localStorage`
+- **Tab-scoped**: not shared between tabs, even same origin
+- **Cleared on tab close**: survives page reload within the tab
+- **Not available during SSR**: same guard as `localStorage`
 - Same 5–10 MB limit as `localStorage`
 
 ---
@@ -194,11 +194,11 @@ async function deleteProduct(id: string) {
 
 ### Rules
 
-- **Asynchronous** — all operations return Promises; never blocks the main thread
-- **Large capacity** — typically 50–80% of available disk space
-- **Available offline** — works without a network connection; core to PWA offline strategy
-- **Persists until cleared** — implement expiry with a `updatedAt` timestamp and periodic cleanup
-- **Not shared across origins** — same-origin isolation like other storage
+- **Asynchronous**: all operations return Promises; never blocks the main thread
+- **Large capacity**: typically 50–80% of available disk space
+- **Available offline**: works without a network connection; core to PWA offline strategy
+- **Persists until cleared**: implement expiry with a `updatedAt` timestamp and periodic cleanup
+- **Not shared across origins**: same-origin isolation like other storage
 - See `references/pwa.md` for IndexedDB + Cache API offline patterns
 
 ---
@@ -221,10 +221,10 @@ async function deleteProduct(id: string) {
 ## Security Rules
 
 - **Never store in `localStorage` or `sessionStorage`:** auth tokens, JWTs, session IDs, passwords, payment details, PII — XSS can exfiltrate everything
-- **Auth tokens belong in `HttpOnly` cookies** — the browser sends them automatically, JS cannot read them
+- **Auth tokens belong in `HttpOnly` cookies**: the browser sends them automatically, JS cannot read them
 - **Encrypt sensitive data** before writing to IndexedDB if it must be stored client-side
-- **Sanitise on read** — always validate and parse storage values; treat them as untrusted input
-- **Clear on sign-out** — explicitly remove all storage entries on logout; do not rely on expiry alone
+- **Sanitise on read**: always validate and parse storage values; treat them as untrusted input
+- **Clear on sign-out**: explicitly remove all storage entries on logout; do not rely on expiry alone
 
 ---
 

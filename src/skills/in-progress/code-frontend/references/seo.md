@@ -6,10 +6,10 @@ SEO applies to pages, not components. Skip this for non-page components unless t
 
 ## Core Principles
 
-- **Crawlable content** — critical content must be in the initial HTML, not injected by JS after load
-- **Unique metadata** — every page has a distinct `title` and `meta description`
-- **Logical structure** — one `h1` per page, headings in order, no skipped levels
-- **Canonical URL** — prevents duplicate content across routes with query parameters, trailing slashes, or alternate domains
+- **Crawlable content**: critical content must be in the initial HTML, not injected by JS after load
+- **Unique metadata**: every page has a distinct `title` and `meta description`
+- **Logical structure**: one `h1` per page, headings in order, no skipped levels
+- **Canonical URL**: prevents duplicate content across routes with query parameters, trailing slashes, or alternate domains
 
 ---
 

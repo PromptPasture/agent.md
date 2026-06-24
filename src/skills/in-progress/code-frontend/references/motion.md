@@ -108,6 +108,6 @@ function transition(update: () => void) {
 ## What Not to Animate
 
 - **Layout properties** (`width`, `height`, `top`, `left`, `margin`) — trigger reflow; use `transform` instead
-- **Infinite loops without purpose** — spinners on loading states are acceptable; decorative infinite motion is not
-- **Fast sequences on important content** — flashing or rapid motion can trigger vestibular disorders
-- **Entrance animations on every element** — animate sparingly; not every component needs to slide in
+- **Infinite loops without purpose**: spinners on loading states are acceptable; decorative infinite motion is not
+- **Fast sequences on important content**: flashing or rapid motion can trigger vestibular disorders
+- **Entrance animations on every element**: animate sparingly; not every component needs to slide in

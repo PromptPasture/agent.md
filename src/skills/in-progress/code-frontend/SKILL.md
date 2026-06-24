@@ -4,7 +4,7 @@ description: You use this when user asks to build a component, create a page, im
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.3.1"
+  version: "2.3.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development
@@ -43,12 +43,12 @@ Inspect the following in order. Stop reading a file once the needed signal is fo
 
 From `package.json` dependencies and config files:
 
-- **TailwindCSS** — `tailwindcss` dep + `tailwind.config.*`
-- **Bootstrap** — `bootstrap` dep
-- **CSS Modules** — `.module.css` files or framework default
-- **Plain CSS** — none of the above
-- **Vue Scoped Styles** — `vue` dep present and no other CSS lib found
-- **Other** — note the library name (Chakra, MUI, shadcn/ui, etc.)
+- **TailwindCSS**: `tailwindcss` dep + `tailwind.config.*`
+- **Bootstrap**: `bootstrap` dep
+- **CSS Modules**: `.module.css` files or framework default
+- **Plain CSS**: none of the above
+- **Vue Scoped Styles**: `vue` dep present and no other CSS lib found
+- **Other**: note the library name (Chakra, MUI, shadcn/ui, etc.)
 
 ### 1.3 Output a detection summary
 
@@ -140,6 +140,7 @@ Load concern docs based on the task:
 | Persistence across reloads or tabs needed | `references/storage.md` |
 | Page component (not shared UI) | `references/seo.md` |
 | PWA in manifest or scope | `references/pwa.md` |
+| CSS Modules or plain CSS in use (no utility library) | `references/styling.md` |
 | No existing project conventions found | `references/conventions.md` |
 | Any a11y complexity beyond basics | `references/a11y.md` |
 | Any async operation or heavy dependency | `references/performance.md` |
@@ -335,7 +336,6 @@ Nice-to-have. Fix if the effort is small; note and defer otherwise.
 
 - [ ] Motion respects `prefers-reduced-motion` (if animations are present)
 - [ ] i18n strings are externalised — no hardcoded user-visible copy (if i18n is in use)
-- [ ] PWA offline behaviour tested for this route (if PWA is in scope)
 - [ ] Bundle impact noted for any new heavy dependency added
 
 ---
