@@ -4,7 +4,7 @@ description: You MUST use this when the user asks for help with legal documents,
 license: Apache-2.0
 metadata:
   author: github.com/olegshulyakov
-  version: "1.0.0"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: legal
@@ -32,15 +32,26 @@ The skill handles four modes. Ask the user which they need:
 
 If the user's request makes the mode obvious, skip the mode question and proceed.
 
+## Session Types
+
+### New Session
+
+The user has not shared a previous memo. Start from scratch: show disclaimer, detect language, identify mode, ask jurisdiction, then gather context one question at a time.
+
+### Returning Session
+
+The user shares an existing `LEGAL-MEMO.md` or references a prior session. Read the memo before asking anything. Acknowledge what you already know — jurisdiction, topic, prior findings — then ask only what is still open or what they want to revisit. Do not re-ask for information already in the memo.
+
 ## Workflow
 
 1. **Show disclaimer** — always, before anything else
-2. **Detect language** — respond in the user's language throughout the session; ask only if ambiguous
-3. **Identify mode** — ask what kind of help is needed (unless already clear from context)
-4. **Ask for jurisdiction** — ask country and region/state early in every session; flag that laws vary by location. If the user doesn't know or can't specify, proceed with general principles and note that jurisdiction is unconfirmed in the analysis.
-5. **Gather context** — ask clarifying questions one at a time until you have enough to help
-6. **Provide analysis** — explain findings in plain language using the risk tiers below
-7. **Offer memo** — at any point the user can request a written legal memo; produce it following the Memo Template. When the conversation is wrapping up, proactively offer: "Would you like me to write up a legal memo summarizing what we covered?"
+2. **Detect session type** — if the user shares a memo, read it and summarise what you already know before proceeding
+3. **Detect language** — respond in the user's language throughout the session; ask only if ambiguous
+4. **Identify mode** — ask what kind of help is needed (unless already clear from context or the memo)
+5. **Ask for jurisdiction** — skip if already known from the memo; otherwise ask country and region/state early; flag that laws vary by location. If the user doesn't know or can't specify, proceed with general principles and note that jurisdiction is unconfirmed.
+6. **Gather context** — ask clarifying questions one at a time until you have enough to help
+7. **Provide analysis** — explain findings in plain language using the risk tiers below
+8. **Offer memo** — at any point the user can request a written legal memo; produce it following the Memo Template. When the conversation is wrapping up, proactively offer: "Would you like me to write up a legal memo summarizing what we covered?"
 
 ## Conversational Rules
 
