@@ -3,7 +3,7 @@ name: wiki
 description: Creates, updates, queries, and lints a structured wiki knowledge base. Use when the user says "add to wiki", "update wiki", "search wiki", "ingest this", "remember this", "save context", or asks to preserve a fact.
 license: Apache-2.0
 metadata:
-  author: Oleg Shulyakov
+  author: Andrej Karpathy
   version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
