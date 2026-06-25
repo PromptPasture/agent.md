@@ -1,6 +1,6 @@
 ---
 name: remember
-description: You MUST use this to persist any durable fact, decision, or convention — do not rely on conversation context alone. Write structured memory to the appropriate file. Use for memory requests like "remember this", "save context", "record a decision", "update memory", or preserving a project fact.
+description: "DEPRECATED — use the wiki skill instead. Persists durable facts, decisions, and conventions to structured memory files."
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
