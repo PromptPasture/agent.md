@@ -3,7 +3,7 @@ topic: code-backend skill
 method: comparative analysis
 date: "2026-06-21"
 related:
-  - docs/2026-06-12-code-frontend-skill/BRAINSTORM.md
+  - wiki/sources/2026-06-12-code-frontend-skill/BRAINSTORM.md
   - src/skills/in-progress/code-frontend/SKILL.md
 ---
 

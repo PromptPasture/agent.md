@@ -135,7 +135,7 @@ Without this integration, agents may apply principles inconsistently: overusing 
 
 |Dependency ID|Item|Impacted Requirements|Validation Owner|
 |---|---|---|---|
-|D-1|`docs/2026-05-23-design-principles/Most Popular Principles.md`|FR-1 through FR-5|Oleg Shulyakov|
+|D-1|`wiki/sources/2026-05-23-design-principles/Most Popular Principles.md`|FR-1 through FR-5|Oleg Shulyakov|
 |D-2|Existing `src/rules/karpathy-guidelines.md`|FR-1, FR-2, FR-5|Oleg Shulyakov|
 |D-3|Existing implementation and review skills|FR-6, FR-7|TBD|
 
@@ -153,5 +153,5 @@ Without this integration, agents may apply principles inconsistently: overusing 
 
 ## Reference Links
 
-- **Ref-1**: Source principles collection - `docs/2026-05-23-design-principles/Most Popular Principles.md`
+- **Ref-1**: Source principles collection - `wiki/sources/2026-05-23-design-principles/Most Popular Principles.md`
 - **Ref-2**: Existing simplicity and verification guidance - `src/rules/karpathy-guidelines.md`

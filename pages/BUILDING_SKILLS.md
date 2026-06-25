@@ -5,7 +5,6 @@ author: Anthropic
 published: 2026-01-29
 ---
 
-<!-- markdownlint-disable-next-line MD025 -->
 # Complete Guide to Building Skills
 
 ## Introduction
