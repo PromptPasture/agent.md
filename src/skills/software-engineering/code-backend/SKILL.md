@@ -1,10 +1,10 @@
 ---
 name: code-backend
-description: You use this when the user asks to build an API endpoint, implement a service, add middleware, create a worker or queue consumer, write a migration, or produce any backend code in a real codebase. It generates production-ready code with auto-detected stack (Go, Node.js, Python, Java, Kotlin, Rust, and more), confirmed API contracts and DB schema before writing, and a P0–P3 quality checklist covering security, API correctness, observability, and performance.
+description: Generates production-ready backend code with auto-detected stack (Go, Node.js, Python, Java, Kotlin, Rust, and more), confirmed API contracts and DB schema before writing, and a P0–P3 quality checklist covering security, API correctness, observability, and performance. Use when the user asks to build an API endpoint, implement a service, add middleware, create a worker or queue consumer, or write a migration.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.2"
+  version: "2.0.3"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: development

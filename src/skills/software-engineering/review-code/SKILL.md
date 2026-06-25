@@ -1,10 +1,10 @@
 ---
 name: review-code
-description: You MUST use this when the user asks to review code, including code changes, diffs, pull requests, branches, or patches.
+description: Reviews code for correctness, security, performance, and style with structured findings. Use when the user asks to review code, including code changes, diffs, pull requests, branches, or patches.
 license: Apache-2.0
 metadata:
   author: github.com/wpank/ai
-  version: "2.0.1"
+  version: "2.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: review

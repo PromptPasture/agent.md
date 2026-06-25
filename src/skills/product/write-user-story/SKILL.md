@@ -1,10 +1,10 @@
 ---
 name: write-user-story
-description: You MUST use this when the user asks to write or revise user stories, acceptance criteria, story points, or sprint-ready user-value increments.
+description: Writes and revises user stories with acceptance criteria and story points in sprint-ready format. Use when the user asks to write or revise user stories, acceptance criteria, story points, or sprint-ready user-value increments.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.0"
+  version: "1.4.1"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements

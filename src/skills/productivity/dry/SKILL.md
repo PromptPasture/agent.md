@@ -1,10 +1,10 @@
 ---
 name: dry
-description: You MUST use this whenever reviewing or producing any artifact to catch duplicated knowledge, logic, or structure that should have a single authoritative source.
+description: Catches duplicated knowledge, logic, or structure that should have a single authoritative source. Use when the user asks to "find duplication", "deduplicate", "DRY this up", or requests an explicit quality review of code, docs, or data models.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: quality

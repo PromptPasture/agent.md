@@ -1,11 +1,11 @@
 ---
 name: handoff
-description: Compact the current conversation into a handoff document for another agent to pick up.
+description: Compacts the current conversation into a structured handoff document for another agent to continue. Use when the user says "handoff", "hand off", "create a handoff", or wants to pass the current session to a new agent.
 argument-hint: "What will the next session be used for?"
 license: Apache-2.0
 metadata:
   author: Matt Pocock
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: handoff

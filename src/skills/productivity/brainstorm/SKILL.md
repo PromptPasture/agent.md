@@ -1,10 +1,10 @@
 ---
 name: brainstorm
-description: You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.
+description: Explores user intent, requirements, and design before implementation. Use when the user asks "what should we do about X?", "ideas for…", "how should we approach…", or any open-ended design question before the team picks a direction.
 license: Apache-2.0
 metadata:
   author: github.com/obra/superpowers
-  version: "3.1.2"
+  version: "3.1.3"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: research

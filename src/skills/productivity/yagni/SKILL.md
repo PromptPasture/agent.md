@@ -1,10 +1,10 @@
 ---
 name: yagni
-description: You MUST use this whenever reviewing or producing any artifact to catch speculative additions before they are built.
+description: Catches speculative additions before they are built. Use when the user asks to "flag YAGNI", "is this needed?", "trim scope", or requests an explicit scope audit of code, plans, or specs.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: quality

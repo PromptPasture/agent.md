@@ -1,10 +1,10 @@
 ---
 name: lawyer
-description: You MUST use this when the user asks for help with legal documents, contracts, legal questions, compliance review, or drafting legal text. Acts as a plain-language legal advisor for people without legal education.
+description: Acts as a plain-language legal advisor for people without legal education. Use when the user asks for help with legal documents, contracts, legal questions, compliance review, or drafting legal text.
 license: Apache-2.0
 metadata:
   author: github.com/olegshulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: lifestyle
   category: legal

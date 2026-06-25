@@ -1,18 +1,15 @@
 ---
 name: adapt
-description: You MUST use this when a mismatch signal appears — triggered by failures, friction, user feedback, outdated assumptions, or changed constraints. Diagnose mismatches in skills, rules or workflows and route to the right skill or workflow to apply the smallest necessary change. Use when the user says "adapt based on this", "what should change after this?", "this keeps happening", "this failed, what should change?", "the workflow no longer fits", "the constraints changed", or asks what skill, rule, doc, eval, memory, or process should change.
+description: Diagnoses mismatches in skills, rules, or workflows and applies the smallest necessary change. Use when the user says "adapt based on this", "what should change after this?", "this keeps happening", "this failed, what should change?", "the workflow no longer fits", "the constraints changed", or asks what skill, rule, doc, eval, memory, or process should change.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.5.0"
+  version: "1.5.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: adaptation
   tags: [adaptation, feedback, process]
-  references:
-    - create-skill
-    - create-rule
-    - remember
+  references: [wiki, yagni]
 ---
 
 # Adapting to Changes

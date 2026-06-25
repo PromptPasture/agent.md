@@ -1,10 +1,10 @@
 ---
 name: code-frontend
-description: You use this when user asks to build a component, create a page, implement UI, scaffold a form, or produce any frontend code in a real codebase. It generates production-ready code with auto-detected stack, interface contracts, decomposition heuristics, and a P0–P3 quality checklist covering a11y, TypeScript, SEO, performance, and error handling.
+description: Generates production-ready frontend code with auto-detected stack, interface contracts, decomposition heuristics, and a P0–P3 quality checklist covering a11y, TypeScript, SEO, performance, and error handling. Use when the user asks to build a component, create a page, implement UI, or scaffold a form.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.3.2"
+  version: "2.3.3"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: web-development

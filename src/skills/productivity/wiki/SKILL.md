@@ -1,10 +1,10 @@
 ---
 name: wiki
-description: Use to create, update, ingest, query, or lint a structured wiki knowledge base. Trigger on "add to wiki", "update wiki", "search wiki", "ingest this", "remember this", "save context" or preserving a fact.
+description: Creates, updates, queries, and lints a structured wiki knowledge base. Use when the user says "add to wiki", "update wiki", "search wiki", "ingest this", "remember this", "save context", or asks to preserve a fact.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: knowledge

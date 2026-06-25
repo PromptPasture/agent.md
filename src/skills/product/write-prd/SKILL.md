@@ -1,10 +1,10 @@
 ---
 name: write-prd
-description: You MUST use this when the user asks to write or revise a PRD, product requirements, product brief, feature requirements, product scope, launch requirements.
+description: Writes and revises product requirements documents with structured sections covering goals, scope, user stories, and success criteria. Use when the user asks to write or revise a PRD, product requirements, product brief, feature requirements, product scope, or launch requirements.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.2"
+  version: "1.4.3"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements

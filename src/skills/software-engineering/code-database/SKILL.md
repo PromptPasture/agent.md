@@ -1,10 +1,10 @@
 ---
 name: code-database
-description: Use when the user asks to design a table, write a migration, add an index, write a query, use an ORM, or produce any database layer code in a real codebase. Generates production-ready SQL, migrations, and ORM code with auto-detected engine, confirmed schema and query contracts before writing, and a P0–P3 quality checklist covering SQL injection, destructive change safety, performance, and migration correctness.
+description: Generates production-ready SQL, migrations, and ORM code with auto-detected engine, confirmed schema and query contracts before writing, and a P0–P3 quality checklist covering SQL injection, destructive change safety, performance, and migration correctness. Use when the user asks to design a table, write a migration, add an index, write a query, or use an ORM.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.2"
+  version: "2.0.3"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: database
