@@ -90,14 +90,14 @@ Use when shared state is too complex for context or updates too frequently for i
 
 **Choosing a library:**
 
-| Need | Library |
-| --- | --- |
-| React — simple global store | Zustand |
-| React — atomic subscriptions | Jotai |
-| React — large app, team conventions | Redux Toolkit |
-| Vue / Nuxt | Pinia |
-| Svelte | Svelte stores (built-in) |
-| Any framework | Nano Stores (framework-agnostic) |
+|Need|Library|
+|---|---|
+|React — simple global store|Zustand|
+|React — atomic subscriptions|Jotai|
+|React — large app, team conventions|Redux Toolkit|
+|Vue / Nuxt|Pinia|
+|Svelte|Svelte stores (built-in)|
+|Any framework|Nano Stores (framework-agnostic)|
 
 **Slice pattern for large stores** — split by domain, compose into one store:
 
@@ -142,13 +142,13 @@ function setParam(key: string, value: string): string {
 
 ## Framework Reference
 
-| Framework | Local | Shared | Global library |
-| --- | --- | --- | --- |
-| React | `useState` / `useReducer` | Context | Zustand / Jotai / Redux Toolkit |
-| SvelteKit | Runes (`$state`) | Svelte context | Svelte stores (built-in) |
-| Nuxt / Vue | `ref` / `reactive` | `provide` / `inject` | Pinia |
-| Remix | `useState` | Context | Zustand |
-| Astro | Component state | Nano Stores | Nano Stores |
+|Framework|Local|Shared|Global library|
+|---|---|---|---|
+|React|`useState` / `useReducer`|Context|Zustand / Jotai / Redux Toolkit|
+|SvelteKit|Runes (`$state`)|Svelte context|Svelte stores (built-in)|
+|Nuxt / Vue|`ref` / `reactive`|`provide` / `inject`|Pinia|
+|Remix|`useState`|Context|Zustand|
+|Astro|Component state|Nano Stores|Nano Stores|
 
 ---
 

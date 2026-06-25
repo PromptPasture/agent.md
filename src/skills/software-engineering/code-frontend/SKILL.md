@@ -26,18 +26,18 @@ Four phases: **Discover → Plan → Build → Validate**. Each phase produces a
 
 Inspect the following in order. Stop reading a file once the needed signal is found.
 
-| File | Signal to extract |
-| --- | --- |
-| `package.json` | Framework, CSS lib, language, key deps (query, router, i18n, etc.) |
-| `tsconfig.json` | TypeScript presence, `strict` mode on/off, path aliases |
-| `next.config.*` | Next.js — check `app/` dir for App Router, `pages/` for Pages Router |
-| `vite.config.*` | Vite — check plugins for React (`@vitejs/plugin-react`), Preact (`@preact/preset-vite`), Vue, Lit, Svelte, Solid (`vite-plugin-solid`) |
-| `svelte.config.*` | SvelteKit |
-| `nuxt.config.*` | Nuxt |
-| `astro.config.*` | Astro |
-| `remix.config.*` / `vite.config.*` with Remix plugin | Remix |
-| `angular.json` | Angular |
-| `pnpm-workspace.yaml` / `turbo.json` / `nx.json` | Monorepo; note which workspace the task targets |
+|File|Signal to extract|
+|---|---|
+|`package.json`|Framework, CSS lib, language, key deps (query, router, i18n, etc.)|
+|`tsconfig.json`|TypeScript presence, `strict` mode on/off, path aliases|
+|`next.config.*`|Next.js — check `app/` dir for App Router, `pages/` for Pages Router|
+|`vite.config.*`|Vite — check plugins for React (`@vitejs/plugin-react`), Preact (`@preact/preset-vite`), Vue, Lit, Svelte, Solid (`vite-plugin-solid`)|
+|`svelte.config.*`|SvelteKit|
+|`nuxt.config.*`|Nuxt|
+|`astro.config.*`|Astro|
+|`remix.config.*` / `vite.config.*` with Remix plugin|Remix|
+|`angular.json`|Angular|
+|`pnpm-workspace.yaml` / `turbo.json` / `nx.json`|Monorepo; note which workspace the task targets|
 
 ### 1.2 Detect CSS approach
 
@@ -130,22 +130,22 @@ Notes:
 
 Load concern docs based on the task:
 
-| Signal | Load |
-| --- | --- |
-| Form inputs present | `references/forms.md` |
-| Data fetched inside component | `references/data-fetching.md` |
-| Animation or transition required | `references/motion.md` |
-| User-visible copy or labels present | `references/i18n.md` |
-| State shared across components | `references/state.md` |
-| Persistence across reloads or tabs needed | `references/storage.md` |
-| Page component (not shared UI) | `references/seo.md` |
-| PWA in manifest or scope | `references/pwa.md` |
-| CSS Modules or plain CSS in use (no utility library) | `references/styling.md` |
-| No existing project conventions found | `references/conventions.md` |
-| Any a11y complexity beyond basics | `references/a11y.md` |
-| Any async operation or heavy dependency | `references/performance.md` |
-| Error states or boundaries needed | `references/error-handling.md` |
-| Component or unit tests required | `references/testing.md` |
+|Signal|Load|
+|---|---|
+|Form inputs present|`references/forms.md`|
+|Data fetched inside component|`references/data-fetching.md`|
+|Animation or transition required|`references/motion.md`|
+|User-visible copy or labels present|`references/i18n.md`|
+|State shared across components|`references/state.md`|
+|Persistence across reloads or tabs needed|`references/storage.md`|
+|Page component (not shared UI)|`references/seo.md`|
+|PWA in manifest or scope|`references/pwa.md`|
+|CSS Modules or plain CSS in use (no utility library)|`references/styling.md`|
+|No existing project conventions found|`references/conventions.md`|
+|Any a11y complexity beyond basics|`references/a11y.md`|
+|Any async operation or heavy dependency|`references/performance.md`|
+|Error states or boundaries needed|`references/error-handling.md`|
+|Component or unit tests required|`references/testing.md`|
 
 ### 2.4 Wait for confirmation
 

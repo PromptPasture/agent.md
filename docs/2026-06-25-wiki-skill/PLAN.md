@@ -24,9 +24,9 @@ Build the skill in four sequential phases: scaffold the folder, write `SKILL.md`
 
 ## Phase 1 — Scaffold
 
-| Step | Action | Success condition |
-| --- | --- | --- |
-| 1.1 | Create `src/skills/productivity/wiki/` folder | Folder exists |
+|Step|Action|Success condition|
+|---|---|---|
+|1.1|Create `src/skills/productivity/wiki/` folder|Folder exists|
 
 ---
 
@@ -74,13 +74,13 @@ updated: <ISO 8601>            # Recommended — updated on every substantive ed
 
 ### 2.4 Workflows
 
-| Workflow | Trigger | Steps |
-| --- | --- | --- |
-| **Create** | New concept | Write entry file → update directory `index.md` → append to directory `log.md` |
-| **Update** | Existing concept | Find entry by title/path → edit body/frontmatter → update `updated` → append to `log.md` |
-| **Ingest** | Source doc provided | Read source → extract key concepts → create/update entries → update `index.md` → append to `log.md` |
-| **Query** | Question asked | Read `index.md` → drill into relevant entries → synthesize answer with citations → optionally file answer as new entry |
-| **Lint** | Periodic health check | Scan for: orphan pages, broken links, missing cross-refs, stale claims, concepts mentioned but lacking own page |
+|Workflow|Trigger|Steps|
+|---|---|---|
+|**Create**|New concept|Write entry file → update directory `index.md` → append to directory `log.md`|
+|**Update**|Existing concept|Find entry by title/path → edit body/frontmatter → update `updated` → append to `log.md`|
+|**Ingest**|Source doc provided|Read source → extract key concepts → create/update entries → update `index.md` → append to `log.md`|
+|**Query**|Question asked|Read `index.md` → drill into relevant entries → synthesize answer with citations → optionally file answer as new entry|
+|**Lint**|Periodic health check|Scan for: orphan pages, broken links, missing cross-refs, stale claims, concepts mentioned but lacking own page|
 
 ### 2.5 Reserved files
 
@@ -133,10 +133,10 @@ Minimal walkthrough: invoke `/wiki`, create one entry, verify `index.md` and `lo
 
 ## Phase 4 — Deprecate `remember`
 
-| Step | Action | Success condition |
-| --- | --- | --- |
-| 4.1 | Move `src/skills/productivity/remember/` to `src/skills/deprecated/remember/` | Skill no longer in active productivity folder |
-| 4.2 | Add deprecation notice at top of `deprecated/remember/SKILL.md` pointing to `wiki` | Notice visible on open |
+|Step|Action|Success condition|
+|---|---|---|
+|4.1|Move `src/skills/productivity/remember/` to `src/skills/deprecated/remember/`|Skill no longer in active productivity folder|
+|4.2|Add deprecation notice at top of `deprecated/remember/SKILL.md` pointing to `wiki`|Notice visible on open|
 
 ---
 

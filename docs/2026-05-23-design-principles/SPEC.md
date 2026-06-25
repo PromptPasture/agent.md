@@ -32,11 +32,11 @@ The existing `.agents` library already contains overlapping guidance in `karpath
 
 ### 1.3 Roles & Responsibilities
 
-| Role / Team | Responsibility | Decision Area |
-| --- | --- | --- |
-| Owner | Oleg Shulyakov | Scope, naming, final acceptance |
-| Skill maintainer | Implement rule and skill updates | File placement, wording, eval coverage |
-| Reviewer | Check runtime precision and duplication | Approval or required changes |
+|Role / Team|Responsibility|Decision Area|
+|---|---|---|
+|Owner|Oleg Shulyakov|Scope, naming, final acceptance|
+|Skill maintainer|Implement rule and skill updates|File placement, wording, eval coverage|
+|Reviewer|Check runtime precision and duplication|Approval or required changes|
 
 ### 1.4 Customer & Business Context
 
@@ -44,12 +44,12 @@ Users rely on this skill library to produce code, reviews, docs, and agent artif
 
 ### 1.5 Goals
 
-| Goal | Success Metric | Target |
-| --- | --- | --- |
-| Shared guidance | Global engineering-principles rule exists | 1 rule file |
-| Targeted behavior | Implementation/review skills apply relevant lenses | 4-6 skills updated |
-| Concision | Principle definitions are not copied everywhere | No repeated full principle catalog in skills |
-| Verification | Markdown and relevant skill validation run | Commands pass or failures documented |
+|Goal|Success Metric|Target|
+|---|---|---|
+|Shared guidance|Global engineering-principles rule exists|1 rule file|
+|Targeted behavior|Implementation/review skills apply relevant lenses|4-6 skills updated|
+|Concision|Principle definitions are not copied everywhere|No repeated full principle catalog in skills|
+|Verification|Markdown and relevant skill validation run|Commands pass or failures documented|
 
 ### 1.6 Non-Goals
 
@@ -64,11 +64,11 @@ Users rely on this skill library to produce code, reviews, docs, and agent artif
 
 ### 2.1 Actors
 
-| Actor | Description |
-| --- | --- |
-| End user | Requests code, reviews, docs, or skill changes and benefits from improved principle guidance |
-| Agent runtime | Loads applicable rules and skills |
-| Skill maintainer | Updates `.agents` artifacts and validation coverage |
+|Actor|Description|
+|---|---|
+|End user|Requests code, reviews, docs, or skill changes and benefits from improved principle guidance|
+|Agent runtime|Loads applicable rules and skills|
+|Skill maintainer|Updates `.agents` artifacts and validation coverage|
 
 ### 2.2 User Flows
 
@@ -188,13 +188,13 @@ Users rely on this skill library to produce code, reviews, docs, and agent artif
 
 ## 3. Non-Functional Requirements
 
-| Category | Requirement | Target | Priority |
-| --- | --- | --- | --- |
-| Token efficiency | Runtime guidance stays concise. | New rule under 200 lines; skill edits surgical. | High |
-| Maintainability | Principle behavior has one primary home. | Global rule plus targeted skill specializations. | High |
-| Practicality | Guidance produces concrete behavior. | Avoid findings or instructions that only name principles. | High |
-| Compatibility | Existing `.agents` structure remains stable. | No skill renames or layout migrations. | High |
-| Reviewability | Diff remains focused. | No broad unrelated rewrites. | Medium |
+|Category|Requirement|Target|Priority|
+|---|---|---|---|
+|Token efficiency|Runtime guidance stays concise.|New rule under 200 lines; skill edits surgical.|High|
+|Maintainability|Principle behavior has one primary home.|Global rule plus targeted skill specializations.|High|
+|Practicality|Guidance produces concrete behavior.|Avoid findings or instructions that only name principles.|High|
+|Compatibility|Existing `.agents` structure remains stable.|No skill renames or layout migrations.|High|
+|Reviewability|Diff remains focused.|No broad unrelated rewrites.|Medium|
 
 ---
 
@@ -219,14 +219,14 @@ The source document remains the collected reference. The new rule becomes the ru
 
 ### 4.2 Component Responsibilities
 
-| Component | Technology | Responsibility |
-| --- | --- | --- |
-| Source principles doc | Markdown | Preserve the collected principle list and framing. |
-| Engineering principles rule | Markdown rule | Define concise runtime guidance for applying principles pragmatically. |
-| Build skills | Markdown skills | Apply principle lenses during implementation. |
-| Review skill | Markdown skill and references | Apply principle lenses only when tied to concrete review findings. |
-| Create-skill workflow | Markdown skill and references | Keep skill artifacts cohesive, standalone, and minimal. |
-| Evals | JSON prompts | Validate selected trigger and behavior expectations. |
+|Component|Technology|Responsibility|
+|---|---|---|
+|Source principles doc|Markdown|Preserve the collected principle list and framing.|
+|Engineering principles rule|Markdown rule|Define concise runtime guidance for applying principles pragmatically.|
+|Build skills|Markdown skills|Apply principle lenses during implementation.|
+|Review skill|Markdown skill and references|Apply principle lenses only when tied to concrete review findings.|
+|Create-skill workflow|Markdown skill and references|Keep skill artifacts cohesive, standalone, and minimal.|
+|Evals|JSON prompts|Validate selected trigger and behavior expectations.|
 
 ### 4.3 Key Design Decisions
 
@@ -276,12 +276,12 @@ No production observability changes are required. Development-time validation sh
 
 ## 9. Testing Strategy
 
-| Level | Scope | Tools | Coverage Target |
-| --- | --- | --- | --- |
-| Markdown lint | Changed Markdown files | `markdownlint` or `markdownlint-cli2` | No lint errors, unless documented |
-| Skill validation | Changed skills | `src/skills/create-skill/scripts/validate.py` | Pass for every changed skill |
-| Eval prompts | Principle-specific behavior | Existing skill eval workflow | Added only where behavior risk justifies it |
-| Manual review | Runtime wording | Human review | No duplicated full principle catalog or vague principle boilerplate |
+|Level|Scope|Tools|Coverage Target|
+|---|---|---|---|
+|Markdown lint|Changed Markdown files|`markdownlint` or `markdownlint-cli2`|No lint errors, unless documented|
+|Skill validation|Changed skills|`src/skills/create-skill/scripts/validate.py`|Pass for every changed skill|
+|Eval prompts|Principle-specific behavior|Existing skill eval workflow|Added only where behavior risk justifies it|
+|Manual review|Runtime wording|Human review|No duplicated full principle catalog or vague principle boilerplate|
 
 ### 9.1 Data, Privacy, and Compliance Verification
 
@@ -321,32 +321,32 @@ No personal data handling changes are expected. Verify that new wording does not
 
 ### Dependencies
 
-| Dependency | Team / System | Needed by |
-| --- | --- | --- |
-| Source principles document | Docs | Phase 2 |
-| Existing rule and skill metadata conventions | `.agents` | Phase 2 and Phase 3 |
-| Skill validation script | `create-skill` | Phase 4 |
+|Dependency|Team / System|Needed by|
+|---|---|---|
+|Source principles document|Docs|Phase 2|
+|Existing rule and skill metadata conventions|`.agents`|Phase 2 and Phase 3|
+|Skill validation script|`create-skill`|Phase 4|
 
 ---
 
 ## 11. Release & Operational Readiness
 
-| Activity | Owner | Required Before Launch |
-| --- | --- | --- |
-| Rule reviewed for duplication with existing guidance | Oleg Shulyakov | Yes |
-| Skill edits reviewed for runtime bloat | Oleg Shulyakov | Yes |
-| Markdown lint run | TBD | Yes |
-| Skill validation run for changed skills | TBD | Yes |
-| Evals added or deferred with rationale | TBD | No |
+|Activity|Owner|Required Before Launch|
+|---|---|---|
+|Rule reviewed for duplication with existing guidance|Oleg Shulyakov|Yes|
+|Skill edits reviewed for runtime bloat|Oleg Shulyakov|Yes|
+|Markdown lint run|TBD|Yes|
+|Skill validation run for changed skills|TBD|Yes|
+|Evals added or deferred with rationale|TBD|No|
 
 ---
 
 ## 12. Open Questions
 
-| # | Question | Owner | Due | Status |
-| --- | --- | --- | --- | --- |
-| 1 | Should implementation include eval prompts in the first pass? | Oleg Shulyakov | TBD | Open |
-| 2 | Should `karpathy-guidelines` remain separate from `engineering-principles`, or should overlapping simplicity guidance be merged later? | Oleg Shulyakov | TBD | Open |
-| 3 | Should `Most Popular Principles.md` be renamed to fix `principals`/`principles` wording in its body? | Oleg Shulyakov | TBD | Open |
+|#|Question|Owner|Due|Status|
+|---|---|---|---|---|
+|1|Should implementation include eval prompts in the first pass?|Oleg Shulyakov|TBD|Open|
+|2|Should `karpathy-guidelines` remain separate from `engineering-principles`, or should overlapping simplicity guidance be merged later?|Oleg Shulyakov|TBD|Open|
+|3|Should `Most Popular Principles.md` be renamed to fix `principals`/`principles` wording in its body?|Oleg Shulyakov|TBD|Open|
 
 ---

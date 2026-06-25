@@ -74,13 +74,13 @@ The agent's entry point. Every runtime MUST load this file first. It serves two 
 
 <!-- The runtime uses this section to discover and load other files -->
 
-| File                                  | Purpose              | Auto-load |
-| ------------------------------------- | -------------------- | --------- |
-| rules/code-style.md                   | Coding conventions   | yes       |
-| rules/security.md                     | Security constraints | yes       |
-| commands/review.md                    | /review command      | on-demand |
-| memory/MEMORY.md                      | Long-term memory     | yes       |
-| ../docs/auth-redesign/ARCHITECTURE.md | Task architecture    | on-demand |
+|File|Purpose|Auto-load|
+|-------------------------------------|--------------------|---------|
+|rules/code-style.md|Coding conventions|yes|
+|rules/security.md|Security constraints|yes|
+|commands/review.md|/review command|on-demand|
+|memory/MEMORY.md|Long-term memory|yes|
+|../docs/auth-redesign/ARCHITECTURE.md|Task architecture|on-demand|
 ```
 
 #### Rules
@@ -258,11 +258,11 @@ disable-model-invocation: true
 **Summary:** [One-line verdict]
 
 **Issues:**
-| Severity | Line | Description |
+|Severity|Line|Description|
 |----------|------|-------------|
-| 🔴 Critical | 42 | SQL injection risk — user input not sanitized |
-| 🟡 Warning | 88 | Missing null check before `.data` access |
-| 🔵 Info | 12 | Consider extracting magic number `3600` to a constant |
+|🔴 Critical|42|SQL injection risk — user input not sanitized|
+|🟡 Warning|88|Missing null check before `.data` access|
+|🔵 Info|12|Consider extracting magic number `3600` to a constant|
 
 **Suggestion:** [Optional refactor idea]
 ````
@@ -342,10 +342,10 @@ Persistent storage of facts, decisions, entities, and context that should surviv
 
 #### Recommended Files
 
-| File | Purpose |
-| --------------- | ------------------------------------------------------------ |
-| `MEMORY.md` | Long-term memory. Durable facts, preferences, and decisions |
-| `YYYY-MM-DD.md` | Daily notes (UTC timezone). Running context and observations |
+|File|Purpose|
+|---------------|------------------------------------------------------------|
+|`MEMORY.md`|Long-term memory. Durable facts, preferences, and decisions|
+|`YYYY-MM-DD.md`|Daily notes (UTC timezone). Running context and observations|
 
 #### `MEMORY.md` Schema
 

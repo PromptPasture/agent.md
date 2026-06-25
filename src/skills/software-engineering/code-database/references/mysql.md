@@ -198,13 +198,13 @@ max_connections (MySQL server) = sum of all application pool max sizes
 
 Recommended application pool settings:
 
-| Setting | Value |
-| --- | --- |
-| Max pool size | 10–25 per app instance |
-| Min idle | 2–5 |
-| Connection timeout | 30 s |
-| Max lifetime | 30 min |
-| `wait_timeout` (server) | 28800 s (8 h) — set in `my.cnf` |
+|Setting|Value|
+|---|---|
+|Max pool size|10–25 per app instance|
+|Min idle|2–5|
+|Connection timeout|30 s|
+|Max lifetime|30 min|
+|`wait_timeout` (server)|28800 s (8 h) — set in `my.cnf`|
 
 ---
 

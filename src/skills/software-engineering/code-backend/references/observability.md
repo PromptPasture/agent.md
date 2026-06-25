@@ -37,12 +37,12 @@ Use the structured logging library available in the project stack. The shape (ke
 
 ### Log Levels
 
-| Level | When |
-| --- | --- |
-| `DEBUG` | Detailed internal state; off in production by default |
-| `INFO` | Normal operations: request complete, job started, config loaded |
-| `WARN` | Degraded but recoverable: retry attempt, slow query, fallback used |
-| `ERROR` | Failure requiring investigation: unhandled error, job failed permanently |
+|Level|When|
+|---|---|
+|`DEBUG`|Detailed internal state; off in production by default|
+|`INFO`|Normal operations: request complete, job started, config loaded|
+|`WARN`|Degraded but recoverable: retry attempt, slow query, fallback used|
+|`ERROR`|Failure requiring investigation: unhandled error, job failed permanently|
 
 Never log at ERROR for expected failures (user not found, validation error) — those are INFO or WARN.
 

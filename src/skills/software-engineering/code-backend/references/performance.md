@@ -95,12 +95,12 @@ Never cache:
 
 Reuse connections — do not open a new connection per request. Configure the pool explicitly:
 
-| Setting | Recommended starting value |
-| --- | --- |
-| Max open connections | 10–25 (tune under load) |
-| Max idle connections | Half of max open |
-| Connection max lifetime | 5–30 minutes |
-| Connection max idle time | 5 minutes |
+|Setting|Recommended starting value|
+|---|---|
+|Max open connections|10–25 (tune under load)|
+|Max idle connections|Half of max open|
+|Connection max lifetime|5–30 minutes|
+|Connection max idle time|5 minutes|
 
 Apply the same principle to HTTP clients used for outbound calls — reuse a shared client with a connection pool rather than creating one per request.
 
@@ -132,13 +132,13 @@ result = withTimeout(5 seconds):
   httpClient.get(url)
 ```
 
-| Call type | Recommended timeout |
-| --- | --- |
-| DB query (simple) | 3–5 s |
-| DB query (complex/report) | 30–60 s |
-| Outbound HTTP (user-facing) | 5–10 s |
-| Outbound HTTP (background) | 30–60 s |
-| Queue publish | 5 s |
+|Call type|Recommended timeout|
+|---|---|
+|DB query (simple)|3–5 s|
+|DB query (complex/report)|30–60 s|
+|Outbound HTTP (user-facing)|5–10 s|
+|Outbound HTTP (background)|30–60 s|
+|Queue publish|5 s|
 
 ---
 

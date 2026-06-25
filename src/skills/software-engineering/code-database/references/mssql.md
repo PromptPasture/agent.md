@@ -200,12 +200,12 @@ END;
 
 SQL Server uses connection pooling via ADO.NET / JDBC by default. Key settings:
 
-| Setting | Recommended |
-| --- | --- |
-| `Max Pool Size` | 100 (ADO.NET default) — tune down under low concurrency |
-| `Min Pool Size` | 0–5 |
-| `Connect Timeout` | 30 s |
-| `Connection Lifetime` | 0 (pool manages) |
+|Setting|Recommended|
+|---|---|
+|`Max Pool Size`|100 (ADO.NET default) — tune down under low concurrency|
+|`Min Pool Size`|0–5|
+|`Connect Timeout`|30 s|
+|`Connection Lifetime`|0 (pool manages)|
 
 Set `MultipleActiveResultSets=True` (MARS) in the connection string only if the ORM requires it — MARS adds overhead.
 

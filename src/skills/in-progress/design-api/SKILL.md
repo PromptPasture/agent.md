@@ -22,12 +22,12 @@ Produce a contract-first API specification. Route to the right reference, load o
 
 ## Route the Work
 
-| User signal | Load | Output |
-| --- | --- | --- |
-| REST, HTTP, CRUD, endpoints, resources, OpenAPI, Swagger | `references/openapi.md` | OpenAPI 3.1 YAML |
-| Events, messages, pub/sub, Kafka, RabbitMQ, AMQP, WebSocket event streams | `references/asyncapi.md` | AsyncAPI 2.6 YAML |
-| GraphQL, schema, queries, mutations, subscriptions, resolvers | `references/graphql.md` | GraphQL SDL plus operation notes |
-| Ambiguous API design request | `references/openapi.md` | OpenAPI 3.1 YAML, with the assumption stated once |
+|User signal|Load|Output|
+|---|---|---|
+|REST, HTTP, CRUD, endpoints, resources, OpenAPI, Swagger|`references/openapi.md`|OpenAPI 3.1 YAML|
+|Events, messages, pub/sub, Kafka, RabbitMQ, AMQP, WebSocket event streams|`references/asyncapi.md`|AsyncAPI 2.6 YAML|
+|GraphQL, schema, queries, mutations, subscriptions, resolvers|`references/graphql.md`|GraphQL SDL plus operation notes|
+|Ambiguous API design request|`references/openapi.md`|OpenAPI 3.1 YAML, with the assumption stated once|
 
 If the prompt mixes styles, produce separate contract sections only when both are clearly required. Otherwise choose the primary style from the user's nouns and verbs.
 

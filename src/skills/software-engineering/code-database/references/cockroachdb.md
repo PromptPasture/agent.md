@@ -234,12 +234,12 @@ CockroachDB recommends **PgBouncer in session mode** (not transaction mode) due 
 
 Recommended settings:
 
-| Setting | Value |
-| --- | --- |
-| Pool mode | Session |
-| Max pool size | 4 × num_cores per node (start) |
-| `server_idle_timeout` | 600 s |
-| Application max connections | Tune to < 4× node count |
+|Setting|Value|
+|---|---|
+|Pool mode|Session|
+|Max pool size|4 × num_cores per node (start)|
+|`server_idle_timeout`|600 s|
+|Application max connections|Tune to < 4× node count|
 
 CockroachDB Serverless manages connection pooling automatically.
 

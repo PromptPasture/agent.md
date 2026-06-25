@@ -14,16 +14,16 @@
 
 ## Naming Conventions
 
-| Object | Convention | Example |
-| --- | --- | --- |
-| Tables | `snake_case`, plural | `users`, `order_items` |
-| Columns | `snake_case` | `email`, `created_at` |
-| Primary key | `id` | `id UUID PRIMARY KEY` |
-| Foreign key | `<referenced_table_singular>_id` | `user_id`, `order_id` |
-| Indexes | `idx_<table>_<columns>` | `idx_orders_user_id` |
-| Unique indexes | `uq_<table>_<columns>` | `uq_users_email` |
-| Check constraints | `chk_<table>_<column>` | `chk_orders_status` |
-| Enums / types | `snake_case` | `order_status`, `user_role` |
+|Object|Convention|Example|
+|---|---|---|
+|Tables|`snake_case`, plural|`users`, `order_items`|
+|Columns|`snake_case`|`email`, `created_at`|
+|Primary key|`id`|`id UUID PRIMARY KEY`|
+|Foreign key|`<referenced_table_singular>_id`|`user_id`, `order_id`|
+|Indexes|`idx_<table>_<columns>`|`idx_orders_user_id`|
+|Unique indexes|`uq_<table>_<columns>`|`uq_users_email`|
+|Check constraints|`chk_<table>_<column>`|`chk_orders_status`|
+|Enums / types|`snake_case`|`order_status`, `user_role`|
 
 ---
 
@@ -52,19 +52,19 @@ Do not use natural keys (email, username, slug) as primary keys — they change 
 
 Choose the narrowest type that fits:
 
-| Use case | Postgres | MySQL | SQLite |
-| --- | --- | --- | --- |
-| Short text (< 255 chars) | `VARCHAR(n)` or `TEXT` | `VARCHAR(n)` | `TEXT` |
-| Long text | `TEXT` | `TEXT` | `TEXT` |
-| Integer (small) | `INTEGER` | `INT` | `INTEGER` |
-| Integer (large) | `BIGINT` | `BIGINT` | `INTEGER` |
-| Decimal (money) | `NUMERIC(19,4)` | `DECIMAL(19,4)` | `NUMERIC` |
-| Boolean | `BOOLEAN` | `TINYINT(1)` | `INTEGER` (0/1) |
-| UTC timestamp | `TIMESTAMPTZ` | `DATETIME(6)` | `TEXT` (ISO 8601) |
-| Date only | `DATE` | `DATE` | `TEXT` |
-| JSON document | `JSONB` | `JSON` | `TEXT` |
-| UUID | `UUID` | `CHAR(36)` | `TEXT` |
-| Binary | `BYTEA` | `BLOB` | `BLOB` |
+|Use case|Postgres|MySQL|SQLite|
+|---|---|---|---|
+|Short text (< 255 chars)|`VARCHAR(n)` or `TEXT`|`VARCHAR(n)`|`TEXT`|
+|Long text|`TEXT`|`TEXT`|`TEXT`|
+|Integer (small)|`INTEGER`|`INT`|`INTEGER`|
+|Integer (large)|`BIGINT`|`BIGINT`|`INTEGER`|
+|Decimal (money)|`NUMERIC(19,4)`|`DECIMAL(19,4)`|`NUMERIC`|
+|Boolean|`BOOLEAN`|`TINYINT(1)`|`INTEGER` (0/1)|
+|UTC timestamp|`TIMESTAMPTZ`|`DATETIME(6)`|`TEXT` (ISO 8601)|
+|Date only|`DATE`|`DATE`|`TEXT`|
+|JSON document|`JSONB`|`JSON`|`TEXT`|
+|UUID|`UUID`|`CHAR(36)`|`TEXT`|
+|Binary|`BYTEA`|`BLOB`|`BLOB`|
 
 Avoid `FLOAT` and `DOUBLE` for monetary values — use `NUMERIC`/`DECIMAL`.
 
@@ -89,12 +89,12 @@ CREATE TABLE orders (
 
 ### ON DELETE behaviour
 
-| Option | Use when |
-| --- | --- |
-| `RESTRICT` (default) | Child rows must be deleted first — safest default |
-| `CASCADE` | Child rows should auto-delete with parent (audit logs, line items) |
-| `SET NULL` | FK can be nullable; nullify when parent is deleted |
-| `SET DEFAULT` | Rare — set a fallback FK value |
+|Option|Use when|
+|---|---|
+|`RESTRICT` (default)|Child rows must be deleted first — safest default|
+|`CASCADE`|Child rows should auto-delete with parent (audit logs, line items)|
+|`SET NULL`|FK can be nullable; nullify when parent is deleted|
+|`SET DEFAULT`|Rare — set a fallback FK value|
 
 Prefer `RESTRICT` as the default; use `CASCADE` only when child rows are meaningless without the parent.
 

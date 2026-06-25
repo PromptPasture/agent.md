@@ -93,12 +93,12 @@ Never log:
 
 Apply rate limiting on all public-facing endpoints to prevent brute-force and abuse:
 
-| Endpoint | Limit | Window |
-| --- | --- | --- |
-| `POST /auth/login` | 5 attempts | 15 minutes per IP |
-| `POST /auth/register` | 10 requests | 1 hour per IP |
-| `POST /auth/password-reset` | 3 requests | 1 hour per email |
-| All other public endpoints | 100 requests | 1 minute per IP |
+|Endpoint|Limit|Window|
+|---|---|---|
+|`POST /auth/login`|5 attempts|15 minutes per IP|
+|`POST /auth/register`|10 requests|1 hour per IP|
+|`POST /auth/password-reset`|3 requests|1 hour per email|
+|All other public endpoints|100 requests|1 minute per IP|
 
 Return `429 Too Many Requests` with a `Retry-After` header when the limit is exceeded.
 

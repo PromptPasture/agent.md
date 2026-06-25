@@ -131,12 +131,12 @@ USE WAREHOUSE etl_wh;
 
 Warehouse sizing guidance:
 
-| Workload | Starting size |
-| --- | --- |
-| Simple queries, dashboards | X-SMALL or SMALL |
-| Complex analytics, large joins | MEDIUM or LARGE |
-| Heavy ETL, data loading | LARGE or X-LARGE |
-| ML feature engineering | X-LARGE or 2X-LARGE |
+|Workload|Starting size|
+|---|---|
+|Simple queries, dashboards|X-SMALL or SMALL|
+|Complex analytics, large joins|MEDIUM or LARGE|
+|Heavy ETL, data loading|LARGE or X-LARGE|
+|ML feature engineering|X-LARGE or 2X-LARGE|
 
 Scale up for a single large query; scale out (multi-cluster) for many concurrent users.
 

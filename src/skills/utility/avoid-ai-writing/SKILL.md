@@ -98,147 +98,147 @@ Words are organized into three tiers based on how reliably they signal AI-genera
 
 #### Tier 1 — Always replace
 
-| Replace | With |
-| --- | --- |
-| delve / delve into | explore, dig into, look at |
-| landscape (metaphor) | field, space, industry, world |
-| tapestry | (describe the actual complexity) |
-| realm | area, field, domain |
-| paradigm | model, approach, framework |
-| embark | start, begin |
-| beacon | (rewrite entirely) |
-| testament to | shows, proves, demonstrates |
-| robust | strong, reliable, solid |
-| comprehensive | thorough, complete, full |
-| cutting-edge | latest, newest, advanced |
-| leverage (verb) | use |
-| pivotal | important, key, critical |
-| underscores | highlights, shows |
-| meticulous / meticulously | careful, detailed, precise |
-| seamless / seamlessly | smooth, easy, without friction |
-| game-changer / game-changing | describe what specifically changed and why it matters |
-| hit differently / hits different | (say what specifically changed, or cut) |
-| utilize | use |
-| watershed moment | turning point, shift (or describe what changed) |
-| marking a pivotal moment | (state what happened) |
-| the future looks bright | (cut — say something specific or nothing) |
-| only time will tell | (cut — say something specific or nothing) |
-| nestled | is located, sits, is in |
-| vibrant | (describe what makes it active, or cut) |
-| thriving | growing, active (or cite a number) |
-| despite challenges… continues to thrive | (name the challenge and the response, or cut) |
-| showcasing | showing, demonstrating (or cut the clause) |
-| deep dive / dive into | look at, examine, explore |
-| unpack / unpacking | explain, break down, walk through |
-| bustling | busy, active (or cite what makes it busy) |
-| intricate / intricacies | complex, detailed (or name the specific complexity) |
-| complexities | (name the actual complexities, or use "problems" / "details") |
-| ever-evolving | changing, growing (or describe how) |
-| enduring | lasting, long-running (or cite how long) |
-| daunting | hard, difficult, challenging |
-| holistic / holistically | complete, full, whole (or describe what's included) |
-| actionable | practical, useful, concrete |
-| impactful | effective, significant (or describe the impact) |
-| learnings | lessons, findings, takeaways |
-| thought leader / thought leadership | expert, authority (or describe their actual contribution) |
-| best practices | what works, proven methods, standard approach |
-| at its core | (cut — just state the thing) |
-| synergy / synergies | (describe the actual combined effect) |
-| interplay | relationship, connection, interaction |
-| in order to | to |
-| due to the fact that | because |
-| serves as | is |
-| features (verb) | has, includes |
-| boasts | has |
-| presents (inflated) | is, shows, gives |
-| commence | start, begin |
-| ascertain | find out, determine, learn |
-| endeavor | effort, attempt, try |
-| keen (as intensifier) | interested, eager, enthusiastic (or cut — just state the interest) |
-| genuinely / genuine (as intensifier) | (cut — just state the fact) |
-| symphony (metaphor) | (describe the actual coordination or combination) |
-| embrace (metaphor) | adopt, accept, use, switch to |
+|Replace|With|
+|---|---|
+|delve / delve into|explore, dig into, look at|
+|landscape (metaphor)|field, space, industry, world|
+|tapestry|(describe the actual complexity)|
+|realm|area, field, domain|
+|paradigm|model, approach, framework|
+|embark|start, begin|
+|beacon|(rewrite entirely)|
+|testament to|shows, proves, demonstrates|
+|robust|strong, reliable, solid|
+|comprehensive|thorough, complete, full|
+|cutting-edge|latest, newest, advanced|
+|leverage (verb)|use|
+|pivotal|important, key, critical|
+|underscores|highlights, shows|
+|meticulous / meticulously|careful, detailed, precise|
+|seamless / seamlessly|smooth, easy, without friction|
+|game-changer / game-changing|describe what specifically changed and why it matters|
+|hit differently / hits different|(say what specifically changed, or cut)|
+|utilize|use|
+|watershed moment|turning point, shift (or describe what changed)|
+|marking a pivotal moment|(state what happened)|
+|the future looks bright|(cut — say something specific or nothing)|
+|only time will tell|(cut — say something specific or nothing)|
+|nestled|is located, sits, is in|
+|vibrant|(describe what makes it active, or cut)|
+|thriving|growing, active (or cite a number)|
+|despite challenges… continues to thrive|(name the challenge and the response, or cut)|
+|showcasing|showing, demonstrating (or cut the clause)|
+|deep dive / dive into|look at, examine, explore|
+|unpack / unpacking|explain, break down, walk through|
+|bustling|busy, active (or cite what makes it busy)|
+|intricate / intricacies|complex, detailed (or name the specific complexity)|
+|complexities|(name the actual complexities, or use "problems" / "details")|
+|ever-evolving|changing, growing (or describe how)|
+|enduring|lasting, long-running (or cite how long)|
+|daunting|hard, difficult, challenging|
+|holistic / holistically|complete, full, whole (or describe what's included)|
+|actionable|practical, useful, concrete|
+|impactful|effective, significant (or describe the impact)|
+|learnings|lessons, findings, takeaways|
+|thought leader / thought leadership|expert, authority (or describe their actual contribution)|
+|best practices|what works, proven methods, standard approach|
+|at its core|(cut — just state the thing)|
+|synergy / synergies|(describe the actual combined effect)|
+|interplay|relationship, connection, interaction|
+|in order to|to|
+|due to the fact that|because|
+|serves as|is|
+|features (verb)|has, includes|
+|boasts|has|
+|presents (inflated)|is, shows, gives|
+|commence|start, begin|
+|ascertain|find out, determine, learn|
+|endeavor|effort, attempt, try|
+|keen (as intensifier)|interested, eager, enthusiastic (or cut — just state the interest)|
+|genuinely / genuine (as intensifier)|(cut — just state the fact)|
+|symphony (metaphor)|(describe the actual coordination or combination)|
+|embrace (metaphor)|adopt, accept, use, switch to|
 
 #### Tier 2 — Flag when 2+ appear in the same paragraph
 
 These words are legitimate on their own. When two or more show up together, the paragraph likely needs a rewrite.
 
-| Replace | With |
-| --- | --- |
-| harness | use, take advantage of |
-| navigate / navigating | work through, handle, deal with |
-| foster | encourage, support, build |
-| elevate | improve, raise, strengthen |
-| unleash | release, enable, unlock |
-| streamline | simplify, speed up |
-| empower | enable, let, allow |
-| bolster | support, strengthen, back up |
-| spearhead | lead, drive, run |
-| resonate / resonates with | connect with, appeal to, matter to |
-| revolutionize | change, transform, reshape (or describe what changed) |
-| facilitate / facilitates | enable, help, allow, run |
-| underpin | support, form the basis of |
-| nuanced | specific, subtle, detailed (or name the actual nuance) |
-| crucial | important, key, necessary |
-| multifaceted | (describe the actual facets, or cut) |
-| ecosystem (metaphor) | system, community, network, market |
-| myriad | many, numerous (or give a number) |
-| plethora | many, a lot of (or give a number) |
-| encompass | include, cover, span |
-| catalyze | start, trigger, accelerate |
-| reimagine | rethink, redesign, rebuild |
-| galvanize | motivate, rally, push |
-| augment | add to, expand, supplement |
-| cultivate | build, develop, grow |
-| illuminate | clarify, explain, show |
-| elucidate | explain, clarify, spell out |
-| juxtapose | compare, contrast, set side by side |
-| paradigm-shifting | (describe what actually shifted) |
-| transformative / transformation | (describe what changed and how) |
-| cornerstone | foundation, basis, key part |
-| paramount | most important, top priority |
-| poised (to) | ready, set, about to |
-| burgeoning | growing, emerging (or cite a number) |
-| nascent | new, early-stage, emerging |
-| quintessential | typical, classic, defining |
-| overarching | main, central, broad |
-| underpinning / underpinnings | basis, foundation, what supports |
+|Replace|With|
+|---|---|
+|harness|use, take advantage of|
+|navigate / navigating|work through, handle, deal with|
+|foster|encourage, support, build|
+|elevate|improve, raise, strengthen|
+|unleash|release, enable, unlock|
+|streamline|simplify, speed up|
+|empower|enable, let, allow|
+|bolster|support, strengthen, back up|
+|spearhead|lead, drive, run|
+|resonate / resonates with|connect with, appeal to, matter to|
+|revolutionize|change, transform, reshape (or describe what changed)|
+|facilitate / facilitates|enable, help, allow, run|
+|underpin|support, form the basis of|
+|nuanced|specific, subtle, detailed (or name the actual nuance)|
+|crucial|important, key, necessary|
+|multifaceted|(describe the actual facets, or cut)|
+|ecosystem (metaphor)|system, community, network, market|
+|myriad|many, numerous (or give a number)|
+|plethora|many, a lot of (or give a number)|
+|encompass|include, cover, span|
+|catalyze|start, trigger, accelerate|
+|reimagine|rethink, redesign, rebuild|
+|galvanize|motivate, rally, push|
+|augment|add to, expand, supplement|
+|cultivate|build, develop, grow|
+|illuminate|clarify, explain, show|
+|elucidate|explain, clarify, spell out|
+|juxtapose|compare, contrast, set side by side|
+|paradigm-shifting|(describe what actually shifted)|
+|transformative / transformation|(describe what changed and how)|
+|cornerstone|foundation, basis, key part|
+|paramount|most important, top priority|
+|poised (to)|ready, set, about to|
+|burgeoning|growing, emerging (or cite a number)|
+|nascent|new, early-stage, emerging|
+|quintessential|typical, classic, defining|
+|overarching|main, central, broad|
+|underpinning / underpinnings|basis, foundation, what supports|
 
 #### Tier 3 — Flag only at high density
 
 These are normal words. Only flag them when the text is saturated with them — a sign that AI filled space with vague praise instead of specifics.
 
-| Word | What to do |
-| --- | --- |
-| significant / significantly | Replace some with specifics: numbers, comparisons, examples |
-| innovative / innovation | Describe what's actually new |
-| effective / effectively | Say how or cite a metric |
-| dynamic / dynamics | Name the actual forces or changes |
-| scalable / scalability | Describe what scales and to what |
-| compelling | Say why it compels |
-| unprecedented | Name the precedent it breaks (or cut) |
-| exceptional / exceptionally | Cite what makes it an exception |
-| remarkable / remarkably | Say what's worth remarking on |
-| sophisticated | Describe the sophistication |
-| instrumental | Say what role it played |
-| world-class / state-of-the-art / best-in-class | Cite a benchmark or comparison |
+|Word|What to do|
+|---|---|
+|significant / significantly|Replace some with specifics: numbers, comparisons, examples|
+|innovative / innovation|Describe what's actually new|
+|effective / effectively|Say how or cite a metric|
+|dynamic / dynamics|Name the actual forces or changes|
+|scalable / scalability|Describe what scales and to what|
+|compelling|Say why it compels|
+|unprecedented|Name the precedent it breaks (or cut)|
+|exceptional / exceptionally|Cite what makes it an exception|
+|remarkable / remarkably|Say what's worth remarking on|
+|sophisticated|Describe the sophistication|
+|instrumental|Say what role it played|
+|world-class / state-of-the-art / best-in-class|Cite a benchmark or comparison|
 
 #### Tier 3 phrases — Flag at density or in clusters
 
 Multi-word boilerplate that's individually unobjectionable but stacks heavily in AI-generated content (crypto, web3, DePIN, AI/infra reviews are the worst offenders). Flag at **2+ uses of the same phrase** (the per-phrase rule — lower threshold than single-word Tier 3 because a two-word match repeated twice is already stronger evidence than re-using "significant"), _plus_ a **cluster rule**: three or more _distinct_ phrases from this table in one piece is a strong signal even when each phrase only appears once — that's the shape LLMs take when they vary their own boilerplate to seem less repetitive.
 
-| Phrase | What to do |
-| --- | --- |
-| emerging sector / emerging space / emerging category | Name the actual sector or what's emerging about it |
-| the integration of (X with Y) | Describe what's being integrated and what changes for the user |
-| the intersection of (X and Y) | Pick the specific overlap that matters or cut the framing |
-| community-driven | Name what the community does. "Community-driven" alone is filler |
-| long-term sustainability | Cite the time horizon and the constraint. "Long-term" is hand-waving |
-| user engagement | Name the action. "Engagement" is a wrapper around clicks/comments/retention |
-| decentralized compute | Specify the architecture or cut. The phrase has become a category label, not a claim |
-| (sustainable) reward emissions | Cite the emission schedule and the sink |
-| tokenized incentive structures | Describe the actual mechanism (vesting, gauge, bonded LP, etc.) |
-| designed for long-term [X] | Cut "designed for" — either it is or it isn't. Then state the property |
+|Phrase|What to do|
+|---|---|
+|emerging sector / emerging space / emerging category|Name the actual sector or what's emerging about it|
+|the integration of (X with Y)|Describe what's being integrated and what changes for the user|
+|the intersection of (X and Y)|Pick the specific overlap that matters or cut the framing|
+|community-driven|Name what the community does. "Community-driven" alone is filler|
+|long-term sustainability|Cite the time horizon and the constraint. "Long-term" is hand-waving|
+|user engagement|Name the action. "Engagement" is a wrapper around clicks/comments/retention|
+|decentralized compute|Specify the architecture or cut. The phrase has become a category label, not a claim|
+|(sustainable) reward emissions|Cite the emission schedule and the sink|
+|tokenized incentive structures|Describe the actual mechanism (vesting, gauge, bonded LP, etc.)|
+|designed for long-term [X]|Cut "designed for" — either it is or it isn't. Then state the property|
 
 ### Template phrases (avoid)
 
@@ -580,29 +580,29 @@ Pass an optional context hint to adjust rule strictness. If no context is specif
 
 Rules not listed in the table apply at full strength across all profiles.
 
-| Rule | linkedin | blog | technical-blog | investor-email | docs | casual |
-| --- | --- | --- | --- | --- | --- | --- |
-| Em dashes | relaxed (2/post OK) | strict | strict | strict | relaxed | skip |
-| Bold overuse | relaxed (bold hooks OK) | strict | strict | strict | relaxed | skip |
-| Emoji in headers | relaxed (1-2 end-of-line OK) | strict | strict | strict | skip | skip |
-| Excessive bullets | skip (lists work on LinkedIn) | strict | relaxed (technical lists OK) | strict | skip (lists are docs) | skip |
-| Hedging | strict | strict | relaxed ("may" is accurate in technical) | strict | relaxed | skip |
-| Word table (full list) | strict | strict | **partial** (see below) | strict | relaxed | P0 only |
-| Promotional language | relaxed (some sell is expected) | strict | strict | **extra strict** | strict | skip |
-| Significance inflation | strict | strict | strict | **extra strict** | relaxed | skip |
-| Copula avoidance | skip | strict | relaxed | strict | skip | skip |
-| Uniform paragraph length | skip (short-form) | strict | strict | strict | relaxed | skip |
-| Numbered list inflation | relaxed | strict | relaxed | strict | skip | skip |
-| Rhetorical questions | relaxed (1 as hook OK) | strict | strict | strict | strict | skip |
-| Transition phrases | skip (short-form) | strict | strict | strict | relaxed | skip |
-| Generic conclusions | skip | strict | strict | **extra strict** | skip | skip |
-| Hashtag stuffing | strict | strict | strict | **extra strict** | skip (no hashtags in docs) | skip |
-| Bullet-NP lists | strict | strict | relaxed (technical option lists OK) | strict | relaxed (parameter lists OK) | skip |
-| Tier 3 phrase clustering | strict | strict | strict | **extra strict** | relaxed | skip |
-| Future-narrative closers | strict | strict | strict | **extra strict** | skip | skip |
-| Social endorsement closers | strict (the LinkedIn share-post tell) | strict | strict | strict | skip | relaxed (1 OK in a DM) |
-| Hedge-stacked predictions | strict | strict | relaxed ("could" is hedged accuracy) | **extra strict** | relaxed | skip |
-| Real/actual inflation | strict | strict | strict | **extra strict** | relaxed | skip |
+|Rule|linkedin|blog|technical-blog|investor-email|docs|casual|
+|---|---|---|---|---|---|---|
+|Em dashes|relaxed (2/post OK)|strict|strict|strict|relaxed|skip|
+|Bold overuse|relaxed (bold hooks OK)|strict|strict|strict|relaxed|skip|
+|Emoji in headers|relaxed (1-2 end-of-line OK)|strict|strict|strict|skip|skip|
+|Excessive bullets|skip (lists work on LinkedIn)|strict|relaxed (technical lists OK)|strict|skip (lists are docs)|skip|
+|Hedging|strict|strict|relaxed ("may" is accurate in technical)|strict|relaxed|skip|
+|Word table (full list)|strict|strict|**partial** (see below)|strict|relaxed|P0 only|
+|Promotional language|relaxed (some sell is expected)|strict|strict|**extra strict**|strict|skip|
+|Significance inflation|strict|strict|strict|**extra strict**|relaxed|skip|
+|Copula avoidance|skip|strict|relaxed|strict|skip|skip|
+|Uniform paragraph length|skip (short-form)|strict|strict|strict|relaxed|skip|
+|Numbered list inflation|relaxed|strict|relaxed|strict|skip|skip|
+|Rhetorical questions|relaxed (1 as hook OK)|strict|strict|strict|strict|skip|
+|Transition phrases|skip (short-form)|strict|strict|strict|relaxed|skip|
+|Generic conclusions|skip|strict|strict|**extra strict**|skip|skip|
+|Hashtag stuffing|strict|strict|strict|**extra strict**|skip (no hashtags in docs)|skip|
+|Bullet-NP lists|strict|strict|relaxed (technical option lists OK)|strict|relaxed (parameter lists OK)|skip|
+|Tier 3 phrase clustering|strict|strict|strict|**extra strict**|relaxed|skip|
+|Future-narrative closers|strict|strict|strict|**extra strict**|skip|skip|
+|Social endorsement closers|strict (the LinkedIn share-post tell)|strict|strict|strict|skip|relaxed (1 OK in a DM)|
+|Hedge-stacked predictions|strict|strict|relaxed ("could" is hedged accuracy)|**extra strict**|relaxed|skip|
+|Real/actual inflation|strict|strict|strict|**extra strict**|relaxed|skip|
 
 **Technical-blog word table exceptions:** These terms have legitimate technical meaning and should not be flagged in technical context: `robust`, `comprehensive`, `seamless`, `ecosystem`, `leverage` (when discussing actual platform leverage/APIs), `facilitate`, `underpin`, `streamline`. Still flag: `delve`, `tapestry`, `beacon`, `embark`, `testament to`, `game-changer`, `harness`.
 
@@ -614,13 +614,13 @@ Rules not listed in the table apply at full strength across all profiles.
 
 When no context is specified, infer from these signals:
 
-| Signal | Inferred context |
-| --- | --- |
-| Under 300 words + hashtags or mentions | `linkedin` |
-| Code blocks, API references, or technical architecture | `technical-blog` |
-| Salutation ("Hi [name]", "Dear") + investor/fundraising language | `investor-email` |
-| Step-by-step instructions, parameter docs, README structure | `docs` |
-| No strong signals | `blog` (safest default — all rules apply) |
+|Signal|Inferred context|
+|---|---|
+|Under 300 words + hashtags or mentions|`linkedin`|
+|Code blocks, API references, or technical architecture|`technical-blog`|
+|Salutation ("Hi [name]", "Dear") + investor/fundraising language|`investor-email`|
+|Step-by-step instructions, parameter docs, README structure|`docs`|
+|No strong signals|`blog` (safest default — all rules apply)|
 
 If auto-detection feels wrong, say which profile you're using and why. The user can override.
 

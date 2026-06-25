@@ -31,14 +31,14 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
 
 ## Choosing an Approach
 
-| Use case | Preferred tool |
-| --- | --- |
-| Simple show/hide, hover, focus | CSS `transition` |
-| Keyframe sequences | CSS `@keyframes` |
-| Complex orchestration, gestures, shared layouts | Framework animation library |
-| Page / route transitions | Framework router integration or View Transitions API |
-| SVG animation | CSS `@keyframes` |
-| Spring physics | Framework animation library |
+|Use case|Preferred tool|
+|---|---|
+|Simple show/hide, hover, focus|CSS `transition`|
+|Keyframe sequences|CSS `@keyframes`|
+|Complex orchestration, gestures, shared layouts|Framework animation library|
+|Page / route transitions|Framework router integration or View Transitions API|
+|SVG animation|CSS `@keyframes`|
+|Spring physics|Framework animation library|
 
 **Default to CSS.** Reach for a library only when CSS cannot express the animation cleanly.
 
@@ -64,12 +64,12 @@ Prefer `transform` and `opacity` — they run on the compositor thread and do no
 
 ### Timing guidelines
 
-| Interaction | Duration |
-| --- | --- |
-| Micro (button press, toggle) | 100–150ms |
-| Element enter / exit | 150–250ms |
-| Page transition | 250–400ms |
-| Complex orchestration | 300–500ms |
+|Interaction|Duration|
+|---|---|
+|Micro (button press, toggle)|100–150ms|
+|Element enter / exit|150–250ms|
+|Page transition|250–400ms|
+|Complex orchestration|300–500ms|
 
 ---
 

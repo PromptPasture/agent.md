@@ -122,12 +122,12 @@ CREATE INDEX idx_users_email ON users (email);
 
 Set pool size explicitly — do not rely on defaults in production:
 
-| Setting | Recommended starting value |
-| --- | --- |
-| Max open connections | `(num_cores × 2) + effective_spindle_count` or start at 10–25 |
-| Max idle connections | Half of max open |
-| Connection max lifetime | 5–30 minutes |
-| Connection max idle time | 5 minutes |
+|Setting|Recommended starting value|
+|---|---|
+|Max open connections|`(num_cores × 2) + effective_spindle_count` or start at 10–25|
+|Max idle connections|Half of max open|
+|Connection max lifetime|5–30 minutes|
+|Connection max idle time|5 minutes|
 
 Log pool exhaustion events and add a metric so you can tune under load.
 

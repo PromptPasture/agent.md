@@ -26,20 +26,20 @@ Four phases: **Discover → Design → Build → Validate**. Each phase produces
 
 Inspect the following in order. Stop reading a file once the needed signal is found.
 
-| File | Signal to extract |
-| --- | --- |
-| `docker-compose.yml` / `docker-compose.yaml` | DB engine and version in service image (e.g. `postgres:16`, `mysql:8`) |
-| `go.mod` | ORM/query lib: GORM, sqlx, pgx, go-pg, ent, bun |
-| `package.json` | ORM/query lib: Prisma, TypeORM, Drizzle, Knex, Sequelize, Kysely |
-| `requirements.txt` / `pyproject.toml` / `Pipfile` | ORM: SQLAlchemy, Django ORM, Tortoise, Peewee |
-| `pom.xml` / `build.gradle` | ORM: Hibernate, Spring Data JPA, jOOQ, MyBatis |
-| `Cargo.toml` | ORM: Diesel, SeaORM, SQLx |
-| `prisma/schema.prisma` | Engine (`provider`), models, migration history |
-| `alembic.ini` / `alembic/` | Python migration tool; infer engine from connection string |
-| `flyway.conf` / `V*.sql` files | Flyway migration tool and dialect |
-| `liquibase.properties` / `changelog*` | Liquibase migration tool |
-| `migrations/` / `db/migrate/` / `database/migrations/` | Migration files — infer engine from SQL dialect or ORM config |
-| `.env` / `.env.example` | `DATABASE_URL` — parse engine prefix (`postgresql://`, `mysql://`, `sqlite:`) |
+|File|Signal to extract|
+|---|---|
+|`docker-compose.yml` / `docker-compose.yaml`|DB engine and version in service image (e.g. `postgres:16`, `mysql:8`)|
+|`go.mod`|ORM/query lib: GORM, sqlx, pgx, go-pg, ent, bun|
+|`package.json`|ORM/query lib: Prisma, TypeORM, Drizzle, Knex, Sequelize, Kysely|
+|`requirements.txt` / `pyproject.toml` / `Pipfile`|ORM: SQLAlchemy, Django ORM, Tortoise, Peewee|
+|`pom.xml` / `build.gradle`|ORM: Hibernate, Spring Data JPA, jOOQ, MyBatis|
+|`Cargo.toml`|ORM: Diesel, SeaORM, SQLx|
+|`prisma/schema.prisma`|Engine (`provider`), models, migration history|
+|`alembic.ini` / `alembic/`|Python migration tool; infer engine from connection string|
+|`flyway.conf` / `V*.sql` files|Flyway migration tool and dialect|
+|`liquibase.properties` / `changelog*`|Liquibase migration tool|
+|`migrations/` / `db/migrate/` / `database/migrations/`|Migration files — infer engine from SQL dialect or ORM config|
+|`.env` / `.env.example`|`DATABASE_URL` — parse engine prefix (`postgresql://`, `mysql://`, `sqlite:`)|
 
 ### 1.2 Output a detection summary
 
@@ -152,21 +152,21 @@ Do not write a query that depends on an index that is not confirmed to exist.
 
 Load concern docs based on the task:
 
-| Signal | Load |
-| --- | --- |
-| New tables, columns, or constraints | `references/schema-design.md` |
-| Migration files being written | `references/migration.md` |
-| OLAP, reporting, or analytical queries | `references/analytics.md` |
-| Cross-engine or engine-agnostic patterns needed | `references/common.md` |
-| PostgreSQL engine detected | `references/postgres.md` |
-| MySQL / MariaDB engine detected | `references/mysql.md` |
-| SQLite engine detected | `references/sqlite.md` |
-| SQL Server / MSSQL engine detected | `references/mssql.md` |
-| Oracle engine detected | `references/oracle.md` |
-| BigQuery engine detected | `references/bigquery.md` |
-| Snowflake engine detected | `references/snowflake.md` |
-| ClickHouse engine detected | `references/clickhouse.md` |
-| CockroachDB engine detected | `references/cockroachdb.md` |
+|Signal|Load|
+|---|---|
+|New tables, columns, or constraints|`references/schema-design.md`|
+|Migration files being written|`references/migration.md`|
+|OLAP, reporting, or analytical queries|`references/analytics.md`|
+|Cross-engine or engine-agnostic patterns needed|`references/common.md`|
+|PostgreSQL engine detected|`references/postgres.md`|
+|MySQL / MariaDB engine detected|`references/mysql.md`|
+|SQLite engine detected|`references/sqlite.md`|
+|SQL Server / MSSQL engine detected|`references/mssql.md`|
+|Oracle engine detected|`references/oracle.md`|
+|BigQuery engine detected|`references/bigquery.md`|
+|Snowflake engine detected|`references/snowflake.md`|
+|ClickHouse engine detected|`references/clickhouse.md`|
+|CockroachDB engine detected|`references/cockroachdb.md`|
 
 ### 2.6 Wait for confirmation
 

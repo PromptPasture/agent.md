@@ -18,11 +18,11 @@ If the test mocks the database, it is a unit test. If it goes through an HTTP cl
 
 ## Infrastructure Strategy
 
-| Approach | When to use |
-| --- | --- |
-| Docker Compose (testcontainers) | Portable, CI-safe; preferred default |
-| Shared dev DB (seeded schema) | Acceptable if CI has a dedicated DB instance |
-| In-memory substitute (SQLite, H2) | Only when dialect differences are low-risk |
+|Approach|When to use|
+|---|---|
+|Docker Compose (testcontainers)|Portable, CI-safe; preferred default|
+|Shared dev DB (seeded schema)|Acceptable if CI has a dedicated DB instance|
+|In-memory substitute (SQLite, H2)|Only when dialect differences are low-risk|
 
 Use testcontainers when available in the project's language:
 

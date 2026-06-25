@@ -42,12 +42,12 @@ Both paths share the same technical requirements, but you choose what’s releva
 
 A skill is a folder containing:
 
-| File/Folder | Required | Purpose |
-| --- | --- | --- |
-| `SKILL.md` | ✅ Required | Instructions in Markdown with YAML frontmatter |
-| `scripts/` | Optional | Executable code (Python, Bash, etc.) |
-| `references/` | Optional | Documentation loaded as needed |
-| `assets/` | Optional | Templates, fonts, icons used in output |
+|File/Folder|Required|Purpose|
+|---|---|---|
+|`SKILL.md`|✅ Required|Instructions in Markdown with YAML frontmatter|
+|`scripts/`|Optional|Executable code (Python, Bash, etc.)|
+|`references/`|Optional|Documentation loaded as needed|
+|`assets/`|Optional|Templates, fonts, icons used in output|
 
 ### Core Design Principles
 
@@ -84,11 +84,11 @@ Together, they enable users to accomplish complex tasks without needing to figur
 
 #### How They Work Together
 
-| MCP (Connectivity) | Skills (Knowledge) |
-| --- | --- |
-| Connects agents to your service (Notion, Asana, Linear, etc.) | Teaches agents how to use your service effectively |
-| Provides real-time data access and tool invocation | Captures workflows and best practices |
-| What the agent *can* do | How the agent *should* do it |
+|MCP (Connectivity)|Skills (Knowledge)|
+|---|---|
+|Connects agents to your service (Notion, Asana, Linear, etc.)|Teaches agents how to use your service effectively|
+|Provides real-time data access and tool invocation|Captures workflows and best practices|
+|What the agent *can* do|How the agent *should* do it|
 
 #### Why This Matters for Your MCP Users
 
@@ -441,12 +441,12 @@ Then:
 
 **Goal:** Prove the skill improves results vs. baseline.
 
-| Metric | Without Skill | With Skill |
-| --- | --- | --- |
-| User instructions | Provided each time | Automatic |
-| Back-and-forth messages | 15 | 2 |
-| Failed API calls | 3 | 0 |
-| Tokens consumed | 12,000 | 6,000 |
+|Metric|Without Skill|With Skill|
+|---|---|---|
+|User instructions|Provided each time|Automatic|
+|Back-and-forth messages|15|2|
+|Failed API calls|3|0|
+|Tokens consumed|12,000|6,000|
 
 ### Using the skill-creator Skill
 
@@ -464,11 +464,11 @@ The `skill-creator` skill can help you build and iterate on skills:
 
 ### Iteration Based on Feedback
 
-| Signal | Symptom | Solution |
-| --- | --- | --- |
-| **Undertriggering** | Skill doesn’t load when it should | Add more detail and keywords to description |
-| **Overtriggering** | Skill loads for irrelevant queries | Add negative triggers, be more specific |
-| **Execution issues** | Inconsistent results, API failures | Improve instructions, add error handling |
+|Signal|Symptom|Solution|
+|---|---|---|
+|**Undertriggering**|Skill doesn’t load when it should|Add more detail and keywords to description|
+|**Overtriggering**|Skill loads for irrelevant queries|Add negative triggers, be more specific|
+|**Execution issues**|Inconsistent results, API failures|Improve instructions, add error handling|
 
 ## Chapter 4 – Distribution and Sharing
 
@@ -493,14 +493,14 @@ Agent Skills are designed as a portable pattern across tools and platforms. Like
 
 ### Using Skills via API
 
-| Use Case | Best Surface |
-| --- | --- |
-| End users interacting with skills directly | Chat app or IDE agent |
-| Manual testing and iteration during development | Chat app, IDE agent, or local runtime |
-| Individual, ad-hoc workflows | Chat app or IDE agent |
-| Applications using skills programmatically | Runtime API |
-| Production deployments at scale | Runtime API |
-| Automated pipelines and agent systems | Runtime API |
+|Use Case|Best Surface|
+|---|---|
+|End users interacting with skills directly|Chat app or IDE agent|
+|Manual testing and iteration during development|Chat app, IDE agent, or local runtime|
+|Individual, ad-hoc workflows|Chat app or IDE agent|
+|Applications using skills programmatically|Runtime API|
+|Production deployments at scale|Runtime API|
+|Automated pipelines and agent systems|Runtime API|
 
 > **Note:** API support and required tools vary by provider. Check your target runtime’s documentation before relying on code execution, file access, browsing, or MCP tools.
 

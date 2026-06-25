@@ -59,15 +59,15 @@ related:
 
 ## Goals and Success Metrics
 
-| Goal ID | Target Outcome | Baseline | Target | Measurement Method |
-| --- | --- | --- | --- | --- |
-| G-1 | [Outcome] | [Known value or TBD] | [Measurable target or TBD] | [Analytics, research, operational data, or proxy] |
+|Goal ID|Target Outcome|Baseline|Target|Measurement Method|
+|---|---|---|---|---|
+|G-1|[Outcome]|[Known value or TBD]|[Measurable target or TBD]|[Analytics, research, operational data, or proxy]|
 
 ## Target Users
 
-| User / Persona | Context | Need or Job to Be Done |
-| --- | --- | --- |
-| [Role or segment] | [Relevant situation and constraints] | [Desired progress or outcome] |
+|User / Persona|Context|Need or Job to Be Done|
+|---|---|---|
+|[Role or segment]|[Relevant situation and constraints]|[Desired progress or outcome]|
 
 ## Scope
 
@@ -85,40 +85,40 @@ related:
 
 ## Requirements
 
-| Requirement ID | Product Behavior | Priority | Acceptance Signal | Related Goal |
-| --- | --- | --- | --- | --- |
-| FR-1 | [Observable, outcome-focused behavior] | [MUST / SHOULD / COULD] | [Testable pass/fail condition] | [G-1] |
+|Requirement ID|Product Behavior|Priority|Acceptance Signal|Related Goal|
+|---|---|---|---|---|
+|FR-1|[Observable, outcome-focused behavior]|[MUST / SHOULD / COULD]|[Testable pass/fail condition]|[G-1]|
 
 ## Non-Functional Requirements [optional]
 
-| Requirement ID | Category | Target or Constraint |
-| --- | --- | --- |
-| NFR-1 | [Performance, security, accessibility, privacy, reliability, compliance, or operations] | [Quantifiable requirement] |
+|Requirement ID|Category|Target or Constraint|
+|---|---|---|
+|NFR-1|[Performance, security, accessibility, privacy, reliability, compliance, or operations]|[Quantifiable requirement]|
 
 ## Dependencies and Constraints [optional]
 
-| Item | Type | Impact | Validation or Owner |
-| --- | --- | --- | --- |
-| [Dependency or constraint] | [Dependency / Constraint] | [Affected scope or requirement] | [Validation method, owner, or TBD] |
+|Item|Type|Impact|Validation or Owner|
+|---|---|---|---|
+|[Dependency or constraint]|[Dependency / Constraint]|[Affected scope or requirement]|[Validation method, owner, or TBD]|
 
 ## Risks and Mitigations [optional]
 
-| Risk ID | Risk | Impact | Mitigation | Status |
-| --- | --- | --- | --- | --- |
-| R-1 | [Potential adverse outcome] | [HIGH / MEDIUM / LOW] | [Prevention, contingency, or acceptance] | [OPEN / CLOSED] |
+|Risk ID|Risk|Impact|Mitigation|Status|
+|---|---|---|---|---|
+|R-1|[Potential adverse outcome]|[HIGH / MEDIUM / LOW]|[Prevention, contingency, or acceptance]|[OPEN / CLOSED]|
 
 ## Rollout and Measurement [optional]
 
-| Stage | Audience or Scope | Entry / Exit Criteria | Measurement or Monitoring |
-| --- | --- | --- | --- |
-| [Pilot, beta, phased rollout, or general availability] | [Users, percentage, platform, or region] | [Observable gate] | [Metric, alert, feedback, or review] |
+|Stage|Audience or Scope|Entry / Exit Criteria|Measurement or Monitoring|
+|---|---|---|---|
+|[Pilot, beta, phased rollout, or general availability]|[Users, percentage, platform, or region]|[Observable gate]|[Metric, alert, feedback, or review]|
 
 ## Open Questions and Assumptions
 
-| Item ID | Type | Question or Assumption | Evidence or Rationale | Resolution or Validation | Owner |
-| --- | --- | --- | --- | --- | --- |
-| Q-1 | Question | [Unresolved decision that affects delivery or success] | [Why it matters] | [Evidence or decision needed] | [Name, team, or TBD] |
-| A-1 | Assumption | [Belief marked `[assumed]`] | [Current evidence or reason] | [How and when it will be tested] | [Name, team, or TBD] |
+|Item ID|Type|Question or Assumption|Evidence or Rationale|Resolution or Validation|Owner|
+|---|---|---|---|---|---|
+|Q-1|Question|[Unresolved decision that affects delivery or success]|[Why it matters]|[Evidence or decision needed]|[Name, team, or TBD]|
+|A-1|Assumption|[Belief marked `[assumed]`]|[Current evidence or reason]|[How and when it will be tested]|[Name, team, or TBD]|
 ```
 
 - Put document status, phase, dates, owner, stakeholders, tags, and related documents in YAML frontmatter when known.

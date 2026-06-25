@@ -30,14 +30,14 @@ When product intent is missing, ask for or infer it before writing technical det
 
 ## Routing Table
 
-| Request Type | Reference |
-| :------------------------------------------------- | :----------------------------- |
-| Tech spec, design doc, TDD, end-to-end spec | `references/technical.md` |
-| Functional requirements, use cases, business rules | `references/functional.md` |
-| Non-functional requirements, SLAs, performance | `references/non-functional.md` |
-| Data contract, event schema, data SLA | `references/data-contract.md` |
-| UI/UX spec, design handoff, component states | `references/design-ui.md` |
-| Release plan, rollout activities, training, documentation, support readiness | `references/technical.md` plus release sections |
+|Request Type|Reference|
+|:-------------------------------------------------|:-----------------------------|
+|Tech spec, design doc, TDD, end-to-end spec|`references/technical.md`|
+|Functional requirements, use cases, business rules|`references/functional.md`|
+|Non-functional requirements, SLAs, performance|`references/non-functional.md`|
+|Data contract, event schema, data SLA|`references/data-contract.md`|
+|UI/UX spec, design handoff, component states|`references/design-ui.md`|
+|Release plan, rollout activities, training, documentation, support readiness|`references/technical.md` plus release sections|
 
 ---
 

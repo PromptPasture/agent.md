@@ -33,12 +33,12 @@ This work creates a small general layer with clear trigger boundaries, exclusion
 
 ### 1.3 Roles & Responsibilities
 
-| Role / Team | Responsibility | Decision Area |
-| --- | --- | --- |
-| Owner | Oleg Shulyakov | Final scope, naming, acceptance, and release readiness |
-| Skill library maintainer | Implement skill folders, metadata, references, and evals | File layout, authoring quality, validation |
-| Reviewer | Review trigger boundaries, overlap, and behavior coverage | Approval or required changes |
-| Users | Exercise skills through natural requests | Feedback on usefulness and trigger accuracy |
+|Role / Team|Responsibility|Decision Area|
+|---|---|---|
+|Owner|Oleg Shulyakov|Final scope, naming, acceptance, and release readiness|
+|Skill library maintainer|Implement skill folders, metadata, references, and evals|File layout, authoring quality, validation|
+|Reviewer|Review trigger boundaries, overlap, and behavior coverage|Approval or required changes|
+|Users|Exercise skills through natural requests|Feedback on usefulness and trigger accuracy|
 
 ### 1.4 Customer & Business Context
 
@@ -48,12 +48,12 @@ Success means a user can install any one of the ten skills independently and get
 
 ### 1.5 Goals
 
-| Goal | Success Metric | Target |
-| --- | --- | --- |
-| Minimal general skill set | Ten skills exist with approved names | `ask`, `explain`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, `adapt` |
-| Standalone runtime behavior | No skill requires another skill to be installed, called, imported, or delegated to | 100% of skills |
-| Predictable triggers | Each skill documents triggers, exclusions, expected behavior, and eval prompts | 8-10 eval prompts where possible, never fewer than 7 |
-| Lightweight packaging | Main `SKILL.md` files remain concise | Under 500 lines each |
+|Goal|Success Metric|Target|
+|---|---|---|
+|Minimal general skill set|Ten skills exist with approved names|`ask`, `explain`, `brainstorm`, `classify`, `plan`, `investigate`, `choose`, `manage`, `remember`, `adapt`|
+|Standalone runtime behavior|No skill requires another skill to be installed, called, imported, or delegated to|100% of skills|
+|Predictable triggers|Each skill documents triggers, exclusions, expected behavior, and eval prompts|8-10 eval prompts where possible, never fewer than 7|
+|Lightweight packaging|Main `SKILL.md` files remain concise|Under 500 lines each|
 
 ### 1.6 Non-Goals
 
@@ -65,12 +65,12 @@ This work does not add live integrations with Jira, Linear, Confluence, GitHub I
 
 ### 2.1 Actors
 
-| Actor | Description |
-| --- | --- |
-| End user | Invokes a skill through natural language requests |
-| Agent runtime | Selects and executes skills based on metadata and user intent |
-| Skill maintainer | Creates, reviews, validates, and packages skills |
-| Reviewer | Checks behavior, trigger overlap, portability, and eval coverage |
+|Actor|Description|
+|---|---|
+|End user|Invokes a skill through natural language requests|
+|Agent runtime|Selects and executes skills based on metadata and user intent|
+|Skill maintainer|Creates, reviews, validates, and packages skills|
+|Reviewer|Checks behavior, trigger overlap, portability, and eval coverage|
 
 ### 2.2 Skill File Layout
 
@@ -95,15 +95,15 @@ The `description` shall explicitly include the strongest trigger phrases and con
 
 Allowed frontmatter fields are:
 
-| Field | Required | Description |
-| --- | --- | --- |
-| `name` | Yes | A unique identifier for the skill. |
-| `description` | Yes | A concise explanation of the skill's purpose and when to use it. |
-| `license` | No | The name of the license, such as `MIT` or `Apache-2.0`. |
-| `version` | No | Semantic versioning string, such as `1.2.0`. |
-| `tags` | No | A list of categories for easier discovery and filtering. |
-| `author` | No | The creator's name or GitHub profile URL. |
-| `metadata` | No | A nested mapping for arbitrary key-value pairs. |
+|Field|Required|Description|
+|---|---|---|
+|`name`|Yes|A unique identifier for the skill.|
+|`description`|Yes|A concise explanation of the skill's purpose and when to use it.|
+|`license`|No|The name of the license, such as `MIT` or `Apache-2.0`.|
+|`version`|No|Semantic versioning string, such as `1.2.0`.|
+|`tags`|No|A list of categories for easier discovery and filtering.|
+|`author`|No|The creator's name or GitHub profile URL.|
+|`metadata`|No|A nested mapping for arbitrary key-value pairs.|
 
 Each skill body shall define purpose, scope, trigger cases, non-trigger cases, workflow, output expectations, error paths, and verification guidance where relevant.
 
@@ -284,16 +284,16 @@ Each skill body shall define purpose, scope, trigger cases, non-trigger cases, w
 
 ## 3. Non-Functional Requirements
 
-| Category | Requirement | Target | Priority |
-| --- | --- | --- | --- |
-| Maintainability | Each skill has one clear workflow and avoids becoming a generic behavior dump | Reviewer can summarize each skill in one sentence | High |
-| Portability | Skills work across repositories without assuming this repo layout, except `remember` memory conventions | No hard dependency on project-specific files outside documented exceptions | High |
-| Token efficiency | Main skill files stay concise | Under 500 lines per `SKILL.md` | High |
-| Trigger accuracy | Trigger and exclusion rules are explicit | Evals include positive, false-positive, and non-trigger prompts | High |
-| Source discipline | `investigate` cites local evidence and marks inference | Findings include file/artifact references when available | High |
-| Memory hygiene | `remember` stores only durable value | No transient chatter or sensitive data in memory notes | High |
-| Coordination clarity | `manage` preserves execution state | Goals, owners, status, blockers, dependencies, and next actions are explicit | Medium |
-| Adaptation discipline | `adapt` diagnoses evidence-driven change needs without becoming a generic update workflow | Actual artifact changes are routed to the appropriate follow-up skill or workflow | High |
+|Category|Requirement|Target|Priority|
+|---|---|---|---|
+|Maintainability|Each skill has one clear workflow and avoids becoming a generic behavior dump|Reviewer can summarize each skill in one sentence|High|
+|Portability|Skills work across repositories without assuming this repo layout, except `remember` memory conventions|No hard dependency on project-specific files outside documented exceptions|High|
+|Token efficiency|Main skill files stay concise|Under 500 lines per `SKILL.md`|High|
+|Trigger accuracy|Trigger and exclusion rules are explicit|Evals include positive, false-positive, and non-trigger prompts|High|
+|Source discipline|`investigate` cites local evidence and marks inference|Findings include file/artifact references when available|High|
+|Memory hygiene|`remember` stores only durable value|No transient chatter or sensitive data in memory notes|High|
+|Coordination clarity|`manage` preserves execution state|Goals, owners, status, blockers, dependencies, and next actions are explicit|Medium|
+|Adaptation discipline|`adapt` diagnoses evidence-driven change needs without becoming a generic update workflow|Actual artifact changes are routed to the appropriate follow-up skill or workflow|High|
 
 ---
 
@@ -315,13 +315,13 @@ flowchart TD
 
 ### 4.2 Component Responsibilities
 
-| Component | Responsibility |
-| --- | --- |
-| `src/skills/productivity/<skill>/SKILL.md` | Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations |
-| `src/skills/productivity/<skill>/evals/evals.yaml` | Representative trigger and non-trigger prompts generated through `create-skill` |
-| `src/skills/productivity/<skill>/evals/iterations/iteration-N/` | Reproducible eval run outputs, grading, and benchmark artifacts when generated |
-| `src/memory/` | Target memory location for `remember` behavior |
-| `src/skills/create-skill/` | Development-time eval generation, validation, and packaging support |
+|Component|Responsibility|
+|---|---|
+|`src/skills/productivity/<skill>/SKILL.md`|Runtime instructions, metadata, trigger guidance, exclusions, workflow, and output expectations|
+|`src/skills/productivity/<skill>/evals/evals.yaml`|Representative trigger and non-trigger prompts generated through `create-skill`|
+|`src/skills/productivity/<skill>/evals/iterations/iteration-N/`|Reproducible eval run outputs, grading, and benchmark artifacts when generated|
+|`src/memory/`|Target memory location for `remember` behavior|
+|`src/skills/create-skill/`|Development-time eval generation, validation, and packaging support|
 
 ### 4.3 Key Design Decisions
 
@@ -395,16 +395,16 @@ Each prompt shall include the expected trigger result and the expected behavior 
 
 Boundary prompts shall specifically test likely overlaps:
 
-| Boundary | Expected Distinction |
-| --- | --- |
-| `ask` vs `brainstorm` | `ask` produces questions; `brainstorm` develops framing and hypotheses |
-| `brainstorm` vs `choose` | `brainstorm` clarifies ambiguity; `choose` recommends between options |
-| `plan` vs `manage` | `plan` sequences future work; `manage` tracks active workstreams and handoffs |
-| `explain` vs `investigate` | `explain` teaches; `investigate` investigates local evidence |
-| `classify` vs `choose` | `classify` groups material; `choose` chooses a direction |
-| `remember` vs docs writing | `remember` captures durable memory; docs writing creates formal project artifacts |
-| `adapt` vs `create-skill` / `create-rule` / docs writing | `adapt` identifies what should change and routes the update; artifact-specific skills perform the actual update |
-| `adapt` vs `remember` | `adapt` identifies future behavior or artifact changes; `remember` preserves durable facts and decisions |
+|Boundary|Expected Distinction|
+|---|---|
+|`ask` vs `brainstorm`|`ask` produces questions; `brainstorm` develops framing and hypotheses|
+|`brainstorm` vs `choose`|`brainstorm` clarifies ambiguity; `choose` recommends between options|
+|`plan` vs `manage`|`plan` sequences future work; `manage` tracks active workstreams and handoffs|
+|`explain` vs `investigate`|`explain` teaches; `investigate` investigates local evidence|
+|`classify` vs `choose`|`classify` groups material; `choose` chooses a direction|
+|`remember` vs docs writing|`remember` captures durable memory; docs writing creates formal project artifacts|
+|`adapt` vs `create-skill` / `create-rule` / docs writing|`adapt` identifies what should change and routes the update; artifact-specific skills perform the actual update|
+|`adapt` vs `remember`|`adapt` identifies future behavior or artifact changes; `remember` preserves durable facts and decisions|
 
 ### 8.4 Manual Acceptance
 
@@ -442,36 +442,36 @@ Manual acceptance passes when a reviewer can invoke representative prompts and o
 
 ### Dependencies
 
-| Dependency | Needed By |
-| --- | --- |
-| Existing skill authoring conventions | All skill files |
-| Existing `src/memory/` conventions | `remember` |
-| `src/skills/create-skill/` eval generation workflow | Evals and release readiness |
+|Dependency|Needed By|
+|---|---|
+|Existing skill authoring conventions|All skill files|
+|Existing `src/memory/` conventions|`remember`|
+|`src/skills/create-skill/` eval generation workflow|Evals and release readiness|
 
 ---
 
 ## 10. Release & Operational Readiness
 
-| Activity | Owner | Required Before Launch |
-| --- | --- | --- |
-| Skill file review | Skill library maintainer | Yes |
-| Trigger eval review | Reviewer | Yes |
-| README index update | Skill library maintainer | Yes, if README indexes skills |
-| Memory behavior spot-check | Reviewer | Yes |
-| Packaging check | Skill library maintainer | Yes, if skills are distributed as packages |
-| User documentation | Owner | No separate docs required unless README is incomplete |
+|Activity|Owner|Required Before Launch|
+|---|---|---|
+|Skill file review|Skill library maintainer|Yes|
+|Trigger eval review|Reviewer|Yes|
+|README index update|Skill library maintainer|Yes, if README indexes skills|
+|Memory behavior spot-check|Reviewer|Yes|
+|Packaging check|Skill library maintainer|Yes, if skills are distributed as packages|
+|User documentation|Owner|No separate docs required unless README is incomplete|
 
 ---
 
 ## 11. Resolved Questions
 
-| # | Question | Owner | Due | Status |
-| --- | --- | --- | --- | --- |
-| 1 | Should eval prompts be plain Markdown or a machine-readable format? | Oleg Shulyakov | 2026-05-21 | Resolved: evals are generated by `src/skills/create-skill/`. |
-| 2 | Should `explain` be treated as already complete or revised to match the new general skill set style? | Oleg Shulyakov | 2026-05-21 | Resolved: mark `explain` as complete. |
-| 3 | Should every new skill use version `1.0.0`, or inherit a project-wide initial version convention? | Oleg Shulyakov | 2026-05-21 | Resolved: use `1.0.0` as the initial version. |
-| 4 | Should the evidence-driven change-detection skill be named `evolve` or `adapt`? | Oleg Shulyakov | 2026-05-24 | Resolved: use `adapt`, because it detects that existing behavior no longer fits evidence without implying autonomous self-modification. |
-| 5 | Should `adapt` perform the actual updates it identifies? | Oleg Shulyakov | 2026-05-24 | Resolved: no. It diagnoses and routes updates to artifact-specific skills or workflows. |
+|#|Question|Owner|Due|Status|
+|---|---|---|---|---|
+|1|Should eval prompts be plain Markdown or a machine-readable format?|Oleg Shulyakov|2026-05-21|Resolved: evals are generated by `src/skills/create-skill/`.|
+|2|Should `explain` be treated as already complete or revised to match the new general skill set style?|Oleg Shulyakov|2026-05-21|Resolved: mark `explain` as complete.|
+|3|Should every new skill use version `1.0.0`, or inherit a project-wide initial version convention?|Oleg Shulyakov|2026-05-21|Resolved: use `1.0.0` as the initial version.|
+|4|Should the evidence-driven change-detection skill be named `evolve` or `adapt`?|Oleg Shulyakov|2026-05-24|Resolved: use `adapt`, because it detects that existing behavior no longer fits evidence without implying autonomous self-modification.|
+|5|Should `adapt` perform the actual updates it identifies?|Oleg Shulyakov|2026-05-24|Resolved: no. It diagnoses and routes updates to artifact-specific skills or workflows.|
 
 ---
 

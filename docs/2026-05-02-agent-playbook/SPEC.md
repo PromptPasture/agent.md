@@ -28,11 +28,11 @@ Currently, LLM agents lack a standardized way to maintain context, rules, and me
 
 ### 1.3 Goals
 
-| Goal | Success Metric | Target |
-| ------------------------------- | ------------------------------------- | ---------------------------------------------------- |
-| Standardize agent configuration | Adoption of `.agents/` structure | 100% of defined schemas supported |
-| Enable tool portability | Compliant tools can read rules/skills | Support for multiple runtimes (Claude, Cursor, etc.) |
-| Improve context retention | Automated loading of context | 0 manual context setups per project |
+|Goal|Success Metric|Target|
+|-------------------------------|-------------------------------------|----------------------------------------------------|
+|Standardize agent configuration|Adoption of `.agents/` structure|100% of defined schemas supported|
+|Enable tool portability|Compliant tools can read rules/skills|Support for multiple runtimes (Claude, Cursor, etc.)|
+|Improve context retention|Automated loading of context|0 manual context setups per project|
 
 ### 1.4 Non-Goals
 
@@ -46,10 +46,10 @@ Currently, LLM agents lack a standardized way to maintain context, rules, and me
 
 ### 2.1 Actors
 
-| Actor | Description |
-| ------------- | ------------------------------------------------------------------------------------ |
-| Developer | Creates and manages playbook structures, rules, and skills within the repository. |
-| Agent Runtime | Reads the playbook structure and applies rules/skills to prompt context dynamically. |
+|Actor|Description|
+|-------------|------------------------------------------------------------------------------------|
+|Developer|Creates and manages playbook structures, rules, and skills within the repository.|
+|Agent Runtime|Reads the playbook structure and applies rules/skills to prompt context dynamically.|
 
 ### 2.2 Functional Requirements
 
@@ -123,11 +123,11 @@ Currently, LLM agents lack a standardized way to maintain context, rules, and me
 
 ## 3. Non-Functional Requirements
 
-| Category | Requirement | Target | Priority |
-| --------------- | ----------------------- | ----------------------------------------------- | -------- |
-| Portability | Tool-agnostic execution | Compatible with major LLM runtimes | High |
-| Security | Credential protection | No sensitive data stored in `.agents/` | High |
-| Maintainability | Version control | Playbook files are human-readable and versioned | High |
+|Category|Requirement|Target|Priority|
+|---------------|-----------------------|-----------------------------------------------|--------|
+|Portability|Tool-agnostic execution|Compatible with major LLM runtimes|High|
+|Security|Credential protection|No sensitive data stored in `.agents/`|High|
+|Maintainability|Version control|Playbook files are human-readable and versioned|High|
 
 ---
 
@@ -150,14 +150,14 @@ flowchart TD
 
 ### 4.2 Component Responsibilities
 
-| Component | Responsibility |
-| ----------- | ----------------------------------------------------------------------------------------- |
-| `AGENTS.md` | Central registry and bootstrapping instructions for the project's agents. |
-| `rules/` | Project-specific constraints and style guidelines (e.g., indentation, language features). |
-| `skills/` | Actionable capabilities the agent can invoke (e.g., scaffolding, linting). |
-| `commands/` | Custom slash commands or macros for developers to use with the agent. |
-| `agents/` | Specialized subagent personas or roles (e.g., code reviewer, architect). |
-| `memory/` | Ephemeral or long-term state/context for the agent. |
+|Component|Responsibility|
+|-----------|-----------------------------------------------------------------------------------------|
+|`AGENTS.md`|Central registry and bootstrapping instructions for the project's agents.|
+|`rules/`|Project-specific constraints and style guidelines (e.g., indentation, language features).|
+|`skills/`|Actionable capabilities the agent can invoke (e.g., scaffolding, linting).|
+|`commands/`|Custom slash commands or macros for developers to use with the agent.|
+|`agents/`|Specialized subagent personas or roles (e.g., code reviewer, architect).|
+|`memory/`|Ephemeral or long-term state/context for the agent.|
 
 ### 4.3 Centralized Registry
 
@@ -190,9 +190,9 @@ flowchart TD
 
 ## 7. Open Questions
 
-| # | Question | Owner | Due | Status |
-| --- | -------- | ----- | --- | ------ |
-| | | | | |
+|#|Question|Owner|Due|Status|
+|---|---|---|---|---|
+||||||
 
 ---
 

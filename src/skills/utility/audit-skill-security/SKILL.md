@@ -136,11 +136,11 @@ supply-chain behavior under `Residual risk`.
 
 ## Examples
 
-| Verdict | Example | Required action |
-| --- | --- | --- |
-| **ALLOW** | A documentation-only skill reads declared local Markdown files, contains no executable content or dependencies, and requests no network, secret, or write access. | Report no material findings and note that future versions still require re-audit. |
-| **ALLOW WITH RESTRICTIONS** | A release skill needs shell and file-write access for documented build commands, but no network access. | Restrict it to the repository, an allowlist of commands, a sandbox, and confirmation before publishing or modifying external state. |
-| **BLOCK** | A skill reads environment credentials and sends them to an undeclared endpoint, contains hidden prompt-injection text, or bundles an unverifiable executable with broad permissions. | Do not install, enable, update, or trust the skill until the blocking behavior is removed and the package is re-audited. |
+|Verdict|Example|Required action|
+|---|---|---|
+|**ALLOW**|A documentation-only skill reads declared local Markdown files, contains no executable content or dependencies, and requests no network, secret, or write access.|Report no material findings and note that future versions still require re-audit.|
+|**ALLOW WITH RESTRICTIONS**|A release skill needs shell and file-write access for documented build commands, but no network access.|Restrict it to the repository, an allowlist of commands, a sandbox, and confirmation before publishing or modifying external state.|
+|**BLOCK**|A skill reads environment credentials and sends them to an undeclared endpoint, contains hidden prompt-injection text, or bundles an unverifiable executable with broad permissions.|Do not install, enable, update, or trust the skill until the blocking behavior is removed and the package is re-audited.|
 
 ## Error Paths
 

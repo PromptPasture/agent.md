@@ -6,11 +6,11 @@ Tests verify observable behavior, not implementation. Write tests that survive r
 
 ## Scope
 
-| Level | What it covers | Tools |
-| --- | --- | --- |
-| Unit | Pure functions, utilities, custom hooks in isolation | Vitest |
-| Component | A single component — render output, interactions, async states | Vitest + Testing Library |
-| Integration | A feature composed of multiple components wired together | Vitest + Testing Library |
+|Level|What it covers|Tools|
+|---|---|---|
+|Unit|Pure functions, utilities, custom hooks in isolation|Vitest|
+|Component|A single component — render output, interactions, async states|Vitest + Testing Library|
+|Integration|A feature composed of multiple components wired together|Vitest + Testing Library|
 
 E2E (Playwright, Cypress) is outside this reference — it targets a running app, not co-located test files.
 

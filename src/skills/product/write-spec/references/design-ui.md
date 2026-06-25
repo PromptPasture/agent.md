@@ -36,12 +36,12 @@ related:
 
 ## 2. Visual Attributes & Tokens
 
-| Element | Property | Token / Value | Notes |
-| ---------- | ---------- | ------------------------------- | ------------- |
-| Background | Color | `var(--color-surface-elevated)` | |
-| Border | Radius | `var(--radius-md)` (8px) | |
-| Container | Padding | `var(--space-4)` (16px) | |
-| Shadow | Box Shadow | `var(--shadow-sm)` | Only on hover |
+|Element|Property|Token / Value|Notes|
+|----------|----------|-------------------------------|-------------|
+|Background|Color|`var(--color-surface-elevated)`||
+|Border|Radius|`var(--radius-md)` (8px)||
+|Container|Padding|`var(--space-4)` (16px)||
+|Shadow|Box Shadow|`var(--shadow-sm)`|Only on hover|
 
 ---
 
@@ -71,11 +71,11 @@ related:
 
 ## 5. Responsive Behavior
 
-| Breakpoint | Behavior |
-| ----------------------- | ------------------------------------------- |
-| **Mobile** (< 768px) | Elements stack. Width: 100%. Padding: 12px. |
-| **Tablet** (768–1024px) | Side-by-side. Width: 50%. |
-| **Desktop** (> 1024px) | Max width: 400px. |
+|Breakpoint|Behavior|
+|-----------------------|-------------------------------------------|
+|**Mobile** (< 768px)|Elements stack. Width: 100%. Padding: 12px.|
+|**Tablet** (768–1024px)|Side-by-side. Width: 50%.|
+|**Desktop** (> 1024px)|Max width: 400px.|
 
 ---
 

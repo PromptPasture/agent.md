@@ -26,20 +26,20 @@ Four phases: **Discover → Design → Build → Validate**. Each phase produces
 
 Inspect the following in order. Stop reading a file once the needed signal is found.
 
-| File | Signal to extract |
-| --- | --- |
-| `go.mod` | Go version; inspect imports for Gin, Echo, Fiber, Chi, or `net/http` |
-| `package.json` | Node.js; inspect deps for Express, Fastify, NestJS, Hono, Nitro |
-| `requirements.txt` / `pyproject.toml` / `Pipfile` | Python; inspect for FastAPI, Django, Flask |
-| `pom.xml` / `build.gradle` / `build.gradle.kts` | Java/Kotlin; inspect for Spring Boot, Quarkus, Micronaut, Ktor |
-| `Cargo.toml` | Rust; inspect for Axum, Actix-web, Warp |
-| `go.sum` / `package-lock.json` / `poetry.lock` / `Cargo.lock` | Confirm dependency versions |
-| ORM/query files | Detect GORM, sqlx, Prisma, TypeORM, SQLAlchemy, Hibernate, SeaORM, etc. |
-| Migration files | Detect Flyway, Liquibase, Alembic, golang-migrate, Prisma migrations |
-| Auth files | Detect JWT libs, OAuth clients, Passport, Spring Security, etc. |
-| Queue/worker files | Detect BullMQ, Celery, Kafka clients, RabbitMQ, Sidekiq, etc. |
-| Observability config | Detect OpenTelemetry, Prometheus, Datadog, structlog, Zap, etc. |
-| `docker-compose.yml` / `docker-compose.yaml` | DB type, cache, queue services in use |
+|File|Signal to extract|
+|---|---|
+|`go.mod`|Go version; inspect imports for Gin, Echo, Fiber, Chi, or `net/http`|
+|`package.json`|Node.js; inspect deps for Express, Fastify, NestJS, Hono, Nitro|
+|`requirements.txt` / `pyproject.toml` / `Pipfile`|Python; inspect for FastAPI, Django, Flask|
+|`pom.xml` / `build.gradle` / `build.gradle.kts`|Java/Kotlin; inspect for Spring Boot, Quarkus, Micronaut, Ktor|
+|`Cargo.toml`|Rust; inspect for Axum, Actix-web, Warp|
+|`go.sum` / `package-lock.json` / `poetry.lock` / `Cargo.lock`|Confirm dependency versions|
+|ORM/query files|Detect GORM, sqlx, Prisma, TypeORM, SQLAlchemy, Hibernate, SeaORM, etc.|
+|Migration files|Detect Flyway, Liquibase, Alembic, golang-migrate, Prisma migrations|
+|Auth files|Detect JWT libs, OAuth clients, Passport, Spring Security, etc.|
+|Queue/worker files|Detect BullMQ, Celery, Kafka clients, RabbitMQ, Sidekiq, etc.|
+|Observability config|Detect OpenTelemetry, Prometheus, Datadog, structlog, Zap, etc.|
+|`docker-compose.yml` / `docker-compose.yaml`|DB type, cache, queue services in use|
 
 ### 1.2 Output a detection summary
 
@@ -171,20 +171,20 @@ User:
 
 Load concern docs based on the task:
 
-| Signal | Load |
-| --- | --- |
-| DB queries, ORM, migrations required | `references/persistence.md` |
-| Auth/authz on any route | `references/auth.md` |
-| Input validation at entry points | `references/validation.md` |
-| Worker, queue, or background job | `references/workers.md` |
-| Logging, tracing, or metrics | `references/observability.md` |
-| Config or secrets management | `references/config.md` |
-| Unit, integration, or contract tests required | `references/testing.md` |
-| Query performance or caching concern | `references/performance.md` |
-| REST design, versioning, or pagination | `references/api-design.md` |
-| Security patterns beyond basic auth | `references/security.md` |
-| Error handling patterns required | `references/error-handling.md` |
-| No existing project conventions found | `references/conventions.md` |
+|Signal|Load|
+|---|---|
+|DB queries, ORM, migrations required|`references/persistence.md`|
+|Auth/authz on any route|`references/auth.md`|
+|Input validation at entry points|`references/validation.md`|
+|Worker, queue, or background job|`references/workers.md`|
+|Logging, tracing, or metrics|`references/observability.md`|
+|Config or secrets management|`references/config.md`|
+|Unit, integration, or contract tests required|`references/testing.md`|
+|Query performance or caching concern|`references/performance.md`|
+|REST design, versioning, or pagination|`references/api-design.md`|
+|Security patterns beyond basic auth|`references/security.md`|
+|Error handling patterns required|`references/error-handling.md`|
+|No existing project conventions found|`references/conventions.md`|
 
 ### 2.6 Wait for confirmation
 

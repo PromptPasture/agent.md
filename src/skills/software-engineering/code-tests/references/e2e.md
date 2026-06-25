@@ -6,11 +6,11 @@ Guidance for writing end-to-end tests with browser automation frameworks (Playwr
 
 ## Framework Detection
 
-| Signal | Framework |
-| --- | --- |
-| `@playwright/test` in deps | Playwright |
-| `cypress` in deps | Cypress |
-| `webdriverio` / `wdio.conf.*` | WebdriverIO |
+|Signal|Framework|
+|---|---|
+|`@playwright/test` in deps|Playwright|
+|`cypress` in deps|Cypress|
+|`webdriverio` / `wdio.conf.*`|WebdriverIO|
 
 ---
 

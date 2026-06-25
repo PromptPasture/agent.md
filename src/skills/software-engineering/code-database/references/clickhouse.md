@@ -14,15 +14,15 @@
 
 ## Table Engines
 
-| Engine | Use case |
-| --- | --- |
-| `MergeTree` | General-purpose OLAP; append-only |
-| `ReplicatedMergeTree` | HA replication across nodes |
-| `SummingMergeTree` | Pre-aggregate numeric columns on merge |
-| `AggregatingMergeTree` | Store partial aggregation states |
-| `ReplacingMergeTree` | Deduplicate rows by version on merge (eventual) |
-| `CollapsingMergeTree` | Delete rows via sign column (-1/+1) |
-| `Distributed` | Shard queries across a cluster |
+|Engine|Use case|
+|---|---|
+|`MergeTree`|General-purpose OLAP; append-only|
+|`ReplicatedMergeTree`|HA replication across nodes|
+|`SummingMergeTree`|Pre-aggregate numeric columns on merge|
+|`AggregatingMergeTree`|Store partial aggregation states|
+|`ReplacingMergeTree`|Deduplicate rows by version on merge (eventual)|
+|`CollapsingMergeTree`|Delete rows via sign column (-1/+1)|
+|`Distributed`|Shard queries across a cluster|
 
 For most use cases: `MergeTree` (single node) or `ReplicatedMergeTree` (cluster).
 

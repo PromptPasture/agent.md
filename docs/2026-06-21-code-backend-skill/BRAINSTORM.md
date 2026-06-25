@@ -125,27 +125,27 @@ the style of `code-frontend`:
 
 ### Coverage Map
 
-| Concern | Delivery | Location |
-| --- | --- | --- |
-| Language detection (all ecosystems) | Inline — Discover phase | `SKILL.md` |
-| Framework detection | Inline — Discover phase | `SKILL.md` |
-| API contract (Design phase) | Inline — Design phase | `SKILL.md` |
-| DB schema changes (Design phase) | Inline — Design phase | `SKILL.md` |
-| Service interface contracts | Inline — Design phase | `SKILL.md` |
-| Decomposition heuristics | Inline — Build phase | `SKILL.md` |
-| Validate checklist (P0–P3) | Inline — Validate phase | `SKILL.md` |
-| Code conventions | Reference doc | `references/conventions.md` |
-| Error handling | Reference doc | `references/error-handling.md` |
-| Input validation | Reference doc | `references/validation.md` |
-| Auth / authorization | Reference doc | `references/auth.md` |
-| Persistence (ORM, queries, migrations) | Reference doc | `references/persistence.md` |
-| Workers / queues | Reference doc | `references/workers.md` |
-| Observability (logging, tracing, metrics) | Reference doc | `references/observability.md` |
-| Configuration / secrets | Reference doc | `references/config.md` |
-| Testing (unit, integration, contract) | Reference doc | `references/testing.md` |
-| Performance (query, caching, concurrency) | Reference doc | `references/performance.md` |
-| API design (REST conventions, versioning) | Reference doc | `references/api-design.md` |
-| Security patterns | Reference doc | `references/security.md` |
+|Concern|Delivery|Location|
+|---|---|---|
+|Language detection (all ecosystems)|Inline — Discover phase|`SKILL.md`|
+|Framework detection|Inline — Discover phase|`SKILL.md`|
+|API contract (Design phase)|Inline — Design phase|`SKILL.md`|
+|DB schema changes (Design phase)|Inline — Design phase|`SKILL.md`|
+|Service interface contracts|Inline — Design phase|`SKILL.md`|
+|Decomposition heuristics|Inline — Build phase|`SKILL.md`|
+|Validate checklist (P0–P3)|Inline — Validate phase|`SKILL.md`|
+|Code conventions|Reference doc|`references/conventions.md`|
+|Error handling|Reference doc|`references/error-handling.md`|
+|Input validation|Reference doc|`references/validation.md`|
+|Auth / authorization|Reference doc|`references/auth.md`|
+|Persistence (ORM, queries, migrations)|Reference doc|`references/persistence.md`|
+|Workers / queues|Reference doc|`references/workers.md`|
+|Observability (logging, tracing, metrics)|Reference doc|`references/observability.md`|
+|Configuration / secrets|Reference doc|`references/config.md`|
+|Testing (unit, integration, contract)|Reference doc|`references/testing.md`|
+|Performance (query, caching, concurrency)|Reference doc|`references/performance.md`|
+|API design (REST conventions, versioning)|Reference doc|`references/api-design.md`|
+|Security patterns|Reference doc|`references/security.md`|
 
 New languages, frameworks, or concerns → add a file to `references/`. No other
 changes required.

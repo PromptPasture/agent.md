@@ -198,13 +198,13 @@ applyTheme(stored);
 
 ### Common breakpoints
 
-| Name | Min-width | Target |
-| --- | --- | --- |
-| `sm` | 640px | Large phones landscape |
-| `md` | 768px | Small Tablets |
-| `lg` | 1024px | Standard Tablets |
-| `xl` | 1280px | Small desktops |
-| `2xl` | 1536px | Standard desktops |
+|Name|Min-width|Target|
+|---|---|---|
+|`sm`|640px|Large phones landscape|
+|`md`|768px|Small Tablets|
+|`lg`|1024px|Standard Tablets|
+|`xl`|1280px|Small desktops|
+|`2xl`|1536px|Standard desktops|
 
 Use `dvh` (`100dvh`) instead of `vh` (`100vh`) for full-height layouts on mobile — `vh` does not account for the browser chrome.
 
@@ -257,14 +257,14 @@ Use logical properties for layouts that must work in both LTR and RTL (see `refe
 }
 ```
 
-| Physical | Logical equivalent |
-| --- | --- |
-| `margin-left` | `margin-inline-start` |
-| `margin-right` | `margin-inline-end` |
-| `padding-left` / `padding-right` | `padding-inline` |
-| `border-left` | `border-inline-start` |
-| `text-align: left` | `text-align: start` |
-| `top` / `bottom` | `inset-block-start` / `inset-block-end` |
+|Physical|Logical equivalent|
+|---|---|
+|`margin-left`|`margin-inline-start`|
+|`margin-right`|`margin-inline-end`|
+|`padding-left` / `padding-right`|`padding-inline`|
+|`border-left`|`border-inline-start`|
+|`text-align: left`|`text-align: start`|
+|`top` / `bottom`|`inset-block-start` / `inset-block-end`|
 
 ---
 

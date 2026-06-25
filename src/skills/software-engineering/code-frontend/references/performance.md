@@ -205,11 +205,11 @@ input.addEventListener('input', e => search((e.target as HTMLInputElement).value
 
 Always measure before and after. Never optimise by intuition alone.
 
-| Tool | What it measures |
-| --- | --- |
-| Framework DevTools (Profiler/Inspector) | Component render time and frequency |
-| Chrome DevTools → Performance | Paint, layout, scripting, long tasks |
-| Lighthouse | LCP, CLS, FID/INP, bundle size, a11y score |
-| `web-vitals` library | Real-user Core Web Vitals in production |
-| `vite-bundle-visualizer` / `@next/bundle-analyzer` | Bundle composition per route |
-| `rollup-plugin-visualizer` | Bundle composition (Rollup/Vite) |
+|Tool|What it measures|
+|---|---|
+|Framework DevTools (Profiler/Inspector)|Component render time and frequency|
+|Chrome DevTools → Performance|Paint, layout, scripting, long tasks|
+|Lighthouse|LCP, CLS, FID/INP, bundle size, a11y score|
+|`web-vitals` library|Real-user Core Web Vitals in production|
+|`vite-bundle-visualizer` / `@next/bundle-analyzer`|Bundle composition per route|
+|`rollup-plugin-visualizer`|Bundle composition (Rollup/Vite)|

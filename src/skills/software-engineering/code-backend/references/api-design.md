@@ -32,13 +32,13 @@
 
 ## HTTP Method Semantics
 
-| Method | Semantics | Body | Idempotent | Safe |
-| --- | --- | --- | --- | --- |
-| `GET` | Fetch resource(s) | No | Yes | Yes |
-| `POST` | Create resource | Yes | No | No |
-| `PUT` | Replace resource (full update) | Yes | Yes | No |
-| `PATCH` | Partial update | Yes | No | No |
-| `DELETE` | Delete resource | No | Yes | No |
+|Method|Semantics|Body|Idempotent|Safe|
+|---|---|---|---|---|
+|`GET`|Fetch resource(s)|No|Yes|Yes|
+|`POST`|Create resource|Yes|No|No|
+|`PUT`|Replace resource (full update)|Yes|Yes|No|
+|`PATCH`|Partial update|Yes|No|No|
+|`DELETE`|Delete resource|No|Yes|No|
 
 Use `POST` for actions that do not map cleanly to CRUD:
 
@@ -54,20 +54,20 @@ POST /api/v1/emails/verify
 
 Use the most specific status code that applies:
 
-| Code | Meaning | Use when |
-| --- | --- | --- |
-| `200 OK` | Success with body | GET, PUT, PATCH responses |
-| `201 Created` | Resource created | POST creates a new resource |
-| `204 No Content` | Success, no body | DELETE, action endpoints |
-| `400 Bad Request` | Client error — malformed request | Invalid JSON, missing field |
-| `401 Unauthorized` | No valid auth | No token or invalid token |
-| `403 Forbidden` | Auth valid, insufficient permission | Token valid but wrong role |
-| `404 Not Found` | Resource does not exist | ID not in DB |
-| `409 Conflict` | Conflict with existing state | Duplicate unique field, optimistic lock |
-| `422 Unprocessable` | Semantically invalid | Valid JSON but business rule violation |
-| `429 Too Many Requests` | Rate limited | Add `Retry-After` header |
-| `500 Internal Server Error` | Unexpected server error | Unhandled exception |
-| `503 Service Unavailable` | Temporarily unable to serve | Add `Retry-After` header |
+|Code|Meaning|Use when|
+|---|---|---|
+|`200 OK`|Success with body|GET, PUT, PATCH responses|
+|`201 Created`|Resource created|POST creates a new resource|
+|`204 No Content`|Success, no body|DELETE, action endpoints|
+|`400 Bad Request`|Client error — malformed request|Invalid JSON, missing field|
+|`401 Unauthorized`|No valid auth|No token or invalid token|
+|`403 Forbidden`|Auth valid, insufficient permission|Token valid but wrong role|
+|`404 Not Found`|Resource does not exist|ID not in DB|
+|`409 Conflict`|Conflict with existing state|Duplicate unique field, optimistic lock|
+|`422 Unprocessable`|Semantically invalid|Valid JSON but business rule violation|
+|`429 Too Many Requests`|Rate limited|Add `Retry-After` header|
+|`500 Internal Server Error`|Unexpected server error|Unhandled exception|
+|`503 Service Unavailable`|Temporarily unable to serve|Add `Retry-After` header|
 
 ---
 

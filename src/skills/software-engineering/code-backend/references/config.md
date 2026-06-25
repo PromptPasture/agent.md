@@ -72,13 +72,13 @@ JWT_SECRET=<replace-with-32-char-secret>
 
 Inject secrets through the platform's secret management:
 
-| Platform | Mechanism |
-| --- | --- |
-| Kubernetes | `Secret` objects mounted as env vars or files |
-| AWS | Secrets Manager or Parameter Store (SSM) via env injection |
-| GCP | Secret Manager via Workload Identity |
-| Heroku | Config Vars |
-| Docker / Compose | `secrets:` block or env file excluded from the image |
+|Platform|Mechanism|
+|---|---|
+|Kubernetes|`Secret` objects mounted as env vars or files|
+|AWS|Secrets Manager or Parameter Store (SSM) via env injection|
+|GCP|Secret Manager via Workload Identity|
+|Heroku|Config Vars|
+|Docker / Compose|`secrets:` block or env file excluded from the image|
 
 Never bake secrets into Docker images. Never pass secrets as build args.
 

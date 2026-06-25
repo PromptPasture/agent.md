@@ -39,8 +39,8 @@ related:
 
 ### 1.3 Roles & Responsibilities
 
-| Role / Team | Responsibility | Decision Area |
-| ----------- | -------------- | ------------- |
+|Role / Team|Responsibility|Decision Area|
+|-----------|--------------|-------------|
 
 ### 1.4 Customer & Business Context
 
@@ -48,8 +48,8 @@ related:
 
 ### 1.5 Goals
 
-| Goal | Success Metric | Target |
-| ---- | -------------- | ------ |
+|Goal|Success Metric|Target|
+|----|--------------|------|
 
 ### 1.6 Non-Goals
 
@@ -61,8 +61,8 @@ related:
 
 ### 2.1 Actors
 
-| Actor | Description |
-| ----- | ----------- |
+|Actor|Description|
+|-----|-----------|
 
 ### 2.2 User Flows
 
@@ -91,12 +91,12 @@ related:
 
 ## 3. Non-Functional Requirements
 
-| Category | Requirement | Target | Priority |
-| ------------ | ----------------------- | --------------- | -------- |
-| Performance | API response time (p95) | < 200ms | High |
-| Availability | Uptime SLA | 99.9% | High |
-| Scalability | Concurrent users | 10,000 | Medium |
-| Security | Auth mechanism | JWT, 15-min TTL | High |
+|Category|Requirement|Target|Priority|
+|------------|-----------------------|---------------|--------|
+|Performance|API response time (p95)|< 200ms|High|
+|Availability|Uptime SLA|99.9%|High|
+|Scalability|Concurrent users|10,000|Medium|
+|Security|Auth mechanism|JWT, 15-min TTL|High|
 
 ---
 
@@ -115,8 +115,8 @@ flowchart LR
 
 ### 4.2 Component Responsibilities
 
-| Component | Technology | Responsibility |
-| --------- | ---------- | -------------- |
+|Component|Technology|Responsibility|
+|---------|----------|--------------|
 
 ### 4.3 Key Design Decisions
 
@@ -151,8 +151,8 @@ flowchart LR
 
 **Errors:**
 
-| Status | Condition |
-| ------ | --------- |
+|Status|Condition|
+|------|---------|
 
 ### 5.2 Modified Endpoints
 
@@ -195,22 +195,22 @@ CREATE TABLE [table_name] (
 
 ## 8. Observability
 
-| Signal | What to instrument | Tooling |
-| ------- | ----------------------------------- | ------- |
-| Metrics | [request rate, error rate, latency] | |
-| Logs | [request, errors, audit events] | |
-| Traces | [which services] | |
-| Alerts | [key conditions] | |
+|Signal|What to instrument|Tooling|
+|-------|-----------------------------------|-------|
+|Metrics|[request rate, error rate, latency]||
+|Logs|[request, errors, audit events]||
+|Traces|[which services]||
+|Alerts|[key conditions]||
 
 ---
 
 ## 9. Testing Strategy
 
-| Level | Scope | Tools | Coverage Target |
-| ----------- | ------------------- | ----- | ------------------------ |
-| Unit | Business logic | | ≥ 85% |
-| Integration | Service + DB | | Key flows |
-| E2E | Critical user paths | | Happy path + main errors |
+|Level|Scope|Tools|Coverage Target|
+|-----------|-------------------|-----|------------------------|
+|Unit|Business logic||≥ 85%|
+|Integration|Service + DB||Key flows|
+|E2E|Critical user paths||Happy path + main errors|
 
 ### 9.1 Data, Privacy, and Compliance Verification
 
@@ -226,27 +226,27 @@ CREATE TABLE [table_name] (
 
 ### Dependencies
 
-| Dependency | Team / System | Needed by |
-| ---------- | ------------- | --------- |
+|Dependency|Team / System|Needed by|
+|----------|-------------|---------|
 
 ---
 
 ## 11. Release & Operational Readiness
 
-| Activity | Owner | Required Before Launch |
-| -------- | ----- | ---------------------- |
-| Rollout / feature flag plan | | |
-| Support training | | |
-| User documentation | | |
-| Monitoring and alerts | | |
-| Feedback collection | | |
+|Activity|Owner|Required Before Launch|
+|--------|-----|----------------------|
+|Rollout / feature flag plan|||
+|Support training|||
+|User documentation|||
+|Monitoring and alerts|||
+|Feedback collection|||
 
 ---
 
 ## 12. Open Questions
 
-| # | Question | Owner | Due | Status |
-| --- | -------- | ----- | --- | ------ |
+|#|Question|Owner|Due|Status|
+|---| -------- | ----- |---| ------ |
 
 ---
 

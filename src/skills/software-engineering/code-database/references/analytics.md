@@ -13,14 +13,14 @@
 
 ## OLTP vs OLAP
 
-| Concern | OLTP | OLAP |
-| --- | --- | --- |
-| Query type | Point lookups, small updates | Full scans, aggregations, joins |
-| Row volume per query | 1–100 | Millions to billions |
-| Indexes | Many, narrow | Few, wide (columnar) |
-| Write pattern | Frequent, small | Batch / append-only |
-| Schema style | Normalised (3NF) | Denormalised (star / snowflake) |
-| Engine examples | Postgres, MySQL, SQL Server | BigQuery, Snowflake, ClickHouse, Redshift |
+|Concern|OLTP|OLAP|
+|---|---|---|
+|Query type|Point lookups, small updates|Full scans, aggregations, joins|
+|Row volume per query|1–100|Millions to billions|
+|Indexes|Many, narrow|Few, wide (columnar)|
+|Write pattern|Frequent, small|Batch / append-only|
+|Schema style|Normalised (3NF)|Denormalised (star / snowflake)|
+|Engine examples|Postgres, MySQL, SQL Server|BigQuery, Snowflake, ClickHouse, Redshift|
 
 Route analytical workloads to a dedicated OLAP engine or read replica. Don't run full-table aggregations on the primary OLTP database.
 

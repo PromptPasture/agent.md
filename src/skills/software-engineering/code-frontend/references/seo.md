@@ -122,12 +122,12 @@ Validate with [Google's Rich Results Test](https://search.google.com/test/rich-r
 
 ## Rendering Strategy and SEO
 
-| Strategy | SEO impact | Use when |
-| --- | --- | --- |
-| SSR (Server-Side Rendering) | Excellent — full HTML on first request | Dynamic, personalised content |
-| SSG (Static Generation) | Excellent — pre-rendered HTML | Stable content, blogs, marketing |
-| ISR (Incremental Static Regeneration) | Excellent — periodically refreshed | Mostly stable with occasional updates |
-| CSR (Client-Side Rendering) | Poor — content missing on first crawl | Authenticated dashboards, internal tools |
+|Strategy|SEO impact|Use when|
+|---|---|---|
+|SSR (Server-Side Rendering)|Excellent — full HTML on first request|Dynamic, personalised content|
+|SSG (Static Generation)|Excellent — pre-rendered HTML|Stable content, blogs, marketing|
+|ISR (Incremental Static Regeneration)|Excellent — periodically refreshed|Mostly stable with occasional updates|
+|CSR (Client-Side Rendering)|Poor — content missing on first crawl|Authenticated dashboards, internal tools|
 
 Avoid CSR for any content that should be indexed. Use SSR or SSG with a loading skeleton for authenticated content that still needs SEO.
 

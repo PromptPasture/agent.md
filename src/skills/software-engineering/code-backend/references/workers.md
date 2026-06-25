@@ -76,12 +76,12 @@ Use exponential backoff with jitter on retries:
 delay = min(base_delay × 2^attempt, max_delay) + random_jitter
 ```
 
-| Attempt | Base delay | Example with jitter |
-| --- | --- | --- |
-| 1 | 1 s | 0.8–1.2 s |
-| 2 | 2 s | 1.6–2.4 s |
-| 3 | 4 s | 3.2–4.8 s |
-| 5 | 16 s | 12.8–19.2 s |
+|Attempt|Base delay|Example with jitter|
+|---|---|---|
+|1|1 s|0.8–1.2 s|
+|2|2 s|1.6–2.4 s|
+|3|4 s|3.2–4.8 s|
+|5|16 s|12.8–19.2 s|
 
 Set a max retry count (typically 5–10). Move to a dead-letter queue after exhausting retries.
 

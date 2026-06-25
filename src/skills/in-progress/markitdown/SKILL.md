@@ -22,14 +22,14 @@ Converts .pdf, .docx, .pptx, .xlsx, .msg, and .epub files to Markdown using [mar
 
 ## Supported Formats
 
-| Extension | Format |
-| --- | --- |
-| `.pdf` | PDF documents |
-| `.docx` | Word documents |
-| `.pptx` | PowerPoint presentations |
-| `.xlsx` | Excel workbooks |
-| `.msg` | Outlook email messages |
-| `.epub` | EPUB ebooks |
+|Extension|Format|
+|---|---|
+|`.pdf`|PDF documents|
+|`.docx`|Word documents|
+|`.pptx`|PowerPoint presentations|
+|`.xlsx`|Excel workbooks|
+|`.msg`|Outlook email messages|
+|`.epub`|EPUB ebooks|
 
 ## Mode 1 — Read (primary)
 

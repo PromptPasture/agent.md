@@ -6,12 +6,12 @@ Guidance for writing load, stress, soak, and spike tests (k6, Locust, Artillery,
 
 ## Framework Detection
 
-| Signal | Framework |
-| --- | --- |
-| `k6/` dir or `.js` files importing `k6` | k6 |
-| `locustfile.py` or `locust` in deps | Locust |
-| `artillery.yml` / `artillery` in deps | Artillery |
-| `gatling` in pom.xml or build.gradle | Gatling |
+|Signal|Framework|
+|---|---|
+|`k6/` dir or `.js` files importing `k6`|k6|
+|`locustfile.py` or `locust` in deps|Locust|
+|`artillery.yml` / `artillery` in deps|Artillery|
+|`gatling` in pom.xml or build.gradle|Gatling|
 
 ---
 
@@ -19,12 +19,12 @@ Guidance for writing load, stress, soak, and spike tests (k6, Locust, Artillery,
 
 Identify the correct profile from user intent:
 
-| Test type | Pattern | Purpose |
-| --- | --- | --- |
-| Load test | Ramp to target VUs, hold, ramp down | Verify behaviour under expected traffic |
-| Stress test | Ramp beyond expected capacity | Find the breaking point |
-| Soak test | Hold target VUs for extended duration (hours) | Detect memory leaks and degradation over time |
-| Spike test | Sudden large VU increase, then drop | Verify recovery from traffic bursts |
+|Test type|Pattern|Purpose|
+|---|---|---|
+|Load test|Ramp to target VUs, hold, ramp down|Verify behaviour under expected traffic|
+|Stress test|Ramp beyond expected capacity|Find the breaking point|
+|Soak test|Hold target VUs for extended duration (hours)|Detect memory leaks and degradation over time|
+|Spike test|Sudden large VU increase, then drop|Verify recovery from traffic bursts|
 
 ---
 

@@ -31,13 +31,13 @@ PRAGMA temp_store = MEMORY;         -- store temp tables in memory
 
 SQLite has five storage classes: `NULL`, `INTEGER`, `REAL`, `TEXT`, `BLOB`. Column type names are mapped to affinity rules:
 
-| Declared type contains | Affinity |
-| --- | --- |
-| `INT` | INTEGER |
-| `CHAR`, `TEXT`, `CLOB` | TEXT |
-| `BLOB` or none | BLOB |
-| `REAL`, `FLOA`, `DOUB` | REAL |
-| anything else | NUMERIC |
+|Declared type contains|Affinity|
+|---|---|
+|`INT`|INTEGER|
+|`CHAR`, `TEXT`, `CLOB`|TEXT|
+|`BLOB` or none|BLOB|
+|`REAL`, `FLOA`, `DOUB`|REAL|
+|anything else|NUMERIC|
 
 Use explicit column names that signal intent, even though SQLite does not enforce them:
 

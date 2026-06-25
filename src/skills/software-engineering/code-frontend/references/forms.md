@@ -8,12 +8,12 @@ Forms must be accessible, validated at the right level, and clear about errors b
 
 ### Validate at the right level
 
-| Level | When | Purpose |
-| --- | --- | --- |
-| Schema | On submit, on blur | Catch type and format errors |
-| Field | After first blur, then on change | Immediate feedback after interaction |
-| Server | After submit | Business rules, uniqueness, auth |
-| Real-time | Confirmations only (e.g. password match) | Dependent field checks |
+|Level|When|Purpose|
+|---|---|---|
+|Schema|On submit, on blur|Catch type and format errors|
+|Field|After first blur, then on change|Immediate feedback after interaction|
+|Server|After submit|Business rules, uniqueness, auth|
+|Real-time|Confirmations only (e.g. password match)|Dependent field checks|
 
 Never validate on every keystroke for standard fields — it is distracting. Validate on blur after first interaction, then on every change once the first error has appeared.
 

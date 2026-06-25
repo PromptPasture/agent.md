@@ -6,19 +6,19 @@ Apply these when no project standard exists. If one does, follow it and note any
 
 ## Naming
 
-| Thing | Convention | Example |
-| --- | --- | --- |
-| Component | PascalCase | `UserCard`, `NavigationMenu` |
-| Composable / store / hook | camelCase, framework-idiomatic prefix | `useUserProfile`, `createAuthStore` |
-| Utility function | camelCase, verb-first | `formatDate`, `parseSearchParams` |
-| Type / Interface | PascalCase | `UserCardProps`, `ApiResponse` |
-| Constant | SCREAMING_SNAKE_CASE | `MAX_RETRIES`, `DEFAULT_LOCALE` |
-| CSS class (plain) | kebab-case (BEM for global scope — see `references/styling.md`) | `user-card`, `user-card__name`, `user-card--featured` |
-| File (component) | PascalCase | `UserCard.tsx`, `UserCard.svelte` |
-| File (util/composable) | camelCase | `formatDate.ts`, `useDebounce.ts` |
-| File (type-only) | camelCase, `.types.ts` | `user.types.ts` |
-| Folder (component) | PascalCase | `UserCard/` |
-| Folder (feature) | kebab-case | `auth/`, `user-profile/` |
+|Thing|Convention|Example|
+|---|---|---|
+|Component|PascalCase|`UserCard`, `NavigationMenu`|
+|Composable / store / hook|camelCase, framework-idiomatic prefix|`useUserProfile`, `createAuthStore`|
+|Utility function|camelCase, verb-first|`formatDate`, `parseSearchParams`|
+|Type / Interface|PascalCase|`UserCardProps`, `ApiResponse`|
+|Constant|SCREAMING_SNAKE_CASE|`MAX_RETRIES`, `DEFAULT_LOCALE`|
+|CSS class (plain)|kebab-case (BEM for global scope — see `references/styling.md`)|`user-card`, `user-card__name`, `user-card--featured`|
+|File (component)|PascalCase|`UserCard.tsx`, `UserCard.svelte`|
+|File (util/composable)|camelCase|`formatDate.ts`, `useDebounce.ts`|
+|File (type-only)|camelCase, `.types.ts`|`user.types.ts`|
+|Folder (component)|PascalCase|`UserCard/`|
+|Folder (feature)|kebab-case|`auth/`, `user-profile/`|
 
 ---
 

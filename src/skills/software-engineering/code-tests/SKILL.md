@@ -32,18 +32,18 @@ Determine the test type from the user's request: **E2E**, **API**, **Integration
 
 Inspect the following in order. Stop reading a file once the needed signal is found.
 
-| File | Signal to extract |
-| --- | --- |
-| `package.json` | Language, test runner (Jest, Vitest, Mocha), E2E framework (Playwright, Cypress) |
-| `playwright.config.*` | Playwright presence, browsers, base URL, reporter |
-| `cypress.config.*` | Cypress presence, base URL, spec pattern |
-| `vitest.config.*` / `jest.config.*` | Unit/integration test runner config |
-| `pyproject.toml` / `pytest.ini` / `setup.cfg` | Python; pytest, pytest-asyncio, httpx |
-| `go.mod` | Go; detect `testing`, `testify`, `httptest`, `gomock` |
-| `pom.xml` / `build.gradle*` | Java/Kotlin; JUnit, RestAssured, WireMock, Gatling |
-| `k6/` / `load/` / `perf/` dirs | k6 scripts, Artillery configs, Locust files |
-| `docker-compose.yml` | Test DB, mock services, dependency containers |
-| Existing test files | Naming conventions, folder structure, helper patterns, assertion style |
+|File|Signal to extract|
+|---|---|
+|`package.json`|Language, test runner (Jest, Vitest, Mocha), E2E framework (Playwright, Cypress)|
+|`playwright.config.*`|Playwright presence, browsers, base URL, reporter|
+|`cypress.config.*`|Cypress presence, base URL, spec pattern|
+|`vitest.config.*` / `jest.config.*`|Unit/integration test runner config|
+|`pyproject.toml` / `pytest.ini` / `setup.cfg`|Python; pytest, pytest-asyncio, httpx|
+|`go.mod`|Go; detect `testing`, `testify`, `httptest`, `gomock`|
+|`pom.xml` / `build.gradle*`|Java/Kotlin; JUnit, RestAssured, WireMock, Gatling|
+|`k6/` / `load/` / `perf/` dirs|k6 scripts, Artillery configs, Locust files|
+|`docker-compose.yml`|Test DB, mock services, dependency containers|
+|Existing test files|Naming conventions, folder structure, helper patterns, assertion style|
 
 ### 1.3 Output a detection summary
 
@@ -127,15 +127,15 @@ For the type-specific plan format, see the reference doc loaded in Phase 2.3.
 
 ### 2.3 Identify reference docs to load
 
-| Signal | Load |
-| --- | --- |
-| Test type is E2E | `references/e2e.md` |
-| Test type is API | `references/api.md` |
-| Test type is Integration | `references/integration.md` |
-| Test type is Load/Performance | `references/perf.md` |
-| Test data setup required | `references/test-data.md` |
-| External services need to be stubbed or mocked | `references/mocking.md` |
-| Assertion patterns are complex or numerous | `references/assertions.md` |
+|Signal|Load|
+|---|---|
+|Test type is E2E|`references/e2e.md`|
+|Test type is API|`references/api.md`|
+|Test type is Integration|`references/integration.md`|
+|Test type is Load/Performance|`references/perf.md`|
+|Test data setup required|`references/test-data.md`|
+|External services need to be stubbed or mocked|`references/mocking.md`|
+|Assertion patterns are complex or numerous|`references/assertions.md`|
 
 ### 2.4 Wait for confirmation
 

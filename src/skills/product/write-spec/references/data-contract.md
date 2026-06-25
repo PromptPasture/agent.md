@@ -31,11 +31,11 @@ related:
 
 ## 1. Ownership & Roles
 
-| Role | Team/Person | Contact |
-| ------------------ | ---------------- | ---------------- |
-| **Data Producer** | [team-name] | [#slack-channel] |
-| **Data Steward** | [name] | [email] |
-| **Data Consumers** | [team-a, team-b] | — |
+|Role|Team/Person|Contact|
+|------------------|----------------|----------------|
+|**Data Producer**|[team-name]|[#slack-channel]|
+|**Data Steward**|[name]|[email]|
+|**Data Consumers**|[team-a, team-b]|—|
 
 ---
 
@@ -58,10 +58,10 @@ related:
 **Format:** [Parquet / Avro / JSON / Snowflake Table]
 **Location:** [e.g., `s3://bucket/domain/dataset/` or `db.schema.table`]
 
-| Column Name | Data Type | Nullable | PII | Description |
-| ------------ | --------- | -------- | --- | ------------------------ |
-| `id` | STRING | No | No | Unique identifier (UUID) |
-| `created_at` | TIMESTAMP | No | No | UTC timestamp |
+|Column Name|Data Type|Nullable|PII|Description|
+|------------|---------|--------|---|------------------------|
+|`id`|STRING|No|No|Unique identifier (UUID)|
+|`created_at`|TIMESTAMP|No|No|UTC timestamp|
 
 ---
 

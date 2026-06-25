@@ -110,10 +110,10 @@ export default function () {
 
 ## Avoiding Common Pitfalls
 
-| Pitfall | Fix |
-| --- | --- |
-| Hardcoded IDs (`userId: "123"`) | Use factory-generated or DB-returned IDs |
-| Shared fixture mutated between tests | Deep-clone fixtures before each test |
-| Relying on insertion order for IDs | Query by a unique business key, not by auto-increment ID |
-| Large seed scripts run before every test | Seed once in global setup; use transactions per test |
-| Real email addresses or phone numbers | Use `@example.com` domains and `+15550000000` numbers |
+|Pitfall|Fix|
+|---|---|
+|Hardcoded IDs (`userId: "123"`)|Use factory-generated or DB-returned IDs|
+|Shared fixture mutated between tests|Deep-clone fixtures before each test|
+|Relying on insertion order for IDs|Query by a unique business key, not by auto-increment ID|
+|Large seed scripts run before every test|Seed once in global setup; use transactions per test|
+|Real email addresses or phone numbers|Use `@example.com` domains and `+15550000000` numbers|

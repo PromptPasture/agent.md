@@ -35,23 +35,23 @@ related:
 
 ## 2. Purpose & Success Measures
 
-| Purpose / Outcome | Success Measure | Target |
-| ----------------- | --------------- | ------ |
+|Purpose / Outcome|Success Measure|Target|
+|-----------------|---------------|------|
 
 ---
 
 ## 3. Roles & Responsibilities
 
-| Role / Team | Responsibility | Decision Area |
-| ----------- | -------------- | ------------- |
+|Role / Team|Responsibility|Decision Area|
+|-----------|--------------|-------------|
 
 ---
 
 ## 4. Actors
 
-| Actor | Type | Description |
-| ------ | ---------------------------- | --------------------------- |
-| [Name] | [Human / System / Scheduled] | [Role and key interactions] |
+|Actor|Type|Description|
+|------|----------------------------|---------------------------|
+|[Name]|[Human / System / Scheduled]|[Role and key interactions]|
 
 ---
 
@@ -75,8 +75,8 @@ related:
 
 ## 7. Data Entities (Conceptual)
 
-| Entity | Key Attributes | Notes |
-| ------ | -------------- | ----- |
+|Entity|Key Attributes|Notes|
+|------|--------------|-----|
 
 ---
 
@@ -97,40 +97,40 @@ related:
 
 ## 9. Business Rules
 
-| Rule ID | Rule | Applies To |
-| ------- | ---- | ---------- |
+|Rule ID|Rule|Applies To|
+|-------|----|----------|
 
 ---
 
 ## 10. Data Validation Rules
 
-| Field | Validation | Error Message |
-| ----- | ---------- | ------------- |
+|Field|Validation|Error Message|
+|-----|----------|-------------|
 
 ---
 
 ## 11. State Transitions (if applicable)
 
-| From State | Event | To State | Guards |
-| ---------- | ----- | -------- | ------ |
+|From State|Event|To State|Guards|
+|----------|-----|--------|------|
 
 ---
 
 ## 12. Test Plan
 
-| Scenario | Expected Result | Test Level |
-| -------- | --------------- | ---------- |
+|Scenario|Expected Result|Test Level|
+|--------|---------------|----------|
 
 ---
 
 ## 13. Release & Support Readiness
 
-| Activity | Owner | Notes |
-| -------- | ----- | ----- |
-| Documentation | | |
-| Support training | | |
-| Rollout / communication | | |
-| Feedback collection | | |
+|Activity|Owner|Notes|
+|--------|-----|-----|
+|Documentation|||
+|Support training|||
+|Rollout / communication|||
+|Feedback collection|||
 
 ---
 
@@ -142,9 +142,9 @@ related:
 
 ## 15. Assumptions & Constraints
 
-| # | Type | Detail |
-| --- | ---------- | --------- |
-| A-1 | Assumption | [assumed] |
+|#|Type|Detail|
+|---| ---------- | --------- |
+|A-1|Assumption|[assumed]|
 
 ---
 
@@ -156,6 +156,6 @@ related:
 
 ## Appendix: Glossary
 
-| Term | Definition |
-| ---- | ---------- |
+|Term|Definition|
+|----|----------|
 ```

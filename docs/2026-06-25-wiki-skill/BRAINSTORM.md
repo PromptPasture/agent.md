@@ -56,18 +56,18 @@ A `/wiki` skill backed by OKF format. Default location is `docs/` (standard git 
 
 ### Decisions
 
-| Decision | Choice | Reason |
-| --- | --- | --- |
-| Audience | Collaborative (human + agent) | Both write and read entries |
-| Format | OKF | Typed, cross-linked, self-describing, already evaluated |
-| Default location | `docs/` | Standard git convention, human-visible |
-| Location override | Via `AGENTS.md`/`CLAUDE.md` | Keeps the skill simple; behavior driven by config |
-| Trigger | Explicit (`/wiki`) by default | Autonomous mode opt-in via `CLAUDE.md` |
-| Reserved files | `index.md` + `log.md` per OKF §6–7 | Navigation catalog and change history |
-| Update flow | Supported — find and edit an existing entry | Entries evolve as knowledge grows |
-| `log.md` scope | Per-directory | Keeps change history local to the affected scope |
-| Replaces `remember` | Move `remember` to `src/skills/deprecated/` | `wiki` covers the same need with structure, typing, and human visibility |
-| Setup doc | `SETUP.md` alongside `SKILL.md` | Explains how to configure the skill in `AGENTS.md`/`CLAUDE.md`: wiki location, autonomous mode instructions, example snippets |
+|Decision|Choice|Reason|
+|---|---|---|
+|Audience|Collaborative (human + agent)|Both write and read entries|
+|Format|OKF|Typed, cross-linked, self-describing, already evaluated|
+|Default location|`docs/`|Standard git convention, human-visible|
+|Location override|Via `AGENTS.md`/`CLAUDE.md`|Keeps the skill simple; behavior driven by config|
+|Trigger|Explicit (`/wiki`) by default|Autonomous mode opt-in via `CLAUDE.md`|
+|Reserved files|`index.md` + `log.md` per OKF §6–7|Navigation catalog and change history|
+|Update flow|Supported — find and edit an existing entry|Entries evolve as knowledge grows|
+|`log.md` scope|Per-directory|Keeps change history local to the affected scope|
+|Replaces `remember`|Move `remember` to `src/skills/deprecated/`|`wiki` covers the same need with structure, typing, and human visibility|
+|Setup doc|`SETUP.md` alongside `SKILL.md`|Explains how to configure the skill in `AGENTS.md`/`CLAUDE.md`: wiki location, autonomous mode instructions, example snippets|
 
 ### Open Questions
 

@@ -6,15 +6,15 @@ Choose the fetching layer that matches the detected stack. Apply it consistently
 
 ## Choosing a Strategy
 
-| Context | Preferred approach |
-| --- | --- |
-| Next.js App Router | Server Components + `fetch` with cache options |
-| Next.js Pages Router | `getServerSideProps` / `getStaticProps` + client library |
-| SvelteKit | `load` in `+page.server.ts` / `+page.ts` |
-| Nuxt | `useFetch` / `useAsyncData` |
-| Astro | `fetch` in frontmatter for static; API routes for dynamic |
-| Remix | `loader` / `action` functions |
-| Vite SPA | Client fetching library (React Query, SWR, TanStack Query) |
+|Context|Preferred approach|
+|---|---|
+|Next.js App Router|Server Components + `fetch` with cache options|
+|Next.js Pages Router|`getServerSideProps` / `getStaticProps` + client library|
+|SvelteKit|`load` in `+page.server.ts` / `+page.ts`|
+|Nuxt|`useFetch` / `useAsyncData`|
+|Astro|`fetch` in frontmatter for static; API routes for dynamic|
+|Remix|`loader` / `action` functions|
+|Vite SPA|Client fetching library (React Query, SWR, TanStack Query)|
 
 Prefer server fetching when the framework supports it. It reduces client bundle size, prevents loading flicker, and keeps sensitive logic off the client.
 
@@ -56,11 +56,11 @@ The API client centralises base URL, auth headers, error normalisation, and resp
 
 Never leave caching to chance. For every data dependency, decide:
 
-| Question | Decision |
-| --- | --- |
-| How stale can this data be? | Set a `staleTime` or `revalidate` interval |
-| Should this refetch on window focus? | Explicit on/off |
-| Does a mutation invalidate this? | Explicit invalidation or cache update |
+|Question|Decision|
+|---|---|
+|How stale can this data be?|Set a `staleTime` or `revalidate` interval|
+|Should this refetch on window focus?|Explicit on/off|
+|Does a mutation invalidate this?|Explicit invalidation or cache update|
 
 ---
 

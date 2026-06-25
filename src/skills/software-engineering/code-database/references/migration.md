@@ -199,16 +199,16 @@ LIMIT 1000;
 
 ## Locking Reference
 
-| Operation | Lock level | Safe on large live table? |
-| --- | --- | --- |
-| `CREATE TABLE` | None on existing tables | Yes |
-| `CREATE INDEX` | Share lock (blocks writes) | No — use CONCURRENTLY |
-| `CREATE INDEX CONCURRENTLY` | No table lock | Yes (Postgres) |
-| `ALTER TABLE ADD COLUMN` (nullable) | Brief metadata lock | Yes |
-| `ALTER TABLE ADD COLUMN NOT NULL` | Full table lock | No — use multi-step |
-| `ALTER TABLE DROP COLUMN` | Full table lock | No on large tables |
-| `TRUNCATE` | Full lock | Only after explicit confirmation |
-| `DROP TABLE` | Full lock | Only after explicit confirmation |
+|Operation|Lock level|Safe on large live table?|
+|---|---|---|
+|`CREATE TABLE`|None on existing tables|Yes|
+|`CREATE INDEX`|Share lock (blocks writes)|No — use CONCURRENTLY|
+|`CREATE INDEX CONCURRENTLY`|No table lock|Yes (Postgres)|
+|`ALTER TABLE ADD COLUMN` (nullable)|Brief metadata lock|Yes|
+|`ALTER TABLE ADD COLUMN NOT NULL`|Full table lock|No — use multi-step|
+|`ALTER TABLE DROP COLUMN`|Full table lock|No on large tables|
+|`TRUNCATE`|Full lock|Only after explicit confirmation|
+|`DROP TABLE`|Full lock|Only after explicit confirmation|
 
 ---
 

@@ -142,25 +142,25 @@ writing.
 
 ### Coverage Map
 
-| Concern | Delivery | Location |
-| --- | --- | --- |
-| Language (JS/TS) | Inline — Discover + Validate (P1) | `SKILL.md` |
-| Framework detection | Inline — Discover phase | `SKILL.md` |
-| Interface contracts | Inline — Plan phase | `SKILL.md` |
-| Decomposition heuristics | Inline — Build phase | `SKILL.md` |
-| Validate checklist (P0–P3) | Inline — Validate phase | `SKILL.md` |
-| Code conventions | Reference doc | `references/conventions.md` |
-| Error handling | Reference doc | `references/error-handling.md` |
-| Data fetching | Reference doc | `references/data-fetching.md` |
-| Animation / motion | Reference doc | `references/motion.md` |
-| Accessibility patterns | Reference doc | `references/a11y.md` |
-| Performance patterns | Reference doc | `references/performance.md` |
-| SEO | Reference doc | `references/seo.md` |
-| Styling (Tailwind, Bootstrap, plain, etc.) | Reference doc | `references/styling.md` |
-| Forms | Reference doc | `references/forms.md` |
-| State management | Reference doc | `references/state.md` |
-| PWA | Reference doc | `references/pwa.md` |
-| i18n | Reference doc | `references/i18n.md` |
+|Concern|Delivery|Location|
+|---|---|---|
+|Language (JS/TS)|Inline — Discover + Validate (P1)|`SKILL.md`|
+|Framework detection|Inline — Discover phase|`SKILL.md`|
+|Interface contracts|Inline — Plan phase|`SKILL.md`|
+|Decomposition heuristics|Inline — Build phase|`SKILL.md`|
+|Validate checklist (P0–P3)|Inline — Validate phase|`SKILL.md`|
+|Code conventions|Reference doc|`references/conventions.md`|
+|Error handling|Reference doc|`references/error-handling.md`|
+|Data fetching|Reference doc|`references/data-fetching.md`|
+|Animation / motion|Reference doc|`references/motion.md`|
+|Accessibility patterns|Reference doc|`references/a11y.md`|
+|Performance patterns|Reference doc|`references/performance.md`|
+|SEO|Reference doc|`references/seo.md`|
+|Styling (Tailwind, Bootstrap, plain, etc.)|Reference doc|`references/styling.md`|
+|Forms|Reference doc|`references/forms.md`|
+|State management|Reference doc|`references/state.md`|
+|PWA|Reference doc|`references/pwa.md`|
+|i18n|Reference doc|`references/i18n.md`|
 
 New frameworks, CSS libraries, or concerns → add a file to `references/`.
 No other changes required.

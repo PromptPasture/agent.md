@@ -23,13 +23,13 @@ Produces clear, complete, and actionable tickets for Jira, GitHub Issues, or any
 
 Determine which type applies before writing anything:
 
-| Type | Use when |
-| --- | --- |
-| **Bug** | Something is broken or behaves unexpectedly |
-| **Feature** | New capability or user-visible behaviour is requested |
-| **Task / Chore** | Internal work with no direct user impact (refactor, upgrade, CI fix) |
-| **Documentation** | Docs need to be created, updated, or removed |
-| **Spike** | Research or investigation needed before committing to an approach |
+|Type|Use when|
+|---|---|
+|**Bug**|Something is broken or behaves unexpectedly|
+|**Feature**|New capability or user-visible behaviour is requested|
+|**Task / Chore**|Internal work with no direct user impact (refactor, upgrade, CI fix)|
+|**Documentation**|Docs need to be created, updated, or removed|
+|**Spike**|Research or investigation needed before committing to an approach|
 
 If the type is ambiguous, ask one concise question before writing.
 

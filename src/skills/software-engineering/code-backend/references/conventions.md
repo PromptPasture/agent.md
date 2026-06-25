@@ -37,14 +37,14 @@ src/
 
 ## Naming
 
-| Artifact | Convention | Example |
-| --- | --- | --- |
-| Types / classes | `PascalCase` | `UserService` |
-| Functions / methods | Follow language convention | `createUser`, `CreateUser`, `create_user` |
-| Constants | `UPPER_SNAKE_CASE` | `MAX_PAGE_SIZE` |
-| DB tables | `snake_case`, plural | `users`, `refresh_tokens` |
-| DB columns | `snake_case` | `created_at`, `user_id` |
-| Endpoints | `kebab-case`, plural nouns | `/api/v1/users`, `/api/v1/refresh-tokens` |
+|Artifact|Convention|Example|
+|---|---|---|
+|Types / classes|`PascalCase`|`UserService`|
+|Functions / methods|Follow language convention|`createUser`, `CreateUser`, `create_user`|
+|Constants|`UPPER_SNAKE_CASE`|`MAX_PAGE_SIZE`|
+|DB tables|`snake_case`, plural|`users`, `refresh_tokens`|
+|DB columns|`snake_case`|`created_at`, `user_id`|
+|Endpoints|`kebab-case`, plural nouns|`/api/v1/users`, `/api/v1/refresh-tokens`|
 
 ---
 

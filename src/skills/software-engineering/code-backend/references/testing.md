@@ -13,12 +13,12 @@
 
 ## Test Types
 
-| Type | Scope | Speed | What it tests |
-| --- | --- | --- | --- |
-| Unit | Single function or service | Fast (< 1ms) | Business logic, transformations, error branches |
-| Integration | Repository + real DB | Medium (< 100ms) | Queries, transactions, constraint behaviour |
-| Handler / API | Full HTTP stack | Medium (< 200ms) | Request parsing, auth, routing, response shape |
-| Contract | Against API schema | Medium | Response matches OpenAPI/JSON Schema spec |
+|Type|Scope|Speed|What it tests|
+|---|---|---|---|
+|Unit|Single function or service|Fast (< 1ms)|Business logic, transformations, error branches|
+|Integration|Repository + real DB|Medium (< 100ms)|Queries, transactions, constraint behaviour|
+|Handler / API|Full HTTP stack|Medium (< 200ms)|Request parsing, auth, routing, response shape|
+|Contract|Against API schema|Medium|Response matches OpenAPI/JSON Schema spec|
 
 ---
 
@@ -101,12 +101,12 @@ function test_CreateUser_MissingEmail_Returns400():
 
 Test every case that has meaningful branching:
 
-| Priority | Cases to cover |
-| --- | --- |
-| P0 | Auth failure (401/403), input validation failure (400), happy path (2xx) |
-| P1 | Not found (404), conflict (409), service error mapped to 500 |
-| P2 | Edge cases: empty string, max-length input, zero values, null optional fields |
-| P3 | Concurrent writes (race condition), transaction rollback on partial failure |
+|Priority|Cases to cover|
+|---|---|
+|P0|Auth failure (401/403), input validation failure (400), happy path (2xx)|
+|P1|Not found (404), conflict (409), service error mapped to 500|
+|P2|Edge cases: empty string, max-length input, zero values, null optional fields|
+|P3|Concurrent writes (race condition), transaction rollback on partial failure|
 
 ---
 

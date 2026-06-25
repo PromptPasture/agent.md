@@ -205,16 +205,16 @@ async function deleteProduct(id: string) {
 
 ## Comparison
 
-| | Cookie | localStorage | sessionStorage | IndexedDB |
-| --- | --- | --- | --- | --- |
-| Capacity | ~4 KB | 5–10 MB | 5–10 MB | 50–80% disk |
-| Lifetime | Configurable | Until cleared | Tab session | Until cleared |
-| Server-readable | ✓ | ✗ | ✗ | ✗ |
-| SSR-safe | ✓ | ✗ | ✗ | ✗ |
-| Cross-tab | ✓ | ✓ | ✗ | ✓ |
-| Async | ✗ | ✗ | ✗ | ✓ |
-| Offline (PWA) | Partial | ✓ | ✗ | ✓ |
-| Auth tokens | ✓ (HttpOnly) | ✗ | ✗ | ✗ |
+||Cookie|localStorage|sessionStorage|IndexedDB|
+|---|---|---|---|---|
+|Capacity|~4 KB|5–10 MB|5–10 MB|50–80% disk|
+|Lifetime|Configurable|Until cleared|Tab session|Until cleared|
+|Server-readable|✓|✗|✗|✗|
+|SSR-safe|✓|✗|✗|✗|
+|Cross-tab|✓|✓|✗|✓|
+|Async|✗|✗|✗|✓|
+|Offline (PWA)|Partial|✓|✗|✓|
+|Auth tokens|✓ (HttpOnly)|✗|✗|✗|
 
 ---
 

@@ -204,13 +204,13 @@ END;
 
 Use UCP (Universal Connection Pool) or HikariCP for Java, or cx_Oracle session pool for Python:
 
-| Setting | Recommended |
-| --- | --- |
-| `initialPoolSize` | 2–5 |
-| `minPoolSize` | 2 |
-| `maxPoolSize` | 20–50 |
-| `connectionWaitTimeout` | 30 s |
-| `inactiveConnectionTimeout` | 300 s |
+|Setting|Recommended|
+|---|---|
+|`initialPoolSize`|2–5|
+|`minPoolSize`|2|
+|`maxPoolSize`|20–50|
+|`connectionWaitTimeout`|30 s|
+|`inactiveConnectionTimeout`|300 s|
 
 Enable `validateConnectionOnBorrow = true` to discard stale connections caused by firewall timeouts.
 

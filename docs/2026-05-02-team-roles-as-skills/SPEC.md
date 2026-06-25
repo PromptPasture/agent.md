@@ -39,13 +39,13 @@ The first catalog release is milestone-gated. It is ready when all 56 cataloged 
 
 ### 1.3 Roles & Responsibilities
 
-| Role / Team | Responsibility | Decision Area |
-| --- | --- | --- |
-| Product owner | Approves product scope, target personas, goals, and non-goals. | Catalog scope and success criteria |
-| Skill maintainer | Creates, tests, packages, and updates skills. | Skill structure, references, evals, and readiness |
-| Skill author | Writes role instructions and artifact formats. | Trigger behavior and output quality |
-| CLI agent user | Invokes skills through direct names or natural task intent. | Feedback on usability and output fit |
-| Reviewer | Reviews skill behavior, eval coverage, and drift against docs. | Release readiness |
+|Role / Team|Responsibility|Decision Area|
+|---|---|---|
+|Product owner|Approves product scope, target personas, goals, and non-goals.|Catalog scope and success criteria|
+|Skill maintainer|Creates, tests, packages, and updates skills.|Skill structure, references, evals, and readiness|
+|Skill author|Writes role instructions and artifact formats.|Trigger behavior and output quality|
+|CLI agent user|Invokes skills through direct names or natural task intent.|Feedback on usability and output fit|
+|Reviewer|Reviews skill behavior, eval coverage, and drift against docs.|Release readiness|
 
 ### 1.4 Customer & Business Context
 
@@ -55,14 +55,14 @@ The library must remain local-first. It is not a plugin marketplace, a project m
 
 ### 1.5 Goals
 
-| Goal | Success Metric | Target |
-| --- | --- | --- |
-| Complete catalog coverage | Cataloged software delivery role skills exist in `src/skills/`. | 56 skills |
-| Keep discovery predictable | Skill names follow verb-first convention. | 100% compliance |
-| Reduce repeated prompting | Completed skills encode trigger, output, and quality expectations. | Every completed skill has specific frontmatter and instructions |
-| Keep complex domains usable | Router skills select variants from context. | Ask at most one clarifying question when materially ambiguous |
-| Maintain quality | Skills pass validation and eval thresholds. | `validate.py` pass plus required eval coverage |
-| Support local distribution | Release-ready skills package as `.skill` files. | Successful local package build |
+|Goal|Success Metric|Target|
+|---|---|---|
+|Complete catalog coverage|Cataloged software delivery role skills exist in `src/skills/`.|56 skills|
+|Keep discovery predictable|Skill names follow verb-first convention.|100% compliance|
+|Reduce repeated prompting|Completed skills encode trigger, output, and quality expectations.|Every completed skill has specific frontmatter and instructions|
+|Keep complex domains usable|Router skills select variants from context.|Ask at most one clarifying question when materially ambiguous|
+|Maintain quality|Skills pass validation and eval thresholds.|`validate.py` pass plus required eval coverage|
+|Support local distribution|Release-ready skills package as `.skill` files.|Successful local package build|
 
 ### 1.6 Non-Goals
 
@@ -72,12 +72,12 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 ### 2.1 Actors
 
-| Actor | Description |
-| --- | --- |
-| User | Requests an artifact or names a skill directly. |
-| Agent | Selects, loads, and applies the relevant local skill. |
-| Skill maintainer | Builds, validates, evaluates, packages, and updates skills. |
-| Reviewer | Confirms behavior, catalog fit, and readiness gates. |
+|Actor|Description|
+|---|---|
+|User|Requests an artifact or names a skill directly.|
+|Agent|Selects, loads, and applies the relevant local skill.|
+|Skill maintainer|Builds, validates, evaluates, packages, and updates skills.|
+|Reviewer|Confirms behavior, catalog fit, and readiness gates.|
 
 ### 2.2 Key Flows
 
@@ -213,15 +213,15 @@ Runtime plugin hosting, remote skill fetching, marketplace behavior, live Jira/G
 
 ## 3. Non-Functional Requirements
 
-| Category | Requirement | Target | Priority |
-| --- | --- | --- | --- |
-| Maintainability | Skill instructions remain concise and modular. | `SKILL.md` under 500 lines; detailed variants in `references/` | High |
-| Testability | Behavior can be evaluated with representative prompts. | 8-10 evals per focused skill or per router reference | High |
-| Discoverability | Users can invoke by skill name, artifact, or task intent. | Frontmatter descriptions include triggers and output artifacts | High |
-| Consistency | Terms, names, priorities, and status stay aligned. | PRD, SPEC, TASKS, and skill folders match | High |
-| Local-first operation | Skills work without live network integrations. | Instructions, references, scripts, assets, and evals are local | High |
-| Token efficiency | Skills load only needed guidance. | Router references are loaded on demand | Medium |
-| Extensibility | Complex domains can grow without skill-count explosion. | Router pattern handles variants sharing one role context | Medium |
+|Category|Requirement|Target|Priority|
+|---|---|---|---|
+|Maintainability|Skill instructions remain concise and modular.|`SKILL.md` under 500 lines; detailed variants in `references/`|High|
+|Testability|Behavior can be evaluated with representative prompts.|8-10 evals per focused skill or per router reference|High|
+|Discoverability|Users can invoke by skill name, artifact, or task intent.|Frontmatter descriptions include triggers and output artifacts|High|
+|Consistency|Terms, names, priorities, and status stay aligned.|PRD, SPEC, TASKS, and skill folders match|High|
+|Local-first operation|Skills work without live network integrations.|Instructions, references, scripts, assets, and evals are local|High|
+|Token efficiency|Skills load only needed guidance.|Router references are loaded on demand|Medium|
+|Extensibility|Complex domains can grow without skill-count explosion.|Router pattern handles variants sharing one role context|Medium|
 
 ## 4. Skill Architecture
 
@@ -274,15 +274,15 @@ Descriptions are routing metadata. They must name likely user wording, related c
 
 Allowed frontmatter fields are:
 
-| Field | Required | Description |
-| --- | --- | --- |
-| `name` | Yes | A unique identifier for the skill. |
-| `description` | Yes | A concise explanation of the skill's purpose and when to use it. |
-| `license` | No | The name of the license, such as `MIT` or `Apache-2.0`. |
-| `version` | No | Semantic versioning string, such as `1.2.0`. |
-| `tags` | No | A list of categories for easier discovery and filtering. |
-| `author` | No | The creator's name or GitHub profile URL. |
-| `metadata` | No | A nested mapping for arbitrary key-value pairs. |
+|Field|Required|Description|
+|---|---|---|
+|`name`|Yes|A unique identifier for the skill.|
+|`description`|Yes|A concise explanation of the skill's purpose and when to use it.|
+|`license`|No|The name of the license, such as `MIT` or `Apache-2.0`.|
+|`version`|No|Semantic versioning string, such as `1.2.0`.|
+|`tags`|No|A list of categories for easier discovery and filtering.|
+|`author`|No|The creator's name or GitHub profile URL.|
+|`metadata`|No|A nested mapping for arbitrary key-value pairs.|
 
 ### 4.4 Router Pattern
 
@@ -300,101 +300,101 @@ Router skills for this release are `audit-security`, `code-frontend`, `code-back
 
 ### 5.1 Full Skill Catalog
 
-| Skill | Primary Roles | Output Artifact |
-| --- | --- | --- |
-| `audit-a11y` | Frontend Dev, UX | Accessibility audit with WCAG violations, severity, and fixes |
-| `audit-gap` | System Analyst | Gap analysis report: current state, target state, remediation |
-| `audit-security` | Security Eng | Security router: OWASP review, secrets audit, threat model |
-| `audit-test-flaky` | AQA | Flaky test report with root cause and fix recommendations |
-| `check-release` | Release Manager | Release checklist with rollback criteria |
-| `code-backend` | Backend Dev | Backend code: routes, services, middleware, tests |
-| `code-database` | DBA, Backend, Data Eng | Database code: schemas, SQL, migrations, analytics queries |
-| `code-frontend` | Frontend Dev | Frontend code: components, pages, state, styling |
-| `build-mobile` | Mobile Dev | Mobile code: screens, navigation, platform patterns |
-| `code-tests` | AQA | Test suites, eval harnesses, fixtures, configs, CI setup |
-| `design-api` | Backend Dev | API contract: OpenAPI, AsyncAPI, GraphQL, endpoints, schemas |
-| `design-arch` | Architect | Architecture router: system design, ADR, C4 diagram |
-| `diagram-dfd` | System Analyst | Data flow diagram in Mermaid or structured text |
-| `diagram-integration` | System Analyst | Integration map: systems, APIs, data flows, ownership |
-| `diagram-ux-flow` | UX Designer | User flow or journey map |
-| `model-dbt` | Data Eng | dbt model with SQL, schema, tests, and docs |
-| `document-auth-patterns` | Backend Dev | Auth implementation patterns for JWT, OAuth2, sessions, RBAC |
-| `document-graphql-patterns` | Backend Dev | GraphQL schema, resolver, pagination, and N+1 patterns |
-| `document-realtime-patterns` | Backend Dev | WebSocket, SSE, and polling strategy patterns |
-| `plan-capacity` | DevOps, SRE | Capacity plan for traffic, storage, compute, and scaling |
-| `plan-sprint` | Scrum Master | Sprint plan with goal, capacity, stories, impediments |
-| `report-cve` | Security Eng | CVE triage report with affected versions and remediation |
-| `report-db-health` | DBA | Database health report |
-| `report-team-health` | Team Lead | Team health report with delivery and risk signals |
-| `review-code` | Team Lead | Code review findings prioritized by risk |
-| `configure-developer-portal` | Platform Eng | Developer portal setup and onboarding structure |
-| `configure-eval-harness` | ML Eng | Eval harness with dataset, rubric, metrics, benchmark runner |
-| `configure-infra` | DevOps, Data Eng | Infrastructure setup router: IaC, CI/CD, ETL, observability |
-| `configure-monorepo` | Platform Eng | Monorepo setup and tooling configuration |
-| `configure-rag` | AI Eng | RAG pipeline setup |
-| `plan-api-versioning` | Backend Dev, Architect | API versioning and deprecation strategy |
-| `plan-backup` | DBA | Backup strategy with retention and restore SLAs |
-| `plan-dependency-upgrade` | Release Manager, DevOps | Dependency upgrade strategy |
-| `plan-feature-flag` | Team Lead, Backend | Feature flag rollout, lifecycle, and kill-switch strategy |
-| `create-template` | Team Lead, Scrum Master, PM, PO | Reusable templates for team workflows |
-| `track-velocity` | Scrum Master | Sprint metrics and velocity report |
-| `write-alert-rules` | SRE | Alert rules with severity, routing, and runbook links |
-| `write-api-docs` | Tech Writer, Backend | Reference documentation for implemented APIs |
-| `write-backlog` | PO | Groomed backlog with priority, sizing, and dependencies |
-| `write-changelog` | Tech Writer, Release Mgr | Developer-facing changelog entries and release history |
-| `write-compliance` | Security, Legal | Compliance documentation and evidence checklist |
-| `write-epic` | PO | Epic with goal, value, child stories, definition of done |
-| `write-lineage` | Data Eng | Data lineage document |
-| `write-mentorship` | Team Lead | Mentorship guide |
-| `write-ml-experiment` | ML Eng | ML experiment report and model-card section |
-| `write-postmortem` | Team Lead, SRE | Postmortem with timeline, root cause, action items |
-| `write-prd` | PM, PO | Product Requirements Document |
-| `write-prompt` | ML, AI Eng | Prompt specification with examples and eval criteria |
-| `write-readme` | Tech Writer, Developers | Project README with installation, usage, and contribution guidance |
-| `write-release-notes` | Tech Writer, Release Mgr | User-facing release communication and upgrade guidance |
-| `write-runbook` | Tech Writer, SRE | Routine and on-call operational procedures |
-| `write-slo` | SRE | SLO definition with SLI, target, error budget, alerts |
-| `write-spec` | SA, Architect, UX | Functional, technical, NFR, design, or data-contract spec |
-| `write-stakeholder` | PM, PO | Stakeholder update |
-| `write-team-agreement` | Scrum Master | Team working agreement |
-| `write-tech-radar` | Architect | Tech radar |
-| `write-test-strategy` | AQA, QA | Test strategy |
-| `write-ticket` | PO, Team Lead, Developers | Jira or GitHub bug, feature, task, or spike ticket |
-| `write-use-case` | System Analyst | Use case document |
-| `write-user-story` | PO, Team Lead | User story with acceptance criteria |
+|Skill|Primary Roles|Output Artifact|
+|---|---|---|
+|`audit-a11y`|Frontend Dev, UX|Accessibility audit with WCAG violations, severity, and fixes|
+|`audit-gap`|System Analyst|Gap analysis report: current state, target state, remediation|
+|`audit-security`|Security Eng|Security router: OWASP review, secrets audit, threat model|
+|`audit-test-flaky`|AQA|Flaky test report with root cause and fix recommendations|
+|`check-release`|Release Manager|Release checklist with rollback criteria|
+|`code-backend`|Backend Dev|Backend code: routes, services, middleware, tests|
+|`code-database`|DBA, Backend, Data Eng|Database code: schemas, SQL, migrations, analytics queries|
+|`code-frontend`|Frontend Dev|Frontend code: components, pages, state, styling|
+|`build-mobile`|Mobile Dev|Mobile code: screens, navigation, platform patterns|
+|`code-tests`|AQA|Test suites, eval harnesses, fixtures, configs, CI setup|
+|`design-api`|Backend Dev|API contract: OpenAPI, AsyncAPI, GraphQL, endpoints, schemas|
+|`design-arch`|Architect|Architecture router: system design, ADR, C4 diagram|
+|`diagram-dfd`|System Analyst|Data flow diagram in Mermaid or structured text|
+|`diagram-integration`|System Analyst|Integration map: systems, APIs, data flows, ownership|
+|`diagram-ux-flow`|UX Designer|User flow or journey map|
+|`model-dbt`|Data Eng|dbt model with SQL, schema, tests, and docs|
+|`document-auth-patterns`|Backend Dev|Auth implementation patterns for JWT, OAuth2, sessions, RBAC|
+|`document-graphql-patterns`|Backend Dev|GraphQL schema, resolver, pagination, and N+1 patterns|
+|`document-realtime-patterns`|Backend Dev|WebSocket, SSE, and polling strategy patterns|
+|`plan-capacity`|DevOps, SRE|Capacity plan for traffic, storage, compute, and scaling|
+|`plan-sprint`|Scrum Master|Sprint plan with goal, capacity, stories, impediments|
+|`report-cve`|Security Eng|CVE triage report with affected versions and remediation|
+|`report-db-health`|DBA|Database health report|
+|`report-team-health`|Team Lead|Team health report with delivery and risk signals|
+|`review-code`|Team Lead|Code review findings prioritized by risk|
+|`configure-developer-portal`|Platform Eng|Developer portal setup and onboarding structure|
+|`configure-eval-harness`|ML Eng|Eval harness with dataset, rubric, metrics, benchmark runner|
+|`configure-infra`|DevOps, Data Eng|Infrastructure setup router: IaC, CI/CD, ETL, observability|
+|`configure-monorepo`|Platform Eng|Monorepo setup and tooling configuration|
+|`configure-rag`|AI Eng|RAG pipeline setup|
+|`plan-api-versioning`|Backend Dev, Architect|API versioning and deprecation strategy|
+|`plan-backup`|DBA|Backup strategy with retention and restore SLAs|
+|`plan-dependency-upgrade`|Release Manager, DevOps|Dependency upgrade strategy|
+|`plan-feature-flag`|Team Lead, Backend|Feature flag rollout, lifecycle, and kill-switch strategy|
+|`create-template`|Team Lead, Scrum Master, PM, PO|Reusable templates for team workflows|
+|`track-velocity`|Scrum Master|Sprint metrics and velocity report|
+|`write-alert-rules`|SRE|Alert rules with severity, routing, and runbook links|
+|`write-api-docs`|Tech Writer, Backend|Reference documentation for implemented APIs|
+|`write-backlog`|PO|Groomed backlog with priority, sizing, and dependencies|
+|`write-changelog`|Tech Writer, Release Mgr|Developer-facing changelog entries and release history|
+|`write-compliance`|Security, Legal|Compliance documentation and evidence checklist|
+|`write-epic`|PO|Epic with goal, value, child stories, definition of done|
+|`write-lineage`|Data Eng|Data lineage document|
+|`write-mentorship`|Team Lead|Mentorship guide|
+|`write-ml-experiment`|ML Eng|ML experiment report and model-card section|
+|`write-postmortem`|Team Lead, SRE|Postmortem with timeline, root cause, action items|
+|`write-prd`|PM, PO|Product Requirements Document|
+|`write-prompt`|ML, AI Eng|Prompt specification with examples and eval criteria|
+|`write-readme`|Tech Writer, Developers|Project README with installation, usage, and contribution guidance|
+|`write-release-notes`|Tech Writer, Release Mgr|User-facing release communication and upgrade guidance|
+|`write-runbook`|Tech Writer, SRE|Routine and on-call operational procedures|
+|`write-slo`|SRE|SLO definition with SLI, target, error budget, alerts|
+|`write-spec`|SA, Architect, UX|Functional, technical, NFR, design, or data-contract spec|
+|`write-stakeholder`|PM, PO|Stakeholder update|
+|`write-team-agreement`|Scrum Master|Team working agreement|
+|`write-tech-radar`|Architect|Tech radar|
+|`write-test-strategy`|AQA, QA|Test strategy|
+|`write-ticket`|PO, Team Lead, Developers|Jira or GitHub bug, feature, task, or spike ticket|
+|`write-use-case`|System Analyst|Use case document|
+|`write-user-story`|PO, Team Lead|User story with acceptance criteria|
 
 ## 6. Variant References
 
 ### 6.1 Required Router Reference Sets
 
-| Skill | Required references |
-| --- | --- |
-| `write-spec` | `functional.md`, `technical.md`, `non-functional.md`, `design-ui.md`, `data-contract.md` |
-| `design-arch` | `system-design.md`, `adr.md`, `c4.md` |
-| `code-database` | `schema-design.md`, `migration.md`, `common.md`, plus supported dialect references |
-| `code-frontend` | Language, framework, styling, accessibility, forms, state, performance, PWA, i18n, visualization references |
-| `code-backend` | Language-level references plus supported framework references |
-| `build-mobile` | `swift.md`, `kotlin-android.md`, `react-native.md`, `flutter.md` |
-| `code-tests` | `e2e.md`, `api.md`, `perf.md`, `framework-setup.md`, `ai-output.md`, `ai-tool-use.md`, `ai-perf.md` |
-| `configure-infra` | `iac.md`, `cicd.md`, `etl.md`, `observability.md` |
-| `plan-capacity` | `db.md`, `infra.md` |
-| `audit-security` | `owasp.md`, `secrets.md`, `threat-model.md` |
-| `review-code` | `checklist.md`, `regressions.md`, `security.md`, `performance.md`, `test-gaps.md` |
-| `create-template` | `pr.md`, `retro.md`, `issue.md`, `meeting.md`, `decision.md`, `incident.md`, `release.md` |
+|Skill|Required references|
+|---|---|
+|`write-spec`|`functional.md`, `technical.md`, `non-functional.md`, `design-ui.md`, `data-contract.md`|
+|`design-arch`|`system-design.md`, `adr.md`, `c4.md`|
+|`code-database`|`schema-design.md`, `migration.md`, `common.md`, plus supported dialect references|
+|`code-frontend`|Language, framework, styling, accessibility, forms, state, performance, PWA, i18n, visualization references|
+|`code-backend`|Language-level references plus supported framework references|
+|`build-mobile`|`swift.md`, `kotlin-android.md`, `react-native.md`, `flutter.md`|
+|`code-tests`|`e2e.md`, `api.md`, `perf.md`, `framework-setup.md`, `ai-output.md`, `ai-tool-use.md`, `ai-perf.md`|
+|`configure-infra`|`iac.md`, `cicd.md`, `etl.md`, `observability.md`|
+|`plan-capacity`|`db.md`, `infra.md`|
+|`audit-security`|`owasp.md`, `secrets.md`, `threat-model.md`|
+|`review-code`|`checklist.md`, `regressions.md`, `security.md`, `performance.md`, `test-gaps.md`|
+|`create-template`|`pr.md`, `retro.md`, `issue.md`, `meeting.md`, `decision.md`, `incident.md`, `release.md`|
 
 ### 6.2 Collision Rules
 
-| Pair | Routing rule |
-| --- | --- |
-| `write-prd` vs `write-spec` | PRD owns product goals, personas, scope, and success metrics; spec owns behavior, technical detail, system handoff, and requirements. |
-| `design-api` vs `write-api-docs` | `design-api` is contract-first before implementation; `write-api-docs` documents an existing API. |
-| `design-arch` variants | System design is broad architecture; ADR is one decision; C4 is diagram-focused. |
-| `write-ticket` vs `write-user-story` | Ticket owns tracker work items using type-specific writing; user story owns persona, user value, and story acceptance criteria. |
-| `write-user-story` vs `write-epic` | User story is one user-value increment with acceptance criteria; epic groups related stories. |
-| `code-tests` vs `write-test-strategy` | `code-tests` writes executable tests/config/evals; `write-test-strategy` writes planning guidance. |
-| `review-code` vs `audit-security` | `review-code` reviews a code change; `audit-security` performs standalone security analysis. |
-| `create-template` vs `write-*` | `create-template` creates reusable blank templates; `write-*` creates filled artifacts. |
-| `audit-security` vs `code-tests` AI evals | `audit-security` owns abuse, exfiltration, secrets, and threat modeling; `code-tests` owns quality, tool-use, latency, cost, and regression evals. |
+|Pair|Routing rule|
+|---|---|
+|`write-prd` vs `write-spec`|PRD owns product goals, personas, scope, and success metrics; spec owns behavior, technical detail, system handoff, and requirements.|
+|`design-api` vs `write-api-docs`|`design-api` is contract-first before implementation; `write-api-docs` documents an existing API.|
+|`design-arch` variants|System design is broad architecture; ADR is one decision; C4 is diagram-focused.|
+|`write-ticket` vs `write-user-story`|Ticket owns tracker work items using type-specific writing; user story owns persona, user value, and story acceptance criteria.|
+|`write-user-story` vs `write-epic`|User story is one user-value increment with acceptance criteria; epic groups related stories.|
+|`code-tests` vs `write-test-strategy`|`code-tests` writes executable tests/config/evals; `write-test-strategy` writes planning guidance.|
+|`review-code` vs `audit-security`|`review-code` reviews a code change; `audit-security` performs standalone security analysis.|
+|`create-template` vs `write-*`|`create-template` creates reusable blank templates; `write-*` creates filled artifacts.|
+|`audit-security` vs `code-tests` AI evals|`audit-security` owns abuse, exfiltration, secrets, and threat modeling; `code-tests` owns quality, tool-use, latency, cost, and regression evals.|
 
 ## 7. Validation
 
@@ -426,16 +426,16 @@ Reviewers should inspect:
 
 ## 8. Error Handling
 
-| Error Path | Expected Behavior |
-| --- | --- |
-| Missing skill folder | Report that the skill is not implemented and continue with the closest available skill only if safe. |
-| Missing `SKILL.md` | Treat the skill as not release-ready. Do not package it. |
-| Invalid frontmatter | Fix before validation or release. |
-| Missing evals | Mark as draft or incomplete; do not call it release-ready. |
-| Ambiguous router request | Ask one concise clarifying question when context cannot decide the variant. |
-| Missing router reference | State the missing reference and either use a narrower available reference or stop if behavior would be invented. |
-| Catalog/doc drift | Update PRD, SPEC, TASKS, and relevant memory notes together. |
-| Packaging failure | Fix validation, missing assets, or packaging metadata before distribution. |
+|Error Path|Expected Behavior|
+|---|---|
+|Missing skill folder|Report that the skill is not implemented and continue with the closest available skill only if safe.|
+|Missing `SKILL.md`|Treat the skill as not release-ready. Do not package it.|
+|Invalid frontmatter|Fix before validation or release.|
+|Missing evals|Mark as draft or incomplete; do not call it release-ready.|
+|Ambiguous router request|Ask one concise clarifying question when context cannot decide the variant.|
+|Missing router reference|State the missing reference and either use a narrower available reference or stop if behavior would be invented.|
+|Catalog/doc drift|Update PRD, SPEC, TASKS, and relevant memory notes together.|
+|Packaging failure|Fix validation, missing assets, or packaging metadata before distribution.|
 
 ## 9. Build Process
 
@@ -460,53 +460,53 @@ python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist
 
 ### 10.1 Milestones
 
-| Milestone | Exit Criteria | Owner |
-| --- | --- | --- |
-| M-1 Foundation skills | P1 skills in TASKS are implemented, evaluated, and documented. | Oleg Shulyakov |
-| M-2 Delivery skills | P2/P3 delivery and operational skills are implemented with eval coverage. | Skill maintainers |
-| M-3 Specialist skills | Remaining specialist skills are implemented or deliberately deferred with rationale. | Skill maintainers |
-| M-4 Distribution readiness | Completed skills package and install from local artifacts. | Skill maintainers |
+|Milestone|Exit Criteria|Owner|
+|---|---|---|
+|M-1 Foundation skills|P1 skills in TASKS are implemented, evaluated, and documented.|Oleg Shulyakov|
+|M-2 Delivery skills|P2/P3 delivery and operational skills are implemented with eval coverage.|Skill maintainers|
+|M-3 Specialist skills|Remaining specialist skills are implemented or deliberately deferred with rationale.|Skill maintainers|
+|M-4 Distribution readiness|Completed skills package and install from local artifacts.|Skill maintainers|
 
 ### 10.2 Launch Checklist
 
-| Activity | Owner | Required Before Launch |
-| --- | --- | --- |
-| Catalog reconciliation | Skill maintainer | Yes |
-| Structural validation | Skill maintainer | Yes |
-| Eval coverage review | Reviewer | Yes |
-| Router collision review | Reviewer | Yes |
-| Packaging smoke test | Skill maintainer | Yes |
-| Documentation update | Skill maintainer | Yes |
-| Support/training note | Skill maintainer | Before broader team rollout |
-| Feedback collection path | Product owner | Before broader team rollout |
+|Activity|Owner|Required Before Launch|
+|---|---|---|
+|Catalog reconciliation|Skill maintainer|Yes|
+|Structural validation|Skill maintainer|Yes|
+|Eval coverage review|Reviewer|Yes|
+|Router collision review|Reviewer|Yes|
+|Packaging smoke test|Skill maintainer|Yes|
+|Documentation update|Skill maintainer|Yes|
+|Support/training note|Skill maintainer|Before broader team rollout|
+|Feedback collection path|Product owner|Before broader team rollout|
 
 ## 11. Risks and Mitigations
 
-| Risk | Impact | Mitigation | Status |
-| --- | --- | --- | --- |
-| Similar skills route ambiguously. | High | Keep descriptions trigger-specific and add boundary evals. | Open |
-| Router skills become too broad. | Medium | Use references for related variants only when they share role context. | Open |
-| Eval requirements slow creation. | Medium | Treat evals as definition of done, not cleanup. | Open |
-| Team conventions do not fit base skills. | Medium | Keep base skills generic; defer convention packs. | Open |
-| Docs drift from folders. | High | Update PRD, SPEC, TASKS, and memory together. | Open |
-| Older skills fail current validation. | High | Run validation per skill and fix blockers before release readiness. | Open |
-| Implementation count is inconsistent. | Medium | Reconcile PRD status, TASKS, and actual `src/skills/` folders. | Open |
+|Risk|Impact|Mitigation|Status|
+|---|---|---|---|
+|Similar skills route ambiguously.|High|Keep descriptions trigger-specific and add boundary evals.|Open|
+|Router skills become too broad.|Medium|Use references for related variants only when they share role context.|Open|
+|Eval requirements slow creation.|Medium|Treat evals as definition of done, not cleanup.|Open|
+|Team conventions do not fit base skills.|Medium|Keep base skills generic; defer convention packs.|Open|
+|Docs drift from folders.|High|Update PRD, SPEC, TASKS, and memory together.|Open|
+|Older skills fail current validation.|High|Run validation per skill and fix blockers before release readiness.|Open|
+|Implementation count is inconsistent.|Medium|Reconcile PRD status, TASKS, and actual `src/skills/` folders.|Open|
 
 ## 12. Decisions
 
-| Decision | Rationale | Owner | Date |
-| --- | --- | --- | --- |
-| Use milestone gates instead of a fixed date. | Release depends on complete implementation, evals, docs, and packaging. | Oleg Shulyakov | 2026-05-23 |
-| Use router skills for complex shared domains. | Prevents skill-count explosion while keeping role context coherent. | Skill maintainers | 2026-05-23 |
-| Use `create-skill` validation and eval expectations. | Keeps skill authoring aligned with the maintained local workflow. | Skill maintainers | 2026-05-23 |
-| Defer organization convention packs. | Base local skill library should stabilize before layering org-specific behavior. | Oleg Shulyakov | 2026-05-23 |
+|Decision|Rationale|Owner|Date|
+|---|---|---|---|
+|Use milestone gates instead of a fixed date.|Release depends on complete implementation, evals, docs, and packaging.|Oleg Shulyakov|2026-05-23|
+|Use router skills for complex shared domains.|Prevents skill-count explosion while keeping role context coherent.|Skill maintainers|2026-05-23|
+|Use `create-skill` validation and eval expectations.|Keeps skill authoring aligned with the maintained local workflow.|Skill maintainers|2026-05-23|
+|Defer organization convention packs.|Base local skill library should stabilize before layering org-specific behavior.|Oleg Shulyakov|2026-05-23|
 
 ## 13. Resolved Questions
 
-| # | Question | Answer | Owner | Status |
-| --- | --- | --- | --- | --- |
-| 1 | What assertion pass threshold is required for eval release readiness? | Release-ready skills must reach at least 85% aggregate expectation pass rate, with no failed critical expectations, after `validate.py` passes and required eval coverage exists. Human review may require fixes above that threshold when failures affect the skill's core artifact. | Skill maintainers [assumed] | Closed |
-| 2 | What local install command or workflow confirms packaged `.skill` artifacts are installable? | No separate local install command exists in the repo today. Current release verification is package-and-inspect: run `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`, confirm exit code 0, then list the `.skill` archive and verify `<skill-name>/SKILL.md` plus required references, scripts, and assets are present. | Oleg Shulyakov [assumed] | Closed |
+|#|Question|Answer|Owner|Status|
+|---|---|---|---|---|
+|1|What assertion pass threshold is required for eval release readiness?|Release-ready skills must reach at least 85% aggregate expectation pass rate, with no failed critical expectations, after `validate.py` passes and required eval coverage exists. Human review may require fixes above that threshold when failures affect the skill's core artifact.|Skill maintainers [assumed]|Closed|
+|2|What local install command or workflow confirms packaged `.skill` artifacts are installable?|No separate local install command exists in the repo today. Current release verification is package-and-inspect: run `python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist`, confirm exit code 0, then list the `.skill` archive and verify `<skill-name>/SKILL.md` plus required references, scripts, and assets are present.|Oleg Shulyakov [assumed]|Closed|
 
 ## 14. Appendix
 
@@ -519,8 +519,8 @@ python3 -m scripts.package_skill ../<skill-name> /tmp/skills-dist
 
 ### 14.2 Totals
 
-| Item | Count |
-| --- | ---: |
-| Catalog skills | 56 |
-| Approved verbs | 15 |
-| Required router skills | 13 |
+|Item|Count|
+|---|---:|
+|Catalog skills|56|
+|Approved verbs|15|
+|Required router skills|13|

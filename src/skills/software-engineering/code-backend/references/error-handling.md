@@ -51,11 +51,11 @@ Every error response uses the same envelope:
 
 ## Layer Responsibilities
 
-| Layer | Responsibility |
-| --- | --- |
-| Handler | Map `AppError` → HTTP status + JSON body; log unexpected (5xx) errors |
-| Service | Return `AppError` for domain failures; wrap lower-layer errors with context |
-| Repository | Return `AppError` for DB failures (not found, constraint violation); wrap driver errors |
+|Layer|Responsibility|
+|---|---|
+|Handler|Map `AppError` → HTTP status + JSON body; log unexpected (5xx) errors|
+|Service|Return `AppError` for domain failures; wrap lower-layer errors with context|
+|Repository|Return `AppError` for DB failures (not found, constraint violation); wrap driver errors|
 
 The handler is the only place that touches HTTP. Services and repositories never write HTTP responses.
 
@@ -92,15 +92,15 @@ Centralise this logic in a single error-handling middleware or helper — do not
 
 ## Common Error Codes
 
-| Code | Status | When to use |
-| --- | --- | --- |
-| `VALIDATION_ERROR` | 400 | Input fails schema or business rule validation |
-| `UNAUTHORIZED` | 401 | No valid auth token present |
-| `FORBIDDEN` | 403 | Token valid but insufficient permission |
-| `NOT_FOUND` | 404 | Resource does not exist |
-| `CONFLICT` | 409 | Unique constraint violation, optimistic lock conflict |
-| `UNPROCESSABLE` | 422 | Semantically invalid but structurally correct input |
-| `INTERNAL_ERROR` | 500 | Unexpected failure — never expose cause to client |
+|Code|Status|When to use|
+|---|---|---|
+|`VALIDATION_ERROR`|400|Input fails schema or business rule validation|
+|`UNAUTHORIZED`|401|No valid auth token present|
+|`FORBIDDEN`|403|Token valid but insufficient permission|
+|`NOT_FOUND`|404|Resource does not exist|
+|`CONFLICT`|409|Unique constraint violation, optimistic lock conflict|
+|`UNPROCESSABLE`|422|Semantically invalid but structurally correct input|
+|`INTERNAL_ERROR`|500|Unexpected failure — never expose cause to client|
 
 ---
 

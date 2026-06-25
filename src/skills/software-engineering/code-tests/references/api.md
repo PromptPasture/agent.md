@@ -6,13 +6,13 @@ Guidance for writing API tests that verify HTTP endpoints against their contract
 
 ## Framework Detection
 
-| Signal | Framework |
-| --- | --- |
-| `supertest` in deps | Supertest (Node.js) |
-| `httpx` or `requests` in deps | httpx / requests (Python) |
-| `rest-assured` in pom.xml | REST Assured (Java/Kotlin) |
-| `net/http/httptest` import | Go stdlib httptest |
-| `@nestjs/testing` in deps | NestJS testing module |
+|Signal|Framework|
+|---|---|
+|`supertest` in deps|Supertest (Node.js)|
+|`httpx` or `requests` in deps|httpx / requests (Python)|
+|`rest-assured` in pom.xml|REST Assured (Java/Kotlin)|
+|`net/http/httptest` import|Go stdlib httptest|
+|`@nestjs/testing` in deps|NestJS testing module|
 
 ---
 

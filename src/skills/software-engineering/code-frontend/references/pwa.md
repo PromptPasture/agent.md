@@ -77,13 +77,13 @@ if ('serviceWorker' in navigator) {
 
 ## Caching Strategies
 
-| Strategy | Behaviour | Use for |
-| --- | --- | --- |
-| `CacheFirst` | Serve from cache; update in background | Static assets, fonts, images |
-| `NetworkFirst` | Try network; fall back to cache on failure | API responses, dynamic pages |
-| `StaleWhileRevalidate` | Serve cache immediately; refresh in background | Non-critical data, avatars |
-| `NetworkOnly` | Always network — no cache | Auth, payments, writes |
-| `CacheOnly` | Always cache — no network | Offline-only content |
+|Strategy|Behaviour|Use for|
+|---|---|---|
+|`CacheFirst`|Serve from cache; update in background|Static assets, fonts, images|
+|`NetworkFirst`|Try network; fall back to cache on failure|API responses, dynamic pages|
+|`StaleWhileRevalidate`|Serve cache immediately; refresh in background|Non-critical data, avatars|
+|`NetworkOnly`|Always network — no cache|Auth, payments, writes|
+|`CacheOnly`|Always cache — no network|Offline-only content|
 
 **Never cache `POST`, `PUT`, `PATCH`, or `DELETE` requests.**
 
@@ -248,11 +248,11 @@ Background Sync has limited browser support — always provide a **manual retry 
 
 ## Testing
 
-| Tool | What to check |
-| --- | --- |
-| DevTools → Application → Manifest | Manifest parsed correctly, all icons load |
-| DevTools → Application → Service Workers | SW registered, active, no console errors |
-| DevTools → Network → Offline | App loads from cache when offline |
-| DevTools → Network → Slow 3G | App is usable under poor network |
-| Lighthouse → PWA audit | Installability, offline readiness, splash screen |
-| Workbox logging (dev) | Cache hits, misses, and strategy decisions |
+|Tool|What to check|
+|---|---|
+|DevTools → Application → Manifest|Manifest parsed correctly, all icons load|
+|DevTools → Application → Service Workers|SW registered, active, no console errors|
+|DevTools → Network → Offline|App loads from cache when offline|
+|DevTools → Network → Slow 3G|App is usable under poor network|
+|Lighthouse → PWA audit|Installability, offline readiness, splash screen|
+|Workbox logging (dev)|Cache hits, misses, and strategy decisions|
