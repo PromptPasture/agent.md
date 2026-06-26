@@ -4,7 +4,7 @@ description: Diagnoses mismatches in skills, rules, or workflows and applies the
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.5.1"
+  version: "1.6.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: adaptation
@@ -18,20 +18,33 @@ Turn failures, friction, feedback, stale assumptions, and changed constraints in
 
 ## Workflow
 
-1. Identify the mismatch signal, expected behavior, observed behavior, impact, and available evidence. Treat feedback as evidence to investigate, not proof of the cause or requested remedy.
-2. Inspect the current skill, rule, workflow, documentation, evaluation, memory, or implementation involved. Verify repository facts before relying on feedback or prior context. When required evidence or a target artifact is unavailable, report what was inspected, make no unsupported change, and identify what is needed to continue.
-3. Determine the cause:
-   - Correct an artifact when its instruction, behavior, or assumption is wrong or incomplete.
-   - Correct execution when the artifact is adequate but was not followed.
-   - Update memory when the new information is durable context rather than enforceable behavior.
-   - Add or update an evaluation when recurrence needs a reproducible check.
-   - Escalate to the responsible owner when the required change is outside the available authority or evidence.
-4. Choose the narrowest durable target. Prefer correcting an existing artifact over adding a new one. Touch multiple artifacts only when evidence shows each contributes to the mismatch or consistency requires the change.
-5. Define the intended change and how it will resolve the mismatch without weakening valid behavior.
-6. Apply the change automatically when the user explicitly asks to adapt, fix, update, or implement it. When the user asks only what should change, diagnose and recommend without editing. Ask one concise question before editing when competing interpretations would materially change behavior, privacy, authority, or scope; otherwise, state the assumption and proceed. Do not modify external systems, public artifacts, or protected policy without the required confirmation or authority.
-7. Run the smallest meaningful verification that reproduces the original signal or checks the corrected behavior.
-8. Review the result for contradictions, regressions, unnecessary scope, and unsupported changes. Preserve intentional behavior unrelated to the mismatch, and do not encode a one-off preference as durable policy unless the user makes it a lasting requirement. Iterate only when verification shows the mismatch remains.
-9. Report the cause, changed artifacts, verification, and any unresolved risk.
+### Goal
+
+Resolve the mismatch with the smallest verified change.
+
+### Setup
+
+1. Identify the signal, expected vs. observed behavior, impact, and evidence. Treat feedback as evidence to investigate, not proof of cause or remedy.
+2. Inspect the artifact involved. Verify facts before relying on feedback. If required evidence is unavailable, report what was inspected, make no unsupported change, and stop.
+
+### Loop
+
+1. Determine the cause and narrowest target:
+   - Artifact instruction wrong or incomplete → correct the artifact.
+   - Artifact adequate but not followed → correct execution.
+   - New durable context → update memory.
+   - Recurrence needs a reproducible check → add or update an evaluation.
+   - Change outside available authority → escalate.
+2. Apply the change, or diagnose without editing if the user asked what should change. Ask one question when competing interpretations would change scope; otherwise state the assumption and proceed.
+3. Verify: run the smallest check that confirms the fix. Review for contradictions, regressions, and scope creep. Preserve behavior unrelated to the mismatch.
+
+### Exit
+
+When the mismatch is resolved or no further change is justified by evidence.
+
+### Report
+
+Cause, changed artifacts, verification outcome, and any unresolved risk.
 
 ## Output
 

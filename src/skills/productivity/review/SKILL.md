@@ -4,7 +4,7 @@ description: Surfaces structured findings across consistent quadrants, not freef
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.1"
+  version: "1.3.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: quality
@@ -18,12 +18,31 @@ Produce a structured assessment that distinguishes evidence, judgment, uncertain
 
 ## Workflow
 
-1. Identify the review target, purpose, scope, and requested criteria.
-2. Inspect the complete artifact and the smallest amount of surrounding context needed to verify its claims, interfaces, or constraints.
-3. Derive evaluation criteria from explicit requirements first, then repository conventions, domain standards, and the artifact's stated purpose.
-4. Separate observed facts from assumptions and unresolved questions.
-5. Evaluate correctness, completeness, consistency, clarity, usability, and risk where relevant.
-6. Prioritize issues by impact and confidence, then organize the assessment into strengths, findings, gaps, and recommendations.
+### Goal
+
+A four-quadrant assessment.
+
+### Setup
+
+1. Identify the target, purpose, scope, and criteria.
+2. Inspect the artifact and minimum surrounding context. Derive criteria from explicit requirements first, then conventions and the artifact's stated purpose. Separate facts from assumptions.
+
+### Loop
+
+1. Evaluate against criteria: correctness, completeness, consistency, clarity, usability, and risk. Produce candidate findings.
+2. Validate each finding against evidence:
+   - Supported → keep, assign severity.
+   - Unsupported → dismiss.
+   - Impact overstated → downgrade.
+   - Dismissal uncovers a new gap → add it and re-evaluate.
+
+### Exit
+
+When all remaining findings are evidence-backed and no new surface was identified.
+
+### Report
+
+Prioritize by impact and confidence. Organize into strengths, findings, gaps, and recommendations. State a verdict.
 
 ## Output
 

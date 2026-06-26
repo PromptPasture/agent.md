@@ -4,7 +4,7 @@ description: Reviews code for correctness, security, performance, and style with
 license: Apache-2.0
 metadata:
   author: github.com/wpank/ai
-  version: "2.0.2"
+  version: "2.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: review
@@ -17,19 +17,24 @@ Review concrete code changes and surface defects, regressions, security or perfo
 
 ## Workflow
 
-Review in three passes. Scale each pass to the size and risk of the change rather than using fixed time or line-count limits.
+### Setup
 
-1. **Scope and intent**
-   - Identify the target and comparison base: supplied code, diff, patch, pull request, commit range, branch comparison, staged changes, or working tree.
-   - Inspect repository guidance, the request or linked issue, changed files, and the smallest surrounding context needed to understand intended behavior, architecture fit, contracts, and blast radius.
-   - Separate verified intent from assumptions and flag scope that cannot be reviewed reliably with the available context.
-2. **Behavior and dimensions**
-   - Read the changed paths in full and trace inputs, state transitions, side effects, outputs, errors, retries, and cleanup.
-   - Apply the relevant checklists below in an order determined by the changed surface. Prioritize trust-boundary, data-loss, and production-availability risks. Use the checklists as coverage prompts, not reasons to invent findings.
-3. **Hardening and evidence**
-   - Challenge production failure modes, edge conditions, and rollback safety.
-   - Validate suspected problems against repository contracts and surrounding evidence.
-   - Run focused tests, type checks, linters, builds, or reproductions when available and safe.
+Identify the target and comparison base. Inspect repository guidance, the linked issue, changed files, and minimum context needed to understand intended behavior, contracts, and blast radius. Separate verified intent from assumptions.
+
+### Loop
+
+1. Trace the changed paths: inputs, state transitions, side effects, outputs, errors, retries, and cleanup.
+2. Apply the relevant checklists, ordered by the changed surface. Prioritize trust-boundary, data-loss, and availability risks. Use checklists as coverage prompts, not reasons to invent findings.
+3. Validate each suspected problem against contracts and evidence:
+   - Supported → keep with severity and location.
+   - Unsupported → dismiss.
+   - Impact overstated → downgrade.
+   - Tests, linters, or reproductions available → run them.
+   - Dismissal uncovers an unexamined surface → re-enter step 1.
+
+### Exit
+
+When all remaining findings are evidence-backed and no new surface was identified.
 
 ## Checklists
 
