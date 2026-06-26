@@ -4,7 +4,7 @@ description: Creates, updates, queries, and lints a structured wiki knowledge ba
 license: Apache-2.0
 metadata:
   author: Andrej Karpathy
-  version: "1.0.1"
+  version: "1.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: knowledge
@@ -20,8 +20,8 @@ Maintain a shared, structured knowledge base — typed concept documents, cross-
 Read the wiki path in this priority order:
 
 1. Explicit path provided in the current session or conversation context
-2. `~/.agents/wiki/` if set in global agent configuration
-3. Default: `docs/` in the current repo
+2. `docs/` in the current repo
+3. `~/.agents/wiki/` if set in global agent configuration
 
 ## Entry format
 
@@ -93,7 +93,7 @@ When the user asks to add a new concept to the wiki:
 2. Choose a filename: kebab-case of the title, e.g. `customer-orders.md`.
 3. Write the entry with full frontmatter (`type`, `title`, `description`, `tags`, `created`, `updated`).
 4. Add the entry to the directory's `index.md` (create `index.md` if absent).
-5. Append a `**Create**` entry to the directory's `changelog.md`.
+5. Append a `**Create**` entry to the directory's `changelog.md` (create it if absent).
 
 ### Update
 
