@@ -125,7 +125,7 @@ Each finding must contain:
   - `P0` for catastrophic production impact or severe active exposure;
   - `P1` for likely user-visible failure, data loss, security breach, or blocked rollout;
   - `P2` for a meaningful edge-case defect, compatibility issue, or maintainability risk with concrete future impact;
-  - `P3` for a minor but actionable issue worth fixing.
+  - `P3` for a minor issue worth fixing.
 - **Title and location:** a specific title with the tightest relevant file and line range.
 - **Reasoning:** the triggering condition, observable impact, and supporting evidence.
 - **Fix direction:** the smallest practical correction or test.
@@ -146,7 +146,7 @@ Omit empty sections except when explicitly stating that no findings were found.
 After findings, add only substantive `Open Questions`, `Test Gaps`, and `Summary` sections.
 If no findings remain, say `No findings.` and report test gaps, unverified behavior, and residual risk.
 
-When the runtime supports inline comments, attach them only to actionable findings and use tight line ranges.
+When the runtime supports inline comments, attach them only to findings with a fix direction and use tight line ranges.
 Keep the summary separate so findings remain usable without the surrounding conversation.
 
 ## Review Rules

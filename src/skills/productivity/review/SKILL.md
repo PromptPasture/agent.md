@@ -75,7 +75,7 @@ For comparisons, apply the same criteria to every option, identify meaningful tr
 - Otherwise, state the assumption and proceed.
 - If the artifact is unavailable or incomplete, identify what was inspected, what is missing, and which conclusions cannot be supported.
 - If evidence conflicts, present the conflict and avoid a definitive verdict until it is resolved.
-- If no actionable issues are found, say so directly and report residual risk, unverified behavior, or validation gaps under `Gaps`.
+- If no issues are found, say so directly and report residual risk, unverified behavior, or validation gaps under `Gaps`.
 - Do not modify the artifact unless the user explicitly asks for fixes.
 - Do not invent requirements or report style preferences without concrete impact.
 
