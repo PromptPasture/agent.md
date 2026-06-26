@@ -4,7 +4,7 @@ description: Generates production-ready test code with auto-detected stack and f
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.2"
+  version: "2.0.3"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: testing
@@ -232,13 +232,15 @@ Modified:
   tests/api/helpers/index.ts   (added order helpers export)
 ```
 
-Present this list and wait for the user to confirm before proceeding to Validate.
+Present this list, then proceed to Validate.
 
 ---
 
 ## Phase 4 — Validate
 
-**Goal:** Work through every checklist item before declaring the output complete. Fix any issue found — do not report and skip.
+**Goal:** Zero open P0 and P1 items. All P2 and P3 items resolved or explicitly deferred.
+
+**Loop:** Run the full checklist → fix each failure in Build → repeat from P0 until all items pass. Do not report a failure and skip it — fix it before continuing.
 
 Items are ordered by severity. P0 failures block delivery. P1–P3 failures must be resolved before closing but do not require re-confirmation from the user unless the fix changes the test plan.
 
