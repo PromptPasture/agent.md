@@ -4,7 +4,7 @@ description: Reads .pdf, .docx, .pptx, .xlsx, .msg, and .epub files by convertin
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.2"
+  version: "1.2.0"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: document-conversion
@@ -32,7 +32,7 @@ Use whenever a supported file is uploaded or the user gives a local path and the
 
 ### Step 1: Resolve the file path
 
-- **Uploaded file:** path is at `/mnt/user-data/uploads/<filename>`
+- **Uploaded file:** resolve it using this harness's convention for attached-file paths.
 - **Typed path:** use it as-is
 
 ### Step 2: Convert and read
@@ -58,14 +58,14 @@ Use only when the user explicitly asks to convert a file to Markdown or save it 
 ### Step 2: Convert and save
 
 ```bash
-python3 scripts/run.py --convert <path> --out /mnt/user-data/outputs/<stem>.md
+python3 scripts/run.py --convert <path> --out <dest>
 ```
 
-Where `<stem>` is the original filename without extension (e.g. `report.pdf` → `report.md`). If the output file already exists, append `_1`, `_2`, etc.
+`<dest>` is `<stem>.md` (the original filename without extension, e.g. `report.pdf` → `report.md`) written wherever this harness's convention places generated files for the user — e.g. the current working directory in a CLI session. If the output file already exists, append `_1`, `_2`, etc.
 
-### Step 3: Present the file
+### Step 3: Deliver the file
 
-Call `present_files` with the output path so the user can download it.
+If this harness provides a file-delivery mechanism (e.g. present/download), use it with the output path so the user can retrieve the file.
 
 ## Examples
 
@@ -74,29 +74,20 @@ Call `present_files` with the output path so the user can download it.
 User uploads `annual_report.pdf` and asks: "What were the key findings?"
 
 ```bash
-python3 scripts/run.py --read /mnt/user-data/uploads/annual_report.pdf
+python3 scripts/run.py --read <annual_report.pdf-resolved-per-harness-convention>
 ```
 
 Ingest the output, then answer the question.
-
-### Local path — proactive read
-
-User says: "Summarise /home/user/docs/proposal.docx"
-
-```bash
-python3 scripts/run.py --read /home/user/docs/proposal.docx
-```
 
 ### Explicit conversion
 
 User says: "Convert this spreadsheet to Markdown" (after uploading `data.xlsx`)
 
 ```bash
-python3 scripts/run.py --convert /mnt/user-data/uploads/data.xlsx \
-  --out /mnt/user-data/outputs/data.md
+python3 scripts/run.py --convert <data.xlsx-resolved-per-harness-convention> --out data.md
 ```
 
-Then present `data.md` for download.
+Then deliver `data.md` to the user via this harness's file-delivery mechanism.
 
 ## Troubleshooting
 
@@ -111,3 +102,9 @@ Only the six extensions above are supported. For other formats, use the appropri
 ### Error: conversion failed
 
 markitdown may fail on corrupted or password-protected files. Tell the user the file could not be read and ask them to verify it opens correctly in its native application.
+
+## Verification
+
+- The correct mode (read vs. convert) matches what the user actually asked for.
+- Mode 1: the output was ingested and used to answer the user; truncation was flagged if present.
+- Mode 2: a `.md` file was saved at the resolved path and delivered via the harness's file-delivery mechanism, if one exists.
