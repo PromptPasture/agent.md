@@ -190,6 +190,7 @@ A compliant runtime **SHOULD**:
 
 - **[PLAYBOOK.md](./PLAYBOOK.md)**
 - **[Building Skills](./BUILDING_SKILLS.md)**
+- **[How to Write Great Skills](./HOWTO_Write_Great_Skills.md)**
 - **[Agent PDLC](./AGENT_PDLC.md)**
 - **[library](https://github.com/olegshulyakov/agent.md/tree/main/.agents)**
 
