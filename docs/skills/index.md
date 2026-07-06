@@ -2,7 +2,7 @@
 
 - [Skill system](skill-system.md) — naming, structure, quality bar, and progressive disclosure
 - [Skill catalog](skill-catalog.md) — 56-skill library, distribution model, release readiness
-- [Productivity](productivity.md) — adapt, brainstorm, dry, handoff, plan, review, wiki, yagni
+- [Productivity](productivity.md) — adapt, brainstorm, dry, plan, review, wiki, yagni
 - [Software engineering](software-engineering.md) — code-backend, code-frontend, code-database, code-tests, review-code
 - [Product](product.md) — write-prd, write-spec, write-user-story
 - [Utility](utility.md) — audit-skill-security, avoid-ai-writing, git-branch, git-commit

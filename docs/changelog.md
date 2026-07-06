@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-07-06
+
+- Removed `handoff` skill from the Productivity catalog.
+
 ## 2026-06-25
 
 - Added `wiki` skill and deprecated `remember`.

@@ -31,10 +31,6 @@ Reviews any artifact for duplicated knowledge, logic, or structure that should h
 
 Must be used whenever reviewing or producing any artifact.
 
-### `handoff`
-
-Compacts the current conversation into a handoff document so another agent can resume with full context. Used when a session is approaching context limits or when work transfers between agents.
-
 ### `plan`
 
 Turns a goal into ordered phases with dependencies, risks, and success conditions. Pre-execution sequencing — not active coordination (that is `manage`).

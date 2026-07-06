@@ -23,7 +23,6 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 |[`adapt`](productivity/adapt/SKILL.md)|Detecting evidence-driven change needs and routing updates to the right skill, workflow, artifact, or owner.|-|
 |[`brainstorm`](productivity/brainstorm/SKILL.md)|Working through ambiguous problems, assumptions, hypotheses, and problem framing before deciding or planning.|-|
 |[`dry`](productivity/dry/SKILL.md)|Catching duplicated knowledge, logic, or structure that should have a single authoritative source.|-|
-|[`handoff`](productivity/handoff/SKILL.md)|Compacting the current conversation into a handoff document for another agent to pick up.|-|
 |[`plan`](productivity/plan/SKILL.md)|Sequencing work before execution with phases, dependencies, risks, validation, and next actions.|-|
 |[`review`](productivity/review/SKILL.md)|Reviewing artifacts and returning a retrospective board covering what is working, what is not, what to improve, and what to change.|-|
 |[`wiki`](productivity/wiki/SKILL.md)|Creating, updating, ingesting, querying, or linting a structured wiki knowledge base.|-|

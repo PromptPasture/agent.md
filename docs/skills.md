@@ -26,7 +26,6 @@ All skills follow verb-first naming (`<verb>-<subject>[-<variant>]` or a bare ve
 |`dry`|productivity|Catch duplicated knowledge, logic, or structure that should have a single authoritative source|
 |`git-branch`|utility|Create, switch, or rename Git branches using repository-aware naming conventions|
 |`git-commit`|utility|Generate, improve, or apply Conventional Commit messages using staged changes and history|
-|`handoff`|productivity|Compact the current conversation into a handoff document for another agent|
 |`landscape-design`|lifestyle|Transform outdoor spaces into functional, beautiful landscapes with expert plant knowledge and architectural styling|
 |`lawyer`|lifestyle|Plain-language legal advisor for laypeople — contract review, drafting, Q&A, compliance|
 |`plan`|productivity|Sequence work into ordered phases with dependencies and success conditions|

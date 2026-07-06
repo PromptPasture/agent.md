@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-07-06
+
+- **Remove**: Removed `handoff` from [Productivity](productivity.md).
+
 ## 2026-06-25
 
 - **Create**: Added [Skill system](skill-system.md) — naming, structure, quality bar, progressive disclosure.

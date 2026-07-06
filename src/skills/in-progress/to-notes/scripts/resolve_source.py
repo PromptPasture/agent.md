@@ -102,9 +102,12 @@ def _fetch_transcript_from_url(url: str):
 
 def _find_sibling_transcript(path: Path):
     for ext in (".vtt", ".srt", ".txt"):
-        candidate = path.with_suffix(ext)
-        if candidate.exists():
-            return candidate
+        exact = path.with_suffix(ext)
+        if exact.exists():
+            return exact
+        lang_coded = sorted(path.parent.glob(f"{path.stem}.*{ext}"))
+        if lang_coded:
+            return lang_coded[0]
     return None
 
 
