@@ -55,6 +55,7 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 |[`avoid-ai-writing`](utility/avoid-ai-writing/SKILL.md)|Auditing and rewriting content to remove AI writing patterns ("AI-isms").|-|
 |[`git-branch`](utility/git-branch/SKILL.md)|Generating, switching, and renaming Git branches using repository-aware conventions.|-|
 |[`git-commit`](utility/git-commit/SKILL.md)|Generating and applying Conventional Commit messages from repository evidence.|-|
+|[`write-skill`](utility/write-skill/SKILL.md)|Drafting, revising, or pruning a skill using the Trigger, Structure, Steering, and Pruning checklist.|-|
 
 ## Lifestyle Skills
 
