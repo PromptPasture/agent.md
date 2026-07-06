@@ -1,7 +1,6 @@
 ---
 title: How to Write Great Skills
 author: Matt Pocock
-type: Lecture notes (video transcript)
 source: https://www.youtube.com/watch?v=UNzCG3lw6O0
 ---
 
