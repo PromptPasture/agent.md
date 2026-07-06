@@ -1,5 +1,5 @@
 ---
-topic: write-skill meta-skill
+topic: to-skill meta-skill
 method: comparative analysis
 date: "2026-07-06"
 related:
@@ -8,11 +8,11 @@ related:
   - src/skills/in-progress/writing-great-skills/SKILL.md
 ---
 
-# Brainstorm - write-skill meta-skill
+# Brainstorm - to-skill meta-skill
 
 ## Goal
 
-Design `src/skills/utility/write-skill/SKILL.md`: a skill that helps author
+Design `src/skills/utility/to-skill/SKILL.md`: a skill that helps author
 skills in this repo, replacing the need to manually cross-reference
 `AGENTS.md`, `pages/BUILDING_SKILLS.md`, and `writing-great-skills` every time
 a skill is created, edited, or restructured.
@@ -23,8 +23,8 @@ An earlier attempt drafted this skill directly as a 7-step workflow that
 pointed at the three governing sources instead of doing the work of applying
 them. The user stopped that draft to brainstorm the design first. Along the
 way, the user also confirmed they intend to retire `writing-great-skills`
-once `write-skill` ships, since its useful vocabulary will live inside
-`write-skill` instead.
+once `to-skill` ships, since its useful vocabulary will live inside
+`to-skill` instead.
 
 `writing-great-skills` is itself a close rendering of a talk — "Building
 Great Agent Skills - The Missing Manual" — whose central contribution is a
@@ -32,17 +32,17 @@ four-part skill checklist: **Trigger** (invocation), **Structure**
 (information hierarchy), **Steering** (leading words, leg work), and
 **Pruning** (single source of truth, sediment, no-ops, sprawl). The user
 directed that this checklist should be the main design idea driving
-`write-skill`, not just background vocabulary it happens to embed.
+`to-skill`, not just background vocabulary it happens to embed.
 
 ## Agenda
 
-1. What should `write-skill` cover — create-only, or also edit/audit/split?
+1. What should `to-skill` cover — create-only, or also edit/audit/split?
 2. Model-invoked or user-invoked?
 3. One skill with branches, or a router to separate skills?
 4. Does the "audit" branch clash with the existing `audit-skill-security` skill?
-5. Should `write-skill` point at `AGENTS.md`, or embed its rules?
-6. Should `write-skill` point at `writing-great-skills`, or embed its vocabulary?
-7. Should `write-skill` point at `pages/BUILDING_SKILLS.md`, or embed its mechanics?
+5. Should `to-skill` point at `AGENTS.md`, or embed its rules?
+6. Should `to-skill` point at `writing-great-skills`, or embed its vocabulary?
+7. Should `to-skill` point at `pages/BUILDING_SKILLS.md`, or embed its mechanics?
 8. How should the embedded content be laid out inside the skill?
 9. Should the workflow be ad hoc branches, or the source talk's own checklist?
 
@@ -78,7 +78,7 @@ directed that this checklist should be the main design idea driving
   `split-skill`): each skill stays minimal, but the three would duplicate
   the same rule-checking machinery three times, and adds more names for the
   user to remember.
-- **Single skill with branches (chosen):** One `write-skill` whose steps
+- **Single skill with branches (chosen):** One `to-skill` whose steps
   branch on new-vs-existing and healthy-vs-bloated. The branches share the
   same underlying rule set, so splitting them apart would only fragment one
   meaning across three files.
@@ -86,10 +86,10 @@ directed that this checklist should be the main design idea driving
 ### Naming clash with audit-skill-security
 
 - `audit-skill-security` audits third-party skills for trust/security before
-  installing them. `write-skill`'s audit branch checks structural/quality
+  installing them. `to-skill`'s audit branch checks structural/quality
   compliance (repo naming/frontmatter rules, information hierarchy, no-ops,
   sprawl) for skills authored in this repo. Different concerns, different
-  skills — **no rename needed**, as long as `write-skill` never uses "audit"
+  skills — **no rename needed**, as long as `to-skill` never uses "audit"
   ambiguously without the quality/structure qualifier.
 
 ### Source of truth: AGENTS.md
@@ -98,10 +98,10 @@ directed that this checklist should be the main design idea driving
   a skill that depends on a specific repo file at a specific path is not
   standalone — it breaks if the skill folder is ever copied or shipped
   elsewhere.
-- **Embed the rules (chosen):** `write-skill` inlines the actual rule content
+- **Embed the rules (chosen):** `to-skill` inlines the actual rule content
   it needs to act, the same way `git-commit` inlines the Conventional Commits
   spec directly rather than pointing elsewhere. `AGENTS.md` remains the
-  compact governance statement for humans skimming it; `write-skill` is the
+  compact governance statement for humans skimming it; `to-skill` is the
   operational form of the same rules. The resulting duplication is accepted,
   same as it would be for any standalone skill capturing a spec.
 
@@ -109,12 +109,12 @@ directed that this checklist should be the main design idea driving
 
 - `writing-great-skills` has `disable-model-invocation: true`. Per its own
   glossary, a user-invoked skill has no description, so **no other skill can
-  fire it** — a pointer from `write-skill` to it would not reliably resolve.
-- **Embed the needed vocabulary (chosen):** `write-skill` inlines the specific
+  fire it** — a pointer from `to-skill` to it would not reliably resolve.
+- **Embed the needed vocabulary (chosen):** `to-skill` inlines the specific
   concepts it actually applies — completion criteria, the information
   hierarchy (steps / in-skill reference / disclosed reference), leading
   words, and the pruning failure modes (duplication, sediment, no-op,
-  sprawl). The user will retire `writing-great-skills` once `write-skill`
+  sprawl). The user will retire `writing-great-skills` once `to-skill`
   ships, so there is no long-term duplication between the two.
 
 ### Mechanics source: pages/BUILDING_SKILLS.md
@@ -124,7 +124,7 @@ directed that this checklist should be the main design idea driving
   it is still a repo-external file a standalone skill shouldn't depend on.
 - **Embed only the operative mechanics (chosen):** required frontmatter
   fields, file/folder layout, naming rules, and the triggering/functional
-  testing checklist move into `write-skill` directly. `pages/BUILDING_SKILLS.md`
+  testing checklist move into `to-skill` directly. `pages/BUILDING_SKILLS.md`
   stays available as deeper background for a human reading it once.
 
 ### Content layout inside the skill
@@ -136,7 +136,7 @@ directed that this checklist should be the main design idea driving
   workflow (create / edit / audit-and-split), each step ending on a
   completion criterion. The bulky, look-up-only material — frontmatter field
   rules, naming conventions, the information-hierarchy/leading-words/pruning
-  checklist — moves into `references/` files bundled inside `write-skill/`'s
+  checklist — moves into `references/` files bundled inside `to-skill/`'s
   own folder. Nothing outside the skill folder is required at runtime.
 - **SKILL.md + references/ + a validator script:** Same as above plus a
   bundled script that mechanically checks required fields, naming pattern,
@@ -175,8 +175,8 @@ directed that this checklist should be the main design idea driving
 
 ### Summary
 
-`write-skill` will be a standalone, shippable, **user-invoked** skill at
-`src/skills/utility/write-skill/`, covering the full skill-authoring
+`to-skill` will be a standalone, shippable, **user-invoked** skill at
+`src/skills/utility/to-skill/`, covering the full skill-authoring
 lifecycle in this repo — creating a new skill and revising an existing one
 (including detecting when it needs to be split). Its workflow is the source
 talk's own four-part checklist — **Trigger, Structure, Steering, Pruning** —
@@ -186,7 +186,7 @@ a separate branch. It embeds the operative rules and vocabulary it needs —
 repo naming/frontmatter/README-index rules (currently in `AGENTS.md`),
 file-layout and testing mechanics (currently in `pages/BUILDING_SKILLS.md`),
 and the Trigger/Structure/Steering/Pruning vocabulary (currently in
-`writing-great-skills`, which will be retired once `write-skill` ships) —
+`writing-great-skills`, which will be retired once `to-skill` ships) —
 rather than pointing at those sources at runtime. `SKILL.md` stays the short
 four-step checklist with a completion criterion per step; the embedded detail
 lives in bundled `references/` files so the skill folder is self-contained.
@@ -200,13 +200,13 @@ lives in bundled `references/` files so the skill folder is self-contained.
 - Workflow: the talk's own checklist — Trigger → Structure → Steering →
   Pruning — is the workflow itself, not just embedded reference.
 - No naming change needed against `audit-skill-security`.
-- `write-skill` embeds rules/vocabulary/mechanics from `AGENTS.md`,
+- `to-skill` embeds rules/vocabulary/mechanics from `AGENTS.md`,
   `writing-great-skills`, and `pages/BUILDING_SKILLS.md` instead of pointing
   at them.
 - Layout: `SKILL.md` (short, four-step checklist, completion-criterion-per-
   step) + `references/` for the bulky embedded material. No validator script
   in v1.
-- `writing-great-skills` will be retired after `write-skill` ships.
+- `writing-great-skills` will be retired after `to-skill` ships.
 
 ### Open Questions
 
@@ -221,5 +221,5 @@ lives in bundled `references/` files so the skill folder is self-contained.
 Turn these decisions into an implementation plan covering: the `SKILL.md`
 four-step checklist workflow and its completion criteria, the `references/`
 file breakdown, updating `src/skills/README.md`'s Utility Skills table, and
-removing `writing-great-skills` (and its README entry) once `write-skill` is
+removing `writing-great-skills` (and its README entry) once `to-skill` is
 verified to cover its useful content.

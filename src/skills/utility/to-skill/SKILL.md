@@ -1,5 +1,5 @@
 ---
-name: write-skill
+name: to-skill
 description: Draft, revise, and prune skills authoring rules and the Trigger, Structure, Steering, and Pruning checklist.
 disable-model-invocation: true
 license: MIT

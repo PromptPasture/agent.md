@@ -4,7 +4,7 @@ method: comparative analysis
 date: "2026-07-06"
 related:
   - pages/HOWTO_Write_Great_Skills.md
-  - src/skills/utility/write-skill/SKILL.md
+  - src/skills/utility/to-skill/SKILL.md
   - src/skills/in-progress/markitdown/SKILL.md
 ---
 
@@ -19,7 +19,7 @@ Create a skill, `to-notes`, that converts a video URL, local video/audio file, o
 - This session manually converted a YouTube `.vtt` transcript into `pages/HOWTO_Write_Great_Skills.md` by hand. `to-notes` formalizes that workflow as a reusable skill.
 - No speech-to-text is in scope. The skill assumes a transcript already exists or can be fetched (e.g. YouTube captions via `yt-dlp`) — it never transcribes raw audio.
 - Closest existing analog: `markitdown` (external format → ingest via a bundled script, Mode 1 / Mode 2 split).
-- `src/skills/utility/write-skill/SKILL.md`'s Trigger / Structure / Steering / Pruning checklist was used to shape the frontmatter and file layout decisions below.
+- `src/skills/utility/to-skill/SKILL.md`'s Trigger / Structure / Steering / Pruning checklist was used to shape the frontmatter and file layout decisions below.
 - Naming precedent: `to-prd` and `to-issues` already establish a `to-<noun>` naming pattern in this repo, alongside the verb-first list in `docs/skills/skill-system.md`.
 
 ## Agenda
