@@ -5,7 +5,7 @@ disable-model-invocation: true
 license: MIT
 metadata:
   author: Matt Pocock
-  version: 1.1.0
+  version: 1.1.1
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: authoring
@@ -34,7 +34,7 @@ Use this checklist to draft a new skill under `src/skills/`, or to revise, prune
 
 Two ways a skill is reached — pick one:
 
-- **Model-invoked** — keep a `description` field. Fires autonomously and is reachable by other skills. Cost: **context load** (always in the agent's context). Use when the agent must reach it on its own, or another skill needs to invoke it.
+- **Model-invoked** — keep a `description` field. Fires autonomously and is reachable by other skills. Cost: **context load** (always in the agent's context) plus an **unpredictability cost** — a live description can still be skipped even when it's the right fit, so treat firing as something to verify, not assume. Use when the agent must reach it on its own, or another skill needs to invoke it.
 - **User-invoked** — set `disable-model-invocation: true`. Reachable only by a human typing its name. Cost: **cognitive load** (the human must remember it exists). Use when the skill only ever fires by hand.
 
 Splitting a skill always spends one of these loads (**granularity**) — only split when the independent reach is worth it. If user-invoked skills multiply past what's memorable, add a **router skill** that names the others.
@@ -118,9 +118,11 @@ Watch the agent's reasoning traces for the word appearing back — that confirms
 Check every remaining line against these failure modes; delete or fix what fails.
 
 - **Duplication** — the same meaning in more than one place. Costs maintenance (change one place, must change the others) and inflates that meaning's prominence past its real rank. Keep each meaning in exactly one **single source of truth**.
-- **Sediment** — stale layers that settle because adding feels safe and removing feels risky. Check every line for **relevance**: does it still bear on what the skill does, or has it drifted stale?
+- **Sediment** — stale layers that settle because adding feels safe and removing feels risky. Check every line for **relevance**: does it still bear on what the skill does, or has it drifted stale? Fix by routing back through **Structure** — move branch-specific content into its branch, or delete it if it's no longer relevant.
 - **No-op** — an instruction the model already follows by default, so it costs load to say nothing. Test each sentence in isolation: delete it — does behavior change? If not, delete the sentence rather than trim it. Most prose that fails this test should go, not be reworded.
 - **Sprawl** — the skill is simply too long, even with everything live and unique. The cure is the information hierarchy: push reference behind pointers, and split by branch or by sequence so each path carries only what it needs.
+
+Where a quality is restated across several sentences rather than duplicated across locations, compress it into a single **leading word** (see Steering) instead of trimming clause by clause.
 
 If pruning surfaces more than one branch's worth of material, or a sequence whose later steps keep tempting premature completion, that is the signal to split the skill rather than keep pruning it in place.
 
