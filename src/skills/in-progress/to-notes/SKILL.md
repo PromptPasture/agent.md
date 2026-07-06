@@ -5,7 +5,7 @@ disable-model-invocation: true
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.1"
+  version: "1.1.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: notes
@@ -18,13 +18,15 @@ Turns a video URL, local video/audio file, or existing transcript into **concept
 
 ## Step 1 — Resolve the source to plain text
 
+If the source is a file attached in this chat rather than a typed/local path, resolve it using this harness's convention for attached-file paths first.
+
 ```bash
 python3 scripts/resolve_source.py <url-or-path>
 ```
 
 The script handles all three source shapes:
 
-- **Video URL** — fetches captions via `yt-dlp` (never downloads the video). Prefers manual captions over auto-generated; prefers `en`, falling back to whichever single language track is available.
+- **Video URL** — fetches captions via `yt-dlp` (never downloads the video). Prefers manual captions over auto-generated; prefers `en`, falling back to whichever single language track is available. Requires outbound network access — unavailable in some sandboxed cloud sessions.
 - **Local video/audio file** — looks for a sibling `.vtt`/`.srt`/`.txt` transcript next to it, matching either the exact stem (`talk.vtt`) or a language-coded variant (`talk.en.vtt`).
 - **Transcript/text file** (`.vtt`/`.srt`/`.txt`/`.md`) — reads it directly, stripping timestamps/cues if present.
 
@@ -32,13 +34,18 @@ If the input is pasted transcript text rather than a file or URL, skip the scrip
 
 The script prints `LANGUAGE: <code>` on the first line, a `---` separator, then the plain transcript text.
 
-**Done when** the script prints resolved transcript text, or exits with a specific error (no manual/auto captions found, no sibling transcript, unsupported file type) — never fall back to transcribing audio yourself.
+**Done when** the script prints resolved transcript text, or exits with a specific error (no manual/auto captions found, no sibling transcript, unsupported file type, no network reaching the URL) — never fall back to transcribing audio yourself. If a URL fetch fails for lack of network access, ask the user to paste the transcript text or upload a caption file instead.
 
 ## Step 2 — Draft concept-first notes
 
 Read the resolved transcript and draft lecture notes organized by the source's actual ideas — group related points under topic headers, do not follow the transcript's timeline.
 
-Write the notes to `<kebab-case-title>.md` in the current working directory, unless the user names a different location, with this frontmatter:
+Save the notes as `<kebab-case-title>.md`:
+
+- **Local/CLI session:** write it to the current working directory, unless the user names a different location.
+- **Hosted/cloud session:** write it wherever this harness's convention places generated files for the user, and use its file-delivery mechanism (e.g., present/download) if one exists.
+
+Use this frontmatter:
 
 ```yaml
 ---
