@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-07-07
+
+- Consolidated `write-user-story` into `to-ticket` (renamed from `write-ticket`, promoted from in-progress to the Product catalog); now user-invoked only, and its feature ticket type covers full sprint-ready user stories.
+- Deprecated `write-user-story` in favor of `to-ticket`.
+
 ## 2026-07-06
 
 - Renamed `write-prd` to `to-prd`; now user-invoked only and routes unresolved product decisions to `brainstorm`.

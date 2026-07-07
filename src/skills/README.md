@@ -9,7 +9,7 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 |Folder|Contains|
 |---|---|
 |[`productivity/`](productivity/)|General reasoning, communication, planning, investigation, coordination, and memory skills.|
-|[`product/`](product/)|Product requirements, specifications, user stories, and delivery definition skills.|
+|[`product/`](product/)|Product requirements, specifications, and ticket/user-story delivery definition skills.|
 |[`software-engineering/`](software-engineering/)|Code, test, API design, and code review skills.|
 |[`utility/`](utility/)|Operational helper skills that support the skill library itself.|
 |[`lifestyle/`](lifestyle/)|Domain-specific skills for everyday non-technical tasks.|
@@ -43,8 +43,8 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 |Skill|Use it for|Notable resources|
 |---|---|---|
 |[`to-prd`](product/to-prd/SKILL.md)|Product requirements, product briefs, feature requirements, product scope, and launch requirements.|-|
+|[`to-ticket`](product/to-ticket/SKILL.md)|Jira/GitHub/Linear bug, feature, task, chore, documentation, and spike tickets, including sprint-ready user stories, acceptance criteria, and story points within the feature type.|-|
 |[`write-spec`](product/write-spec/SKILL.md)|Technical specs, design docs, functional and non-functional requirements, data contracts, UI specs, release specs, and handoff docs.|[`references/`](product/write-spec/references/)|
-|[`write-user-story`](product/write-user-story/SKILL.md)|User stories, acceptance criteria, story points, and sprint-ready user-value increments.|-|
 
 ## Utility Skills
 
@@ -77,7 +77,6 @@ Skills under active development. Not yet production-ready.
 |[`write-readme`](in-progress/write-readme/SKILL.md)|Project READMEs covering purpose, installation, quick starts, usage, configuration, and contribution.|
 |[`write-release-notes`](in-progress/write-release-notes/SKILL.md)|User-facing release notes, product updates, known issues, upgrade guidance, and action-required notices.|
 |[`write-runbook`](in-progress/write-runbook/SKILL.md)|Routine operational procedures and on-call response runbooks with verification, rollback, mitigation, and escalation.|
-|[`write-ticket`](in-progress/write-ticket/SKILL.md)|Jira and GitHub bug, feature, task, chore, documentation, and spike tickets using type-specific writing models.|
 
 ## Resource Folders
 

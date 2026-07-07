@@ -4,7 +4,7 @@ title: Documentation skills (in progress)
 description: In-progress skills for writing developer-facing documentation artifacts.
 tags: [skills, documentation, in-progress, api-docs, readme, changelog, runbook]
 created: "2026-06-25T00:00:00Z"
-updated: "2026-06-25T00:00:00Z"
+updated: "2026-07-07T00:00:00Z"
 ---
 
 # Documentation skills
@@ -32,10 +32,6 @@ Write or revise user-facing release notes: product updates, version announcement
 ### `write-runbook`
 
 Write or revise executable operational runbooks: routine maintenance, deployment, recovery, secret rotation, diagnostics, alert response, on-call triage, mitigation, verification, rollback, communication, and escalation procedures.
-
-### `write-ticket`
-
-Write or revise Jira/GitHub/Linear tickets — bug, feature, task, chore, documentation, and spike. Uses type-specific writing models; tracker adaptation changes field placement, not prose style. Does not force user-story framing onto non-story work. See [Product skills](/docs/skills/product.md) for routing rules.
 
 ### `manage`
 

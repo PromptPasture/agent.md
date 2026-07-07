@@ -1,10 +1,10 @@
 ---
 name: write-user-story
-description: Writes and revises user stories with acceptance criteria and story points in sprint-ready format. Use when the user asks to write or revise user stories, acceptance criteria, story points, or sprint-ready user-value increments.
+description: "DEPRECATED — use to-ticket instead. Writes and revises user stories with acceptance criteria and story points in sprint-ready format."
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.1"
+  version: "1.5.0"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements

@@ -1,10 +1,10 @@
 ---
 type: concept
 title: Product skills
-description: Skills for writing product artifacts — PRDs, specs, and user stories.
-tags: [skills, product, prd, spec, user-story]
+description: Skills for writing product artifacts — PRDs, specs, and tickets.
+tags: [skills, product, prd, spec, ticket]
 created: "2026-06-25T00:00:00Z"
-updated: "2026-07-06T00:00:00Z"
+updated: "2026-07-07T00:00:00Z"
 ---
 
 # Product skills
@@ -21,22 +21,13 @@ Writes or revises a PRD, product requirements document, product brief, feature r
 
 Writes or revises a technical specification. Cross-references the related PRD to stay consistent in terminology and requirements. Companion to `to-prd`.
 
-### `write-user-story`
+### `to-ticket`
 
-Writes or revises user stories, acceptance criteria, and sprint-ready increments. Uses `As a / I want / so that` framing, Card-Conversation-Confirmation, and INVEST principles. Produces observable acceptance criteria.
+Writes or revises Jira, GitHub, and Linear tickets — bugs, features, tasks, chores, documentation, and spikes — using type-specific templates. The feature type carries full sprint-ready user-story rigor (Card-Conversation-Confirmation, INVEST, story points, epic linkage, Given/When/Then scenarios) when the request needs it, and stays a lightweight capability ask otherwise. User-invoked only (`disable-model-invocation: true`).
 
-Does **not** handle generic tracker tickets — those go to `write-ticket` (in-progress).
+## Consolidation (decided 2026-07-07)
 
-## Routing: user story vs. ticket (decided 2026-06-10)
-
-|Request|Skill|
-|---|---|
-|User story|`write-user-story`|
-|Jira/GitHub/Linear bug, feature, task, chore, spike|`write-ticket`|
-|Both explicitly requested|Both skills, each producing only its own artifact|
-|Converting story → ticket or ticket → story|Requires explicit user request|
-
-Neither skill invokes or converts through the other.
+`write-user-story` and `write-ticket` were split into independent skills on 2026-06-10. They are now consolidated back into the single `to-ticket` skill: its feature ticket type absorbs everything `write-user-story` did. `write-user-story` is deprecated in favor of `to-ticket`.
 
 ## Source documents
 

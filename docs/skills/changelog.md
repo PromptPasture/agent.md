@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-07-07
+
+- **Update**: Consolidated `write-user-story` into `to-ticket` (renamed from `write-ticket`, promoted from in-progress to [Product](product.md)) — now user-invoked only (`disable-model-invocation: true`); the feature ticket type carries full sprint-ready user-story rigor (Card-Conversation-Confirmation, INVEST, story points, epic linkage, Given/When/Then scenarios).
+- **Deprecate**: Deprecated `write-user-story` in favor of `to-ticket`.
+- **Update**: Removed `write-ticket` from [Documentation (in-progress)](documentation.md).
+- **Update**: Updated the Product / analysis example row in [Skill catalog](skill-catalog.md).
+- **Update**: Updated `to-prd`'s ticket/user-story cross-reference to route to `to-ticket`.
+
 ## 2026-07-06
 
 - **Update**: Renamed `write-prd` to `to-prd` in [Product](product.md) — now user-invoked only (`disable-model-invocation: true`), routes unresolved product decisions to `brainstorm`.

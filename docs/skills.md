@@ -4,7 +4,7 @@ title: Skills
 description: Complete index of all Agent Skills in this library by catalog and status.
 tags: [skills, catalog, index]
 created: "2026-06-25T00:00:00Z"
-updated: "2026-07-06T00:00:00Z"
+updated: "2026-07-07T00:00:00Z"
 ---
 
 # Skills
@@ -32,9 +32,9 @@ All skills follow verb-first naming (`<verb>-<subject>[-<variant>]` or a bare ve
 |`review`|productivity|Surface structured findings across consistent quadrants when reviewing any artifact|
 |`review-code`|software-engineering|Review code changes, diffs, pull requests, or patches|
 |`to-prd`|product|Write or revise a PRD, product requirements, or feature scope (user-invoked only)|
+|`to-ticket`|product|Write or revise a Jira/GitHub/Linear ticket — bug, feature, task, chore, documentation, or spike, including sprint-ready user stories within the feature type (user-invoked only)|
 |`wiki`|productivity|Create, update, ingest, query, or lint a structured wiki knowledge base|
 |`write-spec`|product|Write or revise a technical specification|
-|`write-user-story`|product|Write or revise user stories, acceptance criteria, and sprint-ready increments|
 |`yagni`|productivity|Catch speculative additions before they are built|
 
 ## In progress (not published)
@@ -49,13 +49,13 @@ All skills follow verb-first naming (`<verb>-<subject>[-<variant>]` or a bare ve
 |`write-readme`|Write or revise project README files|
 |`write-release-notes`|Write or revise user-facing release notes|
 |`write-runbook`|Write or revise executable operational runbooks|
-|`write-ticket`|Write or revise Jira/GitHub/Linear tickets — bug, feature, task, chore, spike|
 
 ## Deprecated
 
 |Skill|Replaced by|
 |---|---|
 |`remember`|`wiki`|
+|`write-user-story`|`to-ticket`|
 
 ## Catalog detail pages
 
