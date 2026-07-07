@@ -4,7 +4,7 @@ description: Creates, updates, queries, and lints a structured wiki knowledge ba
 license: Apache-2.0
 metadata:
   author: Andrej Karpathy
-  version: "1.0.2"
+  version: "1.0.3"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: knowledge
@@ -83,7 +83,7 @@ Append-only change history for the directory. Date-grouped, newest first. Update
 
 Date headings MUST use ISO 8601 `YYYY-MM-DD`. The leading bold word is a convention, not a requirement.
 
-## Workflows
+## Workflow
 
 ### Create
 
@@ -114,7 +114,7 @@ When the user provides a source document to process:
 4. Update `index.md` for every affected directory.
 5. Append an `**Ingest**` entry to the directory's `changelog.md` listing how many entries were created or updated.
 
-A single source may touch many entries. Prefer updating existing entries over creating near-duplicates.
+A single source may touch many entries.
 
 ### Query
 
@@ -138,4 +138,10 @@ Scan for and report:
 - **Stale claims** — entries whose `updated` date is significantly older than related entries that may have superseded them
 - **Concepts without a page** — important terms or entities referenced repeatedly but never given their own entry
 
-Report findings grouped by category. Do not modify entries during lint unless the user asks.
+Report findings grouped by category.
+
+## Rules
+
+- Write, update, or delete an entry to keep them up to date.
+- Prefer updating an existing entry over creating a near-duplicate.
+- Do not modify entries during a lint pass unless the user asks.
