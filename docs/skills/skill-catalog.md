@@ -4,7 +4,7 @@ title: Skill catalog
 description: The 56-skill software team roles library — catalog, distribution model, and implementation status.
 tags: [skills, catalog, distribution, release]
 created: "2026-06-25T00:00:00Z"
-updated: "2026-06-25T00:00:00Z"
+updated: "2026-07-06T00:00:00Z"
 ---
 
 # Skill catalog
@@ -19,7 +19,7 @@ The Prompt Pasture skill library targets 56 software-team skills covering the fu
 
 |Catalog|Examples|
 |---|---|
-|Product / analysis|`write-prd`, `write-user-story`, `write-ticket`|
+|Product / analysis|`to-prd`, `write-user-story`, `write-ticket`|
 |Engineering|`code-backend`, `code-frontend`, `code-database`, `code-tests`|
 |Quality / security|`review-code`, `audit-security`|
 |Productivity|`brainstorm`, `plan`, `wiki`, `markitdown`|

@@ -2,6 +2,9 @@
 
 ## 2026-07-06
 
+- **Update**: Renamed `write-prd` to `to-prd` in [Product](product.md) — now user-invoked only (`disable-model-invocation: true`), routes unresolved product decisions to `brainstorm`.
+- **Update**: Renamed `write-prd` to `to-prd` in [Skill catalog](skill-catalog.md).
+- **Update**: Added `to` verb group and updated the naming example in [Skill system](skill-system.md).
 - **Remove**: Removed `handoff` from [Productivity](productivity.md).
 
 ## 2026-06-25

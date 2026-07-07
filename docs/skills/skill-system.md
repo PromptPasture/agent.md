@@ -4,7 +4,7 @@ title: Skill system
 description: How Agent Skills are structured, named, discovered, and loaded in this repository.
 tags: [skills, agents, naming, conventions]
 created: "2026-06-25T00:00:00Z"
-updated: "2026-06-25T00:00:00Z"
+updated: "2026-07-06T00:00:00Z"
 ---
 
 # Skill system
@@ -15,9 +15,9 @@ Skills are reusable, independently installable task procedures. Each skill lives
 
 All skills use **verb-first naming**: `<verb>-<subject>[-<variant>]` or a bare verb.
 
-Examples: `code-tests`, `write-prd`, `review-code`, `brainstorm`, `adapt`.
+Examples: `code-tests`, `to-prd`, `review-code`, `brainstorm`, `adapt`.
 
-Approved verb groups: `audit`, `check`, `build`, `design`, `diagram`, `model`, `document`, `plan`, `report`, `review`, `configure`, `create`, `track`, `write`, `code`.
+Approved verb groups: `audit`, `check`, `build`, `design`, `diagram`, `model`, `document`, `plan`, `report`, `review`, `configure`, `create`, `track`, `write`, `code`, `to`.
 
 ## SKILL.md structure
 

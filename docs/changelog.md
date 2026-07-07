@@ -2,6 +2,7 @@
 
 ## 2026-07-06
 
+- Renamed `write-prd` to `to-prd`; now user-invoked only and routes unresolved product decisions to `brainstorm`.
 - Removed `handoff` skill from the Productivity catalog.
 
 ## 2026-06-25

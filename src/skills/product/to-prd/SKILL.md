@@ -1,32 +1,32 @@
 ---
-name: write-prd
-description: Writes and revises product requirements documents with structured sections covering goals, scope, user stories, and success criteria. Use when the user asks to write or revise a PRD, product requirements, product brief, feature requirements, product scope, or launch requirements.
+name: to-prd
+description: Writes and revises product requirements documents with structured sections covering goals, scope, requirements, and success criteria.
+disable-model-invocation: true
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.3"
+  version: "2.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
   tags: [writer, product, requirements]
 ---
 
-# Writing Product Requirements Document
+# To Product Requirements Document
 
 Produce a complete, structured **Product Requirements Document (PRD)** for the described product, feature, or initiative.
 
 ## Workflow
 
-1. Identify the product decision the PRD must support, its audience, and the expected delivery stage.
-2. Inspect the user's prompt, attached artifacts, repository context, existing requirements, research, analytics, designs, and constraints before asking for information already available.
-3. Separate confirmed facts, reasonable assumptions, material unknowns, and unresolved decisions.
-4. Ask the smallest set of questions whose answers would materially change the problem, audience, scope, requirements, success measures, or launch conditions. If the missing details are low-risk, state assumptions and proceed.
-5. Define the customer problem, affected users, current behavior, desired outcome, business value, and cost of inaction before describing a solution.
-6. Establish measurable goals, scope boundaries, non-goals, constraints, dependencies, risks, assumptions, and open questions.
-7. Write outcome-focused requirements and acceptance signals. Include relevant failure, empty, permission, recovery, and edge conditions.
-8. Keep technical implementation detail out of the PRD unless it is a fixed product constraint. Route detailed architecture, interfaces, data contracts, or implementation decisions to `write-spec`.
-9. Scale the document to the initiative: use a lean PRD for a narrow feature and a fuller PRD for a cross-functional product or launch.
-10. Self-review the draft for unsupported claims, contradictions, vague language, hidden scope, missing decisions, and requirements that cannot be verified.
+1. **Frame the decision** — identify the product decision the PRD must support, its audience, and the expected delivery stage.
+2. **Gather before asking** — inspect the prompt, attached artifacts, repository context, existing requirements, research, analytics, designs, and constraints. Done when every fact already available has been collected, not re-requested.
+3. **Sort what you know** — separate confirmed facts, reasonable assumptions, material unknowns, and unresolved decisions.
+4. **Resolve open questions** — when the problem, target users, goals, or scope boundaries remain materially undecided, invoke `brainstorm` to work through them with the user before drafting. For a low-risk gap, mark it `[assumed]` and proceed instead.
+5. **Frame the problem** — establish the customer problem, affected users, current behavior, desired outcome, business value, and cost of inaction before describing a solution.
+6. **Set boundaries** — establish measurable goals, scope, non-goals, constraints, dependencies, risks, and any assumptions or open questions still worth flagging.
+7. **Write outcome-focused requirements** — pair each with an acceptance signal, and cover relevant failure, empty, permission, recovery, and edge conditions. Keep implementation detail out unless it is a fixed product constraint; route detailed architecture, interfaces, or data contracts to `write-spec`.
+8. **Scale the document** — lean for a narrow feature, fuller for a cross-functional product or launch.
+9. **Self-review** — check the draft against the Verification checklist before finalizing. If review surfaces a new material unknown, return to step 4 before finalizing.
 
 ## Output
 
@@ -143,7 +143,6 @@ related:
 - **Keep the PRD concise:** link to research, designs, technical specs, trackers, and launch plans instead of duplicating their full contents.
 - **Use plain Markdown:** use real headings rather than bold pseudo-headings, and avoid decorative formatting that does not improve comprehension.
 - **Decompose broad requests:** when one PRD cannot represent a coherent product decision, split independent product areas or produce an umbrella PRD with clearly separated child initiatives.
-- **Handle incomplete input:** ask one concise blocking question when the customer problem or intended user is unknown; otherwise draft a lean PRD with visible assumptions and open questions.
 - **Avoid fabricated metrics:** when a baseline, target, or measurement source is unknown, define the intended outcome and measurement method and leave the unresolved value as `TBD`.
 - **Surface conflicts:** identify contradictory requirements and the decision needed instead of silently choosing.
 - **Route mismatched requests:** when the request is primarily a technical specification, data contract, UI spec, or implementation plan, use `write-spec` instead. Carry the established product context into it. When the request is a user story, use `write-user-story`.

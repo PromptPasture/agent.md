@@ -4,7 +4,7 @@ title: Conventions
 description: Key naming, memory, documentation, and skill-authoring conventions for this repository.
 tags: [conventions, naming, memory, docs, skills]
 created: "2026-06-25T00:00:00Z"
-updated: "2026-06-25T00:00:00Z"
+updated: "2026-07-06T00:00:00Z"
 ---
 
 # Conventions
@@ -13,7 +13,7 @@ updated: "2026-06-25T00:00:00Z"
 
 All skills use verb-first naming: `<verb>-<subject>[-<variant>]` or a bare concise verb.
 
-Examples: `code-tests`, `write-prd`, `review-code`, `brainstorm`, `adapt`.
+Examples: `code-tests`, `to-prd`, `review-code`, `brainstorm`, `adapt`.
 
 Whenever a skill is materially updated its `metadata.version` must be incremented using semantic versioning.
 

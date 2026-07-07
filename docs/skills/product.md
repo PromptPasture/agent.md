@@ -4,7 +4,7 @@ title: Product skills
 description: Skills for writing product artifacts — PRDs, specs, and user stories.
 tags: [skills, product, prd, spec, user-story]
 created: "2026-06-25T00:00:00Z"
-updated: "2026-06-25T00:00:00Z"
+updated: "2026-07-06T00:00:00Z"
 ---
 
 # Product skills
@@ -13,13 +13,13 @@ Skills for producing and revising product and delivery artifacts. All use YAML f
 
 ## Skills
 
-### `write-prd`
+### `to-prd`
 
-Writes or revises a PRD, product requirements document, product brief, feature requirements, or product scope. Produces a structured document with goals, personas, scope, functional and non-functional requirements, milestones, risks, and open questions. Marks inferences with `[assumed]`.
+Writes or revises a PRD, product requirements document, product brief, feature requirements, or product scope. Produces a structured document with goals, personas, scope, functional and non-functional requirements, milestones, risks, and open questions. Marks inferences with `[assumed]`. User-invoked only (`disable-model-invocation: true`); routes unresolved product decisions to `brainstorm` before drafting.
 
 ### `write-spec`
 
-Writes or revises a technical specification. Cross-references the related PRD to stay consistent in terminology and requirements. Companion to `write-prd`.
+Writes or revises a technical specification. Cross-references the related PRD to stay consistent in terminology and requirements. Companion to `to-prd`.
 
 ### `write-user-story`
 

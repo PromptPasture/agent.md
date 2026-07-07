@@ -42,7 +42,7 @@ A complete skill is a directory with a required `SKILL.md` file and optional bun
 
 |Skill|Use it for|Notable resources|
 |---|---|---|
-|[`write-prd`](product/write-prd/SKILL.md)|Product requirements, product briefs, feature requirements, product scope, and launch requirements.|[`references/`](product/write-prd/references/)|
+|[`to-prd`](product/to-prd/SKILL.md)|Product requirements, product briefs, feature requirements, product scope, and launch requirements.|-|
 |[`write-spec`](product/write-spec/SKILL.md)|Technical specs, design docs, functional and non-functional requirements, data contracts, UI specs, release specs, and handoff docs.|[`references/`](product/write-spec/references/)|
 |[`write-user-story`](product/write-user-story/SKILL.md)|User stories, acceptance criteria, story points, and sprint-ready user-value increments.|-|
 
