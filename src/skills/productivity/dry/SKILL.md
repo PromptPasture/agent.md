@@ -4,7 +4,7 @@ description: Catches duplicated knowledge, logic, or structure that should have 
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.1"
+  version: "1.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: quality
@@ -13,7 +13,7 @@ metadata:
 
 # DRY
 
-Every piece of knowledge must have a **single, authoritative representation** in the system.
+Every piece of knowledge must have a **single source of truth** in the system.
 Duplication forces every future change to be made in multiple places, and guarantees they will eventually diverge.
 
 ## Principle
@@ -34,7 +34,7 @@ Determine the mode from context. If unclear, ask.
 
 1. Before adding a fact, rule, constant, or structure — check if it already exists in the system.
 2. If it exists — reference or import it; do not restate it.
-3. If it does not exist — introduce it in one authoritative location and reference it everywhere else.
+3. If it does not exist — establish it as the single source of truth and reference it everywhere else.
 4. Flag any cases where a shared source does not yet exist and one should be created.
 
 ### When Auditing
@@ -43,7 +43,7 @@ Determine the mode from context. If unclear, ask.
 2. **Map the knowledge units** — identify distinct facts, rules, structures, and decisions expressed in the artifact.
 3. **Scan for repetition** — apply the relevant checklist sections below.
 4. **Assess each finding** — confirm the copies are truly the same knowledge, not coincidentally similar values. Avoid false positives on separate concerns that happen to look alike.
-5. **Recommend consolidation** — identify the right authoritative location and how the copies should reference it.
+5. **Recommend consolidation** — identify where the single source of truth should live and how the copies should reference it.
 
 ## Checklist
 
