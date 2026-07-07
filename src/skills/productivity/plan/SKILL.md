@@ -4,7 +4,7 @@ description: Sequences work into ordered phases with dependencies and success co
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.3.1"
+  version: "1.4.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: planning
@@ -17,33 +17,53 @@ Turn a defined outcome into an ordered, executable path with dependencies, decis
 
 ## Workflow
 
+### Goal
+
+An ordered, executable plan that the user has explicitly approved and, once approved, saved to `docs/YYYY-MM-DD-[topic]/PLAN.md`.
+
+### Setup
+
 1. Define the desired outcome, scope, constraints, and completion condition.
-2. Inspect the available context before proposing work.
-3. Separate confirmed facts from assumptions and unresolved questions.
-4. Break simple work into an ordered checklist and complex work into phases or milestones.
-5. Order work by dependency, risk, and feedback value.
-6. Specify the action, expected result, dependencies, and verification for each meaningful step.
-7. Identify blockers, decision points, rollback needs, and work that can proceed in parallel.
-8. Remove unnecessary work and separate optional follow-ups from the required scope.
-9. Present and revise the plan conversationally without saving discussion drafts.
-10. Ask the user to explicitly approve the final plan.
-11. After approval, save the plan to `docs/YYYY-MM-DD-[topic]/PLAN.md`. Save it earlier only when the user explicitly asks to save the plan.
-12. Produce the plan without executing it unless the user also asks for implementation.
+2. Inspect the available context before proposing work. Separate confirmed facts from assumptions and unresolved questions.
+
+### Loop
+
+1. Break simple work into an ordered checklist and complex work into phases or milestones. Order work by dependency, risk, and feedback value.
+2. Specify the action, expected result, dependencies, and verification for each meaningful step.
+3. Identify blockers, decision points, rollback needs, and work that can proceed in parallel.
+4. Remove unnecessary work and separate optional follow-ups from the required scope.
+5. Present and revise the plan conversationally. Do not save discussion drafts.
+
+### Exit
+
+When the user explicitly approves the final plan. Do not infer approval from silence or a request to begin implementation.
+
+### Report
+
+Save the approved plan to `docs/YYYY-MM-DD-[topic]/PLAN.md` (earlier only if the user explicitly asks to save it). Produce the plan without executing it unless the user also asks for implementation.
 
 ## Output
 
-- **Lead with the approach**: summarize the intended path in one or two sentences.
-- **Keep drafts conversational**: do not create or update a plan file while the user is discussing or revising the plan.
-- **Require explicit approval**: do not infer approval from silence or a request to begin implementation.
-- **Write the approved plan**: after explicit approval, save it to `docs/YYYY-MM-DD-[topic]/PLAN.md` unless the user specifies another location.
-- **Honor direct save requests**: save before approval only when the user explicitly says "save plan" or makes an equivalent request.
-- **State assumptions and scope**: include only assumptions that affect sequencing, cost, or behavior.
-- **Use ordered phases or steps**: include dependencies and success conditions for each.
-- **Name verification**: define how each meaningful result and the overall outcome will be checked.
-- **Surface risks and decisions**: include mitigations, decision owners, or the evidence needed to decide.
-- **End with completion criteria**: make it clear when the plan is finished.
-- **Avoid false precision**: use dates, owners, and estimates only when evidence supports them.
-- **Keep planning distinct from coordination**: focus on future sequencing rather than active status and handoffs.
+Lead with the approach, then the plan:
+
+```text
+Approach:
+[One or two sentence summary of the intended path.]
+
+Assumptions:
+- [Assumption affecting sequencing, cost, or behavior — only where evidence is incomplete.]
+
+Plan:
+1. [Phase or step] — action, expected result, dependencies, verification.
+
+Risks & Decisions:
+- [Risk, mitigation, decision owner, or evidence needed to decide.]
+
+Completion:
+[Condition that marks the overall outcome finished.]
+```
+
+Use ordered phases or steps with dependencies and success conditions for each. Avoid false precision: state dates, owners, and estimates only when evidence supports them. Keep planning distinct from coordination — focus on future sequencing, not active status or handoffs.
 
 ## Error Paths
 
@@ -52,8 +72,7 @@ Turn a defined outcome into an ordered, executable path with dependencies, decis
 - Do not invent repository structure, interfaces, owners, or deadlines.
 - Mark work as blocked when an unresolved dependency prevents it from starting safely.
 - Identify the prerequisite and condition required to unblock it.
-- Use relative sizing, ranges, or no estimate when evidence cannot support precise effort or dates.
-- State the source of estimation uncertainty.
+- Avoid false precision: use relative sizing, ranges, or no estimate when evidence can't support an exact figure, and name the source of the uncertainty.
 - Divide an overly broad plan into milestones.
 - Make the first milestone concrete enough to begin.
 
@@ -67,6 +86,6 @@ Before finalizing the plan, verify that:
 - Each phase or meaningful step has an observable success condition.
 - Completion criteria match the user's requested result.
 - Optional work is separated from required scope.
-- The plan contains no unnecessary steps or unsupported precision.
+- The plan contains no unnecessary steps or false precision.
 - Discussion drafts were not saved unless the user explicitly requested it.
 - An approved plan is saved to `docs/YYYY-MM-DD-[topic]/PLAN.md` or the user-specified location.
