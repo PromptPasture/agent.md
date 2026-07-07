@@ -1,4 +1,4 @@
-# Wiki skill — setup
+# Wiki Skill — Setup
 
 The wiki skill works out of the box with no configuration. This file covers how to change the wiki location and enable autonomous maintenance.
 
