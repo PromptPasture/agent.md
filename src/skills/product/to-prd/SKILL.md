@@ -5,7 +5,7 @@ disable-model-invocation: true
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.1"
+  version: "2.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements
@@ -145,7 +145,6 @@ related:
 - **Decompose broad requests:** when one PRD cannot represent a coherent product decision, split independent product areas or produce an umbrella PRD with clearly separated child initiatives.
 - **Avoid fabricated metrics:** when a baseline, target, or measurement source is unknown, define the intended outcome and measurement method and leave the unresolved value as `TBD`.
 - **Surface conflicts:** identify contradictory requirements and the decision needed instead of silently choosing.
-- **Route mismatched requests:** when the request is primarily a technical specification, data contract, UI spec, or implementation plan, use `write-spec` instead. Carry the established product context into it. When the request is a user story, use `write-user-story`.
 
 ## Verification
 
