@@ -4,28 +4,27 @@ description: Diagnoses mismatches in skills, rules, or workflows and applies the
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.6.0"
+  version: "1.6.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: adaptation
   tags: [adaptation, feedback, process]
-  references: [wiki, yagni]
 ---
 
 # Adapting to Changes
 
-Turn failures, friction, feedback, stale assumptions, and changed constraints into the smallest verified change that prevents the mismatch from recurring.
+Turn failures, friction, feedback, stale assumptions, and changed constraints into a surgical, verified change that prevents the mismatch from recurring.
 
 ## Workflow
 
 ### Goal
 
-Resolve the mismatch with the smallest verified change.
+Resolve the mismatch with a surgical, verified change.
 
 ### Setup
 
 1. Identify the signal, expected vs. observed behavior, impact, and evidence. Treat feedback as evidence to investigate, not proof of cause or remedy.
-2. Inspect the artifact involved. Verify facts before relying on feedback. If required evidence is unavailable, report what was inspected, make no unsupported change, and stop.
+2. Inspect the artifact involved. Verify facts before relying on feedback.
 
 ### Loop
 
@@ -34,9 +33,8 @@ Resolve the mismatch with the smallest verified change.
    - Artifact adequate but not followed → correct execution.
    - New durable context → update memory.
    - Recurrence needs a reproducible check → add or update an evaluation.
-   - Change outside available authority → escalate.
-2. Apply the change, or diagnose without editing if the user asked what should change. Ask one question when competing interpretations would change scope; otherwise state the assumption and proceed.
-3. Verify: run the smallest check that confirms the fix. Review for contradictions, regressions, and scope creep. Preserve behavior unrelated to the mismatch.
+2. Apply the change, or diagnose without editing if the user asked what should change.
+3. Verify: run a surgical check that confirms the fix. Review for contradictions, regressions, and scope creep. Preserve behavior unrelated to the mismatch.
 
 ### Exit
 
@@ -55,7 +53,7 @@ Cause:
 [Evidence-backed explanation of the mismatch.]
 
 Changed:
-- [Artifact and smallest necessary correction.]
+- [Artifact and the surgical correction made.]
 
 Verified:
 - [Check performed and result.]
@@ -65,6 +63,12 @@ Residual risk:
 ```
 
 Keep diagnosis proportional to the evidence. When no change is justified, state why and identify the additional evidence needed.
+
+## Error Paths
+
+- Ask one concise question when competing interpretations would change scope; otherwise state the assumption and proceed.
+- If required evidence is unavailable, report what was inspected, make no unsupported change, and stop.
+- If the needed change is outside available authority, escalate rather than applying it.
 
 ## Verification
 
