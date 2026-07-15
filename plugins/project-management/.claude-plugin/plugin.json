@@ -1,0 +1,9 @@
+{
+  "name": "project-management",
+  "version": "0.1.0",
+  "description": "Pre-built project-management workflows for a Scrum team using Jira (via Atlassian) — status briefs, ticket triage, board cleanup, sprint close and planning, roadmap updates, and spec writing. You approve every step that touches the board or goes out to the team.",
+  "author": {
+    "name": "Oleg Shulyakov"
+  },
+  "keywords": ["project management", "jira", "scrum", "sprints", "agile", "engineering", "roadmap"]
+}
