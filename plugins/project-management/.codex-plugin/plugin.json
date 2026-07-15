@@ -1,0 +1,19 @@
+{
+  "name": "project-management",
+  "version": "0.1.0",
+  "description": "Pre-built Jira workflows for a Scrum team — status briefs, ticket triage, board cleanup, sprint close and planning, roadmap updates, and spec writing. You approve every step that touches the board.",
+  "author": {
+    "name": "Anthropic"
+  },
+  "keywords": ["project management", "jira", "scrum", "sprints", "agile", "engineering", "roadmap"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Project Management",
+    "shortDescription": "Jira workflows for Scrum teams — status briefs, triage, sprint planning, and more.",
+    "longDescription": "Pre-built project-management workflows for a Scrum team using Jira (via Atlassian). Routes open-ended requests to the right skill, pauses before every Jira change, and works standalone for planning and spec writing.",
+    "developerName": "Anthropic",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"]
+  }
+}
