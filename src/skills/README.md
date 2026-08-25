@@ -72,6 +72,7 @@ Skills under active development. Not yet production-ready.
 |[`design-api`](in-progress/design-api/SKILL.md)|Contract-first API design for OpenAPI, AsyncAPI, GraphQL, endpoints, schemas, and request/response shapes.|
 |[`manage`](in-progress/manage/SKILL.md)|Managing active work across people, agents, tasks, dependencies, blockers, status, and handoffs.|
 |[`markitdown`](in-progress/markitdown/SKILL.md)|Reading extraction-dependent local documents or converting them to Markdown with the MarkItDown CLI.|
+|[`teach`](in-progress/teach/SKILL.md)|Teaching a topic across multiple sessions from a persistent learning workspace of missions, lessons, reference sheets, glossary, and learning records.|
 |[`write-api-docs`](in-progress/write-api-docs/SKILL.md)|Reference documentation for implemented API endpoints, operations, schemas, errors, authentication, and examples.|
 |[`write-changelog`](in-progress/write-changelog/SKILL.md)|Developer-facing changelogs, unreleased sections, release entries, breaking changes, and security changes.|
 |[`write-readme`](in-progress/write-readme/SKILL.md)|Project READMEs covering purpose, installation, quick starts, usage, configuration, and contribution.|

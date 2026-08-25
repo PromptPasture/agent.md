@@ -44,6 +44,7 @@ All skills follow verb-first naming (`<verb>-<subject>[-<variant>]` or a bare ve
 |`design-api`|API design|
 |`manage`|Coordinate active work across people, agents, tasks, dependencies, blockers, and handoffs|
 |`markitdown`|Convert local documents (PDF, Word, PowerPoint, Excel, EPUB, Outlook) to Markdown|
+|`teach`|Teach a topic across sessions from a persistent learning workspace (user-invoked only)|
 |`write-api-docs`|Write or revise reference documentation for existing APIs|
 |`write-changelog`|Write or revise developer-facing changelogs|
 |`write-readme`|Write or revise project README files|
