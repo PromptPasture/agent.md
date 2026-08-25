@@ -16,3 +16,4 @@ Source documents (PRDs, SPECs, BRAINSTORMs) for past design and planning work.
 - [2026-06-21-code-tests-skill](2026-06-21-code-tests-skill/) — code-tests skill 4-phase redesign brainstorm
 - [2026-06-22-lawyer-skill](2026-06-22-lawyer-skill/) — lawyer skill design brainstorm
 - [2026-06-25-wiki-skill](2026-06-25-wiki-skill/) — wiki skill brainstorm, plan, and OKF spec
+- [2026-07-12-skills-as-plugins](2026-07-12-skills-as-plugins/) — reorganizing src/skills into Claude Code plugins brainstorm
