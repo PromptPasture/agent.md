@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-02
+
+- `brainstorm` no longer writes `BRAINSTORM.md`; it presents approved conclusions in chat and hands off to `to-prd`, `to-ticket`, or `wiki` when a file is needed.
+
 ## 2026-07-07
 
 - Consolidated `write-user-story` into `to-ticket` (renamed from `write-ticket`, promoted from in-progress to the Product catalog); now user-invoked only, and its feature ticket type covers full sprint-ready user stories.

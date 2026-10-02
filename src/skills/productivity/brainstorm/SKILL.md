@@ -4,7 +4,7 @@ description: Explores user intent, requirements, and design before implementatio
 license: Apache-2.0
 metadata:
   author: github.com/obra/superpowers
-  version: "3.2.0"
+  version: "3.3.0"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: research
@@ -23,7 +23,7 @@ Every project goes through this process. A todo list, a single-function utility,
 
 ### Goal
 
-Brainstorm conclusions the user has approved, captured in `docs/YYYY-MM-DD-[topic]/BRAINSTORM.md` and ready to hand off to an implementation plan.
+Brainstorm conclusions the user has approved, summarized in chat and ready to hand off to an implementation plan or a document-writing skill.
 
 ### Setup
 
@@ -44,10 +44,9 @@ When the user approves the conclusions.
 
 ### Report
 
-1. Write the brainstorm doc to `docs/YYYY-MM-DD-[topic]/BRAINSTORM.md` — see Output below for structure. (User preferences for document location override this default.)
-2. Self-review the written notes and fix issues inline — see Verification below. No need to re-review after fixing; just fix and move on.
-3. Ask the user to review the written file: "Brainstorm notes written to `[path]`. Please review them and let me know if you want to make any changes before we start writing the implementation plan." Wait for their response.
-4. If they request changes, make them and repeat the self-review. Once approved, create a detailed implementation plan from the conclusions. Do not start implementation directly from brainstorming.
+1. Self-review the conclusions and fix issues inline — see Verification below.
+2. Present the final summary in chat — see Output below for structure. Do not write it to a file.
+3. Offer next steps: create an implementation plan from the conclusions, or persist if the user wants a file. Do not start implementation directly from brainstorming.
 
 ## Decomposing Large Projects
 
@@ -69,56 +68,35 @@ Aim for **loose coupling, high cohesion**: each unit has one clear purpose, a we
 
 ## Output
 
-Write conclusions to `docs/YYYY-MM-DD-[topic]/BRAINSTORM.md`, adapting headings to the topic while preserving the frontmatter fields:
+Present the final summary in chat, adapting headings to the topic and omitting empty sections:
 
 ```markdown
----
-topic: [Topic]
-method: [Method]
-date: "YYYY-MM-DD"
-related:
-  - [Optional path, issue, or URL]
----
+## Brainstorm - [Topic]
 
-# Brainstorm - [Topic]
+**Goal:** ...
 
-## Goal
+**Ideas considered:**
 
-## Context
+- **[Idea]** — description; benefits; trade-offs
 
-## Agenda
+**Decisions:** ...
 
-1. ...
+**Summary:** ...
 
-## Ideas Considered
+**Open questions:** ...
 
-### [Idea]
-
-- **Description:** ...
-- **Benefits:** ...
-- **Trade-offs:** ...
-
-## Outcomes
-
-### Summary
-
-### Decisions
-
-### Open Questions
-
-## Next Steps
+**Next steps:** ...
 ```
 
-Omit `related` when there are no useful references. Use a concise method name that describes how ideas were explored, such as `comparative analysis`, `creative matrix`, `round robin`, or `idea prioritization`. Record substantive discussion in the body; frontmatter is only for document metadata. Capture general discovery and decisions, not a technical design or implementation specification.
+Capture general discovery and decisions, not a technical design or implementation specification.
 
 ## Error Paths
 
 - If conclusions don't hold together, go back and clarify rather than pressing forward.
-- If the user requests changes to the written notes, apply them and re-run the self-review before asking for approval again.
 
 ## Verification
 
-Before asking the user to review the written notes, verify that:
+Before presenting the final summary, verify that:
 
 - No placeholders remain ("TBD", "TODO", incomplete sections, or vague requirements).
 - Sections are internally consistent — decisions follow from the ideas and trade-offs presented.
