@@ -1,10 +1,10 @@
 ---
 name: write-api-docs
-description: Write or revise reference documentation for existing APIs. Use for REST endpoints, GraphQL operations, gRPC methods, WebSocket messages, authentication, parameters, schemas, responses, errors, limits, and executable request examples.
+description: Writes or revises reference docs for existing APIs (REST, GraphQL, gRPC, WebSocket). Use when asked to document endpoints, parameters, schemas, or errors.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: documentation
   category: documentation

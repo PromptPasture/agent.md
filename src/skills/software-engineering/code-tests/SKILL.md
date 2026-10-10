@@ -1,10 +1,10 @@
 ---
 name: code-tests
-description: Generates production-ready test code with auto-detected stack and framework, confirmed test plan before writing, and a P0–P3 quality checklist covering determinism, coverage, assertions, and CI readiness. One test type per invocation. Use when the user asks to write automated tests: E2E, API, integration, or load/performance.
+description: Generates production-ready automated tests with a P0–P3 checklist, one test type per run. Use when asked to write E2E, API, integration, or load tests.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "2.0.3"
+  version: "2.0.4"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: testing

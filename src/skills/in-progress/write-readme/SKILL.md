@@ -1,10 +1,10 @@
 ---
 name: write-readme
-description: You MUST use this to write or revise project README files. Use for repository, library, CLI, service, internal-tool, and open-source project introductions, installation, quick starts, usage, configuration, development, contribution, support, and license guidance.
+description: You MUST use this to write or revise project README files. Use for introductions, installation, quick starts, usage, configuration, and contribution.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: documentation
   category: documentation

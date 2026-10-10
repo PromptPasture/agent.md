@@ -1,10 +1,10 @@
 ---
 name: wiki
-description: Creates, updates, queries, and lints a structured wiki knowledge base. Use when the user says "add to wiki", "update wiki", "search wiki", "ingest this", "remember this", "save context", or asks to preserve a fact.
+description: Creates, updates, queries, and lints a structured wiki. Use when the user says "add to wiki", "search wiki", "ingest this", "remember this", or "save context".
 license: Apache-2.0
 metadata:
   author: Andrej Karpathy
-  version: "1.0.3"
+  version: "1.0.4"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: knowledge

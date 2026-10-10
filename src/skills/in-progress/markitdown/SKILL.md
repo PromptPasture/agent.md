@@ -1,10 +1,10 @@
 ---
 name: markitdown
-description: Reads .pdf, .docx, .pptx, .xlsx, .msg, and .epub files by converting them to Markdown with markitdown, then ingests the result. Use when a file with one of those extensions is uploaded or a local path to one is given and the goal is to read, summarize, or understand its content. Also use when the user explicitly asks to "convert to markdown" or "save as markdown" for a supported file. Proactively convert on upload — do not wait for the user to ask. Do NOT use for creating or editing documents, for web URLs, for HTML files, or for plain text.
+description: Converts .pdf, .docx, .pptx, .xlsx, .msg, and .epub files to Markdown to read them. Use when such a file is uploaded or given by path. Not for editing.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.2.0"
+  version: "1.2.1"
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: document-conversion

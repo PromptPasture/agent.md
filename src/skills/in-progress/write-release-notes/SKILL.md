@@ -1,10 +1,10 @@
 ---
 name: write-release-notes
-description: Write or revise user-facing release notes. Use for product updates, version announcements, what's-new summaries, app-store notes, improvements, fixes, known issues, upgrade guidance, and action-required notices.
+description: Writes or revises user-facing release notes. Use for product updates, version announcements, what's-new summaries, known issues, and upgrade guidance.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: documentation
   category: documentation

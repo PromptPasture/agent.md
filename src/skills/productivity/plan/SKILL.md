@@ -1,10 +1,10 @@
 ---
 name: plan
-description: Sequences work into ordered phases with dependencies and success conditions. Use for planning requests like "break this down", "roadmap", "approach", "milestones", "how should we proceed", migration planning, rollout planning, and scoped next steps.
+description: Sequences work into ordered phases with dependencies and success conditions. Use when asked to "break this down", or plan a roadmap, migration, or rollout.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.0"
+  version: "1.4.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: planning

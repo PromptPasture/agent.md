@@ -1,10 +1,10 @@
 ---
 name: write-runbook
-description: Write or revise executable operational runbooks. Use for routine maintenance, deployment, recovery, secret rotation, diagnostics, alert response, on-call triage, mitigation, verification, rollback, communication, and escalation procedures.
+description: Writes or revises executable operational runbooks. Use for deployment, recovery, alert response, on-call triage, rollback, and escalation procedures.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.0"
+  version: "1.0.1"
   source: github.com/olegshulyakov/agent.md
   catalog: documentation
   category: documentation

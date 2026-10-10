@@ -1,10 +1,10 @@
 ---
 name: review
-description: Surfaces structured findings across consistent quadrants, not freeform prose assessments. Use when the user says "review", "critique", "evaluate", "what's wrong with", "compare", or passes a skill, rule, doc, spec, code, diff, or pull request for assessment.
+description: Surfaces structured findings in consistent quadrants. Use when the user says "review", "critique", "evaluate", or "what's wrong with" about any artifact.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.3.0"
+  version: "1.3.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: quality

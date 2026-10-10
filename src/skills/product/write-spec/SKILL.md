@@ -1,13 +1,12 @@
 ---
 name: write-spec
 description: >
-  Write product specifications and requirements documents. Use for tech specs, design docs,
-  TDDs, functional or non-functional requirements, data contracts, UI specs, release specs,
-  handoff docs, and system behavior.
+  Writes product specifications and requirements documents. Use for tech specs, design docs,
+  TDDs, functional or non-functional requirements, and UI specs.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.4.3"
+  version: "1.4.4"
   source: github.com/olegshulyakov/agent.md
   catalog: product
   category: requirements

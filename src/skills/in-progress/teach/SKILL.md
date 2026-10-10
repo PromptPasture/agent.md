@@ -1,12 +1,12 @@
 ---
 name: teach
-description: Teaches a topic across multiple sessions from a persistent learning workspace, producing short markdown lessons grounded in a stated mission. Use when the user asks to be taught or coached on something over time.
+description: Teaches a topic over multiple sessions from a persistent learning workspace. Use when the user asks to be taught or coached on something over time.
 disable-model-invocation: true
 argument-hint: "What would you like to learn about?"
 license: MIT
 metadata:
   author: github.com/mattpocock/skills
-  version: "1.1.0"
+  version: "1.1.1"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: learning

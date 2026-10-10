@@ -1,10 +1,10 @@
 ---
 name: adapt
-description: Diagnoses mismatches in skills, rules, or workflows and applies the smallest necessary change. Use when the user says "adapt based on this", "what should change after this?", "this keeps happening", "this failed, what should change?", "the workflow no longer fits", "the constraints changed", or asks what skill, rule, doc, eval, memory, or process should change.
+description: Diagnoses mismatches in skills, rules, or workflows and applies the smallest fix. Use when the user says "adapt based on this" or "what should change?"
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.6.1"
+  version: "1.6.2"
   source: github.com/olegshulyakov/agent.md
   catalog: productivity
   category: adaptation

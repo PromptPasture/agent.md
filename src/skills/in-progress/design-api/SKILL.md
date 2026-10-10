@@ -1,10 +1,10 @@
 ---
 name: design-api
-description: Produces a contract-first interface spec before implementation, covering OpenAPI/Swagger, AsyncAPI, and GraphQL schemas. Use when asked to design an API contract, endpoints, schemas, request/response shapes, or "what should the API look like?"
+description: Designs contract-first API specs (OpenAPI, AsyncAPI, GraphQL) before implementation. Use when asked to design an API contract, endpoints, or schemas.
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.1.3"
+  version: "1.1.4"
   source: github.com/olegshulyakov/agent.md
   catalog: software-engineering
   category: api

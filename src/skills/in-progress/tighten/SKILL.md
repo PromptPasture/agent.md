@@ -1,6 +1,6 @@
 ---
 name: tighten
-description: 'Compress text to the shortest form that keeps every fact and meaning intact. Apply this proactively, before finalizing, to anything you (Claude) write — code comments, commit messages, PR/issue descriptions, docs, README updates, and chat replies — not only when the user explicitly asks to shorten something. Also use on demand when the user pastes text or points at a file and asks to "tighten," "shorten," "make concise," "cut the fluff," or "trim this down." Supports a --level light|moderate|aggressive flag (default: moderate).'
+description: 'Compresses text to its shortest form without losing facts. Use proactively on anything you write, or when asked to "tighten", "shorten", or "cut the fluff".'
 ---
 
 # Tighten

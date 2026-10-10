@@ -1,10 +1,10 @@
 ---
 name: landscape-design
-description: Transforms outdoor spaces into functional landscapes using expert plant knowledge and architectural styling. Use when the user mentions "landscape design", "yard design", "garden planning", "plant selection", "backyard makeover", or "landscaping ideas".
+description: Designs functional outdoor landscapes with expert plant selection. Use when the user mentions "landscape design", "yard design", or "garden planning".
 license: Apache-2.0
 metadata:
   author: Oleg Shulyakov
-  version: "1.0.1"
+  version: "1.0.2"
   source: github.com/olegshulyakov/agent.md
   catalog: lifestyle
   category: home-and-garden

@@ -1,6 +1,6 @@
 ---
 name: audit-skill-security
-description: You MUST use before installing, updating, or trusting ANY skill from ANY source. Audit SKILL.md, permissions, dependencies, prompt-injection patterns, network behavior, exfiltration risk, bundled resources and suspicious patterns.
+description: You MUST use before installing, updating, or trusting any skill. Audits SKILL.md, permissions, dependencies, prompt injection, and exfiltration risk.
 license: Apache-2.0
 metadata:
   author: UseAI-pro
