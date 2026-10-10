@@ -4,7 +4,7 @@ title: Skill system
 description: How Agent Skills are structured, named, discovered, and loaded in this repository.
 tags: [skills, agents, naming, conventions]
 created: "2026-06-25T00:00:00Z"
-updated: "2026-07-06T00:00:00Z"
+updated: "2026-10-10T00:00:00Z"
 ---
 
 # Skill system
@@ -24,7 +24,7 @@ Approved verb groups: `audit`, `check`, `build`, `design`, `diagram`, `model`, `
 ```yaml
 ---
 name: <skill-name>           # REQUIRED — matches parent directory
-description: <1–1024 chars>  # REQUIRED — what it does and when to trigger it
+description: <1–160 bytes>  # REQUIRED — what it does and when to trigger it
 license: Apache-2.0          # optional
 compatibility: ...           # optional
 metadata:

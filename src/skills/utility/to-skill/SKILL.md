@@ -5,7 +5,7 @@ disable-model-invocation: true
 license: MIT
 metadata:
   author: Matt Pocock
-  version: 1.1.1
+  version: 1.1.2
   source: github.com/olegshulyakov/agent.md
   catalog: utility
   category: authoring
@@ -43,7 +43,7 @@ Splitting a skill always spends one of these loads (**granularity**) — only sp
 
 - **Model-invoked:** include both **what the skill does** and **when to use it** — concrete trigger phrases the user would actually say.
 Front-load the leading word the skill should be invoked by. One trigger phrase per distinct branch; a synonym that just renames the same branch is duplication —
-collapse it. Under 1024 characters. No `<` or `>`.
+collapse it. At most 160 bytes. No `<` or `>`.
 - **User-invoked:** strip triggers; the description becomes a one-line human-facing summary — what the skill is for, not when the agent should reach for it (it can't).
 
 ### Frontmatter mechanics

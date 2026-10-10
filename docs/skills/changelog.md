@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-10
+
+- **Update**: Capped skill `description` at 160 bytes in [Skill system](skill-system.md).
+
 ## 2026-07-07
 
 - **Update**: Consolidated `write-user-story` into `to-ticket` (renamed from `write-ticket`, promoted from in-progress to [Product](product.md)) — now user-invoked only (`disable-model-invocation: true`); the feature ticket type carries full sprint-ready user-story rigor (Card-Conversation-Confirmation, INVEST, story points, epic linkage, Given/When/Then scenarios).

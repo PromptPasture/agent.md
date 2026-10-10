@@ -229,10 +229,10 @@ your-skill-name/
 - ❌ No underscores: `notion_project_setup`
 - ❌ No capitals: `NotionProjectSetup`
 
-**No README.md inside the skill folder:**
+**README.md inside the skill folder is for humans only:**
 
-- All documentation goes in `SKILL.md` or `references/`
-- Note: when distributing via GitHub, you’ll still want a repo-level README for human users
+- All agent instructions go in `SKILL.md` or `references/`
+- An optional `README.md` may hold human-facing setup notes
 
 ### YAML Frontmatter: The Most Important Part
 
@@ -258,7 +258,7 @@ description: What it does. Use when user asks to [specific phrases].
 **`description` (required):**
 
 - MUST include BOTH: what the skill does AND when to use it (trigger conditions)
-- Under 1024 characters
+- At most 160 bytes
 - No XML tags (`<` or `>`)
 - Include specific tasks users might say
 - Mention file types if relevant
@@ -818,7 +818,7 @@ CRITICAL: Before calling create_project, verify:
 **Solutions:**
 
 1. Move detailed docs to `references/` and link to them
-1. Keep `SKILL.md` under 5,000 words
+1. Keep `SKILL.md` under 40,000 bytes
 1. Reduce the number of simultaneously enabled skills (evaluate if you have more than 20–50)
 1. Consider skill “packs” for related capabilities
 
@@ -932,7 +932,7 @@ metadata:
 
 - Any standard YAML types (strings, numbers, booleans, lists, objects)
 - Custom metadata fields
-- Long descriptions (up to 1024 characters)
+- Descriptions up to 160 bytes
 
 **Forbidden:**
 
