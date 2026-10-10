@@ -9,6 +9,8 @@ metadata:
   catalog: software-engineering
   category: development
   tags: [codegen, backend, api, engineering]
+  openclaw:
+    emoji: "\u2699\uFE0F"
 ---
 
 # Doing Backend

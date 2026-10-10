@@ -11,6 +11,8 @@ metadata:
   catalog: productivity
   category: learning
   tags: [learning, teaching, retention]
+  openclaw:
+    emoji: "\U0001F393"
 ---
 
 # Teach a Topic

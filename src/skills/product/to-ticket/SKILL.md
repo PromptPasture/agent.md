@@ -10,6 +10,8 @@ metadata:
   catalog: product
   category: requirements
   tags: [writer, tickets, issue-tracking, agile, user-stories]
+  openclaw:
+    emoji: "\U0001F3AB"
 ---
 
 # To Ticket

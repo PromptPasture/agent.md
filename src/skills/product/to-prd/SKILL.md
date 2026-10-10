@@ -10,6 +10,8 @@ metadata:
   catalog: product
   category: requirements
   tags: [writer, product, requirements]
+  openclaw:
+    emoji: "\U0001F4CB"
 ---
 
 # To Product Requirements Document

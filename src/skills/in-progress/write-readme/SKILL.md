@@ -9,6 +9,8 @@ metadata:
   catalog: documentation
   category: documentation
   tags: [writer, docs, readme]
+  openclaw:
+    emoji: "\U0001F4D6"
 ---
 
 # Writing README

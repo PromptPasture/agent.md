@@ -9,6 +9,8 @@ metadata:
   catalog: documentation
   category: documentation
   tags: [writer, docs, changelog]
+  openclaw:
+    emoji: "\U0001F4DC"
 ---
 
 # Writing Changelogs

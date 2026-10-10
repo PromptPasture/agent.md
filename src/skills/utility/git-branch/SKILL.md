@@ -9,6 +9,8 @@ metadata:
   catalog: utility
   category: version-control
   tags: [git, branch]
+  openclaw:
+    emoji: "\U0001F33F"
 ---
 
 # Git Branching

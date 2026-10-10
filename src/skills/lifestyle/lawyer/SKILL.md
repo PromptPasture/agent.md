@@ -9,6 +9,8 @@ metadata:
   catalog: lifestyle
   category: legal
   tags: [legal, contracts, compliance, drafting]
+  openclaw:
+    emoji: "\u2696\uFE0F"
 ---
 
 # Legal Advisor

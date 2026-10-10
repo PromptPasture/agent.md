@@ -9,6 +9,8 @@ metadata:
   catalog: productivity
   category: planning
   tags: [plan, roadmap, sequencing]
+  openclaw:
+    emoji: "\U0001F5FA\uFE0F"
 ---
 
 # Planning Steps

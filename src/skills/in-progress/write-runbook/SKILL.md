@@ -9,6 +9,8 @@ metadata:
   catalog: documentation
   category: documentation
   tags: [writer, docs, operations, runbook]
+  openclaw:
+    emoji: "\U0001F6A8"
 ---
 
 # write-runbook

@@ -10,6 +10,8 @@ metadata:
   catalog: productivity
   category: notes
   tags: [notes, transcript, video, lecture-notes]
+  openclaw:
+    emoji: "\U0001F5D2\uFE0F"
 ---
 
 # To Notes

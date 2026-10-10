@@ -10,6 +10,8 @@ metadata:
   catalog: utility
   category: authoring
   tags: [skills, authoring, meta]
+  openclaw:
+    emoji: "\U0001F9E9"
 ---
 
 # Write Skill

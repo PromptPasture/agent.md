@@ -9,6 +9,8 @@ metadata:
   catalog: software-engineering
   category: api
   tags: [design, api, contract]
+  openclaw:
+    emoji: "\U0001F4D0"
 ---
 
 # design-api

@@ -9,6 +9,8 @@ metadata:
   catalog: productivity
   category: quality
   tags: [review, quality, retrospective]
+  openclaw:
+    emoji: "\U0001F50D"
 ---
 
 # Reviewing Artifact

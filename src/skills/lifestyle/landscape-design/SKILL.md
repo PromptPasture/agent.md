@@ -9,6 +9,8 @@ metadata:
   catalog: lifestyle
   category: home-and-garden
   tags: [landscape, garden, yard, outdoor, plants, design]
+  openclaw:
+    emoji: "\U0001F333"
 ---
 
 # Landscape Design Skill

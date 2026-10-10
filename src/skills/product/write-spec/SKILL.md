@@ -11,6 +11,8 @@ metadata:
   catalog: product
   category: requirements
   tags: [writer, specification, requirements]
+  openclaw:
+    emoji: "\U0001F4DD"
 ---
 
 # write-spec

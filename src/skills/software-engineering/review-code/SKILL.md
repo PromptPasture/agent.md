@@ -9,6 +9,8 @@ metadata:
   catalog: software-engineering
   category: review
   tags: [review, code quality]
+  openclaw:
+    emoji: "\U0001F50E"
 ---
 
 # Reviewing Code

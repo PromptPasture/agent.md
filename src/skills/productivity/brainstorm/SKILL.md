@@ -9,6 +9,8 @@ metadata:
   catalog: productivity
   category: research
   tags: [reason, framing, thinking]
+  openclaw:
+    emoji: "\U0001F4A1"
 ---
 
 # Brainstorming Ideas

@@ -9,6 +9,8 @@ metadata:
   catalog: utility
   category: version-control
   tags: [git, commit]
+  openclaw:
+    emoji: "\U0001F4BE"
 ---
 
 # Git Commit

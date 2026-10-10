@@ -9,6 +9,8 @@ metadata:
   catalog: utility
   category: security
   tags: [audit, security, skills]
+  openclaw:
+    emoji: "\U0001F6E1\uFE0F"
 ---
 
 # Auditing Skill Security

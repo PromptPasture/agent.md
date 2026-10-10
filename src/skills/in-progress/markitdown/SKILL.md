@@ -9,6 +9,8 @@ metadata:
   catalog: utility
   category: document-conversion
   tags: [documents, markdown, conversion, markitdown]
+  openclaw:
+    emoji: "\U0001F4C4"
 ---
 
 # MarkItDown

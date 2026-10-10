@@ -9,6 +9,8 @@ metadata:
   catalog: productivity
   category: quality
   tags: [dry, duplication, refactor, simplicity]
+  openclaw:
+    emoji: "\U0001F501"
 ---
 
 # DRY

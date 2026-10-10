@@ -9,6 +9,8 @@ metadata:
   catalog: documentation
   category: documentation
   tags: [writer, docs, api]
+  openclaw:
+    emoji: "\U0001F4D8"
 ---
 
 # write-api-docs

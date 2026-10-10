@@ -9,6 +9,8 @@ metadata:
   catalog: documentation
   category: documentation
   tags: [writer, docs, release-notes]
+  openclaw:
+    emoji: "\U0001F4E3"
 ---
 
 # write-release-notes

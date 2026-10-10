@@ -9,6 +9,8 @@ metadata:
   catalog: software-engineering
   category: database
   tags: [codegen, database, sql, migration, schema, orm]
+  openclaw:
+    emoji: "\U0001F5C4\uFE0F"
 ---
 
 # Doing Database

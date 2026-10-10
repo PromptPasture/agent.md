@@ -9,6 +9,8 @@ metadata:
   catalog: productivity
   category: knowledge
   tags: [wiki, knowledge-base, okf, notes]
+  openclaw:
+    emoji: "\U0001F4DA"
 ---
 
 # Wiki

@@ -1,6 +1,9 @@
 ---
 name: tighten
 description: 'Compresses text to its shortest form without losing facts. Use proactively on anything you write, or when asked to "tighten", "shorten", or "cut the fluff".'
+metadata:
+  openclaw:
+    emoji: "\u2702\uFE0F"
 ---
 
 # Tighten

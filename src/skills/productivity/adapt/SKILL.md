@@ -9,6 +9,8 @@ metadata:
   catalog: productivity
   category: adaptation
   tags: [adaptation, feedback, process]
+  openclaw:
+    emoji: "\U0001F504"
 ---
 
 # Adapting to Changes

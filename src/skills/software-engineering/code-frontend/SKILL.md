@@ -9,6 +9,8 @@ metadata:
   catalog: software-engineering
   category: web-development
   tags: [frontend, typescript, javascript, css, a11y, seo, pwa, i18n]
+  openclaw:
+    emoji: "\U0001F3A8"
 ---
 
 # Doing Frontend

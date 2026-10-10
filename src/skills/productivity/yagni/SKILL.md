@@ -9,6 +9,8 @@ metadata:
   catalog: productivity
   category: quality
   tags: [yagni, simplicity, scope, refactor]
+  openclaw:
+    emoji: "\U0001F6AB"
 ---
 
 # YAGNI

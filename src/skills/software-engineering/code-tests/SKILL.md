@@ -9,6 +9,8 @@ metadata:
   catalog: software-engineering
   category: testing
   tags: [testing, e2e, api, integration, load, performance, playwright, cypress, k6, jest, vitest, pytest]
+  openclaw:
+    emoji: "\U0001F9EA"
 ---
 
 # Writing Automated Tests

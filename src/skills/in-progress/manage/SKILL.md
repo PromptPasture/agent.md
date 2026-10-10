@@ -9,6 +9,8 @@ metadata:
   catalog: productivity
   category: management
   tags: [manage, execution, handoff]
+  openclaw:
+    emoji: "\U0001F9ED"
 ---
 
 # Managing Work
