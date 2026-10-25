@@ -12,7 +12,6 @@
 - You MUST NOT publish content from `docs/`, `.agents/memory/`, or other internal sources unless the user explicitly requests its publication and the content is rewritten for a public audience.
 - Public claims, examples, commands, paths, and version references MUST be accurate and consistent with the repository.
 - Pages MUST be concise, scannable, and organized around reader goals.
-- You MUST preserve the site's established terminology, voice, and document structure unless the request requires changing them.
 
 ## Page Structure
 

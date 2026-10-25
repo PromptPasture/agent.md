@@ -8,7 +8,7 @@
 
 - Every artifact MUST have one clear purpose and MUST contain only instructions or resources needed for that purpose.
 - You MUST preserve the established artifact format, terminology, and metadata fields unless the requested change requires otherwise.
-- You MUST NOT add speculative behavior, unused extension points, duplicate guidance, or runtime-specific requirements to tool-agnostic artifacts.
+- You MUST NOT add duplicate guidance, and MUST NOT add runtime-specific requirements to tool-agnostic artifacts.
 - References, relative paths, examples, commands, and named tools MUST resolve to real repository content or clearly identified external dependencies.
 - When materially changing a command, rule, or skill, you MUST increment `metadata.version` using semantic versioning.
 - Metadata MUST use the repository's compact format, including `author`, `version`, `source`, and `category` when those fields apply.
